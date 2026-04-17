@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import typing_extensions
 from typing import Dict, Iterable, Optional
 
 import httpx
@@ -30,7 +29,6 @@ from ....._base_client import AsyncPaginator, make_request_options
 from .....types.cloud.inference import deployment_list_params, deployment_create_params, deployment_update_params
 from .....types.cloud.task_id_list import TaskIDList
 from .....types.cloud.inference.inference_deployment import InferenceDeployment
-from .....types.cloud.inference.inference_deployment_api_key import InferenceDeploymentAPIKey
 
 __all__ = ["DeploymentsResource", "AsyncDeploymentsResource"]
 
@@ -437,51 +435,6 @@ class DeploymentsResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=InferenceDeployment,
-        )
-
-    @typing_extensions.deprecated("deprecated")
-    def get_api_key(
-        self,
-        deployment_name: str,
-        *,
-        project_id: int | None = None,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> InferenceDeploymentAPIKey:
-        """
-        Get inference deployment API key
-
-        Args:
-          project_id: Project ID
-
-          deployment_name: Inference instance name.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if project_id is None:
-            project_id = self._client._get_cloud_project_id_path_param()
-        if not deployment_name:
-            raise ValueError(f"Expected a non-empty value for `deployment_name` but received {deployment_name!r}")
-        return self._get(
-            path_template(
-                "/cloud/v3/inference/{project_id}/deployments/{deployment_name}/apikey",
-                project_id=project_id,
-                deployment_name=deployment_name,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=InferenceDeploymentAPIKey,
         )
 
     def start(
@@ -1166,51 +1119,6 @@ class AsyncDeploymentsResource(AsyncAPIResource):
             cast_to=InferenceDeployment,
         )
 
-    @typing_extensions.deprecated("deprecated")
-    async def get_api_key(
-        self,
-        deployment_name: str,
-        *,
-        project_id: int | None = None,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> InferenceDeploymentAPIKey:
-        """
-        Get inference deployment API key
-
-        Args:
-          project_id: Project ID
-
-          deployment_name: Inference instance name.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if project_id is None:
-            project_id = self._client._get_cloud_project_id_path_param()
-        if not deployment_name:
-            raise ValueError(f"Expected a non-empty value for `deployment_name` but received {deployment_name!r}")
-        return await self._get(
-            path_template(
-                "/cloud/v3/inference/{project_id}/deployments/{deployment_name}/apikey",
-                project_id=project_id,
-                deployment_name=deployment_name,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=InferenceDeploymentAPIKey,
-        )
-
     async def start(
         self,
         deployment_name: str,
@@ -1508,11 +1416,6 @@ class DeploymentsResourceWithRawResponse:
         self.get = to_raw_response_wrapper(
             deployments.get,
         )
-        self.get_api_key = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                deployments.get_api_key,  # pyright: ignore[reportDeprecated],
-            )
-        )
         self.start = to_raw_response_wrapper(
             deployments.start,
         )
@@ -1552,11 +1455,6 @@ class AsyncDeploymentsResourceWithRawResponse:
         )
         self.get = async_to_raw_response_wrapper(
             deployments.get,
-        )
-        self.get_api_key = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                deployments.get_api_key,  # pyright: ignore[reportDeprecated],
-            )
         )
         self.start = async_to_raw_response_wrapper(
             deployments.start,
@@ -1598,11 +1496,6 @@ class DeploymentsResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             deployments.get,
         )
-        self.get_api_key = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                deployments.get_api_key,  # pyright: ignore[reportDeprecated],
-            )
-        )
         self.start = to_streamed_response_wrapper(
             deployments.start,
         )
@@ -1642,11 +1535,6 @@ class AsyncDeploymentsResourceWithStreamingResponse:
         )
         self.get = async_to_streamed_response_wrapper(
             deployments.get,
-        )
-        self.get_api_key = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                deployments.get_api_key,  # pyright: ignore[reportDeprecated],
-            )
         )
         self.start = async_to_streamed_response_wrapper(
             deployments.start,
