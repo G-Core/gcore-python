@@ -39,10 +39,6 @@ class TestRuleTemplates:
                     "enabled": True,
                     "value": ["GET", "POST"],
                 },
-                "bot_protection": {
-                    "bot_challenge": {"enabled": True},
-                    "enabled": True,
-                },
                 "brotli_compression": {
                     "enabled": True,
                     "value": ["text/html", "text/plain"],
@@ -346,10 +342,6 @@ class TestRuleTemplates:
                 "allowed_http_methods": {
                     "enabled": True,
                     "value": ["GET", "POST"],
-                },
-                "bot_protection": {
-                    "bot_challenge": {"enabled": True},
-                    "enabled": True,
                 },
                 "brotli_compression": {
                     "enabled": True,
@@ -754,10 +746,6 @@ class TestRuleTemplates:
                     "enabled": True,
                     "value": ["GET", "POST"],
                 },
-                "bot_protection": {
-                    "bot_challenge": {"enabled": True},
-                    "enabled": True,
-                },
                 "brotli_compression": {
                     "enabled": True,
                     "value": ["text/html", "text/plain"],
@@ -1072,10 +1060,6 @@ class TestAsyncRuleTemplates:
                     "enabled": True,
                     "value": ["GET", "POST"],
                 },
-                "bot_protection": {
-                    "bot_challenge": {"enabled": True},
-                    "enabled": True,
-                },
                 "brotli_compression": {
                     "enabled": True,
                     "value": ["text/html", "text/plain"],
@@ -1379,10 +1363,6 @@ class TestAsyncRuleTemplates:
                 "allowed_http_methods": {
                     "enabled": True,
                     "value": ["GET", "POST"],
-                },
-                "bot_protection": {
-                    "bot_challenge": {"enabled": True},
-                    "enabled": True,
                 },
                 "brotli_compression": {
                     "enabled": True,
@@ -1786,10 +1766,6 @@ class TestAsyncRuleTemplates:
                 "allowed_http_methods": {
                     "enabled": True,
                     "value": ["GET", "POST"],
-                },
-                "bot_protection": {
-                    "bot_challenge": {"enabled": True},
-                    "enabled": True,
                 },
                 "brotli_compression": {
                     "enabled": True,

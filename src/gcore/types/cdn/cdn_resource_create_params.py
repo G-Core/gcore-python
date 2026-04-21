@@ -12,8 +12,6 @@ __all__ = [
     "CDNResourceCreateParams",
     "Options",
     "OptionsAllowedHTTPMethods",
-    "OptionsBotProtection",
-    "OptionsBotProtectionBotChallenge",
     "OptionsBrotliCompression",
     "OptionsBrowserCacheSettings",
     "OptionsCacheHTTPHeaders",
@@ -207,35 +205,6 @@ class OptionsAllowedHTTPMethods(TypedDict, total=False):
     """
 
     value: Required[List[Literal["GET", "HEAD", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]]]
-
-
-class OptionsBotProtectionBotChallenge(TypedDict, total=False):
-    """Controls the bot challenge module state."""
-
-    enabled: bool
-    """Possible values:
-
-    - **true** - Bot challenge is enabled.
-    - **false** - Bot challenge is disabled.
-    """
-
-
-class OptionsBotProtection(TypedDict, total=False):
-    """
-    Allows to prevent online services from overloading and ensure your business workflow running smoothly.
-    """
-
-    bot_challenge: Required[OptionsBotProtectionBotChallenge]
-    """Controls the bot challenge module state."""
-
-    enabled: Required[bool]
-    """Controls the option state.
-
-    Possible values:
-
-    - **true** - Option is enabled.
-    - **false** - Option is disabled.
-    """
 
 
 class OptionsBrotliCompression(TypedDict, total=False):
@@ -1805,12 +1774,6 @@ class Options(TypedDict, total=False):
 
     allowed_http_methods: Annotated[Optional[OptionsAllowedHTTPMethods], PropertyInfo(alias="allowedHttpMethods")]
     """HTTP methods allowed for content requests from the CDN."""
-
-    bot_protection: Optional[OptionsBotProtection]
-    """
-    Allows to prevent online services from overloading and ensure your business
-    workflow running smoothly.
-    """
 
     brotli_compression: Optional[OptionsBrotliCompression]
     """Compresses content with Brotli on the CDN side.
