@@ -46,7 +46,7 @@ def main() -> None:
     # Step 3: Create API token for the invited user (expires in 1 month)
     expires_in_days = 30
     exp_date = (datetime.now(timezone.utc) + timedelta(days=expires_in_days)).isoformat()
-    gcore.iam.api_tokens.create(
+    gcore.iam.api_tokens.create(  # pyright: ignore[reportDeprecated]
         client_id=client_id,
         client_user=ClientUser(role=user_role),
         exp_date=exp_date,
