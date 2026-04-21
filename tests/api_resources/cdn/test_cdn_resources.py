@@ -39,10 +39,6 @@ class TestCDNResources:
                     "enabled": True,
                     "value": ["GET", "POST"],
                 },
-                "bot_protection": {
-                    "bot_challenge": {"enabled": True},
-                    "enabled": True,
-                },
                 "brotli_compression": {
                     "enabled": True,
                     "value": ["text/html", "text/plain"],
@@ -381,10 +377,6 @@ class TestCDNResources:
                 "allowed_http_methods": {
                     "enabled": True,
                     "value": ["GET", "POST"],
-                },
-                "bot_protection": {
-                    "bot_challenge": {"enabled": True},
-                    "enabled": True,
                 },
                 "brotli_compression": {
                     "enabled": True,
@@ -1017,10 +1009,6 @@ class TestCDNResources:
                     "enabled": True,
                     "value": ["GET", "POST"],
                 },
-                "bot_protection": {
-                    "bot_challenge": {"enabled": True},
-                    "enabled": True,
-                },
                 "brotli_compression": {
                     "enabled": True,
                     "value": ["text/html", "text/plain"],
@@ -1363,10 +1351,6 @@ class TestAsyncCDNResources:
                     "enabled": True,
                     "value": ["GET", "POST"],
                 },
-                "bot_protection": {
-                    "bot_challenge": {"enabled": True},
-                    "enabled": True,
-                },
                 "brotli_compression": {
                     "enabled": True,
                     "value": ["text/html", "text/plain"],
@@ -1705,10 +1689,6 @@ class TestAsyncCDNResources:
                 "allowed_http_methods": {
                     "enabled": True,
                     "value": ["GET", "POST"],
-                },
-                "bot_protection": {
-                    "bot_challenge": {"enabled": True},
-                    "enabled": True,
                 },
                 "brotli_compression": {
                     "enabled": True,
@@ -2340,10 +2320,6 @@ class TestAsyncCDNResources:
                 "allowed_http_methods": {
                     "enabled": True,
                     "value": ["GET", "POST"],
-                },
-                "bot_protection": {
-                    "bot_challenge": {"enabled": True},
-                    "enabled": True,
                 },
                 "brotli_compression": {
                     "enabled": True,
