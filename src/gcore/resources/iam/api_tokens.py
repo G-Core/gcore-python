@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Optional
 
 import httpx
@@ -27,6 +28,10 @@ __all__ = ["APITokensResource", "AsyncAPITokensResource"]
 
 class APITokensResource(SyncAPIResource):
     """
+    **Deprecated:** All endpoints in this section will be removed on **2026-07-17**.
+    Use the [API Tokens V2](#tag/API-Tokens-V2) endpoints instead. Existing tokens
+    issued by V1 endpoints continue to authenticate after the removal date.
+
     Use permanent API tokens for regular automated requests to services.
     You can either set its validity period when creating it or issue a token for an unlimited time.
     Please address the API documentation of the specific product in order to check if it supports API tokens.
@@ -60,6 +65,7 @@ class APITokensResource(SyncAPIResource):
         """
         return APITokensResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def create(
         self,
         client_id: int,
@@ -75,7 +81,11 @@ class APITokensResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APITokenCreated:
-        """
+        """**Deprecated:** This endpoint will be removed on **2026-07-17**.
+
+        Use
+        [`POST /v2/clients/{clientId}/tokens`](#operation/iamCreateApiTokenV2) instead.
+
         Create an API token in the current account.
 
         Args:
@@ -113,6 +123,7 @@ class APITokensResource(SyncAPIResource):
             cast_to=APITokenCreated,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         client_id: int,
@@ -128,9 +139,12 @@ class APITokensResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APITokenList:
-        """Get information about your permanent API tokens in the account.
+        """**Deprecated:** This endpoint will be removed on **2026-07-17**.
 
-        A user with the
+        Use
+        [`GET /v2/clients/{clientId}/tokens`](#operation/iamGetApiTokensV2) instead.
+
+        Get information about your permanent API tokens in the account. A user with the
         Administrators role gets information about all API tokens in the account.
 
         Args:
@@ -183,6 +197,7 @@ class APITokensResource(SyncAPIResource):
             cast_to=APITokenList,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def delete(
         self,
         token_id: int,
@@ -195,9 +210,13 @@ class APITokensResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """Delete API token from current account.
+        """**Deprecated:** This endpoint will be removed on **2026-07-17**.
 
-        Ensure that the API token is not being
+        Use
+        [`DELETE /v2/clients/{clientId}/tokens/{tokenId}`](#operation/iamDeleteApiTokenV2)
+        instead.
+
+        Delete API token from current account. Ensure that the API token is not being
         used by an active application. After deleting the token, all applications that
         use this token will not be able to get access to your account via API. The
         action cannot be reversed.
@@ -220,6 +239,7 @@ class APITokensResource(SyncAPIResource):
             cast_to=NoneType,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def get(
         self,
         token_id: int,
@@ -232,8 +252,11 @@ class APITokensResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APIToken:
-        """
-        Get API Token
+        """**Deprecated:** This endpoint will be removed on **2026-07-17**.
+
+        Use
+        [`GET /v2/clients/{clientId}/tokens/{tokenId}`](#operation/iamGetApiTokenV2)
+        instead.
 
         Args:
           extra_headers: Send extra headers
@@ -255,6 +278,10 @@ class APITokensResource(SyncAPIResource):
 
 class AsyncAPITokensResource(AsyncAPIResource):
     """
+    **Deprecated:** All endpoints in this section will be removed on **2026-07-17**.
+    Use the [API Tokens V2](#tag/API-Tokens-V2) endpoints instead. Existing tokens
+    issued by V1 endpoints continue to authenticate after the removal date.
+
     Use permanent API tokens for regular automated requests to services.
     You can either set its validity period when creating it or issue a token for an unlimited time.
     Please address the API documentation of the specific product in order to check if it supports API tokens.
@@ -288,6 +315,7 @@ class AsyncAPITokensResource(AsyncAPIResource):
         """
         return AsyncAPITokensResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def create(
         self,
         client_id: int,
@@ -303,7 +331,11 @@ class AsyncAPITokensResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APITokenCreated:
-        """
+        """**Deprecated:** This endpoint will be removed on **2026-07-17**.
+
+        Use
+        [`POST /v2/clients/{clientId}/tokens`](#operation/iamCreateApiTokenV2) instead.
+
         Create an API token in the current account.
 
         Args:
@@ -341,6 +373,7 @@ class AsyncAPITokensResource(AsyncAPIResource):
             cast_to=APITokenCreated,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def list(
         self,
         client_id: int,
@@ -356,9 +389,12 @@ class AsyncAPITokensResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APITokenList:
-        """Get information about your permanent API tokens in the account.
+        """**Deprecated:** This endpoint will be removed on **2026-07-17**.
 
-        A user with the
+        Use
+        [`GET /v2/clients/{clientId}/tokens`](#operation/iamGetApiTokensV2) instead.
+
+        Get information about your permanent API tokens in the account. A user with the
         Administrators role gets information about all API tokens in the account.
 
         Args:
@@ -411,6 +447,7 @@ class AsyncAPITokensResource(AsyncAPIResource):
             cast_to=APITokenList,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def delete(
         self,
         token_id: int,
@@ -423,9 +460,13 @@ class AsyncAPITokensResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """Delete API token from current account.
+        """**Deprecated:** This endpoint will be removed on **2026-07-17**.
 
-        Ensure that the API token is not being
+        Use
+        [`DELETE /v2/clients/{clientId}/tokens/{tokenId}`](#operation/iamDeleteApiTokenV2)
+        instead.
+
+        Delete API token from current account. Ensure that the API token is not being
         used by an active application. After deleting the token, all applications that
         use this token will not be able to get access to your account via API. The
         action cannot be reversed.
@@ -448,6 +489,7 @@ class AsyncAPITokensResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def get(
         self,
         token_id: int,
@@ -460,8 +502,11 @@ class AsyncAPITokensResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APIToken:
-        """
-        Get API Token
+        """**Deprecated:** This endpoint will be removed on **2026-07-17**.
+
+        Use
+        [`GET /v2/clients/{clientId}/tokens/{tokenId}`](#operation/iamGetApiTokenV2)
+        instead.
 
         Args:
           extra_headers: Send extra headers
@@ -485,17 +530,25 @@ class APITokensResourceWithRawResponse:
     def __init__(self, api_tokens: APITokensResource) -> None:
         self._api_tokens = api_tokens
 
-        self.create = to_raw_response_wrapper(
-            api_tokens.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                api_tokens.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = to_raw_response_wrapper(
-            api_tokens.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                api_tokens.list,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = to_raw_response_wrapper(
-            api_tokens.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                api_tokens.delete,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_raw_response_wrapper(
-            api_tokens.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                api_tokens.get,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -503,17 +556,25 @@ class AsyncAPITokensResourceWithRawResponse:
     def __init__(self, api_tokens: AsyncAPITokensResource) -> None:
         self._api_tokens = api_tokens
 
-        self.create = async_to_raw_response_wrapper(
-            api_tokens.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                api_tokens.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = async_to_raw_response_wrapper(
-            api_tokens.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                api_tokens.list,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = async_to_raw_response_wrapper(
-            api_tokens.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                api_tokens.delete,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_raw_response_wrapper(
-            api_tokens.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                api_tokens.get,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -521,17 +582,25 @@ class APITokensResourceWithStreamingResponse:
     def __init__(self, api_tokens: APITokensResource) -> None:
         self._api_tokens = api_tokens
 
-        self.create = to_streamed_response_wrapper(
-            api_tokens.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                api_tokens.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = to_streamed_response_wrapper(
-            api_tokens.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                api_tokens.list,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = to_streamed_response_wrapper(
-            api_tokens.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                api_tokens.delete,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_streamed_response_wrapper(
-            api_tokens.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                api_tokens.get,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -539,15 +608,23 @@ class AsyncAPITokensResourceWithStreamingResponse:
     def __init__(self, api_tokens: AsyncAPITokensResource) -> None:
         self._api_tokens = api_tokens
 
-        self.create = async_to_streamed_response_wrapper(
-            api_tokens.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                api_tokens.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = async_to_streamed_response_wrapper(
-            api_tokens.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                api_tokens.list,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = async_to_streamed_response_wrapper(
-            api_tokens.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                api_tokens.delete,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_streamed_response_wrapper(
-            api_tokens.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                api_tokens.get,  # pyright: ignore[reportDeprecated],
+            )
         )
