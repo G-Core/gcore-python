@@ -51,6 +51,7 @@ __all__ = ["StorageResource", "AsyncStorageResource"]
 class StorageResource(SyncAPIResource):
     @cached_property
     def locations(self) -> LocationsResource:
+        """Locations represent cloud regions where new storages can be created."""
         return LocationsResource(self._client)
 
     @cached_property
@@ -92,6 +93,7 @@ class StorageResource(SyncAPIResource):
 class AsyncStorageResource(AsyncAPIResource):
     @cached_property
     def locations(self) -> AsyncLocationsResource:
+        """Locations represent cloud regions where new storages can be created."""
         return AsyncLocationsResource(self._client)
 
     @cached_property
@@ -136,6 +138,7 @@ class StorageResourceWithRawResponse:
 
     @cached_property
     def locations(self) -> LocationsResourceWithRawResponse:
+        """Locations represent cloud regions where new storages can be created."""
         return LocationsResourceWithRawResponse(self._storage.locations)
 
     @cached_property
@@ -161,6 +164,7 @@ class AsyncStorageResourceWithRawResponse:
 
     @cached_property
     def locations(self) -> AsyncLocationsResourceWithRawResponse:
+        """Locations represent cloud regions where new storages can be created."""
         return AsyncLocationsResourceWithRawResponse(self._storage.locations)
 
     @cached_property
@@ -186,6 +190,7 @@ class StorageResourceWithStreamingResponse:
 
     @cached_property
     def locations(self) -> LocationsResourceWithStreamingResponse:
+        """Locations represent cloud regions where new storages can be created."""
         return LocationsResourceWithStreamingResponse(self._storage.locations)
 
     @cached_property
@@ -211,6 +216,7 @@ class AsyncStorageResourceWithStreamingResponse:
 
     @cached_property
     def locations(self) -> AsyncLocationsResourceWithStreamingResponse:
+        """Locations represent cloud regions where new storages can be created."""
         return AsyncLocationsResourceWithStreamingResponse(self._storage.locations)
 
     @cached_property

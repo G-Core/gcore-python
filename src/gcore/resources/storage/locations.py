@@ -23,6 +23,8 @@ __all__ = ["LocationsResource", "AsyncLocationsResource"]
 
 
 class LocationsResource(SyncAPIResource):
+    """Locations represent cloud regions where new storages can be created."""
+
     @cached_property
     def with_raw_response(self) -> LocationsResourceWithRawResponse:
         """
@@ -95,6 +97,8 @@ class LocationsResource(SyncAPIResource):
 
 
 class AsyncLocationsResource(AsyncAPIResource):
+    """Locations represent cloud regions where new storages can be created."""
+
     @cached_property
     def with_raw_response(self) -> AsyncLocationsResourceWithRawResponse:
         """
