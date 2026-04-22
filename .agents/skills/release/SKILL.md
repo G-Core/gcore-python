@@ -153,6 +153,12 @@ We're excited to announce version {VERSION}!
   changes. Skip noise.
 - **Omit `codegen metadata` and `aggregated API specs update`** entries unless
   they introduce a specific user-visible change visible in the diff.
+- **Omit doc-only changes** — if a diff only updates comments, docstrings, or
+  descriptions (e.g., `"IPv4"` → `"IPv4 or IPv6"` in a docstring, or adding a
+  description to a service/resource for Terraform enablement) with no API
+  behavioral change (no new fields, methods, types, or changed signatures),
+  do **not** surface it in Part 1. These are internal metadata updates, not
+  user-facing SDK changes.
 
 Display the generated Part 1 to the user. Ask if they want to edit or approve.
 
