@@ -219,11 +219,6 @@ class TestRuleTemplates:
                     "excepted_values": ["example.com", "*.example.net"],
                     "policy_type": "deny",
                 },
-                "request_limiter": {
-                    "enabled": True,
-                    "rate": 5,
-                    "rate_unit": "r/s",
-                },
                 "response_headers_hiding_policy": {
                     "enabled": True,
                     "excepted": ["my-header"],
@@ -522,11 +517,6 @@ class TestRuleTemplates:
                     "enabled": True,
                     "excepted_values": ["example.com", "*.example.net"],
                     "policy_type": "deny",
-                },
-                "request_limiter": {
-                    "enabled": True,
-                    "rate": 5,
-                    "rate_unit": "r/s",
                 },
                 "response_headers_hiding_policy": {
                     "enabled": True,
@@ -926,11 +916,6 @@ class TestRuleTemplates:
                     "excepted_values": ["example.com", "*.example.net"],
                     "policy_type": "deny",
                 },
-                "request_limiter": {
-                    "enabled": True,
-                    "rate": 5,
-                    "rate_unit": "r/s",
-                },
                 "response_headers_hiding_policy": {
                     "enabled": True,
                     "excepted": ["my-header"],
@@ -1240,11 +1225,6 @@ class TestAsyncRuleTemplates:
                     "excepted_values": ["example.com", "*.example.net"],
                     "policy_type": "deny",
                 },
-                "request_limiter": {
-                    "enabled": True,
-                    "rate": 5,
-                    "rate_unit": "r/s",
-                },
                 "response_headers_hiding_policy": {
                     "enabled": True,
                     "excepted": ["my-header"],
@@ -1543,11 +1523,6 @@ class TestAsyncRuleTemplates:
                     "enabled": True,
                     "excepted_values": ["example.com", "*.example.net"],
                     "policy_type": "deny",
-                },
-                "request_limiter": {
-                    "enabled": True,
-                    "rate": 5,
-                    "rate_unit": "r/s",
                 },
                 "response_headers_hiding_policy": {
                     "enabled": True,
@@ -1946,11 +1921,6 @@ class TestAsyncRuleTemplates:
                     "enabled": True,
                     "excepted_values": ["example.com", "*.example.net"],
                     "policy_type": "deny",
-                },
-                "request_limiter": {
-                    "enabled": True,
-                    "rate": 5,
-                    "rate_unit": "r/s",
                 },
                 "response_headers_hiding_policy": {
                     "enabled": True,

@@ -46,7 +46,6 @@ __all__ = [
     "OptionsRedirectHTTPToHTTPS",
     "OptionsRedirectHTTPSToHTTP",
     "OptionsReferrerACL",
-    "OptionsRequestLimiter",
     "OptionsResponseHeadersHidingPolicy",
     "OptionsRewrite",
     "OptionsSecureKey",
@@ -1078,38 +1077,6 @@ class OptionsReferrerACL(BaseModel):
     """
 
 
-class OptionsRequestLimiter(BaseModel):
-    """Option allows to limit the amount of HTTP requests."""
-
-    enabled: bool
-    """Controls the option state.
-
-    Possible values:
-
-    - **true** - Option is enabled.
-    - **false** - Option is disabled.
-    """
-
-    rate: int
-    """Maximum request rate."""
-
-    burst: Optional[int] = None
-
-    delay: Optional[int] = None
-
-    rate_unit: Optional[Literal["r/s", "r/m"]] = None
-    """Units of measurement for the `rate` field.
-
-    Possible values:
-
-    - **r/s** - Requests per second.
-    - **r/m** - Requests per minute.
-
-    If the rate is less than one request per second, it is specified in request per
-    minute (r/m.)
-    """
-
-
 class OptionsResponseHeadersHidingPolicy(BaseModel):
     """Hides HTTP headers from an origin server in the CDN response."""
 
@@ -1751,9 +1718,6 @@ class Options(BaseModel):
 
     referrer_acl: Optional[OptionsReferrerACL] = None
     """Controls access to the CDN resource content for specified domain names."""
-
-    request_limiter: Optional[OptionsRequestLimiter] = None
-    """Option allows to limit the amount of HTTP requests."""
 
     response_headers_hiding_policy: Optional[OptionsResponseHeadersHidingPolicy] = None
     """Hides HTTP headers from an origin server in the CDN response."""
