@@ -49,7 +49,6 @@ __all__ = [
     "OptionsRedirectHTTPToHTTPS",
     "OptionsRedirectHTTPSToHTTP",
     "OptionsReferrerACL",
-    "OptionsRequestLimiter",
     "OptionsResponseHeadersHidingPolicy",
     "OptionsRewrite",
     "OptionsSecureKey",
@@ -1252,34 +1251,6 @@ class OptionsReferrerACL(TypedDict, total=False):
     """
 
 
-class OptionsRequestLimiter(TypedDict, total=False):
-    """Option allows to limit the amount of HTTP requests."""
-
-    enabled: Required[bool]
-    """Controls the option state.
-
-    Possible values:
-
-    - **true** - Option is enabled.
-    - **false** - Option is disabled.
-    """
-
-    rate: Required[int]
-    """Maximum request rate."""
-
-    rate_unit: Literal["r/s", "r/m"]
-    """Units of measurement for the `rate` field.
-
-    Possible values:
-
-    - **r/s** - Requests per second.
-    - **r/m** - Requests per minute.
-
-    If the rate is less than one request per second, it is specified in request per
-    minute (r/m.)
-    """
-
-
 class OptionsResponseHeadersHidingPolicy(TypedDict, total=False):
     """Hides HTTP headers from an origin server in the CDN response."""
 
@@ -2022,9 +1993,6 @@ class Options(TypedDict, total=False):
 
     referrer_acl: Optional[OptionsReferrerACL]
     """Controls access to the CDN resource content for specified domain names."""
-
-    request_limiter: Optional[OptionsRequestLimiter]
-    """Option allows to limit the amount of HTTP requests."""
 
     response_headers_hiding_policy: Optional[OptionsResponseHeadersHidingPolicy]
     """Hides HTTP headers from an origin server in the CDN response."""
