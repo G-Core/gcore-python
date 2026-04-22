@@ -227,11 +227,6 @@ class TestCDNResources:
                     "excepted_values": ["example.com", "*.example.net"],
                     "policy_type": "deny",
                 },
-                "request_limiter": {
-                    "enabled": True,
-                    "rate": 5,
-                    "rate_unit": "r/s",
-                },
                 "response_headers_hiding_policy": {
                     "enabled": True,
                     "excepted": ["my-header"],
@@ -565,11 +560,6 @@ class TestCDNResources:
                     "enabled": True,
                     "excepted_values": ["example.com", "*.example.net"],
                     "policy_type": "deny",
-                },
-                "request_limiter": {
-                    "enabled": True,
-                    "rate": 5,
-                    "rate_unit": "r/s",
                 },
                 "response_headers_hiding_policy": {
                     "enabled": True,
@@ -1197,11 +1187,6 @@ class TestCDNResources:
                     "excepted_values": ["example.com", "*.example.net"],
                     "policy_type": "deny",
                 },
-                "request_limiter": {
-                    "enabled": True,
-                    "rate": 5,
-                    "rate_unit": "r/s",
-                },
                 "response_headers_hiding_policy": {
                     "enabled": True,
                     "excepted": ["my-header"],
@@ -1539,11 +1524,6 @@ class TestAsyncCDNResources:
                     "excepted_values": ["example.com", "*.example.net"],
                     "policy_type": "deny",
                 },
-                "request_limiter": {
-                    "enabled": True,
-                    "rate": 5,
-                    "rate_unit": "r/s",
-                },
                 "response_headers_hiding_policy": {
                     "enabled": True,
                     "excepted": ["my-header"],
@@ -1877,11 +1857,6 @@ class TestAsyncCDNResources:
                     "enabled": True,
                     "excepted_values": ["example.com", "*.example.net"],
                     "policy_type": "deny",
-                },
-                "request_limiter": {
-                    "enabled": True,
-                    "rate": 5,
-                    "rate_unit": "r/s",
                 },
                 "response_headers_hiding_policy": {
                     "enabled": True,
@@ -2508,11 +2483,6 @@ class TestAsyncCDNResources:
                     "enabled": True,
                     "excepted_values": ["example.com", "*.example.net"],
                     "policy_type": "deny",
-                },
-                "request_limiter": {
-                    "enabled": True,
-                    "rate": 5,
-                    "rate_unit": "r/s",
                 },
                 "response_headers_hiding_policy": {
                     "enabled": True,
