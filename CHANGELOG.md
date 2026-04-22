@@ -1,5 +1,36 @@
 # Changelog
 
+## 0.43.0 (2026-04-22)
+
+Full Changelog: [v0.42.0...v0.43.0](https://github.com/G-Core/gcore-python/compare/v0.42.0...v0.43.0)
+
+### Features
+
+* **api:** aggregated API specs update ([7d70fe4](https://github.com/G-Core/gcore-python/commit/7d70fe4b2ef3fc2ba54cb8f2a195a5b0f09514bc))
+* **api:** aggregated API specs update ([2e269b6](https://github.com/G-Core/gcore-python/commit/2e269b6f17a504250715f6f33316818e25ce6d70))
+* **api:** aggregated API specs update ([96cd4c9](https://github.com/G-Core/gcore-python/commit/96cd4c96ff40b2d2bfc0d220309eadbc88b0dbb3))
+* **api:** aggregated API specs update ([8b6d277](https://github.com/G-Core/gcore-python/commit/8b6d2777aa8967ba88788145440b9e6e94c7c7f7))
+* **cloud:** add examples for GPU baremetal cluster images ([7279536](https://github.com/G-Core/gcore-python/commit/7279536d11b4163c445e270180da5de8582709ee))
+* **cloud:** add polling methods for K8s clusters and pools ([76bd4c9](https://github.com/G-Core/gcore-python/commit/76bd4c9a97c4da20f7dcf4f04f87e195278527a0))
+* **cloud:** add runnable K8s cluster example ([030f335](https://github.com/G-Core/gcore-python/commit/030f335f902c3cb2b29792b22b9e9c0a2f6f6de7))
+* **storage:** support Terraform generation for locations ([063f1f4](https://github.com/G-Core/gcore-python/commit/063f1f40ee0d10153f5437a69f227936516cf8e7))
+
+
+### Bug Fixes
+
+* add rule to omit doc-only changes from release notes ([45bae59](https://github.com/G-Core/gcore-python/commit/45bae593f219bc62fd3773b97db603b4859500d7))
+
+
+### Performance Improvements
+
+* **client:** optimize file structure copying in multipart requests ([2fd1bcb](https://github.com/G-Core/gcore-python/commit/2fd1bcbd057214f9fb494484e99d203a24c04c29))
+
+
+### Chores
+
+* suppress deprecation warning on IAM api_tokens.create usage ([9b2f4a4](https://github.com/G-Core/gcore-python/commit/9b2f4a4ff19039df9dc1aac3dfdc5eba000de025))
+* **tests:** bump steady to v0.22.1 ([6ac2648](https://github.com/G-Core/gcore-python/commit/6ac2648d93f24b1f23544dac36d979575c763f3c))
+
 ## 0.42.0 (2026-04-17)
 
 Full Changelog: [v0.41.0...v0.42.0](https://github.com/G-Core/gcore-python/compare/v0.41.0...v0.42.0)
