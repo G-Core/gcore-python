@@ -4,10 +4,10 @@ from typing import List
 
 from ....._models import BaseModel
 
-__all__ = ["PgConfValidation"]
+__all__ = ["CustomConfigurationValidateResponse"]
 
 
-class PgConfValidation(BaseModel):
+class CustomConfigurationValidateResponse(BaseModel):
     errors: List[str]
     """Errors list"""
 

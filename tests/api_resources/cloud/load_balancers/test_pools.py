@@ -236,6 +236,7 @@ class TestPools:
             limit=1000,
             listener_id="00000000-0000-4000-8000-000000000000",
             load_balancer_id="00000000-0000-4000-8000-000000000000",
+            name="lb-pool-name",
             offset=0,
         )
         assert_matches_type(LoadBalancerPoolList, pool, path=["response"])
@@ -583,6 +584,7 @@ class TestAsyncPools:
             limit=1000,
             listener_id="00000000-0000-4000-8000-000000000000",
             load_balancer_id="00000000-0000-4000-8000-000000000000",
+            name="lb-pool-name",
             offset=0,
         )
         assert_matches_type(LoadBalancerPoolList, pool, path=["response"])

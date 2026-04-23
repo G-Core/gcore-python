@@ -82,6 +82,10 @@ class ClustersResource(SyncAPIResource):
         Create a new PostgreSQL cluster with the specified configuration.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           cluster_name: PostgreSQL cluster name
 
           flavor: Instance RAM and CPU
@@ -151,6 +155,12 @@ class ClustersResource(SyncAPIResource):
         Update the configuration of an existing PostgreSQL cluster.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_name: Cluster name
+
           flavor: New instance RAM and CPU
 
           high_availability: New High Availability settings
@@ -204,6 +214,7 @@ class ClustersResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         limit: int | Omit = omit,
+        name: str | Omit = omit,
         offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -218,7 +229,13 @@ class ClustersResource(SyncAPIResource):
         filtered by search query and paginated.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           limit: Maximum number of clusters to return
+
+          name: Filter clusters by name
 
           offset: Number of clusters to skip
 
@@ -247,6 +264,7 @@ class ClustersResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "limit": limit,
+                        "name": name,
                         "offset": offset,
                     },
                     cluster_list_params.ClusterListParams,
@@ -272,6 +290,12 @@ class ClustersResource(SyncAPIResource):
         Delete a PostgreSQL cluster and all its associated resources.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_name: Cluster name
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -316,6 +340,12 @@ class ClustersResource(SyncAPIResource):
         Get detailed information about a specific PostgreSQL cluster.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_name: Cluster name
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -392,6 +422,10 @@ class AsyncClustersResource(AsyncAPIResource):
         Create a new PostgreSQL cluster with the specified configuration.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           cluster_name: PostgreSQL cluster name
 
           flavor: Instance RAM and CPU
@@ -461,6 +495,12 @@ class AsyncClustersResource(AsyncAPIResource):
         Update the configuration of an existing PostgreSQL cluster.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_name: Cluster name
+
           flavor: New instance RAM and CPU
 
           high_availability: New High Availability settings
@@ -514,6 +554,7 @@ class AsyncClustersResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         limit: int | Omit = omit,
+        name: str | Omit = omit,
         offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -528,7 +569,13 @@ class AsyncClustersResource(AsyncAPIResource):
         filtered by search query and paginated.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           limit: Maximum number of clusters to return
+
+          name: Filter clusters by name
 
           offset: Number of clusters to skip
 
@@ -557,6 +604,7 @@ class AsyncClustersResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "limit": limit,
+                        "name": name,
                         "offset": offset,
                     },
                     cluster_list_params.ClusterListParams,
@@ -582,6 +630,12 @@ class AsyncClustersResource(AsyncAPIResource):
         Delete a PostgreSQL cluster and all its associated resources.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_name: Cluster name
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -626,6 +680,12 @@ class AsyncClustersResource(AsyncAPIResource):
         Get detailed information about a specific PostgreSQL cluster.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_name: Cluster name
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

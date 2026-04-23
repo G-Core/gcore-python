@@ -26,6 +26,9 @@ class PoolListParams(TypedDict, total=False):
     load_balancer_id: str
     """Load Balancer ID"""
 
+    name: str
+    """Filter by name"""
+
     offset: int
     """Optional.
 

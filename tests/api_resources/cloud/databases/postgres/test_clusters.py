@@ -251,6 +251,7 @@ class TestClusters:
             project_id=0,
             region_id=0,
             limit=0,
+            name="name",
             offset=0,
         )
         assert_matches_type(SyncOffsetPage[PostgresClusterShort], cluster, path=["response"])
@@ -608,6 +609,7 @@ class TestAsyncClusters:
             project_id=0,
             region_id=0,
             limit=0,
+            name="name",
             offset=0,
         )
         assert_matches_type(AsyncOffsetPage[PostgresClusterShort], cluster, path=["response"])

@@ -10,10 +10,7 @@ import pytest
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
 from gcore.pagination import SyncOffsetPage, AsyncOffsetPage
-from gcore.types.storage.object_storages import (
-    Bucket,
-    BucketCreated,
-)
+from gcore.types.storage.object_storages import Bucket
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -27,7 +24,7 @@ class TestBuckets:
             storage_id=0,
             name="my-new-bucket",
         )
-        assert_matches_type(BucketCreated, bucket, path=["response"])
+        assert_matches_type(Bucket, bucket, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
@@ -39,7 +36,7 @@ class TestBuckets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bucket = response.parse()
-        assert_matches_type(BucketCreated, bucket, path=["response"])
+        assert_matches_type(Bucket, bucket, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
@@ -51,7 +48,7 @@ class TestBuckets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             bucket = response.parse()
-            assert_matches_type(BucketCreated, bucket, path=["response"])
+            assert_matches_type(Bucket, bucket, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -244,7 +241,7 @@ class TestAsyncBuckets:
             storage_id=0,
             name="my-new-bucket",
         )
-        assert_matches_type(BucketCreated, bucket, path=["response"])
+        assert_matches_type(Bucket, bucket, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
@@ -256,7 +253,7 @@ class TestAsyncBuckets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bucket = await response.parse()
-        assert_matches_type(BucketCreated, bucket, path=["response"])
+        assert_matches_type(Bucket, bucket, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
@@ -268,7 +265,7 @@ class TestAsyncBuckets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             bucket = await response.parse()
-            assert_matches_type(BucketCreated, bucket, path=["response"])
+            assert_matches_type(Bucket, bucket, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -9,8 +9,10 @@ __all__ = ["CustomConfigurationValidateParams"]
 
 class CustomConfigurationValidateParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     pg_conf: Required[str]
     """PostgreSQL configuration"""

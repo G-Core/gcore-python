@@ -36,11 +36,18 @@ class S3StorageCreated(BaseModel):
     created_at: datetime
     """ISO 8601 timestamp when the storage was created"""
 
+    full_name: str
+    """
+    Read-only internal full name of the storage, composed as "{`client_id`}-{name}".
+    Used internally by the backend. Clients should continue to identify the storage
+    by `name`.
+    """
+
     location_name: str
     """Geographic location code where the storage is provisioned"""
 
     name: str
-    """User-defined name for the storage instance"""
+    """User-defined name for the storage instance, as supplied at creation time."""
 
     provisioning_status: Literal["creating", "active", "updating", "deleting", "deleted"]
     """Lifecycle status of the storage. Use this to check readiness before operations."""
