@@ -64,6 +64,9 @@ class StorageResource(SyncAPIResource):
 
     @cached_property
     def ssh_keys(self) -> SSHKeysResource:
+        """
+        SSH keys enable secure access to SFTP storage by associating public keys with user accounts for authentication.
+        """
         return SSHKeysResource(self._client)
 
     @cached_property
@@ -106,6 +109,9 @@ class AsyncStorageResource(AsyncAPIResource):
 
     @cached_property
     def ssh_keys(self) -> AsyncSSHKeysResource:
+        """
+        SSH keys enable secure access to SFTP storage by associating public keys with user accounts for authentication.
+        """
         return AsyncSSHKeysResource(self._client)
 
     @cached_property
@@ -151,6 +157,9 @@ class StorageResourceWithRawResponse:
 
     @cached_property
     def ssh_keys(self) -> SSHKeysResourceWithRawResponse:
+        """
+        SSH keys enable secure access to SFTP storage by associating public keys with user accounts for authentication.
+        """
         return SSHKeysResourceWithRawResponse(self._storage.ssh_keys)
 
     @cached_property
@@ -177,6 +186,9 @@ class AsyncStorageResourceWithRawResponse:
 
     @cached_property
     def ssh_keys(self) -> AsyncSSHKeysResourceWithRawResponse:
+        """
+        SSH keys enable secure access to SFTP storage by associating public keys with user accounts for authentication.
+        """
         return AsyncSSHKeysResourceWithRawResponse(self._storage.ssh_keys)
 
     @cached_property
@@ -203,6 +215,9 @@ class StorageResourceWithStreamingResponse:
 
     @cached_property
     def ssh_keys(self) -> SSHKeysResourceWithStreamingResponse:
+        """
+        SSH keys enable secure access to SFTP storage by associating public keys with user accounts for authentication.
+        """
         return SSHKeysResourceWithStreamingResponse(self._storage.ssh_keys)
 
     @cached_property
@@ -229,6 +244,9 @@ class AsyncStorageResourceWithStreamingResponse:
 
     @cached_property
     def ssh_keys(self) -> AsyncSSHKeysResourceWithStreamingResponse:
+        """
+        SSH keys enable secure access to SFTP storage by associating public keys with user accounts for authentication.
+        """
         return AsyncSSHKeysResourceWithStreamingResponse(self._storage.ssh_keys)
 
     @cached_property
