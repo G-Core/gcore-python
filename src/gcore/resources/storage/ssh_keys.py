@@ -23,6 +23,10 @@ __all__ = ["SSHKeysResource", "AsyncSSHKeysResource"]
 
 
 class SSHKeysResource(SyncAPIResource):
+    """
+    SSH keys enable secure access to SFTP storage by associating public keys with user accounts for authentication.
+    """
+
     @cached_property
     def with_raw_response(self) -> SSHKeysResourceWithRawResponse:
         """
@@ -207,6 +211,10 @@ class SSHKeysResource(SyncAPIResource):
 
 
 class AsyncSSHKeysResource(AsyncAPIResource):
+    """
+    SSH keys enable secure access to SFTP storage by associating public keys with user accounts for authentication.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncSSHKeysResourceWithRawResponse:
         """
