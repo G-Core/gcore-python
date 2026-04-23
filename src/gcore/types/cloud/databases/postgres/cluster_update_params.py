@@ -22,8 +22,10 @@ __all__ = [
 
 class ClusterUpdateParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     databases: Iterable[Database]
 

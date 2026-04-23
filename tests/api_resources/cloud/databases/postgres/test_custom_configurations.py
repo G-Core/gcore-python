@@ -9,7 +9,9 @@ import pytest
 
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
-from gcore.types.cloud.databases.postgres import PgConfValidation
+from gcore.types.cloud.databases.postgres import (
+    CustomConfigurationValidateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -25,7 +27,7 @@ class TestCustomConfigurations:
             pg_conf="\nlisten_addresses = 'localhost'\nport = 5432\nmax_connections = 100\nshared_buffers = 128MB\nlogging_collector = on",
             version="15",
         )
-        assert_matches_type(PgConfValidation, custom_configuration, path=["response"])
+        assert_matches_type(CustomConfigurationValidateResponse, custom_configuration, path=["response"])
 
     @parametrize
     def test_raw_response_validate(self, client: Gcore) -> None:
@@ -39,7 +41,7 @@ class TestCustomConfigurations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_configuration = response.parse()
-        assert_matches_type(PgConfValidation, custom_configuration, path=["response"])
+        assert_matches_type(CustomConfigurationValidateResponse, custom_configuration, path=["response"])
 
     @parametrize
     def test_streaming_response_validate(self, client: Gcore) -> None:
@@ -53,7 +55,7 @@ class TestCustomConfigurations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_configuration = response.parse()
-            assert_matches_type(PgConfValidation, custom_configuration, path=["response"])
+            assert_matches_type(CustomConfigurationValidateResponse, custom_configuration, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -71,7 +73,7 @@ class TestAsyncCustomConfigurations:
             pg_conf="\nlisten_addresses = 'localhost'\nport = 5432\nmax_connections = 100\nshared_buffers = 128MB\nlogging_collector = on",
             version="15",
         )
-        assert_matches_type(PgConfValidation, custom_configuration, path=["response"])
+        assert_matches_type(CustomConfigurationValidateResponse, custom_configuration, path=["response"])
 
     @parametrize
     async def test_raw_response_validate(self, async_client: AsyncGcore) -> None:
@@ -85,7 +87,7 @@ class TestAsyncCustomConfigurations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_configuration = await response.parse()
-        assert_matches_type(PgConfValidation, custom_configuration, path=["response"])
+        assert_matches_type(CustomConfigurationValidateResponse, custom_configuration, path=["response"])
 
     @parametrize
     async def test_streaming_response_validate(self, async_client: AsyncGcore) -> None:
@@ -99,6 +101,6 @@ class TestAsyncCustomConfigurations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_configuration = await response.parse()
-            assert_matches_type(PgConfValidation, custom_configuration, path=["response"])
+            assert_matches_type(CustomConfigurationValidateResponse, custom_configuration, path=["response"])
 
         assert cast(Any, response.is_closed) is True

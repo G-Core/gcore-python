@@ -18,7 +18,6 @@ from ....pagination import SyncOffsetPage, AsyncOffsetPage
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.storage.object_storages import bucket_list_params, bucket_create_params, bucket_update_params
 from ....types.storage.object_storages.bucket import Bucket
-from ....types.storage.object_storages.bucket_created import BucketCreated
 
 __all__ = ["BucketsResource", "AsyncBucketsResource"]
 
@@ -54,7 +53,7 @@ class BucketsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> BucketCreated:
+    ) -> Bucket:
         """
         Creates a new bucket within an S3-compatible storage.
 
@@ -75,7 +74,7 @@ class BucketsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BucketCreated,
+            cast_to=Bucket,
         )
 
     def update(
@@ -296,7 +295,7 @@ class AsyncBucketsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> BucketCreated:
+    ) -> Bucket:
         """
         Creates a new bucket within an S3-compatible storage.
 
@@ -317,7 +316,7 @@ class AsyncBucketsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BucketCreated,
+            cast_to=Bucket,
         )
 
     async def update(

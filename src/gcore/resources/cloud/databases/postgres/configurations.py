@@ -56,6 +56,10 @@ class ConfigurationsResource(SyncAPIResource):
         Get all available PostgreSQL configurations for the specified region.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -117,6 +121,10 @@ class AsyncConfigurationsResource(AsyncAPIResource):
         Get all available PostgreSQL configurations for the specified region.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
