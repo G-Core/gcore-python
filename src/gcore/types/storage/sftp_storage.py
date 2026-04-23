@@ -22,6 +22,14 @@ class SftpStorage(BaseModel):
     expires: str
     """Duration when the storage will expire. Null if no expiration is set."""
 
+    full_name: str
+    """
+    Read-only internal full name of the storage, composed as "{`client_id`}-{name}".
+    Used by the SFTP backend as the login username. Clients should use this value
+    when connecting but should continue to identify the storage by `name` in their
+    own configuration.
+    """
+
     has_custom_config_file: bool
     """Whether this storage uses a custom configuration file"""
 
@@ -35,7 +43,7 @@ class SftpStorage(BaseModel):
     """Geographic location code where the storage is provisioned"""
 
     name: str
-    """User-defined name for the storage instance"""
+    """User-defined name for the storage instance, as supplied at creation time."""
 
     provisioning_status: Literal["creating", "active", "updating", "deleting", "deleted"]
     """Lifecycle status of the storage. Use this to check readiness before operations."""

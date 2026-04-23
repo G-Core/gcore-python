@@ -318,6 +318,7 @@ class PoolsResource(SyncAPIResource):
         limit: int | Omit = omit,
         listener_id: str | Omit = omit,
         load_balancer_id: str | Omit = omit,
+        name: str | Omit = omit,
         offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -341,6 +342,8 @@ class PoolsResource(SyncAPIResource):
           listener_id: Listener ID
 
           load_balancer_id: Load Balancer ID
+
+          name: Filter by name
 
           offset: Optional. Offset value is used to exclude the first set of records from the
               result
@@ -370,6 +373,7 @@ class PoolsResource(SyncAPIResource):
                         "limit": limit,
                         "listener_id": listener_id,
                         "load_balancer_id": load_balancer_id,
+                        "name": name,
                         "offset": offset,
                     },
                     pool_list_params.PoolListParams,
@@ -924,6 +928,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         limit: int | Omit = omit,
         listener_id: str | Omit = omit,
         load_balancer_id: str | Omit = omit,
+        name: str | Omit = omit,
         offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -947,6 +952,8 @@ class AsyncPoolsResource(AsyncAPIResource):
           listener_id: Listener ID
 
           load_balancer_id: Load Balancer ID
+
+          name: Filter by name
 
           offset: Optional. Offset value is used to exclude the first set of records from the
               result
@@ -976,6 +983,7 @@ class AsyncPoolsResource(AsyncAPIResource):
                         "limit": limit,
                         "listener_id": listener_id,
                         "load_balancer_id": load_balancer_id,
+                        "name": name,
                         "offset": offset,
                     },
                     pool_list_params.PoolListParams,

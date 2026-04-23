@@ -47,12 +47,12 @@ Methods:
 Types:
 
 ```python
-from gcore.types.storage.object_storages import Bucket, BucketCreated
+from gcore.types.storage.object_storages import Bucket
 ```
 
 Methods:
 
-- <code title="post /storage/v4/object_storages/{storage_id}/buckets">client.storage.object_storages.buckets.<a href="./src/gcore/resources/storage/object_storages/buckets.py">create</a>(storage_id, \*\*<a href="src/gcore/types/storage/object_storages/bucket_create_params.py">params</a>) -> <a href="./src/gcore/types/storage/object_storages/bucket_created.py">BucketCreated</a></code>
+- <code title="post /storage/v4/object_storages/{storage_id}/buckets">client.storage.object_storages.buckets.<a href="./src/gcore/resources/storage/object_storages/buckets.py">create</a>(storage_id, \*\*<a href="src/gcore/types/storage/object_storages/bucket_create_params.py">params</a>) -> <a href="./src/gcore/types/storage/object_storages/bucket.py">Bucket</a></code>
 - <code title="patch /storage/v4/object_storages/{storage_id}/buckets/{bucket_name}">client.storage.object_storages.buckets.<a href="./src/gcore/resources/storage/object_storages/buckets.py">update</a>(bucket_name, \*, storage_id, \*\*<a href="src/gcore/types/storage/object_storages/bucket_update_params.py">params</a>) -> <a href="./src/gcore/types/storage/object_storages/bucket.py">Bucket</a></code>
 - <code title="get /storage/v4/object_storages/{storage_id}/buckets">client.storage.object_storages.buckets.<a href="./src/gcore/resources/storage/object_storages/buckets.py">list</a>(storage_id, \*\*<a href="src/gcore/types/storage/object_storages/bucket_list_params.py">params</a>) -> <a href="./src/gcore/types/storage/object_storages/bucket.py">SyncOffsetPage[Bucket]</a></code>
 - <code title="delete /storage/v4/object_storages/{storage_id}/buckets/{bucket_name}">client.storage.object_storages.buckets.<a href="./src/gcore/resources/storage/object_storages/buckets.py">delete</a>(bucket_name, \*, storage_id) -> None</code>

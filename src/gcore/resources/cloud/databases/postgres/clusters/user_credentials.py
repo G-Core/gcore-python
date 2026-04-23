@@ -60,6 +60,14 @@ class UserCredentialsResource(SyncAPIResource):
         can only be used once per user.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_name: Cluster name
+
+          username: Username
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -108,6 +116,14 @@ class UserCredentialsResource(SyncAPIResource):
         Generate new credentials for a specific user in a PostgreSQL cluster.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_name: Cluster name
+
+          username: Username
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -179,6 +195,14 @@ class AsyncUserCredentialsResource(AsyncAPIResource):
         can only be used once per user.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_name: Cluster name
+
+          username: Username
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -227,6 +251,14 @@ class AsyncUserCredentialsResource(AsyncAPIResource):
         Generate new credentials for a specific user in a PostgreSQL cluster.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_name: Cluster name
+
+          username: Username
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

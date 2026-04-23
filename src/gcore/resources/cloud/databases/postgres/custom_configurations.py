@@ -16,7 +16,9 @@ from ....._response import (
 )
 from ....._base_client import make_request_options
 from .....types.cloud.databases.postgres import custom_configuration_validate_params
-from .....types.cloud.databases.postgres.pg_conf_validation import PgConfValidation
+from .....types.cloud.databases.postgres.custom_configuration_validate_response import (
+    CustomConfigurationValidateResponse,
+)
 
 __all__ = ["CustomConfigurationsResource", "AsyncCustomConfigurationsResource"]
 
@@ -54,11 +56,15 @@ class CustomConfigurationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PgConfValidation:
+    ) -> CustomConfigurationValidateResponse:
         """
         Validate a custom PostgreSQL configuration file.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           pg_conf: PostgreSQL configuration
 
           version: PostgreSQL version
@@ -91,7 +97,7 @@ class CustomConfigurationsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PgConfValidation,
+            cast_to=CustomConfigurationValidateResponse,
         )
 
 
@@ -128,11 +134,15 @@ class AsyncCustomConfigurationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PgConfValidation:
+    ) -> CustomConfigurationValidateResponse:
         """
         Validate a custom PostgreSQL configuration file.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           pg_conf: PostgreSQL configuration
 
           version: PostgreSQL version
@@ -165,7 +175,7 @@ class AsyncCustomConfigurationsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PgConfValidation,
+            cast_to=CustomConfigurationValidateResponse,
         )
 
 
