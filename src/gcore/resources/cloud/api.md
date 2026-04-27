@@ -1190,12 +1190,12 @@ Methods:
 Types:
 
 ```python
-from gcore.types.cloud.databases.postgres import CustomConfigurationValidateResponse
+from gcore.types.cloud.databases.postgres import PgConfValidation
 ```
 
 Methods:
 
-- <code title="post /cloud/v1/dbaas/postgres/validate_pg_conf/{project_id}/{region_id}">client.cloud.databases.postgres.custom_configurations.<a href="./src/gcore/resources/cloud/databases/postgres/custom_configurations.py">validate</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/databases/postgres/custom_configuration_validate_params.py">params</a>) -> <a href="./src/gcore/types/cloud/databases/postgres/custom_configuration_validate_response.py">CustomConfigurationValidateResponse</a></code>
+- <code title="post /cloud/v1/dbaas/postgres/validate_pg_conf/{project_id}/{region_id}">client.cloud.databases.postgres.custom_configurations.<a href="./src/gcore/resources/cloud/databases/postgres/custom_configurations.py">validate</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/databases/postgres/custom_configuration_validate_params.py">params</a>) -> <a href="./src/gcore/types/cloud/databases/postgres/pg_conf_validation.py">PgConfValidation</a></code>
 
 ## VolumeSnapshots
 

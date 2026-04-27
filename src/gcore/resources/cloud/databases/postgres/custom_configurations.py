@@ -16,9 +16,7 @@ from ....._response import (
 )
 from ....._base_client import make_request_options
 from .....types.cloud.databases.postgres import custom_configuration_validate_params
-from .....types.cloud.databases.postgres.custom_configuration_validate_response import (
-    CustomConfigurationValidateResponse,
-)
+from .....types.cloud.databases.postgres.pg_conf_validation import PgConfValidation
 
 __all__ = ["CustomConfigurationsResource", "AsyncCustomConfigurationsResource"]
 
@@ -56,7 +54,7 @@ class CustomConfigurationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CustomConfigurationValidateResponse:
+    ) -> PgConfValidation:
         """
         Validate a custom PostgreSQL configuration file.
 
@@ -97,7 +95,7 @@ class CustomConfigurationsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CustomConfigurationValidateResponse,
+            cast_to=PgConfValidation,
         )
 
 
@@ -134,7 +132,7 @@ class AsyncCustomConfigurationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CustomConfigurationValidateResponse:
+    ) -> PgConfValidation:
         """
         Validate a custom PostgreSQL configuration file.
 
@@ -175,7 +173,7 @@ class AsyncCustomConfigurationsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CustomConfigurationValidateResponse,
+            cast_to=PgConfValidation,
         )
 
 
