@@ -53,11 +53,11 @@ class UsersResource(SyncAPIResource):
         self,
         user_id: int,
         *,
-        auth_types: List[AuthType],
-        email: str,
-        lang: UserLanguage,
-        name: Optional[str],
-        phone: Optional[str],
+        auth_types: List[AuthType] | Omit = omit,
+        email: str | Omit = omit,
+        lang: UserLanguage | Omit = omit,
+        name: Optional[str] | Omit = omit,
+        phone: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -310,11 +310,11 @@ class AsyncUsersResource(AsyncAPIResource):
         self,
         user_id: int,
         *,
-        auth_types: List[AuthType],
-        email: str,
-        lang: UserLanguage,
-        name: Optional[str],
-        phone: Optional[str],
+        auth_types: List[AuthType] | Omit = omit,
+        email: str | Omit = omit,
+        lang: UserLanguage | Omit = omit,
+        name: Optional[str] | Omit = omit,
+        phone: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

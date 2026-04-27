@@ -26,6 +26,13 @@ class TestUsers:
     def test_method_update(self, client: Gcore) -> None:
         user = client.iam.users.update(
             user_id=0,
+        )
+        assert_matches_type(User, user, path=["response"])
+
+    @parametrize
+    def test_method_update_with_all_params(self, client: Gcore) -> None:
+        user = client.iam.users.update(
+            user_id=0,
             auth_types=["password"],
             email="dev@stainless.com",
             lang="de",
@@ -38,11 +45,6 @@ class TestUsers:
     def test_raw_response_update(self, client: Gcore) -> None:
         response = client.iam.users.with_raw_response.update(
             user_id=0,
-            auth_types=["password"],
-            email="dev@stainless.com",
-            lang="de",
-            name="name",
-            phone="phone",
         )
 
         assert response.is_closed is True
@@ -54,11 +56,6 @@ class TestUsers:
     def test_streaming_response_update(self, client: Gcore) -> None:
         with client.iam.users.with_streaming_response.update(
             user_id=0,
-            auth_types=["password"],
-            email="dev@stainless.com",
-            lang="de",
-            name="name",
-            phone="phone",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -227,6 +224,13 @@ class TestAsyncUsers:
     async def test_method_update(self, async_client: AsyncGcore) -> None:
         user = await async_client.iam.users.update(
             user_id=0,
+        )
+        assert_matches_type(User, user, path=["response"])
+
+    @parametrize
+    async def test_method_update_with_all_params(self, async_client: AsyncGcore) -> None:
+        user = await async_client.iam.users.update(
+            user_id=0,
             auth_types=["password"],
             email="dev@stainless.com",
             lang="de",
@@ -239,11 +243,6 @@ class TestAsyncUsers:
     async def test_raw_response_update(self, async_client: AsyncGcore) -> None:
         response = await async_client.iam.users.with_raw_response.update(
             user_id=0,
-            auth_types=["password"],
-            email="dev@stainless.com",
-            lang="de",
-            name="name",
-            phone="phone",
         )
 
         assert response.is_closed is True
@@ -255,11 +254,6 @@ class TestAsyncUsers:
     async def test_streaming_response_update(self, async_client: AsyncGcore) -> None:
         async with async_client.iam.users.with_streaming_response.update(
             user_id=0,
-            auth_types=["password"],
-            email="dev@stainless.com",
-            lang="de",
-            name="name",
-            phone="phone",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
