@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.44.0 (2026-04-27)
+
+Full Changelog: [v0.43.0...v0.44.0](https://github.com/G-Core/gcore-python/compare/v0.43.0...v0.44.0)
+
+### Features
+
+* **api:** aggregated API specs update ([5b07224](https://github.com/G-Core/gcore-python/commit/5b07224ecfcad18c39a2ae1c45fddb2b4ea811f6))
+* **api:** aggregated API specs update ([9900f97](https://github.com/G-Core/gcore-python/commit/9900f97b05e97b4f42c7d3a041f32e5a628f0614))
+* **storage:** support TF for ssh keys ([b4a70d5](https://github.com/G-Core/gcore-python/commit/b4a70d5fb797121f21daaa7da9026daae9173360))
+
+
+### Chores
+
+* **internal:** more robust bootstrap script ([8915d9b](https://github.com/G-Core/gcore-python/commit/8915d9b82e1f7f529f8aa930b047ce1bb3b32e08))
+
 ## 0.43.0 (2026-04-22)
 
 Full Changelog: [v0.42.0...v0.43.0](https://github.com/G-Core/gcore-python/compare/v0.42.0...v0.43.0)
