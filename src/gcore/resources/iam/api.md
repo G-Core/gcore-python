@@ -20,10 +20,10 @@ from gcore.types.iam import APIToken, APITokenClientUser, APITokenCreated, APITo
 
 Methods:
 
-- <code title="post /iam/clients/{clientId}/tokens">client.iam.api_tokens.<a href="./src/gcore/resources/iam/api_tokens.py">create</a>(client_id, \*\*<a href="src/gcore/types/iam/api_token_create_params.py">params</a>) -> <a href="./src/gcore/types/iam/api_token_created.py">APITokenCreated</a></code>
-- <code title="get /iam/clients/{clientId}/tokens">client.iam.api_tokens.<a href="./src/gcore/resources/iam/api_tokens.py">list</a>(client_id, \*\*<a href="src/gcore/types/iam/api_token_list_params.py">params</a>) -> <a href="./src/gcore/types/iam/api_token_list.py">APITokenList</a></code>
-- <code title="delete /iam/clients/{clientId}/tokens/{tokenId}">client.iam.api_tokens.<a href="./src/gcore/resources/iam/api_tokens.py">delete</a>(token_id, \*, client_id) -> None</code>
-- <code title="get /iam/clients/{clientId}/tokens/{tokenId}">client.iam.api_tokens.<a href="./src/gcore/resources/iam/api_tokens.py">get</a>(token_id, \*, client_id) -> <a href="./src/gcore/types/iam/api_token.py">APIToken</a></code>
+- <code title="post /iam/v2/clients/{clientId}/tokens">client.iam.api_tokens.<a href="./src/gcore/resources/iam/api_tokens.py">create</a>(client_id, \*\*<a href="src/gcore/types/iam/api_token_create_params.py">params</a>) -> <a href="./src/gcore/types/iam/api_token_created.py">APITokenCreated</a></code>
+- <code title="get /iam/v2/clients/{clientId}/tokens">client.iam.api_tokens.<a href="./src/gcore/resources/iam/api_tokens.py">list</a>(client_id, \*\*<a href="src/gcore/types/iam/api_token_list_params.py">params</a>) -> <a href="./src/gcore/types/iam/api_token_list.py">APITokenList</a></code>
+- <code title="delete /iam/v2/clients/{clientId}/tokens/{tokenId}">client.iam.api_tokens.<a href="./src/gcore/resources/iam/api_tokens.py">delete</a>(token_id, \*, client_id) -> None</code>
+- <code title="get /iam/v2/clients/{clientId}/tokens/{tokenId}">client.iam.api_tokens.<a href="./src/gcore/resources/iam/api_tokens.py">get</a>(token_id, \*, client_id) -> <a href="./src/gcore/types/iam/api_token.py">APIToken</a></code>
 
 ## Users
 
