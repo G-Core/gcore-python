@@ -64,8 +64,8 @@ class ImagesResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         hw_firmware_type: Literal["bios", "uefi"] | Omit = omit,
-        hw_machine_type: Literal["pc", "q35"] | Omit = omit,
-        is_baremetal: bool | Omit = omit,
+        hw_machine_type: Literal["i440", "q35"] | Omit = omit,
+        is_baremetal: Optional[bool] | Omit = omit,
         name: str | Omit = omit,
         os_type: Literal["linux", "windows"] | Omit = omit,
         ssh_key: Literal["allow", "deny", "required"] | Omit = omit,
@@ -81,6 +81,12 @@ class ImagesResource(SyncAPIResource):
         Update image properties and tags.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          image_id: Image ID
+
           hw_firmware_type: Specifies the type of firmware with which to boot the guest.
 
           hw_machine_type: A virtual chipset type.
@@ -229,6 +235,12 @@ class ImagesResource(SyncAPIResource):
         snapshots.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          image_id: Image ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -301,7 +313,7 @@ class ImagesResource(SyncAPIResource):
         volume_id: str,
         architecture: Literal["aarch64", "x86_64"] | Omit = omit,
         hw_firmware_type: Optional[Literal["bios", "uefi"]] | Omit = omit,
-        hw_machine_type: Optional[Literal["pc", "q35"]] | Omit = omit,
+        hw_machine_type: Optional[Literal["i440", "q35"]] | Omit = omit,
         is_baremetal: bool | Omit = omit,
         os_type: Literal["linux", "windows"] | Omit = omit,
         source: Literal["volume"] | Omit = omit,
@@ -464,6 +476,12 @@ class ImagesResource(SyncAPIResource):
         Retrieve detailed information about a specific image.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          image_id: Image ID
+
           include_prices: Show price
 
           extra_headers: Send extra headers
@@ -507,7 +525,7 @@ class ImagesResource(SyncAPIResource):
         architecture: Literal["aarch64", "x86_64"] | Omit = omit,
         cow_format: bool | Omit = omit,
         hw_firmware_type: Optional[Literal["bios", "uefi"]] | Omit = omit,
-        hw_machine_type: Optional[Literal["pc", "q35"]] | Omit = omit,
+        hw_machine_type: Optional[Literal["i440", "q35"]] | Omit = omit,
         is_baremetal: bool | Omit = omit,
         os_distro: Optional[str] | Omit = omit,
         os_type: Literal["linux", "windows"] | Omit = omit,
@@ -527,6 +545,10 @@ class ImagesResource(SyncAPIResource):
         like OS type, architecture, and tags.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           name: Image name
 
           url: URL
@@ -694,8 +716,8 @@ class AsyncImagesResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         hw_firmware_type: Literal["bios", "uefi"] | Omit = omit,
-        hw_machine_type: Literal["pc", "q35"] | Omit = omit,
-        is_baremetal: bool | Omit = omit,
+        hw_machine_type: Literal["i440", "q35"] | Omit = omit,
+        is_baremetal: Optional[bool] | Omit = omit,
         name: str | Omit = omit,
         os_type: Literal["linux", "windows"] | Omit = omit,
         ssh_key: Literal["allow", "deny", "required"] | Omit = omit,
@@ -711,6 +733,12 @@ class AsyncImagesResource(AsyncAPIResource):
         Update image properties and tags.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          image_id: Image ID
+
           hw_firmware_type: Specifies the type of firmware with which to boot the guest.
 
           hw_machine_type: A virtual chipset type.
@@ -859,6 +887,12 @@ class AsyncImagesResource(AsyncAPIResource):
         snapshots.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          image_id: Image ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -931,7 +965,7 @@ class AsyncImagesResource(AsyncAPIResource):
         volume_id: str,
         architecture: Literal["aarch64", "x86_64"] | Omit = omit,
         hw_firmware_type: Optional[Literal["bios", "uefi"]] | Omit = omit,
-        hw_machine_type: Optional[Literal["pc", "q35"]] | Omit = omit,
+        hw_machine_type: Optional[Literal["i440", "q35"]] | Omit = omit,
         is_baremetal: bool | Omit = omit,
         os_type: Literal["linux", "windows"] | Omit = omit,
         source: Literal["volume"] | Omit = omit,
@@ -1094,6 +1128,12 @@ class AsyncImagesResource(AsyncAPIResource):
         Retrieve detailed information about a specific image.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          image_id: Image ID
+
           include_prices: Show price
 
           extra_headers: Send extra headers
@@ -1137,7 +1177,7 @@ class AsyncImagesResource(AsyncAPIResource):
         architecture: Literal["aarch64", "x86_64"] | Omit = omit,
         cow_format: bool | Omit = omit,
         hw_firmware_type: Optional[Literal["bios", "uefi"]] | Omit = omit,
-        hw_machine_type: Optional[Literal["pc", "q35"]] | Omit = omit,
+        hw_machine_type: Optional[Literal["i440", "q35"]] | Omit = omit,
         is_baremetal: bool | Omit = omit,
         os_distro: Optional[str] | Omit = omit,
         os_type: Literal["linux", "windows"] | Omit = omit,
@@ -1157,6 +1197,10 @@ class AsyncImagesResource(AsyncAPIResource):
         like OS type, architecture, and tags.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           name: Image name
 
           url: URL

@@ -41,6 +41,7 @@ Methods:
 - <code title="post /storage/v4/object_storages/{storage_id}/access_keys">client.storage.object_storages.access_keys.<a href="./src/gcore/resources/storage/object_storages/access_keys.py">create</a>(storage_id) -> <a href="./src/gcore/types/storage/object_storages/access_key_created.py">AccessKeyCreated</a></code>
 - <code title="get /storage/v4/object_storages/{storage_id}/access_keys">client.storage.object_storages.access_keys.<a href="./src/gcore/resources/storage/object_storages/access_keys.py">list</a>(storage_id, \*\*<a href="src/gcore/types/storage/object_storages/access_key_list_params.py">params</a>) -> <a href="./src/gcore/types/storage/object_storages/access_key.py">SyncOffsetPage[AccessKey]</a></code>
 - <code title="delete /storage/v4/object_storages/{storage_id}/access_keys/{access_key}">client.storage.object_storages.access_keys.<a href="./src/gcore/resources/storage/object_storages/access_keys.py">delete</a>(access_key, \*, storage_id) -> None</code>
+- <code title="get /storage/v4/object_storages/{storage_id}/access_keys/{access_key}">client.storage.object_storages.access_keys.<a href="./src/gcore/resources/storage/object_storages/access_keys.py">get</a>(access_key, \*, storage_id) -> <a href="./src/gcore/types/storage/object_storages/access_key.py">AccessKey</a></code>
 
 ### Buckets
 

@@ -1,5 +1,26 @@
 # Changelog
 
+## 0.45.0 (2026-04-29)
+
+Full Changelog: [v0.44.0...v0.45.0](https://github.com/G-Core/gcore-python/compare/v0.44.0...v0.45.0)
+
+### ⚠ BREAKING CHANGES
+
+* **cloud:** correct pg conf validation response model name
+
+### Features
+
+* **api:** aggregated API specs update ([680e40d](https://github.com/G-Core/gcore-python/commit/680e40d2e2bc16202d0c70164a7f7603a133cd9c))
+* **iam:** migrate api_tokens to v2 endpoints ([fad3629](https://github.com/G-Core/gcore-python/commit/fad362941ce456930120fb2f8c22413807597d78))
+* **storage:** add get method for access keys ([b7a6c07](https://github.com/G-Core/gcore-python/commit/b7a6c074732285b2244eb012c6deef4bf39ad56e))
+* support setting headers via env ([48f6c89](https://github.com/G-Core/gcore-python/commit/48f6c89a1755f00ee53c9764273e937864c59666))
+
+
+### Bug Fixes
+
+* **cloud:** correct pg conf validation response model name ([c5bc635](https://github.com/G-Core/gcore-python/commit/c5bc635407def6e004bdb94a24e9045a1f8cf416))
+* use correct field name format for multipart file arrays ([5db7792](https://github.com/G-Core/gcore-python/commit/5db779213e0c088d2a615dccd43e0f7ca94bea1a))
+
 ## 0.44.0 (2026-04-27)
 
 Full Changelog: [v0.43.0...v0.44.0](https://github.com/G-Core/gcore-python/compare/v0.43.0...v0.44.0)

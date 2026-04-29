@@ -9,8 +9,10 @@ __all__ = ["ImageGetParams"]
 
 class ImageGetParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     include_prices: bool
     """Show price"""
