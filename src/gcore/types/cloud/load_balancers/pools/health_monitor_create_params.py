@@ -69,8 +69,15 @@ class HealthMonitorCreateParams(TypedDict, total=False):
     """Number of failures before the member is switched to ERROR state."""
 
     url_path: Optional[str]
-    """URL Path.
+    """The HTTP path the health monitor requests on each member.
 
-    Defaults to '/'. Can only be used together with `HTTP` or `HTTPS` health monitor
-    type.
+    Defaults to `/` if not set. Can only be used with `HTTP` or `HTTPS` health
+    monitor type.
+
+    Must start with `/`. Examples of valid paths:
+
+    - `/` — check the root (most common, default)
+    - `/healthz` — a dedicated health endpoint
+
+    Paths starting with `//` are not valid URL paths and will be rejected.
     """
