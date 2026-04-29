@@ -10,8 +10,10 @@ __all__ = ["ImageUploadParams"]
 
 class ImageUploadParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     name: Required[str]
     """Image name"""
@@ -31,7 +33,7 @@ class ImageUploadParams(TypedDict, total=False):
     hw_firmware_type: Optional[Literal["bios", "uefi"]]
     """Specifies the type of firmware with which to boot the guest."""
 
-    hw_machine_type: Optional[Literal["pc", "q35"]]
+    hw_machine_type: Optional[Literal["i440", "q35"]]
     """A virtual chipset type."""
 
     is_baremetal: bool

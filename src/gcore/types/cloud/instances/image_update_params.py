@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Optional
 from typing_extensions import Literal, TypedDict
 
 from ..tag_update_map_param import TagUpdateMapParam
@@ -11,16 +12,18 @@ __all__ = ["ImageUpdateParams"]
 
 class ImageUpdateParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     hw_firmware_type: Literal["bios", "uefi"]
     """Specifies the type of firmware with which to boot the guest."""
 
-    hw_machine_type: Literal["pc", "q35"]
+    hw_machine_type: Literal["i440", "q35"]
     """A virtual chipset type."""
 
-    is_baremetal: bool
+    is_baremetal: Optional[bool]
     """Set to true if the image will be used by bare metal servers."""
 
     name: str
