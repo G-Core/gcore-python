@@ -160,7 +160,10 @@ class ServersSettings(TypedDict, total=False):
     """List of file shares to be mounted across the cluster."""
 
     security_groups: Iterable[ServersSettingsSecurityGroup]
-    """List of security groups UUIDs"""
+    """List of security group UUIDs.
+
+    If omitted or an empty list, the default security group will be used.
+    """
 
     user_data: str
     """Optional custom user data (Base64-encoded)"""

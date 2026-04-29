@@ -46,7 +46,7 @@ class Image(BaseModel):
     hw_firmware_type: Optional[Literal["bios", "uefi"]] = None
     """Specifies the type of firmware with which to boot the guest."""
 
-    hw_machine_type: Optional[Literal["pc", "q35"]] = None
+    hw_machine_type: Optional[Literal["i440", "q35"]] = None
     """A virtual chipset type."""
 
     is_baremetal: bool
