@@ -132,6 +132,48 @@ class TestAccessKeys:
                 storage_id=0,
             )
 
+    @parametrize
+    def test_method_get(self, client: Gcore) -> None:
+        access_key = client.storage.object_storages.access_keys.get(
+            access_key="access_key",
+            storage_id=0,
+        )
+        assert_matches_type(AccessKey, access_key, path=["response"])
+
+    @parametrize
+    def test_raw_response_get(self, client: Gcore) -> None:
+        response = client.storage.object_storages.access_keys.with_raw_response.get(
+            access_key="access_key",
+            storage_id=0,
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        access_key = response.parse()
+        assert_matches_type(AccessKey, access_key, path=["response"])
+
+    @parametrize
+    def test_streaming_response_get(self, client: Gcore) -> None:
+        with client.storage.object_storages.access_keys.with_streaming_response.get(
+            access_key="access_key",
+            storage_id=0,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            access_key = response.parse()
+            assert_matches_type(AccessKey, access_key, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_get(self, client: Gcore) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `access_key` but received ''"):
+            client.storage.object_storages.access_keys.with_raw_response.get(
+                access_key="",
+                storage_id=0,
+            )
+
 
 class TestAsyncAccessKeys:
     parametrize = pytest.mark.parametrize(
@@ -248,6 +290,48 @@ class TestAsyncAccessKeys:
     async def test_path_params_delete(self, async_client: AsyncGcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `access_key` but received ''"):
             await async_client.storage.object_storages.access_keys.with_raw_response.delete(
+                access_key="",
+                storage_id=0,
+            )
+
+    @parametrize
+    async def test_method_get(self, async_client: AsyncGcore) -> None:
+        access_key = await async_client.storage.object_storages.access_keys.get(
+            access_key="access_key",
+            storage_id=0,
+        )
+        assert_matches_type(AccessKey, access_key, path=["response"])
+
+    @parametrize
+    async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
+        response = await async_client.storage.object_storages.access_keys.with_raw_response.get(
+            access_key="access_key",
+            storage_id=0,
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        access_key = await response.parse()
+        assert_matches_type(AccessKey, access_key, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
+        async with async_client.storage.object_storages.access_keys.with_streaming_response.get(
+            access_key="access_key",
+            storage_id=0,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            access_key = await response.parse()
+            assert_matches_type(AccessKey, access_key, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_get(self, async_client: AsyncGcore) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `access_key` but received ''"):
+            await async_client.storage.object_storages.access_keys.with_raw_response.get(
                 access_key="",
                 storage_id=0,
             )
