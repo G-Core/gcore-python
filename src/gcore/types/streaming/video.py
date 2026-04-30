@@ -375,13 +375,17 @@ class Video(BaseModel):
     MP4 rendition.
 
     The MP4 file becomes available for downloading when the video entity "status"
-    changes from "new" to "pending". The file is stored for 7 days, after which it
-    will be automatically deleted.
+    changes from "new" to "pending".
 
     Format of URL is `/videos/<cid>_<slug>/origin_<bitrate>_<height>.mp4` Where:
 
     - `<bitrate>` – Encoding bitrate in Kbps.
     - `<height>` – Video height.
+
+    The original file is stored for up to 7 days, after which it is deleted
+    automatically. By default, the retention policy for original recorded files
+    cannot be changed. For enterprise customers, it can be adjusted individually
+    upon request.
 
     This is a premium feature, available only upon request through your manager or
     support team.

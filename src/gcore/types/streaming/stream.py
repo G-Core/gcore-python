@@ -27,6 +27,14 @@ class Stream(BaseModel):
     id: Optional[int] = None
     """Stream ID"""
 
+    token: Optional[str] = None
+    """Push ingest token for this stream.
+
+    Used in RTMP/RTMPS, SRT, and WebRTC WHIP ingest URLs to authenticate the stream
+    source, example:
+    `rtmps://stream.domain.com:443/in/1234567?aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa`.
+    """
+
     active: Optional[bool] = None
     """Stream switch between on and off.
 

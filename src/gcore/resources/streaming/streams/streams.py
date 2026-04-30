@@ -463,7 +463,40 @@ class StreamsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Stream:
         """
-        Returns stream details
+        Returns the complete details of a specific live stream, including its current
+        state, configuration, and URLs for ingestion and playback.
+
+        Current State You can determine the real-time status of your broadcast using
+        these fields:
+
+        - `active`: Whether the stream is enabled in your account.
+        - `live`: `true` if the primary ingest point is receiving a signal.
+        - Backup fields like `backup_live` show if the redundant ingest is active.
+
+        Ingestion URLs The response includes URLs for various ingestion protocols to
+        start your broadcast:
+
+        - **RTMP/RTMPS**: `push_url` and `backup_push_url`.
+        - **SRT**: `push_url_srt` and `backup_push_url_srt`.
+        - **WebRTC (WHIP)**: `push_url_whip`.
+
+        Playback URLs & Low Latency The platform provides several Adaptive Bitrate (ABR)
+        playback options. Modern delivery utilizes Common Media Application Format
+        (CMAF) to achieve Low Latency (±4 seconds):
+
+        - **LL-HLS (HLS CMAF)**: `hls_cmaf_url`. Recommended for most modern players to
+          get aka Low Latency (LL-HLS).
+        - **LL-DASH (MPEG-DASH CMAF)**: `dash_url`. Optimized for web and Android to get
+          aka Low Latency (LL-DASH).
+        - **Legacy HLS (MPEG-TS)**: `hls_mpegts_url`.
+
+        **Choosing the right link:** Low Latency technology (CMAF) provides the best
+        low-latency experience but requires a stable internet connection. Use the
+        **MPEG-TS** URL for outdated legacy devices or in cases where the viewer's
+        internet connection is unstable and they see buffering, as this format is more
+        resilient.
+
+        ![Live Preview](https://demo-files.gvideo.io/apidocs/demo-live.gif)
 
         Args:
           extra_headers: Send extra headers
@@ -510,7 +543,11 @@ class StreamsResource(SyncAPIResource):
           "record_type" parameter of the stream.
         - If you have access to the premium feature of saving the original stream (so
           not just transcoded renditions), then the link to the original file will be in
-          the "origin_url" field. Look at the description of the field how to use it.
+          the "origin_url" field. The original file is stored for up to 7 days and is
+          then deleted automatically. By default, custom retention for original recorded
+          files is not available. For enterprise customers, this retention policy can be
+          adjusted individually upon request. Look at the description of the field how
+          to use it.
 
         Stream must be live for the recording to start, please check fields "live"
         and/or "backup_live". After the recording starts, field "recording" will switch
@@ -1011,7 +1048,40 @@ class AsyncStreamsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Stream:
         """
-        Returns stream details
+        Returns the complete details of a specific live stream, including its current
+        state, configuration, and URLs for ingestion and playback.
+
+        Current State You can determine the real-time status of your broadcast using
+        these fields:
+
+        - `active`: Whether the stream is enabled in your account.
+        - `live`: `true` if the primary ingest point is receiving a signal.
+        - Backup fields like `backup_live` show if the redundant ingest is active.
+
+        Ingestion URLs The response includes URLs for various ingestion protocols to
+        start your broadcast:
+
+        - **RTMP/RTMPS**: `push_url` and `backup_push_url`.
+        - **SRT**: `push_url_srt` and `backup_push_url_srt`.
+        - **WebRTC (WHIP)**: `push_url_whip`.
+
+        Playback URLs & Low Latency The platform provides several Adaptive Bitrate (ABR)
+        playback options. Modern delivery utilizes Common Media Application Format
+        (CMAF) to achieve Low Latency (±4 seconds):
+
+        - **LL-HLS (HLS CMAF)**: `hls_cmaf_url`. Recommended for most modern players to
+          get aka Low Latency (LL-HLS).
+        - **LL-DASH (MPEG-DASH CMAF)**: `dash_url`. Optimized for web and Android to get
+          aka Low Latency (LL-DASH).
+        - **Legacy HLS (MPEG-TS)**: `hls_mpegts_url`.
+
+        **Choosing the right link:** Low Latency technology (CMAF) provides the best
+        low-latency experience but requires a stable internet connection. Use the
+        **MPEG-TS** URL for outdated legacy devices or in cases where the viewer's
+        internet connection is unstable and they see buffering, as this format is more
+        resilient.
+
+        ![Live Preview](https://demo-files.gvideo.io/apidocs/demo-live.gif)
 
         Args:
           extra_headers: Send extra headers
@@ -1058,7 +1128,11 @@ class AsyncStreamsResource(AsyncAPIResource):
           "record_type" parameter of the stream.
         - If you have access to the premium feature of saving the original stream (so
           not just transcoded renditions), then the link to the original file will be in
-          the "origin_url" field. Look at the description of the field how to use it.
+          the "origin_url" field. The original file is stored for up to 7 days and is
+          then deleted automatically. By default, custom retention for original recorded
+          files is not available. For enterprise customers, this retention policy can be
+          adjusted individually upon request. Look at the description of the field how
+          to use it.
 
         Stream must be live for the recording to start, please check fields "live"
         and/or "backup_live". After the recording starts, field "recording" will switch
