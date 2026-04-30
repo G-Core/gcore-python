@@ -35,6 +35,27 @@ class AnalyticsGetRequestsParams(TypedDict, total=False):
     If not provided, defaults to the current date and time.
     """
 
+    exclude_countries: SequenceNotStr[str]
+    """
+    Exclude data by a country code of the originating IP address in ISO 3166-1
+    alpha-2 format.
+    """
+
+    exclude_domains: Iterable[int]
+    """Exclude data by domain ID."""
+
+    exclude_ips: SequenceNotStr[str]
+    """Exclude traffic data by client IP."""
+
+    exclude_reference_ids: SequenceNotStr[str]
+    """Exclude data by reference IDs."""
+
+    exclude_security_rule_names: SequenceNotStr[str]
+    """Exclude data by name of a security rule matched the request."""
+
+    exclude_session_ids: SequenceNotStr[str]
+    """Exclude data by session IDs."""
+
     http_methods: List[Literal["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT", "TRACE"]]
     """Filter by HTTP methods"""
 

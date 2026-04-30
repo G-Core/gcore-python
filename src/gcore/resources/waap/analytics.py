@@ -130,6 +130,12 @@ class AnalyticsResource(SyncAPIResource):
         decision: List[Literal["blocked", "monitored", "allowed", "passed"]] | Omit = omit,
         domains: Iterable[int] | Omit = omit,
         end: Optional[str] | Omit = omit,
+        exclude_countries: SequenceNotStr[str] | Omit = omit,
+        exclude_domains: Iterable[int] | Omit = omit,
+        exclude_ips: SequenceNotStr[str] | Omit = omit,
+        exclude_reference_ids: SequenceNotStr[str] | Omit = omit,
+        exclude_security_rule_names: SequenceNotStr[str] | Omit = omit,
+        exclude_session_ids: SequenceNotStr[str] | Omit = omit,
         http_methods: List[Literal["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT", "TRACE"]] | Omit = omit,
         ips: SequenceNotStr[str] | Omit = omit,
         limit: int | Omit = omit,
@@ -167,6 +173,19 @@ class AnalyticsResource(SyncAPIResource):
 
           end: Filter data items up to a specified end date in ISO 8601 format. If not
               provided, defaults to the current date and time.
+
+          exclude_countries: Exclude data by a country code of the originating IP address in ISO 3166-1
+              alpha-2 format.
+
+          exclude_domains: Exclude data by domain ID.
+
+          exclude_ips: Exclude traffic data by client IP.
+
+          exclude_reference_ids: Exclude data by reference IDs.
+
+          exclude_security_rule_names: Exclude data by name of a security rule matched the request.
+
+          exclude_session_ids: Exclude data by session IDs.
 
           http_methods: Filter by HTTP methods
 
@@ -215,6 +234,12 @@ class AnalyticsResource(SyncAPIResource):
                         "decision": decision,
                         "domains": domains,
                         "end": end,
+                        "exclude_countries": exclude_countries,
+                        "exclude_domains": exclude_domains,
+                        "exclude_ips": exclude_ips,
+                        "exclude_reference_ids": exclude_reference_ids,
+                        "exclude_security_rule_names": exclude_security_rule_names,
+                        "exclude_session_ids": exclude_session_ids,
                         "http_methods": http_methods,
                         "ips": ips,
                         "limit": limit,
@@ -239,6 +264,7 @@ class AnalyticsResource(SyncAPIResource):
         *,
         resolution: Literal["daily", "hourly", "minutely"],
         start: str,
+        bucket_size: Optional[Literal[60, 300, 600, 900, 1800, 3600, 7200, 10800, 21600, 43200, 86400]] | Omit = omit,
         domains: Iterable[int] | Omit = omit,
         end: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -258,6 +284,9 @@ class AnalyticsResource(SyncAPIResource):
           resolution: Specifies the granularity of the result data.
 
           start: Filter data items starting from a specified date in ISO 8601 format
+
+          bucket_size: Optional explicit aggregation bucket width in seconds. When supplied,
+              `bucket_size` supersedes `resolution` for aggregation granularity.
 
           domains: List of domain IDs. Empty list means all domains belonging to the current
               account.
@@ -284,6 +313,7 @@ class AnalyticsResource(SyncAPIResource):
                     {
                         "resolution": resolution,
                         "start": start,
+                        "bucket_size": bucket_size,
                         "domains": domains,
                         "end": end,
                     },
@@ -298,10 +328,17 @@ class AnalyticsResource(SyncAPIResource):
         *,
         resolution: Literal["daily", "hourly", "minutely"],
         start: str,
+        bucket_size: Optional[Literal[60, 300, 600, 900, 1800, 3600, 7200, 10800, 21600, 43200, 86400]] | Omit = omit,
         countries: SequenceNotStr[str] | Omit = omit,
         decision: List[Literal["blocked", "monitored", "allowed", "passed"]] | Omit = omit,
         domains: Iterable[int] | Omit = omit,
         end: Optional[str] | Omit = omit,
+        exclude_countries: SequenceNotStr[str] | Omit = omit,
+        exclude_domains: Iterable[int] | Omit = omit,
+        exclude_ips: SequenceNotStr[str] | Omit = omit,
+        exclude_reference_ids: SequenceNotStr[str] | Omit = omit,
+        exclude_security_rule_names: SequenceNotStr[str] | Omit = omit,
+        exclude_session_ids: SequenceNotStr[str] | Omit = omit,
         http_methods: List[Literal["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT", "TRACE"]] | Omit = omit,
         ips: SequenceNotStr[str] | Omit = omit,
         optional_action: List[Literal["captcha", "challenge"]] | Omit = omit,
@@ -329,6 +366,9 @@ class AnalyticsResource(SyncAPIResource):
 
           start: Filter data items starting from a specified date in ISO 8601 format
 
+          bucket_size: Optional explicit aggregation bucket width in seconds. When supplied,
+              `bucket_size` supersedes `resolution` for aggregation granularity.
+
           countries: Filter data by a country code of the originating IP address in ISO 3166-1
               alpha-2 format.
 
@@ -339,6 +379,19 @@ class AnalyticsResource(SyncAPIResource):
 
           end: Filter data items up to a specified end date in ISO 8601 format. If not
               provided, defaults to the current date and time.
+
+          exclude_countries: Exclude data by a country code of the originating IP address in ISO 3166-1
+              alpha-2 format.
+
+          exclude_domains: Exclude data by domain ID.
+
+          exclude_ips: Exclude traffic data by client IP.
+
+          exclude_reference_ids: Exclude data by reference IDs.
+
+          exclude_security_rule_names: Exclude data by name of a security rule matched the request.
+
+          exclude_session_ids: Exclude data by session IDs.
 
           http_methods: Filter by HTTP methods
 
@@ -377,10 +430,17 @@ class AnalyticsResource(SyncAPIResource):
                     {
                         "resolution": resolution,
                         "start": start,
+                        "bucket_size": bucket_size,
                         "countries": countries,
                         "decision": decision,
                         "domains": domains,
                         "end": end,
+                        "exclude_countries": exclude_countries,
+                        "exclude_domains": exclude_domains,
+                        "exclude_ips": exclude_ips,
+                        "exclude_reference_ids": exclude_reference_ids,
+                        "exclude_security_rule_names": exclude_security_rule_names,
+                        "exclude_session_ids": exclude_session_ids,
                         "http_methods": http_methods,
                         "ips": ips,
                         "optional_action": optional_action,
@@ -495,6 +555,12 @@ class AsyncAnalyticsResource(AsyncAPIResource):
         decision: List[Literal["blocked", "monitored", "allowed", "passed"]] | Omit = omit,
         domains: Iterable[int] | Omit = omit,
         end: Optional[str] | Omit = omit,
+        exclude_countries: SequenceNotStr[str] | Omit = omit,
+        exclude_domains: Iterable[int] | Omit = omit,
+        exclude_ips: SequenceNotStr[str] | Omit = omit,
+        exclude_reference_ids: SequenceNotStr[str] | Omit = omit,
+        exclude_security_rule_names: SequenceNotStr[str] | Omit = omit,
+        exclude_session_ids: SequenceNotStr[str] | Omit = omit,
         http_methods: List[Literal["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT", "TRACE"]] | Omit = omit,
         ips: SequenceNotStr[str] | Omit = omit,
         limit: int | Omit = omit,
@@ -532,6 +598,19 @@ class AsyncAnalyticsResource(AsyncAPIResource):
 
           end: Filter data items up to a specified end date in ISO 8601 format. If not
               provided, defaults to the current date and time.
+
+          exclude_countries: Exclude data by a country code of the originating IP address in ISO 3166-1
+              alpha-2 format.
+
+          exclude_domains: Exclude data by domain ID.
+
+          exclude_ips: Exclude traffic data by client IP.
+
+          exclude_reference_ids: Exclude data by reference IDs.
+
+          exclude_security_rule_names: Exclude data by name of a security rule matched the request.
+
+          exclude_session_ids: Exclude data by session IDs.
 
           http_methods: Filter by HTTP methods
 
@@ -580,6 +659,12 @@ class AsyncAnalyticsResource(AsyncAPIResource):
                         "decision": decision,
                         "domains": domains,
                         "end": end,
+                        "exclude_countries": exclude_countries,
+                        "exclude_domains": exclude_domains,
+                        "exclude_ips": exclude_ips,
+                        "exclude_reference_ids": exclude_reference_ids,
+                        "exclude_security_rule_names": exclude_security_rule_names,
+                        "exclude_session_ids": exclude_session_ids,
                         "http_methods": http_methods,
                         "ips": ips,
                         "limit": limit,
@@ -604,6 +689,7 @@ class AsyncAnalyticsResource(AsyncAPIResource):
         *,
         resolution: Literal["daily", "hourly", "minutely"],
         start: str,
+        bucket_size: Optional[Literal[60, 300, 600, 900, 1800, 3600, 7200, 10800, 21600, 43200, 86400]] | Omit = omit,
         domains: Iterable[int] | Omit = omit,
         end: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -623,6 +709,9 @@ class AsyncAnalyticsResource(AsyncAPIResource):
           resolution: Specifies the granularity of the result data.
 
           start: Filter data items starting from a specified date in ISO 8601 format
+
+          bucket_size: Optional explicit aggregation bucket width in seconds. When supplied,
+              `bucket_size` supersedes `resolution` for aggregation granularity.
 
           domains: List of domain IDs. Empty list means all domains belonging to the current
               account.
@@ -649,6 +738,7 @@ class AsyncAnalyticsResource(AsyncAPIResource):
                     {
                         "resolution": resolution,
                         "start": start,
+                        "bucket_size": bucket_size,
                         "domains": domains,
                         "end": end,
                     },
@@ -663,10 +753,17 @@ class AsyncAnalyticsResource(AsyncAPIResource):
         *,
         resolution: Literal["daily", "hourly", "minutely"],
         start: str,
+        bucket_size: Optional[Literal[60, 300, 600, 900, 1800, 3600, 7200, 10800, 21600, 43200, 86400]] | Omit = omit,
         countries: SequenceNotStr[str] | Omit = omit,
         decision: List[Literal["blocked", "monitored", "allowed", "passed"]] | Omit = omit,
         domains: Iterable[int] | Omit = omit,
         end: Optional[str] | Omit = omit,
+        exclude_countries: SequenceNotStr[str] | Omit = omit,
+        exclude_domains: Iterable[int] | Omit = omit,
+        exclude_ips: SequenceNotStr[str] | Omit = omit,
+        exclude_reference_ids: SequenceNotStr[str] | Omit = omit,
+        exclude_security_rule_names: SequenceNotStr[str] | Omit = omit,
+        exclude_session_ids: SequenceNotStr[str] | Omit = omit,
         http_methods: List[Literal["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT", "TRACE"]] | Omit = omit,
         ips: SequenceNotStr[str] | Omit = omit,
         optional_action: List[Literal["captcha", "challenge"]] | Omit = omit,
@@ -694,6 +791,9 @@ class AsyncAnalyticsResource(AsyncAPIResource):
 
           start: Filter data items starting from a specified date in ISO 8601 format
 
+          bucket_size: Optional explicit aggregation bucket width in seconds. When supplied,
+              `bucket_size` supersedes `resolution` for aggregation granularity.
+
           countries: Filter data by a country code of the originating IP address in ISO 3166-1
               alpha-2 format.
 
@@ -704,6 +804,19 @@ class AsyncAnalyticsResource(AsyncAPIResource):
 
           end: Filter data items up to a specified end date in ISO 8601 format. If not
               provided, defaults to the current date and time.
+
+          exclude_countries: Exclude data by a country code of the originating IP address in ISO 3166-1
+              alpha-2 format.
+
+          exclude_domains: Exclude data by domain ID.
+
+          exclude_ips: Exclude traffic data by client IP.
+
+          exclude_reference_ids: Exclude data by reference IDs.
+
+          exclude_security_rule_names: Exclude data by name of a security rule matched the request.
+
+          exclude_session_ids: Exclude data by session IDs.
 
           http_methods: Filter by HTTP methods
 
@@ -742,10 +855,17 @@ class AsyncAnalyticsResource(AsyncAPIResource):
                     {
                         "resolution": resolution,
                         "start": start,
+                        "bucket_size": bucket_size,
                         "countries": countries,
                         "decision": decision,
                         "domains": domains,
                         "end": end,
+                        "exclude_countries": exclude_countries,
+                        "exclude_domains": exclude_domains,
+                        "exclude_ips": exclude_ips,
+                        "exclude_reference_ids": exclude_reference_ids,
+                        "exclude_security_rule_names": exclude_security_rule_names,
+                        "exclude_session_ids": exclude_session_ids,
                         "http_methods": http_methods,
                         "ips": ips,
                         "optional_action": optional_action,

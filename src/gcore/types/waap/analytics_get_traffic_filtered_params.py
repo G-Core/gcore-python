@@ -17,6 +17,13 @@ class AnalyticsGetTrafficFilteredParams(TypedDict, total=False):
     start: Required[str]
     """Filter data items starting from a specified date in ISO 8601 format"""
 
+    bucket_size: Optional[Literal[60, 300, 600, 900, 1800, 3600, 7200, 10800, 21600, 43200, 86400]]
+    """Optional explicit aggregation bucket width in seconds.
+
+    When supplied, `bucket_size` supersedes `resolution` for aggregation
+    granularity.
+    """
+
     countries: SequenceNotStr[str]
     """
     Filter data by a country code of the originating IP address in ISO 3166-1
@@ -37,6 +44,27 @@ class AnalyticsGetTrafficFilteredParams(TypedDict, total=False):
 
     If not provided, defaults to the current date and time.
     """
+
+    exclude_countries: SequenceNotStr[str]
+    """
+    Exclude data by a country code of the originating IP address in ISO 3166-1
+    alpha-2 format.
+    """
+
+    exclude_domains: Iterable[int]
+    """Exclude data by domain ID."""
+
+    exclude_ips: SequenceNotStr[str]
+    """Exclude traffic data by client IP."""
+
+    exclude_reference_ids: SequenceNotStr[str]
+    """Exclude data by reference IDs."""
+
+    exclude_security_rule_names: SequenceNotStr[str]
+    """Exclude data by name of a security rule matched the request."""
+
+    exclude_session_ids: SequenceNotStr[str]
+    """Exclude data by session IDs."""
 
     http_methods: List[Literal["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT", "TRACE"]]
     """Filter by HTTP methods"""

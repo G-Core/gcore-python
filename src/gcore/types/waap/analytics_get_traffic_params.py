@@ -15,6 +15,13 @@ class AnalyticsGetTrafficParams(TypedDict, total=False):
     start: Required[str]
     """Filter data items starting from a specified date in ISO 8601 format"""
 
+    bucket_size: Optional[Literal[60, 300, 600, 900, 1800, 3600, 7200, 10800, 21600, 43200, 86400]]
+    """Optional explicit aggregation bucket width in seconds.
+
+    When supplied, `bucket_size` supersedes `resolution` for aggregation
+    granularity.
+    """
+
     domains: Iterable[int]
     """List of domain IDs.
 
