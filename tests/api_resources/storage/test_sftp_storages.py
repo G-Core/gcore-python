@@ -23,7 +23,7 @@ class TestSftpStorages:
     @parametrize
     def test_method_create(self, client: Gcore) -> None:
         sftp_storage = client.storage.sftp_storages.create(
-            location_name="mia",
+            location_name="s-region-1",
             name="my-sftp-storage",
             password_mode="auto",
         )
@@ -32,7 +32,7 @@ class TestSftpStorages:
     @parametrize
     def test_method_create_with_all_params(self, client: Gcore) -> None:
         sftp_storage = client.storage.sftp_storages.create(
-            location_name="mia",
+            location_name="s-region-1",
             name="my-sftp-storage",
             password_mode="auto",
             expires="2 years 6 months",
@@ -47,7 +47,7 @@ class TestSftpStorages:
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
         response = client.storage.sftp_storages.with_raw_response.create(
-            location_name="mia",
+            location_name="s-region-1",
             name="my-sftp-storage",
             password_mode="auto",
         )
@@ -60,7 +60,7 @@ class TestSftpStorages:
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
         with client.storage.sftp_storages.with_streaming_response.create(
-            location_name="mia",
+            location_name="s-region-1",
             name="my-sftp-storage",
             password_mode="auto",
         ) as response:
@@ -226,7 +226,7 @@ class TestAsyncSftpStorages:
     @parametrize
     async def test_method_create(self, async_client: AsyncGcore) -> None:
         sftp_storage = await async_client.storage.sftp_storages.create(
-            location_name="mia",
+            location_name="s-region-1",
             name="my-sftp-storage",
             password_mode="auto",
         )
@@ -235,7 +235,7 @@ class TestAsyncSftpStorages:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
         sftp_storage = await async_client.storage.sftp_storages.create(
-            location_name="mia",
+            location_name="s-region-1",
             name="my-sftp-storage",
             password_mode="auto",
             expires="2 years 6 months",
@@ -250,7 +250,7 @@ class TestAsyncSftpStorages:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
         response = await async_client.storage.sftp_storages.with_raw_response.create(
-            location_name="mia",
+            location_name="s-region-1",
             name="my-sftp-storage",
             password_mode="auto",
         )
@@ -263,7 +263,7 @@ class TestAsyncSftpStorages:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
         async with async_client.storage.sftp_storages.with_streaming_response.create(
-            location_name="mia",
+            location_name="s-region-1",
             name="my-sftp-storage",
             password_mode="auto",
         ) as response:
