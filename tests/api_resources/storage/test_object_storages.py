@@ -21,7 +21,7 @@ class TestObjectStorages:
     @parametrize
     def test_method_create(self, client: Gcore) -> None:
         object_storage = client.storage.object_storages.create(
-            location_name="s-ed1",
+            location_name="s-region-1",
             name="my-storage-prod",
         )
         assert_matches_type(S3StorageCreated, object_storage, path=["response"])
@@ -29,7 +29,7 @@ class TestObjectStorages:
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
         response = client.storage.object_storages.with_raw_response.create(
-            location_name="s-ed1",
+            location_name="s-region-1",
             name="my-storage-prod",
         )
 
@@ -41,7 +41,7 @@ class TestObjectStorages:
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
         with client.storage.object_storages.with_streaming_response.create(
-            location_name="s-ed1",
+            location_name="s-region-1",
             name="my-storage-prod",
         ) as response:
             assert not response.is_closed
@@ -193,7 +193,7 @@ class TestAsyncObjectStorages:
     @parametrize
     async def test_method_create(self, async_client: AsyncGcore) -> None:
         object_storage = await async_client.storage.object_storages.create(
-            location_name="s-ed1",
+            location_name="s-region-1",
             name="my-storage-prod",
         )
         assert_matches_type(S3StorageCreated, object_storage, path=["response"])
@@ -201,7 +201,7 @@ class TestAsyncObjectStorages:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
         response = await async_client.storage.object_storages.with_raw_response.create(
-            location_name="s-ed1",
+            location_name="s-region-1",
             name="my-storage-prod",
         )
 
@@ -213,7 +213,7 @@ class TestAsyncObjectStorages:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
         async with async_client.storage.object_storages.with_streaming_response.create(
-            location_name="s-ed1",
+            location_name="s-region-1",
             name="my-storage-prod",
         ) as response:
             assert not response.is_closed
