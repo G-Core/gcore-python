@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import typing_extensions
 from typing import Iterable, Optional
 
 import httpx
@@ -120,29 +119,32 @@ class RoutersResource(SyncAPIResource):
             cast_to=TaskIDList,
         )
 
-    @typing_extensions.deprecated("deprecated")
     def update(
         self,
         router_id: str,
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        external_gateway_info: Optional[router_update_params.ExternalGatewayInfo] | Omit = omit,
-        name: Optional[str] | Omit = omit,
-        routes: Optional[Iterable[router_update_params.Route]] | Omit = omit,
+        external_gateway_info: router_update_params.ExternalGatewayInfo | Omit = omit,
+        name: str | Omit = omit,
+        routes: Iterable[router_update_params.Route] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Router:
-        """Update the configuration of an existing router.
-
-        **Deprecated**: Use
-        `PATCH /v2/routers/{project_id}/{region_id}/{router_id}` instead.
+    ) -> TaskIDList:
+        """
+        Update the configuration of an existing router.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          router_id: Router ID
+
           external_gateway_info: New external gateway configuration. Only type 'manual' is accepted on update, so
               you must provide the `network_id` of the external network. Set to null to remove
               the external gateway.
@@ -167,7 +169,7 @@ class RoutersResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `router_id` but received {router_id!r}")
         return self._patch(
             path_template(
-                "/cloud/v1/routers/{project_id}/{region_id}/{router_id}",
+                "/cloud/v2/routers/{project_id}/{region_id}/{router_id}",
                 project_id=project_id,
                 region_id=region_id,
                 router_id=router_id,
@@ -183,7 +185,7 @@ class RoutersResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Router,
+            cast_to=TaskIDList,
         )
 
     def list(
@@ -536,29 +538,32 @@ class AsyncRoutersResource(AsyncAPIResource):
             cast_to=TaskIDList,
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def update(
         self,
         router_id: str,
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        external_gateway_info: Optional[router_update_params.ExternalGatewayInfo] | Omit = omit,
-        name: Optional[str] | Omit = omit,
-        routes: Optional[Iterable[router_update_params.Route]] | Omit = omit,
+        external_gateway_info: router_update_params.ExternalGatewayInfo | Omit = omit,
+        name: str | Omit = omit,
+        routes: Iterable[router_update_params.Route] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Router:
-        """Update the configuration of an existing router.
-
-        **Deprecated**: Use
-        `PATCH /v2/routers/{project_id}/{region_id}/{router_id}` instead.
+    ) -> TaskIDList:
+        """
+        Update the configuration of an existing router.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          router_id: Router ID
+
           external_gateway_info: New external gateway configuration. Only type 'manual' is accepted on update, so
               you must provide the `network_id` of the external network. Set to null to remove
               the external gateway.
@@ -583,7 +588,7 @@ class AsyncRoutersResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `router_id` but received {router_id!r}")
         return await self._patch(
             path_template(
-                "/cloud/v1/routers/{project_id}/{region_id}/{router_id}",
+                "/cloud/v2/routers/{project_id}/{region_id}/{router_id}",
                 project_id=project_id,
                 region_id=region_id,
                 router_id=router_id,
@@ -599,7 +604,7 @@ class AsyncRoutersResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Router,
+            cast_to=TaskIDList,
         )
 
     def list(
@@ -873,10 +878,8 @@ class RoutersResourceWithRawResponse:
         self.create = to_raw_response_wrapper(
             routers.create,
         )
-        self.update = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                routers.update,  # pyright: ignore[reportDeprecated],
-            )
+        self.update = to_raw_response_wrapper(
+            routers.update,
         )
         self.list = to_raw_response_wrapper(
             routers.list,
@@ -902,10 +905,8 @@ class AsyncRoutersResourceWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             routers.create,
         )
-        self.update = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                routers.update,  # pyright: ignore[reportDeprecated],
-            )
+        self.update = async_to_raw_response_wrapper(
+            routers.update,
         )
         self.list = async_to_raw_response_wrapper(
             routers.list,
@@ -931,10 +932,8 @@ class RoutersResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             routers.create,
         )
-        self.update = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                routers.update,  # pyright: ignore[reportDeprecated],
-            )
+        self.update = to_streamed_response_wrapper(
+            routers.update,
         )
         self.list = to_streamed_response_wrapper(
             routers.list,
@@ -960,10 +959,8 @@ class AsyncRoutersResourceWithStreamingResponse:
         self.create = async_to_streamed_response_wrapper(
             routers.create,
         )
-        self.update = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                routers.update,  # pyright: ignore[reportDeprecated],
-            )
+        self.update = async_to_streamed_response_wrapper(
+            routers.update,
         )
         self.list = async_to_streamed_response_wrapper(
             routers.list,
