@@ -136,7 +136,7 @@ def get_router(*, client: Gcore, router_id: str) -> None:
 
 def update_router(*, client: Gcore, router_id: str) -> None:
     print("\n=== UPDATE ROUTER ===")
-    router = client.cloud.networks.routers.update(router_id=router_id, name="gcore-go-example-updated")  # pyright: ignore[reportDeprecated]
+    router = client.cloud.networks.routers.update_and_poll(router_id=router_id, name="gcore-go-example-updated")
     print(f"Updated router: ID={router.id}, name={router.name}")
     print("========================")
 
