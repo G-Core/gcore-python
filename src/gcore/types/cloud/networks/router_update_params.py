@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable, Optional
+from typing import Iterable
 from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["RouterUpdateParams", "ExternalGatewayInfo", "Route"]
@@ -10,20 +10,22 @@ __all__ = ["RouterUpdateParams", "ExternalGatewayInfo", "Route"]
 
 class RouterUpdateParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
-    external_gateway_info: Optional[ExternalGatewayInfo]
+    external_gateway_info: ExternalGatewayInfo
     """New external gateway configuration.
 
     Only type 'manual' is accepted on update, so you must provide the `network_id`
     of the external network. Set to null to remove the external gateway.
     """
 
-    name: Optional[str]
+    name: str
     """New name of router"""
 
-    routes: Optional[Iterable[Route]]
+    routes: Iterable[Route]
     """List of custom routes."""
 
 
