@@ -1,5 +1,40 @@
 # Changelog
 
+## 0.45.0 (2026-05-04)
+
+Full Changelog: [v0.44.0...v0.45.0](https://github.com/G-Core/gcore-python/compare/v0.44.0...v0.45.0)
+
+### ⚠ BREAKING CHANGES
+
+* **cloud:** switch routers update from v1 to v2
+* **cloud:** correct pg conf validation response model name
+
+### Features
+
+* **api:** aggregated API specs update ([ee5d831](https://github.com/G-Core/gcore-python/commit/ee5d831570b46fb37395a5972d7e29112a7e6442))
+* **api:** aggregated API specs update ([98209fa](https://github.com/G-Core/gcore-python/commit/98209fad538c45d924d9ac35d058d22b3970069e))
+* **api:** aggregated API specs update ([377df41](https://github.com/G-Core/gcore-python/commit/377df417b485d59c6c58f3ccbd5155fadd2067f6))
+* **api:** aggregated API specs update ([8985183](https://github.com/G-Core/gcore-python/commit/898518310e07028a47f72a33f3524577f9e83376))
+* **api:** aggregated API specs update ([680e40d](https://github.com/G-Core/gcore-python/commit/680e40d2e2bc16202d0c70164a7f7603a133cd9c))
+* **cloud:** add update_and_poll method for routers ([6a3523a](https://github.com/G-Core/gcore-python/commit/6a3523a2eafdc436f176c5ea78f229331cc7f835))
+* **cloud:** switch routers update from v1 to v2 ([a4499c7](https://github.com/G-Core/gcore-python/commit/a4499c76aa8bf0b19792134c68bdb24d02732c61))
+* **cloud:** use routers update_and_poll in network examples ([f3e9aa6](https://github.com/G-Core/gcore-python/commit/f3e9aa6f969960316ac8282b2cb6875023bb17d8))
+* **iam:** migrate api_tokens to v2 endpoints ([fad3629](https://github.com/G-Core/gcore-python/commit/fad362941ce456930120fb2f8c22413807597d78))
+* **storage:** add get method for access keys ([b7a6c07](https://github.com/G-Core/gcore-python/commit/b7a6c074732285b2244eb012c6deef4bf39ad56e))
+* support setting headers via env ([48f6c89](https://github.com/G-Core/gcore-python/commit/48f6c89a1755f00ee53c9764273e937864c59666))
+
+
+### Bug Fixes
+
+* **cloud:** correct pg conf validation response model name ([c5bc635](https://github.com/G-Core/gcore-python/commit/c5bc635407def6e004bdb94a24e9045a1f8cf416))
+* **cloud:** match hw_machine_type literal in instances images poll methods ([1c3322d](https://github.com/G-Core/gcore-python/commit/1c3322d6535eb206742fce884d8ee9d51363c0dd))
+* use correct field name format for multipart file arrays ([5db7792](https://github.com/G-Core/gcore-python/commit/5db779213e0c088d2a615dccd43e0f7ca94bea1a))
+
+
+### Chores
+
+* **internal:** reformat pyproject.toml ([4701fe6](https://github.com/G-Core/gcore-python/commit/4701fe6e238ea59aec4b3de804e882e249e496be))
+
 ## 0.44.0 (2026-04-27)
 
 Full Changelog: [v0.43.0...v0.44.0](https://github.com/G-Core/gcore-python/compare/v0.43.0...v0.44.0)
