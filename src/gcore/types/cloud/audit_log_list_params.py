@@ -37,6 +37,7 @@ class AuditLogListParams(TypedDict, total=False):
             "rebuild",
             "regenerate_credentials",
             "remove_from_servergroup",
+            "replace",
             "replace_metadata",
             "resize",
             "resume",
