@@ -203,5 +203,11 @@ class WaapRequestDetails(BaseModel):
     decision: Optional[Literal["passed", "allowed", "monitored", "blocked", ""]] = None
     """The decision made for processing the request through the WAAP."""
 
+    ja3: Optional[str] = None
+    """
+    JA3 TLS client fingerprint as a 32-character lowercase hexadecimal MD5 hash, or
+    an empty string when the record has no JA3 value.
+    """
+
     optional_action: Optional[Literal["captcha", "challenge", ""]] = None
     """An optional action that may be applied in addition to the primary decision."""

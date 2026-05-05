@@ -73,6 +73,12 @@ class WaapRequestSummary(BaseModel):
     http_version: Optional[str] = None
     """HTTP version of request"""
 
+    ja3: Optional[str] = None
+    """
+    JA3 TLS client fingerprint as a 32-character lowercase hexadecimal MD5 hash, or
+    an empty string when the record has no JA3 value.
+    """
+
     scheme: Optional[str] = None
     """The URI scheme of the request that generated an event"""
 
