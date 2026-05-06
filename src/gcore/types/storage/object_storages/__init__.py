@@ -7,5 +7,4 @@ from .access_key import AccessKey as AccessKey
 from .access_key_created import AccessKeyCreated as AccessKeyCreated
 from .bucket_list_params import BucketListParams as BucketListParams
 from .bucket_create_params import BucketCreateParams as BucketCreateParams
-from .bucket_update_params import BucketUpdateParams as BucketUpdateParams
 from .access_key_list_params import AccessKeyListParams as AccessKeyListParams
