@@ -14,6 +14,8 @@ __all__ = [
     "NoneAuthSourceChangeHostSource",
     "NoneAuthSourceChangeS3Source",
     "NoneAuthSourceChangeS3SourceConfig",
+    "NoneAuthSourceChangeFastedgeSource",
+    "NoneAuthSourceChangeFastedgeSourceConfig",
     "AwsSignatureV4",
     "AwsSignatureV4Auth",
 ]
@@ -196,20 +198,84 @@ class NoneAuthSourceChangeS3Source(TypedDict, total=False):
     from this origin instead of the default.
     """
 
-    origin_type: Literal["host", "s3"]
-    """Origin type. Present in responses only for S3 sources.
+    origin_type: Literal["host", "s3", "fastedge"]
+    """Origin type. Present in responses for S3 and FastEdge sources.
 
     Possible values:
 
     - **host** - A source server or endpoint from which content is fetched.
     - **s3** - S3 storage with either AWS v4 authentication or public access.
+    - **fastedge** - A FastEdge application served directly from the local FastEdge
+      runtime on the edge node, identified by `app_id`.
     """
 
     tag: str
     """Tag for the origin source."""
 
 
-NoneAuthSource: TypeAlias = Union[NoneAuthSourceChangeHostSource, NoneAuthSourceChangeS3Source]
+class NoneAuthSourceChangeFastedgeSourceConfig(TypedDict, total=False):
+    """FastEdge application configuration. Required when `origin_type` is `fastedge`."""
+
+    app_id: Required[str]
+    """
+    ID of the FastEdge application served as origin (string, matching the existing
+    fastedge option's convention). The CDN dispatches requests to the local FastEdge
+    runtime on the edge node using this identifier. The application must belong to
+    the requesting client, be enabled, and have `wasi-http` API type.
+    """
+
+
+class NoneAuthSourceChangeFastedgeSource(TypedDict, total=False):
+    config: Required[NoneAuthSourceChangeFastedgeSourceConfig]
+    """FastEdge application configuration. Required when `origin_type` is `fastedge`."""
+
+    origin_type: Required[Literal["host", "s3", "fastedge"]]
+    """Origin type. Present in responses for S3 and FastEdge sources.
+
+    Possible values:
+
+    - **host** - A source server or endpoint from which content is fetched.
+    - **s3** - S3 storage with either AWS v4 authentication or public access.
+    - **fastedge** - A FastEdge application served directly from the local FastEdge
+      runtime on the edge node, identified by `app_id`.
+    """
+
+    backup: bool
+    """
+    Defines whether the origin is a backup, meaning that it will not be used until
+    one of active origins become unavailable.
+
+    Possible values:
+
+    - **true** - Origin is a backup.
+    - **false** - Origin is not a backup.
+    """
+
+    enabled: bool
+    """Enables or disables an origin source in the origin group.
+
+    Possible values:
+
+    - **true** - Origin is enabled and the CDN uses it to pull content.
+    - **false** - Origin is disabled and the CDN does not use it to pull content.
+
+    Origin group must contain at least one enabled origin.
+    """
+
+    host_header_override: Optional[str]
+    """Per-origin Host header override.
+
+    When set, the CDN sends this value as the Host header when requesting content
+    from this origin instead of the default.
+    """
+
+    tag: str
+    """Tag for the origin source."""
+
+
+NoneAuthSource: TypeAlias = Union[
+    NoneAuthSourceChangeHostSource, NoneAuthSourceChangeS3Source, NoneAuthSourceChangeFastedgeSource
+]
 
 
 class AwsSignatureV4(TypedDict, total=False):
