@@ -38,4 +38,8 @@ class Restream(TypedDict, total=False):
     """ID of the stream to restream"""
 
     uri: str
-    """A URL to push the stream to"""
+    """A URL to push the stream to.
+
+    Supported protocols: rtmp, rtmps, srt. For SRT target URLs, only `mode=caller`
+    is supported.
+    """
