@@ -87,8 +87,10 @@ class QualitySetsResource(SyncAPIResource):
 
         - Resolution: Determines the size of the video frame. I.e. 720p, 1080p, 4K, etc.
         - Bitrate: Refers to the amount of data processed per unit of time.
-        - Codec: Codec used for transcoding can significantly affect quality. Popular
-          codecs include H.264 (AVC), H.265 (HEVC), and AV1.
+        - Codec: Codec used for transcoding can significantly affect quality. By
+          default, H.264 (AVC) is available from SD to 4K. As a premium encoding
+          feature, more advanced codecs like HEVC (H.265), AV1, and VP9 are also
+          available.
         - Frame Rate: Determines how many frames per second are displayed. Common frame
           rates include 24fps, 30fps, and 60fps.
         - Color Depth and Chroma Subsampling: These settings determine the accuracy of
@@ -229,8 +231,10 @@ class AsyncQualitySetsResource(AsyncAPIResource):
 
         - Resolution: Determines the size of the video frame. I.e. 720p, 1080p, 4K, etc.
         - Bitrate: Refers to the amount of data processed per unit of time.
-        - Codec: Codec used for transcoding can significantly affect quality. Popular
-          codecs include H.264 (AVC), H.265 (HEVC), and AV1.
+        - Codec: Codec used for transcoding can significantly affect quality. By
+          default, H.264 (AVC) is available from SD to 4K. As a premium encoding
+          feature, more advanced codecs like HEVC (H.265), AV1, and VP9 are also
+          available.
         - Frame Rate: Determines how many frames per second are displayed. Common frame
           rates include 24fps, 30fps, and 60fps.
         - Color Depth and Chroma Subsampling: These settings determine the accuracy of

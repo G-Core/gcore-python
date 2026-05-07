@@ -136,13 +136,14 @@ class VideosResource(SyncAPIResource):
 
         **Advanced Features** For details on the requirements for incoming original
         files, and output video parameters after transcoding, refer to the Knowledge
-        Base documentation. By default video will be transcoded according to the
-        original resolution, and a quality ladder suitable for your original video will
-        be applied. There is no automatic upscaling; the maximum quality is taken from
-        the original video. If you want to upload specific files not explicitly listed
-        in requirements or wish to modify the standard quality ladder (i.e. decrease
-        quality or add new non-standard qualities), then such customization is possible.
-        Please reach out to us for assistance.
+        Base documentation. By default, video will be transcoded into H.264 (AVC)
+        according to the original resolution (up to 4K), and a suitable quality ladder
+        will be applied. More advanced codecs such as HEVC, AV1, and VP9 are available
+        as part of our premium encoding features. There is no automatic upscaling; the
+        maximum quality is taken from the original video. If you want to upload specific
+        files not explicitly listed in requirements or wish to modify the standard
+        quality ladder (i.e. decrease quality or add new non-standard qualities), then
+        such customization is possible. Please reach out to us for assistance.
 
         Additionally, check the Knowledge Base for any supplementary information you may
         need.
@@ -883,13 +884,14 @@ class AsyncVideosResource(AsyncAPIResource):
 
         **Advanced Features** For details on the requirements for incoming original
         files, and output video parameters after transcoding, refer to the Knowledge
-        Base documentation. By default video will be transcoded according to the
-        original resolution, and a quality ladder suitable for your original video will
-        be applied. There is no automatic upscaling; the maximum quality is taken from
-        the original video. If you want to upload specific files not explicitly listed
-        in requirements or wish to modify the standard quality ladder (i.e. decrease
-        quality or add new non-standard qualities), then such customization is possible.
-        Please reach out to us for assistance.
+        Base documentation. By default, video will be transcoded into H.264 (AVC)
+        according to the original resolution (up to 4K), and a suitable quality ladder
+        will be applied. More advanced codecs such as HEVC, AV1, and VP9 are available
+        as part of our premium encoding features. There is no automatic upscaling; the
+        maximum quality is taken from the original video. If you want to upload specific
+        files not explicitly listed in requirements or wish to modify the standard
+        quality ladder (i.e. decrease quality or add new non-standard qualities), then
+        such customization is possible. Please reach out to us for assistance.
 
         Additionally, check the Knowledge Base for any supplementary information you may
         need.

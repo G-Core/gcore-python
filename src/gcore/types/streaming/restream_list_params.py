@@ -9,4 +9,4 @@ __all__ = ["RestreamListParams"]
 
 class RestreamListParams(TypedDict, total=False):
     page: int
-    """Query parameter. Use it to list the paginated content"""
+    """Use it to list the paginated content"""
