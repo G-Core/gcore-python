@@ -54,7 +54,36 @@ class RestreamsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Create restream
+        Creates a new restream for a specified live stream.
+
+        Specify the target platform's URI (RTMP, RTMPS, or SRT) and the ID of the source
+        stream.
+
+        Restreaming allows you to broadcast a single live stream to multiple platforms
+        or servers simultaneously (e.g., Facebook, YouTube, or a custom media server).
+
+        **How it works:**
+
+        1. Get credentials (stream URL/key or SRT URL) from the target platform.
+        2. Create a restream in the Gcore system by specifying the target URI and the
+           source live stream.
+        3. Start your live stream; it will be automatically pushed to the target
+           destination.
+
+        ```text
+                        +-----------------------+
+        RTMP/RTMPS      |                       | -------->  Facebook (RTMP)
+            or  ------> |    Gcore Streaming    | -------->  YouTube (RTMPS)
+        SRT             |                       | -------->  Media server (SRT)
+                        +-----------------------+ -------->  Other RTMP/SRT targets
+        ```
+
+        **Supported combinations:** RTMP → RTMP, RTMPS → RTMPS, RTMP → SRT, SRT → SRT,
+        SRT → RTMP. For SRT targets, only `mode=caller` is supported (Gcore initiates a
+        PUSH connection).
+
+        Source stream parameters (bitrate, codecs, resolution) are sent "as is". Ensure
+        they match the destination requirements.
 
         Args:
           extra_headers: Send extra headers
@@ -88,7 +117,7 @@ class RestreamsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Restream:
         """
-        Updates restream settings
+        Updates restream settings, such as the target URI or active status
 
         Args:
           extra_headers: Send extra headers
@@ -119,12 +148,11 @@ class RestreamsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPageStreaming[Restream]:
-        """Returns a list of created restreams
+        """
+        Returns a list of all restreams created in your account
 
         Args:
-          page: Query parameter.
-
-        Use it to list the paginated content
+          page: Use it to list the paginated content
 
           extra_headers: Send extra headers
 
@@ -159,7 +187,7 @@ class RestreamsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete restream
+        Deletes a restream and stops the broadcast to the target destination
 
         Args:
           extra_headers: Send extra headers
@@ -191,7 +219,7 @@ class RestreamsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Restream:
         """
-        Returns restream details
+        Returns configuration and status details for a specific restream
 
         Args:
           extra_headers: Send extra headers
@@ -243,7 +271,36 @@ class AsyncRestreamsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Create restream
+        Creates a new restream for a specified live stream.
+
+        Specify the target platform's URI (RTMP, RTMPS, or SRT) and the ID of the source
+        stream.
+
+        Restreaming allows you to broadcast a single live stream to multiple platforms
+        or servers simultaneously (e.g., Facebook, YouTube, or a custom media server).
+
+        **How it works:**
+
+        1. Get credentials (stream URL/key or SRT URL) from the target platform.
+        2. Create a restream in the Gcore system by specifying the target URI and the
+           source live stream.
+        3. Start your live stream; it will be automatically pushed to the target
+           destination.
+
+        ```text
+                        +-----------------------+
+        RTMP/RTMPS      |                       | -------->  Facebook (RTMP)
+            or  ------> |    Gcore Streaming    | -------->  YouTube (RTMPS)
+        SRT             |                       | -------->  Media server (SRT)
+                        +-----------------------+ -------->  Other RTMP/SRT targets
+        ```
+
+        **Supported combinations:** RTMP → RTMP, RTMPS → RTMPS, RTMP → SRT, SRT → SRT,
+        SRT → RTMP. For SRT targets, only `mode=caller` is supported (Gcore initiates a
+        PUSH connection).
+
+        Source stream parameters (bitrate, codecs, resolution) are sent "as is". Ensure
+        they match the destination requirements.
 
         Args:
           extra_headers: Send extra headers
@@ -277,7 +334,7 @@ class AsyncRestreamsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Restream:
         """
-        Updates restream settings
+        Updates restream settings, such as the target URI or active status
 
         Args:
           extra_headers: Send extra headers
@@ -308,12 +365,11 @@ class AsyncRestreamsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Restream, AsyncPageStreaming[Restream]]:
-        """Returns a list of created restreams
+        """
+        Returns a list of all restreams created in your account
 
         Args:
-          page: Query parameter.
-
-        Use it to list the paginated content
+          page: Use it to list the paginated content
 
           extra_headers: Send extra headers
 
@@ -348,7 +404,7 @@ class AsyncRestreamsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete restream
+        Deletes a restream and stops the broadcast to the target destination
 
         Args:
           extra_headers: Send extra headers
@@ -380,7 +436,7 @@ class AsyncRestreamsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Restream:
         """
-        Returns restream details
+        Returns configuration and status details for a specific restream
 
         Args:
           extra_headers: Send extra headers
