@@ -86,6 +86,14 @@ from .certificates import (
     CertificatesResourceWithStreamingResponse,
     AsyncCertificatesResourceWithStreamingResponse,
 )
+from .client_config import (
+    ClientConfigResource,
+    AsyncClientConfigResource,
+    ClientConfigResourceWithRawResponse,
+    AsyncClientConfigResourceWithRawResponse,
+    ClientConfigResourceWithStreamingResponse,
+    AsyncClientConfigResourceWithStreamingResponse,
+)
 from .origin_groups import (
     OriginGroupsResource,
     AsyncOriginGroupsResource,
@@ -241,6 +249,11 @@ class CDNResource(SyncAPIResource):
     @cached_property
     def ips(self) -> IPsResource:
         return IPsResource(self._client)
+
+    @cached_property
+    def client_config(self) -> ClientConfigResource:
+        """Information about the current state of the CDN service in your account."""
+        return ClientConfigResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> CDNResourceWithRawResponse:
@@ -651,6 +664,11 @@ class AsyncCDNResource(AsyncAPIResource):
     @cached_property
     def ips(self) -> AsyncIPsResource:
         return AsyncIPsResource(self._client)
+
+    @cached_property
+    def client_config(self) -> AsyncClientConfigResource:
+        """Information about the current state of the CDN service in your account."""
+        return AsyncClientConfigResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncCDNResourceWithRawResponse:
@@ -1087,6 +1105,11 @@ class CDNResourceWithRawResponse:
     def ips(self) -> IPsResourceWithRawResponse:
         return IPsResourceWithRawResponse(self._cdn.ips)
 
+    @cached_property
+    def client_config(self) -> ClientConfigResourceWithRawResponse:
+        """Information about the current state of the CDN service in your account."""
+        return ClientConfigResourceWithRawResponse(self._cdn.client_config)
+
 
 class AsyncCDNResourceWithRawResponse:
     def __init__(self, cdn: AsyncCDNResource) -> None:
@@ -1209,6 +1232,11 @@ class AsyncCDNResourceWithRawResponse:
     @cached_property
     def ips(self) -> AsyncIPsResourceWithRawResponse:
         return AsyncIPsResourceWithRawResponse(self._cdn.ips)
+
+    @cached_property
+    def client_config(self) -> AsyncClientConfigResourceWithRawResponse:
+        """Information about the current state of the CDN service in your account."""
+        return AsyncClientConfigResourceWithRawResponse(self._cdn.client_config)
 
 
 class CDNResourceWithStreamingResponse:
@@ -1333,6 +1361,11 @@ class CDNResourceWithStreamingResponse:
     def ips(self) -> IPsResourceWithStreamingResponse:
         return IPsResourceWithStreamingResponse(self._cdn.ips)
 
+    @cached_property
+    def client_config(self) -> ClientConfigResourceWithStreamingResponse:
+        """Information about the current state of the CDN service in your account."""
+        return ClientConfigResourceWithStreamingResponse(self._cdn.client_config)
+
 
 class AsyncCDNResourceWithStreamingResponse:
     def __init__(self, cdn: AsyncCDNResource) -> None:
@@ -1455,3 +1488,8 @@ class AsyncCDNResourceWithStreamingResponse:
     @cached_property
     def ips(self) -> AsyncIPsResourceWithStreamingResponse:
         return AsyncIPsResourceWithStreamingResponse(self._cdn.ips)
+
+    @cached_property
+    def client_config(self) -> AsyncClientConfigResourceWithStreamingResponse:
+        """Information about the current state of the CDN service in your account."""
+        return AsyncClientConfigResourceWithStreamingResponse(self._cdn.client_config)

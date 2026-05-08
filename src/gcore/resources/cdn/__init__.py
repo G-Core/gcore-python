@@ -80,6 +80,14 @@ from .cdn_resources import (
     CDNResourcesResourceWithStreamingResponse,
     AsyncCDNResourcesResourceWithStreamingResponse,
 )
+from .client_config import (
+    ClientConfigResource,
+    AsyncClientConfigResource,
+    ClientConfigResourceWithRawResponse,
+    AsyncClientConfigResourceWithRawResponse,
+    ClientConfigResourceWithStreamingResponse,
+    AsyncClientConfigResourceWithStreamingResponse,
+)
 from .logs_uploader import (
     LogsUploaderResource,
     AsyncLogsUploaderResource,
@@ -206,6 +214,12 @@ __all__ = [
     "AsyncIPsResourceWithRawResponse",
     "IPsResourceWithStreamingResponse",
     "AsyncIPsResourceWithStreamingResponse",
+    "ClientConfigResource",
+    "AsyncClientConfigResource",
+    "ClientConfigResourceWithRawResponse",
+    "AsyncClientConfigResourceWithRawResponse",
+    "ClientConfigResourceWithStreamingResponse",
+    "AsyncClientConfigResourceWithStreamingResponse",
     "CDNResource",
     "AsyncCDNResource",
     "CDNResourceWithRawResponse",
