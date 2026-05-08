@@ -317,3 +317,9 @@ from gcore.types.cdn import PublicIPList
 Methods:
 
 - <code title="get /cdn/public-ip-list">client.cdn.ips.<a href="./src/gcore/resources/cdn/ips.py">list</a>(\*\*<a href="src/gcore/types/cdn/ip_list_params.py">params</a>) -> <a href="./src/gcore/types/cdn/public_ip_list.py">PublicIPList</a></code>
+
+## ClientConfig
+
+Methods:
+
+- <code title="get /cdn/clients/me">client.cdn.client_config.<a href="./src/gcore/resources/cdn/client_config.py">get</a>() -> <a href="./src/gcore/types/cdn/cdn_account.py">CDNAccount</a></code>
