@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, Optional
+from typing import Dict, List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -40,6 +40,9 @@ class WaapDetailedDomain(BaseModel):
 
     status: Literal["active", "bypass", "monitor", "locked"]
     """The different statuses a domain can have"""
+
+    aliases: Optional[List[str]] = None
+    """CNAME aliases pointing at this domain's CDN resource"""
 
     quotas: Optional[Dict[str, Quotas]] = None
     """Domain level quotas"""
