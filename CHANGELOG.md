@@ -1,5 +1,30 @@
 # Changelog
 
+## 0.46.0 (2026-05-11)
+
+Full Changelog: [v0.45.0...v0.46.0](https://github.com/G-Core/gcore-python/compare/v0.45.0...v0.46.0)
+
+### Features
+
+* add cross-SDK sync and relax CI breaking-change check for /release skill ([227d229](https://github.com/G-Core/gcore-python/commit/227d229251317cfa2e9cc57d55e28f6bf85c6a7a))
+* **api:** aggregated API specs update ([9d56917](https://github.com/G-Core/gcore-python/commit/9d56917be59224908e9953809511d9132a4a899b))
+* **api:** aggregated API specs update ([6722396](https://github.com/G-Core/gcore-python/commit/6722396ffbc3a6d73433b6393e7f5e812d0de4f2))
+* **api:** aggregated API specs update ([f5efa16](https://github.com/G-Core/gcore-python/commit/f5efa161e613f3dd5b9078edf87b1ff09c6d990b))
+* **api:** aggregated API specs update ([adc6730](https://github.com/G-Core/gcore-python/commit/adc67307096350666c53204150fbb30a14cb9a7e))
+* **cdn:** add client_config SDK subresource for /cdn/clients/me ([dd6eaa9](https://github.com/G-Core/gcore-python/commit/dd6eaa95eb50cfb5e8fb14938062d406851e16c5))
+
+
+### Bug Fixes
+
+* **client:** add missing f-string prefix in file type error message ([dcc262a](https://github.com/G-Core/gcore-python/commit/dcc262a3bd776078d57aa27b484b7f3982b68861))
+* **cloud:** use generic polling options in tasks ([325b0d3](https://github.com/G-Core/gcore-python/commit/325b0d37ea7ddf7d6cc5550e23ecba922cabaf66))
+* **storage:** rename bucket path param {bucket_name} -&gt; {name} ([65ef255](https://github.com/G-Core/gcore-python/commit/65ef25570c3befe321196060714a25952fa7da52))
+
+
+### Chores
+
+* **client:** rename cloud_polling_* opts to polling_* ([2fbb1d4](https://github.com/G-Core/gcore-python/commit/2fbb1d4841153fb0906e30ca3ccd4047a51f9e55))
+
 ## 0.45.0 (2026-05-04)
 
 Full Changelog: [v0.44.0...v0.45.0](https://github.com/G-Core/gcore-python/compare/v0.44.0...v0.45.0)
