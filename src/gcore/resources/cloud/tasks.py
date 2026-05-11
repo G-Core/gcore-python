@@ -61,12 +61,12 @@ class TasksResource(SyncAPIResource):
         timeout: float | NotGiven = NOT_GIVEN,
     ) -> Task:
         if not is_given(polling_interval_seconds):
-            polling_interval_seconds = cast(int, self._client.cloud_polling_interval_seconds)
+            polling_interval_seconds = cast(int, self._client.polling_interval_seconds)
         # Ensure the polling interval is at least 1 second
         polling_interval_seconds = max(1, polling_interval_seconds)
 
         if not is_given(polling_timeout_seconds):
-            polling_timeout_seconds = cast(int, self._client.cloud_polling_timeout_seconds)
+            polling_timeout_seconds = cast(int, self._client.polling_timeout_seconds)
 
         if polling_timeout_seconds <= polling_interval_seconds:
             raise ValueError(
@@ -383,12 +383,12 @@ class AsyncTasksResource(AsyncAPIResource):
         timeout: float | NotGiven = NOT_GIVEN,
     ) -> Task:
         if not is_given(polling_interval_seconds):
-            polling_interval_seconds = cast(int, self._client.cloud_polling_interval_seconds)
+            polling_interval_seconds = cast(int, self._client.polling_interval_seconds)
         # Ensure the polling interval is at least 1 second
         polling_interval_seconds = max(1, polling_interval_seconds)
 
         if not is_given(polling_timeout_seconds):
-            polling_timeout_seconds = cast(int, self._client.cloud_polling_timeout_seconds)
+            polling_timeout_seconds = cast(int, self._client.polling_timeout_seconds)
 
         if polling_timeout_seconds <= polling_interval_seconds:
             raise ValueError(
