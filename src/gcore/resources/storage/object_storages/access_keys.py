@@ -24,6 +24,10 @@ __all__ = ["AccessKeysResource", "AsyncAccessKeysResource"]
 
 
 class AccessKeysResource(SyncAPIResource):
+    """
+    Object storage access keys provide secure credentials for API access to object storage resources.
+    """
+
     @cached_property
     def with_raw_response(self) -> AccessKeysResourceWithRawResponse:
         """
@@ -205,6 +209,10 @@ class AccessKeysResource(SyncAPIResource):
 
 
 class AsyncAccessKeysResource(AsyncAPIResource):
+    """
+    Object storage access keys provide secure credentials for API access to object storage resources.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncAccessKeysResourceWithRawResponse:
         """

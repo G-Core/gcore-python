@@ -44,6 +44,9 @@ __all__ = ["ObjectStoragesResource", "AsyncObjectStoragesResource"]
 class ObjectStoragesResource(SyncAPIResource):
     @cached_property
     def access_keys(self) -> AccessKeysResource:
+        """
+        Object storage access keys provide secure credentials for API access to object storage resources.
+        """
         return AccessKeysResource(self._client)
 
     @cached_property
@@ -284,6 +287,9 @@ class ObjectStoragesResource(SyncAPIResource):
 class AsyncObjectStoragesResource(AsyncAPIResource):
     @cached_property
     def access_keys(self) -> AsyncAccessKeysResource:
+        """
+        Object storage access keys provide secure credentials for API access to object storage resources.
+        """
         return AsyncAccessKeysResource(self._client)
 
     @cached_property
@@ -543,6 +549,9 @@ class ObjectStoragesResourceWithRawResponse:
 
     @cached_property
     def access_keys(self) -> AccessKeysResourceWithRawResponse:
+        """
+        Object storage access keys provide secure credentials for API access to object storage resources.
+        """
         return AccessKeysResourceWithRawResponse(self._object_storages.access_keys)
 
     @cached_property
@@ -572,6 +581,9 @@ class AsyncObjectStoragesResourceWithRawResponse:
 
     @cached_property
     def access_keys(self) -> AsyncAccessKeysResourceWithRawResponse:
+        """
+        Object storage access keys provide secure credentials for API access to object storage resources.
+        """
         return AsyncAccessKeysResourceWithRawResponse(self._object_storages.access_keys)
 
     @cached_property
@@ -601,6 +613,9 @@ class ObjectStoragesResourceWithStreamingResponse:
 
     @cached_property
     def access_keys(self) -> AccessKeysResourceWithStreamingResponse:
+        """
+        Object storage access keys provide secure credentials for API access to object storage resources.
+        """
         return AccessKeysResourceWithStreamingResponse(self._object_storages.access_keys)
 
     @cached_property
@@ -630,6 +645,9 @@ class AsyncObjectStoragesResourceWithStreamingResponse:
 
     @cached_property
     def access_keys(self) -> AsyncAccessKeysResourceWithStreamingResponse:
+        """
+        Object storage access keys provide secure credentials for API access to object storage resources.
+        """
         return AsyncAccessKeysResourceWithStreamingResponse(self._object_storages.access_keys)
 
     @cached_property
