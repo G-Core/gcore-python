@@ -51,6 +51,9 @@ class ObjectStoragesResource(SyncAPIResource):
 
     @cached_property
     def buckets(self) -> BucketsResource:
+        """
+        Buckets are containers within object storage that hold files (objects) and define their CORS, lifecycle, and access policy configuration.
+        """
         return BucketsResource(self._client)
 
     @cached_property
@@ -294,6 +297,9 @@ class AsyncObjectStoragesResource(AsyncAPIResource):
 
     @cached_property
     def buckets(self) -> AsyncBucketsResource:
+        """
+        Buckets are containers within object storage that hold files (objects) and define their CORS, lifecycle, and access policy configuration.
+        """
         return AsyncBucketsResource(self._client)
 
     @cached_property
@@ -556,6 +562,9 @@ class ObjectStoragesResourceWithRawResponse:
 
     @cached_property
     def buckets(self) -> BucketsResourceWithRawResponse:
+        """
+        Buckets are containers within object storage that hold files (objects) and define their CORS, lifecycle, and access policy configuration.
+        """
         return BucketsResourceWithRawResponse(self._object_storages.buckets)
 
 
@@ -588,6 +597,9 @@ class AsyncObjectStoragesResourceWithRawResponse:
 
     @cached_property
     def buckets(self) -> AsyncBucketsResourceWithRawResponse:
+        """
+        Buckets are containers within object storage that hold files (objects) and define their CORS, lifecycle, and access policy configuration.
+        """
         return AsyncBucketsResourceWithRawResponse(self._object_storages.buckets)
 
 
@@ -620,6 +632,9 @@ class ObjectStoragesResourceWithStreamingResponse:
 
     @cached_property
     def buckets(self) -> BucketsResourceWithStreamingResponse:
+        """
+        Buckets are containers within object storage that hold files (objects) and define their CORS, lifecycle, and access policy configuration.
+        """
         return BucketsResourceWithStreamingResponse(self._object_storages.buckets)
 
 
@@ -652,4 +667,7 @@ class AsyncObjectStoragesResourceWithStreamingResponse:
 
     @cached_property
     def buckets(self) -> AsyncBucketsResourceWithStreamingResponse:
+        """
+        Buckets are containers within object storage that hold files (objects) and define their CORS, lifecycle, and access policy configuration.
+        """
         return AsyncBucketsResourceWithStreamingResponse(self._object_storages.buckets)
