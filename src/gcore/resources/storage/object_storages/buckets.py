@@ -23,6 +23,10 @@ __all__ = ["BucketsResource", "AsyncBucketsResource"]
 
 
 class BucketsResource(SyncAPIResource):
+    """
+    Buckets are containers within object storage that hold files (objects) and define their CORS, lifecycle, and access policy configuration.
+    """
+
     @cached_property
     def with_raw_response(self) -> BucketsResourceWithRawResponse:
         """
@@ -253,6 +257,10 @@ class BucketsResource(SyncAPIResource):
 
 
 class AsyncBucketsResource(AsyncAPIResource):
+    """
+    Buckets are containers within object storage that hold files (objects) and define their CORS, lifecycle, and access policy configuration.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncBucketsResourceWithRawResponse:
         """
