@@ -56,6 +56,9 @@ class StorageResource(SyncAPIResource):
 
     @cached_property
     def object_storages(self) -> ObjectStoragesResource:
+        """
+        S3-compatible object storages provide scalable cloud storage with S3 API compatibility. Each storage is provisioned in a specific location and exposes one or more access keys for authentication.
+        """
         return ObjectStoragesResource(self._client)
 
     @cached_property
@@ -101,6 +104,9 @@ class AsyncStorageResource(AsyncAPIResource):
 
     @cached_property
     def object_storages(self) -> AsyncObjectStoragesResource:
+        """
+        S3-compatible object storages provide scalable cloud storage with S3 API compatibility. Each storage is provisioned in a specific location and exposes one or more access keys for authentication.
+        """
         return AsyncObjectStoragesResource(self._client)
 
     @cached_property
@@ -149,6 +155,9 @@ class StorageResourceWithRawResponse:
 
     @cached_property
     def object_storages(self) -> ObjectStoragesResourceWithRawResponse:
+        """
+        S3-compatible object storages provide scalable cloud storage with S3 API compatibility. Each storage is provisioned in a specific location and exposes one or more access keys for authentication.
+        """
         return ObjectStoragesResourceWithRawResponse(self._storage.object_storages)
 
     @cached_property
@@ -178,6 +187,9 @@ class AsyncStorageResourceWithRawResponse:
 
     @cached_property
     def object_storages(self) -> AsyncObjectStoragesResourceWithRawResponse:
+        """
+        S3-compatible object storages provide scalable cloud storage with S3 API compatibility. Each storage is provisioned in a specific location and exposes one or more access keys for authentication.
+        """
         return AsyncObjectStoragesResourceWithRawResponse(self._storage.object_storages)
 
     @cached_property
@@ -207,6 +219,9 @@ class StorageResourceWithStreamingResponse:
 
     @cached_property
     def object_storages(self) -> ObjectStoragesResourceWithStreamingResponse:
+        """
+        S3-compatible object storages provide scalable cloud storage with S3 API compatibility. Each storage is provisioned in a specific location and exposes one or more access keys for authentication.
+        """
         return ObjectStoragesResourceWithStreamingResponse(self._storage.object_storages)
 
     @cached_property
@@ -236,6 +251,9 @@ class AsyncStorageResourceWithStreamingResponse:
 
     @cached_property
     def object_storages(self) -> AsyncObjectStoragesResourceWithStreamingResponse:
+        """
+        S3-compatible object storages provide scalable cloud storage with S3 API compatibility. Each storage is provisioned in a specific location and exposes one or more access keys for authentication.
+        """
         return AsyncObjectStoragesResourceWithStreamingResponse(self._storage.object_storages)
 
     @cached_property
