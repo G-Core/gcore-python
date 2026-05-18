@@ -42,6 +42,10 @@ __all__ = ["ObjectStoragesResource", "AsyncObjectStoragesResource"]
 
 
 class ObjectStoragesResource(SyncAPIResource):
+    """
+    S3-compatible object storages provide scalable cloud storage with S3 API compatibility. Each storage is provisioned in a specific location and exposes one or more access keys for authentication.
+    """
+
     @cached_property
     def access_keys(self) -> AccessKeysResource:
         """
@@ -288,6 +292,10 @@ class ObjectStoragesResource(SyncAPIResource):
 
 
 class AsyncObjectStoragesResource(AsyncAPIResource):
+    """
+    S3-compatible object storages provide scalable cloud storage with S3 API compatibility. Each storage is provisioned in a specific location and exposes one or more access keys for authentication.
+    """
+
     @cached_property
     def access_keys(self) -> AsyncAccessKeysResource:
         """
