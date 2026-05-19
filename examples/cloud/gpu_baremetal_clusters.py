@@ -9,6 +9,7 @@ from gcore.types.cloud.gpu_baremetal.cluster_create_params import (
 )
 from gcore.types.cloud.gpu_baremetal.gpu_baremetal_cluster import GPUBaremetalCluster
 from gcore.types.cloud.gpu_baremetal.clusters.gpu_baremetal_flavor import GPUBaremetalFlavor
+from gcore.types.cloud.gpu_baremetal.clusters.gpu_baremetal_cluster_server import GPUBaremetalClusterServer
 
 
 def main() -> None:
@@ -44,7 +45,10 @@ def main() -> None:
     list_interfaces(client=gcore, cluster_id=cluster.id)
 
     # Servers
-    list_servers(client=gcore, cluster_id=cluster.id)
+    servers = list_servers(client=gcore, cluster_id=cluster.id)
+    if servers:
+        rebuild_server(client=gcore, cluster_id=cluster.id, server_id=servers[0].id)
+        replace_server(client=gcore, cluster_id=cluster.id, server_id=servers[0].id)
 
     # Delete
     delete_cluster(client=gcore, cluster_id=cluster.id)
@@ -113,12 +117,35 @@ def list_interfaces(*, client: Gcore, cluster_id: str) -> List[NetworkInterface]
     return interfaces.results
 
 
-def list_servers(*, client: Gcore, cluster_id: str) -> None:
+def list_servers(*, client: Gcore, cluster_id: str) -> List[GPUBaremetalClusterServer]:
     print("\n=== LIST GPU BAREMETAL CLUSTER SERVERS ===")
     servers = client.cloud.gpu_baremetal.clusters.servers.list(cluster_id=cluster_id)
     for count, server in enumerate(servers.results, 1):
         print(f"  {count}. Server: ID={server.id}, name={server.name}, status={server.status}")
     print("========================")
+    return servers.results
+
+
+def rebuild_server(*, client: Gcore, cluster_id: str, server_id: str) -> GPUBaremetalClusterServer:
+    print("\n=== REBUILD GPU BAREMETAL CLUSTER SERVER ===")
+    server = client.cloud.gpu_baremetal.clusters.servers.rebuild_and_poll(
+        server_id=server_id,
+        cluster_id=cluster_id,
+    )
+    print(f"Rebuilt server: ID={server.id}, name={server.name}, status={server.status}")
+    print("========================")
+    return server
+
+
+def replace_server(*, client: Gcore, cluster_id: str, server_id: str) -> GPUBaremetalClusterServer:
+    print("\n=== REPLACE GPU BAREMETAL CLUSTER SERVER ===")
+    server = client.cloud.gpu_baremetal.clusters.servers.replace_and_poll(
+        server_id=server_id,
+        cluster_id=cluster_id,
+    )
+    print(f"Replaced server: ID={server.id}, name={server.name}, status={server.status}")
+    print("========================")
+    return server
 
 
 def list_flavors(*, client: Gcore) -> List[GPUBaremetalFlavor]:
