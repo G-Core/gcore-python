@@ -420,6 +420,64 @@ class ServersResource(SyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    def replace(
+        self,
+        server_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        cluster_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """
+        Delete a server from the cluster and provision a new one in its place,
+        maintaining the cluster size. Uses the current cluster configuration (image, SSH
+        key, network settings) for the new server.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_id: Cluster unique identifier
+
+          server_id: Server unique identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not cluster_id:
+            raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
+        if not server_id:
+            raise ValueError(f"Expected a non-empty value for `server_id` but received {server_id!r}")
+        return self._post(
+            path_template(
+                "/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/servers/{server_id}/replace",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_id=cluster_id,
+                server_id=server_id,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TaskIDList,
+        )
+
 
 class AsyncServersResource(AsyncAPIResource):
     @cached_property
@@ -814,6 +872,64 @@ class AsyncServersResource(AsyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    async def replace(
+        self,
+        server_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        cluster_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """
+        Delete a server from the cluster and provision a new one in its place,
+        maintaining the cluster size. Uses the current cluster configuration (image, SSH
+        key, network settings) for the new server.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_id: Cluster unique identifier
+
+          server_id: Server unique identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not cluster_id:
+            raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
+        if not server_id:
+            raise ValueError(f"Expected a non-empty value for `server_id` but received {server_id!r}")
+        return await self._post(
+            path_template(
+                "/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/servers/{server_id}/replace",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_id=cluster_id,
+                server_id=server_id,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TaskIDList,
+        )
+
 
 class ServersResourceWithRawResponse:
     def __init__(self, servers: ServersResource) -> None:
@@ -836,6 +952,9 @@ class ServersResourceWithRawResponse:
         )
         self.rebuild = to_raw_response_wrapper(
             servers.rebuild,
+        )
+        self.replace = to_raw_response_wrapper(
+            servers.replace,
         )
 
 
@@ -861,6 +980,9 @@ class AsyncServersResourceWithRawResponse:
         self.rebuild = async_to_raw_response_wrapper(
             servers.rebuild,
         )
+        self.replace = async_to_raw_response_wrapper(
+            servers.replace,
+        )
 
 
 class ServersResourceWithStreamingResponse:
@@ -885,6 +1007,9 @@ class ServersResourceWithStreamingResponse:
         self.rebuild = to_streamed_response_wrapper(
             servers.rebuild,
         )
+        self.replace = to_streamed_response_wrapper(
+            servers.replace,
+        )
 
 
 class AsyncServersResourceWithStreamingResponse:
@@ -908,4 +1033,7 @@ class AsyncServersResourceWithStreamingResponse:
         )
         self.rebuild = async_to_streamed_response_wrapper(
             servers.rebuild,
+        )
+        self.replace = async_to_streamed_response_wrapper(
+            servers.replace,
         )

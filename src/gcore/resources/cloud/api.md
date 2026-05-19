@@ -843,6 +843,7 @@ Methods:
 - <code title="post /cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/powercycle">client.cloud.gpu_baremetal.clusters.servers.<a href="./src/gcore/resources/cloud/gpu_baremetal/clusters/servers.py">powercycle</a>(instance_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/gpu_baremetal/clusters/gpu_baremetal_cluster_server_v1.py">GPUBaremetalClusterServerV1</a></code>
 - <code title="post /cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/reboot">client.cloud.gpu_baremetal.clusters.servers.<a href="./src/gcore/resources/cloud/gpu_baremetal/clusters/servers.py">reboot</a>(instance_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/gpu_baremetal/clusters/gpu_baremetal_cluster_server_v1.py">GPUBaremetalClusterServerV1</a></code>
 - <code title="post /cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/servers/{server_id}/rebuild">client.cloud.gpu_baremetal.clusters.servers.<a href="./src/gcore/resources/cloud/gpu_baremetal/clusters/servers.py">rebuild</a>(server_id, \*, project_id, region_id, cluster_id) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="post /cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/servers/{server_id}/replace">client.cloud.gpu_baremetal.clusters.servers.<a href="./src/gcore/resources/cloud/gpu_baremetal/clusters/servers.py">replace</a>(server_id, \*, project_id, region_id, cluster_id) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 
 #### Flavors
 
