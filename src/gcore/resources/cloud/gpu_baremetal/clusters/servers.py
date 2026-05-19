@@ -856,47 +856,6 @@ class AsyncServersResource(AsyncAPIResource):
             cast_to=TaskIDList,
         )
 
-    async def delete_and_poll(
-        self,
-        instance_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        cluster_id: str,
-        delete_floatings: bool | Omit = omit,
-        polling_interval_seconds: int | Omit = omit,
-        polling_timeout_seconds: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
-        """
-        Delete a bare metal GPU server from cluster and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
-        """
-        response = await self.delete(
-            instance_id=instance_id,
-            project_id=project_id,
-            region_id=region_id,
-            cluster_id=cluster_id,
-            delete_floatings=delete_floatings,
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-            timeout=timeout,
-        )
-        if not response.tasks or len(response.tasks) < 1:
-            raise ValueError("Expected at least one task to be created")
-        await self._client.cloud.tasks.poll(
-            response.tasks[0],
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-            polling_interval_seconds=polling_interval_seconds,
-            polling_timeout_seconds=polling_timeout_seconds,
-        )
 
 
 class ServersResourceWithRawResponse:
@@ -921,9 +880,7 @@ class ServersResourceWithRawResponse:
         self.rebuild = to_raw_response_wrapper(
             servers.rebuild,
         )
-        self.delete_and_poll = to_raw_response_wrapper(
-            servers.delete_and_poll,
-        )
+
 
 
 class AsyncServersResourceWithRawResponse:
@@ -948,9 +905,7 @@ class AsyncServersResourceWithRawResponse:
         self.rebuild = async_to_raw_response_wrapper(
             servers.rebuild,
         )
-        self.delete_and_poll = async_to_raw_response_wrapper(
-            servers.delete_and_poll,
-        )
+
 
 
 class ServersResourceWithStreamingResponse:
@@ -975,9 +930,7 @@ class ServersResourceWithStreamingResponse:
         self.rebuild = to_streamed_response_wrapper(
             servers.rebuild,
         )
-        self.delete_and_poll = to_streamed_response_wrapper(
-            servers.delete_and_poll,
-        )
+
 
 
 class AsyncServersResourceWithStreamingResponse:
@@ -1002,6 +955,4 @@ class AsyncServersResourceWithStreamingResponse:
         self.rebuild = async_to_streamed_response_wrapper(
             servers.rebuild,
         )
-        self.delete_and_poll = async_to_streamed_response_wrapper(
-            servers.delete_and_poll,
-        )
+
