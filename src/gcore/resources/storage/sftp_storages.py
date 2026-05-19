@@ -26,6 +26,10 @@ __all__ = ["SftpStoragesResource", "AsyncSftpStoragesResource"]
 
 
 class SftpStoragesResource(SyncAPIResource):
+    """
+    SFTP storages provide file transfer protocol access for securely uploading, downloading, and managing files over SSH.
+    """
+
     @cached_property
     def with_raw_response(self) -> SftpStoragesResourceWithRawResponse:
         """
@@ -323,6 +327,10 @@ class SftpStoragesResource(SyncAPIResource):
 
 
 class AsyncSftpStoragesResource(AsyncAPIResource):
+    """
+    SFTP storages provide file transfer protocol access for securely uploading, downloading, and managing files over SSH.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncSftpStoragesResourceWithRawResponse:
         """
