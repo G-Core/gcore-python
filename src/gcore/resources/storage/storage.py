@@ -63,6 +63,9 @@ class StorageResource(SyncAPIResource):
 
     @cached_property
     def sftp_storages(self) -> SftpStoragesResource:
+        """
+        SFTP storages provide file transfer protocol access for securely uploading, downloading, and managing files over SSH.
+        """
         return SftpStoragesResource(self._client)
 
     @cached_property
@@ -111,6 +114,9 @@ class AsyncStorageResource(AsyncAPIResource):
 
     @cached_property
     def sftp_storages(self) -> AsyncSftpStoragesResource:
+        """
+        SFTP storages provide file transfer protocol access for securely uploading, downloading, and managing files over SSH.
+        """
         return AsyncSftpStoragesResource(self._client)
 
     @cached_property
@@ -162,6 +168,9 @@ class StorageResourceWithRawResponse:
 
     @cached_property
     def sftp_storages(self) -> SftpStoragesResourceWithRawResponse:
+        """
+        SFTP storages provide file transfer protocol access for securely uploading, downloading, and managing files over SSH.
+        """
         return SftpStoragesResourceWithRawResponse(self._storage.sftp_storages)
 
     @cached_property
@@ -194,6 +203,9 @@ class AsyncStorageResourceWithRawResponse:
 
     @cached_property
     def sftp_storages(self) -> AsyncSftpStoragesResourceWithRawResponse:
+        """
+        SFTP storages provide file transfer protocol access for securely uploading, downloading, and managing files over SSH.
+        """
         return AsyncSftpStoragesResourceWithRawResponse(self._storage.sftp_storages)
 
     @cached_property
@@ -226,6 +238,9 @@ class StorageResourceWithStreamingResponse:
 
     @cached_property
     def sftp_storages(self) -> SftpStoragesResourceWithStreamingResponse:
+        """
+        SFTP storages provide file transfer protocol access for securely uploading, downloading, and managing files over SSH.
+        """
         return SftpStoragesResourceWithStreamingResponse(self._storage.sftp_storages)
 
     @cached_property
@@ -258,6 +273,9 @@ class AsyncStorageResourceWithStreamingResponse:
 
     @cached_property
     def sftp_storages(self) -> AsyncSftpStoragesResourceWithStreamingResponse:
+        """
+        SFTP storages provide file transfer protocol access for securely uploading, downloading, and managing files over SSH.
+        """
         return AsyncSftpStoragesResourceWithStreamingResponse(self._storage.sftp_storages)
 
     @cached_property
