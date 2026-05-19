@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.47.0 (2026-05-19)
+
+Full Changelog: [v0.46.0...v0.47.0](https://github.com/G-Core/gcore-python/compare/v0.46.0...v0.47.0)
+
+### Features
+
+* **api:** aggregated API specs update ([8c92d60](https://github.com/G-Core/gcore-python/commit/8c92d60aaeeeab24ede694117c8520b65346b1e4))
+* **cloud:** add example for replacing a GPU baremetal cluster server ([0b15bb0](https://github.com/G-Core/gcore-python/commit/0b15bb0b27d85a0d77f49a39d654b85f13817ab3))
+* **cloud:** add replace method for GPU baremetal cluster server ([302f52d](https://github.com/G-Core/gcore-python/commit/302f52da91a594ac0f2864be2a26e60145b8d64e))
+* **cloud:** add replace_and_poll and rebuild_and_poll for GPU baremetal cluster server ([119f015](https://github.com/G-Core/gcore-python/commit/119f015621f6666fc32f7e852aba1c92519447bd))
+* **internal/types:** support eagerly validating pydantic iterators ([8aa6320](https://github.com/G-Core/gcore-python/commit/8aa6320c91817c960e240259b29def9df3aac25a))
+* **storage:** support storage access keys resource in Terraform ([0b20d58](https://github.com/G-Core/gcore-python/commit/0b20d58d57e60dd249adbe0445022b59fab4ff3a))
+* **storage:** support TF for buckets ([6c7c89f](https://github.com/G-Core/gcore-python/commit/6c7c89f361acf3ac573f9a141c6ac3289fc245fb))
+* **storage:** support TF for object storages ([2a09961](https://github.com/G-Core/gcore-python/commit/2a09961a087b8c8b5942d6944f5a6399bc60f2ad))
+
 ## 0.46.0 (2026-05-11)
 
 Full Changelog: [v0.45.0...v0.46.0](https://github.com/G-Core/gcore-python/compare/v0.45.0...v0.46.0)
