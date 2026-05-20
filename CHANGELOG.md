@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.48.0 (2026-05-20)
+
+Full Changelog: [v0.47.0...v0.48.0](https://github.com/G-Core/gcore-python/compare/v0.47.0...v0.48.0)
+
+### Features
+
+* **examples:** add CDN trusted CA certificate examples ([d046d83](https://github.com/G-Core/gcore-python/commit/d046d83c9b112078274a6678db7606f8d791b3eb))
+* **storage:** support sftp storage in Terraform ([e5de4bd](https://github.com/G-Core/gcore-python/commit/e5de4bda20531e49c0b9d4207627fb5eb623dda8))
+
 ## 0.47.0 (2026-05-19)
 
 Full Changelog: [v0.46.0...v0.47.0](https://github.com/G-Core/gcore-python/compare/v0.46.0...v0.47.0)
