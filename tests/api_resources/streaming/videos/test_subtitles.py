@@ -86,7 +86,7 @@ class TestSubtitles:
         subtitle = client.streaming.videos.subtitles.update(
             id=0,
             video_id=0,
-            language="ltz",
+            language="language",
             name="name",
             vtt="vtt",
         )
@@ -291,7 +291,7 @@ class TestAsyncSubtitles:
         subtitle = await async_client.streaming.videos.subtitles.update(
             id=0,
             video_id=0,
-            language="ltz",
+            language="language",
             name="name",
             vtt="vtt",
         )
