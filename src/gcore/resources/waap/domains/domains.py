@@ -117,7 +117,7 @@ __all__ = ["DomainsResource", "AsyncDomainsResource"]
 
 class DomainsResource(SyncAPIResource):
     """
-    WAAP domains enable Web Application and API Protection for monitoring and defending web applications against security threats
+    WAAP domains enable Web Application and API Protection for monitoring and defending web applications against security threats.
     """
 
     @cached_property
@@ -389,7 +389,7 @@ class DomainsResource(SyncAPIResource):
 
 class AsyncDomainsResource(AsyncAPIResource):
     """
-    WAAP domains enable Web Application and API Protection for monitoring and defending web applications against security threats
+    WAAP domains enable Web Application and API Protection for monitoring and defending web applications against security threats.
     """
 
     @cached_property
