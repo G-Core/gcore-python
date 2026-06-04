@@ -103,7 +103,7 @@ class WaapResource(SyncAPIResource):
     @cached_property
     def domains(self) -> DomainsResource:
         """
-        WAAP domains enable Web Application and API Protection for monitoring and defending web applications against security threats
+        WAAP domains enable Web Application and API Protection for monitoring and defending web applications against security threats.
         """
         return DomainsResource(self._client)
 
@@ -182,7 +182,7 @@ class AsyncWaapResource(AsyncAPIResource):
     @cached_property
     def domains(self) -> AsyncDomainsResource:
         """
-        WAAP domains enable Web Application and API Protection for monitoring and defending web applications against security threats
+        WAAP domains enable Web Application and API Protection for monitoring and defending web applications against security threats.
         """
         return AsyncDomainsResource(self._client)
 
@@ -268,7 +268,7 @@ class WaapResourceWithRawResponse:
     @cached_property
     def domains(self) -> DomainsResourceWithRawResponse:
         """
-        WAAP domains enable Web Application and API Protection for monitoring and defending web applications against security threats
+        WAAP domains enable Web Application and API Protection for monitoring and defending web applications against security threats.
         """
         return DomainsResourceWithRawResponse(self._waap.domains)
 
@@ -316,7 +316,7 @@ class AsyncWaapResourceWithRawResponse:
     @cached_property
     def domains(self) -> AsyncDomainsResourceWithRawResponse:
         """
-        WAAP domains enable Web Application and API Protection for monitoring and defending web applications against security threats
+        WAAP domains enable Web Application and API Protection for monitoring and defending web applications against security threats.
         """
         return AsyncDomainsResourceWithRawResponse(self._waap.domains)
 
@@ -364,7 +364,7 @@ class WaapResourceWithStreamingResponse:
     @cached_property
     def domains(self) -> DomainsResourceWithStreamingResponse:
         """
-        WAAP domains enable Web Application and API Protection for monitoring and defending web applications against security threats
+        WAAP domains enable Web Application and API Protection for monitoring and defending web applications against security threats.
         """
         return DomainsResourceWithStreamingResponse(self._waap.domains)
 
@@ -412,7 +412,7 @@ class AsyncWaapResourceWithStreamingResponse:
     @cached_property
     def domains(self) -> AsyncDomainsResourceWithStreamingResponse:
         """
-        WAAP domains enable Web Application and API Protection for monitoring and defending web applications against security threats
+        WAAP domains enable Web Application and API Protection for monitoring and defending web applications against security threats.
         """
         return AsyncDomainsResourceWithStreamingResponse(self._waap.domains)
 
