@@ -1,0 +1,89 @@
+name: Seal custom code (dispatch)
+
+# When genuine out-of-band custom code is merged to this SDK repo's main,
+# notify G-Core/stlc-config to reseal so the custom-code tracking JSON
+# (the {base, integrated} commit pair) absorbs it. stlc-authored commits are
+# skipped by the loop guard below, so the bot's own pushes (the "Build SDK"
+# squash commit and the docs-regen commit) can't trigger a reseal loop.
+#
+# This workflow is itself custom code: it must be sealed once (stlc build
+# --commit) to bootstrap, after which it is preserved across regenerations.
+on:
+  push:
+    # main only. stlc preview/integrated/codegen branches never push to main,
+    # so listing main here already excludes them.
+    branches: [main]
+
+concurrency:
+  group: seal-dispatch-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    # Canonical staging repo on the upstream only (never forks).
+    if: github.repository == 'G-Core/gcore-python-staging'
+    steps:
+      - name: Loop-guard and send reseal dispatch
+        env:
+          DISPATCH_TOKEN: ${{ secrets.STLC_CONFIG_DISPATCH_TOKEN }}
+          HEAD_MSG: ${{ github.event.head_commit.message }}
+          HEAD_AUTHOR_USERNAME: ${{ github.event.head_commit.author.username }}
+          HEAD_AUTHOR_NAME: ${{ github.event.head_commit.author.name }}
+          SHA: ${{ github.sha }}
+          REF: ${{ github.ref }}
+          ACTOR: ${{ github.actor }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+
+          # Loop guard 1: skip the stlc "Build SDK" squash commit (carries the
+          # Stainless-Generated-From trailer in its message).
+          if printf '%s' "$HEAD_MSG" | grep -q 'Stainless-Generated-From'; then
+            echo "Head commit carries Stainless-Generated-From trailer — skipping dispatch."
+            exit 0
+          fi
+
+          # Loop guard 2: skip stlc-bot commits (e.g. the docs-regen commit).
+          if [ "$HEAD_AUTHOR_USERNAME" = "stlc-bot" ] || [ "$HEAD_AUTHOR_NAME" = "stlc-bot" ]; then
+            echo "Head commit authored by stlc-bot — skipping dispatch."
+            exit 0
+          fi
+
+          if [ -z "${DISPATCH_TOKEN}" ]; then
+            echo "STLC_CONFIG_DISPATCH_TOKEN is not set — cannot send dispatch." >&2
+            exit 1
+          fi
+
+          # Reseal all targets (matches the commit-back scope on stlc-config).
+          cat > /tmp/dispatch-payload.json <<JSON
+          {
+            "event_type": "seal-custom-code",
+            "client_payload": {
+              "target": "all",
+              "sha": "${SHA}",
+              "ref": "${REF}",
+              "actor": "${ACTOR}",
+              "repo": "${REPO}"
+            }
+          }
+          JSON
+
+          echo "Sending seal-custom-code dispatch to G-Core/stlc-config for ${REPO}@${SHA}."
+          http_code=$(curl -sS -o /tmp/dispatch-resp.txt -w '%{http_code}' \
+            -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${DISPATCH_TOKEN}" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            https://api.github.com/repos/G-Core/stlc-config/dispatches \
+            -d @/tmp/dispatch-payload.json)
+
+          if [ "$http_code" != "204" ]; then
+            echo "Dispatch failed with HTTP ${http_code}:" >&2
+            cat /tmp/dispatch-resp.txt >&2
+            exit 1
+          fi
+          echo "Dispatch accepted (HTTP 204)."
