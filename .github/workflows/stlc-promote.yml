@@ -10,6 +10,8 @@ permissions:
 jobs:
   promote:
     runs-on: ubuntu-latest
+    # Canonical staging repo on the upstream only (never forks/prod).
+    if: github.repository == 'G-Core/gcore-python-staging'
     env:
       PRODUCTION_REPO: G-Core/gcore-python
       GH_TOKEN: ${{ secrets.SDK_PROD_WRITE_TOKEN }}
