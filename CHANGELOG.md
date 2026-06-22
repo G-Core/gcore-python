@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.49.0](https://github.com/G-Core/gcore-python/compare/v0.48.0...v0.49.0) (2026-06-22)
+
+
+### Features
+
+* initial stlc build ([8520034](https://github.com/G-Core/gcore-python/commit/85200344a42505701b5e8612550fbf82bb56fd5f))
+
+
+### Reverts
+
+* "chore: change description" ([374b597](https://github.com/G-Core/gcore-python/commit/374b597b0139a846efc3a19f298d2328a682ec3e))
+* "chore: change description" ([d292c3f](https://github.com/G-Core/gcore-python/commit/d292c3f04f2fdd859aae168ba0f005c2a493172e))
+
+
+### Chores
+
+* change description ([3fafcb0](https://github.com/G-Core/gcore-python/commit/3fafcb07073e59267cf844389be07e27bd164b17))
+* change description ([4894a5d](https://github.com/G-Core/gcore-python/commit/4894a5d8bf2c5c880190055ca23057ebc7cfcbde))
+* reseal custom code from G-Core/gcore-go-staging@4cf4626ebf37368e3a06ffe461e4a70aba449ea2 ([aba4924](https://github.com/G-Core/gcore-python/commit/aba4924621d2f45acc8818154dfe2d99b131e198))
+
 ## 0.48.0 (2026-05-20)
 
 Full Changelog: [v0.47.0...v0.48.0](https://github.com/G-Core/gcore-python/compare/v0.47.0...v0.48.0)
