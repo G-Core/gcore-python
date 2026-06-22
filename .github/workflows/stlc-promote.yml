@@ -1,8 +1,11 @@
 name: Promote SDKs
 
+# Promote staging to production: fast-forward production `main` up to the
+# staging trunk, preserving commit SHAs. Dispatch-only with a production
+# environment gate: changes accumulate on the trunk and a maintainer promotes
+# the batch in one fast-forward.
 on:
-  push:
-    branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -10,8 +13,8 @@ permissions:
 jobs:
   promote:
     runs-on: ubuntu-latest
-    # Canonical staging repo on the upstream only (never forks/prod).
     if: github.repository == 'G-Core/gcore-python-staging'
+    environment: production
     env:
       PRODUCTION_REPO: G-Core/gcore-python
       GH_TOKEN: ${{ secrets.SDK_PROD_WRITE_TOKEN }}
@@ -28,40 +31,27 @@ jobs:
             "https://x-access-token:${GH_TOKEN}@github.com/${PRODUCTION_REPO}.git"
           git fetch production main
 
-      - name: Check if production is already in sync
+      - name: Check whether production already has staging's content
         id: diff
         run: |
-          STAGING_SHA=$(git rev-parse origin/main)
-          PRODUCTION_SHA=$(git rev-parse production/main)
-          if [ "$STAGING_SHA" = "$PRODUCTION_SHA" ]; then
-            echo "Production is already at $STAGING_SHA. Nothing to release."
+          # Compare by content — SHAs differ after a release adds version/changelog.
+          MERGED=$(git merge-tree --write-tree production/main origin/main) || MERGED=conflict
+          PRODUCTION_TREE=$(git rev-parse 'production/main^{tree}')
+          if [ "$MERGED" = "$PRODUCTION_TREE" ]; then
+            echo "Production already contains staging's content. Nothing to promote."
             echo "synced=true" >> "$GITHUB_OUTPUT"
           else
             echo "synced=false" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Push staging main to the release branch on production
+      - name: Promote staging to production (fast-forward)
         if: steps.diff.outputs.synced == 'false'
         run: |
-          git push production origin/main:refs/heads/release --force
-
-      - name: Open or update the release PR on production
-        if: steps.diff.outputs.synced == 'false'
-        run: |
-          EXISTING_PR=$(gh pr list \
-            --repo "${PRODUCTION_REPO}" \
-            --head release \
-            --state open \
-            --json number \
-            --jq '.[0].number')
-          if [ -z "${EXISTING_PR}" ]; then
-            gh pr create \
-              --repo "${PRODUCTION_REPO}" \
-              --base main \
-              --head release \
-              --title "Release SDK updates" \
-              --body "$(git log --oneline production/main..origin/main)"
-          else
-            echo "Release PR #${EXISTING_PR} already exists. Force-push has updated it."
+          # Refuse unless production/main is an ancestor of staging/main (else
+          # staging has forked from production and can't be fast-forwarded).
+          if ! git merge-base --is-ancestor production/main origin/main; then
+            echo "::error title=Promote blocked::production/main is not an ancestor of staging main."
+            exit 1
           fi
-
+          git push production origin/main:refs/heads/main
+          echo "Pushed staging/main to production/main via fast-forward."

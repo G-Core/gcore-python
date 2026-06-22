@@ -1,0 +1,34 @@
+name: Trigger staging back-sync on release
+
+# Production-only. On a published release, notify the staging repo to sync from
+# production, shrinking the post-release sync delay (vs. the scheduled poll).
+# Requires STAGING_DISPATCH_TOKEN (write on the staging repo); repository_dispatch
+# cannot be sent across repos with the built-in token.
+on:
+  release:
+    types: [published]
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    if: github.repository == 'G-Core/gcore-python'
+    steps:
+      - name: Dispatch back-sync to staging
+        env:
+          DISPATCH_TOKEN: ${{ secrets.STAGING_DISPATCH_TOKEN }}
+          REF_NAME: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          [ -n "${DISPATCH_TOKEN:-}" ] || { echo "STAGING_DISPATCH_TOKEN not set" >&2; exit 1; }
+          payload=$(jq -n --arg ref "$REF_NAME" '{event_type:"prod-released",client_payload:{ref:$ref}}')
+          code=$(curl -sS -o /tmp/r.txt -w '%{http_code}' -X POST \
+            -H "Authorization: Bearer ${DISPATCH_TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            https://api.github.com/repos/G-Core/gcore-python-staging/dispatches \
+            -d "$payload")
+          [ "$code" = "204" ] && echo "back-sync dispatched to staging" || { echo "dispatch failed $code"; cat /tmp/r.txt; exit 1; }
