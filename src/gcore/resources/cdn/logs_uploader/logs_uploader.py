@@ -53,12 +53,8 @@ class LogsUploaderResource(SyncAPIResource):
 
     @cached_property
     def configs(self) -> ConfigsResource:
-        """Logs uploader allows you to upload logs with desired format to desired storages.
-
-        Consists of three main parts:
-        - **Policies** - rules that define which logs are uploaded and how they are uploaded.
-        - **Targets** - destinations where logs are uploaded.
-        - **Configs** - combinations of logs uploader policies, targets and resources to which they are applied.
+        """
+        Logs uploader configs tie a logs uploader policy to one or more targets and a set of CDN resources, controlling which access logs are uploaded and where they are delivered.
         """
         return ConfigsResource(self._client)
 
@@ -103,12 +99,8 @@ class AsyncLogsUploaderResource(AsyncAPIResource):
 
     @cached_property
     def configs(self) -> AsyncConfigsResource:
-        """Logs uploader allows you to upload logs with desired format to desired storages.
-
-        Consists of three main parts:
-        - **Policies** - rules that define which logs are uploaded and how they are uploaded.
-        - **Targets** - destinations where logs are uploaded.
-        - **Configs** - combinations of logs uploader policies, targets and resources to which they are applied.
+        """
+        Logs uploader configs tie a logs uploader policy to one or more targets and a set of CDN resources, controlling which access logs are uploaded and where they are delivered.
         """
         return AsyncConfigsResource(self._client)
 
@@ -156,12 +148,8 @@ class LogsUploaderResourceWithRawResponse:
 
     @cached_property
     def configs(self) -> ConfigsResourceWithRawResponse:
-        """Logs uploader allows you to upload logs with desired format to desired storages.
-
-        Consists of three main parts:
-        - **Policies** - rules that define which logs are uploaded and how they are uploaded.
-        - **Targets** - destinations where logs are uploaded.
-        - **Configs** - combinations of logs uploader policies, targets and resources to which they are applied.
+        """
+        Logs uploader configs tie a logs uploader policy to one or more targets and a set of CDN resources, controlling which access logs are uploaded and where they are delivered.
         """
         return ConfigsResourceWithRawResponse(self._logs_uploader.configs)
 
@@ -190,12 +178,8 @@ class AsyncLogsUploaderResourceWithRawResponse:
 
     @cached_property
     def configs(self) -> AsyncConfigsResourceWithRawResponse:
-        """Logs uploader allows you to upload logs with desired format to desired storages.
-
-        Consists of three main parts:
-        - **Policies** - rules that define which logs are uploaded and how they are uploaded.
-        - **Targets** - destinations where logs are uploaded.
-        - **Configs** - combinations of logs uploader policies, targets and resources to which they are applied.
+        """
+        Logs uploader configs tie a logs uploader policy to one or more targets and a set of CDN resources, controlling which access logs are uploaded and where they are delivered.
         """
         return AsyncConfigsResourceWithRawResponse(self._logs_uploader.configs)
 
@@ -224,12 +208,8 @@ class LogsUploaderResourceWithStreamingResponse:
 
     @cached_property
     def configs(self) -> ConfigsResourceWithStreamingResponse:
-        """Logs uploader allows you to upload logs with desired format to desired storages.
-
-        Consists of three main parts:
-        - **Policies** - rules that define which logs are uploaded and how they are uploaded.
-        - **Targets** - destinations where logs are uploaded.
-        - **Configs** - combinations of logs uploader policies, targets and resources to which they are applied.
+        """
+        Logs uploader configs tie a logs uploader policy to one or more targets and a set of CDN resources, controlling which access logs are uploaded and where they are delivered.
         """
         return ConfigsResourceWithStreamingResponse(self._logs_uploader.configs)
 
@@ -258,11 +238,7 @@ class AsyncLogsUploaderResourceWithStreamingResponse:
 
     @cached_property
     def configs(self) -> AsyncConfigsResourceWithStreamingResponse:
-        """Logs uploader allows you to upload logs with desired format to desired storages.
-
-        Consists of three main parts:
-        - **Policies** - rules that define which logs are uploaded and how they are uploaded.
-        - **Targets** - destinations where logs are uploaded.
-        - **Configs** - combinations of logs uploader policies, targets and resources to which they are applied.
+        """
+        Logs uploader configs tie a logs uploader policy to one or more targets and a set of CDN resources, controlling which access logs are uploaded and where they are delivered.
         """
         return AsyncConfigsResourceWithStreamingResponse(self._logs_uploader.configs)
