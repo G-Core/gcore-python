@@ -75,7 +75,7 @@ class SubtitlesResource(SyncAPIResource):
         Language is 3-letter language code according to ISO-639-2 (bibliographic code).
         Specify language you need, or just look at our list in the attribute
         "audio_language" of section
-        ["AI Speech Recognition"](/docs/api-reference/streaming/ai/create-ai-asr-task).
+        ["AI Speech Recognition"](/api-reference/streaming/ai/create-ai-asr-task).
 
         You can add multiple subtitles in the same language, language uniqueness is not
         required.
@@ -92,7 +92,7 @@ class SubtitlesResource(SyncAPIResource):
         Read more:
 
         - What is
-          ["AI Speech Recognition"](/docs/api-reference/streaming/ai/create-ai-asr-task).
+          ["AI Speech Recognition"](/api-reference/streaming/ai/create-ai-asr-task).
         - If the option is enabled via
           `auto_transcribe_audio_language: auto|<language_code>`, then immediately after
           successful transcoding, an AI task will be automatically created for
@@ -352,7 +352,7 @@ class AsyncSubtitlesResource(AsyncAPIResource):
         Language is 3-letter language code according to ISO-639-2 (bibliographic code).
         Specify language you need, or just look at our list in the attribute
         "audio_language" of section
-        ["AI Speech Recognition"](/docs/api-reference/streaming/ai/create-ai-asr-task).
+        ["AI Speech Recognition"](/api-reference/streaming/ai/create-ai-asr-task).
 
         You can add multiple subtitles in the same language, language uniqueness is not
         required.
@@ -369,7 +369,7 @@ class AsyncSubtitlesResource(AsyncAPIResource):
         Read more:
 
         - What is
-          ["AI Speech Recognition"](/docs/api-reference/streaming/ai/create-ai-asr-task).
+          ["AI Speech Recognition"](/api-reference/streaming/ai/create-ai-asr-task).
         - If the option is enabled via
           `auto_transcribe_audio_language: auto|<language_code>`, then immediately after
           successful transcoding, an AI task will be automatically created for

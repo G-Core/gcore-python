@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Iterable, Optional
 from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["StreamCreateParams"]
@@ -148,6 +148,19 @@ class StreamCreateParams(TypedDict, total=False):
     - "origin" – To record RMTP/SRT/etc original clean media source.
     - "transcoded" – To record the output transcoded version of the stream,
       including overlays, texts, logos, etc. additional media layers.
+    """
+
+    srt_passphrase: Optional[str]
+    """Passphrase for encrypted SRT PUSH ingest.
+
+    If set, the sender must use the same passphrase when pushing to primary
+    `push_url_srt` or backup `backup_push_url_srt` ingest points.
+
+    The passphrase must be 10–80 characters long and may contain only printable
+    ASCII characters: English letters, digits, and punctuation. Whitespace and
+    non-ASCII characters are not allowed.
+
+    To clear the passphrase, update the stream with `"srt_passphrase": null`.
     """
 
     uri: str

@@ -170,7 +170,7 @@ class TaskDataAITranscribe(BaseModel):
     - transcription into the original language is a free procedure,
     - and translation from the original language into any other languages is a
       "translation" procedure and is paid. More details in
-      [POST /streaming/ai/tasks#transcribe](/docs/api-reference/streaming/ai/create-ai-asr-task).
+      [POST /streaming/ai/tasks#transcribe](/api-reference/streaming/ai/create-ai-asr-task).
       Language is set by 3-letter language code according to ISO-639-2
       (bibliographic code).
     """

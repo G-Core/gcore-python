@@ -36,9 +36,9 @@ class VideoUpdateParams(TypedDict, total=False):
     More details:
 
     - List of AI tasks – API
-      [GET /streaming/ai/tasks](/docs/api-reference/streaming/ai/get-list-of-ai-tasks)
+      [GET /streaming/ai/tasks](/api-reference/streaming/ai/get-list-of-ai-tasks)
     - Add subtitles to an exist video – API
-      [POST /streaming/videos/{`video_id`}/subtitles](/docs/api-reference/streaming/subtitles/add-subtitle).
+      [POST /streaming/videos/{`video_id`}/subtitles](/api-reference/streaming/subtitles/add-subtitle).
     """
 
     auto_translate_subtitles_language: Literal["disable", "default", "<language_codes,>"]

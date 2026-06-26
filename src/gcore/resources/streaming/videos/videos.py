@@ -97,7 +97,7 @@ class VideosResource(SyncAPIResource):
           from your local device or from a mobile app, then use this method. Keep
           `origin_url` empty and use TUS protocol ([tus.io](https://tus.io)) to upload
           file. More details are here
-          ["Get TUS' upload"](/docs/api-reference/streaming/videos/get-tus-parameters-for-direct-upload)
+          ["Get TUS' upload"](/api-reference/streaming/videos/get-tus-parameters-for-direct-upload)
 
         After getting the video, it is processed through the queue. There are 2 priority
         criteria: global and local. Global is determined automatically by the system as
@@ -114,7 +114,7 @@ class VideosResource(SyncAPIResource):
         Read more:
 
         - What is
-          ["AI Speech Recognition"](/docs/api-reference/streaming/ai/create-ai-asr-task).
+          ["AI Speech Recognition"](/api-reference/streaming/ai/create-ai-asr-task).
         - If the option is enabled via
           `auto_transcribe_audio_language: auto|<language_code>`, then immediately after
           successful transcoding, an AI task will be automatically created for
@@ -125,7 +125,7 @@ class VideosResource(SyncAPIResource):
           that. Also you can point several languages to translate to, then a separate
           subtitle will be generated for each specified language.
         - How to
-          ["add AI-generated subtitles to an exist video"](/docs/api-reference/streaming/subtitles/add-subtitle).
+          ["add AI-generated subtitles to an exist video"](/api-reference/streaming/subtitles/add-subtitle).
 
         The created AI-task(s) will be automatically executed, and result will also be
         automatically attached to this video as subtitle(s).
@@ -242,9 +242,9 @@ class VideosResource(SyncAPIResource):
               More details:
 
               - List of AI tasks – API
-                [GET /streaming/ai/tasks](/docs/api-reference/streaming/ai/get-list-of-ai-tasks)
+                [GET /streaming/ai/tasks](/api-reference/streaming/ai/get-list-of-ai-tasks)
               - Add subtitles to an exist video – API
-                [POST /streaming/videos/{`video_id`}/subtitles](/docs/api-reference/streaming/subtitles/add-subtitle).
+                [POST /streaming/videos/{`video_id`}/subtitles](/api-reference/streaming/subtitles/add-subtitle).
 
           auto_translate_subtitles_language: Automatic translation of auto-transcribed subtitles to the specified
               language(s). Can be used both together with `auto_transcribe_audio_language`
@@ -706,7 +706,7 @@ class VideosResource(SyncAPIResource):
         The general sequence of actions for a direct upload of a video is as follows:
 
         - Create video entity via POST method
-          ["Create video"](/docs/api-reference/streaming/videos/create-video)
+          ["Create video"](/api-reference/streaming/videos/create-video)
         - Get TUS' session parameters (you are here now)
         - Upload file via TUS client, choose your implementation on
           [tus.io](https://tus.io/implementations)
@@ -845,7 +845,7 @@ class AsyncVideosResource(AsyncAPIResource):
           from your local device or from a mobile app, then use this method. Keep
           `origin_url` empty and use TUS protocol ([tus.io](https://tus.io)) to upload
           file. More details are here
-          ["Get TUS' upload"](/docs/api-reference/streaming/videos/get-tus-parameters-for-direct-upload)
+          ["Get TUS' upload"](/api-reference/streaming/videos/get-tus-parameters-for-direct-upload)
 
         After getting the video, it is processed through the queue. There are 2 priority
         criteria: global and local. Global is determined automatically by the system as
@@ -862,7 +862,7 @@ class AsyncVideosResource(AsyncAPIResource):
         Read more:
 
         - What is
-          ["AI Speech Recognition"](/docs/api-reference/streaming/ai/create-ai-asr-task).
+          ["AI Speech Recognition"](/api-reference/streaming/ai/create-ai-asr-task).
         - If the option is enabled via
           `auto_transcribe_audio_language: auto|<language_code>`, then immediately after
           successful transcoding, an AI task will be automatically created for
@@ -873,7 +873,7 @@ class AsyncVideosResource(AsyncAPIResource):
           that. Also you can point several languages to translate to, then a separate
           subtitle will be generated for each specified language.
         - How to
-          ["add AI-generated subtitles to an exist video"](/docs/api-reference/streaming/subtitles/add-subtitle).
+          ["add AI-generated subtitles to an exist video"](/api-reference/streaming/subtitles/add-subtitle).
 
         The created AI-task(s) will be automatically executed, and result will also be
         automatically attached to this video as subtitle(s).
@@ -990,9 +990,9 @@ class AsyncVideosResource(AsyncAPIResource):
               More details:
 
               - List of AI tasks – API
-                [GET /streaming/ai/tasks](/docs/api-reference/streaming/ai/get-list-of-ai-tasks)
+                [GET /streaming/ai/tasks](/api-reference/streaming/ai/get-list-of-ai-tasks)
               - Add subtitles to an exist video – API
-                [POST /streaming/videos/{`video_id`}/subtitles](/docs/api-reference/streaming/subtitles/add-subtitle).
+                [POST /streaming/videos/{`video_id`}/subtitles](/api-reference/streaming/subtitles/add-subtitle).
 
           auto_translate_subtitles_language: Automatic translation of auto-transcribed subtitles to the specified
               language(s). Can be used both together with `auto_transcribe_audio_language`
@@ -1458,7 +1458,7 @@ class AsyncVideosResource(AsyncAPIResource):
         The general sequence of actions for a direct upload of a video is as follows:
 
         - Create video entity via POST method
-          ["Create video"](/docs/api-reference/streaming/videos/create-video)
+          ["Create video"](/api-reference/streaming/videos/create-video)
         - Get TUS' session parameters (you are here now)
         - Upload file via TUS client, choose your implementation on
           [tus.io](https://tus.io/implementations)

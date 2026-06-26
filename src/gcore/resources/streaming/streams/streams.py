@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Iterable, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -89,6 +89,7 @@ class StreamsResource(SyncAPIResource):
         pull: bool | Omit = omit,
         quality_set_id: int | Omit = omit,
         record_type: Literal["origin", "transcoded"] | Omit = omit,
+        srt_passphrase: Optional[str] | Omit = omit,
         uri: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -234,6 +235,17 @@ class StreamsResource(SyncAPIResource):
               - "transcoded" – To record the output transcoded version of the stream,
                 including overlays, texts, logos, etc. additional media layers.
 
+          srt_passphrase: Passphrase for encrypted SRT PUSH ingest.
+
+              If set, the sender must use the same passphrase when pushing to primary
+              `push_url_srt` or backup `backup_push_url_srt` ingest points.
+
+              The passphrase must be 10–80 characters long and may contain only printable
+              ASCII characters: English letters, digits, and punctuation. Whitespace and
+              non-ASCII characters are not allowed.
+
+              To clear the passphrase, update the stream with `"srt_passphrase": null`.
+
           uri: When using PULL method, this is the URL to pull a stream from.
 
               You can specify multiple addresses separated by a space (" "), so you can
@@ -276,6 +288,7 @@ class StreamsResource(SyncAPIResource):
                     "pull": pull,
                     "quality_set_id": quality_set_id,
                     "record_type": record_type,
+                    "srt_passphrase": srt_passphrase,
                     "uri": uri,
                 },
                 stream_create_params.StreamCreateParams,
@@ -674,6 +687,7 @@ class AsyncStreamsResource(AsyncAPIResource):
         pull: bool | Omit = omit,
         quality_set_id: int | Omit = omit,
         record_type: Literal["origin", "transcoded"] | Omit = omit,
+        srt_passphrase: Optional[str] | Omit = omit,
         uri: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -819,6 +833,17 @@ class AsyncStreamsResource(AsyncAPIResource):
               - "transcoded" – To record the output transcoded version of the stream,
                 including overlays, texts, logos, etc. additional media layers.
 
+          srt_passphrase: Passphrase for encrypted SRT PUSH ingest.
+
+              If set, the sender must use the same passphrase when pushing to primary
+              `push_url_srt` or backup `backup_push_url_srt` ingest points.
+
+              The passphrase must be 10–80 characters long and may contain only printable
+              ASCII characters: English letters, digits, and punctuation. Whitespace and
+              non-ASCII characters are not allowed.
+
+              To clear the passphrase, update the stream with `"srt_passphrase": null`.
+
           uri: When using PULL method, this is the URL to pull a stream from.
 
               You can specify multiple addresses separated by a space (" "), so you can
@@ -861,6 +886,7 @@ class AsyncStreamsResource(AsyncAPIResource):
                     "pull": pull,
                     "quality_set_id": quality_set_id,
                     "record_type": record_type,
+                    "srt_passphrase": srt_passphrase,
                     "uri": uri,
                 },
                 stream_create_params.StreamCreateParams,

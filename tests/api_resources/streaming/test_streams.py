@@ -25,36 +25,37 @@ class TestStreams:
     @parametrize
     def test_method_create(self, client: Gcore) -> None:
         stream = client.streaming.streams.create(
-            name="Live stream by user e4d0f942-f35d",
+            name="name",
         )
         assert_matches_type(Stream, stream, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Gcore) -> None:
         stream = client.streaming.streams.create(
-            name="Live stream by user e4d0f942-f35d",
+            name="name",
             active=True,
-            auto_record=False,
+            auto_record=True,
             broadcast_ids=[0],
             cdn_id=0,
             client_entity_data="client_entity_data",
-            client_user_id=1001,
+            client_user_id=0,
             dvr_duration=0,
             dvr_enabled=True,
             hls_mpegts_endlist_tag=True,
-            html_overlay=False,
+            html_overlay=True,
             projection="regular",
             pull=True,
             quality_set_id=0,
             record_type="origin",
-            uri="srt://domain.com:5000/?streamid=12345",
+            srt_passphrase="your_secret_passphrase",
+            uri="uri",
         )
         assert_matches_type(Stream, stream, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
         response = client.streaming.streams.with_raw_response.create(
-            name="Live stream by user e4d0f942-f35d",
+            name="name",
         )
 
         assert response.is_closed is True
@@ -65,7 +66,7 @@ class TestStreams:
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
         with client.streaming.streams.with_streaming_response.create(
-            name="Live stream by user e4d0f942-f35d",
+            name="name",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -87,22 +88,23 @@ class TestStreams:
         stream = client.streaming.streams.update(
             stream_id=0,
             stream={
-                "name": "Live stream by user e4d0f942-f35d",
+                "name": "name",
                 "active": True,
-                "auto_record": False,
+                "auto_record": True,
                 "broadcast_ids": [0],
                 "cdn_id": 0,
                 "client_entity_data": "client_entity_data",
-                "client_user_id": 1001,
+                "client_user_id": 0,
                 "dvr_duration": 0,
                 "dvr_enabled": True,
                 "hls_mpegts_endlist_tag": True,
-                "html_overlay": False,
+                "html_overlay": True,
                 "projection": "regular",
                 "pull": True,
                 "quality_set_id": 0,
                 "record_type": "origin",
-                "uri": "srt://domain.com:5000/?streamid=12345",
+                "srt_passphrase": "your_secret_passphrase",
+                "uri": "uri",
             },
         )
         assert_matches_type(Stream, stream, path=["response"])
@@ -332,36 +334,37 @@ class TestAsyncStreams:
     @parametrize
     async def test_method_create(self, async_client: AsyncGcore) -> None:
         stream = await async_client.streaming.streams.create(
-            name="Live stream by user e4d0f942-f35d",
+            name="name",
         )
         assert_matches_type(Stream, stream, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
         stream = await async_client.streaming.streams.create(
-            name="Live stream by user e4d0f942-f35d",
+            name="name",
             active=True,
-            auto_record=False,
+            auto_record=True,
             broadcast_ids=[0],
             cdn_id=0,
             client_entity_data="client_entity_data",
-            client_user_id=1001,
+            client_user_id=0,
             dvr_duration=0,
             dvr_enabled=True,
             hls_mpegts_endlist_tag=True,
-            html_overlay=False,
+            html_overlay=True,
             projection="regular",
             pull=True,
             quality_set_id=0,
             record_type="origin",
-            uri="srt://domain.com:5000/?streamid=12345",
+            srt_passphrase="your_secret_passphrase",
+            uri="uri",
         )
         assert_matches_type(Stream, stream, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
         response = await async_client.streaming.streams.with_raw_response.create(
-            name="Live stream by user e4d0f942-f35d",
+            name="name",
         )
 
         assert response.is_closed is True
@@ -372,7 +375,7 @@ class TestAsyncStreams:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
         async with async_client.streaming.streams.with_streaming_response.create(
-            name="Live stream by user e4d0f942-f35d",
+            name="name",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -394,22 +397,23 @@ class TestAsyncStreams:
         stream = await async_client.streaming.streams.update(
             stream_id=0,
             stream={
-                "name": "Live stream by user e4d0f942-f35d",
+                "name": "name",
                 "active": True,
-                "auto_record": False,
+                "auto_record": True,
                 "broadcast_ids": [0],
                 "cdn_id": 0,
                 "client_entity_data": "client_entity_data",
-                "client_user_id": 1001,
+                "client_user_id": 0,
                 "dvr_duration": 0,
                 "dvr_enabled": True,
                 "hls_mpegts_endlist_tag": True,
-                "html_overlay": False,
+                "html_overlay": True,
                 "projection": "regular",
                 "pull": True,
                 "quality_set_id": 0,
                 "record_type": "origin",
-                "uri": "srt://domain.com:5000/?streamid=12345",
+                "srt_passphrase": "your_secret_passphrase",
+                "uri": "uri",
             },
         )
         assert_matches_type(Stream, stream, path=["response"])

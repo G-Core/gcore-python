@@ -366,19 +366,28 @@ class Stream(BaseModel):
     parameter carefully to match the actual network conditions.
 
     Small latency values may lead to packet loss when jitter or retransmissions
-    occur, while very large values introduce unnecessary end-to-end delay.
+    occur, while larger values give SRT more time for retransmission and make
+    delivery more reliable at the cost of higher end-to-end delay. For streams sent
+    over the public internet, latency values of 2 seconds or more are a good
+    starting point.
 
     _Incorrect or low default value is one of the most common reasons for packet
     loss, frames loss, and bad picture._
 
     We therefore recommend setting latency manually rather than relying on the
-    default, to ensure the buffer is correctly sized for your environment. A
-    practical range is 400–2000 ms, with the exact value chosen based on RTT,
-    jitter, and expected packet loss.
+    default, to ensure the buffer is correctly sized for your environment. Choose
+    the value based on RTT, jitter, expected packet loss, and acceptable delay. Read
+    more in the Product Documentation for exact values and use cases.
 
     Be sure to check and test SRT settings on your sender side. The default values
     do not take into account your specific scenarios and do not work well. If
     necessary, ask us and we will help you.
+
+    **SRT passphrase encryption**
+
+    `srt_passphrase` is accepted only for SRT PUSH ingest. If it is configured for
+    the stream, provide the same passphrase in your sender. The incoming SRT stream
+    is AES-encrypted between the sender and ingester.
 
     Please note that 1 connection and 1 protocol can be used at a single moment in
     time per unique stream key input. Trying to send 2+ connection requests into the
@@ -483,6 +492,19 @@ class Stream(BaseModel):
     contains a link to the last screenshot created by the system. Screenshot history
     is not stored, so if you need a series of screenshots over time, then download
     them.
+    """
+
+    srt_passphrase: Optional[str] = None
+    """Passphrase for encrypted SRT PUSH ingest.
+
+    If set, the sender must use the same passphrase when pushing to primary
+    `push_url_srt` or backup `backup_push_url_srt` ingest points.
+
+    The passphrase must be 10–80 characters long and may contain only printable
+    ASCII characters: English letters, digits, and punctuation. Whitespace and
+    non-ASCII characters are not allowed.
+
+    To clear the passphrase, update the stream with `"srt_passphrase": null`.
     """
 
     started_at_backup: Optional[str] = None
