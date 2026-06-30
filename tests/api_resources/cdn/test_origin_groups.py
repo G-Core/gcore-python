@@ -38,7 +38,6 @@ class TestOriginGroups:
                     "backup": False,
                     "enabled": True,
                     "host_header_override": None,
-                    "tag": "default",
                 }
             ],
             auth_type="none",
@@ -165,7 +164,6 @@ class TestOriginGroups:
                     "backup": False,
                     "enabled": True,
                     "host_header_override": None,
-                    "tag": "default",
                 }
             ],
             use_next=True,
@@ -368,7 +366,6 @@ class TestOriginGroups:
                     "backup": False,
                     "enabled": True,
                     "host_header_override": None,
-                    "tag": "default",
                 }
             ],
             use_next=True,
@@ -510,7 +507,6 @@ class TestAsyncOriginGroups:
                     "backup": False,
                     "enabled": True,
                     "host_header_override": None,
-                    "tag": "default",
                 }
             ],
             auth_type="none",
@@ -637,7 +633,6 @@ class TestAsyncOriginGroups:
                     "backup": False,
                     "enabled": True,
                     "host_header_override": None,
-                    "tag": "default",
                 }
             ],
             use_next=True,
@@ -840,7 +835,6 @@ class TestAsyncOriginGroups:
                     "backup": False,
                     "enabled": True,
                     "host_header_override": None,
-                    "tag": "default",
                 }
             ],
             use_next=True,

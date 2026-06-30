@@ -23,6 +23,7 @@ __all__ = [
     "OptionsFastedge",
     "OptionsFastedgeOnRequestBody",
     "OptionsFastedgeOnRequestHeaders",
+    "OptionsFastedgeOnRequestHeadersAfterCache",
     "OptionsFastedgeOnResponseBody",
     "OptionsFastedgeOnResponseHeaders",
     "OptionsFetchCompressed",
@@ -462,6 +463,30 @@ class OptionsFastedgeOnRequestHeaders(TypedDict, total=False):
     """Determines if the request execution should be interrupted when an error occurs."""
 
 
+class OptionsFastedgeOnRequestHeadersAfterCache(TypedDict, total=False):
+    """
+    Allows to configure FastEdge application that will be called to handle request headers as soon as CDN receives incoming HTTP request, **after cache**.
+    """
+
+    app_id: Required[str]
+    """The ID of the application in FastEdge."""
+
+    enabled: bool
+    """
+    Determines if the FastEdge application should be called whenever HTTP request
+    headers are received.
+    """
+
+    execute_on_edge: bool
+    """Determines if the request should be executed at the edge nodes."""
+
+    execute_on_shield: bool
+    """Determines if the request should be executed at the shield nodes."""
+
+    interrupt_on_error: bool
+    """Determines if the request execution should be interrupted when an error occurs."""
+
+
 class OptionsFastedgeOnResponseBody(TypedDict, total=False):
     """
     Allows to configure FastEdge application that will be called to handle response body before CDN sends the HTTP response.
@@ -514,7 +539,7 @@ class OptionsFastedge(TypedDict, total=False):
     """
     Allows to configure FastEdge app to be called on different request/response phases.
 
-    Note: At least one of `on_request_headers`, `on_request_body`, `on_response_headers`, or `on_response_body` must be specified.
+    Note: At least one of `on_request_headers`, `on_request_headers_after_cache`, `on_request_body`, `on_response_headers`, or `on_response_body` must be specified.
     """
 
     enabled: Required[bool]
@@ -536,6 +561,12 @@ class OptionsFastedge(TypedDict, total=False):
     """
     Allows to configure FastEdge application that will be called to handle request
     headers as soon as CDN receives incoming HTTP request, **before cache**.
+    """
+
+    on_request_headers_after_cache: OptionsFastedgeOnRequestHeadersAfterCache
+    """
+    Allows to configure FastEdge application that will be called to handle request
+    headers as soon as CDN receives incoming HTTP request, **after cache**.
     """
 
     on_response_body: OptionsFastedgeOnResponseBody
@@ -890,9 +921,10 @@ class OptionsProxyCacheKey(TypedDict, total=False):
     If omitted, the default value is `$request_uri`.
 
     Combine the specified variables to create a key for caching.
-    - **$`request_uri`**
-    - **$scheme**
-    - **$uri**
+    - **$`http_x_cdn_real_host`** — the original `Host` header sent by the client. Useful for splitting cache across multiple aliases served by a single CDN resource.
+    - **$`request_uri`** — the full original request URI including the query string (e.g., `/path?id=1`).
+    - **$scheme** — the request scheme, either `http` or `https`.
+    - **$uri** — the normalized request URI without the query string (e.g., `/path`).
 
     **Warning**: Enabling and changing this option can invalidate your current cache and affect the cache hit ratio. Furthermore, the "Purge by pattern" option will not work.
     """
@@ -1624,8 +1656,9 @@ class Options(TypedDict, total=False):
     Allows to configure FastEdge app to be called on different request/response
     phases.
 
-    Note: At least one of `on_request_headers`, `on_request_body`,
-    `on_response_headers`, or `on_response_body` must be specified.
+    Note: At least one of `on_request_headers`, `on_request_headers_after_cache`,
+    `on_request_body`, `on_response_headers`, or `on_response_body` must be
+    specified.
     """
 
     fetch_compressed: Optional[OptionsFetchCompressed]
@@ -1729,9 +1762,14 @@ class Options(TypedDict, total=False):
 
     Combine the specified variables to create a key for caching.
 
-    - **$`request_uri`**
-    - **$scheme**
-    - **$uri**
+    - **$`http_x_cdn_real_host`** — the original `Host` header sent by the client.
+      Useful for splitting cache across multiple aliases served by a single CDN
+      resource.
+    - **$`request_uri`** — the full original request URI including the query string
+      (e.g., `/path?id=1`).
+    - **$scheme** — the request scheme, either `http` or `https`.
+    - **$uri** — the normalized request URI without the query string (e.g.,
+      `/path`).
 
     **Warning**: Enabling and changing this option can invalidate your current cache
     and affect the cache hit ratio. Furthermore, the "Purge by pattern" option will

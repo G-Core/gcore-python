@@ -64,7 +64,7 @@ class TargetsResource(SyncAPIResource):
         *,
         config: target_create_params.Config,
         storage_type: Literal[
-            "s3_gcore", "s3_amazon", "s3_oss", "s3_other", "s3_v1", "ftp", "sftp", "http", "azure_blob"
+            "s3_gcore", "s3_amazon", "s3_oss", "s3_other", "s3_v1", "ftp", "sftp", "http", "azure_blob", "sls"
         ],
         description: str | Omit = omit,
         name: str | Omit = omit,
@@ -120,7 +120,7 @@ class TargetsResource(SyncAPIResource):
         description: str | Omit = omit,
         name: str | Omit = omit,
         storage_type: Literal[
-            "s3_gcore", "s3_amazon", "s3_oss", "s3_other", "s3_v1", "ftp", "sftp", "http", "azure_blob"
+            "s3_gcore", "s3_amazon", "s3_oss", "s3_other", "s3_v1", "ftp", "sftp", "http", "azure_blob", "sls"
         ]
         | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -300,7 +300,7 @@ class TargetsResource(SyncAPIResource):
         *,
         config: target_replace_params.Config,
         storage_type: Literal[
-            "s3_gcore", "s3_amazon", "s3_oss", "s3_other", "s3_v1", "ftp", "sftp", "http", "azure_blob"
+            "s3_gcore", "s3_amazon", "s3_oss", "s3_other", "s3_v1", "ftp", "sftp", "http", "azure_blob", "sls"
         ],
         description: str | Omit = omit,
         name: str | Omit = omit,
@@ -413,7 +413,7 @@ class AsyncTargetsResource(AsyncAPIResource):
         *,
         config: target_create_params.Config,
         storage_type: Literal[
-            "s3_gcore", "s3_amazon", "s3_oss", "s3_other", "s3_v1", "ftp", "sftp", "http", "azure_blob"
+            "s3_gcore", "s3_amazon", "s3_oss", "s3_other", "s3_v1", "ftp", "sftp", "http", "azure_blob", "sls"
         ],
         description: str | Omit = omit,
         name: str | Omit = omit,
@@ -469,7 +469,7 @@ class AsyncTargetsResource(AsyncAPIResource):
         description: str | Omit = omit,
         name: str | Omit = omit,
         storage_type: Literal[
-            "s3_gcore", "s3_amazon", "s3_oss", "s3_other", "s3_v1", "ftp", "sftp", "http", "azure_blob"
+            "s3_gcore", "s3_amazon", "s3_oss", "s3_other", "s3_v1", "ftp", "sftp", "http", "azure_blob", "sls"
         ]
         | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -649,7 +649,7 @@ class AsyncTargetsResource(AsyncAPIResource):
         *,
         config: target_replace_params.Config,
         storage_type: Literal[
-            "s3_gcore", "s3_amazon", "s3_oss", "s3_other", "s3_v1", "ftp", "sftp", "http", "azure_blob"
+            "s3_gcore", "s3_amazon", "s3_oss", "s3_other", "s3_v1", "ftp", "sftp", "http", "azure_blob", "sls"
         ],
         description: str | Omit = omit,
         name: str | Omit = omit,

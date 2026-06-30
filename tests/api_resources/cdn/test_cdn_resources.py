@@ -104,6 +104,13 @@ class TestCDNResources:
                         "execute_on_shield": False,
                         "interrupt_on_error": True,
                     },
+                    "on_request_headers_after_cache": {
+                        "app_id": "1001",
+                        "enabled": True,
+                        "execute_on_edge": True,
+                        "execute_on_shield": False,
+                        "interrupt_on_error": True,
+                    },
                     "on_response_body": {
                         "app_id": "1001",
                         "enabled": True,
@@ -182,6 +189,10 @@ class TestCDNResources:
                     "limit_type": "static",
                     "buffer": 200,
                     "speed": 100,
+                },
+                "network_error_logging": {
+                    "enabled": True,
+                    "value": True,
                 },
                 "proxy_cache_key": {
                     "enabled": True,
@@ -438,6 +449,13 @@ class TestCDNResources:
                         "execute_on_shield": False,
                         "interrupt_on_error": True,
                     },
+                    "on_request_headers_after_cache": {
+                        "app_id": "1001",
+                        "enabled": True,
+                        "execute_on_edge": True,
+                        "execute_on_shield": False,
+                        "interrupt_on_error": True,
+                    },
                     "on_response_body": {
                         "app_id": "1001",
                         "enabled": True,
@@ -516,6 +534,10 @@ class TestCDNResources:
                     "limit_type": "static",
                     "buffer": 200,
                     "speed": 100,
+                },
+                "network_error_logging": {
+                    "enabled": True,
+                    "value": True,
                 },
                 "proxy_cache_key": {
                     "enabled": True,
@@ -1064,6 +1086,13 @@ class TestCDNResources:
                         "execute_on_shield": False,
                         "interrupt_on_error": True,
                     },
+                    "on_request_headers_after_cache": {
+                        "app_id": "1001",
+                        "enabled": True,
+                        "execute_on_edge": True,
+                        "execute_on_shield": False,
+                        "interrupt_on_error": True,
+                    },
                     "on_response_body": {
                         "app_id": "1001",
                         "enabled": True,
@@ -1142,6 +1171,10 @@ class TestCDNResources:
                     "limit_type": "static",
                     "buffer": 200,
                     "speed": 100,
+                },
+                "network_error_logging": {
+                    "enabled": True,
+                    "value": True,
                 },
                 "proxy_cache_key": {
                     "enabled": True,
@@ -1401,6 +1434,13 @@ class TestAsyncCDNResources:
                         "execute_on_shield": False,
                         "interrupt_on_error": True,
                     },
+                    "on_request_headers_after_cache": {
+                        "app_id": "1001",
+                        "enabled": True,
+                        "execute_on_edge": True,
+                        "execute_on_shield": False,
+                        "interrupt_on_error": True,
+                    },
                     "on_response_body": {
                         "app_id": "1001",
                         "enabled": True,
@@ -1479,6 +1519,10 @@ class TestAsyncCDNResources:
                     "limit_type": "static",
                     "buffer": 200,
                     "speed": 100,
+                },
+                "network_error_logging": {
+                    "enabled": True,
+                    "value": True,
                 },
                 "proxy_cache_key": {
                     "enabled": True,
@@ -1735,6 +1779,13 @@ class TestAsyncCDNResources:
                         "execute_on_shield": False,
                         "interrupt_on_error": True,
                     },
+                    "on_request_headers_after_cache": {
+                        "app_id": "1001",
+                        "enabled": True,
+                        "execute_on_edge": True,
+                        "execute_on_shield": False,
+                        "interrupt_on_error": True,
+                    },
                     "on_response_body": {
                         "app_id": "1001",
                         "enabled": True,
@@ -1813,6 +1864,10 @@ class TestAsyncCDNResources:
                     "limit_type": "static",
                     "buffer": 200,
                     "speed": 100,
+                },
+                "network_error_logging": {
+                    "enabled": True,
+                    "value": True,
                 },
                 "proxy_cache_key": {
                     "enabled": True,
@@ -2361,6 +2416,13 @@ class TestAsyncCDNResources:
                         "execute_on_shield": False,
                         "interrupt_on_error": True,
                     },
+                    "on_request_headers_after_cache": {
+                        "app_id": "1001",
+                        "enabled": True,
+                        "execute_on_edge": True,
+                        "execute_on_shield": False,
+                        "interrupt_on_error": True,
+                    },
                     "on_response_body": {
                         "app_id": "1001",
                         "enabled": True,
@@ -2439,6 +2501,10 @@ class TestAsyncCDNResources:
                     "limit_type": "static",
                     "buffer": 200,
                     "speed": 100,
+                },
+                "network_error_logging": {
+                    "enabled": True,
+                    "value": True,
                 },
                 "proxy_cache_key": {
                     "enabled": True,

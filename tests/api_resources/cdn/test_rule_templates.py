@@ -104,6 +104,13 @@ class TestRuleTemplates:
                         "execute_on_shield": False,
                         "interrupt_on_error": True,
                     },
+                    "on_request_headers_after_cache": {
+                        "app_id": "1001",
+                        "enabled": True,
+                        "execute_on_edge": True,
+                        "execute_on_shield": False,
+                        "interrupt_on_error": True,
+                    },
                     "on_response_body": {
                         "app_id": "1001",
                         "enabled": True,
@@ -397,6 +404,13 @@ class TestRuleTemplates:
                         "interrupt_on_error": True,
                     },
                     "on_request_headers": {
+                        "app_id": "1001",
+                        "enabled": True,
+                        "execute_on_edge": True,
+                        "execute_on_shield": False,
+                        "interrupt_on_error": True,
+                    },
+                    "on_request_headers_after_cache": {
                         "app_id": "1001",
                         "enabled": True,
                         "execute_on_edge": True,
@@ -801,6 +815,13 @@ class TestRuleTemplates:
                         "execute_on_shield": False,
                         "interrupt_on_error": True,
                     },
+                    "on_request_headers_after_cache": {
+                        "app_id": "1001",
+                        "enabled": True,
+                        "execute_on_edge": True,
+                        "execute_on_shield": False,
+                        "interrupt_on_error": True,
+                    },
                     "on_response_body": {
                         "app_id": "1001",
                         "enabled": True,
@@ -1110,6 +1131,13 @@ class TestAsyncRuleTemplates:
                         "execute_on_shield": False,
                         "interrupt_on_error": True,
                     },
+                    "on_request_headers_after_cache": {
+                        "app_id": "1001",
+                        "enabled": True,
+                        "execute_on_edge": True,
+                        "execute_on_shield": False,
+                        "interrupt_on_error": True,
+                    },
                     "on_response_body": {
                         "app_id": "1001",
                         "enabled": True,
@@ -1403,6 +1431,13 @@ class TestAsyncRuleTemplates:
                         "interrupt_on_error": True,
                     },
                     "on_request_headers": {
+                        "app_id": "1001",
+                        "enabled": True,
+                        "execute_on_edge": True,
+                        "execute_on_shield": False,
+                        "interrupt_on_error": True,
+                    },
+                    "on_request_headers_after_cache": {
                         "app_id": "1001",
                         "enabled": True,
                         "execute_on_edge": True,
@@ -1801,6 +1836,13 @@ class TestAsyncRuleTemplates:
                         "interrupt_on_error": True,
                     },
                     "on_request_headers": {
+                        "app_id": "1001",
+                        "enabled": True,
+                        "execute_on_edge": True,
+                        "execute_on_shield": False,
+                        "interrupt_on_error": True,
+                    },
+                    "on_request_headers_after_cache": {
                         "app_id": "1001",
                         "enabled": True,
                         "execute_on_edge": True,

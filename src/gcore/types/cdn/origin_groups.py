@@ -54,9 +54,6 @@ class NoneAuthSourceHostSourceResponse(BaseModel):
     from this origin instead of the default.
     """
 
-    tag: Optional[str] = None
-    """Tag for the origin source."""
-
 
 class NoneAuthSourceS3SourceResponseConfig(BaseModel):
     """S3 storage configuration. Required when `origin_type` is `s3`."""
@@ -154,9 +151,6 @@ class NoneAuthSourceS3SourceResponse(BaseModel):
     from this origin instead of the default.
     """
 
-    tag: Optional[str] = None
-    """Tag for the origin source."""
-
 
 class NoneAuthSourceFastedgeSourceResponseConfig(BaseModel):
     """FastEdge application configuration. Required when `origin_type` is `fastedge`."""
@@ -215,9 +209,6 @@ class NoneAuthSourceFastedgeSourceResponse(BaseModel):
     When set, the CDN sends this value as the Host header when requesting content
     from this origin instead of the default.
     """
-
-    tag: Optional[str] = None
-    """Tag for the origin source."""
 
 
 NoneAuthSource: TypeAlias = Union[

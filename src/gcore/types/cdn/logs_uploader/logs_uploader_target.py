@@ -29,6 +29,9 @@ __all__ = [
     "ConfigAzureBlobConfigResponseAuthConfig",
     "ConfigAzureBlobConfigResponseAuthConfigAccountKey",
     "ConfigAzureBlobConfigResponseAuthConfigToken",
+    "ConfigSlsConfigResponse",
+    "ConfigSlsConfigResponseAuth",
+    "ConfigSlsConfigResponseAuthConfig",
     "Status",
 ]
 
@@ -230,6 +233,49 @@ class ConfigAzureBlobConfigResponse(BaseModel):
     """Custom Azure Blob Storage endpoint URL."""
 
 
+class ConfigSlsConfigResponseAuthConfig(BaseModel):
+    """Authentication credentials. Secret fields are masked with '*****'."""
+
+    access_key_id: Optional[str] = None
+    """Alibaba access key ID."""
+
+    secret_access_key: Optional[str] = None
+    """Masked secret value."""
+
+
+class ConfigSlsConfigResponseAuth(BaseModel):
+    config: ConfigSlsConfigResponseAuthConfig
+    """Authentication credentials. Secret fields are masked with '**\\****'."""
+
+    type: Literal["ak_sk"]
+    """Authentication type."""
+
+
+class ConfigSlsConfigResponse(BaseModel):
+    auth: Optional[ConfigSlsConfigResponseAuth] = None
+
+    endpoint: Optional[str] = None
+    """SLS endpoint.
+
+    Optional — derived from the region as `{region}.log.aliyuncs.com` when omitted.
+    """
+
+    log_store: Optional[str] = None
+    """SLS logstore name.
+
+    3-36 characters; lowercase letters, digits, hyphens, and underscores.
+    """
+
+    project: Optional[str] = None
+    """SLS project name. 3-63 characters; lowercase letters, digits, and hyphens."""
+
+    region: Optional[str] = None
+    """SLS region (e.g. `eu-central-1`)."""
+
+    topic: Optional[str] = None
+    """Optional SLS topic (0-128 characters)."""
+
+
 Config: TypeAlias = Union[
     ConfigS3GcoreConfigResponse,
     ConfigS3AmazonConfigResponse,
@@ -240,6 +286,7 @@ Config: TypeAlias = Union[
     ConfigSftpConfigResponse,
     ConfigHTTPConfigResponse,
     ConfigAzureBlobConfigResponse,
+    ConfigSlsConfigResponse,
 ]
 
 
@@ -280,7 +327,7 @@ class LogsUploaderTarget(BaseModel):
     """
 
     storage_type: Optional[
-        Literal["s3_gcore", "s3_amazon", "s3_oss", "s3_other", "s3_v1", "ftp", "sftp", "http", "azure_blob"]
+        Literal["s3_gcore", "s3_amazon", "s3_oss", "s3_other", "s3_v1", "ftp", "sftp", "http", "azure_blob", "sls"]
     ] = None
     """Type of storage for logs."""
 

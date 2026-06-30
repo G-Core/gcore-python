@@ -29,6 +29,9 @@ __all__ = [
     "ConfigAzureBlobConfigAuthConfig",
     "ConfigAzureBlobConfigAuthConfigAccountKey",
     "ConfigAzureBlobConfigAuthConfigToken",
+    "ConfigSlsConfig",
+    "ConfigSlsConfigAuth",
+    "ConfigSlsConfigAuthConfig",
 ]
 
 
@@ -37,7 +40,7 @@ class TargetCreateParams(TypedDict, total=False):
     """Config for specific storage type."""
 
     storage_type: Required[
-        Literal["s3_gcore", "s3_amazon", "s3_oss", "s3_other", "s3_v1", "ftp", "sftp", "http", "azure_blob"]
+        Literal["s3_gcore", "s3_amazon", "s3_oss", "s3_other", "s3_v1", "ftp", "sftp", "http", "azure_blob", "sls"]
     ]
     """Type of storage for logs."""
 
@@ -285,6 +288,49 @@ class ConfigAzureBlobConfig(TypedDict, total=False):
     """Custom Azure Blob Storage endpoint URL."""
 
 
+class ConfigSlsConfigAuthConfig(TypedDict, total=False):
+    """Authentication credentials."""
+
+    access_key_id: Required[str]
+    """Alibaba access key ID."""
+
+    secret_access_key: Required[str]
+    """Alibaba secret access key."""
+
+
+class ConfigSlsConfigAuth(TypedDict, total=False):
+    config: Required[ConfigSlsConfigAuthConfig]
+    """Authentication credentials."""
+
+    type: Required[Literal["ak_sk"]]
+    """Authentication type."""
+
+
+class ConfigSlsConfig(TypedDict, total=False):
+    auth: Required[ConfigSlsConfigAuth]
+
+    log_store: Required[str]
+    """SLS logstore name.
+
+    3-36 characters; lowercase letters, digits, hyphens, and underscores.
+    """
+
+    project: Required[str]
+    """SLS project name. 3-63 characters; lowercase letters, digits, and hyphens."""
+
+    region: Required[str]
+    """SLS region (e.g. `eu-central-1`)."""
+
+    endpoint: Optional[str]
+    """SLS endpoint.
+
+    Optional — derived from the region as `{region}.log.aliyuncs.com` when omitted.
+    """
+
+    topic: Optional[str]
+    """Optional SLS topic (0-128 characters)."""
+
+
 Config: TypeAlias = Union[
     ConfigS3GcoreConfig,
     ConfigS3AmazonConfig,
@@ -295,4 +341,5 @@ Config: TypeAlias = Union[
     ConfigSftpConfig,
     ConfigHTTPConfig,
     ConfigAzureBlobConfig,
+    ConfigSlsConfig,
 ]

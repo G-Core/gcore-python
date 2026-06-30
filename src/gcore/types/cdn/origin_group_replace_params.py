@@ -111,9 +111,6 @@ class NoneAuthSourceChangeHostSource(TypedDict, total=False):
     from this origin instead of the default.
     """
 
-    tag: str
-    """Tag for the origin source."""
-
 
 class NoneAuthSourceChangeS3SourceConfig(TypedDict, total=False):
     """S3 storage configuration. Required when `origin_type` is `s3`."""
@@ -209,9 +206,6 @@ class NoneAuthSourceChangeS3Source(TypedDict, total=False):
       runtime on the edge node, identified by `app_id`.
     """
 
-    tag: str
-    """Tag for the origin source."""
-
 
 class NoneAuthSourceChangeFastedgeSourceConfig(TypedDict, total=False):
     """FastEdge application configuration. Required when `origin_type` is `fastedge`."""
@@ -268,9 +262,6 @@ class NoneAuthSourceChangeFastedgeSource(TypedDict, total=False):
     When set, the CDN sends this value as the Host header when requesting content
     from this origin instead of the default.
     """
-
-    tag: str
-    """Tag for the origin source."""
 
 
 NoneAuthSource: TypeAlias = Union[
