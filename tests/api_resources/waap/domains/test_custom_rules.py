@@ -83,6 +83,14 @@ class TestCustomRules:
                         "upper_bound": "upper_bound",
                         "negation": True,
                     },
+                    "ja3": {
+                        "ja3_fingerprints": ["e7d705a3286e19ea42f587b344ee6865"],
+                        "negation": True,
+                    },
+                    "ja4": {
+                        "ja4_fingerprints": ["t13d3113h2_e8f1e7e78f70_ce5650b735ce"],
+                        "negation": True,
+                    },
                     "organization": {
                         "organization": "UptimeRobot s.r.o",
                         "negation": True,
@@ -230,6 +238,14 @@ class TestCustomRules:
                     "ip_range": {
                         "lower_bound": "lower_bound",
                         "upper_bound": "upper_bound",
+                        "negation": True,
+                    },
+                    "ja3": {
+                        "ja3_fingerprints": ["e7d705a3286e19ea42f587b344ee6865"],
+                        "negation": True,
+                    },
+                    "ja4": {
+                        "ja4_fingerprints": ["t13d3113h2_e8f1e7e78f70_ce5650b735ce"],
                         "negation": True,
                     },
                     "organization": {
@@ -567,6 +583,14 @@ class TestAsyncCustomRules:
                         "upper_bound": "upper_bound",
                         "negation": True,
                     },
+                    "ja3": {
+                        "ja3_fingerprints": ["e7d705a3286e19ea42f587b344ee6865"],
+                        "negation": True,
+                    },
+                    "ja4": {
+                        "ja4_fingerprints": ["t13d3113h2_e8f1e7e78f70_ce5650b735ce"],
+                        "negation": True,
+                    },
                     "organization": {
                         "organization": "UptimeRobot s.r.o",
                         "negation": True,
@@ -714,6 +738,14 @@ class TestAsyncCustomRules:
                     "ip_range": {
                         "lower_bound": "lower_bound",
                         "upper_bound": "upper_bound",
+                        "negation": True,
+                    },
+                    "ja3": {
+                        "ja3_fingerprints": ["e7d705a3286e19ea42f587b344ee6865"],
+                        "negation": True,
+                    },
+                    "ja4": {
+                        "ja4_fingerprints": ["t13d3113h2_e8f1e7e78f70_ce5650b735ce"],
                         "negation": True,
                     },
                     "organization": {

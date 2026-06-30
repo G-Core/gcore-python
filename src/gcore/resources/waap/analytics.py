@@ -19,6 +19,7 @@ from ..._response import (
 )
 from ...pagination import SyncOffsetPage, AsyncOffsetPage
 from ...types.waap import (
+    analytics_get_filters_params,
     analytics_get_traffic_params,
     analytics_get_requests_params,
     analytics_get_event_statistics_params,
@@ -27,6 +28,7 @@ from ...types.waap import (
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.waap.waap_request_summary import WaapRequestSummary
 from ...types.waap.waap_simple_event_statistics import WaapSimpleEventStatistics
+from ...types.waap.analytics_get_filters_response import AnalyticsGetFiltersResponse
 from ...types.waap.analytics_get_traffic_response import AnalyticsGetTrafficResponse
 from ...types.waap.analytics_get_traffic_filtered_response import AnalyticsGetTrafficFilteredResponse
 
@@ -122,6 +124,90 @@ class AnalyticsResource(SyncAPIResource):
             cast_to=WaapSimpleEventStatistics,
         )
 
+    def get_filters(
+        self,
+        type: Literal["user-agent-clients", "user-agent-devices", "organizations"],
+        *,
+        start: str,
+        domains: Iterable[int] | Omit = omit,
+        end: Optional[str] | Omit = omit,
+        limit: int | Omit = omit,
+        name: Optional[str] | Omit = omit,
+        offset: int | Omit = omit,
+        ordering: Literal["count", "value"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncOffsetPage[AnalyticsGetFiltersResponse]:
+        """
+        Retrieves autocomplete suggestions for specified filter parameter values
+        observed within the current client account during the requested time range. Use
+        the returned `value` in the filter parameters of an analytics data request
+        ([GET /v1/analytics/requests](/docs/api-reference/waap/analytics/get-request-log-data)
+        and
+        [GET /v1/analytics/traffic-filtered](/docs/api-reference/waap/analytics/get-filtered-traffic-data)).
+        `count` reports how many times the value was observed in the requested range.
+
+        Args:
+          type: Parsed user-agent field type.
+
+          start: Filter data items starting from a specified date in ISO 8601 format
+
+          domains: List of domain IDs. Empty list means all domains belonging to the current
+              account.
+
+          end: Filter data items up to a specified end date in ISO 8601 format. If not
+              provided, defaults to the current date and time.
+
+          limit: Number of items to return
+
+          name: Case-insensitive partial autocomplete pattern matched against the value name by
+              the value provider. Empty or omitted returns the available suggestions for the
+              current account and time range.
+
+          offset: Number of items to skip
+
+          ordering: Suggestion ordering. `count` sorts by observed occurrence count descending (most
+              frequent first) with value as a tie breaker; `value` sorts alphabetically by
+              value ascending with count as a tie breaker.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not type:
+            raise ValueError(f"Expected a non-empty value for `type` but received {type!r}")
+        return self._get_api_list(
+            path_template("/waap/v1/analytics/filters/{type}", type=type),
+            page=SyncOffsetPage[AnalyticsGetFiltersResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "start": start,
+                        "domains": domains,
+                        "end": end,
+                        "limit": limit,
+                        "name": name,
+                        "offset": offset,
+                        "ordering": ordering,
+                    },
+                    analytics_get_filters_params.AnalyticsGetFiltersParams,
+                ),
+            ),
+            model=AnalyticsGetFiltersResponse,
+        )
+
     def get_requests(
         self,
         *,
@@ -131,33 +217,42 @@ class AnalyticsResource(SyncAPIResource):
         domains: Iterable[int] | Omit = omit,
         end: Optional[str] | Omit = omit,
         exclude_countries: SequenceNotStr[str] | Omit = omit,
+        exclude_decision: List[Literal["blocked", "monitored", "allowed", "passed"]] | Omit = omit,
         exclude_domains: Iterable[int] | Omit = omit,
+        exclude_http_methods: List[Literal["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT", "TRACE"]]
+        | Omit = omit,
         exclude_ips: SequenceNotStr[str] | Omit = omit,
-        exclude_ja3: Optional[str] | Omit = omit,
+        exclude_ja3: SequenceNotStr[str] | Omit = omit,
+        exclude_ja4: SequenceNotStr[str] | Omit = omit,
+        exclude_optional_action: List[Literal["captcha", "challenge"]] | Omit = omit,
         exclude_organizations: SequenceNotStr[str] | Omit = omit,
+        exclude_path: SequenceNotStr[str] | Omit = omit,
         exclude_reference_ids: SequenceNotStr[str] | Omit = omit,
+        exclude_request_ids: SequenceNotStr[str] | Omit = omit,
         exclude_security_rule_names: SequenceNotStr[str] | Omit = omit,
         exclude_session_ids: SequenceNotStr[str] | Omit = omit,
+        exclude_status_codes: Iterable[int] | Omit = omit,
         exclude_tags: SequenceNotStr[str] | Omit = omit,
-        exclude_user_agent: Optional[str] | Omit = omit,
+        exclude_user_agent: SequenceNotStr[str] | Omit = omit,
         exclude_user_agent_clients: SequenceNotStr[str] | Omit = omit,
         exclude_user_agent_devices: SequenceNotStr[str] | Omit = omit,
         http_methods: List[Literal["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT", "TRACE"]] | Omit = omit,
         ips: SequenceNotStr[str] | Omit = omit,
-        ja3: Optional[str] | Omit = omit,
+        ja3: SequenceNotStr[str] | Omit = omit,
+        ja4: SequenceNotStr[str] | Omit = omit,
         limit: int | Omit = omit,
         offset: int | Omit = omit,
         optional_action: List[Literal["captcha", "challenge"]] | Omit = omit,
         ordering: str | Omit = omit,
         organizations: SequenceNotStr[str] | Omit = omit,
-        path: Optional[str] | Omit = omit,
+        path: SequenceNotStr[str] | Omit = omit,
         reference_ids: SequenceNotStr[str] | Omit = omit,
         request_ids: SequenceNotStr[str] | Omit = omit,
         security_rule_names: SequenceNotStr[str] | Omit = omit,
         session_ids: SequenceNotStr[str] | Omit = omit,
         status_codes: Iterable[int] | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
-        user_agent: Optional[str] | Omit = omit,
+        user_agent: SequenceNotStr[str] | Omit = omit,
         user_agent_clients: SequenceNotStr[str] | Omit = omit,
         user_agent_devices: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -189,29 +284,49 @@ class AnalyticsResource(SyncAPIResource):
           exclude_countries: Exclude data by a country code of the originating IP address in ISO 3166-1
               alpha-2 format.
 
+          exclude_decision: Exclude entries that match any of the given decisions.
+
           exclude_domains: Exclude data by domain ID.
+
+          exclude_http_methods: Exclude entries with any of the given HTTP methods.
 
           exclude_ips: Exclude traffic data by client IP.
 
-          exclude_ja3: Exclude entries whose JA3 TLS client fingerprint equals the supplied value. Must
-              be exactly 32 hexadecimal characters (mixed case allowed) and is case-folded to
-              lowercase when the backend filter is built. Omit the parameter to apply no JA3
-              exclusion.
+          exclude_ja3: Exclude entries whose JA3 TLS client fingerprint matches any of the supplied
+              values. Each value must be exactly 32 hexadecimal characters (mixed case
+              allowed) and is case-folded to lowercase when the backend filter is built.
+              Supply multiple values to exclude any of them. Omit the parameter to apply no
+              JA3 exclusion.
+
+          exclude_ja4: Exclude entries whose JA4 TLS client fingerprint equals any of the supplied
+              values. An item must match the JA4 form `<ja4_a>_<ja4_b>_<ja4_c>` (a
+              10-character prefix and two 12-character hexadecimal hashes, mixed case allowed)
+              and is case-folded to lowercase when the backend filter is built. Omit the
+              parameter to apply no JA4 exclusion.
+
+          exclude_optional_action: Exclude entries that match any of the given optional action values.
 
           exclude_organizations: Exclude entries whose organization exactly equals any supplied value. Omit or
               provide an empty list to apply no organization exclusion.
 
+          exclude_path: Exclude entries that match the given URL path pattern; '\\**' is wildcard.
+
           exclude_reference_ids: Exclude data by reference IDs.
+
+          exclude_request_ids: Exclude data by request IDs.
 
           exclude_security_rule_names: Exclude data by name of a security rule matched the request.
 
           exclude_session_ids: Exclude data by session IDs.
 
+          exclude_status_codes: Exclude entries with any of the given HTTP response status codes.
+
           exclude_tags: Exclude entries whose tag exactly equals any supplied value. Omit or provide an
               empty list to apply no tag exclusion.
 
-          exclude_user_agent: Exclude entries whose user agent contains the supplied text, case-insensitive
-              partial match. Omit the parameter to apply no user agent text exclusion.
+          exclude_user_agent: Exclude entries whose user agent contains any of the supplied texts,
+              case-insensitive partial match. Omit or provide an empty list to apply no user
+              agent text exclusion.
 
           exclude_user_agent_clients: Exclude entries whose parsed user agent client exactly equals any supplied
               value. Omit or provide an empty list to apply no user agent client exclusion.
@@ -223,9 +338,16 @@ class AnalyticsResource(SyncAPIResource):
 
           ips: Filter traffic data by client IP.
 
-          ja3: Filter by JA3 TLS client fingerprint. When present, the value must be exactly 32
-              hexadecimal characters (mixed case allowed) and is case-folded to lowercase when
-              the backend filter is built. Omit the parameter entirely to apply no JA3 filter.
+          ja3: Filter by JA3 TLS client fingerprint. Each value must be exactly 32 hexadecimal
+              characters (mixed case allowed) and is case-folded to lowercase when the backend
+              filter is built. Supply multiple values to match any of them. Omit the parameter
+              to apply no JA3 filter.
+
+          ja4: Filter by JA4 TLS client fingerprint. When present, the value must match the JA4
+              form `<ja4_a>_<ja4_b>_<ja4_c>` (a 10-character prefix and two 12-character
+              hexadecimal hashes, mixed case allowed) and is case-folded to lowercase when the
+              backend filter is built. Supply multiple values to match any of them. Omit the
+              parameter entirely to apply no JA4 filter.
 
           limit: Number of items to return
 
@@ -238,7 +360,7 @@ class AnalyticsResource(SyncAPIResource):
           organizations: Include entries whose organization exactly equals any supplied value. Omit or
               provide an empty list to apply no organization filter.
 
-          path: Filter by URL path with a glob-like pattern.
+          path: Filter by URL path. '\\**' is wildcard.
 
           reference_ids: Filter data by reference IDs.
 
@@ -253,8 +375,9 @@ class AnalyticsResource(SyncAPIResource):
           tags: Include entries whose tag exactly equals any supplied value. Omit or provide an
               empty list to apply no tag filter.
 
-          user_agent: Include entries whose user agent contains the supplied text, case-insensitive
-              partial match. Omit the parameter to apply no user agent text filter.
+          user_agent: Include entries whose user agent contains any of the supplied texts,
+              case-insensitive partial match. Omit or provide an empty list to apply no user
+              agent text filter.
 
           user_agent_clients: Include entries whose parsed user agent client exactly equals any supplied
               value. Omit or provide an empty list to apply no user agent client filter.
@@ -286,13 +409,20 @@ class AnalyticsResource(SyncAPIResource):
                         "domains": domains,
                         "end": end,
                         "exclude_countries": exclude_countries,
+                        "exclude_decision": exclude_decision,
                         "exclude_domains": exclude_domains,
+                        "exclude_http_methods": exclude_http_methods,
                         "exclude_ips": exclude_ips,
                         "exclude_ja3": exclude_ja3,
+                        "exclude_ja4": exclude_ja4,
+                        "exclude_optional_action": exclude_optional_action,
                         "exclude_organizations": exclude_organizations,
+                        "exclude_path": exclude_path,
                         "exclude_reference_ids": exclude_reference_ids,
+                        "exclude_request_ids": exclude_request_ids,
                         "exclude_security_rule_names": exclude_security_rule_names,
                         "exclude_session_ids": exclude_session_ids,
+                        "exclude_status_codes": exclude_status_codes,
                         "exclude_tags": exclude_tags,
                         "exclude_user_agent": exclude_user_agent,
                         "exclude_user_agent_clients": exclude_user_agent_clients,
@@ -300,6 +430,7 @@ class AnalyticsResource(SyncAPIResource):
                         "http_methods": http_methods,
                         "ips": ips,
                         "ja3": ja3,
+                        "ja4": ja4,
                         "limit": limit,
                         "offset": offset,
                         "optional_action": optional_action,
@@ -397,30 +528,39 @@ class AnalyticsResource(SyncAPIResource):
         domains: Iterable[int] | Omit = omit,
         end: Optional[str] | Omit = omit,
         exclude_countries: SequenceNotStr[str] | Omit = omit,
+        exclude_decision: List[Literal["blocked", "monitored", "allowed", "passed"]] | Omit = omit,
         exclude_domains: Iterable[int] | Omit = omit,
+        exclude_http_methods: List[Literal["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT", "TRACE"]]
+        | Omit = omit,
         exclude_ips: SequenceNotStr[str] | Omit = omit,
-        exclude_ja3: Optional[str] | Omit = omit,
+        exclude_ja3: SequenceNotStr[str] | Omit = omit,
+        exclude_ja4: SequenceNotStr[str] | Omit = omit,
+        exclude_optional_action: List[Literal["captcha", "challenge"]] | Omit = omit,
         exclude_organizations: SequenceNotStr[str] | Omit = omit,
+        exclude_path: SequenceNotStr[str] | Omit = omit,
         exclude_reference_ids: SequenceNotStr[str] | Omit = omit,
+        exclude_request_ids: SequenceNotStr[str] | Omit = omit,
         exclude_security_rule_names: SequenceNotStr[str] | Omit = omit,
         exclude_session_ids: SequenceNotStr[str] | Omit = omit,
+        exclude_status_codes: Iterable[int] | Omit = omit,
         exclude_tags: SequenceNotStr[str] | Omit = omit,
-        exclude_user_agent: Optional[str] | Omit = omit,
+        exclude_user_agent: SequenceNotStr[str] | Omit = omit,
         exclude_user_agent_clients: SequenceNotStr[str] | Omit = omit,
         exclude_user_agent_devices: SequenceNotStr[str] | Omit = omit,
         http_methods: List[Literal["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT", "TRACE"]] | Omit = omit,
         ips: SequenceNotStr[str] | Omit = omit,
-        ja3: Optional[str] | Omit = omit,
+        ja3: SequenceNotStr[str] | Omit = omit,
+        ja4: SequenceNotStr[str] | Omit = omit,
         optional_action: List[Literal["captcha", "challenge"]] | Omit = omit,
         organizations: SequenceNotStr[str] | Omit = omit,
-        path: Optional[str] | Omit = omit,
+        path: SequenceNotStr[str] | Omit = omit,
         reference_ids: SequenceNotStr[str] | Omit = omit,
         request_ids: SequenceNotStr[str] | Omit = omit,
         security_rule_names: SequenceNotStr[str] | Omit = omit,
         session_ids: SequenceNotStr[str] | Omit = omit,
         status_codes: Iterable[int] | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
-        user_agent: Optional[str] | Omit = omit,
+        user_agent: SequenceNotStr[str] | Omit = omit,
         user_agent_clients: SequenceNotStr[str] | Omit = omit,
         user_agent_devices: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -458,29 +598,49 @@ class AnalyticsResource(SyncAPIResource):
           exclude_countries: Exclude data by a country code of the originating IP address in ISO 3166-1
               alpha-2 format.
 
+          exclude_decision: Exclude entries that match any of the given decisions.
+
           exclude_domains: Exclude data by domain ID.
+
+          exclude_http_methods: Exclude entries with any of the given HTTP methods.
 
           exclude_ips: Exclude traffic data by client IP.
 
-          exclude_ja3: Exclude entries whose JA3 TLS client fingerprint equals the supplied value. Must
-              be exactly 32 hexadecimal characters (mixed case allowed) and is case-folded to
-              lowercase when the backend filter is built. Omit the parameter to apply no JA3
-              exclusion.
+          exclude_ja3: Exclude entries whose JA3 TLS client fingerprint matches any of the supplied
+              values. Each value must be exactly 32 hexadecimal characters (mixed case
+              allowed) and is case-folded to lowercase when the backend filter is built.
+              Supply multiple values to exclude any of them. Omit the parameter to apply no
+              JA3 exclusion.
+
+          exclude_ja4: Exclude entries whose JA4 TLS client fingerprint equals any of the supplied
+              values. An item must match the JA4 form `<ja4_a>_<ja4_b>_<ja4_c>` (a
+              10-character prefix and two 12-character hexadecimal hashes, mixed case allowed)
+              and is case-folded to lowercase when the backend filter is built. Omit the
+              parameter to apply no JA4 exclusion.
+
+          exclude_optional_action: Exclude entries that match any of the given optional action values.
 
           exclude_organizations: Exclude entries whose organization exactly equals any supplied value. Omit or
               provide an empty list to apply no organization exclusion.
 
+          exclude_path: Exclude entries that match the given URL path pattern; '\\**' is wildcard.
+
           exclude_reference_ids: Exclude data by reference IDs.
+
+          exclude_request_ids: Exclude data by request IDs.
 
           exclude_security_rule_names: Exclude data by name of a security rule matched the request.
 
           exclude_session_ids: Exclude data by session IDs.
 
+          exclude_status_codes: Exclude entries with any of the given HTTP response status codes.
+
           exclude_tags: Exclude entries whose tag exactly equals any supplied value. Omit or provide an
               empty list to apply no tag exclusion.
 
-          exclude_user_agent: Exclude entries whose user agent contains the supplied text, case-insensitive
-              partial match. Omit the parameter to apply no user agent text exclusion.
+          exclude_user_agent: Exclude entries whose user agent contains any of the supplied texts,
+              case-insensitive partial match. Omit or provide an empty list to apply no user
+              agent text exclusion.
 
           exclude_user_agent_clients: Exclude entries whose parsed user agent client exactly equals any supplied
               value. Omit or provide an empty list to apply no user agent client exclusion.
@@ -492,16 +652,23 @@ class AnalyticsResource(SyncAPIResource):
 
           ips: Filter traffic data by client IP.
 
-          ja3: Filter by JA3 TLS client fingerprint. When present, the value must be exactly 32
-              hexadecimal characters (mixed case allowed) and is case-folded to lowercase when
-              the backend filter is built. Omit the parameter entirely to apply no JA3 filter.
+          ja3: Filter by JA3 TLS client fingerprint. Each value must be exactly 32 hexadecimal
+              characters (mixed case allowed) and is case-folded to lowercase when the backend
+              filter is built. Supply multiple values to match any of them. Omit the parameter
+              to apply no JA3 filter.
+
+          ja4: Filter by JA4 TLS client fingerprint. When present, the value must match the JA4
+              form `<ja4_a>_<ja4_b>_<ja4_c>` (a 10-character prefix and two 12-character
+              hexadecimal hashes, mixed case allowed) and is case-folded to lowercase when the
+              backend filter is built. Supply multiple values to match any of them. Omit the
+              parameter entirely to apply no JA4 filter.
 
           optional_action: Filter data by optional action.
 
           organizations: Include entries whose organization exactly equals any supplied value. Omit or
               provide an empty list to apply no organization filter.
 
-          path: Filter by URL path with a glob-like pattern.
+          path: Filter by URL path. '\\**' is wildcard.
 
           reference_ids: Filter data by reference IDs.
 
@@ -516,8 +683,9 @@ class AnalyticsResource(SyncAPIResource):
           tags: Include entries whose tag exactly equals any supplied value. Omit or provide an
               empty list to apply no tag filter.
 
-          user_agent: Include entries whose user agent contains the supplied text, case-insensitive
-              partial match. Omit the parameter to apply no user agent text filter.
+          user_agent: Include entries whose user agent contains any of the supplied texts,
+              case-insensitive partial match. Omit or provide an empty list to apply no user
+              agent text filter.
 
           user_agent_clients: Include entries whose parsed user agent client exactly equals any supplied
               value. Omit or provide an empty list to apply no user agent client filter.
@@ -550,13 +718,20 @@ class AnalyticsResource(SyncAPIResource):
                         "domains": domains,
                         "end": end,
                         "exclude_countries": exclude_countries,
+                        "exclude_decision": exclude_decision,
                         "exclude_domains": exclude_domains,
+                        "exclude_http_methods": exclude_http_methods,
                         "exclude_ips": exclude_ips,
                         "exclude_ja3": exclude_ja3,
+                        "exclude_ja4": exclude_ja4,
+                        "exclude_optional_action": exclude_optional_action,
                         "exclude_organizations": exclude_organizations,
+                        "exclude_path": exclude_path,
                         "exclude_reference_ids": exclude_reference_ids,
+                        "exclude_request_ids": exclude_request_ids,
                         "exclude_security_rule_names": exclude_security_rule_names,
                         "exclude_session_ids": exclude_session_ids,
+                        "exclude_status_codes": exclude_status_codes,
                         "exclude_tags": exclude_tags,
                         "exclude_user_agent": exclude_user_agent,
                         "exclude_user_agent_clients": exclude_user_agent_clients,
@@ -564,6 +739,7 @@ class AnalyticsResource(SyncAPIResource):
                         "http_methods": http_methods,
                         "ips": ips,
                         "ja3": ja3,
+                        "ja4": ja4,
                         "optional_action": optional_action,
                         "organizations": organizations,
                         "path": path,
@@ -673,6 +849,90 @@ class AsyncAnalyticsResource(AsyncAPIResource):
             cast_to=WaapSimpleEventStatistics,
         )
 
+    def get_filters(
+        self,
+        type: Literal["user-agent-clients", "user-agent-devices", "organizations"],
+        *,
+        start: str,
+        domains: Iterable[int] | Omit = omit,
+        end: Optional[str] | Omit = omit,
+        limit: int | Omit = omit,
+        name: Optional[str] | Omit = omit,
+        offset: int | Omit = omit,
+        ordering: Literal["count", "value"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[AnalyticsGetFiltersResponse, AsyncOffsetPage[AnalyticsGetFiltersResponse]]:
+        """
+        Retrieves autocomplete suggestions for specified filter parameter values
+        observed within the current client account during the requested time range. Use
+        the returned `value` in the filter parameters of an analytics data request
+        ([GET /v1/analytics/requests](/docs/api-reference/waap/analytics/get-request-log-data)
+        and
+        [GET /v1/analytics/traffic-filtered](/docs/api-reference/waap/analytics/get-filtered-traffic-data)).
+        `count` reports how many times the value was observed in the requested range.
+
+        Args:
+          type: Parsed user-agent field type.
+
+          start: Filter data items starting from a specified date in ISO 8601 format
+
+          domains: List of domain IDs. Empty list means all domains belonging to the current
+              account.
+
+          end: Filter data items up to a specified end date in ISO 8601 format. If not
+              provided, defaults to the current date and time.
+
+          limit: Number of items to return
+
+          name: Case-insensitive partial autocomplete pattern matched against the value name by
+              the value provider. Empty or omitted returns the available suggestions for the
+              current account and time range.
+
+          offset: Number of items to skip
+
+          ordering: Suggestion ordering. `count` sorts by observed occurrence count descending (most
+              frequent first) with value as a tie breaker; `value` sorts alphabetically by
+              value ascending with count as a tie breaker.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not type:
+            raise ValueError(f"Expected a non-empty value for `type` but received {type!r}")
+        return self._get_api_list(
+            path_template("/waap/v1/analytics/filters/{type}", type=type),
+            page=AsyncOffsetPage[AnalyticsGetFiltersResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "start": start,
+                        "domains": domains,
+                        "end": end,
+                        "limit": limit,
+                        "name": name,
+                        "offset": offset,
+                        "ordering": ordering,
+                    },
+                    analytics_get_filters_params.AnalyticsGetFiltersParams,
+                ),
+            ),
+            model=AnalyticsGetFiltersResponse,
+        )
+
     def get_requests(
         self,
         *,
@@ -682,33 +942,42 @@ class AsyncAnalyticsResource(AsyncAPIResource):
         domains: Iterable[int] | Omit = omit,
         end: Optional[str] | Omit = omit,
         exclude_countries: SequenceNotStr[str] | Omit = omit,
+        exclude_decision: List[Literal["blocked", "monitored", "allowed", "passed"]] | Omit = omit,
         exclude_domains: Iterable[int] | Omit = omit,
+        exclude_http_methods: List[Literal["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT", "TRACE"]]
+        | Omit = omit,
         exclude_ips: SequenceNotStr[str] | Omit = omit,
-        exclude_ja3: Optional[str] | Omit = omit,
+        exclude_ja3: SequenceNotStr[str] | Omit = omit,
+        exclude_ja4: SequenceNotStr[str] | Omit = omit,
+        exclude_optional_action: List[Literal["captcha", "challenge"]] | Omit = omit,
         exclude_organizations: SequenceNotStr[str] | Omit = omit,
+        exclude_path: SequenceNotStr[str] | Omit = omit,
         exclude_reference_ids: SequenceNotStr[str] | Omit = omit,
+        exclude_request_ids: SequenceNotStr[str] | Omit = omit,
         exclude_security_rule_names: SequenceNotStr[str] | Omit = omit,
         exclude_session_ids: SequenceNotStr[str] | Omit = omit,
+        exclude_status_codes: Iterable[int] | Omit = omit,
         exclude_tags: SequenceNotStr[str] | Omit = omit,
-        exclude_user_agent: Optional[str] | Omit = omit,
+        exclude_user_agent: SequenceNotStr[str] | Omit = omit,
         exclude_user_agent_clients: SequenceNotStr[str] | Omit = omit,
         exclude_user_agent_devices: SequenceNotStr[str] | Omit = omit,
         http_methods: List[Literal["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT", "TRACE"]] | Omit = omit,
         ips: SequenceNotStr[str] | Omit = omit,
-        ja3: Optional[str] | Omit = omit,
+        ja3: SequenceNotStr[str] | Omit = omit,
+        ja4: SequenceNotStr[str] | Omit = omit,
         limit: int | Omit = omit,
         offset: int | Omit = omit,
         optional_action: List[Literal["captcha", "challenge"]] | Omit = omit,
         ordering: str | Omit = omit,
         organizations: SequenceNotStr[str] | Omit = omit,
-        path: Optional[str] | Omit = omit,
+        path: SequenceNotStr[str] | Omit = omit,
         reference_ids: SequenceNotStr[str] | Omit = omit,
         request_ids: SequenceNotStr[str] | Omit = omit,
         security_rule_names: SequenceNotStr[str] | Omit = omit,
         session_ids: SequenceNotStr[str] | Omit = omit,
         status_codes: Iterable[int] | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
-        user_agent: Optional[str] | Omit = omit,
+        user_agent: SequenceNotStr[str] | Omit = omit,
         user_agent_clients: SequenceNotStr[str] | Omit = omit,
         user_agent_devices: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -740,29 +1009,49 @@ class AsyncAnalyticsResource(AsyncAPIResource):
           exclude_countries: Exclude data by a country code of the originating IP address in ISO 3166-1
               alpha-2 format.
 
+          exclude_decision: Exclude entries that match any of the given decisions.
+
           exclude_domains: Exclude data by domain ID.
+
+          exclude_http_methods: Exclude entries with any of the given HTTP methods.
 
           exclude_ips: Exclude traffic data by client IP.
 
-          exclude_ja3: Exclude entries whose JA3 TLS client fingerprint equals the supplied value. Must
-              be exactly 32 hexadecimal characters (mixed case allowed) and is case-folded to
-              lowercase when the backend filter is built. Omit the parameter to apply no JA3
-              exclusion.
+          exclude_ja3: Exclude entries whose JA3 TLS client fingerprint matches any of the supplied
+              values. Each value must be exactly 32 hexadecimal characters (mixed case
+              allowed) and is case-folded to lowercase when the backend filter is built.
+              Supply multiple values to exclude any of them. Omit the parameter to apply no
+              JA3 exclusion.
+
+          exclude_ja4: Exclude entries whose JA4 TLS client fingerprint equals any of the supplied
+              values. An item must match the JA4 form `<ja4_a>_<ja4_b>_<ja4_c>` (a
+              10-character prefix and two 12-character hexadecimal hashes, mixed case allowed)
+              and is case-folded to lowercase when the backend filter is built. Omit the
+              parameter to apply no JA4 exclusion.
+
+          exclude_optional_action: Exclude entries that match any of the given optional action values.
 
           exclude_organizations: Exclude entries whose organization exactly equals any supplied value. Omit or
               provide an empty list to apply no organization exclusion.
 
+          exclude_path: Exclude entries that match the given URL path pattern; '\\**' is wildcard.
+
           exclude_reference_ids: Exclude data by reference IDs.
+
+          exclude_request_ids: Exclude data by request IDs.
 
           exclude_security_rule_names: Exclude data by name of a security rule matched the request.
 
           exclude_session_ids: Exclude data by session IDs.
 
+          exclude_status_codes: Exclude entries with any of the given HTTP response status codes.
+
           exclude_tags: Exclude entries whose tag exactly equals any supplied value. Omit or provide an
               empty list to apply no tag exclusion.
 
-          exclude_user_agent: Exclude entries whose user agent contains the supplied text, case-insensitive
-              partial match. Omit the parameter to apply no user agent text exclusion.
+          exclude_user_agent: Exclude entries whose user agent contains any of the supplied texts,
+              case-insensitive partial match. Omit or provide an empty list to apply no user
+              agent text exclusion.
 
           exclude_user_agent_clients: Exclude entries whose parsed user agent client exactly equals any supplied
               value. Omit or provide an empty list to apply no user agent client exclusion.
@@ -774,9 +1063,16 @@ class AsyncAnalyticsResource(AsyncAPIResource):
 
           ips: Filter traffic data by client IP.
 
-          ja3: Filter by JA3 TLS client fingerprint. When present, the value must be exactly 32
-              hexadecimal characters (mixed case allowed) and is case-folded to lowercase when
-              the backend filter is built. Omit the parameter entirely to apply no JA3 filter.
+          ja3: Filter by JA3 TLS client fingerprint. Each value must be exactly 32 hexadecimal
+              characters (mixed case allowed) and is case-folded to lowercase when the backend
+              filter is built. Supply multiple values to match any of them. Omit the parameter
+              to apply no JA3 filter.
+
+          ja4: Filter by JA4 TLS client fingerprint. When present, the value must match the JA4
+              form `<ja4_a>_<ja4_b>_<ja4_c>` (a 10-character prefix and two 12-character
+              hexadecimal hashes, mixed case allowed) and is case-folded to lowercase when the
+              backend filter is built. Supply multiple values to match any of them. Omit the
+              parameter entirely to apply no JA4 filter.
 
           limit: Number of items to return
 
@@ -789,7 +1085,7 @@ class AsyncAnalyticsResource(AsyncAPIResource):
           organizations: Include entries whose organization exactly equals any supplied value. Omit or
               provide an empty list to apply no organization filter.
 
-          path: Filter by URL path with a glob-like pattern.
+          path: Filter by URL path. '\\**' is wildcard.
 
           reference_ids: Filter data by reference IDs.
 
@@ -804,8 +1100,9 @@ class AsyncAnalyticsResource(AsyncAPIResource):
           tags: Include entries whose tag exactly equals any supplied value. Omit or provide an
               empty list to apply no tag filter.
 
-          user_agent: Include entries whose user agent contains the supplied text, case-insensitive
-              partial match. Omit the parameter to apply no user agent text filter.
+          user_agent: Include entries whose user agent contains any of the supplied texts,
+              case-insensitive partial match. Omit or provide an empty list to apply no user
+              agent text filter.
 
           user_agent_clients: Include entries whose parsed user agent client exactly equals any supplied
               value. Omit or provide an empty list to apply no user agent client filter.
@@ -837,13 +1134,20 @@ class AsyncAnalyticsResource(AsyncAPIResource):
                         "domains": domains,
                         "end": end,
                         "exclude_countries": exclude_countries,
+                        "exclude_decision": exclude_decision,
                         "exclude_domains": exclude_domains,
+                        "exclude_http_methods": exclude_http_methods,
                         "exclude_ips": exclude_ips,
                         "exclude_ja3": exclude_ja3,
+                        "exclude_ja4": exclude_ja4,
+                        "exclude_optional_action": exclude_optional_action,
                         "exclude_organizations": exclude_organizations,
+                        "exclude_path": exclude_path,
                         "exclude_reference_ids": exclude_reference_ids,
+                        "exclude_request_ids": exclude_request_ids,
                         "exclude_security_rule_names": exclude_security_rule_names,
                         "exclude_session_ids": exclude_session_ids,
+                        "exclude_status_codes": exclude_status_codes,
                         "exclude_tags": exclude_tags,
                         "exclude_user_agent": exclude_user_agent,
                         "exclude_user_agent_clients": exclude_user_agent_clients,
@@ -851,6 +1155,7 @@ class AsyncAnalyticsResource(AsyncAPIResource):
                         "http_methods": http_methods,
                         "ips": ips,
                         "ja3": ja3,
+                        "ja4": ja4,
                         "limit": limit,
                         "offset": offset,
                         "optional_action": optional_action,
@@ -948,30 +1253,39 @@ class AsyncAnalyticsResource(AsyncAPIResource):
         domains: Iterable[int] | Omit = omit,
         end: Optional[str] | Omit = omit,
         exclude_countries: SequenceNotStr[str] | Omit = omit,
+        exclude_decision: List[Literal["blocked", "monitored", "allowed", "passed"]] | Omit = omit,
         exclude_domains: Iterable[int] | Omit = omit,
+        exclude_http_methods: List[Literal["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT", "TRACE"]]
+        | Omit = omit,
         exclude_ips: SequenceNotStr[str] | Omit = omit,
-        exclude_ja3: Optional[str] | Omit = omit,
+        exclude_ja3: SequenceNotStr[str] | Omit = omit,
+        exclude_ja4: SequenceNotStr[str] | Omit = omit,
+        exclude_optional_action: List[Literal["captcha", "challenge"]] | Omit = omit,
         exclude_organizations: SequenceNotStr[str] | Omit = omit,
+        exclude_path: SequenceNotStr[str] | Omit = omit,
         exclude_reference_ids: SequenceNotStr[str] | Omit = omit,
+        exclude_request_ids: SequenceNotStr[str] | Omit = omit,
         exclude_security_rule_names: SequenceNotStr[str] | Omit = omit,
         exclude_session_ids: SequenceNotStr[str] | Omit = omit,
+        exclude_status_codes: Iterable[int] | Omit = omit,
         exclude_tags: SequenceNotStr[str] | Omit = omit,
-        exclude_user_agent: Optional[str] | Omit = omit,
+        exclude_user_agent: SequenceNotStr[str] | Omit = omit,
         exclude_user_agent_clients: SequenceNotStr[str] | Omit = omit,
         exclude_user_agent_devices: SequenceNotStr[str] | Omit = omit,
         http_methods: List[Literal["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT", "TRACE"]] | Omit = omit,
         ips: SequenceNotStr[str] | Omit = omit,
-        ja3: Optional[str] | Omit = omit,
+        ja3: SequenceNotStr[str] | Omit = omit,
+        ja4: SequenceNotStr[str] | Omit = omit,
         optional_action: List[Literal["captcha", "challenge"]] | Omit = omit,
         organizations: SequenceNotStr[str] | Omit = omit,
-        path: Optional[str] | Omit = omit,
+        path: SequenceNotStr[str] | Omit = omit,
         reference_ids: SequenceNotStr[str] | Omit = omit,
         request_ids: SequenceNotStr[str] | Omit = omit,
         security_rule_names: SequenceNotStr[str] | Omit = omit,
         session_ids: SequenceNotStr[str] | Omit = omit,
         status_codes: Iterable[int] | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
-        user_agent: Optional[str] | Omit = omit,
+        user_agent: SequenceNotStr[str] | Omit = omit,
         user_agent_clients: SequenceNotStr[str] | Omit = omit,
         user_agent_devices: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1009,29 +1323,49 @@ class AsyncAnalyticsResource(AsyncAPIResource):
           exclude_countries: Exclude data by a country code of the originating IP address in ISO 3166-1
               alpha-2 format.
 
+          exclude_decision: Exclude entries that match any of the given decisions.
+
           exclude_domains: Exclude data by domain ID.
+
+          exclude_http_methods: Exclude entries with any of the given HTTP methods.
 
           exclude_ips: Exclude traffic data by client IP.
 
-          exclude_ja3: Exclude entries whose JA3 TLS client fingerprint equals the supplied value. Must
-              be exactly 32 hexadecimal characters (mixed case allowed) and is case-folded to
-              lowercase when the backend filter is built. Omit the parameter to apply no JA3
-              exclusion.
+          exclude_ja3: Exclude entries whose JA3 TLS client fingerprint matches any of the supplied
+              values. Each value must be exactly 32 hexadecimal characters (mixed case
+              allowed) and is case-folded to lowercase when the backend filter is built.
+              Supply multiple values to exclude any of them. Omit the parameter to apply no
+              JA3 exclusion.
+
+          exclude_ja4: Exclude entries whose JA4 TLS client fingerprint equals any of the supplied
+              values. An item must match the JA4 form `<ja4_a>_<ja4_b>_<ja4_c>` (a
+              10-character prefix and two 12-character hexadecimal hashes, mixed case allowed)
+              and is case-folded to lowercase when the backend filter is built. Omit the
+              parameter to apply no JA4 exclusion.
+
+          exclude_optional_action: Exclude entries that match any of the given optional action values.
 
           exclude_organizations: Exclude entries whose organization exactly equals any supplied value. Omit or
               provide an empty list to apply no organization exclusion.
 
+          exclude_path: Exclude entries that match the given URL path pattern; '\\**' is wildcard.
+
           exclude_reference_ids: Exclude data by reference IDs.
+
+          exclude_request_ids: Exclude data by request IDs.
 
           exclude_security_rule_names: Exclude data by name of a security rule matched the request.
 
           exclude_session_ids: Exclude data by session IDs.
 
+          exclude_status_codes: Exclude entries with any of the given HTTP response status codes.
+
           exclude_tags: Exclude entries whose tag exactly equals any supplied value. Omit or provide an
               empty list to apply no tag exclusion.
 
-          exclude_user_agent: Exclude entries whose user agent contains the supplied text, case-insensitive
-              partial match. Omit the parameter to apply no user agent text exclusion.
+          exclude_user_agent: Exclude entries whose user agent contains any of the supplied texts,
+              case-insensitive partial match. Omit or provide an empty list to apply no user
+              agent text exclusion.
 
           exclude_user_agent_clients: Exclude entries whose parsed user agent client exactly equals any supplied
               value. Omit or provide an empty list to apply no user agent client exclusion.
@@ -1043,16 +1377,23 @@ class AsyncAnalyticsResource(AsyncAPIResource):
 
           ips: Filter traffic data by client IP.
 
-          ja3: Filter by JA3 TLS client fingerprint. When present, the value must be exactly 32
-              hexadecimal characters (mixed case allowed) and is case-folded to lowercase when
-              the backend filter is built. Omit the parameter entirely to apply no JA3 filter.
+          ja3: Filter by JA3 TLS client fingerprint. Each value must be exactly 32 hexadecimal
+              characters (mixed case allowed) and is case-folded to lowercase when the backend
+              filter is built. Supply multiple values to match any of them. Omit the parameter
+              to apply no JA3 filter.
+
+          ja4: Filter by JA4 TLS client fingerprint. When present, the value must match the JA4
+              form `<ja4_a>_<ja4_b>_<ja4_c>` (a 10-character prefix and two 12-character
+              hexadecimal hashes, mixed case allowed) and is case-folded to lowercase when the
+              backend filter is built. Supply multiple values to match any of them. Omit the
+              parameter entirely to apply no JA4 filter.
 
           optional_action: Filter data by optional action.
 
           organizations: Include entries whose organization exactly equals any supplied value. Omit or
               provide an empty list to apply no organization filter.
 
-          path: Filter by URL path with a glob-like pattern.
+          path: Filter by URL path. '\\**' is wildcard.
 
           reference_ids: Filter data by reference IDs.
 
@@ -1067,8 +1408,9 @@ class AsyncAnalyticsResource(AsyncAPIResource):
           tags: Include entries whose tag exactly equals any supplied value. Omit or provide an
               empty list to apply no tag filter.
 
-          user_agent: Include entries whose user agent contains the supplied text, case-insensitive
-              partial match. Omit the parameter to apply no user agent text filter.
+          user_agent: Include entries whose user agent contains any of the supplied texts,
+              case-insensitive partial match. Omit or provide an empty list to apply no user
+              agent text filter.
 
           user_agent_clients: Include entries whose parsed user agent client exactly equals any supplied
               value. Omit or provide an empty list to apply no user agent client filter.
@@ -1101,13 +1443,20 @@ class AsyncAnalyticsResource(AsyncAPIResource):
                         "domains": domains,
                         "end": end,
                         "exclude_countries": exclude_countries,
+                        "exclude_decision": exclude_decision,
                         "exclude_domains": exclude_domains,
+                        "exclude_http_methods": exclude_http_methods,
                         "exclude_ips": exclude_ips,
                         "exclude_ja3": exclude_ja3,
+                        "exclude_ja4": exclude_ja4,
+                        "exclude_optional_action": exclude_optional_action,
                         "exclude_organizations": exclude_organizations,
+                        "exclude_path": exclude_path,
                         "exclude_reference_ids": exclude_reference_ids,
+                        "exclude_request_ids": exclude_request_ids,
                         "exclude_security_rule_names": exclude_security_rule_names,
                         "exclude_session_ids": exclude_session_ids,
+                        "exclude_status_codes": exclude_status_codes,
                         "exclude_tags": exclude_tags,
                         "exclude_user_agent": exclude_user_agent,
                         "exclude_user_agent_clients": exclude_user_agent_clients,
@@ -1115,6 +1464,7 @@ class AsyncAnalyticsResource(AsyncAPIResource):
                         "http_methods": http_methods,
                         "ips": ips,
                         "ja3": ja3,
+                        "ja4": ja4,
                         "optional_action": optional_action,
                         "organizations": organizations,
                         "path": path,
@@ -1142,6 +1492,9 @@ class AnalyticsResourceWithRawResponse:
         self.get_event_statistics = to_raw_response_wrapper(
             analytics.get_event_statistics,
         )
+        self.get_filters = to_raw_response_wrapper(
+            analytics.get_filters,
+        )
         self.get_requests = to_raw_response_wrapper(
             analytics.get_requests,
         )
@@ -1159,6 +1512,9 @@ class AsyncAnalyticsResourceWithRawResponse:
 
         self.get_event_statistics = async_to_raw_response_wrapper(
             analytics.get_event_statistics,
+        )
+        self.get_filters = async_to_raw_response_wrapper(
+            analytics.get_filters,
         )
         self.get_requests = async_to_raw_response_wrapper(
             analytics.get_requests,
@@ -1178,6 +1534,9 @@ class AnalyticsResourceWithStreamingResponse:
         self.get_event_statistics = to_streamed_response_wrapper(
             analytics.get_event_statistics,
         )
+        self.get_filters = to_streamed_response_wrapper(
+            analytics.get_filters,
+        )
         self.get_requests = to_streamed_response_wrapper(
             analytics.get_requests,
         )
@@ -1195,6 +1554,9 @@ class AsyncAnalyticsResourceWithStreamingResponse:
 
         self.get_event_statistics = async_to_streamed_response_wrapper(
             analytics.get_event_statistics,
+        )
+        self.get_filters = async_to_streamed_response_wrapper(
+            analytics.get_filters,
         )
         self.get_requests = async_to_streamed_response_wrapper(
             analytics.get_requests,

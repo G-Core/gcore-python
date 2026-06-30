@@ -19,6 +19,8 @@ __all__ = [
     "ConditionHTTPMethod",
     "ConditionIP",
     "ConditionIPRange",
+    "ConditionJa3",
+    "ConditionJa4",
     "ConditionOrganization",
     "ConditionOwnerTypes",
     "ConditionRequestRate",
@@ -171,6 +173,26 @@ class ConditionIPRange(BaseModel):
 
     upper_bound: str
     """The upper bound IPv4 or IPv6 address to match against"""
+
+    negation: Optional[bool] = None
+    """Whether or not to apply a boolean NOT operation to the rule's condition"""
+
+
+class ConditionJa3(BaseModel):
+    """Match the JA3 TLS client fingerprint of the request"""
+
+    ja3_fingerprints: List[str]
+    """A list of JA3 TLS client fingerprints to match against the request"""
+
+    negation: Optional[bool] = None
+    """Whether or not to apply a boolean NOT operation to the rule's condition"""
+
+
+class ConditionJa4(BaseModel):
+    """Match the JA4 TLS client fingerprint of the request"""
+
+    ja4_fingerprints: List[str]
+    """A list of JA4 TLS client fingerprints to match against the request"""
 
     negation: Optional[bool] = None
     """Whether or not to apply a boolean NOT operation to the rule's condition"""
@@ -367,6 +389,12 @@ class Condition(BaseModel):
 
     ip_range: Optional[ConditionIPRange] = None
     """Match the incoming request against an IP range"""
+
+    ja3: Optional[ConditionJa3] = None
+    """Match the JA3 TLS client fingerprint of the request"""
+
+    ja4: Optional[ConditionJa4] = None
+    """Match the JA4 TLS client fingerprint of the request"""
 
     organization: Optional[ConditionOrganization] = None
     """

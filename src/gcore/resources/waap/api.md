@@ -30,6 +30,7 @@ Types:
 from gcore.types.waap import (
     WaapCompactTrafficMetrics,
     WaapSimpleEventStatistics,
+    AnalyticsGetFiltersResponse,
     AnalyticsGetTrafficResponse,
     AnalyticsGetTrafficFilteredResponse,
 )
@@ -38,6 +39,7 @@ from gcore.types.waap import (
 Methods:
 
 - <code title="get /waap/v1/analytics/stats/{dimension}">client.waap.analytics.<a href="./src/gcore/resources/waap/analytics.py">get_event_statistics</a>(dimension, \*\*<a href="src/gcore/types/waap/analytics_get_event_statistics_params.py">params</a>) -> <a href="./src/gcore/types/waap/waap_simple_event_statistics.py">WaapSimpleEventStatistics</a></code>
+- <code title="get /waap/v1/analytics/filters/{type}">client.waap.analytics.<a href="./src/gcore/resources/waap/analytics.py">get_filters</a>(type, \*\*<a href="src/gcore/types/waap/analytics_get_filters_params.py">params</a>) -> <a href="./src/gcore/types/waap/analytics_get_filters_response.py">SyncOffsetPage[AnalyticsGetFiltersResponse]</a></code>
 - <code title="get /waap/v1/analytics/requests">client.waap.analytics.<a href="./src/gcore/resources/waap/analytics.py">get_requests</a>(\*\*<a href="src/gcore/types/waap/analytics_get_requests_params.py">params</a>) -> <a href="./src/gcore/types/waap/waap_request_summary.py">SyncOffsetPage[WaapRequestSummary]</a></code>
 - <code title="get /waap/v1/analytics/traffic">client.waap.analytics.<a href="./src/gcore/resources/waap/analytics.py">get_traffic</a>(\*\*<a href="src/gcore/types/waap/analytics_get_traffic_params.py">params</a>) -> <a href="./src/gcore/types/waap/analytics_get_traffic_response.py">AnalyticsGetTrafficResponse</a></code>
 - <code title="get /waap/v1/analytics/traffic-filtered">client.waap.analytics.<a href="./src/gcore/resources/waap/analytics.py">get_traffic_filtered</a>(\*\*<a href="src/gcore/types/waap/analytics_get_traffic_filtered_params.py">params</a>) -> <a href="./src/gcore/types/waap/analytics_get_traffic_filtered_response.py">AnalyticsGetTrafficFilteredResponse</a></code>

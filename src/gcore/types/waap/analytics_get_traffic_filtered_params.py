@@ -51,19 +51,38 @@ class AnalyticsGetTrafficFilteredParams(TypedDict, total=False):
     alpha-2 format.
     """
 
+    exclude_decision: List[Literal["blocked", "monitored", "allowed", "passed"]]
+    """Exclude entries that match any of the given decisions."""
+
     exclude_domains: Iterable[int]
     """Exclude data by domain ID."""
+
+    exclude_http_methods: List[Literal["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT", "TRACE"]]
+    """Exclude entries with any of the given HTTP methods."""
 
     exclude_ips: SequenceNotStr[str]
     """Exclude traffic data by client IP."""
 
-    exclude_ja3: Optional[str]
-    """Exclude entries whose JA3 TLS client fingerprint equals the supplied value.
-
-    Must be exactly 32 hexadecimal characters (mixed case allowed) and is
-    case-folded to lowercase when the backend filter is built. Omit the parameter to
-    apply no JA3 exclusion.
+    exclude_ja3: SequenceNotStr[str]
     """
+    Exclude entries whose JA3 TLS client fingerprint matches any of the supplied
+    values. Each value must be exactly 32 hexadecimal characters (mixed case
+    allowed) and is case-folded to lowercase when the backend filter is built.
+    Supply multiple values to exclude any of them. Omit the parameter to apply no
+    JA3 exclusion.
+    """
+
+    exclude_ja4: SequenceNotStr[str]
+    """
+    Exclude entries whose JA4 TLS client fingerprint equals any of the supplied
+    values. An item must match the JA4 form `<ja4_a>_<ja4_b>_<ja4_c>` (a
+    10-character prefix and two 12-character hexadecimal hashes, mixed case allowed)
+    and is case-folded to lowercase when the backend filter is built. Omit the
+    parameter to apply no JA4 exclusion.
+    """
+
+    exclude_optional_action: List[Literal["captcha", "challenge"]]
+    """Exclude entries that match any of the given optional action values."""
 
     exclude_organizations: SequenceNotStr[str]
     """Exclude entries whose organization exactly equals any supplied value.
@@ -71,8 +90,14 @@ class AnalyticsGetTrafficFilteredParams(TypedDict, total=False):
     Omit or provide an empty list to apply no organization exclusion.
     """
 
+    exclude_path: SequenceNotStr[str]
+    """Exclude entries that match the given URL path pattern; '\\**' is wildcard."""
+
     exclude_reference_ids: SequenceNotStr[str]
     """Exclude data by reference IDs."""
+
+    exclude_request_ids: SequenceNotStr[str]
+    """Exclude data by request IDs."""
 
     exclude_security_rule_names: SequenceNotStr[str]
     """Exclude data by name of a security rule matched the request."""
@@ -80,16 +105,20 @@ class AnalyticsGetTrafficFilteredParams(TypedDict, total=False):
     exclude_session_ids: SequenceNotStr[str]
     """Exclude data by session IDs."""
 
+    exclude_status_codes: Iterable[int]
+    """Exclude entries with any of the given HTTP response status codes."""
+
     exclude_tags: SequenceNotStr[str]
     """Exclude entries whose tag exactly equals any supplied value.
 
     Omit or provide an empty list to apply no tag exclusion.
     """
 
-    exclude_user_agent: Optional[str]
+    exclude_user_agent: SequenceNotStr[str]
     """
-    Exclude entries whose user agent contains the supplied text, case-insensitive
-    partial match. Omit the parameter to apply no user agent text exclusion.
+    Exclude entries whose user agent contains any of the supplied texts,
+    case-insensitive partial match. Omit or provide an empty list to apply no user
+    agent text exclusion.
     """
 
     exclude_user_agent_clients: SequenceNotStr[str]
@@ -112,12 +141,22 @@ class AnalyticsGetTrafficFilteredParams(TypedDict, total=False):
     ips: SequenceNotStr[str]
     """Filter traffic data by client IP."""
 
-    ja3: Optional[str]
+    ja3: SequenceNotStr[str]
     """Filter by JA3 TLS client fingerprint.
 
-    When present, the value must be exactly 32 hexadecimal characters (mixed case
-    allowed) and is case-folded to lowercase when the backend filter is built. Omit
-    the parameter entirely to apply no JA3 filter.
+    Each value must be exactly 32 hexadecimal characters (mixed case allowed) and is
+    case-folded to lowercase when the backend filter is built. Supply multiple
+    values to match any of them. Omit the parameter to apply no JA3 filter.
+    """
+
+    ja4: SequenceNotStr[str]
+    """Filter by JA4 TLS client fingerprint.
+
+    When present, the value must match the JA4 form `<ja4_a>_<ja4_b>_<ja4_c>` (a
+    10-character prefix and two 12-character hexadecimal hashes, mixed case allowed)
+    and is case-folded to lowercase when the backend filter is built. Supply
+    multiple values to match any of them. Omit the parameter entirely to apply no
+    JA4 filter.
     """
 
     optional_action: List[Literal["captcha", "challenge"]]
@@ -129,8 +168,8 @@ class AnalyticsGetTrafficFilteredParams(TypedDict, total=False):
     Omit or provide an empty list to apply no organization filter.
     """
 
-    path: Optional[str]
-    """Filter by URL path with a glob-like pattern."""
+    path: SequenceNotStr[str]
+    """Filter by URL path. '\\**' is wildcard."""
 
     reference_ids: SequenceNotStr[str]
     """Filter data by reference IDs."""
@@ -153,10 +192,11 @@ class AnalyticsGetTrafficFilteredParams(TypedDict, total=False):
     Omit or provide an empty list to apply no tag filter.
     """
 
-    user_agent: Optional[str]
+    user_agent: SequenceNotStr[str]
     """
-    Include entries whose user agent contains the supplied text, case-insensitive
-    partial match. Omit the parameter to apply no user agent text filter.
+    Include entries whose user agent contains any of the supplied texts,
+    case-insensitive partial match. Omit or provide an empty list to apply no user
+    agent text filter.
     """
 
     user_agent_clients: SequenceNotStr[str]

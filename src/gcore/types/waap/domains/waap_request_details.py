@@ -6,7 +6,15 @@ from typing_extensions import Literal
 
 from ...._models import BaseModel
 
-__all__ = ["WaapRequestDetails", "CommonTag", "Network", "NetworkOrganization", "PatternMatchedTag", "UserAgent"]
+__all__ = [
+    "WaapRequestDetails",
+    "CommonTag",
+    "Network",
+    "NetworkOrganization",
+    "PatternMatchedTag",
+    "UserAgent",
+    "Detector",
+]
 
 
 class CommonTag(BaseModel):
@@ -116,6 +124,28 @@ class UserAgent(BaseModel):
     """User agent engine"""
 
 
+class Detector(BaseModel):
+    """A rule that matched the request, with the matched subject and content."""
+
+    matched_content: str
+    """The content that matched the rule"""
+
+    rule_id: str
+    """ID of the rule that matched"""
+
+    rule_name: str
+    """Name of the rule that matched"""
+
+    subject_field: Optional[str] = None
+    """The name of the variable whose value triggered the rule"""
+
+    subject_type: str
+    """The entity to which the matched variable belongs (e.g.
+
+    `request_headers`, uri, cookies)
+    """
+
+
 class WaapRequestDetails(BaseModel):
     """Request's details used when displaying a single request."""
 
@@ -203,10 +233,20 @@ class WaapRequestDetails(BaseModel):
     decision: Optional[Literal["passed", "allowed", "monitored", "blocked", ""]] = None
     """The decision made for processing the request through the WAAP."""
 
+    detector: Optional[List[Detector]] = None
+    """Rules that matched the request and triggered the event decision."""
+
     ja3: Optional[str] = None
     """
     JA3 TLS client fingerprint as a 32-character lowercase hexadecimal MD5 hash, or
     an empty string when the record has no JA3 value.
+    """
+
+    ja4: Optional[str] = None
+    """
+    JA4 TLS client fingerprint in the form `<ja4_a>_<ja4_b>_<ja4_c>` (a 10-character
+    prefix and two 12-character lowercase hexadecimal hashes), or an empty string
+    when the record has no JA4 value.
     """
 
     optional_action: Optional[Literal["captcha", "challenge", ""]] = None

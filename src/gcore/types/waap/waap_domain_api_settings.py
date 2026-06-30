@@ -11,9 +11,12 @@ class WaapDomainAPISettings(BaseModel):
     """API settings of a domain"""
 
     api_urls: Optional[List[str]] = None
-    """The API URLs for a domain.
+    """The API base paths for a domain.
 
-    If your domain has a common base URL for all API paths, it can be set here
+    If your domain has a common base path for all API endpoints, it can be set here.
+    When set or updated, each entry must contain at least one letter or digit; a
+    value that would match the whole domain (such as "/") is rejected - to treat the
+    entire domain as an API domain, use the `is_api` field instead.
     """
 
     is_api: Optional[bool] = None
