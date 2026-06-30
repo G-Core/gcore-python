@@ -79,7 +79,7 @@ class DNSOutputRrset(BaseModel):
     resource_records: List[ResourceRecord]
     """List of resource record from rrset"""
 
-    type: Literal["A", "AAAA", "NS", "CNAME", "MX", "TXT", "SRV", "SOA"]
+    type: Literal["A", "AAAA", "NS", "CNAME", "MX", "TXT", "SRV", "SOA", "PTR", "SVCB", "HTTPS", "CAA", "DS"]
     """RRSet type"""
 
     filter_set_id: Optional[int] = None

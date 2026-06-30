@@ -29,6 +29,7 @@ class TestDnssec:
         dnssec = client.dns.zones.dnssec.update(
             name="name",
             enabled=True,
+            force_disable=True,
         )
         assert_matches_type(DnssecUpdateResponse, dnssec, path=["response"])
 
@@ -119,6 +120,7 @@ class TestAsyncDnssec:
         dnssec = await async_client.dns.zones.dnssec.update(
             name="name",
             enabled=True,
+            force_disable=True,
         )
         assert_matches_type(DnssecUpdateResponse, dnssec, path=["response"])
 

@@ -58,6 +58,20 @@ class ZoneGetResponse(BaseModel):
     dnssec is disabled for the zone
     """
 
+    dnssec_status: Optional[str] = None
+    """
+    `dnssec_status` is the four-state lifecycle status of DNSSEC for the zone,
+    driven by the parent-DS scan against the registrar. One of: pending, active,
+    pending-disabled, disabled. Empty when DNSSEC has never been enabled for the
+    zone.
+    """
+
+    dnssec_status_modified_on: Optional[str] = None
+    """
+    `dnssec_status_modified_on` is the RFC3339 timestamp of the last `dnssec_status`
+    change.
+    """
+
     enabled: Optional[bool] = None
 
     expiry: Optional[int] = None

@@ -9,3 +9,5 @@ __all__ = ["DnssecUpdateParams"]
 
 class DnssecUpdateParams(TypedDict, total=False):
     enabled: bool
+
+    force_disable: bool

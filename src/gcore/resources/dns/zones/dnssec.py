@@ -47,6 +47,7 @@ class DnssecResource(SyncAPIResource):
         name: str,
         *,
         enabled: bool | Omit = omit,
+        force_disable: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -70,7 +71,13 @@ class DnssecResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return self._patch(
             path_template("/dns/v2/zones/{name}/dnssec", name=name),
-            body=maybe_transform({"enabled": enabled}, dnssec_update_params.DnssecUpdateParams),
+            body=maybe_transform(
+                {
+                    "enabled": enabled,
+                    "force_disable": force_disable,
+                },
+                dnssec_update_params.DnssecUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -136,6 +143,7 @@ class AsyncDnssecResource(AsyncAPIResource):
         name: str,
         *,
         enabled: bool | Omit = omit,
+        force_disable: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -159,7 +167,13 @@ class AsyncDnssecResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return await self._patch(
             path_template("/dns/v2/zones/{name}/dnssec", name=name),
-            body=await async_maybe_transform({"enabled": enabled}, dnssec_update_params.DnssecUpdateParams),
+            body=await async_maybe_transform(
+                {
+                    "enabled": enabled,
+                    "force_disable": force_disable,
+                },
+                dnssec_update_params.DnssecUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
