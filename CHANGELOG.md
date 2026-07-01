@@ -1,5 +1,27 @@
 # Changelog
 
+## [0.50.0](https://github.com/G-Core/gcore-python/compare/v0.49.0...v0.50.0) (2026-07-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* **cdn:** update cdn OpenAPI spec
+* **waap:** JA4 support, multi-value analytics filters, exclusion filters
+
+### Features
+
+* **cdn:** support logs uploader configs in Terraform ([6b4295f](https://github.com/G-Core/gcore-python/commit/6b4295f68915b57a86f9edf4c12b2c783aebf8e8))
+* **cdn:** support logs uploader policies in Terraform ([6139264](https://github.com/G-Core/gcore-python/commit/61392649ff3592d9f6a735e0a295a858fe6252f0))
+* **cdn:** update cdn OpenAPI spec ([52dee8f](https://github.com/G-Core/gcore-python/commit/52dee8fec4785e8aaadbde7105aefb5601fac1c9))
+* **dns:** DNSSEC status fields + PTR/SVCB/HTTPS/CAA/DS rrset types ([dc7339a](https://github.com/G-Core/gcore-python/commit/dc7339ac6c8c403e7050daeb5831d2a764bc0282))
+* **streaming:** add srt_passphrase for encrypted SRT PUSH ingest ([5eb9740](https://github.com/G-Core/gcore-python/commit/5eb9740beeeb63ce9256f98a4cb1761601169849))
+* **waap:** JA4 support, multi-value analytics filters, exclusion filters ([afbde20](https://github.com/G-Core/gcore-python/commit/afbde20035990443848bc7e84f922111312963d8))
+
+
+### Chores
+
+* bootstrap product specs and reformat openapi.yml ([3c5ca4e](https://github.com/G-Core/gcore-python/commit/3c5ca4e3939fbe94a68944543f4df89329f9e453))
+
 ## [0.49.0](https://github.com/G-Core/gcore-python/compare/v0.48.0...v0.49.0) (2026-06-22)
 
 
