@@ -2,11 +2,13 @@
 
 from __future__ import annotations
 
+from .image_list_params import ImageListParams as ImageListParams
 from .flavor_list_params import FlavorListParams as FlavorListParams
 from .server_list_params import ServerListParams as ServerListParams
 from .image_upload_params import ImageUploadParams as ImageUploadParams
 from .gpu_baremetal_flavor import GPUBaremetalFlavor as GPUBaremetalFlavor
 from .server_delete_params import ServerDeleteParams as ServerDeleteParams
+from .server_replace_params import ServerReplaceParams as ServerReplaceParams
 from .interface_attach_params import InterfaceAttachParams as InterfaceAttachParams
 from .interface_detach_params import InterfaceDetachParams as InterfaceDetachParams
 from .gpu_baremetal_flavor_list import GPUBaremetalFlavorList as GPUBaremetalFlavorList

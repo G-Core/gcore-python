@@ -27,6 +27,17 @@ class TestVolumes:
         assert_matches_type(GPUVirtualClusterVolumeList, volume, path=["response"])
 
     @parametrize
+    def test_method_list_with_all_params(self, client: Gcore) -> None:
+        volume = client.cloud.gpu_virtual.clusters.volumes.list(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+            limit=1000,
+            offset=0,
+        )
+        assert_matches_type(GPUVirtualClusterVolumeList, volume, path=["response"])
+
+    @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
         response = client.cloud.gpu_virtual.clusters.volumes.with_raw_response.list(
             cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
@@ -75,6 +86,17 @@ class TestAsyncVolumes:
             cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
             project_id=1,
             region_id=7,
+        )
+        assert_matches_type(GPUVirtualClusterVolumeList, volume, path=["response"])
+
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
+        volume = await async_client.cloud.gpu_virtual.clusters.volumes.list(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+            limit=1000,
+            offset=0,
         )
         assert_matches_type(GPUVirtualClusterVolumeList, volume, path=["response"])
 

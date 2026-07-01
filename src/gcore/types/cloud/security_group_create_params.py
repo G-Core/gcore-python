@@ -82,7 +82,7 @@ class Rule(TypedDict, total=False):
     ]
     """V2 protocol enum without 'any'. Use null for all protocols instead."""
 
-    remote_group_id: str
+    remote_group_id: Optional[str]
     """The remote group UUID to associate with this security group"""
 
     remote_ip_prefix: Optional[str]

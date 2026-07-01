@@ -125,7 +125,7 @@ class RoutersResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        external_gateway_info: router_update_params.ExternalGatewayInfo | Omit = omit,
+        external_gateway_info: Optional[router_update_params.ExternalGatewayInfo] | Omit = omit,
         name: str | Omit = omit,
         routes: Iterable[router_update_params.Route] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -316,6 +316,12 @@ class RoutersResource(SyncAPIResource):
         Delete a specific router and all its associated resources.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          router_id: Router ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -425,6 +431,12 @@ class RoutersResource(SyncAPIResource):
         Detach a subnet from an existing router.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          router_id: Router ID
+
           subnet_id: Target IP is identified by it's subnet
 
           extra_headers: Send extra headers
@@ -472,6 +484,12 @@ class RoutersResource(SyncAPIResource):
         Get detailed information about a specific router.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          router_id: Router ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -594,7 +612,7 @@ class AsyncRoutersResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        external_gateway_info: router_update_params.ExternalGatewayInfo | Omit = omit,
+        external_gateway_info: Optional[router_update_params.ExternalGatewayInfo] | Omit = omit,
         name: str | Omit = omit,
         routes: Iterable[router_update_params.Route] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -785,6 +803,12 @@ class AsyncRoutersResource(AsyncAPIResource):
         Delete a specific router and all its associated resources.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          router_id: Router ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -894,6 +918,12 @@ class AsyncRoutersResource(AsyncAPIResource):
         Detach a subnet from an existing router.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          router_id: Router ID
+
           subnet_id: Target IP is identified by it's subnet
 
           extra_headers: Send extra headers
@@ -943,6 +973,12 @@ class AsyncRoutersResource(AsyncAPIResource):
         Get detailed information about a specific router.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          router_id: Router ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

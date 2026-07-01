@@ -17,6 +17,9 @@ class SecurityGroup(BaseModel):
     created_at: datetime
     """Datetime when the security group was created"""
 
+    description: str
+    """Security group description"""
+
     name: str
     """Security group name"""
 
@@ -44,9 +47,6 @@ class SecurityGroup(BaseModel):
 
     updated_at: datetime
     """Datetime when the security group was last updated"""
-
-    description: Optional[str] = None
-    """Security group description"""
 
     security_group_rules: Optional[List[SecurityGroupRule]] = None
     """Security group rules"""

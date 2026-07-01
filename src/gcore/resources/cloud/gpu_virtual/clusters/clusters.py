@@ -197,6 +197,7 @@ class ClustersResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         name: str | Omit = omit,
+        servers_settings: cluster_update_params.ServersSettings | Omit = omit,
         tags: Optional[TagUpdateMapParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -206,11 +207,14 @@ class ClustersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GPUVirtualCluster:
         """
-        Update the name of an existing virtual GPU cluster.
+        Update the name, tags, and/or server settings of an existing virtual GPU
+        cluster.
 
-        Update tags for a virtual GPU cluster (and apply to all its nodes) using JSON
-        Merge Patch semantics (RFC 7386). To add or update tags, provide key-value
-        pairs. To remove a tag, set its value to null.
+        Update tags using JSON Merge Patch semantics (RFC 7396). To add or update tags,
+        provide key-value pairs. To remove a tag, set its value to null.
+
+        Updating server settings (`servers_settings`) only modifies the cluster
+        template. **It does NOT modify or rebuild any existing servers in the cluster.**
 
         Args:
           project_id: Project ID
@@ -220,6 +224,8 @@ class ClustersResource(SyncAPIResource):
           cluster_id: Cluster unique identifier
 
           name: Cluster name
+
+          servers_settings: Configuration settings for the servers in the cluster
 
           tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
               key-value pairs to add or update tags. Set tag values to `null` to remove tags.
@@ -267,6 +273,7 @@ class ClustersResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "name": name,
+                    "servers_settings": servers_settings,
                     "tags": tags,
                 },
                 cluster_update_params.ClusterUpdateParams,
@@ -282,8 +289,17 @@ class ClustersResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        created_at: cluster_list_params.CreatedAt | Omit = omit,
+        flavor: cluster_list_params.Flavor | Omit = omit,
+        ids: SequenceNotStr[str] | Omit = omit,
         limit: int | Omit = omit,
+        name: cluster_list_params.Name | Omit = omit,
         offset: int | Omit = omit,
+        servers_count: cluster_list_params.ServersCount | Omit = omit,
+        tag_key: cluster_list_params.TagKey | Omit = omit,
+        tag_value: cluster_list_params.TagValue | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
+        updated_at: cluster_list_params.UpdatedAt | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -299,9 +315,31 @@ class ClustersResource(SyncAPIResource):
 
           region_id: Region ID
 
+          created_at: Filter by creation time (UTC), e.g. `created_at[gte]=2026-01-01T00:00:00Z`.
+
+          flavor: Filter by flavor (case-insensitive), e.g. `flavor[prefix]=g3-`,
+              `flavor[exact]=g3-ai-32-192-1500-l40s-48-1`.
+
+          ids: Return only clusters with these IDs, e.g. `ids=<id1>&ids=<id2>`.
+
           limit: Limit of items on a single page
 
+          name: Filter by name (case-insensitive), e.g. `name[contains]=gpu`,
+              `name[prefix]=prod-`.
+
           offset: Offset in results list
+
+          servers_count: Filter by node count, e.g. `servers_count[gte]=2`,
+              `servers_count[gte]=2&servers_count[lt]=8`.
+
+          tag_key: Filter by tag key regardless of value, e.g. `tag_key[contains]=team`.
+
+          tag_value: Filter by tag value regardless of key, e.g. `tag_value[prefix]=prod`.
+
+          tags: Filter by exact tag key-value pairs, e.g. `tags[env]=prod&tags[team]=core`.
+              Pairs are ANDed; values match case-insensitively.
+
+          updated_at: Filter by last-change time (UTC), e.g. `updated_at[gte]=2026-06-01T00:00:00Z`.
 
           extra_headers: Send extra headers
 
@@ -327,8 +365,17 @@ class ClustersResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "created_at": created_at,
+                        "flavor": flavor,
+                        "ids": ids,
                         "limit": limit,
+                        "name": name,
                         "offset": offset,
+                        "servers_count": servers_count,
+                        "tag_key": tag_key,
+                        "tag_value": tag_value,
+                        "tags": tags,
+                        "updated_at": updated_at,
                     },
                     cluster_list_params.ClusterListParams,
                 ),
@@ -1108,6 +1155,7 @@ class AsyncClustersResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         name: str | Omit = omit,
+        servers_settings: cluster_update_params.ServersSettings | Omit = omit,
         tags: Optional[TagUpdateMapParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1117,11 +1165,14 @@ class AsyncClustersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GPUVirtualCluster:
         """
-        Update the name of an existing virtual GPU cluster.
+        Update the name, tags, and/or server settings of an existing virtual GPU
+        cluster.
 
-        Update tags for a virtual GPU cluster (and apply to all its nodes) using JSON
-        Merge Patch semantics (RFC 7386). To add or update tags, provide key-value
-        pairs. To remove a tag, set its value to null.
+        Update tags using JSON Merge Patch semantics (RFC 7396). To add or update tags,
+        provide key-value pairs. To remove a tag, set its value to null.
+
+        Updating server settings (`servers_settings`) only modifies the cluster
+        template. **It does NOT modify or rebuild any existing servers in the cluster.**
 
         Args:
           project_id: Project ID
@@ -1131,6 +1182,8 @@ class AsyncClustersResource(AsyncAPIResource):
           cluster_id: Cluster unique identifier
 
           name: Cluster name
+
+          servers_settings: Configuration settings for the servers in the cluster
 
           tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
               key-value pairs to add or update tags. Set tag values to `null` to remove tags.
@@ -1178,6 +1231,7 @@ class AsyncClustersResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "name": name,
+                    "servers_settings": servers_settings,
                     "tags": tags,
                 },
                 cluster_update_params.ClusterUpdateParams,
@@ -1193,8 +1247,17 @@ class AsyncClustersResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        created_at: cluster_list_params.CreatedAt | Omit = omit,
+        flavor: cluster_list_params.Flavor | Omit = omit,
+        ids: SequenceNotStr[str] | Omit = omit,
         limit: int | Omit = omit,
+        name: cluster_list_params.Name | Omit = omit,
         offset: int | Omit = omit,
+        servers_count: cluster_list_params.ServersCount | Omit = omit,
+        tag_key: cluster_list_params.TagKey | Omit = omit,
+        tag_value: cluster_list_params.TagValue | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
+        updated_at: cluster_list_params.UpdatedAt | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1210,9 +1273,31 @@ class AsyncClustersResource(AsyncAPIResource):
 
           region_id: Region ID
 
+          created_at: Filter by creation time (UTC), e.g. `created_at[gte]=2026-01-01T00:00:00Z`.
+
+          flavor: Filter by flavor (case-insensitive), e.g. `flavor[prefix]=g3-`,
+              `flavor[exact]=g3-ai-32-192-1500-l40s-48-1`.
+
+          ids: Return only clusters with these IDs, e.g. `ids=<id1>&ids=<id2>`.
+
           limit: Limit of items on a single page
 
+          name: Filter by name (case-insensitive), e.g. `name[contains]=gpu`,
+              `name[prefix]=prod-`.
+
           offset: Offset in results list
+
+          servers_count: Filter by node count, e.g. `servers_count[gte]=2`,
+              `servers_count[gte]=2&servers_count[lt]=8`.
+
+          tag_key: Filter by tag key regardless of value, e.g. `tag_key[contains]=team`.
+
+          tag_value: Filter by tag value regardless of key, e.g. `tag_value[prefix]=prod`.
+
+          tags: Filter by exact tag key-value pairs, e.g. `tags[env]=prod&tags[team]=core`.
+              Pairs are ANDed; values match case-insensitively.
+
+          updated_at: Filter by last-change time (UTC), e.g. `updated_at[gte]=2026-06-01T00:00:00Z`.
 
           extra_headers: Send extra headers
 
@@ -1238,8 +1323,17 @@ class AsyncClustersResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "created_at": created_at,
+                        "flavor": flavor,
+                        "ids": ids,
                         "limit": limit,
+                        "name": name,
                         "offset": offset,
+                        "servers_count": servers_count,
+                        "tag_key": tag_key,
+                        "tag_value": tag_value,
+                        "tags": tags,
+                        "updated_at": updated_at,
                     },
                     cluster_list_params.ClusterListParams,
                 ),

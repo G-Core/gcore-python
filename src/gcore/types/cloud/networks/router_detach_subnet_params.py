@@ -9,8 +9,10 @@ __all__ = ["RouterDetachSubnetParams"]
 
 class RouterDetachSubnetParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     subnet_id: Required[str]
     """Target IP is identified by it's subnet"""

@@ -61,6 +61,8 @@ from ...._response import (
 from ....pagination import SyncOffsetPage, AsyncOffsetPage
 from ....types.cloud import (
     InterfaceIPFamily,
+    ProvisioningStatus,
+    LoadBalancerOperatingStatus,
     LoadBalancerMemberConnectivity,
     load_balancer_get_params,
     load_balancer_list_params,
@@ -81,7 +83,9 @@ from .l7_policies.l7_policies import (
 from ....types.cloud.task_id_list import TaskIDList
 from ....types.cloud.load_balancer import LoadBalancer
 from ....types.cloud.interface_ip_family import InterfaceIPFamily
+from ....types.cloud.provisioning_status import ProvisioningStatus
 from ....types.cloud.tag_update_map_param import TagUpdateMapParam
+from ....types.cloud.load_balancer_operating_status import LoadBalancerOperatingStatus
 from ....types.cloud.load_balancer_member_connectivity import LoadBalancerMemberConnectivity
 
 __all__ = ["LoadBalancersResource", "AsyncLoadBalancersResource"]
@@ -355,6 +359,7 @@ class LoadBalancersResource(SyncAPIResource):
         logging_enabled: bool | Omit = omit,
         name: str | Omit = omit,
         offset: int | Omit = omit,
+        operating_status: LoadBalancerOperatingStatus | Omit = omit,
         order_by: Literal[
             "created_at.asc",
             "created_at.desc",
@@ -374,6 +379,7 @@ class LoadBalancersResource(SyncAPIResource):
             "vip_ip_family.desc",
         ]
         | Omit = omit,
+        provisioning_status: ProvisioningStatus | Omit = omit,
         show_stats: bool | Omit = omit,
         tag_key: SequenceNotStr[str] | Omit = omit,
         tag_key_value: str | Omit = omit,
@@ -403,7 +409,11 @@ class LoadBalancersResource(SyncAPIResource):
 
           offset: Offset in results list
 
+          operating_status: Filter by operating status
+
           order_by: Order by field and direction.
+
+          provisioning_status: Filter by provisioning (lifecycle) status
 
           show_stats: Show statistics
 
@@ -442,7 +452,9 @@ class LoadBalancersResource(SyncAPIResource):
                         "logging_enabled": logging_enabled,
                         "name": name,
                         "offset": offset,
+                        "operating_status": operating_status,
                         "order_by": order_by,
+                        "provisioning_status": provisioning_status,
                         "show_stats": show_stats,
                         "tag_key": tag_key,
                         "tag_key_value": tag_key_value,
@@ -1139,6 +1151,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         logging_enabled: bool | Omit = omit,
         name: str | Omit = omit,
         offset: int | Omit = omit,
+        operating_status: LoadBalancerOperatingStatus | Omit = omit,
         order_by: Literal[
             "created_at.asc",
             "created_at.desc",
@@ -1158,6 +1171,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
             "vip_ip_family.desc",
         ]
         | Omit = omit,
+        provisioning_status: ProvisioningStatus | Omit = omit,
         show_stats: bool | Omit = omit,
         tag_key: SequenceNotStr[str] | Omit = omit,
         tag_key_value: str | Omit = omit,
@@ -1187,7 +1201,11 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
 
           offset: Offset in results list
 
+          operating_status: Filter by operating status
+
           order_by: Order by field and direction.
+
+          provisioning_status: Filter by provisioning (lifecycle) status
 
           show_stats: Show statistics
 
@@ -1226,7 +1244,9 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
                         "logging_enabled": logging_enabled,
                         "name": name,
                         "offset": offset,
+                        "operating_status": operating_status,
                         "order_by": order_by,
+                        "provisioning_status": provisioning_status,
                         "show_stats": show_stats,
                         "tag_key": tag_key,
                         "tag_key_value": tag_key_value,

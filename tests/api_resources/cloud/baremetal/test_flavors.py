@@ -36,6 +36,8 @@ class TestFlavors:
             include_capacity=True,
             include_prices=True,
             include_reservation_stock=True,
+            limit=0,
+            offset=0,
         )
         assert_matches_type(BaremetalFlavorList, flavor, path=["response"])
 
@@ -90,6 +92,8 @@ class TestAsyncFlavors:
             include_capacity=True,
             include_prices=True,
             include_reservation_stock=True,
+            limit=0,
+            offset=0,
         )
         assert_matches_type(BaremetalFlavorList, flavor, path=["response"])
 

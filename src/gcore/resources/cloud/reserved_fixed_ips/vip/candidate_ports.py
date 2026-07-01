@@ -57,6 +57,12 @@ class CandidatePortsResource(SyncAPIResource):
         List all instance ports that are available for connecting to a VIP.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          port_id: Port ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -122,6 +128,12 @@ class AsyncCandidatePortsResource(AsyncAPIResource):
         List all instance ports that are available for connecting to a VIP.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          port_id: Port ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

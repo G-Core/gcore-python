@@ -33,3 +33,12 @@ class FlavorListParams(TypedDict, total=False):
     Set to true if flavor listing should include count of reserved resources in
     stock.
     """
+
+    limit: int
+    """Optional. Limit the number of returned items"""
+
+    offset: int
+    """Optional.
+
+    Offset value is used to exclude the first set of records from the result
+    """

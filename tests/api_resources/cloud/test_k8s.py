@@ -26,6 +26,16 @@ class TestK8S:
         assert_matches_type(K8SClusterVersionList, k8s, path=["response"])
 
     @parametrize
+    def test_method_list_versions_with_all_params(self, client: Gcore) -> None:
+        k8s = client.cloud.k8s.list_versions(
+            project_id=1,
+            region_id=7,
+            limit=1000,
+            offset=0,
+        )
+        assert_matches_type(K8SClusterVersionList, k8s, path=["response"])
+
+    @parametrize
     def test_raw_response_list_versions(self, client: Gcore) -> None:
         response = client.cloud.k8s.with_raw_response.list_versions(
             project_id=1,
@@ -62,6 +72,16 @@ class TestAsyncK8S:
         k8s = await async_client.cloud.k8s.list_versions(
             project_id=1,
             region_id=7,
+        )
+        assert_matches_type(K8SClusterVersionList, k8s, path=["response"])
+
+    @parametrize
+    async def test_method_list_versions_with_all_params(self, async_client: AsyncGcore) -> None:
+        k8s = await async_client.cloud.k8s.list_versions(
+            project_id=1,
+            region_id=7,
+            limit=1000,
+            offset=0,
         )
         assert_matches_type(K8SClusterVersionList, k8s, path=["response"])
 

@@ -19,6 +19,15 @@ class ImageListParams(TypedDict, total=False):
     include_prices: bool
     """Show price."""
 
+    limit: int
+    """Optional. Limit the number of returned items"""
+
+    offset: int
+    """Optional.
+
+    Offset value is used to exclude the first set of records from the result
+    """
+
     private: str
     """Any value to show private images"""
 

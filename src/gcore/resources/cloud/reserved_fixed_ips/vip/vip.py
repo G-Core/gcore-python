@@ -83,6 +83,12 @@ class VipResource(SyncAPIResource):
         Update the VIP status of a reserved fixed IP.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          port_id: Port ID
+
           is_vip: If reserved fixed IP should be a VIP
 
           extra_headers: Send extra headers
@@ -160,6 +166,12 @@ class AsyncVipResource(AsyncAPIResource):
         Update the VIP status of a reserved fixed IP.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          port_id: Port ID
+
           is_vip: If reserved fixed IP should be a VIP
 
           extra_headers: Send extra headers

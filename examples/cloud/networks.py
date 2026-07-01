@@ -65,7 +65,7 @@ def get_network(*, client: Gcore, network_id: str) -> None:
 
 def update_network(*, client: Gcore, network_id: str) -> None:
     print("\n=== UPDATE NETWORK ===")
-    network = client.cloud.networks.update(network_id=network_id, name="gcore-go-example-updated")
+    network = client.cloud.networks.update(network_id=network_id, name="gcore-go-example-updated")  # pyright: ignore[reportDeprecated]
     print(f"Updated network: ID={network.id}, name={network.name}")
     print("========================")
 

@@ -20,9 +20,9 @@ class TestVip:
     @parametrize
     def test_method_toggle(self, client: Gcore) -> None:
         vip = client.cloud.reserved_fixed_ips.vip.toggle(
-            port_id="port_id",
-            project_id=0,
-            region_id=0,
+            port_id="ac177f1f-eb04-42c4-9864-e7d6486813af",
+            project_id=1,
+            region_id=4,
             is_vip=True,
         )
         assert_matches_type(ReservedFixedIP, vip, path=["response"])
@@ -30,9 +30,9 @@ class TestVip:
     @parametrize
     def test_raw_response_toggle(self, client: Gcore) -> None:
         response = client.cloud.reserved_fixed_ips.vip.with_raw_response.toggle(
-            port_id="port_id",
-            project_id=0,
-            region_id=0,
+            port_id="ac177f1f-eb04-42c4-9864-e7d6486813af",
+            project_id=1,
+            region_id=4,
             is_vip=True,
         )
 
@@ -44,9 +44,9 @@ class TestVip:
     @parametrize
     def test_streaming_response_toggle(self, client: Gcore) -> None:
         with client.cloud.reserved_fixed_ips.vip.with_streaming_response.toggle(
-            port_id="port_id",
-            project_id=0,
-            region_id=0,
+            port_id="ac177f1f-eb04-42c4-9864-e7d6486813af",
+            project_id=1,
+            region_id=4,
             is_vip=True,
         ) as response:
             assert not response.is_closed
@@ -62,8 +62,8 @@ class TestVip:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `port_id` but received ''"):
             client.cloud.reserved_fixed_ips.vip.with_raw_response.toggle(
                 port_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=4,
                 is_vip=True,
             )
 
@@ -76,9 +76,9 @@ class TestAsyncVip:
     @parametrize
     async def test_method_toggle(self, async_client: AsyncGcore) -> None:
         vip = await async_client.cloud.reserved_fixed_ips.vip.toggle(
-            port_id="port_id",
-            project_id=0,
-            region_id=0,
+            port_id="ac177f1f-eb04-42c4-9864-e7d6486813af",
+            project_id=1,
+            region_id=4,
             is_vip=True,
         )
         assert_matches_type(ReservedFixedIP, vip, path=["response"])
@@ -86,9 +86,9 @@ class TestAsyncVip:
     @parametrize
     async def test_raw_response_toggle(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.reserved_fixed_ips.vip.with_raw_response.toggle(
-            port_id="port_id",
-            project_id=0,
-            region_id=0,
+            port_id="ac177f1f-eb04-42c4-9864-e7d6486813af",
+            project_id=1,
+            region_id=4,
             is_vip=True,
         )
 
@@ -100,9 +100,9 @@ class TestAsyncVip:
     @parametrize
     async def test_streaming_response_toggle(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.reserved_fixed_ips.vip.with_streaming_response.toggle(
-            port_id="port_id",
-            project_id=0,
-            region_id=0,
+            port_id="ac177f1f-eb04-42c4-9864-e7d6486813af",
+            project_id=1,
+            region_id=4,
             is_vip=True,
         ) as response:
             assert not response.is_closed
@@ -118,7 +118,7 @@ class TestAsyncVip:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `port_id` but received ''"):
             await async_client.cloud.reserved_fixed_ips.vip.with_raw_response.toggle(
                 port_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=4,
                 is_vip=True,
             )

@@ -187,7 +187,9 @@ class ClustersResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        image_id: str | Omit = omit,
         name: str | Omit = omit,
+        servers_settings: cluster_update_params.ServersSettings | Omit = omit,
         tags: Optional[TagUpdateMapParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -197,11 +199,18 @@ class ClustersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GPUBaremetalCluster:
         """
-        Update the name of an existing bare metal GPU cluster.
+        Update the name, tags, and/or server settings of an existing bare metal GPU
+        cluster.
 
-        Update tags for a bare metal GPU cluster (and apply to all its nodes) using JSON
-        Merge Patch semantics (RFC 7386). To add or update tags, provide key-value
-        pairs. To remove a tag, set its value to null.
+        Update tags using JSON Merge Patch semantics (RFC 7396). To add or update tags,
+        provide key-value pairs. To remove a tag, set its value to null.
+
+        Updating server settings (`servers_settings`, `image_id`) only modifies the
+        cluster template. **It does NOT modify or rebuild any existing servers in the
+        cluster.** Tags and name will be applied immediately. To apply the rest changes
+        to running servers, use the
+        `/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/apply_settings`
+        endpoint.
 
         Args:
           project_id: Project ID
@@ -210,7 +219,13 @@ class ClustersResource(SyncAPIResource):
 
           cluster_id: Cluster unique identifier
 
+          image_id: Image ID of the OS image to apply to the cluster template. Use GET
+              /v1/images/{`project_id`}/{`region_id`} to discover available images. Takes
+              effect on existing servers only after a successful POST /`apply_settings` call.
+
           name: Cluster name
+
+          servers_settings: Configuration settings for the servers in the cluster
 
           tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
               key-value pairs to add or update tags. Set tag values to `null` to remove tags.
@@ -257,7 +272,9 @@ class ClustersResource(SyncAPIResource):
             ),
             body=maybe_transform(
                 {
+                    "image_id": image_id,
                     "name": name,
+                    "servers_settings": servers_settings,
                     "tags": tags,
                 },
                 cluster_update_params.ClusterUpdateParams,
@@ -273,9 +290,19 @@ class ClustersResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        created_at: cluster_list_params.CreatedAt | Omit = omit,
+        flavor: cluster_list_params.Flavor | Omit = omit,
+        ids: SequenceNotStr[str] | Omit = omit,
+        image_ids: SequenceNotStr[str] | Omit = omit,
         limit: int | Omit = omit,
         managed_by: List[Literal["k8s", "user"]] | Omit = omit,
+        name: cluster_list_params.Name | Omit = omit,
         offset: int | Omit = omit,
+        servers_count: cluster_list_params.ServersCount | Omit = omit,
+        tag_key: cluster_list_params.TagKey | Omit = omit,
+        tag_value: cluster_list_params.TagValue | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
+        updated_at: cluster_list_params.UpdatedAt | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -291,15 +318,37 @@ class ClustersResource(SyncAPIResource):
 
           region_id: Region ID
 
+          created_at: Filter by creation time (UTC), e.g. `created_at[gte]=2026-01-01T00:00:00Z`.
+
+          flavor: Filter by flavor (case-insensitive), e.g. `flavor[prefix]=bm3-`,
+              `flavor[exact]=bm3-ai-1xlarge-h100-80-8`.
+
+          ids: Return only clusters with these IDs, e.g. `ids=<id1>&ids=<id2>`.
+
+          image_ids: Return only clusters built from these source image IDs, e.g.
+              `image_ids=<id1>&image_ids=<id2>`.
+
           limit: Limit of items on a single page
 
-          managed_by: Specifies the entity responsible for managing the resource.
+          managed_by: Filter by who manages the cluster: `user` (default) or `k8s` (Managed
+              Kubernetes). Pass both to include all, e.g. `managed_by=user&managed_by=k8s`.
 
-              - `user`: The resource (cluster) is created and maintained directly by the user.
-              - `k8s`: The resource is created and maintained automatically by Managed
-                Kubernetes service
+          name: Filter by name (case-insensitive), e.g. `name[contains]=gpu`,
+              `name[prefix]=prod-`.
 
           offset: Offset in results list
+
+          servers_count: Filter by node count, e.g. `servers_count[gte]=2`,
+              `servers_count[gte]=2&servers_count[lt]=8`.
+
+          tag_key: Filter by tag key regardless of value, e.g. `tag_key[contains]=team`.
+
+          tag_value: Filter by tag value regardless of key, e.g. `tag_value[prefix]=prod`.
+
+          tags: Filter by exact tag key-value pairs, e.g. `tags[env]=prod&tags[team]=core`.
+              Pairs are ANDed; values match case-insensitively.
+
+          updated_at: Filter by last-change time (UTC), e.g. `updated_at[gte]=2026-06-01T00:00:00Z`.
 
           extra_headers: Send extra headers
 
@@ -325,9 +374,19 @@ class ClustersResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "created_at": created_at,
+                        "flavor": flavor,
+                        "ids": ids,
+                        "image_ids": image_ids,
                         "limit": limit,
                         "managed_by": managed_by,
+                        "name": name,
                         "offset": offset,
+                        "servers_count": servers_count,
+                        "tag_key": tag_key,
+                        "tag_value": tag_value,
+                        "tags": tags,
+                        "updated_at": updated_at,
                     },
                     cluster_list_params.ClusterListParams,
                 ),
@@ -555,6 +614,7 @@ class ClustersResource(SyncAPIResource):
             cast_to=GPUBaremetalClusterServerV1List,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def rebuild(
         self,
         cluster_id: str,
@@ -568,14 +628,17 @@ class ClustersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
-        """Perform a rebuild operation on a bare metal GPU cluster.
+        """
+        Use
+        `POST /v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/apply_settings`
+        instead.
 
-        During the rebuild
+        Perform a rebuild operation on a bare metal GPU cluster. During the rebuild
         process, the servers in cluster receive a new image, SSH key, and user data.
         Important: Before triggering a rebuild, the cluster must have updated server
         settings to apply. These cluster settings must be patched using the following
         endpoint: PATCH
-        '/v3/gpu/baremetal/{`project_id`}/{`region_id`}/clusters/{`cluster_id`}/servers_settings'
+        '/v3/gpu/baremetal/{`project_id`}/{`region_id`}/clusters/{`cluster_id`}'
 
         Args:
           project_id: Project ID
@@ -661,6 +724,7 @@ class ClustersResource(SyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def update_servers_settings(
         self,
         cluster_id: str,
@@ -677,11 +741,12 @@ class ClustersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GPUBaremetalCluster:
         """
-        This operation only modifies cluster settings such as SSH key, image, and user
-        data. **It does NOT modify or rebuild any existing servers in the cluster.**
+        Use `PATCH /v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}`
+        instead, which now accepts `servers_settings` and `image_id` fields alongside
+        `name` and `tags`.
 
         To apply these configuration changes to running servers, use the
-        `/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/rebuild`
+        `/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/apply_settings`
         endpoint.
 
         Args:
@@ -807,7 +872,7 @@ class ClustersResource(SyncAPIResource):
         """
         Rebuild a bare metal GPU cluster and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
         """
-        response = self.rebuild(
+        response = self.rebuild(  # pyright: ignore[reportDeprecated]
             cluster_id=cluster_id,
             project_id=project_id,
             region_id=region_id,
@@ -1051,7 +1116,9 @@ class AsyncClustersResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        image_id: str | Omit = omit,
         name: str | Omit = omit,
+        servers_settings: cluster_update_params.ServersSettings | Omit = omit,
         tags: Optional[TagUpdateMapParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1061,11 +1128,18 @@ class AsyncClustersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GPUBaremetalCluster:
         """
-        Update the name of an existing bare metal GPU cluster.
+        Update the name, tags, and/or server settings of an existing bare metal GPU
+        cluster.
 
-        Update tags for a bare metal GPU cluster (and apply to all its nodes) using JSON
-        Merge Patch semantics (RFC 7386). To add or update tags, provide key-value
-        pairs. To remove a tag, set its value to null.
+        Update tags using JSON Merge Patch semantics (RFC 7396). To add or update tags,
+        provide key-value pairs. To remove a tag, set its value to null.
+
+        Updating server settings (`servers_settings`, `image_id`) only modifies the
+        cluster template. **It does NOT modify or rebuild any existing servers in the
+        cluster.** Tags and name will be applied immediately. To apply the rest changes
+        to running servers, use the
+        `/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/apply_settings`
+        endpoint.
 
         Args:
           project_id: Project ID
@@ -1074,7 +1148,13 @@ class AsyncClustersResource(AsyncAPIResource):
 
           cluster_id: Cluster unique identifier
 
+          image_id: Image ID of the OS image to apply to the cluster template. Use GET
+              /v1/images/{`project_id`}/{`region_id`} to discover available images. Takes
+              effect on existing servers only after a successful POST /`apply_settings` call.
+
           name: Cluster name
+
+          servers_settings: Configuration settings for the servers in the cluster
 
           tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
               key-value pairs to add or update tags. Set tag values to `null` to remove tags.
@@ -1121,7 +1201,9 @@ class AsyncClustersResource(AsyncAPIResource):
             ),
             body=await async_maybe_transform(
                 {
+                    "image_id": image_id,
                     "name": name,
+                    "servers_settings": servers_settings,
                     "tags": tags,
                 },
                 cluster_update_params.ClusterUpdateParams,
@@ -1137,9 +1219,19 @@ class AsyncClustersResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        created_at: cluster_list_params.CreatedAt | Omit = omit,
+        flavor: cluster_list_params.Flavor | Omit = omit,
+        ids: SequenceNotStr[str] | Omit = omit,
+        image_ids: SequenceNotStr[str] | Omit = omit,
         limit: int | Omit = omit,
         managed_by: List[Literal["k8s", "user"]] | Omit = omit,
+        name: cluster_list_params.Name | Omit = omit,
         offset: int | Omit = omit,
+        servers_count: cluster_list_params.ServersCount | Omit = omit,
+        tag_key: cluster_list_params.TagKey | Omit = omit,
+        tag_value: cluster_list_params.TagValue | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
+        updated_at: cluster_list_params.UpdatedAt | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1155,15 +1247,37 @@ class AsyncClustersResource(AsyncAPIResource):
 
           region_id: Region ID
 
+          created_at: Filter by creation time (UTC), e.g. `created_at[gte]=2026-01-01T00:00:00Z`.
+
+          flavor: Filter by flavor (case-insensitive), e.g. `flavor[prefix]=bm3-`,
+              `flavor[exact]=bm3-ai-1xlarge-h100-80-8`.
+
+          ids: Return only clusters with these IDs, e.g. `ids=<id1>&ids=<id2>`.
+
+          image_ids: Return only clusters built from these source image IDs, e.g.
+              `image_ids=<id1>&image_ids=<id2>`.
+
           limit: Limit of items on a single page
 
-          managed_by: Specifies the entity responsible for managing the resource.
+          managed_by: Filter by who manages the cluster: `user` (default) or `k8s` (Managed
+              Kubernetes). Pass both to include all, e.g. `managed_by=user&managed_by=k8s`.
 
-              - `user`: The resource (cluster) is created and maintained directly by the user.
-              - `k8s`: The resource is created and maintained automatically by Managed
-                Kubernetes service
+          name: Filter by name (case-insensitive), e.g. `name[contains]=gpu`,
+              `name[prefix]=prod-`.
 
           offset: Offset in results list
+
+          servers_count: Filter by node count, e.g. `servers_count[gte]=2`,
+              `servers_count[gte]=2&servers_count[lt]=8`.
+
+          tag_key: Filter by tag key regardless of value, e.g. `tag_key[contains]=team`.
+
+          tag_value: Filter by tag value regardless of key, e.g. `tag_value[prefix]=prod`.
+
+          tags: Filter by exact tag key-value pairs, e.g. `tags[env]=prod&tags[team]=core`.
+              Pairs are ANDed; values match case-insensitively.
+
+          updated_at: Filter by last-change time (UTC), e.g. `updated_at[gte]=2026-06-01T00:00:00Z`.
 
           extra_headers: Send extra headers
 
@@ -1189,9 +1303,19 @@ class AsyncClustersResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "created_at": created_at,
+                        "flavor": flavor,
+                        "ids": ids,
+                        "image_ids": image_ids,
                         "limit": limit,
                         "managed_by": managed_by,
+                        "name": name,
                         "offset": offset,
+                        "servers_count": servers_count,
+                        "tag_key": tag_key,
+                        "tag_value": tag_value,
+                        "tags": tags,
+                        "updated_at": updated_at,
                     },
                     cluster_list_params.ClusterListParams,
                 ),
@@ -1419,6 +1543,7 @@ class AsyncClustersResource(AsyncAPIResource):
             cast_to=GPUBaremetalClusterServerV1List,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def rebuild(
         self,
         cluster_id: str,
@@ -1432,14 +1557,17 @@ class AsyncClustersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
-        """Perform a rebuild operation on a bare metal GPU cluster.
+        """
+        Use
+        `POST /v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/apply_settings`
+        instead.
 
-        During the rebuild
+        Perform a rebuild operation on a bare metal GPU cluster. During the rebuild
         process, the servers in cluster receive a new image, SSH key, and user data.
         Important: Before triggering a rebuild, the cluster must have updated server
         settings to apply. These cluster settings must be patched using the following
         endpoint: PATCH
-        '/v3/gpu/baremetal/{`project_id`}/{`region_id`}/clusters/{`cluster_id`}/servers_settings'
+        '/v3/gpu/baremetal/{`project_id`}/{`region_id`}/clusters/{`cluster_id`}'
 
         Args:
           project_id: Project ID
@@ -1527,6 +1655,7 @@ class AsyncClustersResource(AsyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def update_servers_settings(
         self,
         cluster_id: str,
@@ -1543,11 +1672,12 @@ class AsyncClustersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GPUBaremetalCluster:
         """
-        This operation only modifies cluster settings such as SSH key, image, and user
-        data. **It does NOT modify or rebuild any existing servers in the cluster.**
+        Use `PATCH /v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}`
+        instead, which now accepts `servers_settings` and `image_id` fields alongside
+        `name` and `tags`.
 
         To apply these configuration changes to running servers, use the
-        `/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/rebuild`
+        `/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/apply_settings`
         endpoint.
 
         Args:
@@ -1673,7 +1803,7 @@ class AsyncClustersResource(AsyncAPIResource):
         """
         Rebuild a bare metal GPU cluster and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
         """
-        response = await self.rebuild(
+        response = await self.rebuild(  # pyright: ignore[reportDeprecated]
             cluster_id=cluster_id,
             project_id=project_id,
             region_id=region_id,
@@ -1827,14 +1957,18 @@ class ClustersResourceWithRawResponse:
                 clusters.reboot_all_servers,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.rebuild = to_raw_response_wrapper(
-            clusters.rebuild,
+        self.rebuild = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                clusters.rebuild,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.resize = to_raw_response_wrapper(
             clusters.resize,
         )
-        self.update_servers_settings = to_raw_response_wrapper(
-            clusters.update_servers_settings,
+        self.update_servers_settings = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                clusters.update_servers_settings,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.create_and_poll = to_raw_response_wrapper(
             clusters.create_and_poll,
@@ -1896,14 +2030,18 @@ class AsyncClustersResourceWithRawResponse:
                 clusters.reboot_all_servers,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.rebuild = async_to_raw_response_wrapper(
-            clusters.rebuild,
+        self.rebuild = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                clusters.rebuild,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.resize = async_to_raw_response_wrapper(
             clusters.resize,
         )
-        self.update_servers_settings = async_to_raw_response_wrapper(
-            clusters.update_servers_settings,
+        self.update_servers_settings = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                clusters.update_servers_settings,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.create_and_poll = async_to_raw_response_wrapper(
             clusters.create_and_poll,
@@ -1965,14 +2103,18 @@ class ClustersResourceWithStreamingResponse:
                 clusters.reboot_all_servers,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.rebuild = to_streamed_response_wrapper(
-            clusters.rebuild,
+        self.rebuild = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                clusters.rebuild,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.resize = to_streamed_response_wrapper(
             clusters.resize,
         )
-        self.update_servers_settings = to_streamed_response_wrapper(
-            clusters.update_servers_settings,
+        self.update_servers_settings = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                clusters.update_servers_settings,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.create_and_poll = to_streamed_response_wrapper(
             clusters.create_and_poll,
@@ -2034,14 +2176,18 @@ class AsyncClustersResourceWithStreamingResponse:
                 clusters.reboot_all_servers,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.rebuild = async_to_streamed_response_wrapper(
-            clusters.rebuild,
+        self.rebuild = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                clusters.rebuild,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.resize = async_to_streamed_response_wrapper(
             clusters.resize,
         )
-        self.update_servers_settings = async_to_streamed_response_wrapper(
-            clusters.update_servers_settings,
+        self.update_servers_settings = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                clusters.update_servers_settings,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.create_and_poll = async_to_streamed_response_wrapper(
             clusters.create_and_poll,

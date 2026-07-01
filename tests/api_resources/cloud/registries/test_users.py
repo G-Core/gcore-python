@@ -143,6 +143,17 @@ class TestUsers:
         assert_matches_type(RegistryUserList, user, path=["response"])
 
     @parametrize
+    def test_method_list_with_all_params(self, client: Gcore) -> None:
+        user = client.cloud.registries.users.list(
+            registry_id=0,
+            project_id=0,
+            region_id=0,
+            limit=0,
+            offset=0,
+        )
+        assert_matches_type(RegistryUserList, user, path=["response"])
+
+    @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
         response = client.cloud.registries.users.with_raw_response.list(
             registry_id=0,
@@ -428,6 +439,17 @@ class TestAsyncUsers:
             registry_id=0,
             project_id=0,
             region_id=0,
+        )
+        assert_matches_type(RegistryUserList, user, path=["response"])
+
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
+        user = await async_client.cloud.registries.users.list(
+            registry_id=0,
+            project_id=0,
+            region_id=0,
+            limit=0,
+            offset=0,
         )
         assert_matches_type(RegistryUserList, user, path=["response"])
 

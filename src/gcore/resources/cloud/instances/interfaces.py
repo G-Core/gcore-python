@@ -18,7 +18,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.cloud.instances import interface_attach_params, interface_detach_params
+from ....types.cloud.instances import interface_list_params, interface_attach_params, interface_detach_params
 from ....types.cloud.task_id_list import TaskIDList
 from ....types.cloud.network_interface_list import NetworkInterfaceList
 
@@ -51,6 +51,8 @@ class InterfacesResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -62,6 +64,10 @@ class InterfacesResource(SyncAPIResource):
         List all network interfaces attached to the specified instance.
 
         Args:
+          limit: Limit the number of returned items
+
+          offset: Offset value is used to exclude the first set of records from the result
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -84,7 +90,17 @@ class InterfacesResource(SyncAPIResource):
                 instance_id=instance_id,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    interface_list_params.InterfaceListParams,
+                ),
             ),
             cast_to=NetworkInterfaceList,
         )
@@ -347,8 +363,7 @@ class InterfacesResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        ddos_profile: interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile
-        | Omit = omit,
+        ddos_profile: interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile | Omit = omit,
         interface_name: str | Omit = omit,
         ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
         port_group: int | Omit = omit,
@@ -399,8 +414,7 @@ class InterfacesResource(SyncAPIResource):
         ddos_profile: interface_attach_params.NewInterfaceSpecificSubnetSchemaDDOSProfile | Omit = omit,
         interface_name: str | Omit = omit,
         port_group: int | Omit = omit,
-        security_groups: Iterable[interface_attach_params.NewInterfaceSpecificSubnetSchemaSecurityGroup]
-        | Omit = omit,
+        security_groups: Iterable[interface_attach_params.NewInterfaceSpecificSubnetSchemaSecurityGroup] | Omit = omit,
         type: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -447,8 +461,7 @@ class InterfacesResource(SyncAPIResource):
         interface_name: str | Omit = omit,
         ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
         port_group: int | Omit = omit,
-        security_groups: Iterable[interface_attach_params.NewInterfaceAnySubnetSchemaSecurityGroup]
-        | Omit = omit,
+        security_groups: Iterable[interface_attach_params.NewInterfaceAnySubnetSchemaSecurityGroup] | Omit = omit,
         type: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -496,8 +509,7 @@ class InterfacesResource(SyncAPIResource):
         ddos_profile: interface_attach_params.NewInterfaceReservedFixedIPSchemaDDOSProfile | Omit = omit,
         interface_name: str | Omit = omit,
         port_group: int | Omit = omit,
-        security_groups: Iterable[interface_attach_params.NewInterfaceReservedFixedIPSchemaSecurityGroup]
-        | Omit = omit,
+        security_groups: Iterable[interface_attach_params.NewInterfaceReservedFixedIPSchemaSecurityGroup] | Omit = omit,
         type: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -538,8 +550,7 @@ class InterfacesResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        ddos_profile: interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile
-        | Omit = omit,
+        ddos_profile: interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile | Omit = omit,
         interface_name: str | Omit = omit,
         ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
         port_group: int | Omit = omit,
@@ -721,6 +732,8 @@ class AsyncInterfacesResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -732,6 +745,10 @@ class AsyncInterfacesResource(AsyncAPIResource):
         List all network interfaces attached to the specified instance.
 
         Args:
+          limit: Limit the number of returned items
+
+          offset: Offset value is used to exclude the first set of records from the result
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -754,7 +771,17 @@ class AsyncInterfacesResource(AsyncAPIResource):
                 instance_id=instance_id,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    interface_list_params.InterfaceListParams,
+                ),
             ),
             cast_to=NetworkInterfaceList,
         )
@@ -1017,8 +1044,7 @@ class AsyncInterfacesResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        ddos_profile: interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile
-        | Omit = omit,
+        ddos_profile: interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile | Omit = omit,
         interface_name: str | Omit = omit,
         ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
         port_group: int | Omit = omit,
@@ -1051,8 +1077,7 @@ class AsyncInterfacesResource(AsyncAPIResource):
         ddos_profile: interface_attach_params.NewInterfaceSpecificSubnetSchemaDDOSProfile | Omit = omit,
         interface_name: str | Omit = omit,
         port_group: int | Omit = omit,
-        security_groups: Iterable[interface_attach_params.NewInterfaceSpecificSubnetSchemaSecurityGroup]
-        | Omit = omit,
+        security_groups: Iterable[interface_attach_params.NewInterfaceSpecificSubnetSchemaSecurityGroup] | Omit = omit,
         type: str | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
         polling_timeout_seconds: int | Omit = omit,
@@ -1081,8 +1106,7 @@ class AsyncInterfacesResource(AsyncAPIResource):
         interface_name: str | Omit = omit,
         ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
         port_group: int | Omit = omit,
-        security_groups: Iterable[interface_attach_params.NewInterfaceAnySubnetSchemaSecurityGroup]
-        | Omit = omit,
+        security_groups: Iterable[interface_attach_params.NewInterfaceAnySubnetSchemaSecurityGroup] | Omit = omit,
         type: str | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
         polling_timeout_seconds: int | Omit = omit,
@@ -1110,8 +1134,7 @@ class AsyncInterfacesResource(AsyncAPIResource):
         ddos_profile: interface_attach_params.NewInterfaceReservedFixedIPSchemaDDOSProfile | Omit = omit,
         interface_name: str | Omit = omit,
         port_group: int | Omit = omit,
-        security_groups: Iterable[interface_attach_params.NewInterfaceReservedFixedIPSchemaSecurityGroup]
-        | Omit = omit,
+        security_groups: Iterable[interface_attach_params.NewInterfaceReservedFixedIPSchemaSecurityGroup] | Omit = omit,
         type: str | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
         polling_timeout_seconds: int | Omit = omit,
@@ -1134,8 +1157,7 @@ class AsyncInterfacesResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        ddos_profile: interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile
-        | Omit = omit,
+        ddos_profile: interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile | Omit = omit,
         interface_name: str | Omit = omit,
         ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
         port_group: int | Omit = omit,

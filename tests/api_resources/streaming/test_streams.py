@@ -230,7 +230,6 @@ class TestStreams:
 
     @pytest.mark.skip(reason="OAS example mismatch with schema")
     @parametrize
-
     def test_method_get(self, client: Gcore) -> None:
         stream = client.streaming.streams.get(
             0,
@@ -263,7 +262,6 @@ class TestStreams:
 
     @pytest.mark.skip(reason="OAS example mismatch with schema")
     @parametrize
-
     def test_method_start_recording(self, client: Gcore) -> None:
         stream = client.streaming.streams.start_recording(
             0,
@@ -539,7 +537,6 @@ class TestAsyncStreams:
 
     @pytest.mark.skip(reason="OAS example mismatch with schema")
     @parametrize
-
     async def test_method_get(self, async_client: AsyncGcore) -> None:
         stream = await async_client.streaming.streams.get(
             0,
@@ -572,7 +569,6 @@ class TestAsyncStreams:
 
     @pytest.mark.skip(reason="OAS example mismatch with schema")
     @parametrize
-
     async def test_method_start_recording(self, async_client: AsyncGcore) -> None:
         stream = await async_client.streaming.streams.start_recording(
             0,

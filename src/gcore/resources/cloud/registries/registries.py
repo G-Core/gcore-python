@@ -46,7 +46,7 @@ from .repositories import (
     RepositoriesResourceWithStreamingResponse,
     AsyncRepositoriesResourceWithStreamingResponse,
 )
-from ....types.cloud import registry_create_params, registry_resize_params
+from ....types.cloud import registry_list_params, registry_create_params, registry_resize_params
 from ...._base_client import make_request_options
 from ....types.cloud.registry import Registry
 from ....types.cloud.registry_list import RegistryList
@@ -148,6 +148,8 @@ class RegistriesResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -159,6 +161,10 @@ class RegistriesResource(SyncAPIResource):
         List all container registries in the specified project and region.
 
         Args:
+          limit: Limit the number of returned items
+
+          offset: Offset value is used to exclude the first set of records from the result
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -174,7 +180,17 @@ class RegistriesResource(SyncAPIResource):
         return self._get(
             path_template("/cloud/v1/registries/{project_id}/{region_id}", project_id=project_id, region_id=region_id),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    registry_list_params.RegistryListParams,
+                ),
             ),
             cast_to=RegistryList,
         )
@@ -405,6 +421,8 @@ class AsyncRegistriesResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -416,6 +434,10 @@ class AsyncRegistriesResource(AsyncAPIResource):
         List all container registries in the specified project and region.
 
         Args:
+          limit: Limit the number of returned items
+
+          offset: Offset value is used to exclude the first set of records from the result
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -431,7 +453,17 @@ class AsyncRegistriesResource(AsyncAPIResource):
         return await self._get(
             path_template("/cloud/v1/registries/{project_id}/{region_id}", project_id=project_id, region_id=region_id),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    registry_list_params.RegistryListParams,
+                ),
             ),
             cast_to=RegistryList,
         )

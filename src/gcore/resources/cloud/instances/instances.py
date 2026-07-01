@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Dict, Union, Iterable, Optional
 from datetime import datetime
 from typing_extensions import Literal, overload
@@ -203,7 +204,9 @@ class InstancesResource(SyncAPIResource):
               'user_data' field to provide a script to create new users on Windows. The
               password of the Admin user cannot be updated via 'user_data'.
 
-          security_groups: Specifies security group UUIDs to be applied to all instance network interfaces.
+          security_groups: Deprecated. Use per-interface `security_groups` inside `interfaces[]` instead.
+              Cannot be combined with per-interface `security_groups`. If omitted everywhere,
+              the project's default security group is applied.
 
           servergroup_id: Placement group ID for instance placement policy.
 
@@ -1118,6 +1121,7 @@ class InstancesResource(SyncAPIResource):
             cast_to=NoneType,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def disable_port_security(
         self,
         port_id: str,
@@ -1131,10 +1135,18 @@ class InstancesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceInterface:
-        """
-        Disable port security for instance interface
+        """Deprecated.
+
+        Use PATCH /v1/ports/{`project_id`}/{`region_id`}/{`port_id`}
+        instead.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          port_id: Port ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1162,6 +1174,7 @@ class InstancesResource(SyncAPIResource):
             cast_to=InstanceInterface,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def enable_port_security(
         self,
         port_id: str,
@@ -1175,10 +1188,18 @@ class InstancesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceInterface:
-        """
-        Enable port security for instance interface
+        """Deprecated.
+
+        Use PATCH /v1/ports/{`project_id`}/{`region_id`}/{`port_id`}
+        instead.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          port_id: Port ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1691,7 +1712,9 @@ class AsyncInstancesResource(AsyncAPIResource):
               'user_data' field to provide a script to create new users on Windows. The
               password of the Admin user cannot be updated via 'user_data'.
 
-          security_groups: Specifies security group UUIDs to be applied to all instance network interfaces.
+          security_groups: Deprecated. Use per-interface `security_groups` inside `interfaces[]` instead.
+              Cannot be combined with per-interface `security_groups`. If omitted everywhere,
+              the project's default security group is applied.
 
           servergroup_id: Placement group ID for instance placement policy.
 
@@ -2606,6 +2629,7 @@ class AsyncInstancesResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def disable_port_security(
         self,
         port_id: str,
@@ -2619,10 +2643,18 @@ class AsyncInstancesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceInterface:
-        """
-        Disable port security for instance interface
+        """Deprecated.
+
+        Use PATCH /v1/ports/{`project_id`}/{`region_id`}/{`port_id`}
+        instead.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          port_id: Port ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -2650,6 +2682,7 @@ class AsyncInstancesResource(AsyncAPIResource):
             cast_to=InstanceInterface,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def enable_port_security(
         self,
         port_id: str,
@@ -2663,10 +2696,18 @@ class AsyncInstancesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceInterface:
-        """
-        Enable port security for instance interface
+        """Deprecated.
+
+        Use PATCH /v1/ports/{`project_id`}/{`region_id`}/{`port_id`}
+        instead.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          port_id: Port ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -3077,11 +3118,15 @@ class InstancesResourceWithRawResponse:
         self.assign_security_group = to_raw_response_wrapper(
             instances.assign_security_group,
         )
-        self.disable_port_security = to_raw_response_wrapper(
-            instances.disable_port_security,
+        self.disable_port_security = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                instances.disable_port_security,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.enable_port_security = to_raw_response_wrapper(
-            instances.enable_port_security,
+        self.enable_port_security = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                instances.enable_port_security,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.get = to_raw_response_wrapper(
             instances.get,
@@ -3165,11 +3210,15 @@ class AsyncInstancesResourceWithRawResponse:
         self.assign_security_group = async_to_raw_response_wrapper(
             instances.assign_security_group,
         )
-        self.disable_port_security = async_to_raw_response_wrapper(
-            instances.disable_port_security,
+        self.disable_port_security = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                instances.disable_port_security,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.enable_port_security = async_to_raw_response_wrapper(
-            instances.enable_port_security,
+        self.enable_port_security = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                instances.enable_port_security,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.get = async_to_raw_response_wrapper(
             instances.get,
@@ -3253,11 +3302,15 @@ class InstancesResourceWithStreamingResponse:
         self.assign_security_group = to_streamed_response_wrapper(
             instances.assign_security_group,
         )
-        self.disable_port_security = to_streamed_response_wrapper(
-            instances.disable_port_security,
+        self.disable_port_security = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                instances.disable_port_security,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.enable_port_security = to_streamed_response_wrapper(
-            instances.enable_port_security,
+        self.enable_port_security = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                instances.enable_port_security,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.get = to_streamed_response_wrapper(
             instances.get,
@@ -3341,11 +3394,15 @@ class AsyncInstancesResourceWithStreamingResponse:
         self.assign_security_group = async_to_streamed_response_wrapper(
             instances.assign_security_group,
         )
-        self.disable_port_security = async_to_streamed_response_wrapper(
-            instances.disable_port_security,
+        self.disable_port_security = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                instances.disable_port_security,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.enable_port_security = async_to_streamed_response_wrapper(
-            instances.enable_port_security,
+        self.enable_port_security = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                instances.enable_port_security,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.get = async_to_streamed_response_wrapper(
             instances.get,

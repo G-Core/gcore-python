@@ -58,6 +58,12 @@ class ConnectedPortsResource(SyncAPIResource):
         List all instance ports that share a VIP.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          port_id: Port ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -103,6 +109,12 @@ class ConnectedPortsResource(SyncAPIResource):
         Add instance ports to share a VIP.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          port_id: Port ID
+
           port_ids: List of port IDs that will share one VIP
 
           extra_headers: Send extra headers
@@ -151,6 +163,12 @@ class ConnectedPortsResource(SyncAPIResource):
         Replace the list of instance ports that share a VIP.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          port_id: Port ID
+
           port_ids: List of port IDs that will share one VIP
 
           extra_headers: Send extra headers
@@ -219,6 +237,12 @@ class AsyncConnectedPortsResource(AsyncAPIResource):
         List all instance ports that share a VIP.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          port_id: Port ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -264,6 +288,12 @@ class AsyncConnectedPortsResource(AsyncAPIResource):
         Add instance ports to share a VIP.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          port_id: Port ID
+
           port_ids: List of port IDs that will share one VIP
 
           extra_headers: Send extra headers
@@ -312,6 +342,12 @@ class AsyncConnectedPortsResource(AsyncAPIResource):
         Replace the list of instance ports that share a VIP.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          port_id: Port ID
+
           port_ids: List of port IDs that will share one VIP
 
           extra_headers: Send extra headers

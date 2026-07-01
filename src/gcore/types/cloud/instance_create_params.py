@@ -92,8 +92,11 @@ class InstanceCreateParams(TypedDict, total=False):
     """
 
     security_groups: Iterable[SecurityGroup]
-    """
-    Specifies security group UUIDs to be applied to all instance network interfaces.
+    """Deprecated.
+
+    Use per-interface `security_groups` inside `interfaces[]` instead. Cannot be
+    combined with per-interface `security_groups`. If omitted everywhere, the
+    project's default security group is applied.
     """
 
     servergroup_id: str
@@ -162,7 +165,11 @@ class InterfaceNewInterfaceExternalSerializerPydantic(TypedDict, total=False):
     """Specify `ipv4`, `ipv6`, or `dual` to enable both."""
 
     security_groups: Iterable[InterfaceNewInterfaceExternalSerializerPydanticSecurityGroup]
-    """Specifies security group UUIDs to be applied to the instance network interface."""
+    """Security group UUIDs applied to this interface.
+
+    If omitted (or empty), the top-level `security_groups` value applies; if both
+    are omitted, the project's default security group is applied.
+    """
 
 
 class InterfaceNewInterfaceSpecificSubnetFipSerializerPydanticFloatingIPNewInstanceFloatingIPInterfaceSerializer(
@@ -236,7 +243,11 @@ class InterfaceNewInterfaceSpecificSubnetFipSerializerPydantic(TypedDict, total=
     """
 
     security_groups: Iterable[InterfaceNewInterfaceSpecificSubnetFipSerializerPydanticSecurityGroup]
-    """Specifies security group UUIDs to be applied to the instance network interface."""
+    """Security group UUIDs applied to this interface.
+
+    If omitted (or empty), the top-level `security_groups` value applies; if both
+    are omitted, the project's default security group is applied.
+    """
 
 
 class InterfaceNewInterfaceAnySubnetFipSerializerPydanticFloatingIPNewInstanceFloatingIPInterfaceSerializer(
@@ -303,7 +314,11 @@ class InterfaceNewInterfaceAnySubnetFipSerializerPydantic(TypedDict, total=False
     """Specify `ipv4`, `ipv6`, or `dual` to enable both."""
 
     security_groups: Iterable[InterfaceNewInterfaceAnySubnetFipSerializerPydanticSecurityGroup]
-    """Specifies security group UUIDs to be applied to the instance network interface."""
+    """Security group UUIDs applied to this interface.
+
+    If omitted (or empty), the top-level `security_groups` value applies; if both
+    are omitted, the project's default security group is applied.
+    """
 
 
 class InterfaceNewInterfaceReservedFixedIPFipSerializerPydanticFloatingIPNewInstanceFloatingIPInterfaceSerializer(
@@ -368,7 +383,11 @@ class InterfaceNewInterfaceReservedFixedIPFipSerializerPydantic(TypedDict, total
     """
 
     security_groups: Iterable[InterfaceNewInterfaceReservedFixedIPFipSerializerPydanticSecurityGroup]
-    """Specifies security group UUIDs to be applied to the instance network interface."""
+    """Security group UUIDs applied to this interface.
+
+    If omitted (or empty), the top-level `security_groups` value applies; if both
+    are omitted, the project's default security group is applied.
+    """
 
 
 Interface: TypeAlias = Union[

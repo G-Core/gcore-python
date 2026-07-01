@@ -48,6 +48,8 @@ class NodesResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         cluster_name: str,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         with_ddos: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -67,6 +69,11 @@ class NodesResource(SyncAPIResource):
           cluster_name: Cluster name
 
           pool_name: Pool name
+
+          limit: Optional. Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           with_ddos: Include DDoS profile information if set to true. Default is false.
 
@@ -99,7 +106,14 @@ class NodesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"with_ddos": with_ddos}, node_list_params.NodeListParams),
+                query=maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                        "with_ddos": with_ddos,
+                    },
+                    node_list_params.NodeListParams,
+                ),
             ),
             cast_to=InstanceList,
         )
@@ -196,6 +210,8 @@ class AsyncNodesResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         cluster_name: str,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         with_ddos: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -215,6 +231,11 @@ class AsyncNodesResource(AsyncAPIResource):
           cluster_name: Cluster name
 
           pool_name: Pool name
+
+          limit: Optional. Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           with_ddos: Include DDoS profile information if set to true. Default is false.
 
@@ -247,7 +268,14 @@ class AsyncNodesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"with_ddos": with_ddos}, node_list_params.NodeListParams),
+                query=await async_maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                        "with_ddos": with_ddos,
+                    },
+                    node_list_params.NodeListParams,
+                ),
             ),
             cast_to=InstanceList,
         )

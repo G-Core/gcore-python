@@ -81,6 +81,17 @@ class TestAccessRules:
         assert_matches_type(AccessRuleList, access_rule, path=["response"])
 
     @parametrize
+    def test_method_list_with_all_params(self, client: Gcore) -> None:
+        access_rule = client.cloud.file_shares.access_rules.list(
+            file_share_id="bd8c47ee-e565-4e26-8840-b537e6827b08",
+            project_id=1,
+            region_id=1,
+            limit=1000,
+            offset=0,
+        )
+        assert_matches_type(AccessRuleList, access_rule, path=["response"])
+
+    @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
         response = client.cloud.file_shares.access_rules.with_raw_response.list(
             file_share_id="bd8c47ee-e565-4e26-8840-b537e6827b08",
@@ -241,6 +252,17 @@ class TestAsyncAccessRules:
             file_share_id="bd8c47ee-e565-4e26-8840-b537e6827b08",
             project_id=1,
             region_id=1,
+        )
+        assert_matches_type(AccessRuleList, access_rule, path=["response"])
+
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
+        access_rule = await async_client.cloud.file_shares.access_rules.list(
+            file_share_id="bd8c47ee-e565-4e26-8840-b537e6827b08",
+            project_id=1,
+            region_id=1,
+            limit=1000,
+            offset=0,
         )
         assert_matches_type(AccessRuleList, access_rule, path=["response"])
 

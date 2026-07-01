@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Dict, Optional
 from typing_extensions import Literal
 
@@ -199,6 +200,7 @@ class NetworksResource(SyncAPIResource):
             extra_headers=extra_headers,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def update(
         self,
         network_id: str,
@@ -219,6 +221,9 @@ class NetworksResource(SyncAPIResource):
         The request will only process the
         fields that are provided in the request body. Any fields that are not included
         will remain unchanged.
+
+        **Deprecated**: Use `PATCH /v2/networks/{project_id}/{region_id}/{network_id}`
+        instead.
 
         Args:
           project_id: Project ID
@@ -671,6 +676,7 @@ class AsyncNetworksResource(AsyncAPIResource):
             extra_headers=extra_headers,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def update(
         self,
         network_id: str,
@@ -691,6 +697,9 @@ class AsyncNetworksResource(AsyncAPIResource):
         The request will only process the
         fields that are provided in the request body. Any fields that are not included
         will remain unchanged.
+
+        **Deprecated**: Use `PATCH /v2/networks/{project_id}/{region_id}/{network_id}`
+        instead.
 
         Args:
           project_id: Project ID
@@ -997,8 +1006,10 @@ class NetworksResourceWithRawResponse:
         self.create_and_poll = to_raw_response_wrapper(
             networks.create_and_poll,
         )
-        self.update = to_raw_response_wrapper(
-            networks.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                networks.update,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list = to_raw_response_wrapper(
             networks.list,
@@ -1038,8 +1049,10 @@ class AsyncNetworksResourceWithRawResponse:
         self.create_and_poll = async_to_raw_response_wrapper(
             networks.create_and_poll,
         )
-        self.update = async_to_raw_response_wrapper(
-            networks.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                networks.update,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list = async_to_raw_response_wrapper(
             networks.list,
@@ -1079,8 +1092,10 @@ class NetworksResourceWithStreamingResponse:
         self.create_and_poll = to_streamed_response_wrapper(
             networks.create_and_poll,
         )
-        self.update = to_streamed_response_wrapper(
-            networks.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                networks.update,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list = to_streamed_response_wrapper(
             networks.list,
@@ -1120,8 +1135,10 @@ class AsyncNetworksResourceWithStreamingResponse:
         self.create_and_poll = async_to_streamed_response_wrapper(
             networks.create_and_poll,
         )
-        self.update = async_to_streamed_response_wrapper(
-            networks.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                networks.update,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list = async_to_streamed_response_wrapper(
             networks.list,

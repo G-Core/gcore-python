@@ -15,7 +15,7 @@ from .nodes import (
     NodesResourceWithStreamingResponse,
     AsyncNodesResourceWithStreamingResponse,
 )
-from ......_types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ......_types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ......_utils import path_template, maybe_transform, async_maybe_transform
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
@@ -27,6 +27,7 @@ from ......_response import (
 )
 from ......_base_client import make_request_options
 from ......types.cloud.k8s.clusters import (
+    pool_list_params,
     pool_create_params,
     pool_resize_params,
     pool_update_params,
@@ -82,6 +83,7 @@ class PoolsResource(SyncAPIResource):
         kubelet_config: Optional[Dict[str, str]] | Omit = omit,
         labels: Optional[Dict[str, str]] | Omit = omit,
         max_node_count: Optional[int] | Omit = omit,
+        security_group_ids: SequenceNotStr[str] | Omit = omit,
         servergroup_policy: Optional[Literal["affinity", "anti-affinity", "soft-anti-affinity"]] | Omit = omit,
         taints: Optional[Dict[str, str]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -123,6 +125,8 @@ class PoolsResource(SyncAPIResource):
 
           max_node_count: Maximum node count
 
+          security_group_ids: Security group IDs applied to the cluster pool nodes
+
           servergroup_policy: Server group policy: anti-affinity, soft-anti-affinity or affinity
 
           taints: Taints applied to the cluster pool
@@ -161,6 +165,7 @@ class PoolsResource(SyncAPIResource):
                     "kubelet_config": kubelet_config,
                     "labels": labels,
                     "max_node_count": max_node_count,
+                    "security_group_ids": security_group_ids,
                     "servergroup_policy": servergroup_policy,
                     "taints": taints,
                 },
@@ -184,6 +189,7 @@ class PoolsResource(SyncAPIResource):
         max_node_count: Optional[int] | Omit = omit,
         min_node_count: Optional[int] | Omit = omit,
         node_count: Optional[int] | Omit = omit,
+        security_group_ids: SequenceNotStr[str] | Omit = omit,
         taints: Optional[Dict[str, str]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -213,6 +219,9 @@ class PoolsResource(SyncAPIResource):
           min_node_count: Minimum node count
 
           node_count: This field is deprecated. Please use the cluster pool resize handler instead.
+
+          security_group_ids: Security group IDs applied to the cluster pool nodes. Omit the field to leave
+              unchanged; pass an empty list to clear.
 
           taints: Taints applied to the cluster pool
 
@@ -247,6 +256,7 @@ class PoolsResource(SyncAPIResource):
                     "max_node_count": max_node_count,
                     "min_node_count": min_node_count,
                     "node_count": node_count,
+                    "security_group_ids": security_group_ids,
                     "taints": taints,
                 },
                 pool_update_params.PoolUpdateParams,
@@ -263,6 +273,8 @@ class PoolsResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -279,6 +291,11 @@ class PoolsResource(SyncAPIResource):
           region_id: Region ID
 
           cluster_name: Cluster name
+
+          limit: Optional. Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           extra_headers: Send extra headers
 
@@ -302,7 +319,17 @@ class PoolsResource(SyncAPIResource):
                 cluster_name=cluster_name,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    pool_list_params.PoolListParams,
+                ),
             ),
             cast_to=K8SClusterPoolList,
         )
@@ -774,6 +801,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         kubelet_config: Optional[Dict[str, str]] | Omit = omit,
         labels: Optional[Dict[str, str]] | Omit = omit,
         max_node_count: Optional[int] | Omit = omit,
+        security_group_ids: SequenceNotStr[str] | Omit = omit,
         servergroup_policy: Optional[Literal["affinity", "anti-affinity", "soft-anti-affinity"]] | Omit = omit,
         taints: Optional[Dict[str, str]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -815,6 +843,8 @@ class AsyncPoolsResource(AsyncAPIResource):
 
           max_node_count: Maximum node count
 
+          security_group_ids: Security group IDs applied to the cluster pool nodes
+
           servergroup_policy: Server group policy: anti-affinity, soft-anti-affinity or affinity
 
           taints: Taints applied to the cluster pool
@@ -853,6 +883,7 @@ class AsyncPoolsResource(AsyncAPIResource):
                     "kubelet_config": kubelet_config,
                     "labels": labels,
                     "max_node_count": max_node_count,
+                    "security_group_ids": security_group_ids,
                     "servergroup_policy": servergroup_policy,
                     "taints": taints,
                 },
@@ -876,6 +907,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         max_node_count: Optional[int] | Omit = omit,
         min_node_count: Optional[int] | Omit = omit,
         node_count: Optional[int] | Omit = omit,
+        security_group_ids: SequenceNotStr[str] | Omit = omit,
         taints: Optional[Dict[str, str]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -905,6 +937,9 @@ class AsyncPoolsResource(AsyncAPIResource):
           min_node_count: Minimum node count
 
           node_count: This field is deprecated. Please use the cluster pool resize handler instead.
+
+          security_group_ids: Security group IDs applied to the cluster pool nodes. Omit the field to leave
+              unchanged; pass an empty list to clear.
 
           taints: Taints applied to the cluster pool
 
@@ -939,6 +974,7 @@ class AsyncPoolsResource(AsyncAPIResource):
                     "max_node_count": max_node_count,
                     "min_node_count": min_node_count,
                     "node_count": node_count,
+                    "security_group_ids": security_group_ids,
                     "taints": taints,
                 },
                 pool_update_params.PoolUpdateParams,
@@ -955,6 +991,8 @@ class AsyncPoolsResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -971,6 +1009,11 @@ class AsyncPoolsResource(AsyncAPIResource):
           region_id: Region ID
 
           cluster_name: Cluster name
+
+          limit: Optional. Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           extra_headers: Send extra headers
 
@@ -994,7 +1037,17 @@ class AsyncPoolsResource(AsyncAPIResource):
                 cluster_name=cluster_name,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    pool_list_params.PoolListParams,
+                ),
             ),
             cast_to=K8SClusterPoolList,
         )

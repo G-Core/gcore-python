@@ -69,7 +69,7 @@ class ImagesResource(SyncAPIResource):
         name: str | Omit = omit,
         os_type: Literal["linux", "windows"] | Omit = omit,
         ssh_key: Literal["allow", "deny", "required"] | Omit = omit,
-        tags: TagUpdateMapParam | Omit = omit,
+        tags: Optional[TagUpdateMapParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -151,6 +151,8 @@ class ImagesResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         include_prices: bool | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         private: str | Omit = omit,
         tag_key: SequenceNotStr[str] | Omit = omit,
         tag_key_value: str | Omit = omit,
@@ -174,6 +176,11 @@ class ImagesResource(SyncAPIResource):
           region_id: Region ID
 
           include_prices: Show price.
+
+          limit: Optional. Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           private: Any value to show private images
 
@@ -205,6 +212,8 @@ class ImagesResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "include_prices": include_prices,
+                        "limit": limit,
+                        "offset": offset,
                         "private": private,
                         "tag_key": tag_key,
                         "tag_key_value": tag_key_value,
@@ -721,7 +730,7 @@ class AsyncImagesResource(AsyncAPIResource):
         name: str | Omit = omit,
         os_type: Literal["linux", "windows"] | Omit = omit,
         ssh_key: Literal["allow", "deny", "required"] | Omit = omit,
-        tags: TagUpdateMapParam | Omit = omit,
+        tags: Optional[TagUpdateMapParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -803,6 +812,8 @@ class AsyncImagesResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         include_prices: bool | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         private: str | Omit = omit,
         tag_key: SequenceNotStr[str] | Omit = omit,
         tag_key_value: str | Omit = omit,
@@ -826,6 +837,11 @@ class AsyncImagesResource(AsyncAPIResource):
           region_id: Region ID
 
           include_prices: Show price.
+
+          limit: Optional. Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           private: Any value to show private images
 
@@ -857,6 +873,8 @@ class AsyncImagesResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "include_prices": include_prices,
+                        "limit": limit,
+                        "offset": offset,
                         "private": private,
                         "tag_key": tag_key,
                         "tag_key_value": tag_key_value,

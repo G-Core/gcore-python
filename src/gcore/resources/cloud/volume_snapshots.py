@@ -65,6 +65,10 @@ class VolumeSnapshotsResource(SyncAPIResource):
         Create a new snapshot from a volume.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           name: Snapshot name
 
           volume_id: Volume ID to make snapshot of
@@ -330,7 +334,11 @@ class VolumeSnapshotsResource(SyncAPIResource):
             polling_interval_seconds=polling_interval_seconds,
             polling_timeout_seconds=polling_timeout_seconds,
         )
-        if task.created_resources is None or task.created_resources.snapshots is None or len(task.created_resources.snapshots) != 1:
+        if (
+            task.created_resources is None
+            or task.created_resources.snapshots is None
+            or len(task.created_resources.snapshots) != 1
+        ):
             raise ValueError("Task completed but created_resources or snapshots is missing or invalid")
         created_snapshot_id = task.created_resources.snapshots[0]
         return self.get(
@@ -418,6 +426,10 @@ class AsyncVolumeSnapshotsResource(AsyncAPIResource):
         Create a new snapshot from a volume.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           name: Snapshot name
 
           volume_id: Volume ID to make snapshot of
@@ -683,7 +695,11 @@ class AsyncVolumeSnapshotsResource(AsyncAPIResource):
             polling_interval_seconds=polling_interval_seconds,
             polling_timeout_seconds=polling_timeout_seconds,
         )
-        if task.created_resources is None or task.created_resources.snapshots is None or len(task.created_resources.snapshots) != 1:
+        if (
+            task.created_resources is None
+            or task.created_resources.snapshots is None
+            or len(task.created_resources.snapshots) != 1
+        ):
             raise ValueError("Task completed but created_resources or snapshots is missing or invalid")
         created_snapshot_id = task.created_resources.snapshots[0]
         return await self.get(

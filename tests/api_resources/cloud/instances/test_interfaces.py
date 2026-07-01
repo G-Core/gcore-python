@@ -27,6 +27,17 @@ class TestInterfaces:
         assert_matches_type(NetworkInterfaceList, interface, path=["response"])
 
     @parametrize
+    def test_method_list_with_all_params(self, client: Gcore) -> None:
+        interface = client.cloud.instances.interfaces.list(
+            instance_id="instance_id",
+            project_id=0,
+            region_id=0,
+            limit=0,
+            offset=0,
+        )
+        assert_matches_type(NetworkInterfaceList, interface, path=["response"])
+
+    @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
         response = client.cloud.instances.interfaces.with_raw_response.list(
             instance_id="instance_id",
@@ -438,6 +449,17 @@ class TestAsyncInterfaces:
             instance_id="instance_id",
             project_id=0,
             region_id=0,
+        )
+        assert_matches_type(NetworkInterfaceList, interface, path=["response"])
+
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
+        interface = await async_client.cloud.instances.interfaces.list(
+            instance_id="instance_id",
+            project_id=0,
+            region_id=0,
+            limit=0,
+            offset=0,
         )
         assert_matches_type(NetworkInterfaceList, interface, path=["response"])
 

@@ -9,6 +9,7 @@ import pytest
 
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
+from gcore._utils import parse_datetime
 from gcore.types.cloud import BillingReservations
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -29,6 +30,8 @@ class TestBillingReservations:
             order_by="active_from.asc",
             region_id=0,
             show_inactive=True,
+            time_from=parse_datetime("2025-01-01T00:00:00Z"),
+            time_to=parse_datetime("2025-02-01T00:00:00Z"),
         )
         assert_matches_type(BillingReservations, billing_reservation, path=["response"])
 
@@ -70,6 +73,8 @@ class TestAsyncBillingReservations:
             order_by="active_from.asc",
             region_id=0,
             show_inactive=True,
+            time_from=parse_datetime("2025-01-01T00:00:00Z"),
+            time_to=parse_datetime("2025-02-01T00:00:00Z"),
         )
         assert_matches_type(BillingReservations, billing_reservation, path=["response"])
 

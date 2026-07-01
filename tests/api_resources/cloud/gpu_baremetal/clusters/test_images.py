@@ -26,6 +26,16 @@ class TestImages:
         assert_matches_type(GPUImageList, image, path=["response"])
 
     @parametrize
+    def test_method_list_with_all_params(self, client: Gcore) -> None:
+        image = client.cloud.gpu_baremetal.clusters.images.list(
+            project_id=1,
+            region_id=7,
+            limit=1000,
+            offset=0,
+        )
+        assert_matches_type(GPUImageList, image, path=["response"])
+
+    @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
         response = client.cloud.gpu_baremetal.clusters.images.with_raw_response.list(
             project_id=1,
@@ -212,6 +222,16 @@ class TestAsyncImages:
         image = await async_client.cloud.gpu_baremetal.clusters.images.list(
             project_id=1,
             region_id=7,
+        )
+        assert_matches_type(GPUImageList, image, path=["response"])
+
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
+        image = await async_client.cloud.gpu_baremetal.clusters.images.list(
+            project_id=1,
+            region_id=7,
+            limit=1000,
+            offset=0,
         )
         assert_matches_type(GPUImageList, image, path=["response"])
 

@@ -10,10 +10,13 @@ __all__ = [
     "ServersSettings",
     "ServersSettingsInterface",
     "ServersSettingsInterfaceExternalInterfaceInputSerializer",
+    "ServersSettingsInterfaceExternalInterfaceInputSerializerSecurityGroup",
     "ServersSettingsInterfaceSubnetInterfaceInputSerializer",
     "ServersSettingsInterfaceSubnetInterfaceInputSerializerFloatingIP",
+    "ServersSettingsInterfaceSubnetInterfaceInputSerializerSecurityGroup",
     "ServersSettingsInterfaceAnySubnetInterfaceInputSerializer",
     "ServersSettingsInterfaceAnySubnetInterfaceInputSerializerFloatingIP",
+    "ServersSettingsInterfaceAnySubnetInterfaceInputSerializerSecurityGroup",
     "ServersSettingsVolume",
     "ServersSettingsVolumeNewVolumeInputSerializer",
     "ServersSettingsVolumeImageVolumeInputSerializer",
@@ -53,6 +56,11 @@ class ClusterCreateParams(TypedDict, total=False):
     """
 
 
+class ServersSettingsInterfaceExternalInterfaceInputSerializerSecurityGroup(TypedDict, total=False):
+    id: Required[str]
+    """Resource ID"""
+
+
 class ServersSettingsInterfaceExternalInterfaceInputSerializer(TypedDict, total=False):
     type: Required[Literal["external"]]
 
@@ -62,11 +70,33 @@ class ServersSettingsInterfaceExternalInterfaceInputSerializer(TypedDict, total=
     name: str
     """Interface name"""
 
+    port_security_enabled: bool
+    """Controls port security for this interface.
+
+    When omitted, the default applies (port security enabled, default security group
+    attached). When false, the port is created with port security off and no
+    security group attached; `security_groups` must not be set in that case. Not
+    allowed for interfaces on a public network, nor for bare metal servers without a
+    DPU (their ports cannot enforce port security).
+    """
+
+    security_groups: Iterable[ServersSettingsInterfaceExternalInterfaceInputSerializerSecurityGroup]
+    """Security group UUIDs applied to this interface.
+
+    If omitted (or empty), the top-level `security_groups` value applies; if both
+    are omitted, the project's default security group is applied.
+    """
+
 
 class ServersSettingsInterfaceSubnetInterfaceInputSerializerFloatingIP(TypedDict, total=False):
     """Floating IP config for this subnet attachment"""
 
     source: Required[Literal["new"]]
+
+
+class ServersSettingsInterfaceSubnetInterfaceInputSerializerSecurityGroup(TypedDict, total=False):
+    id: Required[str]
+    """Resource ID"""
 
 
 class ServersSettingsInterfaceSubnetInterfaceInputSerializer(TypedDict, total=False):
@@ -84,11 +114,33 @@ class ServersSettingsInterfaceSubnetInterfaceInputSerializer(TypedDict, total=Fa
     name: str
     """Interface name"""
 
+    port_security_enabled: bool
+    """Controls port security for this interface.
+
+    When omitted, the default applies (port security enabled, default security group
+    attached). When false, the port is created with port security off and no
+    security group attached; `security_groups` must not be set in that case. Not
+    allowed for interfaces on a public network, nor for bare metal servers without a
+    DPU (their ports cannot enforce port security).
+    """
+
+    security_groups: Iterable[ServersSettingsInterfaceSubnetInterfaceInputSerializerSecurityGroup]
+    """Security group UUIDs applied to this interface.
+
+    If omitted (or empty), the top-level `security_groups` value applies; if both
+    are omitted, the project's default security group is applied.
+    """
+
 
 class ServersSettingsInterfaceAnySubnetInterfaceInputSerializerFloatingIP(TypedDict, total=False):
     """Floating IP config for this subnet attachment"""
 
     source: Required[Literal["new"]]
+
+
+class ServersSettingsInterfaceAnySubnetInterfaceInputSerializerSecurityGroup(TypedDict, total=False):
+    id: Required[str]
+    """Resource ID"""
 
 
 class ServersSettingsInterfaceAnySubnetInterfaceInputSerializer(TypedDict, total=False):
@@ -105,6 +157,23 @@ class ServersSettingsInterfaceAnySubnetInterfaceInputSerializer(TypedDict, total
 
     name: str
     """Interface name"""
+
+    port_security_enabled: bool
+    """Controls port security for this interface.
+
+    When omitted, the default applies (port security enabled, default security group
+    attached). When false, the port is created with port security off and no
+    security group attached; `security_groups` must not be set in that case. Not
+    allowed for interfaces on a public network, nor for bare metal servers without a
+    DPU (their ports cannot enforce port security).
+    """
+
+    security_groups: Iterable[ServersSettingsInterfaceAnySubnetInterfaceInputSerializerSecurityGroup]
+    """Security group UUIDs applied to this interface.
+
+    If omitted (or empty), the top-level `security_groups` value applies; if both
+    are omitted, the project's default security group is applied.
+    """
 
 
 ServersSettingsInterface: TypeAlias = Union[
@@ -215,9 +284,11 @@ class ServersSettings(TypedDict, total=False):
     """List of file shares to be mounted across the cluster."""
 
     security_groups: Iterable[ServersSettingsSecurityGroup]
-    """List of security group UUIDs.
+    """Deprecated.
 
-    If omitted or an empty list, the default security group will be used.
+    Use per-interface `security_groups` inside `interfaces[]` instead. Cannot be
+    combined with per-interface `security_groups`. If omitted everywhere, the
+    project's default security group is applied.
     """
 
     user_data: str

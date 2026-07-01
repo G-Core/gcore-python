@@ -17,5 +17,14 @@ class NodeListParams(TypedDict, total=False):
     cluster_name: Required[str]
     """Cluster name"""
 
+    limit: int
+    """Optional. Limit the number of returned items"""
+
+    offset: int
+    """Optional.
+
+    Offset value is used to exclude the first set of records from the result
+    """
+
     with_ddos: bool
     """Include DDoS profile information if set to true. Default is false."""

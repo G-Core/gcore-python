@@ -198,18 +198,18 @@ class TestRouters:
     @parametrize
     def test_method_delete(self, client: Gcore) -> None:
         router = client.cloud.networks.routers.delete(
-            router_id="router_id",
-            project_id=0,
-            region_id=0,
+            router_id="ccd5b925-e35c-4611-a511-67ab503104c8",
+            project_id=1,
+            region_id=1,
         )
         assert_matches_type(TaskIDList, router, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Gcore) -> None:
         response = client.cloud.networks.routers.with_raw_response.delete(
-            router_id="router_id",
-            project_id=0,
-            region_id=0,
+            router_id="ccd5b925-e35c-4611-a511-67ab503104c8",
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -220,9 +220,9 @@ class TestRouters:
     @parametrize
     def test_streaming_response_delete(self, client: Gcore) -> None:
         with client.cloud.networks.routers.with_streaming_response.delete(
-            router_id="router_id",
-            project_id=0,
-            region_id=0,
+            router_id="ccd5b925-e35c-4611-a511-67ab503104c8",
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -237,8 +237,8 @@ class TestRouters:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `router_id` but received ''"):
             client.cloud.networks.routers.with_raw_response.delete(
                 router_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
             )
 
     @parametrize
@@ -305,9 +305,9 @@ class TestRouters:
     @parametrize
     def test_method_detach_subnet(self, client: Gcore) -> None:
         router = client.cloud.networks.routers.detach_subnet(
-            router_id="router_id",
-            project_id=0,
-            region_id=0,
+            router_id="ccd5b925-e35c-4611-a511-67ab503104c8",
+            project_id=1,
+            region_id=1,
             subnet_id="subnet_id",
         )
         assert_matches_type(Router, router, path=["response"])
@@ -315,9 +315,9 @@ class TestRouters:
     @parametrize
     def test_raw_response_detach_subnet(self, client: Gcore) -> None:
         response = client.cloud.networks.routers.with_raw_response.detach_subnet(
-            router_id="router_id",
-            project_id=0,
-            region_id=0,
+            router_id="ccd5b925-e35c-4611-a511-67ab503104c8",
+            project_id=1,
+            region_id=1,
             subnet_id="subnet_id",
         )
 
@@ -329,9 +329,9 @@ class TestRouters:
     @parametrize
     def test_streaming_response_detach_subnet(self, client: Gcore) -> None:
         with client.cloud.networks.routers.with_streaming_response.detach_subnet(
-            router_id="router_id",
-            project_id=0,
-            region_id=0,
+            router_id="ccd5b925-e35c-4611-a511-67ab503104c8",
+            project_id=1,
+            region_id=1,
             subnet_id="subnet_id",
         ) as response:
             assert not response.is_closed
@@ -347,26 +347,26 @@ class TestRouters:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `router_id` but received ''"):
             client.cloud.networks.routers.with_raw_response.detach_subnet(
                 router_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
                 subnet_id="subnet_id",
             )
 
     @parametrize
     def test_method_get(self, client: Gcore) -> None:
         router = client.cloud.networks.routers.get(
-            router_id="router_id",
-            project_id=0,
-            region_id=0,
+            router_id="ccd5b925-e35c-4611-a511-67ab503104c8",
+            project_id=1,
+            region_id=1,
         )
         assert_matches_type(Router, router, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Gcore) -> None:
         response = client.cloud.networks.routers.with_raw_response.get(
-            router_id="router_id",
-            project_id=0,
-            region_id=0,
+            router_id="ccd5b925-e35c-4611-a511-67ab503104c8",
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -377,9 +377,9 @@ class TestRouters:
     @parametrize
     def test_streaming_response_get(self, client: Gcore) -> None:
         with client.cloud.networks.routers.with_streaming_response.get(
-            router_id="router_id",
-            project_id=0,
-            region_id=0,
+            router_id="ccd5b925-e35c-4611-a511-67ab503104c8",
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -394,8 +394,8 @@ class TestRouters:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `router_id` but received ''"):
             client.cloud.networks.routers.with_raw_response.get(
                 router_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
             )
 
 
@@ -581,18 +581,18 @@ class TestAsyncRouters:
     @parametrize
     async def test_method_delete(self, async_client: AsyncGcore) -> None:
         router = await async_client.cloud.networks.routers.delete(
-            router_id="router_id",
-            project_id=0,
-            region_id=0,
+            router_id="ccd5b925-e35c-4611-a511-67ab503104c8",
+            project_id=1,
+            region_id=1,
         )
         assert_matches_type(TaskIDList, router, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.networks.routers.with_raw_response.delete(
-            router_id="router_id",
-            project_id=0,
-            region_id=0,
+            router_id="ccd5b925-e35c-4611-a511-67ab503104c8",
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -603,9 +603,9 @@ class TestAsyncRouters:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.networks.routers.with_streaming_response.delete(
-            router_id="router_id",
-            project_id=0,
-            region_id=0,
+            router_id="ccd5b925-e35c-4611-a511-67ab503104c8",
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -620,8 +620,8 @@ class TestAsyncRouters:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `router_id` but received ''"):
             await async_client.cloud.networks.routers.with_raw_response.delete(
                 router_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
             )
 
     @parametrize
@@ -688,9 +688,9 @@ class TestAsyncRouters:
     @parametrize
     async def test_method_detach_subnet(self, async_client: AsyncGcore) -> None:
         router = await async_client.cloud.networks.routers.detach_subnet(
-            router_id="router_id",
-            project_id=0,
-            region_id=0,
+            router_id="ccd5b925-e35c-4611-a511-67ab503104c8",
+            project_id=1,
+            region_id=1,
             subnet_id="subnet_id",
         )
         assert_matches_type(Router, router, path=["response"])
@@ -698,9 +698,9 @@ class TestAsyncRouters:
     @parametrize
     async def test_raw_response_detach_subnet(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.networks.routers.with_raw_response.detach_subnet(
-            router_id="router_id",
-            project_id=0,
-            region_id=0,
+            router_id="ccd5b925-e35c-4611-a511-67ab503104c8",
+            project_id=1,
+            region_id=1,
             subnet_id="subnet_id",
         )
 
@@ -712,9 +712,9 @@ class TestAsyncRouters:
     @parametrize
     async def test_streaming_response_detach_subnet(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.networks.routers.with_streaming_response.detach_subnet(
-            router_id="router_id",
-            project_id=0,
-            region_id=0,
+            router_id="ccd5b925-e35c-4611-a511-67ab503104c8",
+            project_id=1,
+            region_id=1,
             subnet_id="subnet_id",
         ) as response:
             assert not response.is_closed
@@ -730,26 +730,26 @@ class TestAsyncRouters:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `router_id` but received ''"):
             await async_client.cloud.networks.routers.with_raw_response.detach_subnet(
                 router_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
                 subnet_id="subnet_id",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncGcore) -> None:
         router = await async_client.cloud.networks.routers.get(
-            router_id="router_id",
-            project_id=0,
-            region_id=0,
+            router_id="ccd5b925-e35c-4611-a511-67ab503104c8",
+            project_id=1,
+            region_id=1,
         )
         assert_matches_type(Router, router, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.networks.routers.with_raw_response.get(
-            router_id="router_id",
-            project_id=0,
-            region_id=0,
+            router_id="ccd5b925-e35c-4611-a511-67ab503104c8",
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -760,9 +760,9 @@ class TestAsyncRouters:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.networks.routers.with_streaming_response.get(
-            router_id="router_id",
-            project_id=0,
-            region_id=0,
+            router_id="ccd5b925-e35c-4611-a511-67ab503104c8",
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -777,6 +777,6 @@ class TestAsyncRouters:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `router_id` but received ''"):
             await async_client.cloud.networks.routers.with_raw_response.get(
                 router_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
             )

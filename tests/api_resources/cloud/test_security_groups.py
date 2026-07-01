@@ -100,8 +100,8 @@ class TestSecurityGroups:
             name="some_name",
             rules=[
                 {
+                    "direction": "ingress",
                     "description": "Some description",
-                    "direction": "egress",
                     "ethertype": "IPv4",
                     "port_range_max": 80,
                     "port_range_min": 80,
@@ -474,8 +474,8 @@ class TestAsyncSecurityGroups:
             name="some_name",
             rules=[
                 {
+                    "direction": "ingress",
                     "description": "Some description",
-                    "direction": "egress",
                     "ethertype": "IPv4",
                     "port_range_max": 80,
                     "port_range_min": 80,

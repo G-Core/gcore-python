@@ -69,7 +69,7 @@ async def get_network(*, client: AsyncGcore, network_id: str) -> None:
 
 async def update_network(*, client: AsyncGcore, network_id: str) -> None:
     print("\n=== UPDATE NETWORK ===")
-    network = await client.cloud.networks.update(network_id=network_id, name="gcore-go-example-updated")
+    network = await client.cloud.networks.update(network_id=network_id, name="gcore-go-example-updated")  # pyright: ignore[reportDeprecated]
     print(f"Updated network: ID={network.id}, name={network.name}")
     print("========================")
 

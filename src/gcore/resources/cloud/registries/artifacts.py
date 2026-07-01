@@ -4,8 +4,8 @@ from __future__ import annotations
 
 import httpx
 
-from ...._types import Body, Query, Headers, NoneType, NotGiven, not_given
-from ...._utils import path_template
+from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -15,6 +15,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
+from ....types.cloud.registries import artifact_list_params
 from ....types.cloud.registries.registry_artifact_list import RegistryArtifactList
 
 __all__ = ["ArtifactsResource", "AsyncArtifactsResource"]
@@ -47,6 +48,8 @@ class ArtifactsResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         registry_id: int,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -58,6 +61,10 @@ class ArtifactsResource(SyncAPIResource):
         List all artifacts in a specific repository.
 
         Args:
+          limit: Limit the number of returned items
+
+          offset: Offset value is used to exclude the first set of records from the result
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -81,7 +88,17 @@ class ArtifactsResource(SyncAPIResource):
                 repository_name=repository_name,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    artifact_list_params.ArtifactListParams,
+                ),
             ),
             cast_to=RegistryArtifactList,
         )
@@ -165,6 +182,8 @@ class AsyncArtifactsResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         registry_id: int,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -176,6 +195,10 @@ class AsyncArtifactsResource(AsyncAPIResource):
         List all artifacts in a specific repository.
 
         Args:
+          limit: Limit the number of returned items
+
+          offset: Offset value is used to exclude the first set of records from the result
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -199,7 +222,17 @@ class AsyncArtifactsResource(AsyncAPIResource):
                 repository_name=repository_name,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    artifact_list_params.ArtifactListParams,
+                ),
             ),
             cast_to=RegistryArtifactList,
         )

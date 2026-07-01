@@ -903,8 +903,7 @@ class VolumesResource(SyncAPIResource):
         instance_id_to_attach_to: str | Omit = omit,
         lifecycle_policy_ids: Iterable[int] | Omit = omit,
         tags: TagUpdateMapParam | Omit = omit,
-        type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
-        | Omit = omit,
+        type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"] | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
         polling_timeout_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
@@ -974,8 +973,7 @@ class VolumesResource(SyncAPIResource):
         lifecycle_policy_ids: Iterable[int] | Omit = omit,
         size: int | Omit = omit,
         tags: TagUpdateMapParam | Omit = omit,
-        type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
-        | Omit = omit,
+        type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"] | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
         polling_timeout_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
@@ -1045,8 +1043,7 @@ class VolumesResource(SyncAPIResource):
         instance_id_to_attach_to: str | Omit = omit,
         lifecycle_policy_ids: Iterable[int] | Omit = omit,
         tags: TagUpdateMapParam | Omit = omit,
-        type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
-        | Omit = omit,
+        type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"] | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
         polling_timeout_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
@@ -1116,8 +1113,7 @@ class VolumesResource(SyncAPIResource):
         instance_id_to_attach_to: str | Omit = omit,
         lifecycle_policy_ids: Iterable[int] | Omit = omit,
         tags: TagUpdateMapParam | Omit = omit,
-        type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
-        | Omit = omit,
+        type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"] | Omit = omit,
         snapshot_id: str | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
         polling_timeout_seconds: int | Omit = omit,
@@ -1155,7 +1151,11 @@ class VolumesResource(SyncAPIResource):
             polling_interval_seconds=polling_interval_seconds,
             polling_timeout_seconds=polling_timeout_seconds,
         )
-        if task.created_resources is None or task.created_resources.volumes is None or len(task.created_resources.volumes) != 1:
+        if (
+            task.created_resources is None
+            or task.created_resources.volumes is None
+            or len(task.created_resources.volumes) != 1
+        ):
             raise ValueError("Task completed but created_resources or volumes is missing or invalid")
         created_volume_id = task.created_resources.volumes[0]
         return self.get(
@@ -2193,8 +2193,7 @@ class AsyncVolumesResource(AsyncAPIResource):
         instance_id_to_attach_to: str | Omit = omit,
         lifecycle_policy_ids: Iterable[int] | Omit = omit,
         tags: TagUpdateMapParam | Omit = omit,
-        type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
-        | Omit = omit,
+        type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"] | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
         polling_timeout_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
@@ -2264,8 +2263,7 @@ class AsyncVolumesResource(AsyncAPIResource):
         lifecycle_policy_ids: Iterable[int] | Omit = omit,
         size: int | Omit = omit,
         tags: TagUpdateMapParam | Omit = omit,
-        type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
-        | Omit = omit,
+        type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"] | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
         polling_timeout_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
@@ -2335,8 +2333,7 @@ class AsyncVolumesResource(AsyncAPIResource):
         instance_id_to_attach_to: str | Omit = omit,
         lifecycle_policy_ids: Iterable[int] | Omit = omit,
         tags: TagUpdateMapParam | Omit = omit,
-        type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
-        | Omit = omit,
+        type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"] | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
         polling_timeout_seconds: int | Omit = omit,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
@@ -2406,8 +2403,7 @@ class AsyncVolumesResource(AsyncAPIResource):
         instance_id_to_attach_to: str | Omit = omit,
         lifecycle_policy_ids: Iterable[int] | Omit = omit,
         tags: TagUpdateMapParam | Omit = omit,
-        type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
-        | Omit = omit,
+        type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"] | Omit = omit,
         snapshot_id: str | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
         polling_timeout_seconds: int | Omit = omit,
@@ -2439,13 +2435,17 @@ class AsyncVolumesResource(AsyncAPIResource):
         )
         if not response.tasks:  # type: ignore
             raise ValueError("Expected at least one task to be created")
-        task =         await self._client.cloud.tasks.poll(
+        task = await self._client.cloud.tasks.poll(
             task_id=response.tasks[0],  # type: ignore
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
             polling_timeout_seconds=polling_timeout_seconds,
         )
-        if task.created_resources is None or task.created_resources.volumes is None or len(task.created_resources.volumes) != 1:
+        if (
+            task.created_resources is None
+            or task.created_resources.volumes is None
+            or len(task.created_resources.volumes) != 1
+        ):
             raise ValueError("Task completed but created_resources or volumes is missing or invalid")
         created_volume_id = task.created_resources.volumes[0]
         return await self.get(

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ...._types import Body, Query, Headers, NotGiven, not_given
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -51,6 +51,8 @@ class MetricsResource(SyncAPIResource):
         region_id: int | None = None,
         time_interval: int,
         time_unit: InstanceMetricsTimeUnit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -71,6 +73,11 @@ class MetricsResource(SyncAPIResource):
           time_interval: Time interval.
 
           time_unit: Time interval unit.
+
+          limit: Optional. Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           extra_headers: Send extra headers
 
@@ -101,7 +108,17 @@ class MetricsResource(SyncAPIResource):
                 metric_list_params.MetricListParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    metric_list_params.MetricListParams,
+                ),
             ),
             cast_to=MetricsList,
         )
@@ -135,6 +152,8 @@ class AsyncMetricsResource(AsyncAPIResource):
         region_id: int | None = None,
         time_interval: int,
         time_unit: InstanceMetricsTimeUnit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -155,6 +174,11 @@ class AsyncMetricsResource(AsyncAPIResource):
           time_interval: Time interval.
 
           time_unit: Time interval unit.
+
+          limit: Optional. Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           extra_headers: Send extra headers
 
@@ -185,7 +209,17 @@ class AsyncMetricsResource(AsyncAPIResource):
                 metric_list_params.MetricListParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    metric_list_params.MetricListParams,
+                ),
             ),
             cast_to=MetricsList,
         )

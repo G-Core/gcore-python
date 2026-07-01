@@ -21,3 +21,12 @@ class MetricListParams(TypedDict, total=False):
 
     time_unit: Required[InstanceMetricsTimeUnit]
     """Time interval unit."""
+
+    limit: int
+    """Optional. Limit the number of returned items"""
+
+    offset: int
+    """Optional.
+
+    Offset value is used to exclude the first set of records from the result
+    """

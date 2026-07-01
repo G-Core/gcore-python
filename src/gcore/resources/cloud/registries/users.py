@@ -17,7 +17,12 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.cloud.registries import user_create_params, user_update_params, user_create_multiple_params
+from ....types.cloud.registries import (
+    user_list_params,
+    user_create_params,
+    user_update_params,
+    user_create_multiple_params,
+)
 from ....types.cloud.registries.registry_user import RegistryUser
 from ....types.cloud.registries.registry_user_list import RegistryUserList
 from ....types.cloud.registries.registry_user_created import RegistryUserCreated
@@ -176,6 +181,8 @@ class UsersResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -187,6 +194,10 @@ class UsersResource(SyncAPIResource):
         List all users with access to the container registry.
 
         Args:
+          limit: Limit the number of returned items
+
+          offset: Offset value is used to exclude the first set of records from the result
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -207,7 +218,17 @@ class UsersResource(SyncAPIResource):
                 registry_id=registry_id,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    user_list_params.UserListParams,
+                ),
             ),
             cast_to=RegistryUserList,
         )
@@ -498,6 +519,8 @@ class AsyncUsersResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -509,6 +532,10 @@ class AsyncUsersResource(AsyncAPIResource):
         List all users with access to the container registry.
 
         Args:
+          limit: Limit the number of returned items
+
+          offset: Offset value is used to exclude the first set of records from the result
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -529,7 +556,17 @@ class AsyncUsersResource(AsyncAPIResource):
                 registry_id=registry_id,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    user_list_params.UserListParams,
+                ),
             ),
             cast_to=RegistryUserList,
         )

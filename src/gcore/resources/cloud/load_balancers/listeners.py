@@ -100,7 +100,7 @@ class ListenersResource(SyncAPIResource):
 
           protocol_port: Protocol port
 
-          allowed_cidrs: Network CIDRs from which service will be accessible
+          allowed_cidrs: Network CIDRs from which service will be accessible. Order-insensitive.
 
           connection_limit: Limit of the simultaneous connections. If -1 is provided, it is translated to
               the default value 100000.
@@ -202,7 +202,7 @@ class ListenersResource(SyncAPIResource):
               and operational. When set to false, the resource is disabled and will not
               process traffic. Defaults to true.
 
-          allowed_cidrs: Network CIDRs from which service will be accessible
+          allowed_cidrs: Network CIDRs from which service will be accessible. Order-insensitive.
 
           connection_limit: Limit of simultaneous connections. If -1 is provided, it is translated to the
               default value 100000.
@@ -686,7 +686,7 @@ class AsyncListenersResource(AsyncAPIResource):
 
           protocol_port: Protocol port
 
-          allowed_cidrs: Network CIDRs from which service will be accessible
+          allowed_cidrs: Network CIDRs from which service will be accessible. Order-insensitive.
 
           connection_limit: Limit of the simultaneous connections. If -1 is provided, it is translated to
               the default value 100000.
@@ -788,7 +788,7 @@ class AsyncListenersResource(AsyncAPIResource):
               and operational. When set to false, the resource is disabled and will not
               process traffic. Defaults to true.
 
-          allowed_cidrs: Network CIDRs from which service will be accessible
+          allowed_cidrs: Network CIDRs from which service will be accessible. Order-insensitive.
 
           connection_limit: Limit of simultaneous connections. If -1 is provided, it is translated to the
               default value 100000.

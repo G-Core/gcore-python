@@ -187,10 +187,10 @@ class TasksResource(SyncAPIResource):
               'sync_private_flavors', 'update_ddos_profile', 'update_floating_ip',
               'update_inference_application', 'update_inference_instance',
               'update_k8s_cluster_v2', 'update_l7policy', 'update_lbmetadata',
-              'update_loadbalancer', 'update_port_allowed_address_pairs', 'update_router',
-              'update_security_group', 'update_sfs', 'update_tags_gpu_virtual_cluster',
-              'upgrade_k8s_cluster_v2', 'upscale_ai_cluster_gpu',
-              'upscale_gpu_virtual_cluster']
+              'update_loadbalancer', 'update_network', 'update_port',
+              'update_port_allowed_address_pairs', 'update_router', 'update_security_group',
+              'update_sfs', 'update_tags_gpu_virtual_cluster', 'upgrade_k8s_cluster_v2',
+              'upscale_ai_cluster_gpu', 'upscale_gpu_virtual_cluster']
 
           to_timestamp: ISO formatted datetime string. Filter the tasks by creation date less than or
               equal to `to_timestamp`
@@ -509,10 +509,10 @@ class AsyncTasksResource(AsyncAPIResource):
               'sync_private_flavors', 'update_ddos_profile', 'update_floating_ip',
               'update_inference_application', 'update_inference_instance',
               'update_k8s_cluster_v2', 'update_l7policy', 'update_lbmetadata',
-              'update_loadbalancer', 'update_port_allowed_address_pairs', 'update_router',
-              'update_security_group', 'update_sfs', 'update_tags_gpu_virtual_cluster',
-              'upgrade_k8s_cluster_v2', 'upscale_ai_cluster_gpu',
-              'upscale_gpu_virtual_cluster']
+              'update_loadbalancer', 'update_network', 'update_port',
+              'update_port_allowed_address_pairs', 'update_router', 'update_security_group',
+              'update_sfs', 'update_tags_gpu_virtual_cluster', 'upgrade_k8s_cluster_v2',
+              'upscale_ai_cluster_gpu', 'upscale_gpu_virtual_cluster']
 
           to_timestamp: ISO formatted datetime string. Filter the tasks by creation date less than or
               equal to `to_timestamp`

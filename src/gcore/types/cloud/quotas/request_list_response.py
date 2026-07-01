@@ -26,6 +26,9 @@ class RequestedLimitsGlobalLimits(BaseModel):
     inference_instance_count_limit: Optional[int] = None
     """Inference instance count limit"""
 
+    inference_public_model_api_key_count_limit: Optional[int] = None
+    """Public model API keys count limit"""
+
     keypair_count_limit: Optional[int] = None
     """SSH Keys Count limit"""
 

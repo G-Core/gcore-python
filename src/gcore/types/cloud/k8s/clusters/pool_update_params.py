@@ -5,6 +5,8 @@ from __future__ import annotations
 from typing import Dict, Optional
 from typing_extensions import Required, TypedDict
 
+from ....._types import SequenceNotStr
+
 __all__ = ["PoolUpdateParams"]
 
 
@@ -32,6 +34,12 @@ class PoolUpdateParams(TypedDict, total=False):
 
     node_count: Optional[int]
     """This field is deprecated. Please use the cluster pool resize handler instead."""
+
+    security_group_ids: SequenceNotStr[str]
+    """Security group IDs applied to the cluster pool nodes.
+
+    Omit the field to leave unchanged; pass an empty list to clear.
+    """
 
     taints: Optional[Dict[str, str]]
     """Taints applied to the cluster pool"""

@@ -48,6 +48,8 @@ class FlavorsResource(SyncAPIResource):
         region_id: int | None = None,
         hide_disabled: bool | Omit = omit,
         include_prices: bool | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -66,6 +68,11 @@ class FlavorsResource(SyncAPIResource):
           hide_disabled: Set to `true` to remove the disabled flavors from the response.
 
           include_prices: Set to `true` if the response should include flavor prices.
+
+          limit: Optional. Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           extra_headers: Send extra headers
 
@@ -92,6 +99,8 @@ class FlavorsResource(SyncAPIResource):
                     {
                         "hide_disabled": hide_disabled,
                         "include_prices": include_prices,
+                        "limit": limit,
+                        "offset": offset,
                     },
                     flavor_list_params.FlavorListParams,
                 ),
@@ -127,6 +136,8 @@ class AsyncFlavorsResource(AsyncAPIResource):
         region_id: int | None = None,
         hide_disabled: bool | Omit = omit,
         include_prices: bool | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -145,6 +156,11 @@ class AsyncFlavorsResource(AsyncAPIResource):
           hide_disabled: Set to `true` to remove the disabled flavors from the response.
 
           include_prices: Set to `true` if the response should include flavor prices.
+
+          limit: Optional. Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           extra_headers: Send extra headers
 
@@ -171,6 +187,8 @@ class AsyncFlavorsResource(AsyncAPIResource):
                     {
                         "hide_disabled": hide_disabled,
                         "include_prices": include_prices,
+                        "limit": limit,
+                        "offset": offset,
                     },
                     flavor_list_params.FlavorListParams,
                 ),

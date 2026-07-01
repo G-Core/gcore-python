@@ -5,6 +5,8 @@ from __future__ import annotations
 from typing import Dict, Optional
 from typing_extensions import Literal, Required, TypedDict
 
+from ....._types import SequenceNotStr
+
 __all__ = ["PoolCreateParams"]
 
 
@@ -47,6 +49,9 @@ class PoolCreateParams(TypedDict, total=False):
 
     max_node_count: Optional[int]
     """Maximum node count"""
+
+    security_group_ids: SequenceNotStr[str]
+    """Security group IDs applied to the cluster pool nodes"""
 
     servergroup_policy: Optional[Literal["affinity", "anti-affinity", "soft-anti-affinity"]]
     """Server group policy: anti-affinity, soft-anti-affinity or affinity"""

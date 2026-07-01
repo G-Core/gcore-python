@@ -13,6 +13,7 @@ from .metric_list_params import MetricListParams as MetricListParams
 from .image_update_params import ImageUpdateParams as ImageUpdateParams
 from .image_upload_params import ImageUploadParams as ImageUploadParams
 from .instance_flavor_list import InstanceFlavorList as InstanceFlavorList
+from .interface_list_params import InterfaceListParams as InterfaceListParams
 from .interface_attach_params import InterfaceAttachParams as InterfaceAttachParams
 from .interface_detach_params import InterfaceDetachParams as InterfaceDetachParams
 from .instance_flavor_detailed import InstanceFlavorDetailed as InstanceFlavorDetailed

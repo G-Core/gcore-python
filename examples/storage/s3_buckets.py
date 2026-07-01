@@ -80,9 +80,7 @@ def list_buckets(*, client: Gcore, storage_id: int) -> None:
     print("\n=== LIST BUCKETS ===")
     for count, bucket in enumerate(client.storage.object_storages.buckets.list(storage_id=storage_id), 1):
         lifecycle_info = (
-            f", Lifecycle: {bucket.lifecycle.expiration_days} days"
-            if bucket.lifecycle.expiration_days > 0
-            else ""
+            f", Lifecycle: {bucket.lifecycle.expiration_days} days" if bucket.lifecycle.expiration_days > 0 else ""
         )
         print(f"  {count}. Bucket: Name={bucket.name}{lifecycle_info}")
     print("====================")

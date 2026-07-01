@@ -178,6 +178,9 @@ class Pool(TypedDict, total=False):
     max_node_count: Optional[int]
     """Maximum node count"""
 
+    security_group_ids: SequenceNotStr[str]
+    """Security group IDs applied to the cluster pool nodes"""
+
     servergroup_policy: Optional[Literal["affinity", "anti-affinity", "soft-anti-affinity"]]
     """Server group policy: anti-affinity, soft-anti-affinity or affinity"""
 
@@ -264,6 +267,12 @@ class Authentication(TypedDict, total=False):
 
 class CniCilium(TypedDict, total=False):
     """Cilium settings"""
+
+    cni_exclusive: bool
+    """Whether Cilium manages networking exclusively.
+
+    Set to `false` to allow other CNI components to coexist with Cilium.
+    """
 
     encryption: bool
     """Wireguard encryption"""

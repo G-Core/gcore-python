@@ -9,8 +9,10 @@ __all__ = ["VipToggleParams"]
 
 class VipToggleParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     is_vip: Required[bool]
     """If reserved fixed IP should be a VIP"""

@@ -88,6 +88,10 @@ class ReservedFixedIPsResource(SyncAPIResource):
         Create a new reserved fixed IP with the specified configuration.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           type: Must be 'external'
 
           ip_family: Which subnets should be selected: IPv4, IPv6 or use dual stack.
@@ -124,6 +128,10 @@ class ReservedFixedIPsResource(SyncAPIResource):
         Create a new reserved fixed IP with the specified configuration.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           subnet_id: Reserved fixed IP will be allocated in this subnet
 
           type: Must be 'subnet'.
@@ -161,6 +169,10 @@ class ReservedFixedIPsResource(SyncAPIResource):
         Create a new reserved fixed IP with the specified configuration.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           network_id: Reserved fixed IP will be allocated in a subnet of this network
 
           type: Must be 'any_subnet'.
@@ -200,6 +212,10 @@ class ReservedFixedIPsResource(SyncAPIResource):
         Create a new reserved fixed IP with the specified configuration.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           ip_address: Reserved fixed IP will be allocated the given IP address
 
           network_id: Reserved fixed IP will be allocated in a subnet of this network
@@ -237,6 +253,10 @@ class ReservedFixedIPsResource(SyncAPIResource):
         Create a new reserved fixed IP with the specified configuration.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           port_id: Port ID to make a reserved fixed IP (for example, `vip_port_id` of the Load
               Balancer entity).
 
@@ -322,6 +342,12 @@ class ReservedFixedIPsResource(SyncAPIResource):
         Update the VIP status of a reserved fixed IP.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          port_id: Port ID
+
           is_vip: If reserved fixed IP should be a VIP
 
           extra_headers: Send extra headers
@@ -364,7 +390,19 @@ class ReservedFixedIPsResource(SyncAPIResource):
         ip_address: str | Omit = omit,
         limit: int | Omit = omit,
         offset: int | Omit = omit,
-        order_by: str | Omit = omit,
+        order_by: Literal[
+            "created_at.asc",
+            "created_at.desc",
+            "fixed_ip_address.asc",
+            "fixed_ip_address.desc",
+            "name.asc",
+            "name.desc",
+            "status.asc",
+            "status.desc",
+            "updated_at.asc",
+            "updated_at.desc",
+        ]
+        | Omit = omit,
         vip_only: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -377,8 +415,12 @@ class ReservedFixedIPsResource(SyncAPIResource):
         List all reserved fixed IPs in the specified project and region.
 
         Args:
-          available_only: Set to true if the response should only list IP addresses that are not attached
-              to any instance
+          project_id: Project ID
+
+          region_id: Region ID
+
+          available_only: Set True if response should only list IP addresses that are not attached to any
+              instance
 
           device_id: Filter IPs by device ID it is attached to
 
@@ -386,15 +428,16 @@ class ReservedFixedIPsResource(SyncAPIResource):
 
           internal_only: Set to true if the response should only list private IP addresses
 
-          ip_address: An IPv4 address to filter results by. Regular expression allowed
+          ip_address: Optional. An IPv4 address to filter results by. Regular expression allowed
 
-          limit: Limit the number of returned IPs
+          limit: Optional. Limit the number of returned items
 
-          offset: Offset value is used to exclude the first set of records from the result
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
-          order_by: Ordering reserved fixed IP list result by name, status, `updated_at`,
-              `created_at` or `fixed_ip_address` fields and directions (status.asc), default
-              is "fixed_ip_address.asc"
+          order_by: Optional. Ordering reserved fixed IP list result by name, status, `updated_at`,
+              `fixed_ip_address` or `created_at` fields of the reserved fixed IP and
+              directions (status.asc).
 
           vip_only: Set to true if the response should only list VIPs
 
@@ -455,6 +498,12 @@ class ReservedFixedIPsResource(SyncAPIResource):
         Delete a specific reserved fixed IP and all its associated resources.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          port_id: Port ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -499,6 +548,12 @@ class ReservedFixedIPsResource(SyncAPIResource):
         Get detailed information about a specific reserved fixed IP.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          port_id: Port ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -876,6 +931,10 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         Create a new reserved fixed IP with the specified configuration.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           type: Must be 'external'
 
           ip_family: Which subnets should be selected: IPv4, IPv6 or use dual stack.
@@ -912,6 +971,10 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         Create a new reserved fixed IP with the specified configuration.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           subnet_id: Reserved fixed IP will be allocated in this subnet
 
           type: Must be 'subnet'.
@@ -949,6 +1012,10 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         Create a new reserved fixed IP with the specified configuration.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           network_id: Reserved fixed IP will be allocated in a subnet of this network
 
           type: Must be 'any_subnet'.
@@ -988,6 +1055,10 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         Create a new reserved fixed IP with the specified configuration.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           ip_address: Reserved fixed IP will be allocated the given IP address
 
           network_id: Reserved fixed IP will be allocated in a subnet of this network
@@ -1025,6 +1096,10 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         Create a new reserved fixed IP with the specified configuration.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           port_id: Port ID to make a reserved fixed IP (for example, `vip_port_id` of the Load
               Balancer entity).
 
@@ -1110,6 +1185,12 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         Update the VIP status of a reserved fixed IP.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          port_id: Port ID
+
           is_vip: If reserved fixed IP should be a VIP
 
           extra_headers: Send extra headers
@@ -1154,7 +1235,19 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         ip_address: str | Omit = omit,
         limit: int | Omit = omit,
         offset: int | Omit = omit,
-        order_by: str | Omit = omit,
+        order_by: Literal[
+            "created_at.asc",
+            "created_at.desc",
+            "fixed_ip_address.asc",
+            "fixed_ip_address.desc",
+            "name.asc",
+            "name.desc",
+            "status.asc",
+            "status.desc",
+            "updated_at.asc",
+            "updated_at.desc",
+        ]
+        | Omit = omit,
         vip_only: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1167,8 +1260,12 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         List all reserved fixed IPs in the specified project and region.
 
         Args:
-          available_only: Set to true if the response should only list IP addresses that are not attached
-              to any instance
+          project_id: Project ID
+
+          region_id: Region ID
+
+          available_only: Set True if response should only list IP addresses that are not attached to any
+              instance
 
           device_id: Filter IPs by device ID it is attached to
 
@@ -1176,15 +1273,16 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
 
           internal_only: Set to true if the response should only list private IP addresses
 
-          ip_address: An IPv4 address to filter results by. Regular expression allowed
+          ip_address: Optional. An IPv4 address to filter results by. Regular expression allowed
 
-          limit: Limit the number of returned IPs
+          limit: Optional. Limit the number of returned items
 
-          offset: Offset value is used to exclude the first set of records from the result
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
-          order_by: Ordering reserved fixed IP list result by name, status, `updated_at`,
-              `created_at` or `fixed_ip_address` fields and directions (status.asc), default
-              is "fixed_ip_address.asc"
+          order_by: Optional. Ordering reserved fixed IP list result by name, status, `updated_at`,
+              `fixed_ip_address` or `created_at` fields of the reserved fixed IP and
+              directions (status.asc).
 
           vip_only: Set to true if the response should only list VIPs
 
@@ -1245,6 +1343,12 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         Delete a specific reserved fixed IP and all its associated resources.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          port_id: Port ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1289,6 +1393,12 @@ class AsyncReservedFixedIPsResource(AsyncAPIResource):
         Get detailed information about a specific reserved fixed IP.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          port_id: Port ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

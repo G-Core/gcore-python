@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, Optional
+from typing import Dict, List, Optional
 
 from ....._models import BaseModel
 
@@ -49,6 +49,9 @@ class K8SClusterPool(BaseModel):
 
     node_count: int
     """Node count in the cluster pool"""
+
+    security_group_ids: List[str]
+    """Security group IDs applied to the cluster pool nodes"""
 
     status: str
     """Status of the cluster pool"""

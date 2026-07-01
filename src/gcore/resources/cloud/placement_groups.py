@@ -6,7 +6,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import Body, Query, Headers, NotGiven, not_given
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -16,7 +16,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...types.cloud import placement_group_create_params
+from ...types.cloud import placement_group_list_params, placement_group_create_params
 from ..._base_client import make_request_options
 from ...types.cloud.task_id_list import TaskIDList
 from ...types.cloud.placement_group import PlacementGroup
@@ -105,6 +105,8 @@ class PlacementGroupsResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -116,6 +118,10 @@ class PlacementGroupsResource(SyncAPIResource):
         List placement groups
 
         Args:
+          limit: Limit the number of returned items
+
+          offset: Offset value is used to exclude the first set of records from the result
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -133,7 +139,17 @@ class PlacementGroupsResource(SyncAPIResource):
                 "/cloud/v1/servergroups/{project_id}/{region_id}", project_id=project_id, region_id=region_id
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    placement_group_list_params.PlacementGroupListParams,
+                ),
             ),
             cast_to=PlacementGroupList,
         )
@@ -307,6 +323,8 @@ class AsyncPlacementGroupsResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -318,6 +336,10 @@ class AsyncPlacementGroupsResource(AsyncAPIResource):
         List placement groups
 
         Args:
+          limit: Limit the number of returned items
+
+          offset: Offset value is used to exclude the first set of records from the result
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -335,7 +357,17 @@ class AsyncPlacementGroupsResource(AsyncAPIResource):
                 "/cloud/v1/servergroups/{project_id}/{region_id}", project_id=project_id, region_id=region_id
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    placement_group_list_params.PlacementGroupListParams,
+                ),
             ),
             cast_to=PlacementGroupList,
         )

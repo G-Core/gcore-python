@@ -2,20 +2,22 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing_extensions import Literal, TypedDict
 
 __all__ = ["ReservedFixedIPListParams"]
 
 
 class ReservedFixedIPListParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     available_only: bool
     """
-    Set to true if the response should only list IP addresses that are not attached
-    to any instance
+    Set True if response should only list IP addresses that are not attached to any
+    instance
     """
 
     device_id: str
@@ -28,19 +30,34 @@ class ReservedFixedIPListParams(TypedDict, total=False):
     """Set to true if the response should only list private IP addresses"""
 
     ip_address: str
-    """An IPv4 address to filter results by. Regular expression allowed"""
+    """Optional. An IPv4 address to filter results by. Regular expression allowed"""
 
     limit: int
-    """Limit the number of returned IPs"""
+    """Optional. Limit the number of returned items"""
 
     offset: int
-    """Offset value is used to exclude the first set of records from the result"""
+    """Optional.
 
-    order_by: str
+    Offset value is used to exclude the first set of records from the result
     """
+
+    order_by: Literal[
+        "created_at.asc",
+        "created_at.desc",
+        "fixed_ip_address.asc",
+        "fixed_ip_address.desc",
+        "name.asc",
+        "name.desc",
+        "status.asc",
+        "status.desc",
+        "updated_at.asc",
+        "updated_at.desc",
+    ]
+    """Optional.
+
     Ordering reserved fixed IP list result by name, status, `updated_at`,
-    `created_at` or `fixed_ip_address` fields and directions (status.asc), default
-    is "fixed_ip_address.asc"
+    `fixed_ip_address` or `created_at` fields of the reserved fixed IP and
+    directions (status.asc).
     """
 
     vip_only: bool

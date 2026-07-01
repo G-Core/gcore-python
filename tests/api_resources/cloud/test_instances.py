@@ -18,6 +18,8 @@ from gcore.types.cloud import (
     InstanceInterface,
 )
 
+# pyright: reportDeprecated=false
+
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
@@ -539,20 +541,23 @@ class TestInstances:
 
     @parametrize
     def test_method_disable_port_security(self, client: Gcore) -> None:
-        instance = client.cloud.instances.disable_port_security(
-            port_id="port_id",
-            project_id=0,
-            region_id=0,
-        )
+        with pytest.warns(DeprecationWarning):
+            instance = client.cloud.instances.disable_port_security(
+                port_id="1f0ca628-a73b-42c0-bdac-7b10d023e097",
+                project_id=1,
+                region_id=1,
+            )
+
         assert_matches_type(InstanceInterface, instance, path=["response"])
 
     @parametrize
     def test_raw_response_disable_port_security(self, client: Gcore) -> None:
-        response = client.cloud.instances.with_raw_response.disable_port_security(
-            port_id="port_id",
-            project_id=0,
-            region_id=0,
-        )
+        with pytest.warns(DeprecationWarning):
+            response = client.cloud.instances.with_raw_response.disable_port_security(
+                port_id="1f0ca628-a73b-42c0-bdac-7b10d023e097",
+                project_id=1,
+                region_id=1,
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -561,44 +566,49 @@ class TestInstances:
 
     @parametrize
     def test_streaming_response_disable_port_security(self, client: Gcore) -> None:
-        with client.cloud.instances.with_streaming_response.disable_port_security(
-            port_id="port_id",
-            project_id=0,
-            region_id=0,
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.cloud.instances.with_streaming_response.disable_port_security(
+                port_id="1f0ca628-a73b-42c0-bdac-7b10d023e097",
+                project_id=1,
+                region_id=1,
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            instance = response.parse()
-            assert_matches_type(InstanceInterface, instance, path=["response"])
+                instance = response.parse()
+                assert_matches_type(InstanceInterface, instance, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_disable_port_security(self, client: Gcore) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `port_id` but received ''"):
-            client.cloud.instances.with_raw_response.disable_port_security(
-                port_id="",
-                project_id=0,
-                region_id=0,
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `port_id` but received ''"):
+                client.cloud.instances.with_raw_response.disable_port_security(
+                    port_id="",
+                    project_id=1,
+                    region_id=1,
+                )
 
     @parametrize
     def test_method_enable_port_security(self, client: Gcore) -> None:
-        instance = client.cloud.instances.enable_port_security(
-            port_id="port_id",
-            project_id=0,
-            region_id=0,
-        )
+        with pytest.warns(DeprecationWarning):
+            instance = client.cloud.instances.enable_port_security(
+                port_id="1f0ca628-a73b-42c0-bdac-7b10d023e097",
+                project_id=1,
+                region_id=1,
+            )
+
         assert_matches_type(InstanceInterface, instance, path=["response"])
 
     @parametrize
     def test_raw_response_enable_port_security(self, client: Gcore) -> None:
-        response = client.cloud.instances.with_raw_response.enable_port_security(
-            port_id="port_id",
-            project_id=0,
-            region_id=0,
-        )
+        with pytest.warns(DeprecationWarning):
+            response = client.cloud.instances.with_raw_response.enable_port_security(
+                port_id="1f0ca628-a73b-42c0-bdac-7b10d023e097",
+                project_id=1,
+                region_id=1,
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -607,27 +617,29 @@ class TestInstances:
 
     @parametrize
     def test_streaming_response_enable_port_security(self, client: Gcore) -> None:
-        with client.cloud.instances.with_streaming_response.enable_port_security(
-            port_id="port_id",
-            project_id=0,
-            region_id=0,
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.cloud.instances.with_streaming_response.enable_port_security(
+                port_id="1f0ca628-a73b-42c0-bdac-7b10d023e097",
+                project_id=1,
+                region_id=1,
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            instance = response.parse()
-            assert_matches_type(InstanceInterface, instance, path=["response"])
+                instance = response.parse()
+                assert_matches_type(InstanceInterface, instance, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_enable_port_security(self, client: Gcore) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `port_id` but received ''"):
-            client.cloud.instances.with_raw_response.enable_port_security(
-                port_id="",
-                project_id=0,
-                region_id=0,
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `port_id` but received ''"):
+                client.cloud.instances.with_raw_response.enable_port_security(
+                    port_id="",
+                    project_id=1,
+                    region_id=1,
+                )
 
     @parametrize
     def test_method_get(self, client: Gcore) -> None:
@@ -1414,20 +1426,23 @@ class TestAsyncInstances:
 
     @parametrize
     async def test_method_disable_port_security(self, async_client: AsyncGcore) -> None:
-        instance = await async_client.cloud.instances.disable_port_security(
-            port_id="port_id",
-            project_id=0,
-            region_id=0,
-        )
+        with pytest.warns(DeprecationWarning):
+            instance = await async_client.cloud.instances.disable_port_security(
+                port_id="1f0ca628-a73b-42c0-bdac-7b10d023e097",
+                project_id=1,
+                region_id=1,
+            )
+
         assert_matches_type(InstanceInterface, instance, path=["response"])
 
     @parametrize
     async def test_raw_response_disable_port_security(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.instances.with_raw_response.disable_port_security(
-            port_id="port_id",
-            project_id=0,
-            region_id=0,
-        )
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.cloud.instances.with_raw_response.disable_port_security(
+                port_id="1f0ca628-a73b-42c0-bdac-7b10d023e097",
+                project_id=1,
+                region_id=1,
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1436,44 +1451,49 @@ class TestAsyncInstances:
 
     @parametrize
     async def test_streaming_response_disable_port_security(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.instances.with_streaming_response.disable_port_security(
-            port_id="port_id",
-            project_id=0,
-            region_id=0,
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.cloud.instances.with_streaming_response.disable_port_security(
+                port_id="1f0ca628-a73b-42c0-bdac-7b10d023e097",
+                project_id=1,
+                region_id=1,
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            instance = await response.parse()
-            assert_matches_type(InstanceInterface, instance, path=["response"])
+                instance = await response.parse()
+                assert_matches_type(InstanceInterface, instance, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_disable_port_security(self, async_client: AsyncGcore) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `port_id` but received ''"):
-            await async_client.cloud.instances.with_raw_response.disable_port_security(
-                port_id="",
-                project_id=0,
-                region_id=0,
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `port_id` but received ''"):
+                await async_client.cloud.instances.with_raw_response.disable_port_security(
+                    port_id="",
+                    project_id=1,
+                    region_id=1,
+                )
 
     @parametrize
     async def test_method_enable_port_security(self, async_client: AsyncGcore) -> None:
-        instance = await async_client.cloud.instances.enable_port_security(
-            port_id="port_id",
-            project_id=0,
-            region_id=0,
-        )
+        with pytest.warns(DeprecationWarning):
+            instance = await async_client.cloud.instances.enable_port_security(
+                port_id="1f0ca628-a73b-42c0-bdac-7b10d023e097",
+                project_id=1,
+                region_id=1,
+            )
+
         assert_matches_type(InstanceInterface, instance, path=["response"])
 
     @parametrize
     async def test_raw_response_enable_port_security(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.instances.with_raw_response.enable_port_security(
-            port_id="port_id",
-            project_id=0,
-            region_id=0,
-        )
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.cloud.instances.with_raw_response.enable_port_security(
+                port_id="1f0ca628-a73b-42c0-bdac-7b10d023e097",
+                project_id=1,
+                region_id=1,
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1482,27 +1502,29 @@ class TestAsyncInstances:
 
     @parametrize
     async def test_streaming_response_enable_port_security(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.instances.with_streaming_response.enable_port_security(
-            port_id="port_id",
-            project_id=0,
-            region_id=0,
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.cloud.instances.with_streaming_response.enable_port_security(
+                port_id="1f0ca628-a73b-42c0-bdac-7b10d023e097",
+                project_id=1,
+                region_id=1,
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            instance = await response.parse()
-            assert_matches_type(InstanceInterface, instance, path=["response"])
+                instance = await response.parse()
+                assert_matches_type(InstanceInterface, instance, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_enable_port_security(self, async_client: AsyncGcore) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `port_id` but received ''"):
-            await async_client.cloud.instances.with_raw_response.enable_port_security(
-                port_id="",
-                project_id=0,
-                region_id=0,
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `port_id` but received ''"):
+                await async_client.cloud.instances.with_raw_response.enable_port_security(
+                    port_id="",
+                    project_id=1,
+                    region_id=1,
+                )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncGcore) -> None:

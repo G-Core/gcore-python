@@ -51,6 +51,7 @@ class TestPools:
             kubelet_config={"podMaxPids": "4096"},
             labels={"my-label": "foo"},
             max_node_count=5,
+            security_group_ids=["e6ea8f35-82ce-4fb2-b51c-6a24a3a23bce"],
             servergroup_policy="affinity",
             taints={"my-taint": "bar:NoSchedule"},
         )
@@ -124,6 +125,7 @@ class TestPools:
             max_node_count=3,
             min_node_count=1,
             node_count=2,
+            security_group_ids=["e6ea8f35-82ce-4fb2-b51c-6a24a3a23bce"],
             taints={"my-taint": "bar:NoSchedule"},
         )
         assert_matches_type(K8SClusterPool, pool, path=["response"])
@@ -182,6 +184,17 @@ class TestPools:
             cluster_name="my-cluster",
             project_id=1,
             region_id=7,
+        )
+        assert_matches_type(K8SClusterPoolList, pool, path=["response"])
+
+    @parametrize
+    def test_method_list_with_all_params(self, client: Gcore) -> None:
+        pool = client.cloud.k8s.clusters.pools.list(
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
+            limit=1000,
+            offset=0,
         )
         assert_matches_type(K8SClusterPoolList, pool, path=["response"])
 
@@ -488,6 +501,7 @@ class TestAsyncPools:
             kubelet_config={"podMaxPids": "4096"},
             labels={"my-label": "foo"},
             max_node_count=5,
+            security_group_ids=["e6ea8f35-82ce-4fb2-b51c-6a24a3a23bce"],
             servergroup_policy="affinity",
             taints={"my-taint": "bar:NoSchedule"},
         )
@@ -561,6 +575,7 @@ class TestAsyncPools:
             max_node_count=3,
             min_node_count=1,
             node_count=2,
+            security_group_ids=["e6ea8f35-82ce-4fb2-b51c-6a24a3a23bce"],
             taints={"my-taint": "bar:NoSchedule"},
         )
         assert_matches_type(K8SClusterPool, pool, path=["response"])
@@ -619,6 +634,17 @@ class TestAsyncPools:
             cluster_name="my-cluster",
             project_id=1,
             region_id=7,
+        )
+        assert_matches_type(K8SClusterPoolList, pool, path=["response"])
+
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
+        pool = await async_client.cloud.k8s.clusters.pools.list(
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
+            limit=1000,
+            offset=0,
         )
         assert_matches_type(K8SClusterPoolList, pool, path=["response"])
 

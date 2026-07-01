@@ -11,8 +11,10 @@ __all__ = ["ConnectedPortReplaceParams"]
 
 class ConnectedPortReplaceParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     port_ids: SequenceNotStr[str]
     """List of port IDs that will share one VIP"""

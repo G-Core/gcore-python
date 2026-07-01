@@ -25,7 +25,7 @@ class InferenceFlavor(BaseModel):
     """Inference flavor gpu model."""
 
     is_gpu_shared: bool
-    """Inference flavor is gpu shared."""
+    """Inference flavor is gpu shared (always false, deprecated)."""
 
     memory: float
     """Inference flavor memory in Gi."""

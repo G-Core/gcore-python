@@ -22,6 +22,8 @@ __all__ = [
     "LastMessageGlobalQuotasInferenceGPUL40sCountUsage",
     "LastMessageGlobalQuotasInferenceInstanceCountLimit",
     "LastMessageGlobalQuotasInferenceInstanceCountUsage",
+    "LastMessageGlobalQuotasInferencePublicModelAPIKeyCountLimit",
+    "LastMessageGlobalQuotasInferencePublicModelAPIKeyCountUsage",
     "LastMessageGlobalQuotasKeypairCountLimit",
     "LastMessageGlobalQuotasKeypairCountUsage",
     "LastMessageGlobalQuotasProjectCountLimit",
@@ -241,6 +243,26 @@ class LastMessageGlobalQuotasInferenceInstanceCountUsage(TypedDict, total=False)
     """Сurrent amount of resource used"""
 
 
+class LastMessageGlobalQuotasInferencePublicModelAPIKeyCountLimit(TypedDict, total=False):
+    """Public model API keys count limit"""
+
+    limit: Required[int]
+    """Сurrent quota limit"""
+
+    usage: Required[int]
+    """Сurrent amount of resource used"""
+
+
+class LastMessageGlobalQuotasInferencePublicModelAPIKeyCountUsage(TypedDict, total=False):
+    """Public model API keys count usage"""
+
+    limit: Required[int]
+    """Сurrent quota limit"""
+
+    usage: Required[int]
+    """Сurrent amount of resource used"""
+
+
 class LastMessageGlobalQuotasKeypairCountLimit(TypedDict, total=False):
     """SSH Keys Count limit"""
 
@@ -313,6 +335,12 @@ class LastMessageGlobalQuotas(TypedDict, total=False):
 
     inference_instance_count_usage: LastMessageGlobalQuotasInferenceInstanceCountUsage
     """Inference instance count usage"""
+
+    inference_public_model_api_key_count_limit: LastMessageGlobalQuotasInferencePublicModelAPIKeyCountLimit
+    """Public model API keys count limit"""
+
+    inference_public_model_api_key_count_usage: LastMessageGlobalQuotasInferencePublicModelAPIKeyCountUsage
+    """Public model API keys count usage"""
 
     keypair_count_limit: LastMessageGlobalQuotasKeypairCountLimit
     """SSH Keys Count limit"""

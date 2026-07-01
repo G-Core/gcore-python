@@ -81,9 +81,7 @@ async def list_buckets(*, client: AsyncGcore, storage_id: int) -> None:
     count = 1
     async for bucket in client.storage.object_storages.buckets.list(storage_id=storage_id):
         lifecycle_info = (
-            f", Lifecycle: {bucket.lifecycle.expiration_days} days"
-            if bucket.lifecycle.expiration_days > 0
-            else ""
+            f", Lifecycle: {bucket.lifecycle.expiration_days} days" if bucket.lifecycle.expiration_days > 0 else ""
         )
         print(f"  {count}. Bucket: Name={bucket.name}{lifecycle_info}")
         count += 1

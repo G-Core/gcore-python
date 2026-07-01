@@ -19,8 +19,10 @@ __all__ = [
 
 class NewReservedFixedIPExternalSerializer(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     type: Required[Literal["external"]]
     """Must be 'external'"""
@@ -34,8 +36,10 @@ class NewReservedFixedIPExternalSerializer(TypedDict, total=False):
 
 class NewReservedFixedIPSpecificSubnetSerializer(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     subnet_id: Required[str]
     """Reserved fixed IP will be allocated in this subnet"""
@@ -49,8 +53,10 @@ class NewReservedFixedIPSpecificSubnetSerializer(TypedDict, total=False):
 
 class NewReservedFixedIPAnySubnetSerializer(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     network_id: Required[str]
     """Reserved fixed IP will be allocated in a subnet of this network"""
@@ -67,8 +73,10 @@ class NewReservedFixedIPAnySubnetSerializer(TypedDict, total=False):
 
 class NewReservedFixedIPSpecificIPAddressSerializer(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     ip_address: Required[str]
     """Reserved fixed IP will be allocated the given IP address"""
@@ -85,8 +93,10 @@ class NewReservedFixedIPSpecificIPAddressSerializer(TypedDict, total=False):
 
 class NewReservedFixedIPSpecificPortSerializer(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     port_id: Required[str]
     """

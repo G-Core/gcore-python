@@ -120,6 +120,12 @@ class Authentication(BaseModel):
 class CniCilium(BaseModel):
     """Cilium settings"""
 
+    cni_exclusive: Optional[bool] = None
+    """Whether Cilium manages networking exclusively.
+
+    Set to `false` to allow other CNI components to coexist with Cilium.
+    """
+
     encryption: Optional[bool] = None
     """Wireguard encryption"""
 

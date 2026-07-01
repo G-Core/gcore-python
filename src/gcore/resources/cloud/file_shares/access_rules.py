@@ -6,7 +6,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import Body, Query, Headers, NoneType, NotGiven, not_given
+from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -17,7 +17,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.cloud.file_shares import access_rule_create_params
+from ....types.cloud.file_shares import access_rule_list_params, access_rule_create_params
 from ....types.cloud.file_shares.access_rule import AccessRule
 from ....types.cloud.file_shares.access_rule_list import AccessRuleList
 
@@ -117,6 +117,8 @@ class AccessRulesResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -133,6 +135,11 @@ class AccessRulesResource(SyncAPIResource):
           region_id: Region ID
 
           file_share_id: File Share ID
+
+          limit: Optional. Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           extra_headers: Send extra headers
 
@@ -156,7 +163,17 @@ class AccessRulesResource(SyncAPIResource):
                 file_share_id=file_share_id,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    access_rule_list_params.AccessRuleListParams,
+                ),
             ),
             cast_to=AccessRuleList,
         )
@@ -312,6 +329,8 @@ class AsyncAccessRulesResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -328,6 +347,11 @@ class AsyncAccessRulesResource(AsyncAPIResource):
           region_id: Region ID
 
           file_share_id: File Share ID
+
+          limit: Optional. Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           extra_headers: Send extra headers
 
@@ -351,7 +375,17 @@ class AsyncAccessRulesResource(AsyncAPIResource):
                 file_share_id=file_share_id,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    access_rule_list_params.AccessRuleListParams,
+                ),
             ),
             cast_to=AccessRuleList,
         )

@@ -9,6 +9,7 @@ import pytest
 
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
+from gcore._utils import parse_datetime
 from gcore.pagination import SyncOffsetPage, AsyncOffsetPage
 from gcore.types.cloud import TaskIDList
 from gcore.types.cloud.gpu_virtual import (
@@ -58,6 +59,8 @@ class TestClusters:
                         "type": "external",
                         "ip_family": "ipv4",
                         "name": "eth0",
+                        "port_security_enabled": True,
+                        "security_groups": [{"id": "b4849ffa-89f2-45a1-951f-0ae5b7809d98"}],
                     }
                 ],
                 "volumes": [
@@ -161,6 +164,21 @@ class TestClusters:
             project_id=1,
             region_id=7,
             name="gpu-cluster-1",
+            servers_settings={
+                "credentials": {"ssh_key_name": "my-key"},
+                "user_data": "eyJ0ZXN0IjogImRhdGEifQ==",
+                "volumes": [
+                    {
+                        "boot_index": 1,
+                        "name": "my-data-disk",
+                        "size": 100,
+                        "source": "new",
+                        "type": "cold",
+                        "delete_on_termination": True,
+                        "tags": {"key1": "value1"},
+                    }
+                ],
+            },
             tags={
                 "my-tag": "my-tag-value",
                 "my-tag-to-remove": None,
@@ -218,8 +236,52 @@ class TestClusters:
         cluster = client.cloud.gpu_virtual.clusters.list(
             project_id=1,
             region_id=7,
+            created_at={
+                "gt": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "gte": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "lt": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "lte": parse_datetime("2019-12-27T18:11:19.117Z"),
+            },
+            flavor={
+                "contains": ["string"],
+                "exact": ["string"],
+                "prefix": ["string"],
+                "suffix": ["string"],
+            },
+            ids=["1aaaab48-10d0-46d9-80cc-85209284ceb4"],
             limit=10,
+            name={
+                "contains": ["string"],
+                "exact": ["string"],
+                "prefix": ["string"],
+                "suffix": ["string"],
+            },
             offset=0,
+            servers_count={
+                "gt": 0,
+                "gte": 0,
+                "lt": 0,
+                "lte": 0,
+            },
+            tag_key={
+                "contains": ["string"],
+                "exact": ["string"],
+                "prefix": ["string"],
+                "suffix": ["string"],
+            },
+            tag_value={
+                "contains": ["string"],
+                "exact": ["string"],
+                "prefix": ["string"],
+                "suffix": ["string"],
+            },
+            tags={"env": "prod"},
+            updated_at={
+                "gt": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "gte": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "lt": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "lte": parse_datetime("2019-12-27T18:11:19.117Z"),
+            },
         )
         assert_matches_type(SyncOffsetPage[GPUVirtualCluster], cluster, path=["response"])
 
@@ -653,6 +715,8 @@ class TestAsyncClusters:
                         "type": "external",
                         "ip_family": "ipv4",
                         "name": "eth0",
+                        "port_security_enabled": True,
+                        "security_groups": [{"id": "b4849ffa-89f2-45a1-951f-0ae5b7809d98"}],
                     }
                 ],
                 "volumes": [
@@ -756,6 +820,21 @@ class TestAsyncClusters:
             project_id=1,
             region_id=7,
             name="gpu-cluster-1",
+            servers_settings={
+                "credentials": {"ssh_key_name": "my-key"},
+                "user_data": "eyJ0ZXN0IjogImRhdGEifQ==",
+                "volumes": [
+                    {
+                        "boot_index": 1,
+                        "name": "my-data-disk",
+                        "size": 100,
+                        "source": "new",
+                        "type": "cold",
+                        "delete_on_termination": True,
+                        "tags": {"key1": "value1"},
+                    }
+                ],
+            },
             tags={
                 "my-tag": "my-tag-value",
                 "my-tag-to-remove": None,
@@ -813,8 +892,52 @@ class TestAsyncClusters:
         cluster = await async_client.cloud.gpu_virtual.clusters.list(
             project_id=1,
             region_id=7,
+            created_at={
+                "gt": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "gte": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "lt": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "lte": parse_datetime("2019-12-27T18:11:19.117Z"),
+            },
+            flavor={
+                "contains": ["string"],
+                "exact": ["string"],
+                "prefix": ["string"],
+                "suffix": ["string"],
+            },
+            ids=["1aaaab48-10d0-46d9-80cc-85209284ceb4"],
             limit=10,
+            name={
+                "contains": ["string"],
+                "exact": ["string"],
+                "prefix": ["string"],
+                "suffix": ["string"],
+            },
             offset=0,
+            servers_count={
+                "gt": 0,
+                "gte": 0,
+                "lt": 0,
+                "lte": 0,
+            },
+            tag_key={
+                "contains": ["string"],
+                "exact": ["string"],
+                "prefix": ["string"],
+                "suffix": ["string"],
+            },
+            tag_value={
+                "contains": ["string"],
+                "exact": ["string"],
+                "prefix": ["string"],
+                "suffix": ["string"],
+            },
+            tags={"env": "prod"},
+            updated_at={
+                "gt": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "gte": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "lt": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "lte": parse_datetime("2019-12-27T18:11:19.117Z"),
+            },
         )
         assert_matches_type(AsyncOffsetPage[GPUVirtualCluster], cluster, path=["response"])
 

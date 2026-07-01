@@ -25,7 +25,7 @@ class ListenerUpdateParams(TypedDict, total=False):
     """
 
     allowed_cidrs: Optional[SequenceNotStr[str]]
-    """Network CIDRs from which service will be accessible"""
+    """Network CIDRs from which service will be accessible. Order-insensitive."""
 
     connection_limit: int
     """Limit of simultaneous connections.

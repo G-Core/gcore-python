@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Union
+from datetime import datetime
 from typing_extensions import Literal
 
 import httpx
@@ -50,6 +52,8 @@ class BillingReservationsResource(SyncAPIResource):
         order_by: Literal["active_from.asc", "active_from.desc", "active_to.asc", "active_to.desc"] | Omit = omit,
         region_id: int | Omit = omit,
         show_inactive: bool | Omit = omit,
+        time_from: Union[str, datetime] | Omit = omit,
+        time_to: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -68,7 +72,19 @@ class BillingReservationsResource(SyncAPIResource):
 
           region_id: Region for reservation
 
-          show_inactive: Include inactive commits in the response
+          show_inactive: Include inactive commits in the response. Only applies when no period is given;
+              ignored when 'time_from'/'time_to' are supplied, since the period defines the
+              window.
+
+          time_from: Start of the reservation period (ISO 8601). Must be supplied together with
+              'time_to'. When both are given, period-matched monthly pricing is returned and
+              the period must be at most one month (31 days). When both are omitted, current
+              pricing is returned.
+
+          time_to: End of the reservation period (ISO 8601). Must be supplied together with
+              'time_from'. When both are given, period-matched monthly pricing is returned and
+              the period must be at most one month (31 days). When both are omitted, current
+              pricing is returned.
 
           extra_headers: Send extra headers
 
@@ -91,6 +107,8 @@ class BillingReservationsResource(SyncAPIResource):
                         "order_by": order_by,
                         "region_id": region_id,
                         "show_inactive": show_inactive,
+                        "time_from": time_from,
+                        "time_to": time_to,
                     },
                     billing_reservation_list_params.BillingReservationListParams,
                 ),
@@ -126,6 +144,8 @@ class AsyncBillingReservationsResource(AsyncAPIResource):
         order_by: Literal["active_from.asc", "active_from.desc", "active_to.asc", "active_to.desc"] | Omit = omit,
         region_id: int | Omit = omit,
         show_inactive: bool | Omit = omit,
+        time_from: Union[str, datetime] | Omit = omit,
+        time_to: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -144,7 +164,19 @@ class AsyncBillingReservationsResource(AsyncAPIResource):
 
           region_id: Region for reservation
 
-          show_inactive: Include inactive commits in the response
+          show_inactive: Include inactive commits in the response. Only applies when no period is given;
+              ignored when 'time_from'/'time_to' are supplied, since the period defines the
+              window.
+
+          time_from: Start of the reservation period (ISO 8601). Must be supplied together with
+              'time_to'. When both are given, period-matched monthly pricing is returned and
+              the period must be at most one month (31 days). When both are omitted, current
+              pricing is returned.
+
+          time_to: End of the reservation period (ISO 8601). Must be supplied together with
+              'time_from'. When both are given, period-matched monthly pricing is returned and
+              the period must be at most one month (31 days). When both are omitted, current
+              pricing is returned.
 
           extra_headers: Send extra headers
 
@@ -167,6 +199,8 @@ class AsyncBillingReservationsResource(AsyncAPIResource):
                         "order_by": order_by,
                         "region_id": region_id,
                         "show_inactive": show_inactive,
+                        "time_from": time_from,
+                        "time_to": time_to,
                     },
                     billing_reservation_list_params.BillingReservationListParams,
                 ),

@@ -4,8 +4,8 @@ from __future__ import annotations
 
 import httpx
 
-from ....._types import Body, Query, Headers, NotGiven, not_given
-from ....._utils import path_template
+from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -15,6 +15,7 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._base_client import make_request_options
+from .....types.cloud.gpu_virtual.clusters import volume_list_params
 from .....types.cloud.gpu_virtual.clusters.gpu_virtual_cluster_volume_list import GPUVirtualClusterVolumeList
 
 __all__ = ["VolumesResource", "AsyncVolumesResource"]
@@ -46,6 +47,8 @@ class VolumesResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -62,6 +65,11 @@ class VolumesResource(SyncAPIResource):
           region_id: Region ID
 
           cluster_id: Cluster unique identifier
+
+          limit: Optional. Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           extra_headers: Send extra headers
 
@@ -85,7 +93,17 @@ class VolumesResource(SyncAPIResource):
                 cluster_id=cluster_id,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    volume_list_params.VolumeListParams,
+                ),
             ),
             cast_to=GPUVirtualClusterVolumeList,
         )
@@ -117,6 +135,8 @@ class AsyncVolumesResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -133,6 +153,11 @@ class AsyncVolumesResource(AsyncAPIResource):
           region_id: Region ID
 
           cluster_id: Cluster unique identifier
+
+          limit: Optional. Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           extra_headers: Send extra headers
 
@@ -156,7 +181,17 @@ class AsyncVolumesResource(AsyncAPIResource):
                 cluster_id=cluster_id,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    volume_list_params.VolumeListParams,
+                ),
             ),
             cast_to=GPUVirtualClusterVolumeList,
         )

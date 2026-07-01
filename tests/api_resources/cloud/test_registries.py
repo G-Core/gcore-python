@@ -9,7 +9,10 @@ import pytest
 
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
-from gcore.types.cloud import Registry, RegistryList
+from gcore.types.cloud import (
+    Registry,
+    RegistryList,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -69,6 +72,16 @@ class TestRegistries:
         registry = client.cloud.registries.list(
             project_id=0,
             region_id=0,
+        )
+        assert_matches_type(RegistryList, registry, path=["response"])
+
+    @parametrize
+    def test_method_list_with_all_params(self, client: Gcore) -> None:
+        registry = client.cloud.registries.list(
+            project_id=0,
+            region_id=0,
+            limit=0,
+            offset=0,
         )
         assert_matches_type(RegistryList, registry, path=["response"])
 
@@ -277,6 +290,16 @@ class TestAsyncRegistries:
         registry = await async_client.cloud.registries.list(
             project_id=0,
             region_id=0,
+        )
+        assert_matches_type(RegistryList, registry, path=["response"])
+
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
+        registry = await async_client.cloud.registries.list(
+            project_id=0,
+            region_id=0,
+            limit=0,
+            offset=0,
         )
         assert_matches_type(RegistryList, registry, path=["response"])
 

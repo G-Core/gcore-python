@@ -15,6 +15,8 @@ from gcore.types.cloud import (
     TaskIDList,
 )
 
+# pyright: reportDeprecated=false
+
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
@@ -72,34 +74,39 @@ class TestNetworks:
 
     @parametrize
     def test_method_update(self, client: Gcore) -> None:
-        network = client.cloud.networks.update(
-            network_id="b39792c3-3160-4356-912e-ba396c95cdcf",
-            project_id=1,
-            region_id=1,
-        )
+        with pytest.warns(DeprecationWarning):
+            network = client.cloud.networks.update(
+                network_id="b39792c3-3160-4356-912e-ba396c95cdcf",
+                project_id=1,
+                region_id=1,
+            )
+
         assert_matches_type(Network, network, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Gcore) -> None:
-        network = client.cloud.networks.update(
-            network_id="b39792c3-3160-4356-912e-ba396c95cdcf",
-            project_id=1,
-            region_id=1,
-            name="some_name",
-            tags={
-                "my-tag": "my-tag-value",
-                "my-tag-to-remove": None,
-            },
-        )
+        with pytest.warns(DeprecationWarning):
+            network = client.cloud.networks.update(
+                network_id="b39792c3-3160-4356-912e-ba396c95cdcf",
+                project_id=1,
+                region_id=1,
+                name="some_name",
+                tags={
+                    "my-tag": "my-tag-value",
+                    "my-tag-to-remove": None,
+                },
+            )
+
         assert_matches_type(Network, network, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Gcore) -> None:
-        response = client.cloud.networks.with_raw_response.update(
-            network_id="b39792c3-3160-4356-912e-ba396c95cdcf",
-            project_id=1,
-            region_id=1,
-        )
+        with pytest.warns(DeprecationWarning):
+            response = client.cloud.networks.with_raw_response.update(
+                network_id="b39792c3-3160-4356-912e-ba396c95cdcf",
+                project_id=1,
+                region_id=1,
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -108,27 +115,29 @@ class TestNetworks:
 
     @parametrize
     def test_streaming_response_update(self, client: Gcore) -> None:
-        with client.cloud.networks.with_streaming_response.update(
-            network_id="b39792c3-3160-4356-912e-ba396c95cdcf",
-            project_id=1,
-            region_id=1,
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.cloud.networks.with_streaming_response.update(
+                network_id="b39792c3-3160-4356-912e-ba396c95cdcf",
+                project_id=1,
+                region_id=1,
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            network = response.parse()
-            assert_matches_type(Network, network, path=["response"])
+                network = response.parse()
+                assert_matches_type(Network, network, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_update(self, client: Gcore) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `network_id` but received ''"):
-            client.cloud.networks.with_raw_response.update(
-                network_id="",
-                project_id=1,
-                region_id=1,
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `network_id` but received ''"):
+                client.cloud.networks.with_raw_response.update(
+                    network_id="",
+                    project_id=1,
+                    region_id=1,
+                )
 
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
@@ -330,34 +339,39 @@ class TestAsyncNetworks:
 
     @parametrize
     async def test_method_update(self, async_client: AsyncGcore) -> None:
-        network = await async_client.cloud.networks.update(
-            network_id="b39792c3-3160-4356-912e-ba396c95cdcf",
-            project_id=1,
-            region_id=1,
-        )
+        with pytest.warns(DeprecationWarning):
+            network = await async_client.cloud.networks.update(
+                network_id="b39792c3-3160-4356-912e-ba396c95cdcf",
+                project_id=1,
+                region_id=1,
+            )
+
         assert_matches_type(Network, network, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncGcore) -> None:
-        network = await async_client.cloud.networks.update(
-            network_id="b39792c3-3160-4356-912e-ba396c95cdcf",
-            project_id=1,
-            region_id=1,
-            name="some_name",
-            tags={
-                "my-tag": "my-tag-value",
-                "my-tag-to-remove": None,
-            },
-        )
+        with pytest.warns(DeprecationWarning):
+            network = await async_client.cloud.networks.update(
+                network_id="b39792c3-3160-4356-912e-ba396c95cdcf",
+                project_id=1,
+                region_id=1,
+                name="some_name",
+                tags={
+                    "my-tag": "my-tag-value",
+                    "my-tag-to-remove": None,
+                },
+            )
+
         assert_matches_type(Network, network, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.networks.with_raw_response.update(
-            network_id="b39792c3-3160-4356-912e-ba396c95cdcf",
-            project_id=1,
-            region_id=1,
-        )
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.cloud.networks.with_raw_response.update(
+                network_id="b39792c3-3160-4356-912e-ba396c95cdcf",
+                project_id=1,
+                region_id=1,
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -366,27 +380,29 @@ class TestAsyncNetworks:
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.networks.with_streaming_response.update(
-            network_id="b39792c3-3160-4356-912e-ba396c95cdcf",
-            project_id=1,
-            region_id=1,
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.cloud.networks.with_streaming_response.update(
+                network_id="b39792c3-3160-4356-912e-ba396c95cdcf",
+                project_id=1,
+                region_id=1,
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            network = await response.parse()
-            assert_matches_type(Network, network, path=["response"])
+                network = await response.parse()
+                assert_matches_type(Network, network, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_update(self, async_client: AsyncGcore) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `network_id` but received ''"):
-            await async_client.cloud.networks.with_raw_response.update(
-                network_id="",
-                project_id=1,
-                region_id=1,
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `network_id` but received ''"):
+                await async_client.cloud.networks.with_raw_response.update(
+                    network_id="",
+                    project_id=1,
+                    region_id=1,
+                )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:

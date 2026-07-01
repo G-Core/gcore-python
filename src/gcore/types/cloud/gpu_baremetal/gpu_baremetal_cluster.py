@@ -14,10 +14,13 @@ __all__ = [
     "ServersSettingsFileShare",
     "ServersSettingsInterface",
     "ServersSettingsInterfaceExternalInterfaceOutputSerializer",
+    "ServersSettingsInterfaceExternalInterfaceOutputSerializerSecurityGroup",
     "ServersSettingsInterfaceSubnetInterfaceOutputSerializer",
     "ServersSettingsInterfaceSubnetInterfaceOutputSerializerFloatingIP",
+    "ServersSettingsInterfaceSubnetInterfaceOutputSerializerSecurityGroup",
     "ServersSettingsInterfaceAnySubnetInterfaceOutputSerializer",
     "ServersSettingsInterfaceAnySubnetInterfaceOutputSerializerFloatingIP",
+    "ServersSettingsInterfaceAnySubnetInterfaceOutputSerializerSecurityGroup",
     "ServersSettingsSecurityGroup",
 ]
 
@@ -30,12 +33,23 @@ class ServersSettingsFileShare(BaseModel):
     """Absolute mount path inside the system where the file share will be mounted."""
 
 
+class ServersSettingsInterfaceExternalInterfaceOutputSerializerSecurityGroup(BaseModel):
+    id: str
+    """Security group ID"""
+
+    name: str
+    """Security group name"""
+
+
 class ServersSettingsInterfaceExternalInterfaceOutputSerializer(BaseModel):
     ip_family: Literal["dual", "ipv4", "ipv6"]
     """Which subnets should be selected: IPv4, IPv6, or use dual stack."""
 
     name: Optional[str] = None
     """Interface name"""
+
+    security_groups: List[ServersSettingsInterfaceExternalInterfaceOutputSerializerSecurityGroup]
+    """Resolved security groups applied to this interface."""
 
     type: Literal["external"]
 
@@ -44,6 +58,14 @@ class ServersSettingsInterfaceSubnetInterfaceOutputSerializerFloatingIP(BaseMode
     """Floating IP config for this subnet attachment"""
 
     source: Literal["new"]
+
+
+class ServersSettingsInterfaceSubnetInterfaceOutputSerializerSecurityGroup(BaseModel):
+    id: str
+    """Security group ID"""
+
+    name: str
+    """Security group name"""
 
 
 class ServersSettingsInterfaceSubnetInterfaceOutputSerializer(BaseModel):
@@ -56,6 +78,9 @@ class ServersSettingsInterfaceSubnetInterfaceOutputSerializer(BaseModel):
     network_id: str
     """Network ID the subnet belongs to. Port will be plugged in this network"""
 
+    security_groups: List[ServersSettingsInterfaceSubnetInterfaceOutputSerializerSecurityGroup]
+    """Resolved security groups applied to this interface."""
+
     subnet_id: str
     """Port is assigned an IP address from this subnet"""
 
@@ -66,6 +91,14 @@ class ServersSettingsInterfaceAnySubnetInterfaceOutputSerializerFloatingIP(BaseM
     """Floating IP config for this subnet attachment"""
 
     source: Literal["new"]
+
+
+class ServersSettingsInterfaceAnySubnetInterfaceOutputSerializerSecurityGroup(BaseModel):
+    id: str
+    """Security group ID"""
+
+    name: str
+    """Security group name"""
 
 
 class ServersSettingsInterfaceAnySubnetInterfaceOutputSerializer(BaseModel):
@@ -83,6 +116,9 @@ class ServersSettingsInterfaceAnySubnetInterfaceOutputSerializer(BaseModel):
 
     network_id: str
     """Network ID the subnet belongs to. Port will be plugged in this network"""
+
+    security_groups: List[ServersSettingsInterfaceAnySubnetInterfaceOutputSerializerSecurityGroup]
+    """Resolved security groups applied to this interface."""
 
     type: Literal["any_subnet"]
 
@@ -112,7 +148,12 @@ class ServersSettings(BaseModel):
     interfaces: List[ServersSettingsInterface]
 
     security_groups: List[ServersSettingsSecurityGroup]
-    """Security groups"""
+    """Deprecated.
+
+    Deduplicated union of security groups across all interfaces; the actual
+    assignment may differ per interface. Use `interfaces[].security_groups` for the
+    authoritative per-interface list.
+    """
 
     ssh_key_name: Optional[str] = None
     """SSH key name"""

@@ -21,7 +21,7 @@ from ....._base_client import make_request_options
 from .....types.cloud.gpu_image import GPUImage
 from .....types.cloud.task_id_list import TaskIDList
 from .....types.cloud.gpu_image_list import GPUImageList
-from .....types.cloud.gpu_virtual.clusters import image_upload_params
+from .....types.cloud.gpu_virtual.clusters import image_list_params, image_upload_params
 
 __all__ = ["ImagesResource", "AsyncImagesResource"]
 
@@ -53,6 +53,8 @@ class ImagesResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -67,6 +69,11 @@ class ImagesResource(SyncAPIResource):
           project_id: Project ID
 
           region_id: Region ID
+
+          limit: Optional. Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           extra_headers: Send extra headers
 
@@ -85,7 +92,17 @@ class ImagesResource(SyncAPIResource):
                 "/cloud/v3/gpu/virtual/{project_id}/{region_id}/images", project_id=project_id, region_id=region_id
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    image_list_params.ImageListParams,
+                ),
             ),
             cast_to=GPUImageList,
         )
@@ -417,6 +434,8 @@ class AsyncImagesResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -431,6 +450,11 @@ class AsyncImagesResource(AsyncAPIResource):
           project_id: Project ID
 
           region_id: Region ID
+
+          limit: Optional. Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           extra_headers: Send extra headers
 
@@ -449,7 +473,17 @@ class AsyncImagesResource(AsyncAPIResource):
                 "/cloud/v3/gpu/virtual/{project_id}/{region_id}/images", project_id=project_id, region_id=region_id
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    image_list_params.ImageListParams,
+                ),
             ),
             cast_to=GPUImageList,
         )

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Union
 from datetime import datetime
 from typing_extensions import Literal
@@ -22,7 +23,7 @@ from .....pagination import SyncOffsetPage, AsyncOffsetPage
 from ....._base_client import AsyncPaginator, make_request_options
 from .....types.cloud.console import Console
 from .....types.cloud.task_id_list import TaskIDList
-from .....types.cloud.gpu_baremetal.clusters import server_list_params, server_delete_params
+from .....types.cloud.gpu_baremetal.clusters import server_list_params, server_delete_params, server_replace_params
 from .....types.cloud.gpu_baremetal.clusters.gpu_baremetal_cluster_server import GPUBaremetalClusterServer
 from .....types.cloud.gpu_baremetal.clusters.gpu_baremetal_cluster_server_v1 import GPUBaremetalClusterServerV1
 
@@ -358,6 +359,7 @@ class ServersResource(SyncAPIResource):
             cast_to=GPUBaremetalClusterServerV1,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def rebuild(
         self,
         server_id: str,
@@ -372,14 +374,17 @@ class ServersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
-        """Perform a rebuild operation on a bare metal GPU cluster server.
+        """
+        Use
+        `POST /v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/servers/{server_id}/apply_settings`
+        instead.
 
-        During the
+        Perform a rebuild operation on a bare metal GPU cluster server. During the
         rebuild process, the server receive a new image, SSH key, and user data.
         Important: Before triggering a rebuild, the cluster must have updated server
         settings to apply. These cluster settings must be patched using the following
         endpoint: PATCH
-        '/v3/gpu/baremetal/{`project_id`}/{`region_id`}/clusters/{`cluster_id`}/servers_settings'
+        '/v3/gpu/baremetal/{`project_id`}/{`region_id`}/clusters/{`cluster_id`}'
 
         Args:
           project_id: Project ID
@@ -469,6 +474,7 @@ class ServersResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         cluster_id: str,
+        keep_ip_addresses: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -481,6 +487,9 @@ class ServersResource(SyncAPIResource):
         maintaining the cluster size. Uses the current cluster configuration (image, SSH
         key, network settings) for the new server.
 
+        By default the replacement keeps the original Public/Private IPs (ethernet
+        only). Set `keep_ip_addresses=false` for fresh IPs.
+
         Args:
           project_id: Project ID
 
@@ -489,6 +498,9 @@ class ServersResource(SyncAPIResource):
           cluster_id: Cluster unique identifier
 
           server_id: Server unique identifier
+
+          keep_ip_addresses: Retain the original Public/Private IPs on the replacement node (ethernet only).
+              When false, new IPs are assigned. No effect on InfiniBand interfaces.
 
           extra_headers: Send extra headers
 
@@ -514,6 +526,7 @@ class ServersResource(SyncAPIResource):
                 cluster_id=cluster_id,
                 server_id=server_id,
             ),
+            body=maybe_transform({"keep_ip_addresses": keep_ip_addresses}, server_replace_params.ServerReplaceParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -594,7 +607,7 @@ class ServersResource(SyncAPIResource):
         """
         Rebuild a bare metal GPU cluster server and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
         """
-        response = self.rebuild(
+        response = self.rebuild(  # pyright: ignore[reportDeprecated]
             server_id=server_id,
             project_id=project_id,
             region_id=region_id,
@@ -959,6 +972,7 @@ class AsyncServersResource(AsyncAPIResource):
             cast_to=GPUBaremetalClusterServerV1,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def rebuild(
         self,
         server_id: str,
@@ -973,14 +987,17 @@ class AsyncServersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
-        """Perform a rebuild operation on a bare metal GPU cluster server.
+        """
+        Use
+        `POST /v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/servers/{server_id}/apply_settings`
+        instead.
 
-        During the
+        Perform a rebuild operation on a bare metal GPU cluster server. During the
         rebuild process, the server receive a new image, SSH key, and user data.
         Important: Before triggering a rebuild, the cluster must have updated server
         settings to apply. These cluster settings must be patched using the following
         endpoint: PATCH
-        '/v3/gpu/baremetal/{`project_id`}/{`region_id`}/clusters/{`cluster_id`}/servers_settings'
+        '/v3/gpu/baremetal/{`project_id`}/{`region_id`}/clusters/{`cluster_id`}'
 
         Args:
           project_id: Project ID
@@ -1070,6 +1087,7 @@ class AsyncServersResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         cluster_id: str,
+        keep_ip_addresses: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1082,6 +1100,9 @@ class AsyncServersResource(AsyncAPIResource):
         maintaining the cluster size. Uses the current cluster configuration (image, SSH
         key, network settings) for the new server.
 
+        By default the replacement keeps the original Public/Private IPs (ethernet
+        only). Set `keep_ip_addresses=false` for fresh IPs.
+
         Args:
           project_id: Project ID
 
@@ -1090,6 +1111,9 @@ class AsyncServersResource(AsyncAPIResource):
           cluster_id: Cluster unique identifier
 
           server_id: Server unique identifier
+
+          keep_ip_addresses: Retain the original Public/Private IPs on the replacement node (ethernet only).
+              When false, new IPs are assigned. No effect on InfiniBand interfaces.
 
           extra_headers: Send extra headers
 
@@ -1114,6 +1138,9 @@ class AsyncServersResource(AsyncAPIResource):
                 region_id=region_id,
                 cluster_id=cluster_id,
                 server_id=server_id,
+            ),
+            body=await async_maybe_transform(
+                {"keep_ip_addresses": keep_ip_addresses}, server_replace_params.ServerReplaceParams
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -1195,7 +1222,7 @@ class AsyncServersResource(AsyncAPIResource):
         """
         Rebuild a bare metal GPU cluster server and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
         """
-        response = await self.rebuild(
+        response = await self.rebuild(  # pyright: ignore[reportDeprecated]
             server_id=server_id,
             project_id=project_id,
             region_id=region_id,
@@ -1248,8 +1275,10 @@ class ServersResourceWithRawResponse:
         self.reboot = to_raw_response_wrapper(
             servers.reboot,
         )
-        self.rebuild = to_raw_response_wrapper(
-            servers.rebuild,
+        self.rebuild = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                servers.rebuild,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.replace = to_raw_response_wrapper(
             servers.replace,
@@ -1284,8 +1313,10 @@ class AsyncServersResourceWithRawResponse:
         self.reboot = async_to_raw_response_wrapper(
             servers.reboot,
         )
-        self.rebuild = async_to_raw_response_wrapper(
-            servers.rebuild,
+        self.rebuild = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                servers.rebuild,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.replace = async_to_raw_response_wrapper(
             servers.replace,
@@ -1320,8 +1351,10 @@ class ServersResourceWithStreamingResponse:
         self.reboot = to_streamed_response_wrapper(
             servers.reboot,
         )
-        self.rebuild = to_streamed_response_wrapper(
-            servers.rebuild,
+        self.rebuild = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                servers.rebuild,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.replace = to_streamed_response_wrapper(
             servers.replace,
@@ -1356,8 +1389,10 @@ class AsyncServersResourceWithStreamingResponse:
         self.reboot = async_to_streamed_response_wrapper(
             servers.reboot,
         )
-        self.rebuild = async_to_streamed_response_wrapper(
-            servers.rebuild,
+        self.rebuild = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                servers.rebuild,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.replace = async_to_streamed_response_wrapper(
             servers.replace,

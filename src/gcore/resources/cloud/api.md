@@ -634,7 +634,7 @@ from gcore.types.cloud import PlacementGroup, PlacementGroupList
 Methods:
 
 - <code title="post /cloud/v1/servergroups/{project_id}/{region_id}">client.cloud.placement_groups.<a href="./src/gcore/resources/cloud/placement_groups.py">create</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/placement_group_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/placement_group.py">PlacementGroup</a></code>
-- <code title="get /cloud/v1/servergroups/{project_id}/{region_id}">client.cloud.placement_groups.<a href="./src/gcore/resources/cloud/placement_groups.py">list</a>(\*, project_id, region_id) -> <a href="./src/gcore/types/cloud/placement_group_list.py">PlacementGroupList</a></code>
+- <code title="get /cloud/v1/servergroups/{project_id}/{region_id}">client.cloud.placement_groups.<a href="./src/gcore/resources/cloud/placement_groups.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/placement_group_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/placement_group_list.py">PlacementGroupList</a></code>
 - <code title="delete /cloud/v1/servergroups/{project_id}/{region_id}/{group_id}">client.cloud.placement_groups.<a href="./src/gcore/resources/cloud/placement_groups.py">delete</a>(group_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 - <code title="get /cloud/v1/servergroups/{project_id}/{region_id}/{group_id}">client.cloud.placement_groups.<a href="./src/gcore/resources/cloud/placement_groups.py">get</a>(group_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/placement_group.py">PlacementGroup</a></code>
 
@@ -690,7 +690,7 @@ from gcore.types.cloud import Registry, RegistryList, RegistryTag
 Methods:
 
 - <code title="post /cloud/v1/registries/{project_id}/{region_id}">client.cloud.registries.<a href="./src/gcore/resources/cloud/registries/registries.py">create</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/registry_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/registry.py">Registry</a></code>
-- <code title="get /cloud/v1/registries/{project_id}/{region_id}">client.cloud.registries.<a href="./src/gcore/resources/cloud/registries/registries.py">list</a>(\*, project_id, region_id) -> <a href="./src/gcore/types/cloud/registry_list.py">RegistryList</a></code>
+- <code title="get /cloud/v1/registries/{project_id}/{region_id}">client.cloud.registries.<a href="./src/gcore/resources/cloud/registries/registries.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/registry_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/registry_list.py">RegistryList</a></code>
 - <code title="delete /cloud/v1/registries/{project_id}/{region_id}/{registry_id}">client.cloud.registries.<a href="./src/gcore/resources/cloud/registries/registries.py">delete</a>(registry_id, \*, project_id, region_id) -> None</code>
 - <code title="get /cloud/v1/registries/{project_id}/{region_id}/{registry_id}">client.cloud.registries.<a href="./src/gcore/resources/cloud/registries/registries.py">get</a>(registry_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/registry.py">Registry</a></code>
 - <code title="patch /cloud/v1/registries/{project_id}/{region_id}/{registry_id}/resize">client.cloud.registries.<a href="./src/gcore/resources/cloud/registries/registries.py">resize</a>(registry_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/registry_resize_params.py">params</a>) -> <a href="./src/gcore/types/cloud/registry.py">Registry</a></code>
@@ -705,7 +705,7 @@ from gcore.types.cloud.registries import RegistryRepository, RegistryRepositoryL
 
 Methods:
 
-- <code title="get /cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories">client.cloud.registries.repositories.<a href="./src/gcore/resources/cloud/registries/repositories.py">list</a>(registry_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/registries/registry_repository_list.py">RegistryRepositoryList</a></code>
+- <code title="get /cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories">client.cloud.registries.repositories.<a href="./src/gcore/resources/cloud/registries/repositories.py">list</a>(registry_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/registries/repository_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/registries/registry_repository_list.py">RegistryRepositoryList</a></code>
 - <code title="delete /cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories/{repository_name}">client.cloud.registries.repositories.<a href="./src/gcore/resources/cloud/registries/repositories.py">delete</a>(repository_name, \*, project_id, region_id, registry_id) -> None</code>
 
 ### Artifacts
@@ -718,7 +718,7 @@ from gcore.types.cloud.registries import RegistryArtifact, RegistryArtifactList
 
 Methods:
 
-- <code title="get /cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories/{repository_name}/artifacts">client.cloud.registries.artifacts.<a href="./src/gcore/resources/cloud/registries/artifacts.py">list</a>(repository_name, \*, project_id, region_id, registry_id) -> <a href="./src/gcore/types/cloud/registries/registry_artifact_list.py">RegistryArtifactList</a></code>
+- <code title="get /cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories/{repository_name}/artifacts">client.cloud.registries.artifacts.<a href="./src/gcore/resources/cloud/registries/artifacts.py">list</a>(repository_name, \*, project_id, region_id, registry_id, \*\*<a href="src/gcore/types/cloud/registries/artifact_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/registries/registry_artifact_list.py">RegistryArtifactList</a></code>
 - <code title="delete /cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories/{repository_name}/artifacts/{digest}">client.cloud.registries.artifacts.<a href="./src/gcore/resources/cloud/registries/artifacts.py">delete</a>(digest, \*, project_id, region_id, registry_id, repository_name) -> None</code>
 
 ### Tags
@@ -744,7 +744,7 @@ Methods:
 
 - <code title="post /cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users">client.cloud.registries.users.<a href="./src/gcore/resources/cloud/registries/users.py">create</a>(registry_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/registries/user_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/registries/registry_user_created.py">RegistryUserCreated</a></code>
 - <code title="patch /cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}">client.cloud.registries.users.<a href="./src/gcore/resources/cloud/registries/users.py">update</a>(user_id, \*, project_id, region_id, registry_id, \*\*<a href="src/gcore/types/cloud/registries/user_update_params.py">params</a>) -> <a href="./src/gcore/types/cloud/registries/registry_user.py">RegistryUser</a></code>
-- <code title="get /cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users">client.cloud.registries.users.<a href="./src/gcore/resources/cloud/registries/users.py">list</a>(registry_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/registries/registry_user_list.py">RegistryUserList</a></code>
+- <code title="get /cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users">client.cloud.registries.users.<a href="./src/gcore/resources/cloud/registries/users.py">list</a>(registry_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/registries/user_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/registries/registry_user_list.py">RegistryUserList</a></code>
 - <code title="delete /cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}">client.cloud.registries.users.<a href="./src/gcore/resources/cloud/registries/users.py">delete</a>(user_id, \*, project_id, region_id, registry_id) -> None</code>
 - <code title="post /cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/batch">client.cloud.registries.users.<a href="./src/gcore/resources/cloud/registries/users.py">create_multiple</a>(registry_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/registries/user_create_multiple_params.py">params</a>) -> <a href="./src/gcore/types/cloud/registries/registry_user_created.py">RegistryUserCreated</a></code>
 - <code title="post /cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users/{user_id}/refresh_secret">client.cloud.registries.users.<a href="./src/gcore/resources/cloud/registries/users.py">refresh_secret</a>(user_id, \*, project_id, region_id, registry_id) -> <a href="./src/gcore/types/cloud/registries/user_refresh_secret_response.py">UserRefreshSecretResponse</a></code>
@@ -777,7 +777,7 @@ from gcore.types.cloud.file_shares import AccessRule, AccessRuleList
 Methods:
 
 - <code title="post /cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule">client.cloud.file_shares.access_rules.<a href="./src/gcore/resources/cloud/file_shares/access_rules.py">create</a>(file_share_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/file_shares/access_rule_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/file_shares/access_rule.py">AccessRule</a></code>
-- <code title="get /cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule">client.cloud.file_shares.access_rules.<a href="./src/gcore/resources/cloud/file_shares/access_rules.py">list</a>(file_share_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/file_shares/access_rule_list.py">AccessRuleList</a></code>
+- <code title="get /cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule">client.cloud.file_shares.access_rules.<a href="./src/gcore/resources/cloud/file_shares/access_rules.py">list</a>(file_share_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/file_shares/access_rule_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/file_shares/access_rule_list.py">AccessRuleList</a></code>
 - <code title="delete /cloud/v1/file_shares/{project_id}/{region_id}/{file_share_id}/access_rule/{access_rule_id}">client.cloud.file_shares.access_rules.<a href="./src/gcore/resources/cloud/file_shares/access_rules.py">delete</a>(access_rule_id, \*, project_id, region_id, file_share_id) -> None</code>
 
 ## BillingReservations
@@ -843,7 +843,7 @@ Methods:
 - <code title="post /cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/powercycle">client.cloud.gpu_baremetal.clusters.servers.<a href="./src/gcore/resources/cloud/gpu_baremetal/clusters/servers.py">powercycle</a>(instance_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/gpu_baremetal/clusters/gpu_baremetal_cluster_server_v1.py">GPUBaremetalClusterServerV1</a></code>
 - <code title="post /cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/reboot">client.cloud.gpu_baremetal.clusters.servers.<a href="./src/gcore/resources/cloud/gpu_baremetal/clusters/servers.py">reboot</a>(instance_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/gpu_baremetal/clusters/gpu_baremetal_cluster_server_v1.py">GPUBaremetalClusterServerV1</a></code>
 - <code title="post /cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/servers/{server_id}/rebuild">client.cloud.gpu_baremetal.clusters.servers.<a href="./src/gcore/resources/cloud/gpu_baremetal/clusters/servers.py">rebuild</a>(server_id, \*, project_id, region_id, cluster_id) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
-- <code title="post /cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/servers/{server_id}/replace">client.cloud.gpu_baremetal.clusters.servers.<a href="./src/gcore/resources/cloud/gpu_baremetal/clusters/servers.py">replace</a>(server_id, \*, project_id, region_id, cluster_id) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="post /cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/servers/{server_id}/replace">client.cloud.gpu_baremetal.clusters.servers.<a href="./src/gcore/resources/cloud/gpu_baremetal/clusters/servers.py">replace</a>(server_id, \*, project_id, region_id, cluster_id, \*\*<a href="src/gcore/types/cloud/gpu_baremetal/clusters/server_replace_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 
 #### Flavors
 
@@ -861,7 +861,7 @@ Methods:
 
 Methods:
 
-- <code title="get /cloud/v3/gpu/baremetal/{project_id}/{region_id}/images">client.cloud.gpu_baremetal.clusters.images.<a href="./src/gcore/resources/cloud/gpu_baremetal/clusters/images.py">list</a>(\*, project_id, region_id) -> <a href="./src/gcore/types/cloud/gpu_image_list.py">GPUImageList</a></code>
+- <code title="get /cloud/v3/gpu/baremetal/{project_id}/{region_id}/images">client.cloud.gpu_baremetal.clusters.images.<a href="./src/gcore/resources/cloud/gpu_baremetal/clusters/images.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/gpu_baremetal/clusters/image_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/gpu_image_list.py">GPUImageList</a></code>
 - <code title="delete /cloud/v3/gpu/baremetal/{project_id}/{region_id}/images/{image_id}">client.cloud.gpu_baremetal.clusters.images.<a href="./src/gcore/resources/cloud/gpu_baremetal/clusters/images.py">delete</a>(image_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 - <code title="get /cloud/v3/gpu/baremetal/{project_id}/{region_id}/images/{image_id}">client.cloud.gpu_baremetal.clusters.images.<a href="./src/gcore/resources/cloud/gpu_baremetal/clusters/images.py">get</a>(image_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/gpu_image.py">GPUImage</a></code>
 - <code title="post /cloud/v3/gpu/baremetal/{project_id}/{region_id}/images">client.cloud.gpu_baremetal.clusters.images.<a href="./src/gcore/resources/cloud/gpu_baremetal/clusters/images.py">upload</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/gpu_baremetal/clusters/image_upload_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
@@ -914,7 +914,7 @@ from gcore.types.cloud.gpu_virtual.clusters import (
 
 Methods:
 
-- <code title="get /cloud/v3/gpu/virtual/{project_id}/{region_id}/clusters/{cluster_id}/volumes">client.cloud.gpu_virtual.clusters.volumes.<a href="./src/gcore/resources/cloud/gpu_virtual/clusters/volumes.py">list</a>(cluster_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/gpu_virtual/clusters/gpu_virtual_cluster_volume_list.py">GPUVirtualClusterVolumeList</a></code>
+- <code title="get /cloud/v3/gpu/virtual/{project_id}/{region_id}/clusters/{cluster_id}/volumes">client.cloud.gpu_virtual.clusters.volumes.<a href="./src/gcore/resources/cloud/gpu_virtual/clusters/volumes.py">list</a>(cluster_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/gpu_virtual/clusters/volume_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/gpu_virtual/clusters/gpu_virtual_cluster_volume_list.py">GPUVirtualClusterVolumeList</a></code>
 
 #### Interfaces
 
@@ -926,7 +926,7 @@ from gcore.types.cloud.gpu_virtual.clusters import GPUVirtualInterface, GPUVirtu
 
 Methods:
 
-- <code title="get /cloud/v3/gpu/virtual/{project_id}/{region_id}/clusters/{cluster_id}/interfaces">client.cloud.gpu_virtual.clusters.interfaces.<a href="./src/gcore/resources/cloud/gpu_virtual/clusters/interfaces.py">list</a>(cluster_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/gpu_virtual/clusters/gpu_virtual_interface_list.py">GPUVirtualInterfaceList</a></code>
+- <code title="get /cloud/v3/gpu/virtual/{project_id}/{region_id}/clusters/{cluster_id}/interfaces">client.cloud.gpu_virtual.clusters.interfaces.<a href="./src/gcore/resources/cloud/gpu_virtual/clusters/interfaces.py">list</a>(cluster_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/gpu_virtual/clusters/interface_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/gpu_virtual/clusters/gpu_virtual_interface_list.py">GPUVirtualInterfaceList</a></code>
 
 #### Flavors
 
@@ -944,7 +944,7 @@ Methods:
 
 Methods:
 
-- <code title="get /cloud/v3/gpu/virtual/{project_id}/{region_id}/images">client.cloud.gpu_virtual.clusters.images.<a href="./src/gcore/resources/cloud/gpu_virtual/clusters/images.py">list</a>(\*, project_id, region_id) -> <a href="./src/gcore/types/cloud/gpu_image_list.py">GPUImageList</a></code>
+- <code title="get /cloud/v3/gpu/virtual/{project_id}/{region_id}/images">client.cloud.gpu_virtual.clusters.images.<a href="./src/gcore/resources/cloud/gpu_virtual/clusters/images.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/gpu_virtual/clusters/image_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/gpu_image_list.py">GPUImageList</a></code>
 - <code title="delete /cloud/v3/gpu/virtual/{project_id}/{region_id}/images/{image_id}">client.cloud.gpu_virtual.clusters.images.<a href="./src/gcore/resources/cloud/gpu_virtual/clusters/images.py">delete</a>(image_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 - <code title="get /cloud/v3/gpu/virtual/{project_id}/{region_id}/images/{image_id}">client.cloud.gpu_virtual.clusters.images.<a href="./src/gcore/resources/cloud/gpu_virtual/clusters/images.py">get</a>(image_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/gpu_image.py">GPUImage</a></code>
 - <code title="post /cloud/v3/gpu/virtual/{project_id}/{region_id}/images">client.cloud.gpu_virtual.clusters.images.<a href="./src/gcore/resources/cloud/gpu_virtual/clusters/images.py">upload</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/gpu_virtual/clusters/image_upload_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
@@ -990,7 +990,7 @@ Methods:
 
 Methods:
 
-- <code title="get /cloud/v1/instances/{project_id}/{region_id}/{instance_id}/interfaces">client.cloud.instances.interfaces.<a href="./src/gcore/resources/cloud/instances/interfaces.py">list</a>(instance_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/network_interface_list.py">NetworkInterfaceList</a></code>
+- <code title="get /cloud/v1/instances/{project_id}/{region_id}/{instance_id}/interfaces">client.cloud.instances.interfaces.<a href="./src/gcore/resources/cloud/instances/interfaces.py">list</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances/interface_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/network_interface_list.py">NetworkInterfaceList</a></code>
 - <code title="post /cloud/v1/instances/{project_id}/{region_id}/{instance_id}/attach_interface">client.cloud.instances.interfaces.<a href="./src/gcore/resources/cloud/instances/interfaces.py">attach</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances/interface_attach_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 - <code title="post /cloud/v1/instances/{project_id}/{region_id}/{instance_id}/detach_interface">client.cloud.instances.interfaces.<a href="./src/gcore/resources/cloud/instances/interfaces.py">detach</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances/interface_detach_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 
@@ -1033,7 +1033,7 @@ from gcore.types.cloud import K8SClusterVersion, K8SClusterVersionList
 
 Methods:
 
-- <code title="get /cloud/v2/k8s/{project_id}/{region_id}/create_versions">client.cloud.k8s.<a href="./src/gcore/resources/cloud/k8s/k8s.py">list_versions</a>(\*, project_id, region_id) -> <a href="./src/gcore/types/cloud/k8s_cluster_version_list.py">K8SClusterVersionList</a></code>
+- <code title="get /cloud/v2/k8s/{project_id}/{region_id}/create_versions">client.cloud.k8s.<a href="./src/gcore/resources/cloud/k8s/k8s.py">list_versions</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/k8s_list_versions_params.py">params</a>) -> <a href="./src/gcore/types/cloud/k8s_cluster_version_list.py">K8SClusterVersionList</a></code>
 
 ### Flavors
 
@@ -1058,11 +1058,11 @@ Methods:
 
 - <code title="post /cloud/v2/k8s/clusters/{project_id}/{region_id}">client.cloud.k8s.clusters.<a href="./src/gcore/resources/cloud/k8s/clusters/clusters.py">create</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/k8s/cluster_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 - <code title="patch /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}">client.cloud.k8s.clusters.<a href="./src/gcore/resources/cloud/k8s/clusters/clusters.py">update</a>(cluster_name, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/k8s/cluster_update_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
-- <code title="get /cloud/v2/k8s/clusters/{project_id}/{region_id}">client.cloud.k8s.clusters.<a href="./src/gcore/resources/cloud/k8s/clusters/clusters.py">list</a>(\*, project_id, region_id) -> <a href="./src/gcore/types/cloud/k8s/k8s_cluster_list.py">K8SClusterList</a></code>
+- <code title="get /cloud/v2/k8s/clusters/{project_id}/{region_id}">client.cloud.k8s.clusters.<a href="./src/gcore/resources/cloud/k8s/clusters/clusters.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/k8s/cluster_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/k8s/k8s_cluster_list.py">K8SClusterList</a></code>
 - <code title="delete /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}">client.cloud.k8s.clusters.<a href="./src/gcore/resources/cloud/k8s/clusters/clusters.py">delete</a>(cluster_name, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/k8s/cluster_delete_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 - <code title="get /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}">client.cloud.k8s.clusters.<a href="./src/gcore/resources/cloud/k8s/clusters/clusters.py">get</a>(cluster_name, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/k8s/k8s_cluster.py">K8SCluster</a></code>
 - <code title="get /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/certificates">client.cloud.k8s.clusters.<a href="./src/gcore/resources/cloud/k8s/clusters/clusters.py">get_certificate</a>(cluster_name, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/k8s/k8s_cluster_certificate.py">K8SClusterCertificate</a></code>
-- <code title="get /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/upgrade_versions">client.cloud.k8s.clusters.<a href="./src/gcore/resources/cloud/k8s/clusters/clusters.py">list_versions_for_upgrade</a>(cluster_name, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/k8s_cluster_version_list.py">K8SClusterVersionList</a></code>
+- <code title="get /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/upgrade_versions">client.cloud.k8s.clusters.<a href="./src/gcore/resources/cloud/k8s/clusters/clusters.py">list_versions_for_upgrade</a>(cluster_name, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/k8s/cluster_list_versions_for_upgrade_params.py">params</a>) -> <a href="./src/gcore/types/cloud/k8s_cluster_version_list.py">K8SClusterVersionList</a></code>
 - <code title="post /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/upgrade">client.cloud.k8s.clusters.<a href="./src/gcore/resources/cloud/k8s/clusters/clusters.py">upgrade</a>(cluster_name, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/k8s/cluster_upgrade_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 
 #### Kubeconfig
@@ -1090,7 +1090,7 @@ Methods:
 
 - <code title="post /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools">client.cloud.k8s.clusters.pools.<a href="./src/gcore/resources/cloud/k8s/clusters/pools/pools.py">create</a>(cluster_name, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/k8s/clusters/pool_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 - <code title="patch /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}">client.cloud.k8s.clusters.pools.<a href="./src/gcore/resources/cloud/k8s/clusters/pools/pools.py">update</a>(pool_name, \*, project_id, region_id, cluster_name, \*\*<a href="src/gcore/types/cloud/k8s/clusters/pool_update_params.py">params</a>) -> <a href="./src/gcore/types/cloud/k8s/clusters/k8s_cluster_pool.py">K8SClusterPool</a></code>
-- <code title="get /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools">client.cloud.k8s.clusters.pools.<a href="./src/gcore/resources/cloud/k8s/clusters/pools/pools.py">list</a>(cluster_name, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/k8s/clusters/k8s_cluster_pool_list.py">K8SClusterPoolList</a></code>
+- <code title="get /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools">client.cloud.k8s.clusters.pools.<a href="./src/gcore/resources/cloud/k8s/clusters/pools/pools.py">list</a>(cluster_name, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/k8s/clusters/pool_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/k8s/clusters/k8s_cluster_pool_list.py">K8SClusterPoolList</a></code>
 - <code title="delete /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}">client.cloud.k8s.clusters.pools.<a href="./src/gcore/resources/cloud/k8s/clusters/pools/pools.py">delete</a>(pool_name, \*, project_id, region_id, cluster_name) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 - <code title="post /cloud/v2/k8s/clusters/{project_id}/{region_id}/pools/check_limits">client.cloud.k8s.clusters.pools.<a href="./src/gcore/resources/cloud/k8s/clusters/pools/pools.py">check_quota</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/k8s/clusters/pool_check_quota_params.py">params</a>) -> <a href="./src/gcore/types/cloud/k8s/clusters/k8s_cluster_pool_quota.py">K8SClusterPoolQuota</a></code>
 - <code title="get /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}">client.cloud.k8s.clusters.pools.<a href="./src/gcore/resources/cloud/k8s/clusters/pools/pools.py">get</a>(pool_name, \*, project_id, region_id, cluster_name) -> <a href="./src/gcore/types/cloud/k8s/clusters/k8s_cluster_pool.py">K8SClusterPool</a></code>

@@ -195,6 +195,12 @@ class Authentication(TypedDict, total=False):
 class CniCilium(TypedDict, total=False):
     """Cilium settings"""
 
+    cni_exclusive: bool
+    """Whether Cilium manages networking exclusively.
+
+    Set to `false` to allow other CNI components to coexist with Cilium.
+    """
+
     encryption: bool
     """Wireguard encryption"""
 

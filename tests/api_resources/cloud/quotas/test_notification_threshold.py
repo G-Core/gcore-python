@@ -72,6 +72,14 @@ class TestNotificationThreshold:
                         "limit": 10,
                         "usage": 8,
                     },
+                    "inference_public_model_api_key_count_limit": {
+                        "limit": 10,
+                        "usage": 8,
+                    },
+                    "inference_public_model_api_key_count_usage": {
+                        "limit": 10,
+                        "usage": 8,
+                    },
                     "keypair_count_limit": {
                         "limit": 10,
                         "usage": 8,
@@ -646,6 +654,14 @@ class TestAsyncNotificationThreshold:
                         "usage": 8,
                     },
                     "inference_instance_count_usage": {
+                        "limit": 10,
+                        "usage": 8,
+                    },
+                    "inference_public_model_api_key_count_limit": {
+                        "limit": 10,
+                        "usage": 8,
+                    },
+                    "inference_public_model_api_key_count_usage": {
                         "limit": 10,
                         "usage": 8,
                     },

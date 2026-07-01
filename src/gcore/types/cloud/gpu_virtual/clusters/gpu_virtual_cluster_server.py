@@ -1,13 +1,23 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 from ...tag import Tag
 from ....._models import BaseModel
 
-__all__ = ["GPUVirtualClusterServer", "SecurityGroup"]
+__all__ = ["GPUVirtualClusterServer", "AppliedServersSettings", "SecurityGroup"]
+
+
+class AppliedServersSettings(BaseModel):
+    """
+    Snapshot of cluster spec (`image_id` and `servers_settings`) applied when this server was last created or rebuilt. Compare with the cluster current spec to see what changed.
+    """
+
+    image_id: str
+
+    servers_settings: Dict[str, object]
 
 
 class SecurityGroup(BaseModel):
@@ -21,6 +31,13 @@ class SecurityGroup(BaseModel):
 class GPUVirtualClusterServer(BaseModel):
     id: str
     """Server unique identifier"""
+
+    applied_servers_settings: AppliedServersSettings
+    """
+    Snapshot of cluster spec (`image_id` and `servers_settings`) applied when this
+    server was last created or rebuilt. Compare with the cluster current spec to see
+    what changed.
+    """
 
     created_at: datetime
     """Server creation date and time"""

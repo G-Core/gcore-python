@@ -23,8 +23,8 @@ class TestVolumeSnapshots:
     @parametrize
     def test_method_create(self, client: Gcore) -> None:
         volume_snapshot = client.cloud.volume_snapshots.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             name="my-snapshot",
             volume_id="67baa7d1-08ea-4fc5-bef2-6b2465b7d227",
         )
@@ -33,8 +33,8 @@ class TestVolumeSnapshots:
     @parametrize
     def test_method_create_with_all_params(self, client: Gcore) -> None:
         volume_snapshot = client.cloud.volume_snapshots.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             name="my-snapshot",
             volume_id="67baa7d1-08ea-4fc5-bef2-6b2465b7d227",
             description="Snapshot description",
@@ -45,8 +45,8 @@ class TestVolumeSnapshots:
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
         response = client.cloud.volume_snapshots.with_raw_response.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             name="my-snapshot",
             volume_id="67baa7d1-08ea-4fc5-bef2-6b2465b7d227",
         )
@@ -59,8 +59,8 @@ class TestVolumeSnapshots:
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
         with client.cloud.volume_snapshots.with_streaming_response.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             name="my-snapshot",
             volume_id="67baa7d1-08ea-4fc5-bef2-6b2465b7d227",
         ) as response:
@@ -233,8 +233,8 @@ class TestAsyncVolumeSnapshots:
     @parametrize
     async def test_method_create(self, async_client: AsyncGcore) -> None:
         volume_snapshot = await async_client.cloud.volume_snapshots.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             name="my-snapshot",
             volume_id="67baa7d1-08ea-4fc5-bef2-6b2465b7d227",
         )
@@ -243,8 +243,8 @@ class TestAsyncVolumeSnapshots:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
         volume_snapshot = await async_client.cloud.volume_snapshots.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             name="my-snapshot",
             volume_id="67baa7d1-08ea-4fc5-bef2-6b2465b7d227",
             description="Snapshot description",
@@ -255,8 +255,8 @@ class TestAsyncVolumeSnapshots:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.volume_snapshots.with_raw_response.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             name="my-snapshot",
             volume_id="67baa7d1-08ea-4fc5-bef2-6b2465b7d227",
         )
@@ -269,8 +269,8 @@ class TestAsyncVolumeSnapshots:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.volume_snapshots.with_streaming_response.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=1,
             name="my-snapshot",
             volume_id="67baa7d1-08ea-4fc5-bef2-6b2465b7d227",
         ) as response:

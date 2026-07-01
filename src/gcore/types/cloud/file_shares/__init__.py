@@ -4,4 +4,5 @@ from __future__ import annotations
 
 from .access_rule import AccessRule as AccessRule
 from .access_rule_list import AccessRuleList as AccessRuleList
+from .access_rule_list_params import AccessRuleListParams as AccessRuleListParams
 from .access_rule_create_params import AccessRuleCreateParams as AccessRuleCreateParams

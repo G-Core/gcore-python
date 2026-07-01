@@ -27,6 +27,17 @@ class TestInterfaces:
         assert_matches_type(GPUVirtualInterfaceList, interface, path=["response"])
 
     @parametrize
+    def test_method_list_with_all_params(self, client: Gcore) -> None:
+        interface = client.cloud.gpu_virtual.clusters.interfaces.list(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+            limit=1000,
+            offset=0,
+        )
+        assert_matches_type(GPUVirtualInterfaceList, interface, path=["response"])
+
+    @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
         response = client.cloud.gpu_virtual.clusters.interfaces.with_raw_response.list(
             cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
@@ -75,6 +86,17 @@ class TestAsyncInterfaces:
             cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
             project_id=1,
             region_id=7,
+        )
+        assert_matches_type(GPUVirtualInterfaceList, interface, path=["response"])
+
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
+        interface = await async_client.cloud.gpu_virtual.clusters.interfaces.list(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+            limit=1000,
+            offset=0,
         )
         assert_matches_type(GPUVirtualInterfaceList, interface, path=["response"])
 

@@ -22,3 +22,12 @@ class FlavorListParams(TypedDict, total=False):
 
     include_prices: bool
     """Set to true to include flavor prices. Default is False."""
+
+    limit: int
+    """Optional. Limit the number of returned items"""
+
+    offset: int
+    """Optional.
+
+    Offset value is used to exclude the first set of records from the result
+    """

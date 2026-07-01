@@ -2,6 +2,7 @@
 
 from typing import List, Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from .tag import Tag
 from ..._models import BaseModel
@@ -15,6 +16,15 @@ class GPUImage(BaseModel):
 
     created_at: datetime
     """Datetime when the image was created"""
+
+    cuda_toolkit_version: Optional[str] = None
+    """Version of the installed CUDA toolkit"""
+
+    disk_format: str
+    """Disk format of the stored image (e.g.
+
+    `raw`, `qcow2`). `cow_format=true` -> `raw`, `cow_format=false` -> `qcow2`.
+    """
 
     min_disk: int
     """Minimal boot volume required"""
@@ -55,6 +65,9 @@ class GPUImage(BaseModel):
 
     gpu_driver_version: Optional[str] = None
     """Version of the installed GPU driver"""
+
+    hw_firmware_type: Optional[Literal["bios", "uefi"]] = None
+    """Specifies the type of firmware with which to boot the guest."""
 
     os_distro: Optional[str] = None
     """OS Distribution"""

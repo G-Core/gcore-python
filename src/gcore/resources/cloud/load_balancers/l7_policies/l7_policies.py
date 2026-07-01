@@ -68,7 +68,7 @@ class L7PoliciesResource(SyncAPIResource):
         redirect_url: str,
         name: str | Omit = omit,
         position: int | Omit = omit,
-        redirect_http_code: int | Omit = omit,
+        redirect_http_code: Literal[301, 302, 303, 307, 308] | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -122,7 +122,7 @@ class L7PoliciesResource(SyncAPIResource):
         redirect_prefix: str,
         name: str | Omit = omit,
         position: int | Omit = omit,
-        redirect_http_code: int | Omit = omit,
+        redirect_http_code: Literal[301, 302, 303, 307, 308] | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -279,7 +279,7 @@ class L7PoliciesResource(SyncAPIResource):
         redirect_url: str | Omit = omit,
         name: str | Omit = omit,
         position: int | Omit = omit,
-        redirect_http_code: int | Omit = omit,
+        redirect_http_code: Literal[301, 302, 303, 307, 308] | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
         redirect_prefix: str | Omit = omit,
         redirect_pool_id: str | Omit = omit,
@@ -327,7 +327,7 @@ class L7PoliciesResource(SyncAPIResource):
         redirect_url: str,
         name: str | Omit = omit,
         position: int | Omit = omit,
-        redirect_http_code: int | Omit = omit,
+        redirect_http_code: Literal[301, 302, 303, 307, 308] | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -382,7 +382,7 @@ class L7PoliciesResource(SyncAPIResource):
         redirect_prefix: str,
         name: str | Omit = omit,
         position: int | Omit = omit,
-        redirect_http_code: int | Omit = omit,
+        redirect_http_code: Literal[301, 302, 303, 307, 308] | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -536,7 +536,7 @@ class L7PoliciesResource(SyncAPIResource):
         redirect_url: str | Omit = omit,
         name: str | Omit = omit,
         position: int | Omit = omit,
-        redirect_http_code: int | Omit = omit,
+        redirect_http_code: Literal[301, 302, 303, 307, 308] | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
         redirect_prefix: str | Omit = omit,
         redirect_pool_id: str | Omit = omit,
@@ -1114,7 +1114,7 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
         redirect_url: str,
         name: str | Omit = omit,
         position: int | Omit = omit,
-        redirect_http_code: int | Omit = omit,
+        redirect_http_code: Literal[301, 302, 303, 307, 308] | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1168,7 +1168,7 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
         redirect_prefix: str,
         name: str | Omit = omit,
         position: int | Omit = omit,
-        redirect_http_code: int | Omit = omit,
+        redirect_http_code: Literal[301, 302, 303, 307, 308] | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1325,7 +1325,7 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
         redirect_url: str | Omit = omit,
         name: str | Omit = omit,
         position: int | Omit = omit,
-        redirect_http_code: int | Omit = omit,
+        redirect_http_code: Literal[301, 302, 303, 307, 308] | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
         redirect_prefix: str | Omit = omit,
         redirect_pool_id: str | Omit = omit,
@@ -1373,7 +1373,7 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
         redirect_url: str,
         name: str | Omit = omit,
         position: int | Omit = omit,
-        redirect_http_code: int | Omit = omit,
+        redirect_http_code: Literal[301, 302, 303, 307, 308] | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1428,7 +1428,7 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
         redirect_prefix: str,
         name: str | Omit = omit,
         position: int | Omit = omit,
-        redirect_http_code: int | Omit = omit,
+        redirect_http_code: Literal[301, 302, 303, 307, 308] | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1582,7 +1582,7 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
         redirect_url: str | Omit = omit,
         name: str | Omit = omit,
         position: int | Omit = omit,
-        redirect_http_code: int | Omit = omit,
+        redirect_http_code: Literal[301, 302, 303, 307, 308] | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
         redirect_prefix: str | Omit = omit,
         redirect_pool_id: str | Omit = omit,

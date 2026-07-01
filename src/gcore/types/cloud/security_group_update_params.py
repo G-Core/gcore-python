@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Iterable, Optional
-from typing_extensions import Literal, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 from .tag_update_map_param import TagUpdateMapParam
 
@@ -53,25 +53,21 @@ class SecurityGroupUpdateParams(TypedDict, total=False):
 
 
 class Rule(TypedDict, total=False):
-    description: str
-    """Security grpup rule description"""
+    direction: Required[Literal["egress", "ingress"]]
+    """
+    Ingress or egress, which is the direction in which the security group is applied
+    """
 
-    direction: Literal["egress", "ingress"]
-    """
-    Ingress or egress, which is the direction in which the security group rule is
-    applied
-    """
+    description: str
+    """Rule description"""
 
     ethertype: Literal["IPv4", "IPv6"]
-    """
-    Must be IPv4 or IPv6, and addresses represented in CIDR must match the ingress
-    or egress rules.
-    """
+    """Ether type"""
 
-    port_range_max: int
+    port_range_max: Optional[int]
     """The maximum port number in the range that is matched by the security group rule"""
 
-    port_range_min: int
+    port_range_min: Optional[int]
     """The minimum port number in the range that is matched by the security group rule"""
 
     protocol: Optional[
@@ -103,8 +99,8 @@ class Rule(TypedDict, total=False):
     ]
     """V2 protocol enum without 'any'. Use null for all protocols instead."""
 
-    remote_group_id: str
-    """The remote group UUID to associate with this security group rule"""
+    remote_group_id: Optional[str]
+    """The remote group UUID to associate with this security group"""
 
-    remote_ip_prefix: str
+    remote_ip_prefix: Optional[str]
     """The remote IP prefix that is matched by this security group rule"""

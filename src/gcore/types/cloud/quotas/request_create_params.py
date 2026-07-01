@@ -34,6 +34,9 @@ class RequestedLimitsGlobalLimits(TypedDict, total=False):
     inference_instance_count_limit: int
     """Inference instance count limit"""
 
+    inference_public_model_api_key_count_limit: int
+    """Public model API keys count limit"""
+
     keypair_count_limit: int
     """SSH Keys Count limit"""
 

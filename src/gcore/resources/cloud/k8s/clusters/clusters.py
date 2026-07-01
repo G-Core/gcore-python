@@ -42,10 +42,12 @@ from ....._response import (
 )
 from ....._base_client import make_request_options
 from .....types.cloud.k8s import (
+    cluster_list_params,
     cluster_create_params,
     cluster_delete_params,
     cluster_update_params,
     cluster_upgrade_params,
+    cluster_list_versions_for_upgrade_params,
 )
 from .....types.cloud.task_id_list import TaskIDList
 from .....types.cloud.k8s.k8s_cluster import K8SCluster
@@ -410,6 +412,8 @@ class ClustersResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -424,6 +428,11 @@ class ClustersResource(SyncAPIResource):
           project_id: Project ID
 
           region_id: Region ID
+
+          limit: Optional. Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           extra_headers: Send extra headers
 
@@ -442,7 +451,17 @@ class ClustersResource(SyncAPIResource):
                 "/cloud/v2/k8s/clusters/{project_id}/{region_id}", project_id=project_id, region_id=region_id
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    cluster_list_params.ClusterListParams,
+                ),
             ),
             cast_to=K8SClusterList,
         )
@@ -610,6 +629,8 @@ class ClustersResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -626,6 +647,11 @@ class ClustersResource(SyncAPIResource):
           region_id: Region ID
 
           cluster_name: Cluster name
+
+          limit: Optional. Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           extra_headers: Send extra headers
 
@@ -649,7 +675,17 @@ class ClustersResource(SyncAPIResource):
                 cluster_name=cluster_name,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    cluster_list_versions_for_upgrade_params.ClusterListVersionsForUpgradeParams,
+                ),
             ),
             cast_to=K8SClusterVersionList,
         )
@@ -1296,6 +1332,8 @@ class AsyncClustersResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1310,6 +1348,11 @@ class AsyncClustersResource(AsyncAPIResource):
           project_id: Project ID
 
           region_id: Region ID
+
+          limit: Optional. Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           extra_headers: Send extra headers
 
@@ -1328,7 +1371,17 @@ class AsyncClustersResource(AsyncAPIResource):
                 "/cloud/v2/k8s/clusters/{project_id}/{region_id}", project_id=project_id, region_id=region_id
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    cluster_list_params.ClusterListParams,
+                ),
             ),
             cast_to=K8SClusterList,
         )
@@ -1496,6 +1549,8 @@ class AsyncClustersResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1512,6 +1567,11 @@ class AsyncClustersResource(AsyncAPIResource):
           region_id: Region ID
 
           cluster_name: Cluster name
+
+          limit: Optional. Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           extra_headers: Send extra headers
 
@@ -1535,7 +1595,17 @@ class AsyncClustersResource(AsyncAPIResource):
                 cluster_name=cluster_name,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    cluster_list_versions_for_upgrade_params.ClusterListVersionsForUpgradeParams,
+                ),
             ),
             cast_to=K8SClusterVersionList,
         )

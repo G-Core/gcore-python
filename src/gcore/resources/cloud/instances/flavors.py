@@ -54,6 +54,8 @@ class FlavorsResource(SyncAPIResource):
         exclude_linux: bool | Omit = omit,
         exclude_windows: bool | Omit = omit,
         include_prices: bool | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -68,13 +70,22 @@ class FlavorsResource(SyncAPIResource):
         clients see all prices as 0. Contact support for pricing errors.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           disabled: Flag for filtering disabled flavors in the region. Defaults to true
 
-          exclude_linux: Set to true to exclude flavors dedicated to linux images. Default False
+          exclude_linux: Set to true to exclude flavors dedicated to linux images
 
-          exclude_windows: Set to true to exclude flavors dedicated to windows images. Default False
+          exclude_windows: Set to true to exclude flavors dedicated to windows images
 
           include_prices: Set to true if the response should include flavor prices
+
+          limit: Optional. Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           extra_headers: Send extra headers
 
@@ -101,6 +112,8 @@ class FlavorsResource(SyncAPIResource):
                         "exclude_linux": exclude_linux,
                         "exclude_windows": exclude_windows,
                         "include_prices": include_prices,
+                        "limit": limit,
+                        "offset": offset,
                     },
                     flavor_list_params.FlavorListParams,
                 ),
@@ -142,6 +155,8 @@ class AsyncFlavorsResource(AsyncAPIResource):
         exclude_linux: bool | Omit = omit,
         exclude_windows: bool | Omit = omit,
         include_prices: bool | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -156,13 +171,22 @@ class AsyncFlavorsResource(AsyncAPIResource):
         clients see all prices as 0. Contact support for pricing errors.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           disabled: Flag for filtering disabled flavors in the region. Defaults to true
 
-          exclude_linux: Set to true to exclude flavors dedicated to linux images. Default False
+          exclude_linux: Set to true to exclude flavors dedicated to linux images
 
-          exclude_windows: Set to true to exclude flavors dedicated to windows images. Default False
+          exclude_windows: Set to true to exclude flavors dedicated to windows images
 
           include_prices: Set to true if the response should include flavor prices
+
+          limit: Optional. Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           extra_headers: Send extra headers
 
@@ -189,6 +213,8 @@ class AsyncFlavorsResource(AsyncAPIResource):
                         "exclude_linux": exclude_linux,
                         "exclude_windows": exclude_windows,
                         "include_prices": include_prices,
+                        "limit": limit,
+                        "offset": offset,
                     },
                     flavor_list_params.FlavorListParams,
                 ),

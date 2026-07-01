@@ -60,6 +60,7 @@ class TestClusters:
                     "kubelet_config": {"podMaxPids": "4096"},
                     "labels": {"my-label": "foo"},
                     "max_node_count": 5,
+                    "security_group_ids": ["e6ea8f35-82ce-4fb2-b51c-6a24a3a23bce"],
                     "servergroup_policy": "affinity",
                     "taints": {"my-taint": "bar:NoSchedule"},
                 }
@@ -88,6 +89,7 @@ class TestClusters:
             autoscaler_config={"scale-down-unneeded-time": "5m"},
             cni={
                 "cilium": {
+                    "cni_exclusive": True,
                     "encryption": True,
                     "hubble_relay": True,
                     "hubble_ui": True,
@@ -212,6 +214,7 @@ class TestClusters:
             autoscaler_config={"scale-down-unneeded-time": "5m"},
             cni={
                 "cilium": {
+                    "cni_exclusive": True,
                     "encryption": True,
                     "hubble_relay": True,
                     "hubble_ui": True,
@@ -286,6 +289,16 @@ class TestClusters:
         cluster = client.cloud.k8s.clusters.list(
             project_id=1,
             region_id=7,
+        )
+        assert_matches_type(K8SClusterList, cluster, path=["response"])
+
+    @parametrize
+    def test_method_list_with_all_params(self, client: Gcore) -> None:
+        cluster = client.cloud.k8s.clusters.list(
+            project_id=1,
+            region_id=7,
+            limit=1000,
+            offset=0,
         )
         assert_matches_type(K8SClusterList, cluster, path=["response"])
 
@@ -473,6 +486,17 @@ class TestClusters:
         assert_matches_type(K8SClusterVersionList, cluster, path=["response"])
 
     @parametrize
+    def test_method_list_versions_for_upgrade_with_all_params(self, client: Gcore) -> None:
+        cluster = client.cloud.k8s.clusters.list_versions_for_upgrade(
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
+            limit=1000,
+            offset=0,
+        )
+        assert_matches_type(K8SClusterVersionList, cluster, path=["response"])
+
+    @parametrize
     def test_raw_response_list_versions_for_upgrade(self, client: Gcore) -> None:
         response = client.cloud.k8s.clusters.with_raw_response.list_versions_for_upgrade(
             cluster_name="my-cluster",
@@ -603,6 +627,7 @@ class TestAsyncClusters:
                     "kubelet_config": {"podMaxPids": "4096"},
                     "labels": {"my-label": "foo"},
                     "max_node_count": 5,
+                    "security_group_ids": ["e6ea8f35-82ce-4fb2-b51c-6a24a3a23bce"],
                     "servergroup_policy": "affinity",
                     "taints": {"my-taint": "bar:NoSchedule"},
                 }
@@ -631,6 +656,7 @@ class TestAsyncClusters:
             autoscaler_config={"scale-down-unneeded-time": "5m"},
             cni={
                 "cilium": {
+                    "cni_exclusive": True,
                     "encryption": True,
                     "hubble_relay": True,
                     "hubble_ui": True,
@@ -755,6 +781,7 @@ class TestAsyncClusters:
             autoscaler_config={"scale-down-unneeded-time": "5m"},
             cni={
                 "cilium": {
+                    "cni_exclusive": True,
                     "encryption": True,
                     "hubble_relay": True,
                     "hubble_ui": True,
@@ -829,6 +856,16 @@ class TestAsyncClusters:
         cluster = await async_client.cloud.k8s.clusters.list(
             project_id=1,
             region_id=7,
+        )
+        assert_matches_type(K8SClusterList, cluster, path=["response"])
+
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
+        cluster = await async_client.cloud.k8s.clusters.list(
+            project_id=1,
+            region_id=7,
+            limit=1000,
+            offset=0,
         )
         assert_matches_type(K8SClusterList, cluster, path=["response"])
 
@@ -1012,6 +1049,17 @@ class TestAsyncClusters:
             cluster_name="my-cluster",
             project_id=1,
             region_id=7,
+        )
+        assert_matches_type(K8SClusterVersionList, cluster, path=["response"])
+
+    @parametrize
+    async def test_method_list_versions_for_upgrade_with_all_params(self, async_client: AsyncGcore) -> None:
+        cluster = await async_client.cloud.k8s.clusters.list_versions_for_upgrade(
+            cluster_name="my-cluster",
+            project_id=1,
+            region_id=7,
+            limit=1000,
+            offset=0,
         )
         assert_matches_type(K8SClusterVersionList, cluster, path=["response"])
 

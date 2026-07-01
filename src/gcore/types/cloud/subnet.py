@@ -12,6 +12,9 @@ __all__ = ["Subnet"]
 
 
 class Subnet(BaseModel):
+    id: str
+    """Subnet id."""
+
     cidr: str
     """CIDR"""
 
@@ -51,9 +54,6 @@ class Subnet(BaseModel):
 
     updated_at: datetime
     """Datetime when the subnet was last updated"""
-
-    id: Optional[str] = None
-    """Subnet id."""
 
     available_ips: Optional[int] = None
     """Number of available ips in subnet"""

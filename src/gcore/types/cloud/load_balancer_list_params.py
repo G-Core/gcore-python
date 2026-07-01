@@ -5,6 +5,8 @@ from __future__ import annotations
 from typing_extensions import Literal, TypedDict
 
 from ..._types import SequenceNotStr
+from .provisioning_status import ProvisioningStatus
+from .load_balancer_operating_status import LoadBalancerOperatingStatus
 
 __all__ = ["LoadBalancerListParams"]
 
@@ -31,6 +33,9 @@ class LoadBalancerListParams(TypedDict, total=False):
     offset: int
     """Offset in results list"""
 
+    operating_status: LoadBalancerOperatingStatus
+    """Filter by operating status"""
+
     order_by: Literal[
         "created_at.asc",
         "created_at.desc",
@@ -50,6 +55,9 @@ class LoadBalancerListParams(TypedDict, total=False):
         "vip_ip_family.desc",
     ]
     """Order by field and direction."""
+
+    provisioning_status: ProvisioningStatus
+    """Filter by provisioning (lifecycle) status"""
 
     show_stats: bool
     """Show statistics"""

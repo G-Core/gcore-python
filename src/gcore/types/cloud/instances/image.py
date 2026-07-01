@@ -97,7 +97,7 @@ class Image(BaseModel):
     status: str
     """Image status, i.e. active"""
 
-    tags: List[Tag]
+    tags_v2: List[Tag]
     """List of key-value tags associated with the resource.
 
     A tag is a key-value pair that can be associated with a resource, enabling

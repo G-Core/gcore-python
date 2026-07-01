@@ -35,7 +35,7 @@ class ImageUpdateParams(TypedDict, total=False):
     ssh_key: Literal["allow", "deny", "required"]
     """Whether the image supports SSH key or not"""
 
-    tags: TagUpdateMapParam
+    tags: Optional[TagUpdateMapParam]
     """Key-value tags to associate with the resource.
 
     A tag is a key-value pair that can be associated with a resource, enabling

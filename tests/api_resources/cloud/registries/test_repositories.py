@@ -27,6 +27,17 @@ class TestRepositories:
         assert_matches_type(RegistryRepositoryList, repository, path=["response"])
 
     @parametrize
+    def test_method_list_with_all_params(self, client: Gcore) -> None:
+        repository = client.cloud.registries.repositories.list(
+            registry_id=0,
+            project_id=0,
+            region_id=0,
+            limit=0,
+            offset=0,
+        )
+        assert_matches_type(RegistryRepositoryList, repository, path=["response"])
+
+    @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
         response = client.cloud.registries.repositories.with_raw_response.list(
             registry_id=0,
@@ -116,6 +127,17 @@ class TestAsyncRepositories:
             registry_id=0,
             project_id=0,
             region_id=0,
+        )
+        assert_matches_type(RegistryRepositoryList, repository, path=["response"])
+
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
+        repository = await async_client.cloud.registries.repositories.list(
+            registry_id=0,
+            project_id=0,
+            region_id=0,
+            limit=0,
+            offset=0,
         )
         assert_matches_type(RegistryRepositoryList, repository, path=["response"])
 

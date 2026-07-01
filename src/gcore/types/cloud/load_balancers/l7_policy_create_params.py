@@ -38,7 +38,7 @@ class CreateL7PolicyRedirectToURLSerializer(TypedDict, total=False):
     position: int
     """The position of this policy on the listener"""
 
-    redirect_http_code: int
+    redirect_http_code: Literal[301, 302, 303, 307, 308]
     """
     Requests matching this policy will be redirected to the specified URL or Prefix
     URL with the HTTP response code. Valid options are 301, 302, 303, 307, or 308.
@@ -71,7 +71,7 @@ class CreateL7PolicyRedirectPrefixSerializer(TypedDict, total=False):
     position: int
     """The position of this policy on the listener"""
 
-    redirect_http_code: int
+    redirect_http_code: Literal[301, 302, 303, 307, 308]
     """
     Requests matching this policy will be redirected to the specified URL or Prefix
     URL with the HTTP response code. Valid options are 301, 302, 303, 307, or 308.

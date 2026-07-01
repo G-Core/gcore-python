@@ -24,8 +24,8 @@ class TestReservedFixedIPs:
     @parametrize
     def test_method_create_overload_1(self, client: Gcore) -> None:
         reserved_fixed_ip = client.cloud.reserved_fixed_ips.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=4,
             type="external",
         )
         assert_matches_type(TaskIDList, reserved_fixed_ip, path=["response"])
@@ -33,8 +33,8 @@ class TestReservedFixedIPs:
     @parametrize
     def test_method_create_with_all_params_overload_1(self, client: Gcore) -> None:
         reserved_fixed_ip = client.cloud.reserved_fixed_ips.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=4,
             type="external",
             ip_family="ipv4",
             is_vip=False,
@@ -44,8 +44,8 @@ class TestReservedFixedIPs:
     @parametrize
     def test_raw_response_create_overload_1(self, client: Gcore) -> None:
         response = client.cloud.reserved_fixed_ips.with_raw_response.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=4,
             type="external",
         )
 
@@ -57,8 +57,8 @@ class TestReservedFixedIPs:
     @parametrize
     def test_streaming_response_create_overload_1(self, client: Gcore) -> None:
         with client.cloud.reserved_fixed_ips.with_streaming_response.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=4,
             type="external",
         ) as response:
             assert not response.is_closed
@@ -72,8 +72,8 @@ class TestReservedFixedIPs:
     @parametrize
     def test_method_create_overload_2(self, client: Gcore) -> None:
         reserved_fixed_ip = client.cloud.reserved_fixed_ips.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=4,
             subnet_id="e3c6ee77-48cb-416b-b204-11b492cc776e3",
             type="subnet",
         )
@@ -82,8 +82,8 @@ class TestReservedFixedIPs:
     @parametrize
     def test_method_create_with_all_params_overload_2(self, client: Gcore) -> None:
         reserved_fixed_ip = client.cloud.reserved_fixed_ips.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=4,
             subnet_id="e3c6ee77-48cb-416b-b204-11b492cc776e3",
             type="subnet",
             is_vip=False,
@@ -93,8 +93,8 @@ class TestReservedFixedIPs:
     @parametrize
     def test_raw_response_create_overload_2(self, client: Gcore) -> None:
         response = client.cloud.reserved_fixed_ips.with_raw_response.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=4,
             subnet_id="e3c6ee77-48cb-416b-b204-11b492cc776e3",
             type="subnet",
         )
@@ -107,8 +107,8 @@ class TestReservedFixedIPs:
     @parametrize
     def test_streaming_response_create_overload_2(self, client: Gcore) -> None:
         with client.cloud.reserved_fixed_ips.with_streaming_response.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=4,
             subnet_id="e3c6ee77-48cb-416b-b204-11b492cc776e3",
             type="subnet",
         ) as response:
@@ -123,8 +123,8 @@ class TestReservedFixedIPs:
     @parametrize
     def test_method_create_overload_3(self, client: Gcore) -> None:
         reserved_fixed_ip = client.cloud.reserved_fixed_ips.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=4,
             network_id="e3c6ee77-48cb-416b-b204-11b492cc776e3",
             type="any_subnet",
         )
@@ -133,8 +133,8 @@ class TestReservedFixedIPs:
     @parametrize
     def test_method_create_with_all_params_overload_3(self, client: Gcore) -> None:
         reserved_fixed_ip = client.cloud.reserved_fixed_ips.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=4,
             network_id="e3c6ee77-48cb-416b-b204-11b492cc776e3",
             type="any_subnet",
             ip_family="ipv4",
@@ -145,8 +145,8 @@ class TestReservedFixedIPs:
     @parametrize
     def test_raw_response_create_overload_3(self, client: Gcore) -> None:
         response = client.cloud.reserved_fixed_ips.with_raw_response.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=4,
             network_id="e3c6ee77-48cb-416b-b204-11b492cc776e3",
             type="any_subnet",
         )
@@ -159,8 +159,8 @@ class TestReservedFixedIPs:
     @parametrize
     def test_streaming_response_create_overload_3(self, client: Gcore) -> None:
         with client.cloud.reserved_fixed_ips.with_streaming_response.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=4,
             network_id="e3c6ee77-48cb-416b-b204-11b492cc776e3",
             type="any_subnet",
         ) as response:
@@ -175,8 +175,8 @@ class TestReservedFixedIPs:
     @parametrize
     def test_method_create_overload_4(self, client: Gcore) -> None:
         reserved_fixed_ip = client.cloud.reserved_fixed_ips.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=4,
             ip_address="192.168.123.20",
             network_id="e3c6ee77-48cb-416b-b204-11b492cc776e3",
             type="ip_address",
@@ -186,8 +186,8 @@ class TestReservedFixedIPs:
     @parametrize
     def test_method_create_with_all_params_overload_4(self, client: Gcore) -> None:
         reserved_fixed_ip = client.cloud.reserved_fixed_ips.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=4,
             ip_address="192.168.123.20",
             network_id="e3c6ee77-48cb-416b-b204-11b492cc776e3",
             type="ip_address",
@@ -198,8 +198,8 @@ class TestReservedFixedIPs:
     @parametrize
     def test_raw_response_create_overload_4(self, client: Gcore) -> None:
         response = client.cloud.reserved_fixed_ips.with_raw_response.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=4,
             ip_address="192.168.123.20",
             network_id="e3c6ee77-48cb-416b-b204-11b492cc776e3",
             type="ip_address",
@@ -213,8 +213,8 @@ class TestReservedFixedIPs:
     @parametrize
     def test_streaming_response_create_overload_4(self, client: Gcore) -> None:
         with client.cloud.reserved_fixed_ips.with_streaming_response.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=4,
             ip_address="192.168.123.20",
             network_id="e3c6ee77-48cb-416b-b204-11b492cc776e3",
             type="ip_address",
@@ -230,8 +230,8 @@ class TestReservedFixedIPs:
     @parametrize
     def test_method_create_overload_5(self, client: Gcore) -> None:
         reserved_fixed_ip = client.cloud.reserved_fixed_ips.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=4,
             port_id="77f1394f-2a18-4686-a2eb-acea25146374",
             type="port",
         )
@@ -240,8 +240,8 @@ class TestReservedFixedIPs:
     @parametrize
     def test_raw_response_create_overload_5(self, client: Gcore) -> None:
         response = client.cloud.reserved_fixed_ips.with_raw_response.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=4,
             port_id="77f1394f-2a18-4686-a2eb-acea25146374",
             type="port",
         )
@@ -254,8 +254,8 @@ class TestReservedFixedIPs:
     @parametrize
     def test_streaming_response_create_overload_5(self, client: Gcore) -> None:
         with client.cloud.reserved_fixed_ips.with_streaming_response.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=4,
             port_id="77f1394f-2a18-4686-a2eb-acea25146374",
             type="port",
         ) as response:
@@ -270,9 +270,9 @@ class TestReservedFixedIPs:
     @parametrize
     def test_method_update(self, client: Gcore) -> None:
         reserved_fixed_ip = client.cloud.reserved_fixed_ips.update(
-            port_id="port_id",
-            project_id=0,
-            region_id=0,
+            port_id="ac177f1f-eb04-42c4-9864-e7d6486813af",
+            project_id=1,
+            region_id=4,
             is_vip=True,
         )
         assert_matches_type(ReservedFixedIP, reserved_fixed_ip, path=["response"])
@@ -280,9 +280,9 @@ class TestReservedFixedIPs:
     @parametrize
     def test_raw_response_update(self, client: Gcore) -> None:
         response = client.cloud.reserved_fixed_ips.with_raw_response.update(
-            port_id="port_id",
-            project_id=0,
-            region_id=0,
+            port_id="ac177f1f-eb04-42c4-9864-e7d6486813af",
+            project_id=1,
+            region_id=4,
             is_vip=True,
         )
 
@@ -294,9 +294,9 @@ class TestReservedFixedIPs:
     @parametrize
     def test_streaming_response_update(self, client: Gcore) -> None:
         with client.cloud.reserved_fixed_ips.with_streaming_response.update(
-            port_id="port_id",
-            project_id=0,
-            region_id=0,
+            port_id="ac177f1f-eb04-42c4-9864-e7d6486813af",
+            project_id=1,
+            region_id=4,
             is_vip=True,
         ) as response:
             assert not response.is_closed
@@ -312,32 +312,32 @@ class TestReservedFixedIPs:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `port_id` but received ''"):
             client.cloud.reserved_fixed_ips.with_raw_response.update(
                 port_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=4,
                 is_vip=True,
             )
 
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
         reserved_fixed_ip = client.cloud.reserved_fixed_ips.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=4,
         )
         assert_matches_type(SyncOffsetPage[ReservedFixedIP], reserved_fixed_ip, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
         reserved_fixed_ip = client.cloud.reserved_fixed_ips.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=4,
             available_only=True,
             device_id="device_id",
             external_only=True,
             internal_only=True,
             ip_address="ip_address",
-            limit=0,
+            limit=1000,
             offset=0,
-            order_by="order_by",
+            order_by="created_at.asc",
             vip_only=True,
         )
         assert_matches_type(SyncOffsetPage[ReservedFixedIP], reserved_fixed_ip, path=["response"])
@@ -345,8 +345,8 @@ class TestReservedFixedIPs:
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
         response = client.cloud.reserved_fixed_ips.with_raw_response.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=4,
         )
 
         assert response.is_closed is True
@@ -357,8 +357,8 @@ class TestReservedFixedIPs:
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
         with client.cloud.reserved_fixed_ips.with_streaming_response.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=4,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -371,18 +371,18 @@ class TestReservedFixedIPs:
     @parametrize
     def test_method_delete(self, client: Gcore) -> None:
         reserved_fixed_ip = client.cloud.reserved_fixed_ips.delete(
-            port_id="port_id",
-            project_id=0,
-            region_id=0,
+            port_id="ac177f1f-eb04-42c4-9864-e7d6486813af",
+            project_id=1,
+            region_id=4,
         )
         assert_matches_type(TaskIDList, reserved_fixed_ip, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Gcore) -> None:
         response = client.cloud.reserved_fixed_ips.with_raw_response.delete(
-            port_id="port_id",
-            project_id=0,
-            region_id=0,
+            port_id="ac177f1f-eb04-42c4-9864-e7d6486813af",
+            project_id=1,
+            region_id=4,
         )
 
         assert response.is_closed is True
@@ -393,9 +393,9 @@ class TestReservedFixedIPs:
     @parametrize
     def test_streaming_response_delete(self, client: Gcore) -> None:
         with client.cloud.reserved_fixed_ips.with_streaming_response.delete(
-            port_id="port_id",
-            project_id=0,
-            region_id=0,
+            port_id="ac177f1f-eb04-42c4-9864-e7d6486813af",
+            project_id=1,
+            region_id=4,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -410,25 +410,25 @@ class TestReservedFixedIPs:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `port_id` but received ''"):
             client.cloud.reserved_fixed_ips.with_raw_response.delete(
                 port_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=4,
             )
 
     @parametrize
     def test_method_get(self, client: Gcore) -> None:
         reserved_fixed_ip = client.cloud.reserved_fixed_ips.get(
-            port_id="port_id",
-            project_id=0,
-            region_id=0,
+            port_id="ac177f1f-eb04-42c4-9864-e7d6486813af",
+            project_id=1,
+            region_id=4,
         )
         assert_matches_type(ReservedFixedIP, reserved_fixed_ip, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Gcore) -> None:
         response = client.cloud.reserved_fixed_ips.with_raw_response.get(
-            port_id="port_id",
-            project_id=0,
-            region_id=0,
+            port_id="ac177f1f-eb04-42c4-9864-e7d6486813af",
+            project_id=1,
+            region_id=4,
         )
 
         assert response.is_closed is True
@@ -439,9 +439,9 @@ class TestReservedFixedIPs:
     @parametrize
     def test_streaming_response_get(self, client: Gcore) -> None:
         with client.cloud.reserved_fixed_ips.with_streaming_response.get(
-            port_id="port_id",
-            project_id=0,
-            region_id=0,
+            port_id="ac177f1f-eb04-42c4-9864-e7d6486813af",
+            project_id=1,
+            region_id=4,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -456,8 +456,8 @@ class TestReservedFixedIPs:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `port_id` but received ''"):
             client.cloud.reserved_fixed_ips.with_raw_response.get(
                 port_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=4,
             )
 
 
@@ -469,8 +469,8 @@ class TestAsyncReservedFixedIPs:
     @parametrize
     async def test_method_create_overload_1(self, async_client: AsyncGcore) -> None:
         reserved_fixed_ip = await async_client.cloud.reserved_fixed_ips.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=4,
             type="external",
         )
         assert_matches_type(TaskIDList, reserved_fixed_ip, path=["response"])
@@ -478,8 +478,8 @@ class TestAsyncReservedFixedIPs:
     @parametrize
     async def test_method_create_with_all_params_overload_1(self, async_client: AsyncGcore) -> None:
         reserved_fixed_ip = await async_client.cloud.reserved_fixed_ips.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=4,
             type="external",
             ip_family="ipv4",
             is_vip=False,
@@ -489,8 +489,8 @@ class TestAsyncReservedFixedIPs:
     @parametrize
     async def test_raw_response_create_overload_1(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.reserved_fixed_ips.with_raw_response.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=4,
             type="external",
         )
 
@@ -502,8 +502,8 @@ class TestAsyncReservedFixedIPs:
     @parametrize
     async def test_streaming_response_create_overload_1(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.reserved_fixed_ips.with_streaming_response.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=4,
             type="external",
         ) as response:
             assert not response.is_closed
@@ -517,8 +517,8 @@ class TestAsyncReservedFixedIPs:
     @parametrize
     async def test_method_create_overload_2(self, async_client: AsyncGcore) -> None:
         reserved_fixed_ip = await async_client.cloud.reserved_fixed_ips.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=4,
             subnet_id="e3c6ee77-48cb-416b-b204-11b492cc776e3",
             type="subnet",
         )
@@ -527,8 +527,8 @@ class TestAsyncReservedFixedIPs:
     @parametrize
     async def test_method_create_with_all_params_overload_2(self, async_client: AsyncGcore) -> None:
         reserved_fixed_ip = await async_client.cloud.reserved_fixed_ips.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=4,
             subnet_id="e3c6ee77-48cb-416b-b204-11b492cc776e3",
             type="subnet",
             is_vip=False,
@@ -538,8 +538,8 @@ class TestAsyncReservedFixedIPs:
     @parametrize
     async def test_raw_response_create_overload_2(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.reserved_fixed_ips.with_raw_response.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=4,
             subnet_id="e3c6ee77-48cb-416b-b204-11b492cc776e3",
             type="subnet",
         )
@@ -552,8 +552,8 @@ class TestAsyncReservedFixedIPs:
     @parametrize
     async def test_streaming_response_create_overload_2(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.reserved_fixed_ips.with_streaming_response.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=4,
             subnet_id="e3c6ee77-48cb-416b-b204-11b492cc776e3",
             type="subnet",
         ) as response:
@@ -568,8 +568,8 @@ class TestAsyncReservedFixedIPs:
     @parametrize
     async def test_method_create_overload_3(self, async_client: AsyncGcore) -> None:
         reserved_fixed_ip = await async_client.cloud.reserved_fixed_ips.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=4,
             network_id="e3c6ee77-48cb-416b-b204-11b492cc776e3",
             type="any_subnet",
         )
@@ -578,8 +578,8 @@ class TestAsyncReservedFixedIPs:
     @parametrize
     async def test_method_create_with_all_params_overload_3(self, async_client: AsyncGcore) -> None:
         reserved_fixed_ip = await async_client.cloud.reserved_fixed_ips.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=4,
             network_id="e3c6ee77-48cb-416b-b204-11b492cc776e3",
             type="any_subnet",
             ip_family="ipv4",
@@ -590,8 +590,8 @@ class TestAsyncReservedFixedIPs:
     @parametrize
     async def test_raw_response_create_overload_3(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.reserved_fixed_ips.with_raw_response.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=4,
             network_id="e3c6ee77-48cb-416b-b204-11b492cc776e3",
             type="any_subnet",
         )
@@ -604,8 +604,8 @@ class TestAsyncReservedFixedIPs:
     @parametrize
     async def test_streaming_response_create_overload_3(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.reserved_fixed_ips.with_streaming_response.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=4,
             network_id="e3c6ee77-48cb-416b-b204-11b492cc776e3",
             type="any_subnet",
         ) as response:
@@ -620,8 +620,8 @@ class TestAsyncReservedFixedIPs:
     @parametrize
     async def test_method_create_overload_4(self, async_client: AsyncGcore) -> None:
         reserved_fixed_ip = await async_client.cloud.reserved_fixed_ips.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=4,
             ip_address="192.168.123.20",
             network_id="e3c6ee77-48cb-416b-b204-11b492cc776e3",
             type="ip_address",
@@ -631,8 +631,8 @@ class TestAsyncReservedFixedIPs:
     @parametrize
     async def test_method_create_with_all_params_overload_4(self, async_client: AsyncGcore) -> None:
         reserved_fixed_ip = await async_client.cloud.reserved_fixed_ips.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=4,
             ip_address="192.168.123.20",
             network_id="e3c6ee77-48cb-416b-b204-11b492cc776e3",
             type="ip_address",
@@ -643,8 +643,8 @@ class TestAsyncReservedFixedIPs:
     @parametrize
     async def test_raw_response_create_overload_4(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.reserved_fixed_ips.with_raw_response.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=4,
             ip_address="192.168.123.20",
             network_id="e3c6ee77-48cb-416b-b204-11b492cc776e3",
             type="ip_address",
@@ -658,8 +658,8 @@ class TestAsyncReservedFixedIPs:
     @parametrize
     async def test_streaming_response_create_overload_4(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.reserved_fixed_ips.with_streaming_response.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=4,
             ip_address="192.168.123.20",
             network_id="e3c6ee77-48cb-416b-b204-11b492cc776e3",
             type="ip_address",
@@ -675,8 +675,8 @@ class TestAsyncReservedFixedIPs:
     @parametrize
     async def test_method_create_overload_5(self, async_client: AsyncGcore) -> None:
         reserved_fixed_ip = await async_client.cloud.reserved_fixed_ips.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=4,
             port_id="77f1394f-2a18-4686-a2eb-acea25146374",
             type="port",
         )
@@ -685,8 +685,8 @@ class TestAsyncReservedFixedIPs:
     @parametrize
     async def test_raw_response_create_overload_5(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.reserved_fixed_ips.with_raw_response.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=4,
             port_id="77f1394f-2a18-4686-a2eb-acea25146374",
             type="port",
         )
@@ -699,8 +699,8 @@ class TestAsyncReservedFixedIPs:
     @parametrize
     async def test_streaming_response_create_overload_5(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.reserved_fixed_ips.with_streaming_response.create(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=4,
             port_id="77f1394f-2a18-4686-a2eb-acea25146374",
             type="port",
         ) as response:
@@ -715,9 +715,9 @@ class TestAsyncReservedFixedIPs:
     @parametrize
     async def test_method_update(self, async_client: AsyncGcore) -> None:
         reserved_fixed_ip = await async_client.cloud.reserved_fixed_ips.update(
-            port_id="port_id",
-            project_id=0,
-            region_id=0,
+            port_id="ac177f1f-eb04-42c4-9864-e7d6486813af",
+            project_id=1,
+            region_id=4,
             is_vip=True,
         )
         assert_matches_type(ReservedFixedIP, reserved_fixed_ip, path=["response"])
@@ -725,9 +725,9 @@ class TestAsyncReservedFixedIPs:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.reserved_fixed_ips.with_raw_response.update(
-            port_id="port_id",
-            project_id=0,
-            region_id=0,
+            port_id="ac177f1f-eb04-42c4-9864-e7d6486813af",
+            project_id=1,
+            region_id=4,
             is_vip=True,
         )
 
@@ -739,9 +739,9 @@ class TestAsyncReservedFixedIPs:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.reserved_fixed_ips.with_streaming_response.update(
-            port_id="port_id",
-            project_id=0,
-            region_id=0,
+            port_id="ac177f1f-eb04-42c4-9864-e7d6486813af",
+            project_id=1,
+            region_id=4,
             is_vip=True,
         ) as response:
             assert not response.is_closed
@@ -757,32 +757,32 @@ class TestAsyncReservedFixedIPs:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `port_id` but received ''"):
             await async_client.cloud.reserved_fixed_ips.with_raw_response.update(
                 port_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=4,
                 is_vip=True,
             )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
         reserved_fixed_ip = await async_client.cloud.reserved_fixed_ips.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=4,
         )
         assert_matches_type(AsyncOffsetPage[ReservedFixedIP], reserved_fixed_ip, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
         reserved_fixed_ip = await async_client.cloud.reserved_fixed_ips.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=4,
             available_only=True,
             device_id="device_id",
             external_only=True,
             internal_only=True,
             ip_address="ip_address",
-            limit=0,
+            limit=1000,
             offset=0,
-            order_by="order_by",
+            order_by="created_at.asc",
             vip_only=True,
         )
         assert_matches_type(AsyncOffsetPage[ReservedFixedIP], reserved_fixed_ip, path=["response"])
@@ -790,8 +790,8 @@ class TestAsyncReservedFixedIPs:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.reserved_fixed_ips.with_raw_response.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=4,
         )
 
         assert response.is_closed is True
@@ -802,8 +802,8 @@ class TestAsyncReservedFixedIPs:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.reserved_fixed_ips.with_streaming_response.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=4,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -816,18 +816,18 @@ class TestAsyncReservedFixedIPs:
     @parametrize
     async def test_method_delete(self, async_client: AsyncGcore) -> None:
         reserved_fixed_ip = await async_client.cloud.reserved_fixed_ips.delete(
-            port_id="port_id",
-            project_id=0,
-            region_id=0,
+            port_id="ac177f1f-eb04-42c4-9864-e7d6486813af",
+            project_id=1,
+            region_id=4,
         )
         assert_matches_type(TaskIDList, reserved_fixed_ip, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.reserved_fixed_ips.with_raw_response.delete(
-            port_id="port_id",
-            project_id=0,
-            region_id=0,
+            port_id="ac177f1f-eb04-42c4-9864-e7d6486813af",
+            project_id=1,
+            region_id=4,
         )
 
         assert response.is_closed is True
@@ -838,9 +838,9 @@ class TestAsyncReservedFixedIPs:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.reserved_fixed_ips.with_streaming_response.delete(
-            port_id="port_id",
-            project_id=0,
-            region_id=0,
+            port_id="ac177f1f-eb04-42c4-9864-e7d6486813af",
+            project_id=1,
+            region_id=4,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -855,25 +855,25 @@ class TestAsyncReservedFixedIPs:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `port_id` but received ''"):
             await async_client.cloud.reserved_fixed_ips.with_raw_response.delete(
                 port_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=4,
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncGcore) -> None:
         reserved_fixed_ip = await async_client.cloud.reserved_fixed_ips.get(
-            port_id="port_id",
-            project_id=0,
-            region_id=0,
+            port_id="ac177f1f-eb04-42c4-9864-e7d6486813af",
+            project_id=1,
+            region_id=4,
         )
         assert_matches_type(ReservedFixedIP, reserved_fixed_ip, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.reserved_fixed_ips.with_raw_response.get(
-            port_id="port_id",
-            project_id=0,
-            region_id=0,
+            port_id="ac177f1f-eb04-42c4-9864-e7d6486813af",
+            project_id=1,
+            region_id=4,
         )
 
         assert response.is_closed is True
@@ -884,9 +884,9 @@ class TestAsyncReservedFixedIPs:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.reserved_fixed_ips.with_streaming_response.get(
-            port_id="port_id",
-            project_id=0,
-            region_id=0,
+            port_id="ac177f1f-eb04-42c4-9864-e7d6486813af",
+            project_id=1,
+            region_id=4,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -901,6 +901,6 @@ class TestAsyncReservedFixedIPs:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `port_id` but received ''"):
             await async_client.cloud.reserved_fixed_ips.with_raw_response.get(
                 port_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=4,
             )

@@ -31,7 +31,7 @@ class ListenerCreateParams(TypedDict, total=False):
     """Protocol port"""
 
     allowed_cidrs: Optional[SequenceNotStr[str]]
-    """Network CIDRs from which service will be accessible"""
+    """Network CIDRs from which service will be accessible. Order-insensitive."""
 
     connection_limit: int
     """Limit of the simultaneous connections.

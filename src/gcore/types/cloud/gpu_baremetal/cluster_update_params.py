@@ -7,7 +7,7 @@ from typing_extensions import TypedDict
 
 from ..tag_update_map_param import TagUpdateMapParam
 
-__all__ = ["ClusterUpdateParams"]
+__all__ = ["ClusterUpdateParams", "ServersSettings", "ServersSettingsCredentials"]
 
 
 class ClusterUpdateParams(TypedDict, total=False):
@@ -17,8 +17,19 @@ class ClusterUpdateParams(TypedDict, total=False):
     region_id: int
     """Region ID"""
 
+    image_id: str
+    """Image ID of the OS image to apply to the cluster template.
+
+    Use GET /v1/images/{`project_id`}/{`region_id`} to discover available images.
+    Takes effect on existing servers only after a successful POST /`apply_settings`
+    call.
+    """
+
     name: str
     """Cluster name"""
+
+    servers_settings: ServersSettings
+    """Configuration settings for the servers in the cluster"""
 
     tags: Optional[TagUpdateMapParam]
     """Update key-value tags using JSON Merge Patch semantics (RFC 7386).
@@ -44,3 +55,23 @@ class ClusterUpdateParams(TypedDict, total=False):
     - **Replace all:** first delete existing tags with null values, then add new
       ones in the same request.
     """
+
+
+class ServersSettingsCredentials(TypedDict, total=False):
+    """Optional server access credentials"""
+
+    ssh_key_name: str
+    """
+    Specifies the name of the SSH keypair, created via the
+    [/v1/`ssh_keys` endpoint](/docs/api-reference/cloud/ssh-keys/add-or-generate-ssh-key).
+    """
+
+
+class ServersSettings(TypedDict, total=False):
+    """Configuration settings for the servers in the cluster"""
+
+    credentials: ServersSettingsCredentials
+    """Optional server access credentials"""
+
+    user_data: str
+    """Optional custom user data (Base64-encoded)"""

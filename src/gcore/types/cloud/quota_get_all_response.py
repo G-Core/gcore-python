@@ -40,6 +40,12 @@ class GlobalQuotas(BaseModel):
     inference_instance_count_usage: Optional[int] = None
     """Inference instance count usage"""
 
+    inference_public_model_api_key_count_limit: Optional[int] = None
+    """Public model API keys count limit"""
+
+    inference_public_model_api_key_count_usage: Optional[int] = None
+    """Public model API keys count usage"""
+
     keypair_count_limit: Optional[int] = None
     """SSH Keys Count limit"""
 

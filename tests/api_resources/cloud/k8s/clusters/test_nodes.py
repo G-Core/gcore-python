@@ -32,6 +32,8 @@ class TestNodes:
             cluster_name="my-cluster",
             project_id=1,
             region_id=7,
+            limit=1000,
+            offset=0,
             with_ddos=False,
         )
         assert_matches_type(InstanceList, node, path=["response"])
@@ -152,6 +154,8 @@ class TestAsyncNodes:
             cluster_name="my-cluster",
             project_id=1,
             region_id=7,
+            limit=1000,
+            offset=0,
             with_ddos=False,
         )
         assert_matches_type(InstanceList, node, path=["response"])

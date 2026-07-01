@@ -78,6 +78,7 @@ from .instance_list_params import InstanceListParams as InstanceListParams
 from .lb_listener_protocol import LbListenerProtocol as LbListenerProtocol
 from .load_balancer_status import LoadBalancerStatus as LoadBalancerStatus
 from .placement_group_list import PlacementGroupList as PlacementGroupList
+from .registry_list_params import RegistryListParams as RegistryListParams
 from .tag_update_map_param import TagUpdateMapParam as TagUpdateMapParam
 from .volume_create_params import VolumeCreateParams as VolumeCreateParams
 from .volume_delete_params import VolumeDeleteParams as VolumeDeleteParams
@@ -117,6 +118,7 @@ from .file_share_create_params import FileShareCreateParams as FileShareCreatePa
 from .file_share_resize_params import FileShareResizeParams as FileShareResizeParams
 from .file_share_update_params import FileShareUpdateParams as FileShareUpdateParams
 from .k8s_cluster_version_list import K8SClusterVersionList as K8SClusterVersionList
+from .k8s_list_versions_params import K8SListVersionsParams as K8SListVersionsParams
 from .load_balancer_get_params import LoadBalancerGetParams as LoadBalancerGetParams
 from .load_balancer_statistics import LoadBalancerStatistics as LoadBalancerStatistics
 from .floating_ip_assign_params import FloatingIPAssignParams as FloatingIPAssignParams
@@ -143,6 +145,7 @@ from .load_balancer_instance_role import LoadBalancerInstanceRole as LoadBalance
 from .load_balancer_listener_list import LoadBalancerListenerList as LoadBalancerListenerList
 from .load_balancer_resize_params import LoadBalancerResizeParams as LoadBalancerResizeParams
 from .load_balancer_update_params import LoadBalancerUpdateParams as LoadBalancerUpdateParams
+from .placement_group_list_params import PlacementGroupListParams as PlacementGroupListParams
 from .task_acknowledge_all_params import TaskAcknowledgeAllParams as TaskAcknowledgeAllParams
 from .load_balancer_l7_policy_list import LoadBalancerL7PolicyList as LoadBalancerL7PolicyList
 from .quota_get_by_region_response import QuotaGetByRegionResponse as QuotaGetByRegionResponse

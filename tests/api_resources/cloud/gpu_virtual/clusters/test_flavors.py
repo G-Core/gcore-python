@@ -32,6 +32,8 @@ class TestFlavors:
             region_id=7,
             hide_disabled=True,
             include_prices=True,
+            limit=1000,
+            offset=0,
         )
         assert_matches_type(GPUVirtualFlavorList, flavor, path=["response"])
 
@@ -82,6 +84,8 @@ class TestAsyncFlavors:
             region_id=7,
             hide_disabled=True,
             include_prices=True,
+            limit=1000,
+            offset=0,
         )
         assert_matches_type(GPUVirtualFlavorList, flavor, path=["response"])
 

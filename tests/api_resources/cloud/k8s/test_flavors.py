@@ -33,6 +33,8 @@ class TestFlavors:
             exclude_gpu=False,
             include_capacity=False,
             include_prices=False,
+            limit=1000,
+            offset=0,
         )
         assert_matches_type(BaremetalFlavorList, flavor, path=["response"])
 
@@ -84,6 +86,8 @@ class TestAsyncFlavors:
             exclude_gpu=False,
             include_capacity=False,
             include_prices=False,
+            limit=1000,
+            offset=0,
         )
         assert_matches_type(BaremetalFlavorList, flavor, path=["response"])
 

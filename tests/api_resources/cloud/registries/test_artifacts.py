@@ -28,6 +28,18 @@ class TestArtifacts:
         assert_matches_type(RegistryArtifactList, artifact, path=["response"])
 
     @parametrize
+    def test_method_list_with_all_params(self, client: Gcore) -> None:
+        artifact = client.cloud.registries.artifacts.list(
+            repository_name="repository_name",
+            project_id=0,
+            region_id=0,
+            registry_id=0,
+            limit=0,
+            offset=0,
+        )
+        assert_matches_type(RegistryArtifactList, artifact, path=["response"])
+
+    @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
         response = client.cloud.registries.artifacts.with_raw_response.list(
             repository_name="repository_name",
@@ -143,6 +155,18 @@ class TestAsyncArtifacts:
             project_id=0,
             region_id=0,
             registry_id=0,
+        )
+        assert_matches_type(RegistryArtifactList, artifact, path=["response"])
+
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
+        artifact = await async_client.cloud.registries.artifacts.list(
+            repository_name="repository_name",
+            project_id=0,
+            region_id=0,
+            registry_id=0,
+            limit=0,
+            offset=0,
         )
         assert_matches_type(RegistryArtifactList, artifact, path=["response"])
 
