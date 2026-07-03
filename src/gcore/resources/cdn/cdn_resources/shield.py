@@ -24,6 +24,10 @@ __all__ = ["ShieldResource", "AsyncShieldResource"]
 
 
 class ShieldResource(SyncAPIResource):
+    """
+    Origin shielding protects your origin server from being overloaded by routing all CDN requests through a single shield (precache) server for a CDN resource.
+    """
+
     @cached_property
     def with_raw_response(self) -> ShieldResourceWithRawResponse:
         """
@@ -113,6 +117,10 @@ class ShieldResource(SyncAPIResource):
 
 
 class AsyncShieldResource(AsyncAPIResource):
+    """
+    Origin shielding protects your origin server from being overloaded by routing all CDN requests through a single shield (precache) server for a CDN resource.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncShieldResourceWithRawResponse:
         """

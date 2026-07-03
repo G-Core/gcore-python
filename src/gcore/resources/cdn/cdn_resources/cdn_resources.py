@@ -51,6 +51,9 @@ __all__ = ["CDNResourcesResource", "AsyncCDNResourcesResource"]
 class CDNResourcesResource(SyncAPIResource):
     @cached_property
     def shield(self) -> ShieldResource:
+        """
+        Origin shielding protects your origin server from being overloaded by routing all CDN requests through a single shield (precache) server for a CDN resource.
+        """
         return ShieldResource(self._client)
 
     @cached_property
@@ -973,6 +976,9 @@ class CDNResourcesResource(SyncAPIResource):
 class AsyncCDNResourcesResource(AsyncAPIResource):
     @cached_property
     def shield(self) -> AsyncShieldResource:
+        """
+        Origin shielding protects your origin server from being overloaded by routing all CDN requests through a single shield (precache) server for a CDN resource.
+        """
         return AsyncShieldResource(self._client)
 
     @cached_property
@@ -1926,6 +1932,9 @@ class CDNResourcesResourceWithRawResponse:
 
     @cached_property
     def shield(self) -> ShieldResourceWithRawResponse:
+        """
+        Origin shielding protects your origin server from being overloaded by routing all CDN requests through a single shield (precache) server for a CDN resource.
+        """
         return ShieldResourceWithRawResponse(self._cdn_resources.shield)
 
     @cached_property
@@ -1970,6 +1979,9 @@ class AsyncCDNResourcesResourceWithRawResponse:
 
     @cached_property
     def shield(self) -> AsyncShieldResourceWithRawResponse:
+        """
+        Origin shielding protects your origin server from being overloaded by routing all CDN requests through a single shield (precache) server for a CDN resource.
+        """
         return AsyncShieldResourceWithRawResponse(self._cdn_resources.shield)
 
     @cached_property
@@ -2014,6 +2026,9 @@ class CDNResourcesResourceWithStreamingResponse:
 
     @cached_property
     def shield(self) -> ShieldResourceWithStreamingResponse:
+        """
+        Origin shielding protects your origin server from being overloaded by routing all CDN requests through a single shield (precache) server for a CDN resource.
+        """
         return ShieldResourceWithStreamingResponse(self._cdn_resources.shield)
 
     @cached_property
@@ -2058,6 +2073,9 @@ class AsyncCDNResourcesResourceWithStreamingResponse:
 
     @cached_property
     def shield(self) -> AsyncShieldResourceWithStreamingResponse:
+        """
+        Origin shielding protects your origin server from being overloaded by routing all CDN requests through a single shield (precache) server for a CDN resource.
+        """
         return AsyncShieldResourceWithStreamingResponse(self._cdn_resources.shield)
 
     @cached_property
