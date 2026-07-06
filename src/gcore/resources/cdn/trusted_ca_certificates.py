@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
-
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
@@ -147,28 +145,25 @@ class TrustedCaCertificatesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            CaCertificateList,
-            self._get(
-                "/cdn/sslCertificates",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    query=maybe_transform(
-                        {
-                            "automated": automated,
-                            "limit": limit,
-                            "offset": offset,
-                            "resource_id": resource_id,
-                            "validity_not_after_lte": validity_not_after_lte,
-                        },
-                        trusted_ca_certificate_list_params.TrustedCaCertificateListParams,
-                    ),
+        return self._get(
+            "/cdn/sslCertificates",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "automated": automated,
+                        "limit": limit,
+                        "offset": offset,
+                        "resource_id": resource_id,
+                        "validity_not_after_lte": validity_not_after_lte,
+                    },
+                    trusted_ca_certificate_list_params.TrustedCaCertificateListParams,
                 ),
-                cast_to=cast(Any, CaCertificateList),  # Union types cannot be passed in as arguments in the type system
             ),
+            cast_to=CaCertificateList,
         )
 
     def delete(
@@ -393,28 +388,25 @@ class AsyncTrustedCaCertificatesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            CaCertificateList,
-            await self._get(
-                "/cdn/sslCertificates",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    query=await async_maybe_transform(
-                        {
-                            "automated": automated,
-                            "limit": limit,
-                            "offset": offset,
-                            "resource_id": resource_id,
-                            "validity_not_after_lte": validity_not_after_lte,
-                        },
-                        trusted_ca_certificate_list_params.TrustedCaCertificateListParams,
-                    ),
+        return await self._get(
+            "/cdn/sslCertificates",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "automated": automated,
+                        "limit": limit,
+                        "offset": offset,
+                        "resource_id": resource_id,
+                        "validity_not_after_lte": validity_not_after_lte,
+                    },
+                    trusted_ca_certificate_list_params.TrustedCaCertificateListParams,
                 ),
-                cast_to=cast(Any, CaCertificateList),  # Union types cannot be passed in as arguments in the type system
             ),
+            cast_to=CaCertificateList,
         )
 
     async def delete(

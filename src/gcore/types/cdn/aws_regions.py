@@ -1,14 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
-from typing_extensions import TypeAlias
+from typing import List, Optional
 
 from ..._models import BaseModel
 
-__all__ = ["AwsRegions", "PlainList", "PaginatedList", "PaginatedListResult"]
+__all__ = ["AwsRegions", "Result"]
 
 
-class PlainList(BaseModel):
+class Result(BaseModel):
     id: Optional[int] = None
     """Region ID."""
 
@@ -19,18 +18,7 @@ class PlainList(BaseModel):
     """Region name."""
 
 
-class PaginatedListResult(BaseModel):
-    id: Optional[int] = None
-    """Region ID."""
-
-    code: Optional[str] = None
-    """Region code."""
-
-    name: Optional[str] = None
-    """Region name."""
-
-
-class PaginatedList(BaseModel):
+class AwsRegions(BaseModel):
     count: int
     """Total number of items."""
 
@@ -40,7 +28,4 @@ class PaginatedList(BaseModel):
     previous: Optional[str] = None
     """URL to the previous page of results. Null if current page is the first one."""
 
-    results: List[PaginatedListResult]
-
-
-AwsRegions: TypeAlias = Union[List[PlainList], PaginatedList]
+    results: List[Result]

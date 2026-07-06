@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Optional, cast
+from typing import Optional
 from typing_extensions import Literal
 
 import httpx
@@ -259,25 +259,22 @@ class RuleTemplatesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            RuleTemplateList,
-            self._get(
-                "/cdn/resources/rule_templates",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    query=maybe_transform(
-                        {
-                            "limit": limit,
-                            "offset": offset,
-                        },
-                        rule_template_list_params.RuleTemplateListParams,
-                    ),
+        return self._get(
+            "/cdn/resources/rule_templates",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    rule_template_list_params.RuleTemplateListParams,
                 ),
-                cast_to=cast(Any, RuleTemplateList),  # Union types cannot be passed in as arguments in the type system
             ),
+            cast_to=RuleTemplateList,
         )
 
     def delete(
@@ -662,25 +659,22 @@ class AsyncRuleTemplatesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            RuleTemplateList,
-            await self._get(
-                "/cdn/resources/rule_templates",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    query=await async_maybe_transform(
-                        {
-                            "limit": limit,
-                            "offset": offset,
-                        },
-                        rule_template_list_params.RuleTemplateListParams,
-                    ),
+        return await self._get(
+            "/cdn/resources/rule_templates",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    rule_template_list_params.RuleTemplateListParams,
                 ),
-                cast_to=cast(Any, RuleTemplateList),  # Union types cannot be passed in as arguments in the type system
             ),
+            cast_to=RuleTemplateList,
         )
 
     async def delete(

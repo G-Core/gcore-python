@@ -464,28 +464,25 @@ class OriginGroupsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            OriginGroupsList,
-            self._get(
-                "/cdn/origin_groups",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    query=maybe_transform(
-                        {
-                            "has_related_resources": has_related_resources,
-                            "limit": limit,
-                            "name": name,
-                            "offset": offset,
-                            "sources": sources,
-                        },
-                        origin_group_list_params.OriginGroupListParams,
-                    ),
+        return self._get(
+            "/cdn/origin_groups",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "has_related_resources": has_related_resources,
+                        "limit": limit,
+                        "name": name,
+                        "offset": offset,
+                        "sources": sources,
+                    },
+                    origin_group_list_params.OriginGroupListParams,
                 ),
-                cast_to=cast(Any, OriginGroupsList),  # Union types cannot be passed in as arguments in the type system
             ),
+            cast_to=OriginGroupsList,
         )
 
     def delete(
@@ -1182,28 +1179,25 @@ class AsyncOriginGroupsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            OriginGroupsList,
-            await self._get(
-                "/cdn/origin_groups",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    query=await async_maybe_transform(
-                        {
-                            "has_related_resources": has_related_resources,
-                            "limit": limit,
-                            "name": name,
-                            "offset": offset,
-                            "sources": sources,
-                        },
-                        origin_group_list_params.OriginGroupListParams,
-                    ),
+        return await self._get(
+            "/cdn/origin_groups",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "has_related_resources": has_related_resources,
+                        "limit": limit,
+                        "name": name,
+                        "offset": offset,
+                        "sources": sources,
+                    },
+                    origin_group_list_params.OriginGroupListParams,
                 ),
-                cast_to=cast(Any, OriginGroupsList),  # Union types cannot be passed in as arguments in the type system
             ),
+            cast_to=OriginGroupsList,
         )
 
     async def delete(

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Iterable, cast
+from typing import Iterable
 from typing_extensions import Literal
 
 import httpx
@@ -201,29 +201,24 @@ class TargetsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            LogsUploaderTargetList,
-            self._get(
-                "/cdn/logs_uploader/targets",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    query=maybe_transform(
-                        {
-                            "config_ids": config_ids,
-                            "limit": limit,
-                            "offset": offset,
-                            "search": search,
-                        },
-                        target_list_params.TargetListParams,
-                    ),
+        return self._get(
+            "/cdn/logs_uploader/targets",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "config_ids": config_ids,
+                        "limit": limit,
+                        "offset": offset,
+                        "search": search,
+                    },
+                    target_list_params.TargetListParams,
                 ),
-                cast_to=cast(
-                    Any, LogsUploaderTargetList
-                ),  # Union types cannot be passed in as arguments in the type system
             ),
+            cast_to=LogsUploaderTargetList,
         )
 
     def delete(
@@ -550,29 +545,24 @@ class AsyncTargetsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            LogsUploaderTargetList,
-            await self._get(
-                "/cdn/logs_uploader/targets",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    query=await async_maybe_transform(
-                        {
-                            "config_ids": config_ids,
-                            "limit": limit,
-                            "offset": offset,
-                            "search": search,
-                        },
-                        target_list_params.TargetListParams,
-                    ),
+        return await self._get(
+            "/cdn/logs_uploader/targets",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "config_ids": config_ids,
+                        "limit": limit,
+                        "offset": offset,
+                        "search": search,
+                    },
+                    target_list_params.TargetListParams,
                 ),
-                cast_to=cast(
-                    Any, LogsUploaderTargetList
-                ),  # Union types cannot be passed in as arguments in the type system
             ),
+            cast_to=LogsUploaderTargetList,
         )
 
     async def delete(

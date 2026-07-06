@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
-
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
@@ -71,27 +69,22 @@ class ShieldsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            ShieldListResponse,
-            self._get(
-                "/cdn/shieldingpop_v2",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    query=maybe_transform(
-                        {
-                            "limit": limit,
-                            "offset": offset,
-                        },
-                        shield_list_params.ShieldListParams,
-                    ),
+        return self._get(
+            "/cdn/shieldingpop_v2",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    shield_list_params.ShieldListParams,
                 ),
-                cast_to=cast(
-                    Any, ShieldListResponse
-                ),  # Union types cannot be passed in as arguments in the type system
             ),
+            cast_to=ShieldListResponse,
         )
 
 
@@ -143,27 +136,22 @@ class AsyncShieldsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            ShieldListResponse,
-            await self._get(
-                "/cdn/shieldingpop_v2",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    query=await async_maybe_transform(
-                        {
-                            "limit": limit,
-                            "offset": offset,
-                        },
-                        shield_list_params.ShieldListParams,
-                    ),
+        return await self._get(
+            "/cdn/shieldingpop_v2",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    shield_list_params.ShieldListParams,
                 ),
-                cast_to=cast(
-                    Any, ShieldListResponse
-                ),  # Union types cannot be passed in as arguments in the type system
             ),
+            cast_to=ShieldListResponse,
         )
 
 

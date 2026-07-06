@@ -10,6 +10,15 @@ __all__ = ["CDNResourceListParams"]
 
 
 class CDNResourceListParams(TypedDict, total=False):
+    active: bool
+    """Defines whether a CDN resource is activated.
+
+    Possible values:
+
+    - **true** - CDN resource is activated.
+    - **false** - CDN resource is deactivated.
+    """
+
     cname: str
     """Delivery domain (CNAME) of the CDN resource."""
 
@@ -31,6 +40,20 @@ class CDNResourceListParams(TypedDict, total=False):
     - **false** - CDN resource is disabled.
     """
 
+    is_primary: bool
+    """Filters CDN resources by their primary/alternate relationship.
+
+    Standalone resources — those not linked to another resource, which is the
+    default — match neither value and are returned by neither `true` nor `false`.
+
+    Possible values:
+
+    - **true** - CDN resource is a primary resource for one or more alternate
+      resources.
+    - **false** - CDN resource is an alternate resource linked to a primary
+      resource.
+    """
+
     limit: int
     """Maximum number of items to return in the response. Cannot exceed 1000."""
 
@@ -40,17 +63,35 @@ class CDNResourceListParams(TypedDict, total=False):
     returned (ISO 8601/RFC 3339 format, UTC.)
     """
 
+    max_updated: str
+    """
+    Most recent date of CDN resource update for which CDN resources should be
+    returned (ISO 8601/RFC 3339 format, UTC.)
+    """
+
     min_created: str
     """
     Earliest date of CDN resource creation for which CDN resources should be
     returned (ISO 8601/RFC 3339 format, UTC.)
     """
 
+    min_updated: str
+    """
+    Earliest date of CDN resource update for which CDN resources should be returned
+    (ISO 8601/RFC 3339 format, UTC.)
+    """
+
+    name: str
+    """Name of the CDN resource. Matches partially and is case-insensitive."""
+
     offset: int
     """Number of items to skip from the beginning of the list."""
 
     origin_group: Annotated[int, PropertyInfo(alias="originGroup")]
     """Origin group ID."""
+
+    origin_protocol: Annotated[Literal["HTTP", "HTTPS", "MATCH"], PropertyInfo(alias="originProtocol")]
+    """Protocol used by CDN servers to request content from an origin source."""
 
     rules: str
     """Rule name or pattern."""
@@ -101,6 +142,18 @@ class CDNResourceListParams(TypedDict, total=False):
     - **true** - CDN resource is selected for automatic suspension in the next 7
       days.
     - **false** - CDN resource is not selected for automatic suspension.
+    """
+
+    suspended: bool
+    """Defines whether a CDN resource is currently suspended.
+
+    This reflects the resource's suspended state, unlike the `suspend` parameter,
+    which selects resources that have a scheduled automatic suspension date.
+
+    Possible values:
+
+    - **true** - CDN resource is currently suspended.
+    - **false** - CDN resource is not suspended.
     """
 
     vp_enabled: bool

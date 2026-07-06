@@ -1,15 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
-from typing_extensions import TypeAlias
+from typing import List, Optional
 
 from ..._models import BaseModel
 from .origin_groups import OriginGroups
 
-__all__ = ["OriginGroupsList", "PaginatedList"]
+__all__ = ["OriginGroupsList"]
 
 
-class PaginatedList(BaseModel):
+class OriginGroupsList(BaseModel):
     count: int
     """Total number of items."""
 
@@ -20,6 +19,3 @@ class PaginatedList(BaseModel):
     """URL to the previous page of results. Null if current page is the first one."""
 
     results: List[OriginGroups]
-
-
-OriginGroupsList: TypeAlias = Union[List[OriginGroups], PaginatedList]

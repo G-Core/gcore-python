@@ -1,15 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
-from typing_extensions import TypeAlias
+from typing import List, Optional
 
 from ...._models import BaseModel
 from .logs_uploader_policy import LogsUploaderPolicy
 
-__all__ = ["LogsUploaderPolicyList", "PaginatedList"]
+__all__ = ["LogsUploaderPolicyList"]
 
 
-class PaginatedList(BaseModel):
+class LogsUploaderPolicyList(BaseModel):
     count: int
     """Total number of items."""
 
@@ -20,6 +19,3 @@ class PaginatedList(BaseModel):
     """URL to the previous page of results. Null if current page is the first one."""
 
     results: List[LogsUploaderPolicy]
-
-
-LogsUploaderPolicyList: TypeAlias = Union[List[LogsUploaderPolicy], PaginatedList]

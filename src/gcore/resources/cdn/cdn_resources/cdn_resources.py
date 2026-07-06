@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Optional, cast
+from typing import Optional
 from typing_extensions import Literal, overload
 
 import httpx
@@ -360,14 +360,20 @@ class CDNResourcesResource(SyncAPIResource):
     def list(
         self,
         *,
+        active: bool | Omit = omit,
         cname: str | Omit = omit,
         deleted: bool | Omit = omit,
         enabled: bool | Omit = omit,
+        is_primary: bool | Omit = omit,
         limit: int | Omit = omit,
         max_created: str | Omit = omit,
+        max_updated: str | Omit = omit,
         min_created: str | Omit = omit,
+        min_updated: str | Omit = omit,
+        name: str | Omit = omit,
         offset: int | Omit = omit,
         origin_group: int | Omit = omit,
+        origin_protocol: Literal["HTTP", "HTTPS", "MATCH"] | Omit = omit,
         rules: str | Omit = omit,
         secondary_hostnames: str | Omit = omit,
         shield_dc: str | Omit = omit,
@@ -377,6 +383,7 @@ class CDNResourcesResource(SyncAPIResource):
         ssl_enabled: bool | Omit = omit,
         status: Literal["active", "processed", "suspended", "deleted"] | Omit = omit,
         suspend: bool | Omit = omit,
+        suspended: bool | Omit = omit,
         vp_enabled: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -389,6 +396,13 @@ class CDNResourcesResource(SyncAPIResource):
         Get information about all CDN resources in your account.
 
         Args:
+          active: Defines whether a CDN resource is activated.
+
+              Possible values:
+
+              - **true** - CDN resource is activated.
+              - **false** - CDN resource is deactivated.
+
           cname: Delivery domain (CNAME) of the CDN resource.
 
           deleted: Defines whether a CDN resource has been deleted.
@@ -405,17 +419,38 @@ class CDNResourcesResource(SyncAPIResource):
               - **true** - CDN resource is enabled.
               - **false** - CDN resource is disabled.
 
+          is_primary: Filters CDN resources by their primary/alternate relationship. Standalone
+              resources — those not linked to another resource, which is the default — match
+              neither value and are returned by neither `true` nor `false`.
+
+              Possible values:
+
+              - **true** - CDN resource is a primary resource for one or more alternate
+                resources.
+              - **false** - CDN resource is an alternate resource linked to a primary
+                resource.
+
           limit: Maximum number of items to return in the response. Cannot exceed 1000.
 
           max_created: Most recent date of CDN resource creation for which CDN resources should be
               returned (ISO 8601/RFC 3339 format, UTC.)
 
+          max_updated: Most recent date of CDN resource update for which CDN resources should be
+              returned (ISO 8601/RFC 3339 format, UTC.)
+
           min_created: Earliest date of CDN resource creation for which CDN resources should be
               returned (ISO 8601/RFC 3339 format, UTC.)
+
+          min_updated: Earliest date of CDN resource update for which CDN resources should be returned
+              (ISO 8601/RFC 3339 format, UTC.)
+
+          name: Name of the CDN resource. Matches partially and is case-insensitive.
 
           offset: Number of items to skip from the beginning of the list.
 
           origin_group: Origin group ID.
+
+          origin_protocol: Protocol used by CDN servers to request content from an origin source.
 
           rules: Rule name or pattern.
 
@@ -455,6 +490,15 @@ class CDNResourcesResource(SyncAPIResource):
                 days.
               - **false** - CDN resource is not selected for automatic suspension.
 
+          suspended: Defines whether a CDN resource is currently suspended. This reflects the
+              resource's suspended state, unlike the `suspend` parameter, which selects
+              resources that have a scheduled automatic suspension date.
+
+              Possible values:
+
+              - **true** - CDN resource is currently suspended.
+              - **false** - CDN resource is not suspended.
+
           vp_enabled: Defines whether the CDN resource is integrated with the Streaming platform.
 
               Possible values:
@@ -470,41 +514,45 @@ class CDNResourcesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            CDNResourceList,
-            self._get(
-                "/cdn/resources",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    query=maybe_transform(
-                        {
-                            "cname": cname,
-                            "deleted": deleted,
-                            "enabled": enabled,
-                            "limit": limit,
-                            "max_created": max_created,
-                            "min_created": min_created,
-                            "offset": offset,
-                            "origin_group": origin_group,
-                            "rules": rules,
-                            "secondary_hostnames": secondary_hostnames,
-                            "shield_dc": shield_dc,
-                            "shielded": shielded,
-                            "ssl_data": ssl_data,
-                            "ssl_data_in": ssl_data_in,
-                            "ssl_enabled": ssl_enabled,
-                            "status": status,
-                            "suspend": suspend,
-                            "vp_enabled": vp_enabled,
-                        },
-                        cdn_resource_list_params.CDNResourceListParams,
-                    ),
+        return self._get(
+            "/cdn/resources",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "active": active,
+                        "cname": cname,
+                        "deleted": deleted,
+                        "enabled": enabled,
+                        "is_primary": is_primary,
+                        "limit": limit,
+                        "max_created": max_created,
+                        "max_updated": max_updated,
+                        "min_created": min_created,
+                        "min_updated": min_updated,
+                        "name": name,
+                        "offset": offset,
+                        "origin_group": origin_group,
+                        "origin_protocol": origin_protocol,
+                        "rules": rules,
+                        "secondary_hostnames": secondary_hostnames,
+                        "shield_dc": shield_dc,
+                        "shielded": shielded,
+                        "ssl_data": ssl_data,
+                        "ssl_data_in": ssl_data_in,
+                        "ssl_enabled": ssl_enabled,
+                        "status": status,
+                        "suspend": suspend,
+                        "suspended": suspended,
+                        "vp_enabled": vp_enabled,
+                    },
+                    cdn_resource_list_params.CDNResourceListParams,
                 ),
-                cast_to=cast(Any, CDNResourceList),  # Union types cannot be passed in as arguments in the type system
             ),
+            cast_to=CDNResourceList,
         )
 
     def delete(
@@ -1285,14 +1333,20 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
     async def list(
         self,
         *,
+        active: bool | Omit = omit,
         cname: str | Omit = omit,
         deleted: bool | Omit = omit,
         enabled: bool | Omit = omit,
+        is_primary: bool | Omit = omit,
         limit: int | Omit = omit,
         max_created: str | Omit = omit,
+        max_updated: str | Omit = omit,
         min_created: str | Omit = omit,
+        min_updated: str | Omit = omit,
+        name: str | Omit = omit,
         offset: int | Omit = omit,
         origin_group: int | Omit = omit,
+        origin_protocol: Literal["HTTP", "HTTPS", "MATCH"] | Omit = omit,
         rules: str | Omit = omit,
         secondary_hostnames: str | Omit = omit,
         shield_dc: str | Omit = omit,
@@ -1302,6 +1356,7 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
         ssl_enabled: bool | Omit = omit,
         status: Literal["active", "processed", "suspended", "deleted"] | Omit = omit,
         suspend: bool | Omit = omit,
+        suspended: bool | Omit = omit,
         vp_enabled: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1314,6 +1369,13 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
         Get information about all CDN resources in your account.
 
         Args:
+          active: Defines whether a CDN resource is activated.
+
+              Possible values:
+
+              - **true** - CDN resource is activated.
+              - **false** - CDN resource is deactivated.
+
           cname: Delivery domain (CNAME) of the CDN resource.
 
           deleted: Defines whether a CDN resource has been deleted.
@@ -1330,17 +1392,38 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
               - **true** - CDN resource is enabled.
               - **false** - CDN resource is disabled.
 
+          is_primary: Filters CDN resources by their primary/alternate relationship. Standalone
+              resources — those not linked to another resource, which is the default — match
+              neither value and are returned by neither `true` nor `false`.
+
+              Possible values:
+
+              - **true** - CDN resource is a primary resource for one or more alternate
+                resources.
+              - **false** - CDN resource is an alternate resource linked to a primary
+                resource.
+
           limit: Maximum number of items to return in the response. Cannot exceed 1000.
 
           max_created: Most recent date of CDN resource creation for which CDN resources should be
               returned (ISO 8601/RFC 3339 format, UTC.)
 
+          max_updated: Most recent date of CDN resource update for which CDN resources should be
+              returned (ISO 8601/RFC 3339 format, UTC.)
+
           min_created: Earliest date of CDN resource creation for which CDN resources should be
               returned (ISO 8601/RFC 3339 format, UTC.)
+
+          min_updated: Earliest date of CDN resource update for which CDN resources should be returned
+              (ISO 8601/RFC 3339 format, UTC.)
+
+          name: Name of the CDN resource. Matches partially and is case-insensitive.
 
           offset: Number of items to skip from the beginning of the list.
 
           origin_group: Origin group ID.
+
+          origin_protocol: Protocol used by CDN servers to request content from an origin source.
 
           rules: Rule name or pattern.
 
@@ -1380,6 +1463,15 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
                 days.
               - **false** - CDN resource is not selected for automatic suspension.
 
+          suspended: Defines whether a CDN resource is currently suspended. This reflects the
+              resource's suspended state, unlike the `suspend` parameter, which selects
+              resources that have a scheduled automatic suspension date.
+
+              Possible values:
+
+              - **true** - CDN resource is currently suspended.
+              - **false** - CDN resource is not suspended.
+
           vp_enabled: Defines whether the CDN resource is integrated with the Streaming platform.
 
               Possible values:
@@ -1395,41 +1487,45 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            CDNResourceList,
-            await self._get(
-                "/cdn/resources",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    query=await async_maybe_transform(
-                        {
-                            "cname": cname,
-                            "deleted": deleted,
-                            "enabled": enabled,
-                            "limit": limit,
-                            "max_created": max_created,
-                            "min_created": min_created,
-                            "offset": offset,
-                            "origin_group": origin_group,
-                            "rules": rules,
-                            "secondary_hostnames": secondary_hostnames,
-                            "shield_dc": shield_dc,
-                            "shielded": shielded,
-                            "ssl_data": ssl_data,
-                            "ssl_data_in": ssl_data_in,
-                            "ssl_enabled": ssl_enabled,
-                            "status": status,
-                            "suspend": suspend,
-                            "vp_enabled": vp_enabled,
-                        },
-                        cdn_resource_list_params.CDNResourceListParams,
-                    ),
+        return await self._get(
+            "/cdn/resources",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "active": active,
+                        "cname": cname,
+                        "deleted": deleted,
+                        "enabled": enabled,
+                        "is_primary": is_primary,
+                        "limit": limit,
+                        "max_created": max_created,
+                        "max_updated": max_updated,
+                        "min_created": min_created,
+                        "min_updated": min_updated,
+                        "name": name,
+                        "offset": offset,
+                        "origin_group": origin_group,
+                        "origin_protocol": origin_protocol,
+                        "rules": rules,
+                        "secondary_hostnames": secondary_hostnames,
+                        "shield_dc": shield_dc,
+                        "shielded": shielded,
+                        "ssl_data": ssl_data,
+                        "ssl_data_in": ssl_data_in,
+                        "ssl_enabled": ssl_enabled,
+                        "status": status,
+                        "suspend": suspend,
+                        "suspended": suspended,
+                        "vp_enabled": vp_enabled,
+                    },
+                    cdn_resource_list_params.CDNResourceListParams,
                 ),
-                cast_to=cast(Any, CDNResourceList),  # Union types cannot be passed in as arguments in the type system
             ),
+            cast_to=CDNResourceList,
         )
 
     async def delete(

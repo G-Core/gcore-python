@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
-
 import httpx
 
 from .ips import (
@@ -359,25 +357,22 @@ class CDNResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            AlibabaRegions,
-            self._get(
-                "/cdn/alibaba_regions",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    query=maybe_transform(
-                        {
-                            "limit": limit,
-                            "offset": offset,
-                        },
-                        cdn_list_alibaba_regions_params.CDNListAlibabaRegionsParams,
-                    ),
+        return self._get(
+            "/cdn/alibaba_regions",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    cdn_list_alibaba_regions_params.CDNListAlibabaRegionsParams,
                 ),
-                cast_to=cast(Any, AlibabaRegions),  # Union types cannot be passed in as arguments in the type system
             ),
+            cast_to=AlibabaRegions,
         )
 
     def list_aws_regions(
@@ -408,25 +403,22 @@ class CDNResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            AwsRegions,
-            self._get(
-                "/cdn/aws_regions",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    query=maybe_transform(
-                        {
-                            "limit": limit,
-                            "offset": offset,
-                        },
-                        cdn_list_aws_regions_params.CDNListAwsRegionsParams,
-                    ),
+        return self._get(
+            "/cdn/aws_regions",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    cdn_list_aws_regions_params.CDNListAwsRegionsParams,
                 ),
-                cast_to=cast(Any, AwsRegions),  # Union types cannot be passed in as arguments in the type system
             ),
+            cast_to=AwsRegions,
         )
 
     def list_purge_statuses(
@@ -501,32 +493,27 @@ class CDNResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            CDNListPurgeStatusesResponse,
-            self._get(
-                "/cdn/purge_statuses",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    query=maybe_transform(
-                        {
-                            "cname": cname,
-                            "from_created": from_created,
-                            "limit": limit,
-                            "offset": offset,
-                            "purge_type": purge_type,
-                            "status": status,
-                            "to_created": to_created,
-                        },
-                        cdn_list_purge_statuses_params.CDNListPurgeStatusesParams,
-                    ),
+        return self._get(
+            "/cdn/purge_statuses",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "cname": cname,
+                        "from_created": from_created,
+                        "limit": limit,
+                        "offset": offset,
+                        "purge_type": purge_type,
+                        "status": status,
+                        "to_created": to_created,
+                    },
+                    cdn_list_purge_statuses_params.CDNListPurgeStatusesParams,
                 ),
-                cast_to=cast(
-                    Any, CDNListPurgeStatusesResponse
-                ),  # Union types cannot be passed in as arguments in the type system
             ),
+            cast_to=CDNListPurgeStatusesResponse,
         )
 
     def update_account(
@@ -774,25 +761,22 @@ class AsyncCDNResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            AlibabaRegions,
-            await self._get(
-                "/cdn/alibaba_regions",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    query=await async_maybe_transform(
-                        {
-                            "limit": limit,
-                            "offset": offset,
-                        },
-                        cdn_list_alibaba_regions_params.CDNListAlibabaRegionsParams,
-                    ),
+        return await self._get(
+            "/cdn/alibaba_regions",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    cdn_list_alibaba_regions_params.CDNListAlibabaRegionsParams,
                 ),
-                cast_to=cast(Any, AlibabaRegions),  # Union types cannot be passed in as arguments in the type system
             ),
+            cast_to=AlibabaRegions,
         )
 
     async def list_aws_regions(
@@ -823,25 +807,22 @@ class AsyncCDNResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            AwsRegions,
-            await self._get(
-                "/cdn/aws_regions",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    query=await async_maybe_transform(
-                        {
-                            "limit": limit,
-                            "offset": offset,
-                        },
-                        cdn_list_aws_regions_params.CDNListAwsRegionsParams,
-                    ),
+        return await self._get(
+            "/cdn/aws_regions",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    cdn_list_aws_regions_params.CDNListAwsRegionsParams,
                 ),
-                cast_to=cast(Any, AwsRegions),  # Union types cannot be passed in as arguments in the type system
             ),
+            cast_to=AwsRegions,
         )
 
     async def list_purge_statuses(
@@ -916,32 +897,27 @@ class AsyncCDNResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            CDNListPurgeStatusesResponse,
-            await self._get(
-                "/cdn/purge_statuses",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    query=await async_maybe_transform(
-                        {
-                            "cname": cname,
-                            "from_created": from_created,
-                            "limit": limit,
-                            "offset": offset,
-                            "purge_type": purge_type,
-                            "status": status,
-                            "to_created": to_created,
-                        },
-                        cdn_list_purge_statuses_params.CDNListPurgeStatusesParams,
-                    ),
+        return await self._get(
+            "/cdn/purge_statuses",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "cname": cname,
+                        "from_created": from_created,
+                        "limit": limit,
+                        "offset": offset,
+                        "purge_type": purge_type,
+                        "status": status,
+                        "to_created": to_created,
+                    },
+                    cdn_list_purge_statuses_params.CDNListPurgeStatusesParams,
                 ),
-                cast_to=cast(
-                    Any, CDNListPurgeStatusesResponse
-                ),  # Union types cannot be passed in as arguments in the type system
             ),
+            cast_to=CDNListPurgeStatusesResponse,
         )
 
     async def update_account(

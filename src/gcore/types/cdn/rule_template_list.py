@@ -1,15 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
-from typing_extensions import TypeAlias
+from typing import List, Optional
 
 from ..._models import BaseModel
 from .rule_template import RuleTemplate
 
-__all__ = ["RuleTemplateList", "PaginatedList"]
+__all__ = ["RuleTemplateList"]
 
 
-class PaginatedList(BaseModel):
+class RuleTemplateList(BaseModel):
     count: int
     """Total number of items."""
 
@@ -20,6 +19,3 @@ class PaginatedList(BaseModel):
     """URL to the previous page of results. Null if current page is the first one."""
 
     results: List[RuleTemplate]
-
-
-RuleTemplateList: TypeAlias = Union[List[RuleTemplate], PaginatedList]

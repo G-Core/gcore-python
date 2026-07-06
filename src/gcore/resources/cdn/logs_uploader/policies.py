@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Dict, Iterable, Optional, cast
+from typing import Dict, Iterable, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -342,29 +342,24 @@ class PoliciesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            LogsUploaderPolicyList,
-            self._get(
-                "/cdn/logs_uploader/policies",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    query=maybe_transform(
-                        {
-                            "config_ids": config_ids,
-                            "limit": limit,
-                            "offset": offset,
-                            "search": search,
-                        },
-                        policy_list_params.PolicyListParams,
-                    ),
+        return self._get(
+            "/cdn/logs_uploader/policies",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "config_ids": config_ids,
+                        "limit": limit,
+                        "offset": offset,
+                        "search": search,
+                    },
+                    policy_list_params.PolicyListParams,
                 ),
-                cast_to=cast(
-                    Any, LogsUploaderPolicyList
-                ),  # Union types cannot be passed in as arguments in the type system
             ),
+            cast_to=LogsUploaderPolicyList,
         )
 
     def delete(
@@ -893,29 +888,24 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            LogsUploaderPolicyList,
-            await self._get(
-                "/cdn/logs_uploader/policies",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    query=await async_maybe_transform(
-                        {
-                            "config_ids": config_ids,
-                            "limit": limit,
-                            "offset": offset,
-                            "search": search,
-                        },
-                        policy_list_params.PolicyListParams,
-                    ),
+        return await self._get(
+            "/cdn/logs_uploader/policies",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "config_ids": config_ids,
+                        "limit": limit,
+                        "offset": offset,
+                        "search": search,
+                    },
+                    policy_list_params.PolicyListParams,
                 ),
-                cast_to=cast(
-                    Any, LogsUploaderPolicyList
-                ),  # Union types cannot be passed in as arguments in the type system
             ),
+            cast_to=LogsUploaderPolicyList,
         )
 
     async def delete(

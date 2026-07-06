@@ -1,15 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
-from typing_extensions import TypeAlias
+from typing import List, Optional
 
 from ..._models import BaseModel
 from .ca_certificate import CaCertificate
 
-__all__ = ["CaCertificateList", "PaginatedList"]
+__all__ = ["CaCertificateList"]
 
 
-class PaginatedList(BaseModel):
+class CaCertificateList(BaseModel):
     count: int
     """Total number of items."""
 
@@ -20,6 +19,3 @@ class PaginatedList(BaseModel):
     """URL to the previous page of results. Null if current page is the first one."""
 
     results: List[CaCertificate]
-
-
-CaCertificateList: TypeAlias = Union[List[CaCertificate], PaginatedList]

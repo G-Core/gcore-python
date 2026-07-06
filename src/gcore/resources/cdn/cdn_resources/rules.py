@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Optional, cast
+from typing import Optional
 from typing_extensions import Literal
 
 import httpx
@@ -290,27 +290,22 @@ class RulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            CDNResourceRuleList,
-            self._get(
-                path_template("/cdn/resources/{resource_id}/rules", resource_id=resource_id),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    query=maybe_transform(
-                        {
-                            "limit": limit,
-                            "offset": offset,
-                        },
-                        rule_list_params.RuleListParams,
-                    ),
+        return self._get(
+            path_template("/cdn/resources/{resource_id}/rules", resource_id=resource_id),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    rule_list_params.RuleListParams,
                 ),
-                cast_to=cast(
-                    Any, CDNResourceRuleList
-                ),  # Union types cannot be passed in as arguments in the type system
             ),
+            cast_to=CDNResourceRuleList,
         )
 
     def delete(
@@ -757,27 +752,22 @@ class AsyncRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            CDNResourceRuleList,
-            await self._get(
-                path_template("/cdn/resources/{resource_id}/rules", resource_id=resource_id),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    query=await async_maybe_transform(
-                        {
-                            "limit": limit,
-                            "offset": offset,
-                        },
-                        rule_list_params.RuleListParams,
-                    ),
+        return await self._get(
+            path_template("/cdn/resources/{resource_id}/rules", resource_id=resource_id),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    rule_list_params.RuleListParams,
                 ),
-                cast_to=cast(
-                    Any, CDNResourceRuleList
-                ),  # Union types cannot be passed in as arguments in the type system
             ),
+            cast_to=CDNResourceRuleList,
         )
 
     async def delete(

@@ -715,14 +715,20 @@ class TestCDNResources:
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
         cdn_resource = client.cdn.cdn_resources.list(
+            active=True,
             cname="cname",
             deleted=True,
             enabled=True,
+            is_primary=True,
             limit=1,
             max_created="max_created",
+            max_updated="max_updated",
             min_created="min_created",
+            min_updated="min_updated",
+            name="name",
             offset=0,
             origin_group=0,
+            origin_protocol="HTTP",
             rules="rules",
             secondary_hostnames="secondaryHostnames",
             shield_dc="shield_dc",
@@ -732,6 +738,7 @@ class TestCDNResources:
             ssl_enabled=True,
             status="active",
             suspend=True,
+            suspended=True,
             vp_enabled=True,
         )
         assert_matches_type(CDNResourceList, cdn_resource, path=["response"])
@@ -2045,14 +2052,20 @@ class TestAsyncCDNResources:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
         cdn_resource = await async_client.cdn.cdn_resources.list(
+            active=True,
             cname="cname",
             deleted=True,
             enabled=True,
+            is_primary=True,
             limit=1,
             max_created="max_created",
+            max_updated="max_updated",
             min_created="min_created",
+            min_updated="min_updated",
+            name="name",
             offset=0,
             origin_group=0,
+            origin_protocol="HTTP",
             rules="rules",
             secondary_hostnames="secondaryHostnames",
             shield_dc="shield_dc",
@@ -2062,6 +2075,7 @@ class TestAsyncCDNResources:
             ssl_enabled=True,
             status="active",
             suspend=True,
+            suspended=True,
             vp_enabled=True,
         )
         assert_matches_type(CDNResourceList, cdn_resource, path=["response"])
