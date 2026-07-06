@@ -1,7 +1,7 @@
 from typing import Any, Union, Sequence
 
 from gcore import Gcore
-from gcore.types.cloud.quota_get_all_response import GlobalQuotas, RegionalQuota
+from gcore.types.cloud.quota import GlobalQuotas, RegionalQuota
 from gcore.types.cloud.quota_get_global_response import QuotaGetGlobalResponse
 from gcore.types.cloud.quota_get_by_region_response import QuotaGetByRegionResponse
 
