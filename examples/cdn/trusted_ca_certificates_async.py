@@ -2,7 +2,8 @@ import time
 import asyncio
 
 from gcore import AsyncGcore
-from gcore.types.cdn import CaCertificate, CaCertificateList
+from gcore.types.cdn import CaCertificate
+from gcore.pagination import AsyncOffsetPage
 
 # A self-signed CA certificate generated solely for this example. It contains
 # only the public certificate (no private key), so it is safe to commit.
@@ -63,11 +64,12 @@ async def create_trusted_ca_certificate(*, client: AsyncGcore) -> CaCertificate:
     return certificate
 
 
-async def list_trusted_ca_certificates(*, client: AsyncGcore) -> CaCertificateList:
+async def list_trusted_ca_certificates(*, client: AsyncGcore) -> AsyncOffsetPage[CaCertificate]:
     print("\n=== LIST TRUSTED CA CERTIFICATES ===")
     result = await client.cdn.trusted_ca_certificates.list()
-    certificates = result if isinstance(result, list) else result.results
-    for count, certificate in enumerate(certificates, 1):
+    count = 0
+    async for certificate in result:
+        count += 1
         print(f"  {count}. Trusted CA Certificate: ID={certificate.id}, name={certificate.name}")
     print("====================================")
     return result

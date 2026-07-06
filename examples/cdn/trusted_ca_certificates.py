@@ -1,7 +1,8 @@
 import time
 
 from gcore import Gcore
-from gcore.types.cdn import CaCertificate, CaCertificateList
+from gcore.types.cdn import CaCertificate
+from gcore.pagination import SyncOffsetPage
 
 # A self-signed CA certificate generated solely for this example. It contains
 # only the public certificate (no private key), so it is safe to commit.
@@ -62,11 +63,10 @@ def create_trusted_ca_certificate(*, client: Gcore) -> CaCertificate:
     return certificate
 
 
-def list_trusted_ca_certificates(*, client: Gcore) -> CaCertificateList:
+def list_trusted_ca_certificates(*, client: Gcore) -> SyncOffsetPage[CaCertificate]:
     print("\n=== LIST TRUSTED CA CERTIFICATES ===")
     result = client.cdn.trusted_ca_certificates.list()
-    certificates = result if isinstance(result, list) else result.results
-    for count, certificate in enumerate(certificates, 1):
+    for count, certificate in enumerate(result, 1):
         print(f"  {count}. Trusted CA Certificate: ID={certificate.id}, name={certificate.name}")
     print("====================================")
     return result
