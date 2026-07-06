@@ -18,10 +18,11 @@ from ....._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....._base_client import make_request_options
+from .....pagination import SyncOffsetPage, AsyncOffsetPage
+from ....._base_client import AsyncPaginator, make_request_options
 from .....types.cloud.task_id_list import TaskIDList
 from .....types.cloud.gpu_virtual.clusters import server_list_params, server_delete_params
-from .....types.cloud.gpu_virtual.clusters.gpu_virtual_cluster_server_list import GPUVirtualClusterServerList
+from .....types.cloud.gpu_virtual.clusters.gpu_virtual_cluster_server import GPUVirtualClusterServer
 
 __all__ = ["ServersResource", "AsyncServersResource"]
 
@@ -85,7 +86,7 @@ class ServersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> GPUVirtualClusterServerList:
+    ) -> SyncOffsetPage[GPUVirtualClusterServer]:
         """
         List all servers in a virtual GPU cluster.
 
@@ -132,13 +133,14 @@ class ServersResource(SyncAPIResource):
             region_id = self._client._get_cloud_region_id_path_param()
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
-        return self._get(
+        return self._get_api_list(
             path_template(
                 "/cloud/v3/gpu/virtual/{project_id}/{region_id}/clusters/{cluster_id}/servers",
                 project_id=project_id,
                 region_id=region_id,
                 cluster_id=cluster_id,
             ),
+            page=SyncOffsetPage[GPUVirtualClusterServer],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -159,7 +161,7 @@ class ServersResource(SyncAPIResource):
                     server_list_params.ServerListParams,
                 ),
             ),
-            cast_to=GPUVirtualClusterServerList,
+            model=GPUVirtualClusterServer,
         )
 
     def delete(
@@ -325,7 +327,7 @@ class AsyncServersResource(AsyncAPIResource):
         """
         return AsyncServersResourceWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         cluster_id: str,
         *,
@@ -364,7 +366,7 @@ class AsyncServersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> GPUVirtualClusterServerList:
+    ) -> AsyncPaginator[GPUVirtualClusterServer, AsyncOffsetPage[GPUVirtualClusterServer]]:
         """
         List all servers in a virtual GPU cluster.
 
@@ -411,19 +413,20 @@ class AsyncServersResource(AsyncAPIResource):
             region_id = self._client._get_cloud_region_id_path_param()
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
-        return await self._get(
+        return self._get_api_list(
             path_template(
                 "/cloud/v3/gpu/virtual/{project_id}/{region_id}/clusters/{cluster_id}/servers",
                 project_id=project_id,
                 region_id=region_id,
                 cluster_id=cluster_id,
             ),
+            page=AsyncOffsetPage[GPUVirtualClusterServer],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "changed_before": changed_before,
                         "changed_since": changed_since,
@@ -438,7 +441,7 @@ class AsyncServersResource(AsyncAPIResource):
                     server_list_params.ServerListParams,
                 ),
             ),
-            cast_to=GPUVirtualClusterServerList,
+            model=GPUVirtualClusterServer,
         )
 
     async def delete(

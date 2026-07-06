@@ -10,9 +10,9 @@ import pytest
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
 from gcore.types.cdn import LogsUploaderValidation
+from gcore.pagination import SyncOffsetPage, AsyncOffsetPage
 from gcore.types.cdn.logs_uploader import (
     LogsUploaderConfig,
-    LogsUploaderConfigList,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -117,7 +117,7 @@ class TestConfigs:
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
         config = client.cdn.logs_uploader.configs.list()
-        assert_matches_type(LogsUploaderConfigList, config, path=["response"])
+        assert_matches_type(SyncOffsetPage[LogsUploaderConfig], config, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
@@ -127,7 +127,7 @@ class TestConfigs:
             resource_ids=[0],
             search="search",
         )
-        assert_matches_type(LogsUploaderConfigList, config, path=["response"])
+        assert_matches_type(SyncOffsetPage[LogsUploaderConfig], config, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
@@ -136,7 +136,7 @@ class TestConfigs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         config = response.parse()
-        assert_matches_type(LogsUploaderConfigList, config, path=["response"])
+        assert_matches_type(SyncOffsetPage[LogsUploaderConfig], config, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
@@ -145,7 +145,7 @@ class TestConfigs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             config = response.parse()
-            assert_matches_type(LogsUploaderConfigList, config, path=["response"])
+            assert_matches_type(SyncOffsetPage[LogsUploaderConfig], config, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -397,7 +397,7 @@ class TestAsyncConfigs:
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
         config = await async_client.cdn.logs_uploader.configs.list()
-        assert_matches_type(LogsUploaderConfigList, config, path=["response"])
+        assert_matches_type(AsyncOffsetPage[LogsUploaderConfig], config, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -407,7 +407,7 @@ class TestAsyncConfigs:
             resource_ids=[0],
             search="search",
         )
-        assert_matches_type(LogsUploaderConfigList, config, path=["response"])
+        assert_matches_type(AsyncOffsetPage[LogsUploaderConfig], config, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
@@ -416,7 +416,7 @@ class TestAsyncConfigs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         config = await response.parse()
-        assert_matches_type(LogsUploaderConfigList, config, path=["response"])
+        assert_matches_type(AsyncOffsetPage[LogsUploaderConfig], config, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
@@ -425,7 +425,7 @@ class TestAsyncConfigs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             config = await response.parse()
-            assert_matches_type(LogsUploaderConfigList, config, path=["response"])
+            assert_matches_type(AsyncOffsetPage[LogsUploaderConfig], config, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

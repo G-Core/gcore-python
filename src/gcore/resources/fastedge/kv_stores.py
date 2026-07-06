@@ -14,10 +14,11 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
+from ...pagination import SyncOffsetPageFastedgeKvStores, AsyncOffsetPageFastedgeKvStores
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.fastedge import kv_store_list_params, kv_store_create_params, kv_store_replace_params
 from ...types.fastedge.kv_store import KvStore
-from ...types.fastedge.kv_store_list_response import KvStoreListResponse
+from ...types.fastedge.kv_store_short import KvStoreShort
 from ...types.fastedge.kv_store_create_response import KvStoreCreateResponse
 
 __all__ = ["KvStoresResource", "AsyncKvStoresResource"]
@@ -106,7 +107,7 @@ class KvStoresResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> KvStoreListResponse:
+    ) -> SyncOffsetPageFastedgeKvStores[KvStoreShort]:
         """Retrieve key-value storage stores available to the authenticated client.
 
         Stores
@@ -127,8 +128,9 @@ class KvStoresResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/fastedge/v1/kv",
+            page=SyncOffsetPageFastedgeKvStores[KvStoreShort],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -143,7 +145,7 @@ class KvStoresResource(SyncAPIResource):
                     kv_store_list_params.KvStoreListParams,
                 ),
             ),
-            cast_to=KvStoreListResponse,
+            model=KvStoreShort,
         )
 
     def delete(
@@ -333,7 +335,7 @@ class AsyncKvStoresResource(AsyncAPIResource):
             cast_to=KvStoreCreateResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         app_id: int | Omit = omit,
@@ -345,7 +347,7 @@ class AsyncKvStoresResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> KvStoreListResponse:
+    ) -> AsyncPaginator[KvStoreShort, AsyncOffsetPageFastedgeKvStores[KvStoreShort]]:
         """Retrieve key-value storage stores available to the authenticated client.
 
         Stores
@@ -366,14 +368,15 @@ class AsyncKvStoresResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/fastedge/v1/kv",
+            page=AsyncOffsetPageFastedgeKvStores[KvStoreShort],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "app_id": app_id,
                         "limit": limit,
@@ -382,7 +385,7 @@ class AsyncKvStoresResource(AsyncAPIResource):
                     kv_store_list_params.KvStoreListParams,
                 ),
             ),
-            cast_to=KvStoreListResponse,
+            model=KvStoreShort,
         )
 
     async def delete(

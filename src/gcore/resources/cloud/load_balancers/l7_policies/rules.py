@@ -16,10 +16,10 @@ from ....._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....._base_client import make_request_options
+from .....pagination import SyncOffsetPage, AsyncOffsetPage
+from ....._base_client import AsyncPaginator, make_request_options
 from .....types.cloud.task_id_list import TaskIDList
 from .....types.cloud.load_balancer_l7_rule import LoadBalancerL7Rule
-from .....types.cloud.load_balancer_l7_rule_list import LoadBalancerL7RuleList
 from .....types.cloud.load_balancers.l7_policies import rule_list_params, rule_create_params, rule_replace_params
 
 __all__ = ["RulesResource", "AsyncRulesResource"]
@@ -147,7 +147,7 @@ class RulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LoadBalancerL7RuleList:
+    ) -> SyncOffsetPage[LoadBalancerL7Rule]:
         """
         List load balancer L7 policy rules
 
@@ -177,13 +177,14 @@ class RulesResource(SyncAPIResource):
             region_id = self._client._get_cloud_region_id_path_param()
         if not l7policy_id:
             raise ValueError(f"Expected a non-empty value for `l7policy_id` but received {l7policy_id!r}")
-        return self._get(
+        return self._get_api_list(
             path_template(
                 "/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules",
                 project_id=project_id,
                 region_id=region_id,
                 l7policy_id=l7policy_id,
             ),
+            page=SyncOffsetPage[LoadBalancerL7Rule],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -197,7 +198,7 @@ class RulesResource(SyncAPIResource):
                     rule_list_params.RuleListParams,
                 ),
             ),
-            cast_to=LoadBalancerL7RuleList,
+            model=LoadBalancerL7Rule,
         )
 
     def delete(
@@ -685,7 +686,7 @@ class AsyncRulesResource(AsyncAPIResource):
             cast_to=TaskIDList,
         )
 
-    async def list(
+    def list(
         self,
         l7policy_id: str,
         *,
@@ -699,7 +700,7 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LoadBalancerL7RuleList:
+    ) -> AsyncPaginator[LoadBalancerL7Rule, AsyncOffsetPage[LoadBalancerL7Rule]]:
         """
         List load balancer L7 policy rules
 
@@ -729,19 +730,20 @@ class AsyncRulesResource(AsyncAPIResource):
             region_id = self._client._get_cloud_region_id_path_param()
         if not l7policy_id:
             raise ValueError(f"Expected a non-empty value for `l7policy_id` but received {l7policy_id!r}")
-        return await self._get(
+        return self._get_api_list(
             path_template(
                 "/cloud/v1/l7policies/{project_id}/{region_id}/{l7policy_id}/rules",
                 project_id=project_id,
                 region_id=region_id,
                 l7policy_id=l7policy_id,
             ),
+            page=AsyncOffsetPage[LoadBalancerL7Rule],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "limit": limit,
                         "offset": offset,
@@ -749,7 +751,7 @@ class AsyncRulesResource(AsyncAPIResource):
                     rule_list_params.RuleListParams,
                 ),
             ),
-            cast_to=LoadBalancerL7RuleList,
+            model=LoadBalancerL7Rule,
         )
 
     async def delete(

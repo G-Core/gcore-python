@@ -11,8 +11,8 @@ from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
 from gcore.types.cdn import (
     CaCertificate,
-    CaCertificateList,
 )
+from gcore.pagination import SyncOffsetPage, AsyncOffsetPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -57,7 +57,7 @@ class TestTrustedCaCertificates:
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
         trusted_ca_certificate = client.cdn.trusted_ca_certificates.list()
-        assert_matches_type(CaCertificateList, trusted_ca_certificate, path=["response"])
+        assert_matches_type(SyncOffsetPage[CaCertificate], trusted_ca_certificate, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
@@ -68,7 +68,7 @@ class TestTrustedCaCertificates:
             resource_id=0,
             validity_not_after_lte="validity_not_after_lte",
         )
-        assert_matches_type(CaCertificateList, trusted_ca_certificate, path=["response"])
+        assert_matches_type(SyncOffsetPage[CaCertificate], trusted_ca_certificate, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
@@ -77,7 +77,7 @@ class TestTrustedCaCertificates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         trusted_ca_certificate = response.parse()
-        assert_matches_type(CaCertificateList, trusted_ca_certificate, path=["response"])
+        assert_matches_type(SyncOffsetPage[CaCertificate], trusted_ca_certificate, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
@@ -86,7 +86,7 @@ class TestTrustedCaCertificates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             trusted_ca_certificate = response.parse()
-            assert_matches_type(CaCertificateList, trusted_ca_certificate, path=["response"])
+            assert_matches_type(SyncOffsetPage[CaCertificate], trusted_ca_certificate, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -229,7 +229,7 @@ class TestAsyncTrustedCaCertificates:
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
         trusted_ca_certificate = await async_client.cdn.trusted_ca_certificates.list()
-        assert_matches_type(CaCertificateList, trusted_ca_certificate, path=["response"])
+        assert_matches_type(AsyncOffsetPage[CaCertificate], trusted_ca_certificate, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -240,7 +240,7 @@ class TestAsyncTrustedCaCertificates:
             resource_id=0,
             validity_not_after_lte="validity_not_after_lte",
         )
-        assert_matches_type(CaCertificateList, trusted_ca_certificate, path=["response"])
+        assert_matches_type(AsyncOffsetPage[CaCertificate], trusted_ca_certificate, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
@@ -249,7 +249,7 @@ class TestAsyncTrustedCaCertificates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         trusted_ca_certificate = await response.parse()
-        assert_matches_type(CaCertificateList, trusted_ca_certificate, path=["response"])
+        assert_matches_type(AsyncOffsetPage[CaCertificate], trusted_ca_certificate, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
@@ -258,7 +258,7 @@ class TestAsyncTrustedCaCertificates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             trusted_ca_certificate = await response.parse()
-            assert_matches_type(CaCertificateList, trusted_ca_certificate, path=["response"])
+            assert_matches_type(AsyncOffsetPage[CaCertificate], trusted_ca_certificate, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

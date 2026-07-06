@@ -10,8 +10,9 @@ import pytest
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
 from gcore._utils import parse_datetime
+from gcore.pagination import SyncOffsetPage, AsyncOffsetPage
 from gcore.types.cloud import TaskIDList
-from gcore.types.cloud.gpu_virtual.clusters import GPUVirtualClusterServerList
+from gcore.types.cloud.gpu_virtual.clusters import GPUVirtualClusterServer
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -26,7 +27,7 @@ class TestServers:
             project_id=1,
             region_id=7,
         )
-        assert_matches_type(GPUVirtualClusterServerList, server, path=["response"])
+        assert_matches_type(SyncOffsetPage[GPUVirtualClusterServer], server, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
@@ -44,7 +45,7 @@ class TestServers:
             status="ACTIVE",
             uuids=["string"],
         )
-        assert_matches_type(GPUVirtualClusterServerList, server, path=["response"])
+        assert_matches_type(SyncOffsetPage[GPUVirtualClusterServer], server, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
@@ -57,7 +58,7 @@ class TestServers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         server = response.parse()
-        assert_matches_type(GPUVirtualClusterServerList, server, path=["response"])
+        assert_matches_type(SyncOffsetPage[GPUVirtualClusterServer], server, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
@@ -70,7 +71,7 @@ class TestServers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             server = response.parse()
-            assert_matches_type(GPUVirtualClusterServerList, server, path=["response"])
+            assert_matches_type(SyncOffsetPage[GPUVirtualClusterServer], server, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -170,7 +171,7 @@ class TestAsyncServers:
             project_id=1,
             region_id=7,
         )
-        assert_matches_type(GPUVirtualClusterServerList, server, path=["response"])
+        assert_matches_type(AsyncOffsetPage[GPUVirtualClusterServer], server, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -188,7 +189,7 @@ class TestAsyncServers:
             status="ACTIVE",
             uuids=["string"],
         )
-        assert_matches_type(GPUVirtualClusterServerList, server, path=["response"])
+        assert_matches_type(AsyncOffsetPage[GPUVirtualClusterServer], server, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
@@ -201,7 +202,7 @@ class TestAsyncServers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         server = await response.parse()
-        assert_matches_type(GPUVirtualClusterServerList, server, path=["response"])
+        assert_matches_type(AsyncOffsetPage[GPUVirtualClusterServer], server, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
@@ -214,7 +215,7 @@ class TestAsyncServers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             server = await response.parse()
-            assert_matches_type(GPUVirtualClusterServerList, server, path=["response"])
+            assert_matches_type(AsyncOffsetPage[GPUVirtualClusterServer], server, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

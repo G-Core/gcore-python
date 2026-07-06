@@ -4,10 +4,10 @@ from typing import Dict, List, Optional
 
 from ..._models import BaseModel
 
-__all__ = ["ZoneListResponse", "Zone", "ZoneRecord", "ZoneRrsetsAmount", "ZoneRrsetsAmountDynamic"]
+__all__ = ["ZoneListResponse", "Record", "RrsetsAmount", "RrsetsAmountDynamic"]
 
 
-class ZoneRecord(BaseModel):
+class Record(BaseModel):
     """Record - readonly short version of rrset"""
 
     name: Optional[str] = None
@@ -19,7 +19,7 @@ class ZoneRecord(BaseModel):
     type: Optional[str] = None
 
 
-class ZoneRrsetsAmountDynamic(BaseModel):
+class RrsetsAmountDynamic(BaseModel):
     """Amount of dynamic RRsets in zone"""
 
     healthcheck: Optional[int] = None
@@ -29,8 +29,8 @@ class ZoneRrsetsAmountDynamic(BaseModel):
     """Total amount of dynamic RRsets in zone"""
 
 
-class ZoneRrsetsAmount(BaseModel):
-    dynamic: Optional[ZoneRrsetsAmountDynamic] = None
+class RrsetsAmount(BaseModel):
+    dynamic: Optional[RrsetsAmountDynamic] = None
     """Amount of dynamic RRsets in zone"""
 
     static: Optional[int] = None
@@ -40,7 +40,7 @@ class ZoneRrsetsAmount(BaseModel):
     """Total amount of RRsets in zone"""
 
 
-class Zone(BaseModel):
+class ZoneListResponse(BaseModel):
     """OutputZone"""
 
     id: Optional[int] = None
@@ -94,7 +94,7 @@ class Zone(BaseModel):
     primary_server: Optional[str] = None
     """primary master name server for zone"""
 
-    records: Optional[List[ZoneRecord]] = None
+    records: Optional[List[Record]] = None
 
     refresh: Optional[int] = None
     """
@@ -108,7 +108,7 @@ class Zone(BaseModel):
     serial number
     """
 
-    rrsets_amount: Optional[ZoneRrsetsAmount] = None
+    rrsets_amount: Optional[RrsetsAmount] = None
 
     serial: Optional[int] = None
     """
@@ -119,9 +119,3 @@ class Zone(BaseModel):
     """
 
     status: Optional[str] = None
-
-
-class ZoneListResponse(BaseModel):
-    total_amount: Optional[int] = None
-
-    zones: Optional[List[Zone]] = None

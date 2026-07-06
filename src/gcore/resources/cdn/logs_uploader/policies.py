@@ -17,7 +17,8 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._base_client import make_request_options
+from ....pagination import SyncOffsetPage, AsyncOffsetPage
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.cdn.logs_uploader import (
     policy_list_params,
     policy_create_params,
@@ -25,7 +26,6 @@ from ....types.cdn.logs_uploader import (
     policy_replace_params,
 )
 from ....types.cdn.logs_uploader.logs_uploader_policy import LogsUploaderPolicy
-from ....types.cdn.logs_uploader.logs_uploader_policy_list import LogsUploaderPolicyList
 from ....types.cdn.logs_uploader.policy_list_fields_response import PolicyListFieldsResponse
 
 __all__ = ["PoliciesResource", "AsyncPoliciesResource"]
@@ -321,7 +321,7 @@ class PoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LogsUploaderPolicyList:
+    ) -> SyncOffsetPage[LogsUploaderPolicy]:
         """
         Get list of logs uploader policies.
 
@@ -342,8 +342,9 @@ class PoliciesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/cdn/logs_uploader/policies",
+            page=SyncOffsetPage[LogsUploaderPolicy],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -359,7 +360,7 @@ class PoliciesResource(SyncAPIResource):
                     policy_list_params.PolicyListParams,
                 ),
             ),
-            cast_to=LogsUploaderPolicyList,
+            model=LogsUploaderPolicy,
         )
 
     def delete(
@@ -854,7 +855,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
             cast_to=LogsUploaderPolicy,
         )
 
-    async def list(
+    def list(
         self,
         *,
         config_ids: Iterable[int] | Omit = omit,
@@ -867,7 +868,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LogsUploaderPolicyList:
+    ) -> AsyncPaginator[LogsUploaderPolicy, AsyncOffsetPage[LogsUploaderPolicy]]:
         """
         Get list of logs uploader policies.
 
@@ -888,14 +889,15 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/cdn/logs_uploader/policies",
+            page=AsyncOffsetPage[LogsUploaderPolicy],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "config_ids": config_ids,
                         "limit": limit,
@@ -905,7 +907,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
                     policy_list_params.PolicyListParams,
                 ),
             ),
-            cast_to=LogsUploaderPolicyList,
+            model=LogsUploaderPolicy,
         )
 
     async def delete(

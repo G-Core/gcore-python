@@ -11,8 +11,8 @@ from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
 from gcore.types.cdn import (
     OriginGroups,
-    OriginGroupsList,
 )
+from gcore.pagination import SyncOffsetPage, AsyncOffsetPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -250,7 +250,7 @@ class TestOriginGroups:
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
         origin_group = client.cdn.origin_groups.list()
-        assert_matches_type(OriginGroupsList, origin_group, path=["response"])
+        assert_matches_type(SyncOffsetPage[OriginGroups], origin_group, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
@@ -261,7 +261,7 @@ class TestOriginGroups:
             offset=0,
             sources="sources",
         )
-        assert_matches_type(OriginGroupsList, origin_group, path=["response"])
+        assert_matches_type(SyncOffsetPage[OriginGroups], origin_group, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
@@ -270,7 +270,7 @@ class TestOriginGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         origin_group = response.parse()
-        assert_matches_type(OriginGroupsList, origin_group, path=["response"])
+        assert_matches_type(SyncOffsetPage[OriginGroups], origin_group, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
@@ -279,7 +279,7 @@ class TestOriginGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             origin_group = response.parse()
-            assert_matches_type(OriginGroupsList, origin_group, path=["response"])
+            assert_matches_type(SyncOffsetPage[OriginGroups], origin_group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -719,7 +719,7 @@ class TestAsyncOriginGroups:
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
         origin_group = await async_client.cdn.origin_groups.list()
-        assert_matches_type(OriginGroupsList, origin_group, path=["response"])
+        assert_matches_type(AsyncOffsetPage[OriginGroups], origin_group, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -730,7 +730,7 @@ class TestAsyncOriginGroups:
             offset=0,
             sources="sources",
         )
-        assert_matches_type(OriginGroupsList, origin_group, path=["response"])
+        assert_matches_type(AsyncOffsetPage[OriginGroups], origin_group, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
@@ -739,7 +739,7 @@ class TestAsyncOriginGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         origin_group = await response.parse()
-        assert_matches_type(OriginGroupsList, origin_group, path=["response"])
+        assert_matches_type(AsyncOffsetPage[OriginGroups], origin_group, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
@@ -748,7 +748,7 @@ class TestAsyncOriginGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             origin_group = await response.parse()
-            assert_matches_type(OriginGroupsList, origin_group, path=["response"])
+            assert_matches_type(AsyncOffsetPage[OriginGroups], origin_group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

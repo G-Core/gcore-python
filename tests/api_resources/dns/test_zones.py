@@ -19,6 +19,7 @@ from gcore.types.dns import (
     ZoneGetStatisticsResponse,
     ZoneCheckDelegationStatusResponse,
 )
+from gcore.pagination import SyncOffsetPageDNSZones, AsyncOffsetPageDNSZones
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -76,7 +77,7 @@ class TestZones:
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
         zone = client.dns.zones.list()
-        assert_matches_type(ZoneListResponse, zone, path=["response"])
+        assert_matches_type(SyncOffsetPageDNSZones[ZoneListResponse], zone, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
@@ -99,7 +100,7 @@ class TestZones:
             updated_at_from=parse_datetime("2019-12-27T18:11:19.117Z"),
             updated_at_to=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
-        assert_matches_type(ZoneListResponse, zone, path=["response"])
+        assert_matches_type(SyncOffsetPageDNSZones[ZoneListResponse], zone, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
@@ -108,7 +109,7 @@ class TestZones:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         zone = response.parse()
-        assert_matches_type(ZoneListResponse, zone, path=["response"])
+        assert_matches_type(SyncOffsetPageDNSZones[ZoneListResponse], zone, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
@@ -117,7 +118,7 @@ class TestZones:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             zone = response.parse()
-            assert_matches_type(ZoneListResponse, zone, path=["response"])
+            assert_matches_type(SyncOffsetPageDNSZones[ZoneListResponse], zone, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -559,7 +560,7 @@ class TestAsyncZones:
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
         zone = await async_client.dns.zones.list()
-        assert_matches_type(ZoneListResponse, zone, path=["response"])
+        assert_matches_type(AsyncOffsetPageDNSZones[ZoneListResponse], zone, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -582,7 +583,7 @@ class TestAsyncZones:
             updated_at_from=parse_datetime("2019-12-27T18:11:19.117Z"),
             updated_at_to=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
-        assert_matches_type(ZoneListResponse, zone, path=["response"])
+        assert_matches_type(AsyncOffsetPageDNSZones[ZoneListResponse], zone, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
@@ -591,7 +592,7 @@ class TestAsyncZones:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         zone = await response.parse()
-        assert_matches_type(ZoneListResponse, zone, path=["response"])
+        assert_matches_type(AsyncOffsetPageDNSZones[ZoneListResponse], zone, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
@@ -600,7 +601,7 @@ class TestAsyncZones:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             zone = await response.parse()
-            assert_matches_type(ZoneListResponse, zone, path=["response"])
+            assert_matches_type(AsyncOffsetPageDNSZones[ZoneListResponse], zone, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

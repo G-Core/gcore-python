@@ -16,7 +16,8 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._base_client import make_request_options
+from ....pagination import SyncOffsetPage, AsyncOffsetPage
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.cdn.logs_uploader import (
     config_list_params,
     config_create_params,
@@ -25,7 +26,6 @@ from ....types.cdn.logs_uploader import (
 )
 from ....types.cdn.logs_uploader_validation import LogsUploaderValidation
 from ....types.cdn.logs_uploader.logs_uploader_config import LogsUploaderConfig
-from ....types.cdn.logs_uploader.logs_uploader_config_list import LogsUploaderConfigList
 
 __all__ = ["ConfigsResource", "AsyncConfigsResource"]
 
@@ -190,7 +190,7 @@ class ConfigsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LogsUploaderConfigList:
+    ) -> SyncOffsetPage[LogsUploaderConfig]:
         """
         Get list of logs uploader configs.
 
@@ -211,8 +211,9 @@ class ConfigsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/cdn/logs_uploader/configs",
+            page=SyncOffsetPage[LogsUploaderConfig],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -228,7 +229,7 @@ class ConfigsResource(SyncAPIResource):
                     config_list_params.ConfigListParams,
                 ),
             ),
-            cast_to=LogsUploaderConfigList,
+            model=LogsUploaderConfig,
         )
 
     def delete(
@@ -540,7 +541,7 @@ class AsyncConfigsResource(AsyncAPIResource):
             cast_to=LogsUploaderConfig,
         )
 
-    async def list(
+    def list(
         self,
         *,
         limit: int | Omit = omit,
@@ -553,7 +554,7 @@ class AsyncConfigsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LogsUploaderConfigList:
+    ) -> AsyncPaginator[LogsUploaderConfig, AsyncOffsetPage[LogsUploaderConfig]]:
         """
         Get list of logs uploader configs.
 
@@ -574,14 +575,15 @@ class AsyncConfigsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/cdn/logs_uploader/configs",
+            page=AsyncOffsetPage[LogsUploaderConfig],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "limit": limit,
                         "offset": offset,
@@ -591,7 +593,7 @@ class AsyncConfigsResource(AsyncAPIResource):
                     config_list_params.ConfigListParams,
                 ),
             ),
-            cast_to=LogsUploaderConfigList,
+            model=LogsUploaderConfig,
         )
 
     async def delete(

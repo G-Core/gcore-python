@@ -41,9 +41,9 @@ from ....types.cdn import (
     cdn_resource_replace_params,
     cdn_resource_prefetch_params,
 )
-from ...._base_client import make_request_options
+from ....pagination import SyncOffsetPage, AsyncOffsetPage
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.cdn.cdn_resource import CDNResource
-from ....types.cdn.cdn_resource_list import CDNResourceList
 
 __all__ = ["CDNResourcesResource", "AsyncCDNResourcesResource"]
 
@@ -391,7 +391,7 @@ class CDNResourcesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CDNResourceList:
+    ) -> SyncOffsetPage[CDNResource]:
         """
         Get information about all CDN resources in your account.
 
@@ -514,8 +514,9 @@ class CDNResourcesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/cdn/resources",
+            page=SyncOffsetPage[CDNResource],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -552,7 +553,7 @@ class CDNResourcesResource(SyncAPIResource):
                     cdn_resource_list_params.CDNResourceListParams,
                 ),
             ),
-            cast_to=CDNResourceList,
+            model=CDNResource,
         )
 
     def delete(
@@ -1330,7 +1331,7 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
             cast_to=CDNResource,
         )
 
-    async def list(
+    def list(
         self,
         *,
         active: bool | Omit = omit,
@@ -1364,7 +1365,7 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CDNResourceList:
+    ) -> AsyncPaginator[CDNResource, AsyncOffsetPage[CDNResource]]:
         """
         Get information about all CDN resources in your account.
 
@@ -1487,14 +1488,15 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/cdn/resources",
+            page=AsyncOffsetPage[CDNResource],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "active": active,
                         "cname": cname,
@@ -1525,7 +1527,7 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
                     cdn_resource_list_params.CDNResourceListParams,
                 ),
             ),
-            cast_to=CDNResourceList,
+            model=CDNResource,
         )
 
     async def delete(

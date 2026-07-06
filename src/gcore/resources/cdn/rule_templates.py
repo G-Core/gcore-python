@@ -23,9 +23,9 @@ from ...types.cdn import (
     rule_template_update_params,
     rule_template_replace_params,
 )
-from ..._base_client import make_request_options
+from ...pagination import SyncOffsetPage, AsyncOffsetPage
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.cdn.rule_template import RuleTemplate
-from ...types.cdn.rule_template_list import RuleTemplateList
 
 __all__ = ["RuleTemplatesResource", "AsyncRuleTemplatesResource"]
 
@@ -242,7 +242,7 @@ class RuleTemplatesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RuleTemplateList:
+    ) -> SyncOffsetPage[RuleTemplate]:
         """
         Get rule templates list
 
@@ -259,8 +259,9 @@ class RuleTemplatesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/cdn/resources/rule_templates",
+            page=SyncOffsetPage[RuleTemplate],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -274,7 +275,7 @@ class RuleTemplatesResource(SyncAPIResource):
                     rule_template_list_params.RuleTemplateListParams,
                 ),
             ),
-            cast_to=RuleTemplateList,
+            model=RuleTemplate,
         )
 
     def delete(
@@ -631,7 +632,7 @@ class AsyncRuleTemplatesResource(AsyncAPIResource):
             cast_to=RuleTemplate,
         )
 
-    async def list(
+    def list(
         self,
         *,
         limit: int | Omit = omit,
@@ -642,7 +643,7 @@ class AsyncRuleTemplatesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RuleTemplateList:
+    ) -> AsyncPaginator[RuleTemplate, AsyncOffsetPage[RuleTemplate]]:
         """
         Get rule templates list
 
@@ -659,14 +660,15 @@ class AsyncRuleTemplatesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/cdn/resources/rule_templates",
+            page=AsyncOffsetPage[RuleTemplate],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "limit": limit,
                         "offset": offset,
@@ -674,7 +676,7 @@ class AsyncRuleTemplatesResource(AsyncAPIResource):
                     rule_template_list_params.RuleTemplateListParams,
                 ),
             ),
-            cast_to=RuleTemplateList,
+            model=RuleTemplate,
         )
 
     async def delete(

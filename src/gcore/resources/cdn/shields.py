@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -15,7 +15,8 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ...types.cdn import shield_list_params
-from ..._base_client import make_request_options
+from ...pagination import SyncOffsetPage, AsyncOffsetPage
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.cdn.shield_list_response import ShieldListResponse
 
 __all__ = ["ShieldsResource", "AsyncShieldsResource"]
@@ -52,7 +53,7 @@ class ShieldsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ShieldListResponse:
+    ) -> SyncOffsetPage[ShieldListResponse]:
         """
         Get information about all origin shielding locations available in the account.
 
@@ -69,8 +70,9 @@ class ShieldsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/cdn/shieldingpop_v2",
+            page=SyncOffsetPage[ShieldListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -84,7 +86,7 @@ class ShieldsResource(SyncAPIResource):
                     shield_list_params.ShieldListParams,
                 ),
             ),
-            cast_to=ShieldListResponse,
+            model=ShieldListResponse,
         )
 
 
@@ -108,7 +110,7 @@ class AsyncShieldsResource(AsyncAPIResource):
         """
         return AsyncShieldsResourceWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         *,
         limit: int | Omit = omit,
@@ -119,7 +121,7 @@ class AsyncShieldsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ShieldListResponse:
+    ) -> AsyncPaginator[ShieldListResponse, AsyncOffsetPage[ShieldListResponse]]:
         """
         Get information about all origin shielding locations available in the account.
 
@@ -136,14 +138,15 @@ class AsyncShieldsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/cdn/shieldingpop_v2",
+            page=AsyncOffsetPage[ShieldListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "limit": limit,
                         "offset": offset,
@@ -151,7 +154,7 @@ class AsyncShieldsResource(AsyncAPIResource):
                     shield_list_params.ShieldListParams,
                 ),
             ),
-            cast_to=ShieldListResponse,
+            model=ShieldListResponse,
         )
 
 

@@ -17,7 +17,8 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._base_client import make_request_options
+from ....pagination import SyncOffsetPageDNSRrsets, AsyncOffsetPageDNSRrsets
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.dns.zones import (
     rrset_list_params,
     rrset_create_params,
@@ -25,7 +26,6 @@ from ....types.dns.zones import (
     rrset_get_failover_logs_params,
 )
 from ....types.dns.zones.dns_output_rrset import DNSOutputRrset
-from ....types.dns.zones.rrset_list_response import RrsetListResponse
 from ....types.dns.zones.rrset_get_failover_logs_response import RrsetGetFailoverLogsResponse
 
 __all__ = ["RrsetsResource", "AsyncRrsetsResource"]
@@ -236,7 +236,7 @@ class RrsetsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RrsetListResponse:
+    ) -> SyncOffsetPageDNSRrsets[DNSOutputRrset]:
         """
         List of RRset.
 
@@ -259,8 +259,9 @@ class RrsetsResource(SyncAPIResource):
         """
         if not zone_name:
             raise ValueError(f"Expected a non-empty value for `zone_name` but received {zone_name!r}")
-        return self._get(
+        return self._get_api_list(
             path_template("/dns/v2/zones/{zone_name}/rrsets", zone_name=zone_name),
+            page=SyncOffsetPageDNSRrsets[DNSOutputRrset],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -276,7 +277,7 @@ class RrsetsResource(SyncAPIResource):
                     rrset_list_params.RrsetListParams,
                 ),
             ),
-            cast_to=RrsetListResponse,
+            model=DNSOutputRrset,
         )
 
     def delete(
@@ -682,7 +683,7 @@ class AsyncRrsetsResource(AsyncAPIResource):
             cast_to=DNSOutputRrset,
         )
 
-    async def list(
+    def list(
         self,
         zone_name: str,
         *,
@@ -696,7 +697,7 @@ class AsyncRrsetsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RrsetListResponse:
+    ) -> AsyncPaginator[DNSOutputRrset, AsyncOffsetPageDNSRrsets[DNSOutputRrset]]:
         """
         List of RRset.
 
@@ -719,14 +720,15 @@ class AsyncRrsetsResource(AsyncAPIResource):
         """
         if not zone_name:
             raise ValueError(f"Expected a non-empty value for `zone_name` but received {zone_name!r}")
-        return await self._get(
+        return self._get_api_list(
             path_template("/dns/v2/zones/{zone_name}/rrsets", zone_name=zone_name),
+            page=AsyncOffsetPageDNSRrsets[DNSOutputRrset],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "limit": limit,
                         "offset": offset,
@@ -736,7 +738,7 @@ class AsyncRrsetsResource(AsyncAPIResource):
                     rrset_list_params.RrsetListParams,
                 ),
             ),
-            cast_to=RrsetListResponse,
+            model=DNSOutputRrset,
         )
 
     async def delete(

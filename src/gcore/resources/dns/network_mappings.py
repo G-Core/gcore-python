@@ -18,10 +18,10 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ...types.dns import network_mapping_list_params, network_mapping_create_params, network_mapping_replace_params
-from ..._base_client import make_request_options
+from ...pagination import SyncOffsetPageDNSNetworkMappings, AsyncOffsetPageDNSNetworkMappings
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.dns.dns_network_mapping import DNSNetworkMapping
 from ...types.dns.dns_mapping_entry_param import DNSMappingEntryParam
-from ...types.dns.network_mapping_list_response import NetworkMappingListResponse
 from ...types.dns.network_mapping_create_response import NetworkMappingCreateResponse
 from ...types.dns.network_mapping_import_response import NetworkMappingImportResponse
 
@@ -139,7 +139,7 @@ class NetworkMappingsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NetworkMappingListResponse:
+    ) -> SyncOffsetPageDNSNetworkMappings[DNSNetworkMapping]:
         """
         List of network mappings.
 
@@ -167,8 +167,9 @@ class NetworkMappingsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/dns/v2/network-mappings",
+            page=SyncOffsetPageDNSNetworkMappings[DNSNetworkMapping],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -184,7 +185,7 @@ class NetworkMappingsResource(SyncAPIResource):
                     network_mapping_list_params.NetworkMappingListParams,
                 ),
             ),
-            cast_to=NetworkMappingListResponse,
+            model=DNSNetworkMapping,
         )
 
     def delete(
@@ -560,7 +561,7 @@ class AsyncNetworkMappingsResource(AsyncAPIResource):
             cast_to=NetworkMappingCreateResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         limit: int | Omit = omit,
@@ -573,7 +574,7 @@ class AsyncNetworkMappingsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NetworkMappingListResponse:
+    ) -> AsyncPaginator[DNSNetworkMapping, AsyncOffsetPageDNSNetworkMappings[DNSNetworkMapping]]:
         """
         List of network mappings.
 
@@ -601,14 +602,15 @@ class AsyncNetworkMappingsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/dns/v2/network-mappings",
+            page=AsyncOffsetPageDNSNetworkMappings[DNSNetworkMapping],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "limit": limit,
                         "offset": offset,
@@ -618,7 +620,7 @@ class AsyncNetworkMappingsResource(AsyncAPIResource):
                     network_mapping_list_params.NetworkMappingListParams,
                 ),
             ),
-            cast_to=NetworkMappingListResponse,
+            model=DNSNetworkMapping,
         )
 
     async def delete(

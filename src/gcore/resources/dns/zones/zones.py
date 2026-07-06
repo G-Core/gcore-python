@@ -41,7 +41,8 @@ from ....types.dns import (
     zone_replace_params,
     zone_get_statistics_params,
 )
-from ...._base_client import make_request_options
+from ....pagination import SyncOffsetPageDNSZones, AsyncOffsetPageDNSZones
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.dns.zone_get_response import ZoneGetResponse
 from ....types.dns.zone_list_response import ZoneListResponse
 from ....types.dns.zone_create_response import ZoneCreateResponse
@@ -198,7 +199,7 @@ class ZonesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ZoneListResponse:
+    ) -> SyncOffsetPageDNSZones[ZoneListResponse]:
         """Show created zones with pagination managed by limit and offset params.
 
         All query
@@ -231,8 +232,9 @@ class ZonesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/dns/v2/zones",
+            page=SyncOffsetPageDNSZones[ZoneListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -261,7 +263,7 @@ class ZonesResource(SyncAPIResource):
                     zone_list_params.ZoneListParams,
                 ),
             ),
-            cast_to=ZoneListResponse,
+            model=ZoneListResponse,
         )
 
     def delete(
@@ -816,7 +818,7 @@ class AsyncZonesResource(AsyncAPIResource):
             cast_to=ZoneCreateResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         id: Iterable[int] | Omit = omit,
@@ -842,7 +844,7 @@ class AsyncZonesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ZoneListResponse:
+    ) -> AsyncPaginator[ZoneListResponse, AsyncOffsetPageDNSZones[ZoneListResponse]]:
         """Show created zones with pagination managed by limit and offset params.
 
         All query
@@ -875,14 +877,15 @@ class AsyncZonesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/dns/v2/zones",
+            page=AsyncOffsetPageDNSZones[ZoneListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "id": id,
                         "case_sensitive": case_sensitive,
@@ -905,7 +908,7 @@ class AsyncZonesResource(AsyncAPIResource):
                     zone_list_params.ZoneListParams,
                 ),
             ),
-            cast_to=ZoneListResponse,
+            model=ZoneListResponse,
         )
 
     async def delete(

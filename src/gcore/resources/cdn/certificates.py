@@ -22,9 +22,9 @@ from ...types.cdn import (
     certificate_replace_params,
     certificate_get_status_params,
 )
-from ..._base_client import make_request_options
+from ...pagination import SyncOffsetPage, AsyncOffsetPage
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.cdn.ssl_detail import SslDetail
-from ...types.cdn.ssl_detail_list import SslDetailList
 from ...types.cdn.ssl_request_status import SslRequestStatus
 
 __all__ = ["CertificatesResource", "AsyncCertificatesResource"]
@@ -199,7 +199,7 @@ class CertificatesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SslDetailList:
+    ) -> SyncOffsetPage[SslDetail]:
         """
         Get information about SSL certificates.
 
@@ -230,8 +230,9 @@ class CertificatesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/cdn/sslData",
+            page=SyncOffsetPage[SslDetail],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -248,7 +249,7 @@ class CertificatesResource(SyncAPIResource):
                     certificate_list_params.CertificateListParams,
                 ),
             ),
-            cast_to=SslDetailList,
+            model=SslDetail,
         )
 
     def delete(
@@ -640,7 +641,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
-    async def list(
+    def list(
         self,
         *,
         automated: bool | Omit = omit,
@@ -654,7 +655,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SslDetailList:
+    ) -> AsyncPaginator[SslDetail, AsyncOffsetPage[SslDetail]]:
         """
         Get information about SSL certificates.
 
@@ -685,14 +686,15 @@ class AsyncCertificatesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/cdn/sslData",
+            page=AsyncOffsetPage[SslDetail],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "automated": automated,
                         "limit": limit,
@@ -703,7 +705,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
                     certificate_list_params.CertificateListParams,
                 ),
             ),
-            cast_to=SslDetailList,
+            model=SslDetail,
         )
 
     async def delete(

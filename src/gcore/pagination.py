@@ -27,6 +27,14 @@ __all__ = [
     "OffsetPageCDNLogsMeta",
     "SyncOffsetPageCDNLogs",
     "AsyncOffsetPageCDNLogs",
+    "SyncOffsetPageDNSZones",
+    "AsyncOffsetPageDNSZones",
+    "SyncOffsetPageDNSRrsets",
+    "AsyncOffsetPageDNSRrsets",
+    "SyncOffsetPageDNSNetworkMappings",
+    "AsyncOffsetPageDNSNetworkMappings",
+    "SyncOffsetPageFastedgeKvStores",
+    "AsyncOffsetPageFastedgeKvStores",
 ]
 
 _BaseModelT = TypeVar("_BaseModelT", bound=BaseModel)
@@ -473,6 +481,230 @@ class AsyncOffsetPageCDNLogs(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
                 count = self.meta.count
         if count is None:
             return None
+
+        if current_count < count:
+            return PageInfo(params={"offset": current_count})
+
+        return None
+
+
+class SyncOffsetPageDNSZones(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
+    zones: List[_T]
+    total_amount: int
+
+    @override
+    def _get_page_items(self) -> List[_T]:
+        zones = self.zones
+        if not zones:
+            return []
+        return zones
+
+    @override
+    def next_page_info(self) -> Optional[PageInfo]:
+        offset = self._options.params.get("offset") or 0
+        if not isinstance(offset, int):
+            raise ValueError(f'Expected "offset" param to be an integer but got {offset}')
+
+        length = len(self._get_page_items())
+        current_count = offset + length
+
+        total_amount = self.total_amount
+
+        if current_count < total_amount:
+            return PageInfo(params={"offset": current_count})
+
+        return None
+
+
+class AsyncOffsetPageDNSZones(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
+    zones: List[_T]
+    total_amount: int
+
+    @override
+    def _get_page_items(self) -> List[_T]:
+        zones = self.zones
+        if not zones:
+            return []
+        return zones
+
+    @override
+    def next_page_info(self) -> Optional[PageInfo]:
+        offset = self._options.params.get("offset") or 0
+        if not isinstance(offset, int):
+            raise ValueError(f'Expected "offset" param to be an integer but got {offset}')
+
+        length = len(self._get_page_items())
+        current_count = offset + length
+
+        total_amount = self.total_amount
+
+        if current_count < total_amount:
+            return PageInfo(params={"offset": current_count})
+
+        return None
+
+
+class SyncOffsetPageDNSRrsets(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
+    rrsets: List[_T]
+    total_amount: int
+
+    @override
+    def _get_page_items(self) -> List[_T]:
+        rrsets = self.rrsets
+        if not rrsets:
+            return []
+        return rrsets
+
+    @override
+    def next_page_info(self) -> Optional[PageInfo]:
+        offset = self._options.params.get("offset") or 0
+        if not isinstance(offset, int):
+            raise ValueError(f'Expected "offset" param to be an integer but got {offset}')
+
+        length = len(self._get_page_items())
+        current_count = offset + length
+
+        total_amount = self.total_amount
+
+        if current_count < total_amount:
+            return PageInfo(params={"offset": current_count})
+
+        return None
+
+
+class AsyncOffsetPageDNSRrsets(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
+    rrsets: List[_T]
+    total_amount: int
+
+    @override
+    def _get_page_items(self) -> List[_T]:
+        rrsets = self.rrsets
+        if not rrsets:
+            return []
+        return rrsets
+
+    @override
+    def next_page_info(self) -> Optional[PageInfo]:
+        offset = self._options.params.get("offset") or 0
+        if not isinstance(offset, int):
+            raise ValueError(f'Expected "offset" param to be an integer but got {offset}')
+
+        length = len(self._get_page_items())
+        current_count = offset + length
+
+        total_amount = self.total_amount
+
+        if current_count < total_amount:
+            return PageInfo(params={"offset": current_count})
+
+        return None
+
+
+class SyncOffsetPageDNSNetworkMappings(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
+    network_mappings: List[_T]
+    total_amount: int
+
+    @override
+    def _get_page_items(self) -> List[_T]:
+        network_mappings = self.network_mappings
+        if not network_mappings:
+            return []
+        return network_mappings
+
+    @override
+    def next_page_info(self) -> Optional[PageInfo]:
+        offset = self._options.params.get("offset") or 0
+        if not isinstance(offset, int):
+            raise ValueError(f'Expected "offset" param to be an integer but got {offset}')
+
+        length = len(self._get_page_items())
+        current_count = offset + length
+
+        total_amount = self.total_amount
+
+        if current_count < total_amount:
+            return PageInfo(params={"offset": current_count})
+
+        return None
+
+
+class AsyncOffsetPageDNSNetworkMappings(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
+    network_mappings: List[_T]
+    total_amount: int
+
+    @override
+    def _get_page_items(self) -> List[_T]:
+        network_mappings = self.network_mappings
+        if not network_mappings:
+            return []
+        return network_mappings
+
+    @override
+    def next_page_info(self) -> Optional[PageInfo]:
+        offset = self._options.params.get("offset") or 0
+        if not isinstance(offset, int):
+            raise ValueError(f'Expected "offset" param to be an integer but got {offset}')
+
+        length = len(self._get_page_items())
+        current_count = offset + length
+
+        total_amount = self.total_amount
+
+        if current_count < total_amount:
+            return PageInfo(params={"offset": current_count})
+
+        return None
+
+
+class SyncOffsetPageFastedgeKvStores(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
+    stores: List[_T]
+    count: int
+
+    @override
+    def _get_page_items(self) -> List[_T]:
+        stores = self.stores
+        if not stores:
+            return []
+        return stores
+
+    @override
+    def next_page_info(self) -> Optional[PageInfo]:
+        offset = self._options.params.get("offset") or 0
+        if not isinstance(offset, int):
+            raise ValueError(f'Expected "offset" param to be an integer but got {offset}')
+
+        length = len(self._get_page_items())
+        current_count = offset + length
+
+        count = self.count
+
+        if current_count < count:
+            return PageInfo(params={"offset": current_count})
+
+        return None
+
+
+class AsyncOffsetPageFastedgeKvStores(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
+    stores: List[_T]
+    count: int
+
+    @override
+    def _get_page_items(self) -> List[_T]:
+        stores = self.stores
+        if not stores:
+            return []
+        return stores
+
+    @override
+    def next_page_info(self) -> Optional[PageInfo]:
+        offset = self._options.params.get("offset") or 0
+        if not isinstance(offset, int):
+            raise ValueError(f'Expected "offset" param to be an integer but got {offset}')
+
+        length = len(self._get_page_items())
+        current_count = offset + length
+
+        count = self.count
 
         if current_count < count:
             return PageInfo(params={"offset": current_count})

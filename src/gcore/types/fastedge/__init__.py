@@ -32,7 +32,6 @@ from .secret_update_params import SecretUpdateParams as SecretUpdateParams
 from .template_list_params import TemplateListParams as TemplateListParams
 from .secret_replace_params import SecretReplaceParams as SecretReplaceParams
 from .kv_store_create_params import KvStoreCreateParams as KvStoreCreateParams
-from .kv_store_list_response import KvStoreListResponse as KvStoreListResponse
 from .secret_create_response import SecretCreateResponse as SecretCreateResponse
 from .template_create_params import TemplateCreateParams as TemplateCreateParams
 from .template_delete_params import TemplateDeleteParams as TemplateDeleteParams

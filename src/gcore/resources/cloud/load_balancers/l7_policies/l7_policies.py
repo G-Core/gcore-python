@@ -24,11 +24,11 @@ from ....._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....._base_client import make_request_options
+from .....pagination import SyncOffsetPage, AsyncOffsetPage
+from ....._base_client import AsyncPaginator, make_request_options
 from .....types.cloud.task_id_list import TaskIDList
 from .....types.cloud.load_balancers import l7_policy_list_params, l7_policy_create_params, l7_policy_update_params
 from .....types.cloud.load_balancer_l7_policy import LoadBalancerL7Policy
-from .....types.cloud.load_balancer_l7_policy_list import LoadBalancerL7PolicyList
 
 __all__ = ["L7PoliciesResource", "AsyncL7PoliciesResource"]
 
@@ -592,7 +592,7 @@ class L7PoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LoadBalancerL7PolicyList:
+    ) -> SyncOffsetPage[LoadBalancerL7Policy]:
         """
         List load balancer L7 policies
 
@@ -618,8 +618,9 @@ class L7PoliciesResource(SyncAPIResource):
             project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
-        return self._get(
+        return self._get_api_list(
             path_template("/cloud/v1/l7policies/{project_id}/{region_id}", project_id=project_id, region_id=region_id),
+            page=SyncOffsetPage[LoadBalancerL7Policy],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -633,7 +634,7 @@ class L7PoliciesResource(SyncAPIResource):
                     l7_policy_list_params.L7PolicyListParams,
                 ),
             ),
-            cast_to=LoadBalancerL7PolicyList,
+            model=LoadBalancerL7Policy,
         )
 
     def delete(
@@ -1625,7 +1626,7 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
             cast_to=TaskIDList,
         )
 
-    async def list(
+    def list(
         self,
         *,
         project_id: int | None = None,
@@ -1638,7 +1639,7 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LoadBalancerL7PolicyList:
+    ) -> AsyncPaginator[LoadBalancerL7Policy, AsyncOffsetPage[LoadBalancerL7Policy]]:
         """
         List load balancer L7 policies
 
@@ -1664,14 +1665,15 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
             project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
-        return await self._get(
+        return self._get_api_list(
             path_template("/cloud/v1/l7policies/{project_id}/{region_id}", project_id=project_id, region_id=region_id),
+            page=AsyncOffsetPage[LoadBalancerL7Policy],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "limit": limit,
                         "offset": offset,
@@ -1679,7 +1681,7 @@ class AsyncL7PoliciesResource(AsyncAPIResource):
                     l7_policy_list_params.L7PolicyListParams,
                 ),
             ),
-            cast_to=LoadBalancerL7PolicyList,
+            model=LoadBalancerL7Policy,
         )
 
     async def delete(

@@ -17,7 +17,8 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._base_client import make_request_options
+from ....pagination import SyncOffsetPage, AsyncOffsetPage
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.cdn.logs_uploader import (
     target_list_params,
     target_create_params,
@@ -26,7 +27,6 @@ from ....types.cdn.logs_uploader import (
 )
 from ....types.cdn.logs_uploader_validation import LogsUploaderValidation
 from ....types.cdn.logs_uploader.logs_uploader_target import LogsUploaderTarget
-from ....types.cdn.logs_uploader.logs_uploader_target_list import LogsUploaderTargetList
 
 __all__ = ["TargetsResource", "AsyncTargetsResource"]
 
@@ -180,7 +180,7 @@ class TargetsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LogsUploaderTargetList:
+    ) -> SyncOffsetPage[LogsUploaderTarget]:
         """
         Get list of logs uploader targets.
 
@@ -201,8 +201,9 @@ class TargetsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/cdn/logs_uploader/targets",
+            page=SyncOffsetPage[LogsUploaderTarget],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -218,7 +219,7 @@ class TargetsResource(SyncAPIResource):
                     target_list_params.TargetListParams,
                 ),
             ),
-            cast_to=LogsUploaderTargetList,
+            model=LogsUploaderTarget,
         )
 
     def delete(
@@ -511,7 +512,7 @@ class AsyncTargetsResource(AsyncAPIResource):
             cast_to=LogsUploaderTarget,
         )
 
-    async def list(
+    def list(
         self,
         *,
         config_ids: Iterable[int] | Omit = omit,
@@ -524,7 +525,7 @@ class AsyncTargetsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LogsUploaderTargetList:
+    ) -> AsyncPaginator[LogsUploaderTarget, AsyncOffsetPage[LogsUploaderTarget]]:
         """
         Get list of logs uploader targets.
 
@@ -545,14 +546,15 @@ class AsyncTargetsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/cdn/logs_uploader/targets",
+            page=AsyncOffsetPage[LogsUploaderTarget],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "config_ids": config_ids,
                         "limit": limit,
@@ -562,7 +564,7 @@ class AsyncTargetsResource(AsyncAPIResource):
                     target_list_params.TargetListParams,
                 ),
             ),
-            cast_to=LogsUploaderTargetList,
+            model=LogsUploaderTarget,
         )
 
     async def delete(

@@ -10,7 +10,6 @@ from gcore.types.cdn import (
     CDNAccountLimits,
     CDNAvailableFeatures,
     PurgeStatus,
-    CDNListPurgeStatusesResponse,
 )
 ```
 
@@ -19,9 +18,9 @@ Methods:
 - <code title="get /cdn/clients/me/limits">client.cdn.<a href="./src/gcore/resources/cdn/cdn.py">get_account_limits</a>() -> <a href="./src/gcore/types/cdn/cdn_account_limits.py">CDNAccountLimits</a></code>
 - <code title="get /cdn/clients/me">client.cdn.<a href="./src/gcore/resources/cdn/cdn.py">get_account_overview</a>() -> <a href="./src/gcore/types/cdn/cdn_account.py">CDNAccount</a></code>
 - <code title="get /cdn/clients/me/features">client.cdn.<a href="./src/gcore/resources/cdn/cdn.py">get_available_features</a>() -> <a href="./src/gcore/types/cdn/cdn_available_features.py">CDNAvailableFeatures</a></code>
-- <code title="get /cdn/alibaba_regions">client.cdn.<a href="./src/gcore/resources/cdn/cdn.py">list_alibaba_regions</a>(\*\*<a href="src/gcore/types/cdn/cdn_list_alibaba_regions_params.py">params</a>) -> <a href="./src/gcore/types/cdn/alibaba_regions.py">AlibabaRegions</a></code>
-- <code title="get /cdn/aws_regions">client.cdn.<a href="./src/gcore/resources/cdn/cdn.py">list_aws_regions</a>(\*\*<a href="src/gcore/types/cdn/cdn_list_aws_regions_params.py">params</a>) -> <a href="./src/gcore/types/cdn/aws_regions.py">AwsRegions</a></code>
-- <code title="get /cdn/purge_statuses">client.cdn.<a href="./src/gcore/resources/cdn/cdn.py">list_purge_statuses</a>(\*\*<a href="src/gcore/types/cdn/cdn_list_purge_statuses_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_list_purge_statuses_response.py">CDNListPurgeStatusesResponse</a></code>
+- <code title="get /cdn/alibaba_regions">client.cdn.<a href="./src/gcore/resources/cdn/cdn.py">list_alibaba_regions</a>(\*\*<a href="src/gcore/types/cdn/cdn_list_alibaba_regions_params.py">params</a>) -> SyncOffsetPage[Result]</code>
+- <code title="get /cdn/aws_regions">client.cdn.<a href="./src/gcore/resources/cdn/cdn.py">list_aws_regions</a>(\*\*<a href="src/gcore/types/cdn/cdn_list_aws_regions_params.py">params</a>) -> SyncOffsetPage[Result]</code>
+- <code title="get /cdn/purge_statuses">client.cdn.<a href="./src/gcore/resources/cdn/cdn.py">list_purge_statuses</a>(\*\*<a href="src/gcore/types/cdn/cdn_list_purge_statuses_params.py">params</a>) -> <a href="./src/gcore/types/cdn/purge_status.py">SyncOffsetPage[PurgeStatus]</a></code>
 - <code title="patch /cdn/clients/me">client.cdn.<a href="./src/gcore/resources/cdn/cdn.py">update_account</a>(\*\*<a href="src/gcore/types/cdn/cdn_update_account_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_account.py">CDNAccount</a></code>
 
 ## CDNResources
@@ -36,7 +35,7 @@ Methods:
 
 - <code title="post /cdn/resources">client.cdn.cdn_resources.<a href="./src/gcore/resources/cdn/cdn_resources/cdn_resources.py">create</a>(\*\*<a href="src/gcore/types/cdn/cdn_resource_create_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_resource.py">CDNResource</a></code>
 - <code title="patch /cdn/resources/{resource_id}">client.cdn.cdn_resources.<a href="./src/gcore/resources/cdn/cdn_resources/cdn_resources.py">update</a>(resource_id, \*\*<a href="src/gcore/types/cdn/cdn_resource_update_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_resource.py">CDNResource</a></code>
-- <code title="get /cdn/resources">client.cdn.cdn_resources.<a href="./src/gcore/resources/cdn/cdn_resources/cdn_resources.py">list</a>(\*\*<a href="src/gcore/types/cdn/cdn_resource_list_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_resource_list.py">CDNResourceList</a></code>
+- <code title="get /cdn/resources">client.cdn.cdn_resources.<a href="./src/gcore/resources/cdn/cdn_resources/cdn_resources.py">list</a>(\*\*<a href="src/gcore/types/cdn/cdn_resource_list_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_resource.py">SyncOffsetPage[CDNResource]</a></code>
 - <code title="delete /cdn/resources/{resource_id}">client.cdn.cdn_resources.<a href="./src/gcore/resources/cdn/cdn_resources/cdn_resources.py">delete</a>(resource_id) -> None</code>
 - <code title="get /cdn/resources/{resource_id}">client.cdn.cdn_resources.<a href="./src/gcore/resources/cdn/cdn_resources/cdn_resources.py">get</a>(resource_id) -> <a href="./src/gcore/types/cdn/cdn_resource.py">CDNResource</a></code>
 - <code title="post /cdn/resources/{resource_id}/prefetch">client.cdn.cdn_resources.<a href="./src/gcore/resources/cdn/cdn_resources/cdn_resources.py">prefetch</a>(resource_id, \*\*<a href="src/gcore/types/cdn/cdn_resource_prefetch_params.py">params</a>) -> None</code>
@@ -69,7 +68,7 @@ Methods:
 
 - <code title="post /cdn/resources/{resource_id}/rules">client.cdn.cdn_resources.rules.<a href="./src/gcore/resources/cdn/cdn_resources/rules.py">create</a>(resource_id, \*\*<a href="src/gcore/types/cdn/cdn_resources/rule_create_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_resources/cdn_resource_rule.py">CDNResourceRule</a></code>
 - <code title="patch /cdn/resources/{resource_id}/rules/{rule_id}">client.cdn.cdn_resources.rules.<a href="./src/gcore/resources/cdn/cdn_resources/rules.py">update</a>(rule_id, \*, resource_id, \*\*<a href="src/gcore/types/cdn/cdn_resources/rule_update_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_resources/cdn_resource_rule.py">CDNResourceRule</a></code>
-- <code title="get /cdn/resources/{resource_id}/rules">client.cdn.cdn_resources.rules.<a href="./src/gcore/resources/cdn/cdn_resources/rules.py">list</a>(resource_id, \*\*<a href="src/gcore/types/cdn/cdn_resources/rule_list_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_resources/cdn_resource_rule_list.py">CDNResourceRuleList</a></code>
+- <code title="get /cdn/resources/{resource_id}/rules">client.cdn.cdn_resources.rules.<a href="./src/gcore/resources/cdn/cdn_resources/rules.py">list</a>(resource_id, \*\*<a href="src/gcore/types/cdn/cdn_resources/rule_list_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_resources/cdn_resource_rule.py">SyncOffsetPage[CDNResourceRule]</a></code>
 - <code title="delete /cdn/resources/{resource_id}/rules/{rule_id}">client.cdn.cdn_resources.rules.<a href="./src/gcore/resources/cdn/cdn_resources/rules.py">delete</a>(rule_id, \*, resource_id) -> None</code>
 - <code title="get /cdn/resources/{resource_id}/rules/{rule_id}">client.cdn.cdn_resources.rules.<a href="./src/gcore/resources/cdn/cdn_resources/rules.py">get</a>(rule_id, \*, resource_id) -> <a href="./src/gcore/types/cdn/cdn_resources/cdn_resource_rule.py">CDNResourceRule</a></code>
 - <code title="put /cdn/resources/{resource_id}/rules/{rule_id}">client.cdn.cdn_resources.rules.<a href="./src/gcore/resources/cdn/cdn_resources/rules.py">replace</a>(rule_id, \*, resource_id, \*\*<a href="src/gcore/types/cdn/cdn_resources/rule_replace_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_resources/cdn_resource_rule.py">CDNResourceRule</a></code>
@@ -84,7 +83,7 @@ from gcore.types.cdn import ShieldListResponse
 
 Methods:
 
-- <code title="get /cdn/shieldingpop_v2">client.cdn.shields.<a href="./src/gcore/resources/cdn/shields.py">list</a>(\*\*<a href="src/gcore/types/cdn/shield_list_params.py">params</a>) -> <a href="./src/gcore/types/cdn/shield_list_response.py">ShieldListResponse</a></code>
+- <code title="get /cdn/shieldingpop_v2">client.cdn.shields.<a href="./src/gcore/resources/cdn/shields.py">list</a>(\*\*<a href="src/gcore/types/cdn/shield_list_params.py">params</a>) -> <a href="./src/gcore/types/cdn/shield_list_response.py">SyncOffsetPage[ShieldListResponse]</a></code>
 
 ## OriginGroups
 
@@ -98,7 +97,7 @@ Methods:
 
 - <code title="post /cdn/origin_groups">client.cdn.origin_groups.<a href="./src/gcore/resources/cdn/origin_groups.py">create</a>(\*\*<a href="src/gcore/types/cdn/origin_group_create_params.py">params</a>) -> <a href="./src/gcore/types/cdn/origin_groups.py">OriginGroups</a></code>
 - <code title="patch /cdn/origin_groups/{origin_group_id}">client.cdn.origin_groups.<a href="./src/gcore/resources/cdn/origin_groups.py">update</a>(origin_group_id, \*\*<a href="src/gcore/types/cdn/origin_group_update_params.py">params</a>) -> <a href="./src/gcore/types/cdn/origin_groups.py">OriginGroups</a></code>
-- <code title="get /cdn/origin_groups">client.cdn.origin_groups.<a href="./src/gcore/resources/cdn/origin_groups.py">list</a>(\*\*<a href="src/gcore/types/cdn/origin_group_list_params.py">params</a>) -> <a href="./src/gcore/types/cdn/origin_groups_list.py">OriginGroupsList</a></code>
+- <code title="get /cdn/origin_groups">client.cdn.origin_groups.<a href="./src/gcore/resources/cdn/origin_groups.py">list</a>(\*\*<a href="src/gcore/types/cdn/origin_group_list_params.py">params</a>) -> <a href="./src/gcore/types/cdn/origin_groups.py">SyncOffsetPage[OriginGroups]</a></code>
 - <code title="delete /cdn/origin_groups/{origin_group_id}">client.cdn.origin_groups.<a href="./src/gcore/resources/cdn/origin_groups.py">delete</a>(origin_group_id) -> None</code>
 - <code title="get /cdn/origin_groups/{origin_group_id}">client.cdn.origin_groups.<a href="./src/gcore/resources/cdn/origin_groups.py">get</a>(origin_group_id) -> <a href="./src/gcore/types/cdn/origin_groups.py">OriginGroups</a></code>
 - <code title="put /cdn/origin_groups/{origin_group_id}">client.cdn.origin_groups.<a href="./src/gcore/resources/cdn/origin_groups.py">replace</a>(origin_group_id, \*\*<a href="src/gcore/types/cdn/origin_group_replace_params.py">params</a>) -> <a href="./src/gcore/types/cdn/origin_groups.py">OriginGroups</a></code>
@@ -115,7 +114,7 @@ Methods:
 
 - <code title="post /cdn/resources/rule_templates">client.cdn.rule_templates.<a href="./src/gcore/resources/cdn/rule_templates.py">create</a>(\*\*<a href="src/gcore/types/cdn/rule_template_create_params.py">params</a>) -> <a href="./src/gcore/types/cdn/rule_template.py">RuleTemplate</a></code>
 - <code title="patch /cdn/resources/rule_templates/{rule_template_id}">client.cdn.rule_templates.<a href="./src/gcore/resources/cdn/rule_templates.py">update</a>(rule_template_id, \*\*<a href="src/gcore/types/cdn/rule_template_update_params.py">params</a>) -> <a href="./src/gcore/types/cdn/rule_template.py">RuleTemplate</a></code>
-- <code title="get /cdn/resources/rule_templates">client.cdn.rule_templates.<a href="./src/gcore/resources/cdn/rule_templates.py">list</a>(\*\*<a href="src/gcore/types/cdn/rule_template_list_params.py">params</a>) -> <a href="./src/gcore/types/cdn/rule_template_list.py">RuleTemplateList</a></code>
+- <code title="get /cdn/resources/rule_templates">client.cdn.rule_templates.<a href="./src/gcore/resources/cdn/rule_templates.py">list</a>(\*\*<a href="src/gcore/types/cdn/rule_template_list_params.py">params</a>) -> <a href="./src/gcore/types/cdn/rule_template.py">SyncOffsetPage[RuleTemplate]</a></code>
 - <code title="delete /cdn/resources/rule_templates/{rule_template_id}">client.cdn.rule_templates.<a href="./src/gcore/resources/cdn/rule_templates.py">delete</a>(rule_template_id) -> None</code>
 - <code title="get /cdn/resources/rule_templates/{rule_template_id}">client.cdn.rule_templates.<a href="./src/gcore/resources/cdn/rule_templates.py">get</a>(rule_template_id) -> <a href="./src/gcore/types/cdn/rule_template.py">RuleTemplate</a></code>
 - <code title="put /cdn/resources/rule_templates/{rule_template_id}">client.cdn.rule_templates.<a href="./src/gcore/resources/cdn/rule_templates.py">replace</a>(rule_template_id, \*\*<a href="src/gcore/types/cdn/rule_template_replace_params.py">params</a>) -> <a href="./src/gcore/types/cdn/rule_template.py">RuleTemplate</a></code>
@@ -131,7 +130,7 @@ from gcore.types.cdn import SslDetail, SslDetailList, SslRequestStatus
 Methods:
 
 - <code title="post /cdn/sslData">client.cdn.certificates.<a href="./src/gcore/resources/cdn/certificates.py">create</a>(\*\*<a href="src/gcore/types/cdn/certificate_create_params.py">params</a>) -> None</code>
-- <code title="get /cdn/sslData">client.cdn.certificates.<a href="./src/gcore/resources/cdn/certificates.py">list</a>(\*\*<a href="src/gcore/types/cdn/certificate_list_params.py">params</a>) -> <a href="./src/gcore/types/cdn/ssl_detail_list.py">SslDetailList</a></code>
+- <code title="get /cdn/sslData">client.cdn.certificates.<a href="./src/gcore/resources/cdn/certificates.py">list</a>(\*\*<a href="src/gcore/types/cdn/certificate_list_params.py">params</a>) -> <a href="./src/gcore/types/cdn/ssl_detail.py">SyncOffsetPage[SslDetail]</a></code>
 - <code title="delete /cdn/sslData/{ssl_id}">client.cdn.certificates.<a href="./src/gcore/resources/cdn/certificates.py">delete</a>(ssl_id) -> None</code>
 - <code title="post /cdn/sslData/{cert_id}/force-retry">client.cdn.certificates.<a href="./src/gcore/resources/cdn/certificates.py">force_retry</a>(cert_id) -> None</code>
 - <code title="get /cdn/sslData/{ssl_id}">client.cdn.certificates.<a href="./src/gcore/resources/cdn/certificates.py">get</a>(ssl_id) -> <a href="./src/gcore/types/cdn/ssl_detail.py">SslDetail</a></code>
@@ -150,7 +149,7 @@ from gcore.types.cdn import CaCertificate, CaCertificateList
 Methods:
 
 - <code title="post /cdn/sslCertificates">client.cdn.trusted_ca_certificates.<a href="./src/gcore/resources/cdn/trusted_ca_certificates.py">create</a>(\*\*<a href="src/gcore/types/cdn/trusted_ca_certificate_create_params.py">params</a>) -> <a href="./src/gcore/types/cdn/ca_certificate.py">CaCertificate</a></code>
-- <code title="get /cdn/sslCertificates">client.cdn.trusted_ca_certificates.<a href="./src/gcore/resources/cdn/trusted_ca_certificates.py">list</a>(\*\*<a href="src/gcore/types/cdn/trusted_ca_certificate_list_params.py">params</a>) -> <a href="./src/gcore/types/cdn/ca_certificate_list.py">CaCertificateList</a></code>
+- <code title="get /cdn/sslCertificates">client.cdn.trusted_ca_certificates.<a href="./src/gcore/resources/cdn/trusted_ca_certificates.py">list</a>(\*\*<a href="src/gcore/types/cdn/trusted_ca_certificate_list_params.py">params</a>) -> <a href="./src/gcore/types/cdn/ca_certificate.py">SyncOffsetPage[CaCertificate]</a></code>
 - <code title="delete /cdn/sslCertificates/{id}">client.cdn.trusted_ca_certificates.<a href="./src/gcore/resources/cdn/trusted_ca_certificates.py">delete</a>(id) -> None</code>
 - <code title="get /cdn/sslCertificates/{id}">client.cdn.trusted_ca_certificates.<a href="./src/gcore/resources/cdn/trusted_ca_certificates.py">get</a>(id) -> <a href="./src/gcore/types/cdn/ca_certificate.py">CaCertificate</a></code>
 - <code title="put /cdn/sslCertificates/{id}">client.cdn.trusted_ca_certificates.<a href="./src/gcore/resources/cdn/trusted_ca_certificates.py">replace</a>(id, \*\*<a href="src/gcore/types/cdn/trusted_ca_certificate_replace_params.py">params</a>) -> <a href="./src/gcore/types/cdn/ca_certificate.py">CaCertificate</a></code>
@@ -205,7 +204,7 @@ Methods:
 
 - <code title="post /cdn/logs_uploader/policies">client.cdn.logs_uploader.policies.<a href="./src/gcore/resources/cdn/logs_uploader/policies.py">create</a>(\*\*<a href="src/gcore/types/cdn/logs_uploader/policy_create_params.py">params</a>) -> <a href="./src/gcore/types/cdn/logs_uploader/logs_uploader_policy.py">LogsUploaderPolicy</a></code>
 - <code title="patch /cdn/logs_uploader/policies/{id}">client.cdn.logs_uploader.policies.<a href="./src/gcore/resources/cdn/logs_uploader/policies.py">update</a>(id, \*\*<a href="src/gcore/types/cdn/logs_uploader/policy_update_params.py">params</a>) -> <a href="./src/gcore/types/cdn/logs_uploader/logs_uploader_policy.py">LogsUploaderPolicy</a></code>
-- <code title="get /cdn/logs_uploader/policies">client.cdn.logs_uploader.policies.<a href="./src/gcore/resources/cdn/logs_uploader/policies.py">list</a>(\*\*<a href="src/gcore/types/cdn/logs_uploader/policy_list_params.py">params</a>) -> <a href="./src/gcore/types/cdn/logs_uploader/logs_uploader_policy_list.py">LogsUploaderPolicyList</a></code>
+- <code title="get /cdn/logs_uploader/policies">client.cdn.logs_uploader.policies.<a href="./src/gcore/resources/cdn/logs_uploader/policies.py">list</a>(\*\*<a href="src/gcore/types/cdn/logs_uploader/policy_list_params.py">params</a>) -> <a href="./src/gcore/types/cdn/logs_uploader/logs_uploader_policy.py">SyncOffsetPage[LogsUploaderPolicy]</a></code>
 - <code title="delete /cdn/logs_uploader/policies/{id}">client.cdn.logs_uploader.policies.<a href="./src/gcore/resources/cdn/logs_uploader/policies.py">delete</a>(id) -> None</code>
 - <code title="get /cdn/logs_uploader/policies/{id}">client.cdn.logs_uploader.policies.<a href="./src/gcore/resources/cdn/logs_uploader/policies.py">get</a>(id) -> <a href="./src/gcore/types/cdn/logs_uploader/logs_uploader_policy.py">LogsUploaderPolicy</a></code>
 - <code title="get /cdn/logs_uploader/policies/fields">client.cdn.logs_uploader.policies.<a href="./src/gcore/resources/cdn/logs_uploader/policies.py">list_fields</a>() -> <a href="./src/gcore/types/cdn/logs_uploader/policy_list_fields_response.py">PolicyListFieldsResponse</a></code>
@@ -223,7 +222,7 @@ Methods:
 
 - <code title="post /cdn/logs_uploader/targets">client.cdn.logs_uploader.targets.<a href="./src/gcore/resources/cdn/logs_uploader/targets.py">create</a>(\*\*<a href="src/gcore/types/cdn/logs_uploader/target_create_params.py">params</a>) -> <a href="./src/gcore/types/cdn/logs_uploader/logs_uploader_target.py">LogsUploaderTarget</a></code>
 - <code title="patch /cdn/logs_uploader/targets/{id}">client.cdn.logs_uploader.targets.<a href="./src/gcore/resources/cdn/logs_uploader/targets.py">update</a>(id, \*\*<a href="src/gcore/types/cdn/logs_uploader/target_update_params.py">params</a>) -> <a href="./src/gcore/types/cdn/logs_uploader/logs_uploader_target.py">LogsUploaderTarget</a></code>
-- <code title="get /cdn/logs_uploader/targets">client.cdn.logs_uploader.targets.<a href="./src/gcore/resources/cdn/logs_uploader/targets.py">list</a>(\*\*<a href="src/gcore/types/cdn/logs_uploader/target_list_params.py">params</a>) -> <a href="./src/gcore/types/cdn/logs_uploader/logs_uploader_target_list.py">LogsUploaderTargetList</a></code>
+- <code title="get /cdn/logs_uploader/targets">client.cdn.logs_uploader.targets.<a href="./src/gcore/resources/cdn/logs_uploader/targets.py">list</a>(\*\*<a href="src/gcore/types/cdn/logs_uploader/target_list_params.py">params</a>) -> <a href="./src/gcore/types/cdn/logs_uploader/logs_uploader_target.py">SyncOffsetPage[LogsUploaderTarget]</a></code>
 - <code title="delete /cdn/logs_uploader/targets/{id}">client.cdn.logs_uploader.targets.<a href="./src/gcore/resources/cdn/logs_uploader/targets.py">delete</a>(id) -> None</code>
 - <code title="get /cdn/logs_uploader/targets/{id}">client.cdn.logs_uploader.targets.<a href="./src/gcore/resources/cdn/logs_uploader/targets.py">get</a>(id) -> <a href="./src/gcore/types/cdn/logs_uploader/logs_uploader_target.py">LogsUploaderTarget</a></code>
 - <code title="put /cdn/logs_uploader/targets/{id}">client.cdn.logs_uploader.targets.<a href="./src/gcore/resources/cdn/logs_uploader/targets.py">replace</a>(id, \*\*<a href="src/gcore/types/cdn/logs_uploader/target_replace_params.py">params</a>) -> <a href="./src/gcore/types/cdn/logs_uploader/logs_uploader_target.py">LogsUploaderTarget</a></code>
@@ -241,7 +240,7 @@ Methods:
 
 - <code title="post /cdn/logs_uploader/configs">client.cdn.logs_uploader.configs.<a href="./src/gcore/resources/cdn/logs_uploader/configs.py">create</a>(\*\*<a href="src/gcore/types/cdn/logs_uploader/config_create_params.py">params</a>) -> <a href="./src/gcore/types/cdn/logs_uploader/logs_uploader_config.py">LogsUploaderConfig</a></code>
 - <code title="patch /cdn/logs_uploader/configs/{id}">client.cdn.logs_uploader.configs.<a href="./src/gcore/resources/cdn/logs_uploader/configs.py">update</a>(id, \*\*<a href="src/gcore/types/cdn/logs_uploader/config_update_params.py">params</a>) -> <a href="./src/gcore/types/cdn/logs_uploader/logs_uploader_config.py">LogsUploaderConfig</a></code>
-- <code title="get /cdn/logs_uploader/configs">client.cdn.logs_uploader.configs.<a href="./src/gcore/resources/cdn/logs_uploader/configs.py">list</a>(\*\*<a href="src/gcore/types/cdn/logs_uploader/config_list_params.py">params</a>) -> <a href="./src/gcore/types/cdn/logs_uploader/logs_uploader_config_list.py">LogsUploaderConfigList</a></code>
+- <code title="get /cdn/logs_uploader/configs">client.cdn.logs_uploader.configs.<a href="./src/gcore/resources/cdn/logs_uploader/configs.py">list</a>(\*\*<a href="src/gcore/types/cdn/logs_uploader/config_list_params.py">params</a>) -> <a href="./src/gcore/types/cdn/logs_uploader/logs_uploader_config.py">SyncOffsetPage[LogsUploaderConfig]</a></code>
 - <code title="delete /cdn/logs_uploader/configs/{id}">client.cdn.logs_uploader.configs.<a href="./src/gcore/resources/cdn/logs_uploader/configs.py">delete</a>(id) -> None</code>
 - <code title="get /cdn/logs_uploader/configs/{id}">client.cdn.logs_uploader.configs.<a href="./src/gcore/resources/cdn/logs_uploader/configs.py">get</a>(id) -> <a href="./src/gcore/types/cdn/logs_uploader/logs_uploader_config.py">LogsUploaderConfig</a></code>
 - <code title="put /cdn/logs_uploader/configs/{id}">client.cdn.logs_uploader.configs.<a href="./src/gcore/resources/cdn/logs_uploader/configs.py">replace</a>(id, \*\*<a href="src/gcore/types/cdn/logs_uploader/config_replace_params.py">params</a>) -> <a href="./src/gcore/types/cdn/logs_uploader/logs_uploader_config.py">LogsUploaderConfig</a></code>

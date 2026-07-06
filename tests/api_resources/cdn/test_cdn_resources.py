@@ -11,8 +11,8 @@ from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
 from gcore.types.cdn import (
     CDNResource,
-    CDNResourceList,
 )
+from gcore.pagination import SyncOffsetPage, AsyncOffsetPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -710,7 +710,7 @@ class TestCDNResources:
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
         cdn_resource = client.cdn.cdn_resources.list()
-        assert_matches_type(CDNResourceList, cdn_resource, path=["response"])
+        assert_matches_type(SyncOffsetPage[CDNResource], cdn_resource, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
@@ -741,7 +741,7 @@ class TestCDNResources:
             suspended=True,
             vp_enabled=True,
         )
-        assert_matches_type(CDNResourceList, cdn_resource, path=["response"])
+        assert_matches_type(SyncOffsetPage[CDNResource], cdn_resource, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
@@ -750,7 +750,7 @@ class TestCDNResources:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         cdn_resource = response.parse()
-        assert_matches_type(CDNResourceList, cdn_resource, path=["response"])
+        assert_matches_type(SyncOffsetPage[CDNResource], cdn_resource, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
@@ -759,7 +759,7 @@ class TestCDNResources:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             cdn_resource = response.parse()
-            assert_matches_type(CDNResourceList, cdn_resource, path=["response"])
+            assert_matches_type(SyncOffsetPage[CDNResource], cdn_resource, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2047,7 +2047,7 @@ class TestAsyncCDNResources:
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
         cdn_resource = await async_client.cdn.cdn_resources.list()
-        assert_matches_type(CDNResourceList, cdn_resource, path=["response"])
+        assert_matches_type(AsyncOffsetPage[CDNResource], cdn_resource, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -2078,7 +2078,7 @@ class TestAsyncCDNResources:
             suspended=True,
             vp_enabled=True,
         )
-        assert_matches_type(CDNResourceList, cdn_resource, path=["response"])
+        assert_matches_type(AsyncOffsetPage[CDNResource], cdn_resource, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
@@ -2087,7 +2087,7 @@ class TestAsyncCDNResources:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         cdn_resource = await response.parse()
-        assert_matches_type(CDNResourceList, cdn_resource, path=["response"])
+        assert_matches_type(AsyncOffsetPage[CDNResource], cdn_resource, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
@@ -2096,7 +2096,7 @@ class TestAsyncCDNResources:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             cdn_resource = await response.parse()
-            assert_matches_type(CDNResourceList, cdn_resource, path=["response"])
+            assert_matches_type(AsyncOffsetPage[CDNResource], cdn_resource, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -24,6 +24,7 @@ from ....._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from .....pagination import SyncOffsetPage, AsyncOffsetPage
 from .....types.cloud import LbAlgorithm, LbPoolProtocol
 from .health_monitors import (
     HealthMonitorsResource,
@@ -33,13 +34,13 @@ from .health_monitors import (
     HealthMonitorsResourceWithStreamingResponse,
     AsyncHealthMonitorsResourceWithStreamingResponse,
 )
-from ....._base_client import make_request_options
+from ....._base_client import AsyncPaginator, make_request_options
 from .....types.cloud.lb_algorithm import LbAlgorithm
 from .....types.cloud.task_id_list import TaskIDList
 from .....types.cloud.load_balancers import pool_list_params, pool_create_params, pool_update_params
 from .....types.cloud.lb_pool_protocol import LbPoolProtocol
 from .....types.cloud.load_balancer_pool import LoadBalancerPool
-from .....types.cloud.load_balancer_pool_list import LoadBalancerPoolList
+from .....types.cloud.load_balancer_pool_list import Result
 
 __all__ = ["PoolsResource", "AsyncPoolsResource"]
 
@@ -326,7 +327,7 @@ class PoolsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LoadBalancerPoolList:
+    ) -> SyncOffsetPage[Result]:
         """
         List load balancer pools
 
@@ -360,8 +361,9 @@ class PoolsResource(SyncAPIResource):
             project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
-        return self._get(
+        return self._get_api_list(
             path_template("/cloud/v1/lbpools/{project_id}/{region_id}", project_id=project_id, region_id=region_id),
+            page=SyncOffsetPage[Result],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -379,7 +381,7 @@ class PoolsResource(SyncAPIResource):
                     pool_list_params.PoolListParams,
                 ),
             ),
-            cast_to=LoadBalancerPoolList,
+            model=Result,
         )
 
     def delete(
@@ -919,7 +921,7 @@ class AsyncPoolsResource(AsyncAPIResource):
             cast_to=TaskIDList,
         )
 
-    async def list(
+    def list(
         self,
         *,
         project_id: int | None = None,
@@ -936,7 +938,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LoadBalancerPoolList:
+    ) -> AsyncPaginator[Result, AsyncOffsetPage[Result]]:
         """
         List load balancer pools
 
@@ -970,14 +972,15 @@ class AsyncPoolsResource(AsyncAPIResource):
             project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
-        return await self._get(
+        return self._get_api_list(
             path_template("/cloud/v1/lbpools/{project_id}/{region_id}", project_id=project_id, region_id=region_id),
+            page=AsyncOffsetPage[Result],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "details": details,
                         "limit": limit,
@@ -989,7 +992,7 @@ class AsyncPoolsResource(AsyncAPIResource):
                     pool_list_params.PoolListParams,
                 ),
             ),
-            cast_to=LoadBalancerPoolList,
+            model=Result,
         )
 
     async def delete(

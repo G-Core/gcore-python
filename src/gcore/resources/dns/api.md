@@ -88,7 +88,7 @@ from gcore.types.dns import (
 Methods:
 
 - <code title="post /dns/v2/zones">client.dns.zones.<a href="./src/gcore/resources/dns/zones/zones.py">create</a>(\*\*<a href="src/gcore/types/dns/zone_create_params.py">params</a>) -> <a href="./src/gcore/types/dns/zone_create_response.py">ZoneCreateResponse</a></code>
-- <code title="get /dns/v2/zones">client.dns.zones.<a href="./src/gcore/resources/dns/zones/zones.py">list</a>(\*\*<a href="src/gcore/types/dns/zone_list_params.py">params</a>) -> <a href="./src/gcore/types/dns/zone_list_response.py">ZoneListResponse</a></code>
+- <code title="get /dns/v2/zones">client.dns.zones.<a href="./src/gcore/resources/dns/zones/zones.py">list</a>(\*\*<a href="src/gcore/types/dns/zone_list_params.py">params</a>) -> <a href="./src/gcore/types/dns/zone_list_response.py">SyncOffsetPageDNSZones[ZoneListResponse]</a></code>
 - <code title="delete /dns/v2/zones/{name}">client.dns.zones.<a href="./src/gcore/resources/dns/zones/zones.py">delete</a>(name) -> object</code>
 - <code title="get /dns/v2/analyze/{name}/delegation-status">client.dns.zones.<a href="./src/gcore/resources/dns/zones/zones.py">check_delegation_status</a>(name) -> <a href="./src/gcore/types/dns/zone_check_delegation_status_response.py">ZoneCheckDelegationStatusResponse</a></code>
 - <code title="patch /dns/v2/zones/{name}/disable">client.dns.zones.<a href="./src/gcore/resources/dns/zones/zones.py">disable</a>(name) -> object</code>
@@ -117,18 +117,13 @@ Methods:
 Types:
 
 ```python
-from gcore.types.dns.zones import (
-    DNSFailoverLog,
-    DNSOutputRrset,
-    RrsetListResponse,
-    RrsetGetFailoverLogsResponse,
-)
+from gcore.types.dns.zones import DNSFailoverLog, DNSOutputRrset, RrsetGetFailoverLogsResponse
 ```
 
 Methods:
 
 - <code title="post /dns/v2/zones/{zoneName}/{rrsetName}/{rrsetType}">client.dns.zones.rrsets.<a href="./src/gcore/resources/dns/zones/rrsets.py">create</a>(rrset_type, \*, zone_name, rrset_name, \*\*<a href="src/gcore/types/dns/zones/rrset_create_params.py">params</a>) -> <a href="./src/gcore/types/dns/zones/dns_output_rrset.py">DNSOutputRrset</a></code>
-- <code title="get /dns/v2/zones/{zoneName}/rrsets">client.dns.zones.rrsets.<a href="./src/gcore/resources/dns/zones/rrsets.py">list</a>(zone_name, \*\*<a href="src/gcore/types/dns/zones/rrset_list_params.py">params</a>) -> <a href="./src/gcore/types/dns/zones/rrset_list_response.py">RrsetListResponse</a></code>
+- <code title="get /dns/v2/zones/{zoneName}/rrsets">client.dns.zones.rrsets.<a href="./src/gcore/resources/dns/zones/rrsets.py">list</a>(zone_name, \*\*<a href="src/gcore/types/dns/zones/rrset_list_params.py">params</a>) -> <a href="./src/gcore/types/dns/zones/dns_output_rrset.py">SyncOffsetPageDNSRrsets[DNSOutputRrset]</a></code>
 - <code title="delete /dns/v2/zones/{zoneName}/{rrsetName}/{rrsetType}">client.dns.zones.rrsets.<a href="./src/gcore/resources/dns/zones/rrsets.py">delete</a>(rrset_type, \*, zone_name, rrset_name) -> object</code>
 - <code title="get /dns/v2/zones/{zoneName}/{rrsetName}/{rrsetType}">client.dns.zones.rrsets.<a href="./src/gcore/resources/dns/zones/rrsets.py">get</a>(rrset_type, \*, zone_name, rrset_name) -> <a href="./src/gcore/types/dns/zones/dns_output_rrset.py">DNSOutputRrset</a></code>
 - <code title="get /dns/v2/zones/{zoneName}/{rrsetName}/{rrsetType}/failover/log">client.dns.zones.rrsets.<a href="./src/gcore/resources/dns/zones/rrsets.py">get_failover_logs</a>(rrset_type, \*, zone_name, rrset_name, \*\*<a href="src/gcore/types/dns/zones/rrset_get_failover_logs_params.py">params</a>) -> <a href="./src/gcore/types/dns/zones/rrset_get_failover_logs_response.py">RrsetGetFailoverLogsResponse</a></code>
@@ -143,7 +138,6 @@ from gcore.types.dns import (
     DNSMappingEntry,
     DNSNetworkMapping,
     NetworkMappingCreateResponse,
-    NetworkMappingListResponse,
     NetworkMappingImportResponse,
 )
 ```
@@ -151,7 +145,7 @@ from gcore.types.dns import (
 Methods:
 
 - <code title="post /dns/v2/network-mappings">client.dns.network_mappings.<a href="./src/gcore/resources/dns/network_mappings.py">create</a>(\*\*<a href="src/gcore/types/dns/network_mapping_create_params.py">params</a>) -> <a href="./src/gcore/types/dns/network_mapping_create_response.py">NetworkMappingCreateResponse</a></code>
-- <code title="get /dns/v2/network-mappings">client.dns.network_mappings.<a href="./src/gcore/resources/dns/network_mappings.py">list</a>(\*\*<a href="src/gcore/types/dns/network_mapping_list_params.py">params</a>) -> <a href="./src/gcore/types/dns/network_mapping_list_response.py">NetworkMappingListResponse</a></code>
+- <code title="get /dns/v2/network-mappings">client.dns.network_mappings.<a href="./src/gcore/resources/dns/network_mappings.py">list</a>(\*\*<a href="src/gcore/types/dns/network_mapping_list_params.py">params</a>) -> <a href="./src/gcore/types/dns/dns_network_mapping.py">SyncOffsetPageDNSNetworkMappings[DNSNetworkMapping]</a></code>
 - <code title="delete /dns/v2/network-mappings/{id}">client.dns.network_mappings.<a href="./src/gcore/resources/dns/network_mappings.py">delete</a>(id) -> object</code>
 - <code title="get /dns/v2/network-mappings/{id}">client.dns.network_mappings.<a href="./src/gcore/resources/dns/network_mappings.py">get</a>(id) -> <a href="./src/gcore/types/dns/dns_network_mapping.py">DNSNetworkMapping</a></code>
 - <code title="get /dns/v2/network-mappings/by-name/{name}">client.dns.network_mappings.<a href="./src/gcore/resources/dns/network_mappings.py">get_by_name</a>(name) -> <a href="./src/gcore/types/dns/dns_network_mapping.py">DNSNetworkMapping</a></code>

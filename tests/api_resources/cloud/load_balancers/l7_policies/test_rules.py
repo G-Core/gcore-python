@@ -9,7 +9,8 @@ import pytest
 
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
-from gcore.types.cloud import TaskIDList, LoadBalancerL7Rule, LoadBalancerL7RuleList
+from gcore.pagination import SyncOffsetPage, AsyncOffsetPage
+from gcore.types.cloud import TaskIDList, LoadBalancerL7Rule
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -97,7 +98,7 @@ class TestRules:
             project_id=1,
             region_id=1,
         )
-        assert_matches_type(LoadBalancerL7RuleList, rule, path=["response"])
+        assert_matches_type(SyncOffsetPage[LoadBalancerL7Rule], rule, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
@@ -108,7 +109,7 @@ class TestRules:
             limit=1000,
             offset=0,
         )
-        assert_matches_type(LoadBalancerL7RuleList, rule, path=["response"])
+        assert_matches_type(SyncOffsetPage[LoadBalancerL7Rule], rule, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
@@ -121,7 +122,7 @@ class TestRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = response.parse()
-        assert_matches_type(LoadBalancerL7RuleList, rule, path=["response"])
+        assert_matches_type(SyncOffsetPage[LoadBalancerL7Rule], rule, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
@@ -134,7 +135,7 @@ class TestRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = response.parse()
-            assert_matches_type(LoadBalancerL7RuleList, rule, path=["response"])
+            assert_matches_type(SyncOffsetPage[LoadBalancerL7Rule], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -423,7 +424,7 @@ class TestAsyncRules:
             project_id=1,
             region_id=1,
         )
-        assert_matches_type(LoadBalancerL7RuleList, rule, path=["response"])
+        assert_matches_type(AsyncOffsetPage[LoadBalancerL7Rule], rule, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -434,7 +435,7 @@ class TestAsyncRules:
             limit=1000,
             offset=0,
         )
-        assert_matches_type(LoadBalancerL7RuleList, rule, path=["response"])
+        assert_matches_type(AsyncOffsetPage[LoadBalancerL7Rule], rule, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
@@ -447,7 +448,7 @@ class TestAsyncRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = await response.parse()
-        assert_matches_type(LoadBalancerL7RuleList, rule, path=["response"])
+        assert_matches_type(AsyncOffsetPage[LoadBalancerL7Rule], rule, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
@@ -460,7 +461,7 @@ class TestAsyncRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = await response.parse()
-            assert_matches_type(LoadBalancerL7RuleList, rule, path=["response"])
+            assert_matches_type(AsyncOffsetPage[LoadBalancerL7Rule], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

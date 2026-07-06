@@ -9,9 +9,10 @@ import pytest
 
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
+from gcore.pagination import SyncOffsetPageFastedgeKvStores, AsyncOffsetPageFastedgeKvStores
 from gcore.types.fastedge import (
     KvStore,
-    KvStoreListResponse,
+    KvStoreShort,
     KvStoreCreateResponse,
 )
 
@@ -67,7 +68,7 @@ class TestKvStores:
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
         kv_store = client.fastedge.kv_stores.list()
-        assert_matches_type(KvStoreListResponse, kv_store, path=["response"])
+        assert_matches_type(SyncOffsetPageFastedgeKvStores[KvStoreShort], kv_store, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
@@ -76,7 +77,7 @@ class TestKvStores:
             limit=1,
             offset=0,
         )
-        assert_matches_type(KvStoreListResponse, kv_store, path=["response"])
+        assert_matches_type(SyncOffsetPageFastedgeKvStores[KvStoreShort], kv_store, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
@@ -85,7 +86,7 @@ class TestKvStores:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         kv_store = response.parse()
-        assert_matches_type(KvStoreListResponse, kv_store, path=["response"])
+        assert_matches_type(SyncOffsetPageFastedgeKvStores[KvStoreShort], kv_store, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
@@ -94,7 +95,7 @@ class TestKvStores:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             kv_store = response.parse()
-            assert_matches_type(KvStoreListResponse, kv_store, path=["response"])
+            assert_matches_type(SyncOffsetPageFastedgeKvStores[KvStoreShort], kv_store, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -259,7 +260,7 @@ class TestAsyncKvStores:
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
         kv_store = await async_client.fastedge.kv_stores.list()
-        assert_matches_type(KvStoreListResponse, kv_store, path=["response"])
+        assert_matches_type(AsyncOffsetPageFastedgeKvStores[KvStoreShort], kv_store, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -268,7 +269,7 @@ class TestAsyncKvStores:
             limit=1,
             offset=0,
         )
-        assert_matches_type(KvStoreListResponse, kv_store, path=["response"])
+        assert_matches_type(AsyncOffsetPageFastedgeKvStores[KvStoreShort], kv_store, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
@@ -277,7 +278,7 @@ class TestAsyncKvStores:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         kv_store = await response.parse()
-        assert_matches_type(KvStoreListResponse, kv_store, path=["response"])
+        assert_matches_type(AsyncOffsetPageFastedgeKvStores[KvStoreShort], kv_store, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
@@ -286,7 +287,7 @@ class TestAsyncKvStores:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             kv_store = await response.parse()
-            assert_matches_type(KvStoreListResponse, kv_store, path=["response"])
+            assert_matches_type(AsyncOffsetPageFastedgeKvStores[KvStoreShort], kv_store, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

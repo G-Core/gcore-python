@@ -19,9 +19,9 @@ from ...types.cdn import (
     trusted_ca_certificate_create_params,
     trusted_ca_certificate_replace_params,
 )
-from ..._base_client import make_request_options
+from ...pagination import SyncOffsetPage, AsyncOffsetPage
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.cdn.ca_certificate import CaCertificate
-from ...types.cdn.ca_certificate_list import CaCertificateList
 
 __all__ = ["TrustedCaCertificatesResource", "AsyncTrustedCaCertificatesResource"]
 
@@ -114,7 +114,7 @@ class TrustedCaCertificatesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CaCertificateList:
+    ) -> SyncOffsetPage[CaCertificate]:
         """
         Get list of trusted CA certificates used to verify an origin.
 
@@ -145,8 +145,9 @@ class TrustedCaCertificatesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/cdn/sslCertificates",
+            page=SyncOffsetPage[CaCertificate],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -163,7 +164,7 @@ class TrustedCaCertificatesResource(SyncAPIResource):
                     trusted_ca_certificate_list_params.TrustedCaCertificateListParams,
                 ),
             ),
-            cast_to=CaCertificateList,
+            model=CaCertificate,
         )
 
     def delete(
@@ -343,7 +344,7 @@ class AsyncTrustedCaCertificatesResource(AsyncAPIResource):
             cast_to=CaCertificate,
         )
 
-    async def list(
+    def list(
         self,
         *,
         automated: bool | Omit = omit,
@@ -357,7 +358,7 @@ class AsyncTrustedCaCertificatesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CaCertificateList:
+    ) -> AsyncPaginator[CaCertificate, AsyncOffsetPage[CaCertificate]]:
         """
         Get list of trusted CA certificates used to verify an origin.
 
@@ -388,14 +389,15 @@ class AsyncTrustedCaCertificatesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/cdn/sslCertificates",
+            page=AsyncOffsetPage[CaCertificate],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "automated": automated,
                         "limit": limit,
@@ -406,7 +408,7 @@ class AsyncTrustedCaCertificatesResource(AsyncAPIResource):
                     trusted_ca_certificate_list_params.TrustedCaCertificateListParams,
                 ),
             ),
-            cast_to=CaCertificateList,
+            model=CaCertificate,
         )
 
     async def delete(

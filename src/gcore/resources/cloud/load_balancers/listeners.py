@@ -17,8 +17,9 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ....pagination import SyncOffsetPage, AsyncOffsetPage
 from ....types.cloud import LbListenerProtocol
-from ...._base_client import make_request_options
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.cloud.task_id_list import TaskIDList
 from ....types.cloud.load_balancers import (
     listener_get_params,
@@ -28,7 +29,6 @@ from ....types.cloud.load_balancers import (
     listener_update_params,
 )
 from ....types.cloud.lb_listener_protocol import LbListenerProtocol
-from ....types.cloud.load_balancer_listener_list import LoadBalancerListenerList
 from ....types.cloud.load_balancer_listener_detail import LoadBalancerListenerDetail
 
 __all__ = ["ListenersResource", "AsyncListenersResource"]
@@ -283,7 +283,7 @@ class ListenersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LoadBalancerListenerList:
+    ) -> SyncOffsetPage[LoadBalancerListenerDetail]:
         """
         List load balancer listeners
 
@@ -315,8 +315,9 @@ class ListenersResource(SyncAPIResource):
             project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
-        return self._get(
+        return self._get_api_list(
             path_template("/cloud/v1/lblisteners/{project_id}/{region_id}", project_id=project_id, region_id=region_id),
+            page=SyncOffsetPage[LoadBalancerListenerDetail],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -333,7 +334,7 @@ class ListenersResource(SyncAPIResource):
                     listener_list_params.ListenerListParams,
                 ),
             ),
-            cast_to=LoadBalancerListenerList,
+            model=LoadBalancerListenerDetail,
         )
 
     def delete(
@@ -853,7 +854,7 @@ class AsyncListenersResource(AsyncAPIResource):
             cast_to=TaskIDList,
         )
 
-    async def list(
+    def list(
         self,
         *,
         project_id: int | None = None,
@@ -869,7 +870,7 @@ class AsyncListenersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LoadBalancerListenerList:
+    ) -> AsyncPaginator[LoadBalancerListenerDetail, AsyncOffsetPage[LoadBalancerListenerDetail]]:
         """
         List load balancer listeners
 
@@ -901,14 +902,15 @@ class AsyncListenersResource(AsyncAPIResource):
             project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
-        return await self._get(
+        return self._get_api_list(
             path_template("/cloud/v1/lblisteners/{project_id}/{region_id}", project_id=project_id, region_id=region_id),
+            page=AsyncOffsetPage[LoadBalancerListenerDetail],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "limit": limit,
                         "load_balancer_id": load_balancer_id,
@@ -919,7 +921,7 @@ class AsyncListenersResource(AsyncAPIResource):
                     listener_list_params.ListenerListParams,
                 ),
             ),
-            cast_to=LoadBalancerListenerList,
+            model=LoadBalancerListenerDetail,
         )
 
     async def delete(

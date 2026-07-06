@@ -11,8 +11,8 @@ from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
 from gcore.types.cdn import (
     RuleTemplate,
-    RuleTemplateList,
 )
+from gcore.pagination import SyncOffsetPage, AsyncOffsetPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -637,7 +637,7 @@ class TestRuleTemplates:
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
         rule_template = client.cdn.rule_templates.list()
-        assert_matches_type(RuleTemplateList, rule_template, path=["response"])
+        assert_matches_type(SyncOffsetPage[RuleTemplate], rule_template, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
@@ -645,7 +645,7 @@ class TestRuleTemplates:
             limit=1,
             offset=0,
         )
-        assert_matches_type(RuleTemplateList, rule_template, path=["response"])
+        assert_matches_type(SyncOffsetPage[RuleTemplate], rule_template, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
@@ -654,7 +654,7 @@ class TestRuleTemplates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule_template = response.parse()
-        assert_matches_type(RuleTemplateList, rule_template, path=["response"])
+        assert_matches_type(SyncOffsetPage[RuleTemplate], rule_template, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
@@ -663,7 +663,7 @@ class TestRuleTemplates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule_template = response.parse()
-            assert_matches_type(RuleTemplateList, rule_template, path=["response"])
+            assert_matches_type(SyncOffsetPage[RuleTemplate], rule_template, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1664,7 +1664,7 @@ class TestAsyncRuleTemplates:
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
         rule_template = await async_client.cdn.rule_templates.list()
-        assert_matches_type(RuleTemplateList, rule_template, path=["response"])
+        assert_matches_type(AsyncOffsetPage[RuleTemplate], rule_template, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -1672,7 +1672,7 @@ class TestAsyncRuleTemplates:
             limit=1,
             offset=0,
         )
-        assert_matches_type(RuleTemplateList, rule_template, path=["response"])
+        assert_matches_type(AsyncOffsetPage[RuleTemplate], rule_template, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
@@ -1681,7 +1681,7 @@ class TestAsyncRuleTemplates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule_template = await response.parse()
-        assert_matches_type(RuleTemplateList, rule_template, path=["response"])
+        assert_matches_type(AsyncOffsetPage[RuleTemplate], rule_template, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
@@ -1690,7 +1690,7 @@ class TestAsyncRuleTemplates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule_template = await response.parse()
-            assert_matches_type(RuleTemplateList, rule_template, path=["response"])
+            assert_matches_type(AsyncOffsetPage[RuleTemplate], rule_template, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

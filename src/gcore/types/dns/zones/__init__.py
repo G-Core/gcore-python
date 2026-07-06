@@ -7,7 +7,6 @@ from .dns_output_rrset import DNSOutputRrset as DNSOutputRrset
 from .rrset_list_params import RrsetListParams as RrsetListParams
 from .dnssec_get_response import DnssecGetResponse as DnssecGetResponse
 from .rrset_create_params import RrsetCreateParams as RrsetCreateParams
-from .rrset_list_response import RrsetListResponse as RrsetListResponse
 from .dnssec_update_params import DnssecUpdateParams as DnssecUpdateParams
 from .rrset_replace_params import RrsetReplaceParams as RrsetReplaceParams
 from .dnssec_update_response import DnssecUpdateResponse as DnssecUpdateResponse
