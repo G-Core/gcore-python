@@ -184,6 +184,9 @@ class TestClusters:
         )
         assert_matches_type(SyncOffsetPage[GPUBaremetalCluster], cluster, path=["response"])
 
+    @pytest.mark.skip(
+        reason="GCLOUD2-27612: single-element array filters serialize to a scalar on the wire and are rejected by the steady mock validator"
+    )
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
         cluster = client.cloud.gpu_baremetal.clusters.list(
@@ -806,6 +809,9 @@ class TestAsyncClusters:
         )
         assert_matches_type(AsyncOffsetPage[GPUBaremetalCluster], cluster, path=["response"])
 
+    @pytest.mark.skip(
+        reason="GCLOUD2-27612: single-element array filters serialize to a scalar on the wire and are rejected by the steady mock validator"
+    )
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
         cluster = await async_client.cloud.gpu_baremetal.clusters.list(
