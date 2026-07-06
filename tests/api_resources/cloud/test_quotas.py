@@ -9,7 +9,7 @@ import pytest
 
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
-from gcore.types.cloud import QuotaGetAllResponse, QuotaGetGlobalResponse, QuotaGetByRegionResponse
+from gcore.types.cloud import Quota, QuotaGetGlobalResponse, QuotaGetByRegionResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -20,7 +20,7 @@ class TestQuotas:
     @parametrize
     def test_method_get_all(self, client: Gcore) -> None:
         quota = client.cloud.quotas.get_all()
-        assert_matches_type(QuotaGetAllResponse, quota, path=["response"])
+        assert_matches_type(Quota, quota, path=["response"])
 
     @parametrize
     def test_raw_response_get_all(self, client: Gcore) -> None:
@@ -29,7 +29,7 @@ class TestQuotas:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         quota = response.parse()
-        assert_matches_type(QuotaGetAllResponse, quota, path=["response"])
+        assert_matches_type(Quota, quota, path=["response"])
 
     @parametrize
     def test_streaming_response_get_all(self, client: Gcore) -> None:
@@ -38,7 +38,7 @@ class TestQuotas:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             quota = response.parse()
-            assert_matches_type(QuotaGetAllResponse, quota, path=["response"])
+            assert_matches_type(Quota, quota, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -116,7 +116,7 @@ class TestAsyncQuotas:
     @parametrize
     async def test_method_get_all(self, async_client: AsyncGcore) -> None:
         quota = await async_client.cloud.quotas.get_all()
-        assert_matches_type(QuotaGetAllResponse, quota, path=["response"])
+        assert_matches_type(Quota, quota, path=["response"])
 
     @parametrize
     async def test_raw_response_get_all(self, async_client: AsyncGcore) -> None:
@@ -125,7 +125,7 @@ class TestAsyncQuotas:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         quota = await response.parse()
-        assert_matches_type(QuotaGetAllResponse, quota, path=["response"])
+        assert_matches_type(Quota, quota, path=["response"])
 
     @parametrize
     async def test_streaming_response_get_all(self, async_client: AsyncGcore) -> None:
@@ -134,7 +134,7 @@ class TestAsyncQuotas:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             quota = await response.parse()
-            assert_matches_type(QuotaGetAllResponse, quota, path=["response"])
+            assert_matches_type(Quota, quota, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

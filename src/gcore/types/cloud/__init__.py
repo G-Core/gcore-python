@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from .tag import Tag as Tag
 from .task import Task as Task
+from .quota import Quota as Quota
 from .route import Route as Route
 from .member import Member as Member
 from .region import Region as Region
@@ -106,7 +107,6 @@ from .instance_resize_params import InstanceResizeParams as InstanceResizeParams
 from .instance_update_params import InstanceUpdateParams as InstanceUpdateParams
 from .lb_health_monitor_type import LbHealthMonitorType as LbHealthMonitorType
 from .network_interface_list import NetworkInterfaceList as NetworkInterfaceList
-from .quota_get_all_response import QuotaGetAllResponse as QuotaGetAllResponse
 from .registry_create_params import RegistryCreateParams as RegistryCreateParams
 from .registry_resize_params import RegistryResizeParams as RegistryResizeParams
 from .floating_ip_list_params import FloatingIPListParams as FloatingIPListParams

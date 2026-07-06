@@ -23,6 +23,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
+from ....types.cloud.quota import Quota
 from .notification_threshold import (
     NotificationThresholdResource,
     AsyncNotificationThresholdResource,
@@ -31,7 +32,6 @@ from .notification_threshold import (
     NotificationThresholdResourceWithStreamingResponse,
     AsyncNotificationThresholdResourceWithStreamingResponse,
 )
-from ....types.cloud.quota_get_all_response import QuotaGetAllResponse
 from ....types.cloud.quota_get_global_response import QuotaGetGlobalResponse
 from ....types.cloud.quota_get_by_region_response import QuotaGetByRegionResponse
 
@@ -39,6 +39,10 @@ __all__ = ["QuotasResource", "AsyncQuotasResource"]
 
 
 class QuotasResource(SyncAPIResource):
+    """
+    Quotas define the maximum amount of cloud resources (compute, storage, networking, GPU, and more) available to a client, both globally and per region.
+    """
+
     @cached_property
     def requests(self) -> RequestsResource:
         return RequestsResource(self._client)
@@ -75,14 +79,14 @@ class QuotasResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> QuotaGetAllResponse:
+    ) -> Quota:
         """Get combined client quotas, including both regional and global quotas."""
         return self._get(
             "/cloud/v2/client_quotas",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=QuotaGetAllResponse,
+            cast_to=Quota,
         )
 
     def get_by_region(
@@ -160,6 +164,10 @@ class QuotasResource(SyncAPIResource):
 
 
 class AsyncQuotasResource(AsyncAPIResource):
+    """
+    Quotas define the maximum amount of cloud resources (compute, storage, networking, GPU, and more) available to a client, both globally and per region.
+    """
+
     @cached_property
     def requests(self) -> AsyncRequestsResource:
         return AsyncRequestsResource(self._client)
@@ -196,14 +204,14 @@ class AsyncQuotasResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> QuotaGetAllResponse:
+    ) -> Quota:
         """Get combined client quotas, including both regional and global quotas."""
         return await self._get(
             "/cloud/v2/client_quotas",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=QuotaGetAllResponse,
+            cast_to=Quota,
         )
 
     async def get_by_region(

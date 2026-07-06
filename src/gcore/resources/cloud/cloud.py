@@ -261,6 +261,9 @@ class CloudResource(SyncAPIResource):
 
     @cached_property
     def quotas(self) -> QuotasResource:
+        """
+        Quotas define the maximum amount of cloud resources (compute, storage, networking, GPU, and more) available to a client, both globally and per region.
+        """
         return QuotasResource(self._client)
 
     @cached_property
@@ -438,6 +441,9 @@ class AsyncCloudResource(AsyncAPIResource):
 
     @cached_property
     def quotas(self) -> AsyncQuotasResource:
+        """
+        Quotas define the maximum amount of cloud resources (compute, storage, networking, GPU, and more) available to a client, both globally and per region.
+        """
         return AsyncQuotasResource(self._client)
 
     @cached_property
@@ -618,6 +624,9 @@ class CloudResourceWithRawResponse:
 
     @cached_property
     def quotas(self) -> QuotasResourceWithRawResponse:
+        """
+        Quotas define the maximum amount of cloud resources (compute, storage, networking, GPU, and more) available to a client, both globally and per region.
+        """
         return QuotasResourceWithRawResponse(self._cloud.quotas)
 
     @cached_property
@@ -779,6 +788,9 @@ class AsyncCloudResourceWithRawResponse:
 
     @cached_property
     def quotas(self) -> AsyncQuotasResourceWithRawResponse:
+        """
+        Quotas define the maximum amount of cloud resources (compute, storage, networking, GPU, and more) available to a client, both globally and per region.
+        """
         return AsyncQuotasResourceWithRawResponse(self._cloud.quotas)
 
     @cached_property
@@ -940,6 +952,9 @@ class CloudResourceWithStreamingResponse:
 
     @cached_property
     def quotas(self) -> QuotasResourceWithStreamingResponse:
+        """
+        Quotas define the maximum amount of cloud resources (compute, storage, networking, GPU, and more) available to a client, both globally and per region.
+        """
         return QuotasResourceWithStreamingResponse(self._cloud.quotas)
 
     @cached_property
@@ -1101,6 +1116,9 @@ class AsyncCloudResourceWithStreamingResponse:
 
     @cached_property
     def quotas(self) -> AsyncQuotasResourceWithStreamingResponse:
+        """
+        Quotas define the maximum amount of cloud resources (compute, storage, networking, GPU, and more) available to a client, both globally and per region.
+        """
         return AsyncQuotasResourceWithStreamingResponse(self._cloud.quotas)
 
     @cached_property

@@ -4,7 +4,7 @@ from typing import List, Optional
 
 from ..._models import BaseModel
 
-__all__ = ["QuotaGetAllResponse", "GlobalQuotas", "RegionalQuota"]
+__all__ = ["Quota", "GlobalQuotas", "RegionalQuota"]
 
 
 class GlobalQuotas(BaseModel):
@@ -380,7 +380,7 @@ class RegionalQuota(BaseModel):
     """Snapshots Size, GiB usage"""
 
 
-class QuotaGetAllResponse(BaseModel):
+class Quota(BaseModel):
     global_quotas: Optional[GlobalQuotas] = None
     """Global entity quotas"""
 
