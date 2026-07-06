@@ -100,11 +100,13 @@ class TestCDN:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     def test_method_list_alibaba_regions(self, client: Gcore) -> None:
         cdn = client.cdn.list_alibaba_regions()
         assert_matches_type(SyncOffsetPage[AlibabaRegionsResult], cdn, path=["response"])
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     def test_method_list_alibaba_regions_with_all_params(self, client: Gcore) -> None:
         cdn = client.cdn.list_alibaba_regions(
@@ -113,6 +115,7 @@ class TestCDN:
         )
         assert_matches_type(SyncOffsetPage[AlibabaRegionsResult], cdn, path=["response"])
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     def test_raw_response_list_alibaba_regions(self, client: Gcore) -> None:
         response = client.cdn.with_raw_response.list_alibaba_regions()
@@ -122,6 +125,7 @@ class TestCDN:
         cdn = response.parse()
         assert_matches_type(SyncOffsetPage[AlibabaRegionsResult], cdn, path=["response"])
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     def test_streaming_response_list_alibaba_regions(self, client: Gcore) -> None:
         with client.cdn.with_streaming_response.list_alibaba_regions() as response:
@@ -133,11 +137,13 @@ class TestCDN:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     def test_method_list_aws_regions(self, client: Gcore) -> None:
         cdn = client.cdn.list_aws_regions()
         assert_matches_type(SyncOffsetPage[AwsRegionsResult], cdn, path=["response"])
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     def test_method_list_aws_regions_with_all_params(self, client: Gcore) -> None:
         cdn = client.cdn.list_aws_regions(
@@ -146,6 +152,7 @@ class TestCDN:
         )
         assert_matches_type(SyncOffsetPage[AwsRegionsResult], cdn, path=["response"])
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     def test_raw_response_list_aws_regions(self, client: Gcore) -> None:
         response = client.cdn.with_raw_response.list_aws_regions()
@@ -155,6 +162,7 @@ class TestCDN:
         cdn = response.parse()
         assert_matches_type(SyncOffsetPage[AwsRegionsResult], cdn, path=["response"])
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     def test_streaming_response_list_aws_regions(self, client: Gcore) -> None:
         with client.cdn.with_streaming_response.list_aws_regions() as response:
@@ -166,11 +174,13 @@ class TestCDN:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     def test_method_list_purge_statuses(self, client: Gcore) -> None:
         cdn = client.cdn.list_purge_statuses()
         assert_matches_type(SyncOffsetPage[PurgeStatus], cdn, path=["response"])
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     def test_method_list_purge_statuses_with_all_params(self, client: Gcore) -> None:
         cdn = client.cdn.list_purge_statuses(
@@ -184,6 +194,7 @@ class TestCDN:
         )
         assert_matches_type(SyncOffsetPage[PurgeStatus], cdn, path=["response"])
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     def test_raw_response_list_purge_statuses(self, client: Gcore) -> None:
         response = client.cdn.with_raw_response.list_purge_statuses()
@@ -193,6 +204,7 @@ class TestCDN:
         cdn = response.parse()
         assert_matches_type(SyncOffsetPage[PurgeStatus], cdn, path=["response"])
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     def test_streaming_response_list_purge_statuses(self, client: Gcore) -> None:
         with client.cdn.with_streaming_response.list_purge_statuses() as response:
@@ -317,11 +329,13 @@ class TestAsyncCDN:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     async def test_method_list_alibaba_regions(self, async_client: AsyncGcore) -> None:
         cdn = await async_client.cdn.list_alibaba_regions()
         assert_matches_type(AsyncOffsetPage[AlibabaRegionsResult], cdn, path=["response"])
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     async def test_method_list_alibaba_regions_with_all_params(self, async_client: AsyncGcore) -> None:
         cdn = await async_client.cdn.list_alibaba_regions(
@@ -330,6 +344,7 @@ class TestAsyncCDN:
         )
         assert_matches_type(AsyncOffsetPage[AlibabaRegionsResult], cdn, path=["response"])
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     async def test_raw_response_list_alibaba_regions(self, async_client: AsyncGcore) -> None:
         response = await async_client.cdn.with_raw_response.list_alibaba_regions()
@@ -339,6 +354,7 @@ class TestAsyncCDN:
         cdn = await response.parse()
         assert_matches_type(AsyncOffsetPage[AlibabaRegionsResult], cdn, path=["response"])
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     async def test_streaming_response_list_alibaba_regions(self, async_client: AsyncGcore) -> None:
         async with async_client.cdn.with_streaming_response.list_alibaba_regions() as response:
@@ -350,11 +366,13 @@ class TestAsyncCDN:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     async def test_method_list_aws_regions(self, async_client: AsyncGcore) -> None:
         cdn = await async_client.cdn.list_aws_regions()
         assert_matches_type(AsyncOffsetPage[AwsRegionsResult], cdn, path=["response"])
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     async def test_method_list_aws_regions_with_all_params(self, async_client: AsyncGcore) -> None:
         cdn = await async_client.cdn.list_aws_regions(
@@ -363,6 +381,7 @@ class TestAsyncCDN:
         )
         assert_matches_type(AsyncOffsetPage[AwsRegionsResult], cdn, path=["response"])
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     async def test_raw_response_list_aws_regions(self, async_client: AsyncGcore) -> None:
         response = await async_client.cdn.with_raw_response.list_aws_regions()
@@ -372,6 +391,7 @@ class TestAsyncCDN:
         cdn = await response.parse()
         assert_matches_type(AsyncOffsetPage[AwsRegionsResult], cdn, path=["response"])
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     async def test_streaming_response_list_aws_regions(self, async_client: AsyncGcore) -> None:
         async with async_client.cdn.with_streaming_response.list_aws_regions() as response:
@@ -383,11 +403,13 @@ class TestAsyncCDN:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     async def test_method_list_purge_statuses(self, async_client: AsyncGcore) -> None:
         cdn = await async_client.cdn.list_purge_statuses()
         assert_matches_type(AsyncOffsetPage[PurgeStatus], cdn, path=["response"])
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     async def test_method_list_purge_statuses_with_all_params(self, async_client: AsyncGcore) -> None:
         cdn = await async_client.cdn.list_purge_statuses(
@@ -401,6 +423,7 @@ class TestAsyncCDN:
         )
         assert_matches_type(AsyncOffsetPage[PurgeStatus], cdn, path=["response"])
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     async def test_raw_response_list_purge_statuses(self, async_client: AsyncGcore) -> None:
         response = await async_client.cdn.with_raw_response.list_purge_statuses()
@@ -410,6 +433,7 @@ class TestAsyncCDN:
         cdn = await response.parse()
         assert_matches_type(AsyncOffsetPage[PurgeStatus], cdn, path=["response"])
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     async def test_streaming_response_list_purge_statuses(self, async_client: AsyncGcore) -> None:
         async with async_client.cdn.with_streaming_response.list_purge_statuses() as response:

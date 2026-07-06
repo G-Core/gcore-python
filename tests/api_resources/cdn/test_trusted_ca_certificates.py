@@ -54,11 +54,13 @@ class TestTrustedCaCertificates:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
         trusted_ca_certificate = client.cdn.trusted_ca_certificates.list()
         assert_matches_type(SyncOffsetPage[CaCertificate], trusted_ca_certificate, path=["response"])
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
         trusted_ca_certificate = client.cdn.trusted_ca_certificates.list(
@@ -70,6 +72,7 @@ class TestTrustedCaCertificates:
         )
         assert_matches_type(SyncOffsetPage[CaCertificate], trusted_ca_certificate, path=["response"])
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
         response = client.cdn.trusted_ca_certificates.with_raw_response.list()
@@ -79,6 +82,7 @@ class TestTrustedCaCertificates:
         trusted_ca_certificate = response.parse()
         assert_matches_type(SyncOffsetPage[CaCertificate], trusted_ca_certificate, path=["response"])
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
         with client.cdn.trusted_ca_certificates.with_streaming_response.list() as response:
@@ -226,11 +230,13 @@ class TestAsyncTrustedCaCertificates:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
         trusted_ca_certificate = await async_client.cdn.trusted_ca_certificates.list()
         assert_matches_type(AsyncOffsetPage[CaCertificate], trusted_ca_certificate, path=["response"])
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
         trusted_ca_certificate = await async_client.cdn.trusted_ca_certificates.list(
@@ -242,6 +248,7 @@ class TestAsyncTrustedCaCertificates:
         )
         assert_matches_type(AsyncOffsetPage[CaCertificate], trusted_ca_certificate, path=["response"])
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
         response = await async_client.cdn.trusted_ca_certificates.with_raw_response.list()
@@ -251,6 +258,7 @@ class TestAsyncTrustedCaCertificates:
         trusted_ca_certificate = await response.parse()
         assert_matches_type(AsyncOffsetPage[CaCertificate], trusted_ca_certificate, path=["response"])
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
         async with async_client.cdn.trusted_ca_certificates.with_streaming_response.list() as response:

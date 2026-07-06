@@ -61,11 +61,13 @@ class TestNetworkMappings:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
         network_mapping = client.dns.network_mappings.list()
         assert_matches_type(SyncOffsetPageDNSNetworkMappings[DNSNetworkMapping], network_mapping, path=["response"])
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
         network_mapping = client.dns.network_mappings.list(
@@ -76,6 +78,7 @@ class TestNetworkMappings:
         )
         assert_matches_type(SyncOffsetPageDNSNetworkMappings[DNSNetworkMapping], network_mapping, path=["response"])
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
         response = client.dns.network_mappings.with_raw_response.list()
@@ -85,6 +88,7 @@ class TestNetworkMappings:
         network_mapping = response.parse()
         assert_matches_type(SyncOffsetPageDNSNetworkMappings[DNSNetworkMapping], network_mapping, path=["response"])
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
         with client.dns.network_mappings.with_streaming_response.list() as response:
@@ -312,11 +316,13 @@ class TestAsyncNetworkMappings:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
         network_mapping = await async_client.dns.network_mappings.list()
         assert_matches_type(AsyncOffsetPageDNSNetworkMappings[DNSNetworkMapping], network_mapping, path=["response"])
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
         network_mapping = await async_client.dns.network_mappings.list(
@@ -327,6 +333,7 @@ class TestAsyncNetworkMappings:
         )
         assert_matches_type(AsyncOffsetPageDNSNetworkMappings[DNSNetworkMapping], network_mapping, path=["response"])
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
         response = await async_client.dns.network_mappings.with_raw_response.list()
@@ -336,6 +343,7 @@ class TestAsyncNetworkMappings:
         network_mapping = await response.parse()
         assert_matches_type(AsyncOffsetPageDNSNetworkMappings[DNSNetworkMapping], network_mapping, path=["response"])
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
         async with async_client.dns.network_mappings.with_streaming_response.list() as response:

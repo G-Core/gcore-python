@@ -707,11 +707,13 @@ class TestCDNResources:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
         cdn_resource = client.cdn.cdn_resources.list()
         assert_matches_type(SyncOffsetPage[CDNResource], cdn_resource, path=["response"])
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
         cdn_resource = client.cdn.cdn_resources.list(
@@ -743,6 +745,7 @@ class TestCDNResources:
         )
         assert_matches_type(SyncOffsetPage[CDNResource], cdn_resource, path=["response"])
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
         response = client.cdn.cdn_resources.with_raw_response.list()
@@ -752,6 +755,7 @@ class TestCDNResources:
         cdn_resource = response.parse()
         assert_matches_type(SyncOffsetPage[CDNResource], cdn_resource, path=["response"])
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
         with client.cdn.cdn_resources.with_streaming_response.list() as response:
@@ -2044,11 +2048,13 @@ class TestAsyncCDNResources:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
         cdn_resource = await async_client.cdn.cdn_resources.list()
         assert_matches_type(AsyncOffsetPage[CDNResource], cdn_resource, path=["response"])
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
         cdn_resource = await async_client.cdn.cdn_resources.list(
@@ -2080,6 +2086,7 @@ class TestAsyncCDNResources:
         )
         assert_matches_type(AsyncOffsetPage[CDNResource], cdn_resource, path=["response"])
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
         response = await async_client.cdn.cdn_resources.with_raw_response.list()
@@ -2089,6 +2096,7 @@ class TestAsyncCDNResources:
         cdn_resource = await response.parse()
         assert_matches_type(AsyncOffsetPage[CDNResource], cdn_resource, path=["response"])
 
+    @pytest.mark.skip(reason="GCLOUD2-27616: Prism mock serves bare-array list; SDK expects paginated OffsetPage")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
         async with async_client.cdn.cdn_resources.with_streaming_response.list() as response:
