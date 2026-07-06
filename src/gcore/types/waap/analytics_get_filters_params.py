@@ -30,8 +30,8 @@ class AnalyticsGetFiltersParams(TypedDict, total=False):
     name: Optional[str]
     """
     Case-insensitive partial autocomplete pattern matched against the value name by
-    the value provider. Empty or omitted returns the available suggestions for the
-    current account and time range.
+    the value provider. Must be between 2 and 100 characters; empty or omitted
+    returns the available suggestions for the current account and time range.
     """
 
     offset: int

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Iterable, Optional
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 from ..._types import SequenceNotStr
 
@@ -28,6 +28,13 @@ class AnalyticsGetEventStatisticsParams(TypedDict, total=False):
 
     ips: SequenceNotStr[str]
     """Filter statistics by client IP addresses (max 10)."""
+
+    order_by: Literal["total.desc", "threats.desc"]
+    """Ordering applied to the ranked points within the dimension.
+
+    `total.desc` ranks by total event count descending; `threats.desc` ranks by
+    threat (blocked and monitored) event count descending.
+    """
 
     security_rule_names: SequenceNotStr[str]
     """Filter data by name of a security rule matched the request."""

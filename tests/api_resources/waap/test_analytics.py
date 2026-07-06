@@ -40,6 +40,7 @@ class TestAnalytics:
             domains=[1, 2, 3],
             end="2024-04-14T12:00:00Z",
             ips=["1.2.3.4", "2001:678:194::3c25:ddad"],
+            order_by="total.desc",
             security_rule_names=["SQL injection"],
         )
         assert_matches_type(WaapSimpleEventStatistics, analytics, path=["response"])
@@ -86,7 +87,7 @@ class TestAnalytics:
             domains=[1, 2, 3],
             end="2024-04-14T12:00:00Z",
             limit=50,
-            name="name",
+            name="xx",
             offset=0,
             ordering="count",
         )
@@ -347,6 +348,7 @@ class TestAsyncAnalytics:
             domains=[1, 2, 3],
             end="2024-04-14T12:00:00Z",
             ips=["1.2.3.4", "2001:678:194::3c25:ddad"],
+            order_by="total.desc",
             security_rule_names=["SQL injection"],
         )
         assert_matches_type(WaapSimpleEventStatistics, analytics, path=["response"])
@@ -393,7 +395,7 @@ class TestAsyncAnalytics:
             domains=[1, 2, 3],
             end="2024-04-14T12:00:00Z",
             limit=50,
-            name="name",
+            name="xx",
             offset=0,
             ordering="count",
         )

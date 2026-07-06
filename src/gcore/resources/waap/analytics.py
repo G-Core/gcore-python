@@ -63,6 +63,7 @@ class AnalyticsResource(SyncAPIResource):
         domains: Iterable[int] | Omit = omit,
         end: Optional[str] | Omit = omit,
         ips: SequenceNotStr[str] | Omit = omit,
+        order_by: Literal["total.desc", "threats.desc"] | Omit = omit,
         security_rule_names: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -91,6 +92,10 @@ class AnalyticsResource(SyncAPIResource):
 
           ips: Filter statistics by client IP addresses (max 10).
 
+          order_by: Ordering applied to the ranked points within the dimension. `total.desc` ranks
+              by total event count descending; `threats.desc` ranks by threat (blocked and
+              monitored) event count descending.
+
           security_rule_names: Filter data by name of a security rule matched the request.
 
           extra_headers: Send extra headers
@@ -116,6 +121,7 @@ class AnalyticsResource(SyncAPIResource):
                         "domains": domains,
                         "end": end,
                         "ips": ips,
+                        "order_by": order_by,
                         "security_rule_names": security_rule_names,
                     },
                     analytics_get_event_statistics_params.AnalyticsGetEventStatisticsParams,
@@ -165,8 +171,8 @@ class AnalyticsResource(SyncAPIResource):
           limit: Number of items to return
 
           name: Case-insensitive partial autocomplete pattern matched against the value name by
-              the value provider. Empty or omitted returns the available suggestions for the
-              current account and time range.
+              the value provider. Must be between 2 and 100 characters; empty or omitted
+              returns the available suggestions for the current account and time range.
 
           offset: Number of items to skip
 
@@ -788,6 +794,7 @@ class AsyncAnalyticsResource(AsyncAPIResource):
         domains: Iterable[int] | Omit = omit,
         end: Optional[str] | Omit = omit,
         ips: SequenceNotStr[str] | Omit = omit,
+        order_by: Literal["total.desc", "threats.desc"] | Omit = omit,
         security_rule_names: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -816,6 +823,10 @@ class AsyncAnalyticsResource(AsyncAPIResource):
 
           ips: Filter statistics by client IP addresses (max 10).
 
+          order_by: Ordering applied to the ranked points within the dimension. `total.desc` ranks
+              by total event count descending; `threats.desc` ranks by threat (blocked and
+              monitored) event count descending.
+
           security_rule_names: Filter data by name of a security rule matched the request.
 
           extra_headers: Send extra headers
@@ -841,6 +852,7 @@ class AsyncAnalyticsResource(AsyncAPIResource):
                         "domains": domains,
                         "end": end,
                         "ips": ips,
+                        "order_by": order_by,
                         "security_rule_names": security_rule_names,
                     },
                     analytics_get_event_statistics_params.AnalyticsGetEventStatisticsParams,
@@ -890,8 +902,8 @@ class AsyncAnalyticsResource(AsyncAPIResource):
           limit: Number of items to return
 
           name: Case-insensitive partial autocomplete pattern matched against the value name by
-              the value provider. Empty or omitted returns the available suggestions for the
-              current account and time range.
+              the value provider. Must be between 2 and 100 characters; empty or omitted
+              returns the available suggestions for the current account and time range.
 
           offset: Number of items to skip
 
