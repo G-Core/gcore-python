@@ -12,6 +12,7 @@ from tests.utils import assert_matches_type
 from gcore.pagination import SyncPageStreaming, AsyncPageStreaming
 from gcore.types.streaming import (
     Video,
+    VideoListResponse,
     VideoCreateResponse,
     DirectUploadParameters,
     VideoCreateMultipleResponse,
@@ -32,14 +33,14 @@ class TestVideos:
     def test_method_create_with_all_params(self, client: Gcore) -> None:
         video = client.streaming.videos.create(
             video={
-                "name": "IBC 2025 - International Broadcasting Convention",
+                "name": "IBC 2026 - International Broadcasting Convention",
                 "auto_transcribe_audio_language": "auto",
                 "auto_translate_subtitles_language": "disable",
                 "client_user_id": 10,
                 "clip_duration_seconds": 60,
                 "clip_start_seconds": 137,
                 "custom_iframe_url": "custom_iframe_url",
-                "description": "We look forward to welcoming you at IBC2025, which will take place 12-15 September 2025.",
+                "description": "We look forward to welcoming you at IBC2026, which will take place 11-14 September 2026.",
                 "directory_id": 800,
                 "origin_http_headers": "Authorization: Bearer ...",
                 "origin_url": "https://www.googleapis.com/drive/v3/files/...?alt=media",
@@ -80,7 +81,7 @@ class TestVideos:
     def test_method_update(self, client: Gcore) -> None:
         video = client.streaming.videos.update(
             video_id=0,
-            name="IBC 2025 - International Broadcasting Convention",
+            name="IBC 2026 - International Broadcasting Convention",
         )
         assert_matches_type(Video, video, path=["response"])
 
@@ -88,14 +89,14 @@ class TestVideos:
     def test_method_update_with_all_params(self, client: Gcore) -> None:
         video = client.streaming.videos.update(
             video_id=0,
-            name="IBC 2025 - International Broadcasting Convention",
+            name="IBC 2026 - International Broadcasting Convention",
             auto_transcribe_audio_language="auto",
             auto_translate_subtitles_language="disable",
             client_user_id=10,
             clip_duration_seconds=60,
             clip_start_seconds=137,
             custom_iframe_url="custom_iframe_url",
-            description="We look forward to welcoming you at IBC2025, which will take place 12-15 September 2025.",
+            description="We look forward to welcoming you at IBC2026, which will take place 11-14 September 2026.",
             directory_id=800,
             origin_http_headers="Authorization: Bearer ...",
             origin_url="https://www.googleapis.com/drive/v3/files/...?alt=media",
@@ -115,7 +116,7 @@ class TestVideos:
     def test_raw_response_update(self, client: Gcore) -> None:
         response = client.streaming.videos.with_raw_response.update(
             video_id=0,
-            name="IBC 2025 - International Broadcasting Convention",
+            name="IBC 2026 - International Broadcasting Convention",
         )
 
         assert response.is_closed is True
@@ -127,7 +128,7 @@ class TestVideos:
     def test_streaming_response_update(self, client: Gcore) -> None:
         with client.streaming.videos.with_streaming_response.update(
             video_id=0,
-            name="IBC 2025 - International Broadcasting Convention",
+            name="IBC 2026 - International Broadcasting Convention",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -140,7 +141,7 @@ class TestVideos:
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
         video = client.streaming.videos.list()
-        assert_matches_type(SyncPageStreaming[Video], video, path=["response"])
+        assert_matches_type(SyncPageStreaming[VideoListResponse], video, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
@@ -154,7 +155,7 @@ class TestVideos:
             status="status",
             stream_id=0,
         )
-        assert_matches_type(SyncPageStreaming[Video], video, path=["response"])
+        assert_matches_type(SyncPageStreaming[VideoListResponse], video, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
@@ -163,7 +164,7 @@ class TestVideos:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         video = response.parse()
-        assert_matches_type(SyncPageStreaming[Video], video, path=["response"])
+        assert_matches_type(SyncPageStreaming[VideoListResponse], video, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
@@ -172,7 +173,7 @@ class TestVideos:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             video = response.parse()
-            assert_matches_type(SyncPageStreaming[Video], video, path=["response"])
+            assert_matches_type(SyncPageStreaming[VideoListResponse], video, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -218,14 +219,14 @@ class TestVideos:
             fields="fields",
             videos=[
                 {
-                    "name": "IBC 2025 - International Broadcasting Convention",
+                    "name": "IBC 2026 - International Broadcasting Convention",
                     "auto_transcribe_audio_language": "auto",
                     "auto_translate_subtitles_language": "disable",
                     "client_user_id": 10,
                     "clip_duration_seconds": 60,
                     "clip_start_seconds": 137,
                     "custom_iframe_url": "custom_iframe_url",
-                    "description": "We look forward to welcoming you at IBC2025, which will take place 12-15 September 2025.",
+                    "description": "We look forward to welcoming you at IBC2026, which will take place 11-14 September 2026.",
                     "directory_id": 800,
                     "origin_http_headers": "Authorization: Bearer ...",
                     "origin_url": "https://www.googleapis.com/drive/v3/files/...?alt=media",
@@ -384,14 +385,14 @@ class TestAsyncVideos:
     async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
         video = await async_client.streaming.videos.create(
             video={
-                "name": "IBC 2025 - International Broadcasting Convention",
+                "name": "IBC 2026 - International Broadcasting Convention",
                 "auto_transcribe_audio_language": "auto",
                 "auto_translate_subtitles_language": "disable",
                 "client_user_id": 10,
                 "clip_duration_seconds": 60,
                 "clip_start_seconds": 137,
                 "custom_iframe_url": "custom_iframe_url",
-                "description": "We look forward to welcoming you at IBC2025, which will take place 12-15 September 2025.",
+                "description": "We look forward to welcoming you at IBC2026, which will take place 11-14 September 2026.",
                 "directory_id": 800,
                 "origin_http_headers": "Authorization: Bearer ...",
                 "origin_url": "https://www.googleapis.com/drive/v3/files/...?alt=media",
@@ -432,7 +433,7 @@ class TestAsyncVideos:
     async def test_method_update(self, async_client: AsyncGcore) -> None:
         video = await async_client.streaming.videos.update(
             video_id=0,
-            name="IBC 2025 - International Broadcasting Convention",
+            name="IBC 2026 - International Broadcasting Convention",
         )
         assert_matches_type(Video, video, path=["response"])
 
@@ -440,14 +441,14 @@ class TestAsyncVideos:
     async def test_method_update_with_all_params(self, async_client: AsyncGcore) -> None:
         video = await async_client.streaming.videos.update(
             video_id=0,
-            name="IBC 2025 - International Broadcasting Convention",
+            name="IBC 2026 - International Broadcasting Convention",
             auto_transcribe_audio_language="auto",
             auto_translate_subtitles_language="disable",
             client_user_id=10,
             clip_duration_seconds=60,
             clip_start_seconds=137,
             custom_iframe_url="custom_iframe_url",
-            description="We look forward to welcoming you at IBC2025, which will take place 12-15 September 2025.",
+            description="We look forward to welcoming you at IBC2026, which will take place 11-14 September 2026.",
             directory_id=800,
             origin_http_headers="Authorization: Bearer ...",
             origin_url="https://www.googleapis.com/drive/v3/files/...?alt=media",
@@ -467,7 +468,7 @@ class TestAsyncVideos:
     async def test_raw_response_update(self, async_client: AsyncGcore) -> None:
         response = await async_client.streaming.videos.with_raw_response.update(
             video_id=0,
-            name="IBC 2025 - International Broadcasting Convention",
+            name="IBC 2026 - International Broadcasting Convention",
         )
 
         assert response.is_closed is True
@@ -479,7 +480,7 @@ class TestAsyncVideos:
     async def test_streaming_response_update(self, async_client: AsyncGcore) -> None:
         async with async_client.streaming.videos.with_streaming_response.update(
             video_id=0,
-            name="IBC 2025 - International Broadcasting Convention",
+            name="IBC 2026 - International Broadcasting Convention",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -492,7 +493,7 @@ class TestAsyncVideos:
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
         video = await async_client.streaming.videos.list()
-        assert_matches_type(AsyncPageStreaming[Video], video, path=["response"])
+        assert_matches_type(AsyncPageStreaming[VideoListResponse], video, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -506,7 +507,7 @@ class TestAsyncVideos:
             status="status",
             stream_id=0,
         )
-        assert_matches_type(AsyncPageStreaming[Video], video, path=["response"])
+        assert_matches_type(AsyncPageStreaming[VideoListResponse], video, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
@@ -515,7 +516,7 @@ class TestAsyncVideos:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         video = await response.parse()
-        assert_matches_type(AsyncPageStreaming[Video], video, path=["response"])
+        assert_matches_type(AsyncPageStreaming[VideoListResponse], video, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
@@ -524,7 +525,7 @@ class TestAsyncVideos:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             video = await response.parse()
-            assert_matches_type(AsyncPageStreaming[Video], video, path=["response"])
+            assert_matches_type(AsyncPageStreaming[VideoListResponse], video, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -570,14 +571,14 @@ class TestAsyncVideos:
             fields="fields",
             videos=[
                 {
-                    "name": "IBC 2025 - International Broadcasting Convention",
+                    "name": "IBC 2026 - International Broadcasting Convention",
                     "auto_transcribe_audio_language": "auto",
                     "auto_translate_subtitles_language": "disable",
                     "client_user_id": 10,
                     "clip_duration_seconds": 60,
                     "clip_start_seconds": 137,
                     "custom_iframe_url": "custom_iframe_url",
-                    "description": "We look forward to welcoming you at IBC2025, which will take place 12-15 September 2025.",
+                    "description": "We look forward to welcoming you at IBC2026, which will take place 11-14 September 2026.",
                     "directory_id": 800,
                     "origin_http_headers": "Authorization: Bearer ...",
                     "origin_url": "https://www.googleapis.com/drive/v3/files/...?alt=media",

@@ -114,7 +114,7 @@ class PlaylistsResource(SyncAPIResource):
 
         **Looped video playback**
 
-        It can be used to simulate TV channel pre-programmed behaviour.
+        It can be used to simulate TV channel pre-programmed behavior.
 
         - Selection: Choose a series of videos, such as TV show episodes, movies,
           tutorials, or any other relevant content.
@@ -157,7 +157,7 @@ class PlaylistsResource(SyncAPIResource):
               Enables/Disables playlist. Has two possible values:
 
               - true – Playlist can be played.
-              - false – Playlist is disabled. No broadcast while it's desabled.
+              - false – Playlist is disabled. No broadcast while it's disabled.
 
           ad_id: The advertisement ID that will be inserted into the video
 
@@ -293,7 +293,7 @@ class PlaylistsResource(SyncAPIResource):
         Has two possible values:
 
               - true – Playlist can be played.
-              - false – Playlist is disabled. No broadcast while it's desabled.
+              - false – Playlist is disabled. No broadcast while it's disabled.
 
           ad_id: The advertisement ID that will be inserted into the video
 
@@ -578,7 +578,7 @@ class AsyncPlaylistsResource(AsyncAPIResource):
 
         **Looped video playback**
 
-        It can be used to simulate TV channel pre-programmed behaviour.
+        It can be used to simulate TV channel pre-programmed behavior.
 
         - Selection: Choose a series of videos, such as TV show episodes, movies,
           tutorials, or any other relevant content.
@@ -621,7 +621,7 @@ class AsyncPlaylistsResource(AsyncAPIResource):
               Enables/Disables playlist. Has two possible values:
 
               - true – Playlist can be played.
-              - false – Playlist is disabled. No broadcast while it's desabled.
+              - false – Playlist is disabled. No broadcast while it's disabled.
 
           ad_id: The advertisement ID that will be inserted into the video
 
@@ -757,7 +757,7 @@ class AsyncPlaylistsResource(AsyncAPIResource):
         Has two possible values:
 
               - true – Playlist can be played.
-              - false – Playlist is disabled. No broadcast while it's desabled.
+              - false – Playlist is disabled. No broadcast while it's disabled.
 
           ad_id: The advertisement ID that will be inserted into the video
 

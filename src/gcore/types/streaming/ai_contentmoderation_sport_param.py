@@ -1,27 +1,26 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
-from typing_extensions import Literal
+from __future__ import annotations
 
-from ..._models import BaseModel
+from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["AIContentmoderationSport"]
+__all__ = ["AIContentmoderationSportParam"]
 
 
-class AIContentmoderationSport(BaseModel):
-    category: Literal["sport"]
+class AIContentmoderationSportParam(TypedDict, total=False):
+    category: Required[Literal["sport"]]
     """AI content moderation with types of sports activity detection"""
 
-    task_name: Literal["content-moderation"]
+    task_name: Required[Literal["content-moderation"]]
     """Name of the task to be performed"""
 
-    url: str
+    url: Required[str]
     """URL to the MP4 file to analyze.
 
     File must be publicly accessible via HTTP/HTTPS.
     """
 
-    client_entity_data: Optional[str] = None
+    client_entity_data: str
     """
     Meta parameter, designed to store your own extra information about a video
     entity: video source, video id, etc. It is not used in any way in video
@@ -33,10 +32,7 @@ class AIContentmoderationSport(BaseModel):
     here.
     """
 
-    client_id: Optional[int] = None
-    """Client ID associated with the task."""
-
-    client_user_id: Optional[str] = None
+    client_user_id: str
     """Meta parameter, designed to store your own identifier.
 
     Can be used by you to tag requests from different end-users. It is not used in

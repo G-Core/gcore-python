@@ -141,6 +141,7 @@ from gcore.types.streaming import (
     SubtitleBody,
     SubtitleUpdated,
     VideoCreateResponse,
+    VideoListResponse,
     VideoCreateMultipleResponse,
 )
 ```
@@ -149,7 +150,7 @@ Methods:
 
 - <code title="post /streaming/videos">client.streaming.videos.<a href="./src/gcore/resources/streaming/videos/videos.py">create</a>(\*\*<a href="src/gcore/types/streaming/video_create_params.py">params</a>) -> <a href="./src/gcore/types/streaming/video_create_response.py">VideoCreateResponse</a></code>
 - <code title="patch /streaming/videos/{video_id}">client.streaming.videos.<a href="./src/gcore/resources/streaming/videos/videos.py">update</a>(video_id, \*\*<a href="src/gcore/types/streaming/video_update_params.py">params</a>) -> <a href="./src/gcore/types/streaming/video.py">Video</a></code>
-- <code title="get /streaming/videos">client.streaming.videos.<a href="./src/gcore/resources/streaming/videos/videos.py">list</a>(\*\*<a href="src/gcore/types/streaming/video_list_params.py">params</a>) -> <a href="./src/gcore/types/streaming/video.py">SyncPageStreaming[Video]</a></code>
+- <code title="get /streaming/videos">client.streaming.videos.<a href="./src/gcore/resources/streaming/videos/videos.py">list</a>(\*\*<a href="src/gcore/types/streaming/video_list_params.py">params</a>) -> <a href="./src/gcore/types/streaming/video_list_response.py">SyncPageStreaming[VideoListResponse]</a></code>
 - <code title="delete /streaming/videos/{video_id}">client.streaming.videos.<a href="./src/gcore/resources/streaming/videos/videos.py">delete</a>(video_id) -> None</code>
 - <code title="post /streaming/videos/batch">client.streaming.videos.<a href="./src/gcore/resources/streaming/videos/videos.py">create_multiple</a>(\*\*<a href="src/gcore/types/streaming/video_create_multiple_params.py">params</a>) -> <a href="./src/gcore/types/streaming/video_create_multiple_response.py">VideoCreateMultipleResponse</a></code>
 - <code title="get /streaming/videos/{video_id}">client.streaming.videos.<a href="./src/gcore/resources/streaming/videos/videos.py">get</a>(video_id) -> <a href="./src/gcore/types/streaming/video.py">Video</a></code>

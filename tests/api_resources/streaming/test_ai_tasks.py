@@ -28,10 +28,10 @@ class TestAITasks:
         reason='Skipping test due to 422 Unprocessable Entity {"error":"Feature is disabled. Contact support to enable."}'
     )
     @parametrize
-    def test_method_create(self, client: Gcore) -> None:
+    def test_method_create_overload_1(self, client: Gcore) -> None:
         ai_task = client.streaming.ai_tasks.create(
             task_name="transcription",
-            url="url",
+            url="https://demo-files.gvideo.io/apidocs/spritefright-blender-cut30sec.mp4",
         )
         assert_matches_type(AITaskCreateResponse, ai_task, path=["response"])
 
@@ -39,12 +39,11 @@ class TestAITasks:
         reason='Skipping test due to 422 Unprocessable Entity {"error":"Feature is disabled. Contact support to enable."}'
     )
     @parametrize
-    def test_method_create_with_all_params(self, client: Gcore) -> None:
+    def test_method_create_with_all_params_overload_1(self, client: Gcore) -> None:
         ai_task = client.streaming.ai_tasks.create(
             task_name="transcription",
-            url="url",
-            audio_language="audio_language",
-            category="sport",
+            url="https://demo-files.gvideo.io/apidocs/spritefright-blender-cut30sec.mp4",
+            audio_language="ger",
             client_entity_data="client_entity_data",
             client_user_id="client_user_id",
             subtitles_language="subtitles_language",
@@ -55,9 +54,105 @@ class TestAITasks:
         reason='Skipping test due to 422 Unprocessable Entity {"error":"Feature is disabled. Contact support to enable."}'
     )
     @parametrize
-    def test_raw_response_create(self, client: Gcore) -> None:
+    def test_raw_response_create_overload_1(self, client: Gcore) -> None:
         response = client.streaming.ai_tasks.with_raw_response.create(
             task_name="transcription",
+            url="https://demo-files.gvideo.io/apidocs/spritefright-blender-cut30sec.mp4",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ai_task = response.parse()
+        assert_matches_type(AITaskCreateResponse, ai_task, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create_overload_1(self, client: Gcore) -> None:
+        with client.streaming.ai_tasks.with_streaming_response.create(
+            task_name="transcription",
+            url="https://demo-files.gvideo.io/apidocs/spritefright-blender-cut30sec.mp4",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ai_task = response.parse()
+            assert_matches_type(AITaskCreateResponse, ai_task, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_create_overload_2(self, client: Gcore) -> None:
+        ai_task = client.streaming.ai_tasks.create(
+            category="nsfw",
+            task_name="content-moderation",
+            url="https://demo-files.gvideo.io/ai_demo_subtitles_nudity_detection.mp4",
+        )
+        assert_matches_type(AITaskCreateResponse, ai_task, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params_overload_2(self, client: Gcore) -> None:
+        ai_task = client.streaming.ai_tasks.create(
+            category="nsfw",
+            task_name="content-moderation",
+            url="https://demo-files.gvideo.io/ai_demo_subtitles_nudity_detection.mp4",
+            client_entity_data="client_entity_data",
+            client_user_id="client_user_id",
+        )
+        assert_matches_type(AITaskCreateResponse, ai_task, path=["response"])
+
+    @parametrize
+    def test_raw_response_create_overload_2(self, client: Gcore) -> None:
+        response = client.streaming.ai_tasks.with_raw_response.create(
+            category="nsfw",
+            task_name="content-moderation",
+            url="https://demo-files.gvideo.io/ai_demo_subtitles_nudity_detection.mp4",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ai_task = response.parse()
+        assert_matches_type(AITaskCreateResponse, ai_task, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create_overload_2(self, client: Gcore) -> None:
+        with client.streaming.ai_tasks.with_streaming_response.create(
+            category="nsfw",
+            task_name="content-moderation",
+            url="https://demo-files.gvideo.io/ai_demo_subtitles_nudity_detection.mp4",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ai_task = response.parse()
+            assert_matches_type(AITaskCreateResponse, ai_task, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_create_overload_3(self, client: Gcore) -> None:
+        ai_task = client.streaming.ai_tasks.create(
+            category="hard_nudity",
+            task_name="content-moderation",
+            url="url",
+        )
+        assert_matches_type(AITaskCreateResponse, ai_task, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params_overload_3(self, client: Gcore) -> None:
+        ai_task = client.streaming.ai_tasks.create(
+            category="hard_nudity",
+            task_name="content-moderation",
+            url="url",
+            client_entity_data="client_entity_data",
+            client_user_id="client_user_id",
+            stop_objects="ANUS_EXPOSED",
+        )
+        assert_matches_type(AITaskCreateResponse, ai_task, path=["response"])
+
+    @parametrize
+    def test_raw_response_create_overload_3(self, client: Gcore) -> None:
+        response = client.streaming.ai_tasks.with_raw_response.create(
+            category="hard_nudity",
+            task_name="content-moderation",
             url="url",
         )
 
@@ -70,10 +165,108 @@ class TestAITasks:
         reason='Skipping test due to 422 Unprocessable Entity {"error":"Feature is disabled. Contact support to enable."}'
     )
     @parametrize
-    def test_streaming_response_create(self, client: Gcore) -> None:
+    def test_streaming_response_create_overload_3(self, client: Gcore) -> None:
         with client.streaming.ai_tasks.with_streaming_response.create(
-            task_name="transcription",
+            category="hard_nudity",
+            task_name="content-moderation",
             url="url",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ai_task = response.parse()
+            assert_matches_type(AITaskCreateResponse, ai_task, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_create_overload_4(self, client: Gcore) -> None:
+        ai_task = client.streaming.ai_tasks.create(
+            category="soft_nudity",
+            task_name="content-moderation",
+            url="url",
+        )
+        assert_matches_type(AITaskCreateResponse, ai_task, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params_overload_4(self, client: Gcore) -> None:
+        ai_task = client.streaming.ai_tasks.create(
+            category="soft_nudity",
+            task_name="content-moderation",
+            url="url",
+            client_entity_data="client_entity_data",
+            client_user_id="client_user_id",
+            stop_objects="ANUS_COVERED",
+        )
+        assert_matches_type(AITaskCreateResponse, ai_task, path=["response"])
+
+    @parametrize
+    def test_raw_response_create_overload_4(self, client: Gcore) -> None:
+        response = client.streaming.ai_tasks.with_raw_response.create(
+            category="soft_nudity",
+            task_name="content-moderation",
+            url="url",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ai_task = response.parse()
+        assert_matches_type(AITaskCreateResponse, ai_task, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create_overload_4(self, client: Gcore) -> None:
+        with client.streaming.ai_tasks.with_streaming_response.create(
+            category="soft_nudity",
+            task_name="content-moderation",
+            url="url",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ai_task = response.parse()
+            assert_matches_type(AITaskCreateResponse, ai_task, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_create_overload_5(self, client: Gcore) -> None:
+        ai_task = client.streaming.ai_tasks.create(
+            category="sport",
+            task_name="content-moderation",
+            url="https://demo-files.gvideo.io/ai_demo_soccer_players_passing_the_ball.mp4",
+        )
+        assert_matches_type(AITaskCreateResponse, ai_task, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params_overload_5(self, client: Gcore) -> None:
+        ai_task = client.streaming.ai_tasks.create(
+            category="sport",
+            task_name="content-moderation",
+            url="https://demo-files.gvideo.io/ai_demo_soccer_players_passing_the_ball.mp4",
+            client_entity_data="client_entity_data",
+            client_user_id="client_user_id",
+        )
+        assert_matches_type(AITaskCreateResponse, ai_task, path=["response"])
+
+    @parametrize
+    def test_raw_response_create_overload_5(self, client: Gcore) -> None:
+        response = client.streaming.ai_tasks.with_raw_response.create(
+            category="sport",
+            task_name="content-moderation",
+            url="https://demo-files.gvideo.io/ai_demo_soccer_players_passing_the_ball.mp4",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ai_task = response.parse()
+        assert_matches_type(AITaskCreateResponse, ai_task, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create_overload_5(self, client: Gcore) -> None:
+        with client.streaming.ai_tasks.with_streaming_response.create(
+            category="sport",
+            task_name="content-moderation",
+            url="https://demo-files.gvideo.io/ai_demo_soccer_players_passing_the_ball.mp4",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -248,10 +441,10 @@ class TestAsyncAITasks:
         reason='Skipping test due to 422 Unprocessable Entity {"error":"Feature is disabled. Contact support to enable."}'
     )
     @parametrize
-    async def test_method_create(self, async_client: AsyncGcore) -> None:
+    async def test_method_create_overload_1(self, async_client: AsyncGcore) -> None:
         ai_task = await async_client.streaming.ai_tasks.create(
             task_name="transcription",
-            url="url",
+            url="https://demo-files.gvideo.io/apidocs/spritefright-blender-cut30sec.mp4",
         )
         assert_matches_type(AITaskCreateResponse, ai_task, path=["response"])
 
@@ -259,12 +452,11 @@ class TestAsyncAITasks:
         reason='Skipping test due to 422 Unprocessable Entity {"error":"Feature is disabled. Contact support to enable."}'
     )
     @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
+    async def test_method_create_with_all_params_overload_1(self, async_client: AsyncGcore) -> None:
         ai_task = await async_client.streaming.ai_tasks.create(
             task_name="transcription",
-            url="url",
-            audio_language="audio_language",
-            category="sport",
+            url="https://demo-files.gvideo.io/apidocs/spritefright-blender-cut30sec.mp4",
+            audio_language="ger",
             client_entity_data="client_entity_data",
             client_user_id="client_user_id",
             subtitles_language="subtitles_language",
@@ -275,9 +467,105 @@ class TestAsyncAITasks:
         reason='Skipping test due to 422 Unprocessable Entity {"error":"Feature is disabled. Contact support to enable."}'
     )
     @parametrize
-    async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
+    async def test_raw_response_create_overload_1(self, async_client: AsyncGcore) -> None:
         response = await async_client.streaming.ai_tasks.with_raw_response.create(
             task_name="transcription",
+            url="https://demo-files.gvideo.io/apidocs/spritefright-blender-cut30sec.mp4",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ai_task = await response.parse()
+        assert_matches_type(AITaskCreateResponse, ai_task, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create_overload_1(self, async_client: AsyncGcore) -> None:
+        async with async_client.streaming.ai_tasks.with_streaming_response.create(
+            task_name="transcription",
+            url="https://demo-files.gvideo.io/apidocs/spritefright-blender-cut30sec.mp4",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ai_task = await response.parse()
+            assert_matches_type(AITaskCreateResponse, ai_task, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_create_overload_2(self, async_client: AsyncGcore) -> None:
+        ai_task = await async_client.streaming.ai_tasks.create(
+            category="nsfw",
+            task_name="content-moderation",
+            url="https://demo-files.gvideo.io/ai_demo_subtitles_nudity_detection.mp4",
+        )
+        assert_matches_type(AITaskCreateResponse, ai_task, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params_overload_2(self, async_client: AsyncGcore) -> None:
+        ai_task = await async_client.streaming.ai_tasks.create(
+            category="nsfw",
+            task_name="content-moderation",
+            url="https://demo-files.gvideo.io/ai_demo_subtitles_nudity_detection.mp4",
+            client_entity_data="client_entity_data",
+            client_user_id="client_user_id",
+        )
+        assert_matches_type(AITaskCreateResponse, ai_task, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create_overload_2(self, async_client: AsyncGcore) -> None:
+        response = await async_client.streaming.ai_tasks.with_raw_response.create(
+            category="nsfw",
+            task_name="content-moderation",
+            url="https://demo-files.gvideo.io/ai_demo_subtitles_nudity_detection.mp4",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ai_task = await response.parse()
+        assert_matches_type(AITaskCreateResponse, ai_task, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create_overload_2(self, async_client: AsyncGcore) -> None:
+        async with async_client.streaming.ai_tasks.with_streaming_response.create(
+            category="nsfw",
+            task_name="content-moderation",
+            url="https://demo-files.gvideo.io/ai_demo_subtitles_nudity_detection.mp4",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ai_task = await response.parse()
+            assert_matches_type(AITaskCreateResponse, ai_task, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_create_overload_3(self, async_client: AsyncGcore) -> None:
+        ai_task = await async_client.streaming.ai_tasks.create(
+            category="hard_nudity",
+            task_name="content-moderation",
+            url="url",
+        )
+        assert_matches_type(AITaskCreateResponse, ai_task, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params_overload_3(self, async_client: AsyncGcore) -> None:
+        ai_task = await async_client.streaming.ai_tasks.create(
+            category="hard_nudity",
+            task_name="content-moderation",
+            url="url",
+            client_entity_data="client_entity_data",
+            client_user_id="client_user_id",
+            stop_objects="ANUS_EXPOSED",
+        )
+        assert_matches_type(AITaskCreateResponse, ai_task, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create_overload_3(self, async_client: AsyncGcore) -> None:
+        response = await async_client.streaming.ai_tasks.with_raw_response.create(
+            category="hard_nudity",
+            task_name="content-moderation",
             url="url",
         )
 
@@ -290,10 +578,108 @@ class TestAsyncAITasks:
         reason='Skipping test due to 422 Unprocessable Entity {"error":"Feature is disabled. Contact support to enable."}'
     )
     @parametrize
-    async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
+    async def test_streaming_response_create_overload_3(self, async_client: AsyncGcore) -> None:
         async with async_client.streaming.ai_tasks.with_streaming_response.create(
-            task_name="transcription",
+            category="hard_nudity",
+            task_name="content-moderation",
             url="url",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ai_task = await response.parse()
+            assert_matches_type(AITaskCreateResponse, ai_task, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_create_overload_4(self, async_client: AsyncGcore) -> None:
+        ai_task = await async_client.streaming.ai_tasks.create(
+            category="soft_nudity",
+            task_name="content-moderation",
+            url="url",
+        )
+        assert_matches_type(AITaskCreateResponse, ai_task, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params_overload_4(self, async_client: AsyncGcore) -> None:
+        ai_task = await async_client.streaming.ai_tasks.create(
+            category="soft_nudity",
+            task_name="content-moderation",
+            url="url",
+            client_entity_data="client_entity_data",
+            client_user_id="client_user_id",
+            stop_objects="ANUS_COVERED",
+        )
+        assert_matches_type(AITaskCreateResponse, ai_task, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create_overload_4(self, async_client: AsyncGcore) -> None:
+        response = await async_client.streaming.ai_tasks.with_raw_response.create(
+            category="soft_nudity",
+            task_name="content-moderation",
+            url="url",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ai_task = await response.parse()
+        assert_matches_type(AITaskCreateResponse, ai_task, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create_overload_4(self, async_client: AsyncGcore) -> None:
+        async with async_client.streaming.ai_tasks.with_streaming_response.create(
+            category="soft_nudity",
+            task_name="content-moderation",
+            url="url",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ai_task = await response.parse()
+            assert_matches_type(AITaskCreateResponse, ai_task, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_create_overload_5(self, async_client: AsyncGcore) -> None:
+        ai_task = await async_client.streaming.ai_tasks.create(
+            category="sport",
+            task_name="content-moderation",
+            url="https://demo-files.gvideo.io/ai_demo_soccer_players_passing_the_ball.mp4",
+        )
+        assert_matches_type(AITaskCreateResponse, ai_task, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params_overload_5(self, async_client: AsyncGcore) -> None:
+        ai_task = await async_client.streaming.ai_tasks.create(
+            category="sport",
+            task_name="content-moderation",
+            url="https://demo-files.gvideo.io/ai_demo_soccer_players_passing_the_ball.mp4",
+            client_entity_data="client_entity_data",
+            client_user_id="client_user_id",
+        )
+        assert_matches_type(AITaskCreateResponse, ai_task, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create_overload_5(self, async_client: AsyncGcore) -> None:
+        response = await async_client.streaming.ai_tasks.with_raw_response.create(
+            category="sport",
+            task_name="content-moderation",
+            url="https://demo-files.gvideo.io/ai_demo_soccer_players_passing_the_ball.mp4",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ai_task = await response.parse()
+        assert_matches_type(AITaskCreateResponse, ai_task, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create_overload_5(self, async_client: AsyncGcore) -> None:
+        async with async_client.streaming.ai_tasks.with_streaming_response.create(
+            category="sport",
+            task_name="content-moderation",
+            url="https://demo-files.gvideo.io/ai_demo_soccer_players_passing_the_ball.mp4",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

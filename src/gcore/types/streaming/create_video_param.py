@@ -85,7 +85,7 @@ class CreateVideoParam(TypedDict, total=False):
     clip_start_seconds: int
     """
     If you want to transcode only a trimmed segment of a video instead of entire
-    length if the video, then you can provide timecodes of starting point and
+    length if the video, then you can provide time codes of starting point and
     duration of a segment to process. Start encoding from is a number in seconds.
     """
 
@@ -142,7 +142,7 @@ class CreateVideoParam(TypedDict, total=False):
     screenshots (they will be stored in "screenshots" attribute) from which you can
     select an default screenshot. This "poster" field is for uploading your own
     image. Also use attribute "screenshot_id" to select poster as a default
-    screnshot.
+    screenshot.
 
     Attribute accepts single image as base64-encoded string
     [(RFC 2397 – The "data" URL scheme)](https://www.rfc-editor.org/rfc/rfc2397). In

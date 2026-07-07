@@ -46,7 +46,7 @@ class AITaskListParams(TypedDict, total=False):
     """Task status"""
 
     task_id: str
-    """The task unique identifier to fiund"""
+    """The task unique identifier to find"""
 
     task_name: Literal["transcription", "content-moderation"]
     """Type of the AI task.

@@ -37,7 +37,7 @@ class StreamCreateParams(TypedDict, total=False):
     """
 
     auto_record: bool
-    """Enables autotomatic recording of the stream when it started.
+    """Enables automatic recording of the stream when it started.
 
     So you don't need to call recording manually.
 
@@ -145,7 +145,7 @@ class StreamCreateParams(TypedDict, total=False):
 
     Types:
 
-    - "origin" – To record RMTP/SRT/etc original clean media source.
+    - "origin" – To record RTMP/SRT/etc original clean media source.
     - "transcoded" – To record the output transcoded version of the stream,
       including overlays, texts, logos, etc. additional media layers.
     """
@@ -170,7 +170,7 @@ class StreamCreateParams(TypedDict, total=False):
     organize a backup plan. In this case, the specified addresses will be selected
     one by one using round robin scheduling. If the first address does not respond,
     then the next one in the list will be automatically requested, returning to the
-    first and so on in a circle. Also, if the sucessfully working stream stops
+    first and so on in a circle. Also, if the successfully working stream stops
     sending data, then the next one will be selected according to the same scheme.
 
     After 2 hours of inactivity of your original stream, the system stops PULL

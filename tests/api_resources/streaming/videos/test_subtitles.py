@@ -36,7 +36,7 @@ class TestSubtitles:
             body={
                 "language": "language",
                 "name": "German (AI-generated)",
-                "vtt": "WEBVTT\n\n1\n00:00:07.154 --> 00:00:12.736\nWir haben 100 Millionen registrierte Benutzer oder aktive Benutzer, die mindestens einmal pro Woche spielen.\n\n2\n00:00:13.236 --> 00:00:20.198\nWir haben vielleicht 80 oder 100.000, die auf einem bestimmten Cluster spielen.",
+                "vtt": "WEBVTT 1 00:00:07.154 --> 00:00:12.736 Wir haben 100 Millionen registrierte Benutzer oder aktive Benutzer, die mindestens einmal pro Woche spielen.\n2 00:00:13.236 --> 00:00:20.198 Wir haben vielleicht 80 oder 100.000, die auf einem bestimmten Cluster spielen.",
             },
         )
         assert_matches_type(Subtitle, subtitle, path=["response"])
@@ -241,7 +241,7 @@ class TestAsyncSubtitles:
             body={
                 "language": "language",
                 "name": "German (AI-generated)",
-                "vtt": "WEBVTT\n\n1\n00:00:07.154 --> 00:00:12.736\nWir haben 100 Millionen registrierte Benutzer oder aktive Benutzer, die mindestens einmal pro Woche spielen.\n\n2\n00:00:13.236 --> 00:00:20.198\nWir haben vielleicht 80 oder 100.000, die auf einem bestimmten Cluster spielen.",
+                "vtt": "WEBVTT 1 00:00:07.154 --> 00:00:12.736 Wir haben 100 Millionen registrierte Benutzer oder aktive Benutzer, die mindestens einmal pro Woche spielen.\n2 00:00:13.236 --> 00:00:20.198 Wir haben vielleicht 80 oder 100.000, die auf einem bestimmten Cluster spielen.",
             },
         )
         assert_matches_type(Subtitle, subtitle, path=["response"])

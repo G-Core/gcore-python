@@ -36,6 +36,7 @@ from ....types.streaming import (
 )
 from ....types.streaming.video import Video
 from ....types.streaming.create_video_param import CreateVideoParam
+from ....types.streaming.video_list_response import VideoListResponse
 from ....types.streaming.video_create_response import VideoCreateResponse
 from ....types.streaming.direct_upload_parameters import DirectUploadParameters
 from ....types.streaming.video_create_multiple_response import VideoCreateMultipleResponse
@@ -86,7 +87,7 @@ class VideosResource(SyncAPIResource):
         To upload the original video file to the server, there are several possible
         scenarios:
 
-        - **Copy from another server** – If your video is accessable via "http://",
+        - **Copy from another server** – If your video is accessible via "http://",
           "https://", or "sftp://" public link, then you can use this method to copy a
           file from an external server. Set `origin_url` parameter with the link to the
           original video file (i.e. "https://domain.com/video.mp4"). After method
@@ -281,7 +282,7 @@ class VideosResource(SyncAPIResource):
               Transcoding duration is a number in seconds.
 
           clip_start_seconds: If you want to transcode only a trimmed segment of a video instead of entire
-              length if the video, then you can provide timecodes of starting point and
+              length if the video, then you can provide time codes of starting point and
               duration of a segment to process. Start encoding from is a number in seconds.
 
           custom_iframe_url: Deprecated.
@@ -326,7 +327,7 @@ class VideosResource(SyncAPIResource):
               screenshots (they will be stored in "screenshots" attribute) from which you can
               select an default screenshot. This "poster" field is for uploading your own
               image. Also use attribute "screenshot_id" to select poster as a default
-              screnshot.
+              screenshot.
 
               Attribute accepts single image as base64-encoded string
               [(RFC 2397 – The "data" URL scheme)](https://www.rfc-editor.org/rfc/rfc2397). In
@@ -468,7 +469,7 @@ class VideosResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncPageStreaming[Video]:
+    ) -> SyncPageStreaming[VideoListResponse]:
         """
         Returns a set of videos by the given criteria.
 
@@ -518,7 +519,7 @@ class VideosResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/streaming/videos",
-            page=SyncPageStreaming[Video],
+            page=SyncPageStreaming[VideoListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -538,7 +539,7 @@ class VideosResource(SyncAPIResource):
                     video_list_params.VideoListParams,
                 ),
             ),
-            model=Video,
+            model=VideoListResponse,
         )
 
     def delete(
@@ -834,7 +835,7 @@ class AsyncVideosResource(AsyncAPIResource):
         To upload the original video file to the server, there are several possible
         scenarios:
 
-        - **Copy from another server** – If your video is accessable via "http://",
+        - **Copy from another server** – If your video is accessible via "http://",
           "https://", or "sftp://" public link, then you can use this method to copy a
           file from an external server. Set `origin_url` parameter with the link to the
           original video file (i.e. "https://domain.com/video.mp4"). After method
@@ -1029,7 +1030,7 @@ class AsyncVideosResource(AsyncAPIResource):
               Transcoding duration is a number in seconds.
 
           clip_start_seconds: If you want to transcode only a trimmed segment of a video instead of entire
-              length if the video, then you can provide timecodes of starting point and
+              length if the video, then you can provide time codes of starting point and
               duration of a segment to process. Start encoding from is a number in seconds.
 
           custom_iframe_url: Deprecated.
@@ -1074,7 +1075,7 @@ class AsyncVideosResource(AsyncAPIResource):
               screenshots (they will be stored in "screenshots" attribute) from which you can
               select an default screenshot. This "poster" field is for uploading your own
               image. Also use attribute "screenshot_id" to select poster as a default
-              screnshot.
+              screenshot.
 
               Attribute accepts single image as base64-encoded string
               [(RFC 2397 – The "data" URL scheme)](https://www.rfc-editor.org/rfc/rfc2397). In
@@ -1216,7 +1217,7 @@ class AsyncVideosResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[Video, AsyncPageStreaming[Video]]:
+    ) -> AsyncPaginator[VideoListResponse, AsyncPageStreaming[VideoListResponse]]:
         """
         Returns a set of videos by the given criteria.
 
@@ -1266,7 +1267,7 @@ class AsyncVideosResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/streaming/videos",
-            page=AsyncPageStreaming[Video],
+            page=AsyncPageStreaming[VideoListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1286,7 +1287,7 @@ class AsyncVideosResource(AsyncAPIResource):
                     video_list_params.VideoListParams,
                 ),
             ),
-            model=Video,
+            model=VideoListResponse,
         )
 
     async def delete(

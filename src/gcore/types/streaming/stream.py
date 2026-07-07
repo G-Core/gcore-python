@@ -48,8 +48,22 @@ class Stream(BaseModel):
     - false – stream is off, and cannot be processed
     """
 
+    active_ingest_region_backup: Optional[str] = None
+    """Read-only actual ingest region currently receiving the backup stream.
+
+    This field cannot be changed in the request body. The value is `null` when the
+    backup ingest is not active.
+    """
+
+    active_ingest_region_primary: Optional[str] = None
+    """Read-only actual ingest region currently receiving the primary stream.
+
+    This field cannot be changed in the request body. The value is `null` when the
+    primary ingest is not active.
+    """
+
     auto_record: Optional[bool] = None
-    """Enables autotomatic recording of the stream when it started.
+    """Enables automatic recording of the stream when it started.
 
     So you don't need to call recording manually.
 
@@ -170,7 +184,7 @@ class Stream(BaseModel):
     greater than the end time, it means the current session is still ongoing and the
     stream has not ended yet.
 
-    If you want to see all information about acitivity of the stream, you can get it
+    If you want to see all information about activity of the stream, you can get it
     from another method /streaming/statistics/ffprobe. This method shows aggregated
     activity parameters during a time, when stream was alive and transcoded. Also
     you can create graphs to see the activity. For example
@@ -275,7 +289,7 @@ class Stream(BaseModel):
     Please, remember that transcoded streams from "hls_cmaf_url" with .m3u8 at the
     end, and from "dash_url" with .mpd at the end are to be played inside video
     players only. For example: AVplayer on iOS, Exoplayer on Android, HTML web
-    player in browser, etc. General bowsers like Chrome, Firefox, etc cannot play
+    player in browser, etc. General browsers like Chrome, Firefox, etc cannot play
     transcoded streams with .m3u8 and .mpd at the end. The only exception is Safari,
     which can only play Apple's HLS .m3u8 format with limits.
 
@@ -322,7 +336,7 @@ class Stream(BaseModel):
     To use RTMPS just manually change the protocol name from "rtmp://" to
     "rtmps://".
 
-    Use only 1 protocol of sending a master stream: eitheronly RTMP/S (`push_url`),
+    Use only 1 protocol of sending a master stream: either only RTMP/S (`push_url`),
     or only SRT (`push_url_srt`).
 
     If you see an error like "invalid SSL certificate" try the following:
@@ -347,7 +361,7 @@ class Stream(BaseModel):
     For advanced customers only: For your complexly distributed broadcast systems,
     it is also possible to additionally output an array of multi-regional ingestion
     points for manual selection from them. To activate this mode, contact your
-    manager or the Support Team to activate the "multi_region_push_urls" attibute.
+    manager or the Support Team to activate the "multi_region_push_urls" attribute.
     But if you clearly don’t understand why you need this, then it’s best to use the
     default single URL in the "push_url" attribute.
     """
@@ -355,7 +369,7 @@ class Stream(BaseModel):
     push_url_srt: Optional[str] = None
     """URL to PUSH master stream to our main server using SRT protocol.
 
-    Use only 1 protocol of sending a master stream: eitheronly RTMP/S (`push_url`),
+    Use only 1 protocol of sending a master stream: either only RTMP/S (`push_url`),
     or only SRT (`push_url_srt`).
 
     **Setup SRT latency on your sender side**
@@ -409,7 +423,7 @@ class Stream(BaseModel):
     **WebRTC WHIP to LL-HLS and DASH**
 
     Video Streaming supports WebRTC HTTP Ingest Protocol (WHIP), and WebRTC to
-    HLS/DASH converter. As a result you can stream from web broswers natively.
+    HLS/DASH converter. As a result you can stream from web browsers natively.
 
     **WebRTC WHIP server**
 
@@ -435,29 +449,49 @@ class Stream(BaseModel):
     say 360p) due to restrictions on the end-user's device (network conditions, CPU
     consumption, etc.), the transcoder will still continue to transcode the reduced
     stream to the initial resolution (let say 1080p ABR). When the restrictions on
-    the end-user's device are removed, quiality will improve again.
+    the end-user's device are removed, quality will improve again.
 
     **WebRTC WHIP Client**
 
-    We provide a convenient WebRTC WHIP library for working in browsers. You can use
-    our library, or any other you prefer. Simple example of usage is here:
-    https://stackblitz.com/edit/stackblitz-starters-j2r9ar?file=index.html
+    To start a broadcast, your client application must push a WebRTC WHIP stream to
+    this `push_url_whip` URL.
 
-    Also try to use the feature in UI of the Customer Portal. In the Streaming
-    section inside the settings of a specific live stream, a new section "Quick
-    start in browser" has been added.
+    Other WHIP-compatible clients and tools:
 
-    Please note that 1 connection and 1 protocol can be used at a single moment in
-    time per unique stream key input. Trying to send 2+ connection requests into the
-    single `push_url_whip`, or 2+ protocols at once will not lead to a result.
+    - [JS WebRTC WHIP client](https://github.com/G-Core/gcore-webrtc-sdk-js). Simple
+      example of usage is here:
+      https://stackblitz.com/edit/stackblitz-starters-j2r9ar?file=index.html
+    - [@eyevinn/whip-web-client](https://web.whip.eyevinn.technology/).
+    - [whip-go](https://github.com/ggarber/whip-go).
+    - [OBS](https://obsproject.com/) (Open Broadcaster Software).
+    - Larix Broadcaster, free apps for iOS and Android with WebRTC.
+
+    More details are available in the Product Documentation on our website.
+
+    **WHIP ingest rejection reasons**
+
+    Pushing to the WHIP URL can return 200 OK, then its normal work.
+
+    However, sometimes it can return a non-200 HTTP response. In that case, check
+    the HTTP response status code and the extra `X-Reason-Code` response header.
+    Possible reject reasons:
+
+    - Stream does not exist: HTTP 401, `X-Reason-Code: 2001`.
+    - Stream token is invalid: HTTP 403, `X-Reason-Code: 2002`.
+    - Someone else is already streaming: HTTP 403, `X-Reason-Code: 2003`.
+    - Stream disabled: HTTP 403, `X-Reason-Code: 2004`.
+    - Client's live streams limit reached: HTTP 403, `X-Reason-Code: 2005`.
+    - Client's status is not "active": HTTP 403, `X-Reason-Code: 2006`.
+
+    Please note that only 1 connection and 1 protocol can be used at a single moment
+    in time per unique stream key input. Trying to send 2+ connection requests into
+    the single `push_url_whip`, or 2+ protocols at once will not lead to a result.
 
     For example, transcoding process will fail if:
 
     - you are pushing primary and backup WHIP to the same single `push_url_whip`
       simultaneously
     - you are pushing WHIP to `push_url_whip` and RTMP to `push_url` simultaneously
-
-    More information in the Product Documentation on the website.
     """
 
     quality_set_id: Optional[int] = None
@@ -474,7 +508,7 @@ class Stream(BaseModel):
 
     Types:
 
-    - "origin" – To record RMTP/SRT/etc original clean media source.
+    - "origin" – To record RTMP/SRT/etc original clean media source.
     - "transcoded" – To record the output transcoded version of the stream,
       including overlays, texts, logos, etc. additional media layers.
     """
@@ -550,7 +584,7 @@ class Stream(BaseModel):
     organize a backup plan. In this case, the specified addresses will be selected
     one by one using round robin scheduling. If the first address does not respond,
     then the next one in the list will be automatically requested, returning to the
-    first and so on in a circle. Also, if the sucessfully working stream stops
+    first and so on in a circle. Also, if the successfully working stream stops
     sending data, then the next one will be selected according to the same scheme.
 
     After 2 hours of inactivity of your original stream, the system stops PULL

@@ -9,14 +9,14 @@ __all__ = ["AIContentmoderationNsfw"]
 
 
 class AIContentmoderationNsfw(BaseModel):
-    category: Literal["nsfw", "sport", "hard_nudity", "soft_nudity"]
+    category: Literal["nsfw"]
     """AI content moderation with NSFW detection algorithm"""
 
     task_name: Literal["content-moderation"]
     """Name of the task to be performed"""
 
     url: str
-    """URL to the MP4 file to analyse.
+    """URL to the MP4 file to analyze.
 
     File must be publicly accessible via HTTP/HTTPS.
     """
@@ -32,6 +32,9 @@ class AIContentmoderationNsfw(BaseModel):
     associated video for which the task was performed will be explicitly indicated
     here.
     """
+
+    client_id: Optional[int] = None
+    """Client ID associated with the task."""
 
     client_user_id: Optional[str] = None
     """Meta parameter, designed to store your own identifier.

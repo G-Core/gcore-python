@@ -646,7 +646,7 @@ class StatisticsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UniqueViewersCDN:
-        """Сounts the number of unique viewers of a video entity over CDN.
+        """Counts the number of unique viewers of a video entity over CDN.
 
         It doesn't
         matter what player you used.
@@ -930,7 +930,7 @@ class StatisticsResource(SyncAPIResource):
     ) -> ViewsByHostname:
         """
         Aggregates the number of views, grouping them by "host" domain name the built-in
-        player was embeded to.
+        player was embedded to.
 
         Note. This method operates only on data collected by the built-in HTML player.
         It will not show statistics if you are using another player or viewing in native
@@ -1035,8 +1035,8 @@ class StatisticsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ViewsByReferer:
         """
-        Aggregates the number of views, grouping them by "referer" URL of pages the
-        built-in player was embeded to.
+        Aggregates the number of views, grouping them by "referrer" URL of pages the
+        built-in player was embedded to.
 
         Note. This method operates only on data collected by the built-in HTML player.
         It will not show statistics if you are using another player or viewing in native
@@ -2073,7 +2073,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UniqueViewersCDN:
-        """Сounts the number of unique viewers of a video entity over CDN.
+        """Counts the number of unique viewers of a video entity over CDN.
 
         It doesn't
         matter what player you used.
@@ -2357,7 +2357,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
     ) -> ViewsByHostname:
         """
         Aggregates the number of views, grouping them by "host" domain name the built-in
-        player was embeded to.
+        player was embedded to.
 
         Note. This method operates only on data collected by the built-in HTML player.
         It will not show statistics if you are using another player or viewing in native
@@ -2462,8 +2462,8 @@ class AsyncStatisticsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ViewsByReferer:
         """
-        Aggregates the number of views, grouping them by "referer" URL of pages the
-        built-in player was embeded to.
+        Aggregates the number of views, grouping them by "referrer" URL of pages the
+        built-in player was embedded to.
 
         Note. This method operates only on data collected by the built-in HTML player.
         It will not show statistics if you are using another player or viewing in native

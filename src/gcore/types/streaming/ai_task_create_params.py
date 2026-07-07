@@ -2,17 +2,25 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing import Union
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
-__all__ = ["AITaskCreateParams"]
+__all__ = [
+    "AITaskCreateParams",
+    "AITranscribe",
+    "AIContentmoderationNsfw",
+    "AIContentmoderationHardnudity",
+    "AIContentmoderationSoftnudity",
+    "AIContentmoderationSport",
+]
 
 
-class AITaskCreateParams(TypedDict, total=False):
-    task_name: Required[Literal["transcription", "content-moderation"]]
+class AITranscribe(TypedDict, total=False):
+    task_name: Required[Literal["transcription"]]
     """Name of the task to be performed"""
 
     url: Required[str]
-    """URL to the MP4 file to analyse.
+    """URL to the MP4 file to analyze.
 
     File must be publicly accessible via HTTP/HTTPS.
     """
@@ -136,10 +144,52 @@ class AITaskCreateParams(TypedDict, total=False):
     - 'yor': Yoruba
     """
 
-    category: Literal["sport", "nsfw", "hard_nudity", "soft_nudity"]
-    """Model for analysis (content-moderation only).
+    client_entity_data: str
+    """
+    Meta parameter, designed to store your own extra information about a video
+    entity: video source, video id, etc. It is not used in any way in video
+    processing.
 
-    Determines what exactly needs to be found in the video.
+    For example, if an AI-task was created automatically when you uploaded a video
+    with the AI auto-processing option (transcribing, translation), then the ID of
+    the associated video for which the task was performed will be explicitly
+    indicated here.
+    """
+
+    client_user_id: str
+    """Meta parameter, designed to store your own identifier.
+
+    Can be used by you to tag requests from different end-users. It is not used in
+    any way in video processing.
+    """
+
+    subtitles_language: str
+    """
+    Indicates which language it is clearly necessary to translate into. If this is
+    not set, the original language will be used from attribute "audio_language".
+
+    Please note that:
+
+    - transcription into the original language is a free procedure,
+    - and translation from the original language into any other languages is a
+      "translation" procedure and is paid. More details in
+      [POST /streaming/ai/tasks](/api-reference/streaming/ai/create-ai-task).
+      Language is set by 3-letter language code according to ISO-639-2
+      (bibliographic code).
+    """
+
+
+class AIContentmoderationNsfw(TypedDict, total=False):
+    category: Required[Literal["nsfw"]]
+    """AI content moderation with NSFW detection algorithm"""
+
+    task_name: Required[Literal["content-moderation"]]
+    """Name of the task to be performed"""
+
+    url: Required[str]
+    """URL to the MP4 file to analyze.
+
+    File must be publicly accessible via HTTP/HTTPS.
     """
 
     client_entity_data: str
@@ -161,17 +211,148 @@ class AITaskCreateParams(TypedDict, total=False):
     any way in video processing.
     """
 
-    subtitles_language: str
-    """
-    Indicates which language it is clearly necessary to translate into. If this is
-    not set, the original language will be used from attribute "audio_language".
 
-    Please note that:
+class AIContentmoderationHardnudity(TypedDict, total=False):
+    category: Required[Literal["hard_nudity"]]
+    """AI content moderation with "hard_nudity" algorithm"""
 
-    - transcription into the original language is a free procedure,
-    - and translation from the original language into any other languages is a
-      "translation" procedure and is paid. More details in
-      [POST /streaming/ai/tasks#transcribe](/api-reference/streaming/ai/create-ai-asr-task).
-      Language is set by 3-letter language code according to ISO-639-2
-      (bibliographic code).
+    task_name: Required[Literal["content-moderation"]]
+    """Name of the task to be performed"""
+
+    url: Required[str]
+    """URL to the MP4 file to analyze.
+
+    File must be publicly accessible via HTTP/HTTPS.
     """
+
+    client_entity_data: str
+    """
+    Meta parameter, designed to store your own extra information about a video
+    entity: video source, video id, etc. It is not used in any way in video
+    processing.
+
+    For example, if an AI-task was created automatically when you uploaded a video
+    with the AI auto-processing option (nudity detection, etc), then the ID of the
+    associated video for which the task was performed will be explicitly indicated
+    here.
+    """
+
+    client_user_id: str
+    """Meta parameter, designed to store your own identifier.
+
+    Can be used by you to tag requests from different end-users. It is not used in
+    any way in video processing.
+    """
+
+    stop_objects: Literal[
+        "ANUS_EXPOSED",
+        "BUTTOCKS_EXPOSED",
+        "FEMALE_BREAST_EXPOSED",
+        "FEMALE_GENITALIA_EXPOSED",
+        "MALE_BREAST_EXPOSED",
+        "MALE_GENITALIA_EXPOSED",
+    ]
+    """
+    Comma separated objects, and probabilities, that will cause the processing to
+    stop immediately after finding.
+    """
+
+
+class AIContentmoderationSoftnudity(TypedDict, total=False):
+    category: Required[Literal["soft_nudity"]]
+    """AI content moderation with "soft_nudity" algorithm"""
+
+    task_name: Required[Literal["content-moderation"]]
+    """Name of the task to be performed"""
+
+    url: Required[str]
+    """URL to the MP4 file to analyze.
+
+    File must be publicly accessible via HTTP/HTTPS.
+    """
+
+    client_entity_data: str
+    """
+    Meta parameter, designed to store your own extra information about a video
+    entity: video source, video id, etc. It is not used in any way in video
+    processing.
+
+    For example, if an AI-task was created automatically when you uploaded a video
+    with the AI auto-processing option (nudity detection, etc), then the ID of the
+    associated video for which the task was performed will be explicitly indicated
+    here.
+    """
+
+    client_user_id: str
+    """Meta parameter, designed to store your own identifier.
+
+    Can be used by you to tag requests from different end-users. It is not used in
+    any way in video processing.
+    """
+
+    stop_objects: Literal[
+        "ANUS_COVERED",
+        "ANUS_EXPOSED",
+        "ARMPITS_COVERED",
+        "ARMPITS_EXPOSED",
+        "BELLY_COVERED",
+        "BELLY_EXPOSED",
+        "BUTTOCKS_COVERED",
+        "BUTTOCKS_EXPOSED",
+        "FACE_FEMALE",
+        "FACE_MALE",
+        "FEET_COVERED",
+        "FEET_EXPOSED",
+        "FEMALE_BREAST_COVERED",
+        "FEMALE_BREAST_EXPOSED",
+        "FEMALE_GENITALIA_COVERED",
+        "FEMALE_GENITALIA_EXPOSED",
+        "MALE_BREAST_EXPOSED",
+        "MALE_GENITALIA_EXPOSED",
+    ]
+    """
+    Comma separated objects, and probabilities, that will cause the processing to
+    stop immediately after finding.
+    """
+
+
+class AIContentmoderationSport(TypedDict, total=False):
+    category: Required[Literal["sport"]]
+    """AI content moderation with types of sports activity detection"""
+
+    task_name: Required[Literal["content-moderation"]]
+    """Name of the task to be performed"""
+
+    url: Required[str]
+    """URL to the MP4 file to analyze.
+
+    File must be publicly accessible via HTTP/HTTPS.
+    """
+
+    client_entity_data: str
+    """
+    Meta parameter, designed to store your own extra information about a video
+    entity: video source, video id, etc. It is not used in any way in video
+    processing.
+
+    For example, if an AI-task was created automatically when you uploaded a video
+    with the AI auto-processing option (nudity detection, etc), then the ID of the
+    associated video for which the task was performed will be explicitly indicated
+    here.
+    """
+
+    client_user_id: str
+    """Meta parameter, designed to store your own identifier.
+
+    Can be used by you to tag requests from different end-users. It is not used in
+    any way in video processing.
+    """
+
+
+AITaskCreateParams: TypeAlias = Union[
+    AITranscribe,
+    AIContentmoderationNsfw,
+    AIContentmoderationHardnudity,
+    AIContentmoderationSoftnudity,
+    AIContentmoderationSport,
+]

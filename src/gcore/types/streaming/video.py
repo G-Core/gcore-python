@@ -29,7 +29,7 @@ class ConvertedVideo(BaseModel):
     **Download methods**
 
     For each converted video, additional download endpoints are available under
-    `converted_videos`/`mp4_urls`. An MP4 download enpoints:
+    `converted_videos`/`mp4_urls`. An MP4 download endpoints:
 
     1. `/videos/{client_id}_{slug}/{filename}.mp4`
     2. `/videos/{client_id}_{slug}/{filename}.mp4/download`
@@ -168,7 +168,7 @@ class Video(BaseModel):
     ad_id: Optional[int] = None
     """ID of ad that should be shown.
 
-    If empty the default ad is show. If there is no default ad, no ad is shownю
+    If empty the default ad is show. If there is no default ad, no ad is shown.
     """
 
     cdn_views: Optional[int] = None
@@ -189,6 +189,9 @@ class Video(BaseModel):
 
     converted_videos: Optional[List[ConvertedVideo]] = None
     """Array of data about each transcoded quality"""
+
+    created_at: Optional[str] = None
+    """Time of creation. Datetime in ISO 8601 format."""
 
     custom_iframe_url: Optional[str] = None
     """Custom URL of Iframe for video player to be used in share panel in player.
@@ -233,6 +236,9 @@ class Video(BaseModel):
 
     description: Optional[str] = None
     """Additional text field for video description"""
+
+    directory_id: Optional[int] = None
+    """ID of the directory where the video is stored."""
 
     duration: Optional[int] = None
     """Video duration in milliseconds.
@@ -325,8 +331,7 @@ class Video(BaseModel):
 
     <iframe width="100%" height="100%" src="https://player.gvideo.co/videos/2675_FnlHXwA16ZMxmUr" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-
-    There are some link modificators you can specify and add manually:
+    There are some link modifiers you can specify and add manually:
 
     - ?`no_low_latency` – player is forced to use non-low-latency streams HLS
       MPEG-TS, instead of MPEG-DASH CMAF or HLS/LL-HLS CMAF.
@@ -411,6 +416,13 @@ class Video(BaseModel):
     height.
     """
 
+    priority: Optional[int] = None
+    """This value indicates the priority with which the transcoding task was assigned.
+
+    After transcoding is complete, this value no longer has any effect and simply
+    displays historical data.
+    """
+
     projection: Optional[str] = None
     """Regulates the video format:
 
@@ -420,6 +432,24 @@ class Video(BaseModel):
     - **vr360tb** — plays the video in 3D 360 degree mode Top-Bottom.
 
     Default is regular
+    """
+
+    quality_set_id: Optional[int] = None
+    """Custom quality set ID used for transcoding."""
+
+    record_type: Optional[Literal["origin", "transcoded"]] = None
+    """Method of recording a stream.
+
+    Specifies the source from which the stream will be recorded: original or
+    transcoded.
+
+    Types:
+
+    - null – indicates that the video was uploaded in the standard way (and not
+      recorded from a stream).
+    - "origin" – To record RMTP/SRT/etc original clean media source.
+    - "transcoded" – To record the output transcoded version of the stream,
+      including overlays, texts, logos, etc. additional media layers.
     """
 
     recording_started_at: Optional[str] = None
@@ -515,6 +545,9 @@ class Video(BaseModel):
 
     stream_id: Optional[int] = None
     """If the video was saved from a stream, then ID of that stream is saved here"""
+
+    updated_at: Optional[str] = None
+    """Time of last update of the video entity. Datetime in ISO 8601 format."""
 
     views: Optional[int] = None
     """

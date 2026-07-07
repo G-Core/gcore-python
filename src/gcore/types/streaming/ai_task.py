@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Union, Optional
+from datetime import datetime
 from typing_extensions import Literal, TypeAlias
 
 from ..._models import BaseModel
@@ -9,7 +10,18 @@ from .ai_contentmoderation_sport import AIContentmoderationSport
 from .ai_contentmoderation_hardnudity import AIContentmoderationHardnudity
 from .ai_contentmoderation_softnudity import AIContentmoderationSoftnudity
 
-__all__ = ["AITask", "TaskData", "TaskDataAITranscribe"]
+__all__ = ["AITask", "ProcessingTime", "TaskData", "TaskDataAITranscribe"]
+
+
+class ProcessingTime(BaseModel):
+    completed_at: Optional[datetime] = None
+    """Video processing end time. Format is date time in ISO 8601"""
+
+    started_at: Optional[datetime] = None
+    """Video processing start time. Format is date time in ISO 8601"""
+
+    total_time_sec: Optional[float] = None
+    """Duration of video processing in seconds"""
 
 
 class TaskDataAITranscribe(BaseModel):
@@ -17,7 +29,7 @@ class TaskDataAITranscribe(BaseModel):
     """Name of the task to be performed"""
 
     url: str
-    """URL to the MP4 file to analyse.
+    """URL to the MP4 file to analyze.
 
     File must be publicly accessible via HTTP/HTTPS.
     """
@@ -148,10 +160,13 @@ class TaskDataAITranscribe(BaseModel):
     processing.
 
     For example, if an AI-task was created automatically when you uploaded a video
-    with the AI auto-processing option (transcribing, translationing), then the ID
-    of the associated video for which the task was performed will be explicitly
+    with the AI auto-processing option (transcribing, translation), then the ID of
+    the associated video for which the task was performed will be explicitly
     indicated here.
     """
+
+    client_id: Optional[int] = None
+    """Client ID associated with the task."""
 
     client_user_id: Optional[str] = None
     """Meta parameter, designed to store your own identifier.
@@ -170,7 +185,7 @@ class TaskDataAITranscribe(BaseModel):
     - transcription into the original language is a free procedure,
     - and translation from the original language into any other languages is a
       "translation" procedure and is paid. More details in
-      [POST /streaming/ai/tasks#transcribe](/api-reference/streaming/ai/create-ai-asr-task).
+      [POST /streaming/ai/tasks](/api-reference/streaming/ai/create-ai-task).
       Language is set by 3-letter language code according to ISO-639-2
       (bibliographic code).
     """
@@ -186,25 +201,27 @@ TaskData: TypeAlias = Union[
 
 
 class AITask(BaseModel):
-    progress: Optional[int] = None
+    processing_time: ProcessingTime
+
+    progress: int
     """Percentage of task completed.
 
     A value greater than 0 means that it has been taken into operation and is being
     processed.
     """
 
-    status: Optional[Literal["PENDING", "STARTED", "SUCCESS", "FAILURE", "REVOKED", "RETRY"]] = None
-    """Status of processing the AI task. See GET /ai/results method for description."""
+    status: Literal["PENDING", "STARTED", "SUCCESS", "FAILURE", "RECEIVED", "REVOKED", "RETRY"]
+    """Status of processing the AI task.
 
-    task_data: Optional[TaskData] = None
+    See GET /ai/tasks/{`task_id`} method for description.
+    """
+
+    task_data: TaskData
     """
     The object will correspond to the task type that was specified in the original
     request. There will be one object for transcription, another for searching for
     nudity, and so on.
     """
 
-    task_id: Optional[str] = None
+    task_id: str
     """ID of the AI task"""
-
-    task_name: Optional[Literal["content-moderation", "transcription"]] = None
-    """Type of AI task"""

@@ -13,7 +13,7 @@ class Playlist(BaseModel):
     """Enables/Disables playlist. Has two possible values:
 
     - true – Playlist can be played.
-    - false – Playlist is disabled. No broadcast while it's desabled.
+    - false – Playlist is disabled. No broadcast while it's disabled.
     """
 
     ad_id: Optional[int] = None

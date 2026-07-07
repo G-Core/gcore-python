@@ -5,7 +5,7 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["DirectoryVideo", "ConvertedVideo"]
+__all__ = ["VideoListResponse", "ConvertedVideo"]
 
 
 class ConvertedVideo(BaseModel):
@@ -161,7 +161,7 @@ class ConvertedVideo(BaseModel):
     """
 
 
-class DirectoryVideo(BaseModel):
+class VideoListResponse(BaseModel):
     id: Optional[int] = None
     """Video ID"""
 
@@ -317,9 +317,6 @@ class DirectoryVideo(BaseModel):
     in any manner or form. It is strongly advised not to store them in your database
     or cache them on your end.
     """
-
-    item_type: Optional[Literal["Video"]] = None
-    """Type of the entity: directory, or video"""
 
     name: Optional[str] = None
     """Title of the video.

@@ -64,7 +64,7 @@ class OverlaysResource(SyncAPIResource):
 
         There are can be more that 1 overlay over a stream, which are small or stretched
         over full frame. Overlays can have transparent areas. Frequency of update is 1
-        FPS. Automatic size scaling for Adaptative Bitrate qualities is applied.
+        FPS. Automatic size scaling for Adaptive Bitrate qualities is applied.
 
         ![HTML Overlays](https://demo-files.gvideo.io/apidocs/coffee_run_overlays.gif)
 
@@ -112,7 +112,7 @@ class OverlaysResource(SyncAPIResource):
         - If feature is disabled, you will receive HTTP code: 422. Error text: Feature
           disabled. Contact support to enable.
 
-        Please, pay attention to the content of HTML widges you use. If you don't trust
+        Please, pay attention to the content of HTML widgets you use. If you don't trust
         them, then you shouldn't use them, as their result will be displayed in live
         stream to all users.
 
@@ -375,7 +375,7 @@ class AsyncOverlaysResource(AsyncAPIResource):
 
         There are can be more that 1 overlay over a stream, which are small or stretched
         over full frame. Overlays can have transparent areas. Frequency of update is 1
-        FPS. Automatic size scaling for Adaptative Bitrate qualities is applied.
+        FPS. Automatic size scaling for Adaptive Bitrate qualities is applied.
 
         ![HTML Overlays](https://demo-files.gvideo.io/apidocs/coffee_run_overlays.gif)
 
@@ -423,7 +423,7 @@ class AsyncOverlaysResource(AsyncAPIResource):
         - If feature is disabled, you will receive HTTP code: 422. Error text: Feature
           disabled. Contact support to enable.
 
-        Please, pay attention to the content of HTML widges you use. If you don't trust
+        Please, pay attention to the content of HTML widgets you use. If you don't trust
         them, then you shouldn't use them, as their result will be displayed in live
         stream to all users.
 

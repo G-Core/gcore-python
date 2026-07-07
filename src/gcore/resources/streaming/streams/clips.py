@@ -127,7 +127,7 @@ class ClipsResource(SyncAPIResource):
                 last key frames of already stored fragment in DVR, this way -1 and +1 chunks
                 can be added to left and right.
 
-              Duration of cutted segment cannot be greater than DVR duration for this stream.
+              Duration of cut segment cannot be greater than DVR duration for this stream.
               Therefore, to change the maximum, use "dvr_duration" parameter of this stream.
 
           expiration: Expire time of the clip via a public link.
@@ -342,7 +342,7 @@ class AsyncClipsResource(AsyncAPIResource):
                 last key frames of already stored fragment in DVR, this way -1 and +1 chunks
                 can be added to left and right.
 
-              Duration of cutted segment cannot be greater than DVR duration for this stream.
+              Duration of cut segment cannot be greater than DVR duration for this stream.
               Therefore, to change the maximum, use "dvr_duration" parameter of this stream.
 
           expiration: Expire time of the clip via a public link.

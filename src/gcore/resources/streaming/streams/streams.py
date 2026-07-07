@@ -158,8 +158,8 @@ class StreamsResource(SyncAPIResource):
               - true – stream can be processed
               - false – stream is off, and cannot be processed
 
-          auto_record: Enables autotomatic recording of the stream when it started. So you don't need
-              to call recording manually.
+          auto_record: Enables automatic recording of the stream when it started. So you don't need to
+              call recording manually.
 
               Result of recording is automatically added to video hosting. For details see the
               /streams/`start_recording` method and in knowledge base
@@ -231,7 +231,7 @@ class StreamsResource(SyncAPIResource):
 
               Types:
 
-              - "origin" – To record RMTP/SRT/etc original clean media source.
+              - "origin" – To record RTMP/SRT/etc original clean media source.
               - "transcoded" – To record the output transcoded version of the stream,
                 including overlays, texts, logos, etc. additional media layers.
 
@@ -252,7 +252,7 @@ class StreamsResource(SyncAPIResource):
               organize a backup plan. In this case, the specified addresses will be selected
               one by one using round robin scheduling. If the first address does not respond,
               then the next one in the list will be automatically requested, returning to the
-              first and so on in a circle. Also, if the sucessfully working stream stops
+              first and so on in a circle. Also, if the successfully working stream stops
               sending data, then the next one will be selected according to the same scheme.
 
               After 2 hours of inactivity of your original stream, the system stops PULL
@@ -485,6 +485,9 @@ class StreamsResource(SyncAPIResource):
         - `active`: Whether the stream is enabled in your account.
         - `live`: `true` if the primary ingest point is receiving a signal.
         - Backup fields like `backup_live` show if the redundant ingest is active.
+        - `active_ingest_region_primary` and `active_ingest_region_backup`: actual
+          ingest regions currently receiving the primary and backup streams. These
+          values are `null` when the corresponding ingest is not active.
 
         Ingestion URLs The response includes URLs for various ingestion protocols to
         start your broadcast:
@@ -756,8 +759,8 @@ class AsyncStreamsResource(AsyncAPIResource):
               - true – stream can be processed
               - false – stream is off, and cannot be processed
 
-          auto_record: Enables autotomatic recording of the stream when it started. So you don't need
-              to call recording manually.
+          auto_record: Enables automatic recording of the stream when it started. So you don't need to
+              call recording manually.
 
               Result of recording is automatically added to video hosting. For details see the
               /streams/`start_recording` method and in knowledge base
@@ -829,7 +832,7 @@ class AsyncStreamsResource(AsyncAPIResource):
 
               Types:
 
-              - "origin" – To record RMTP/SRT/etc original clean media source.
+              - "origin" – To record RTMP/SRT/etc original clean media source.
               - "transcoded" – To record the output transcoded version of the stream,
                 including overlays, texts, logos, etc. additional media layers.
 
@@ -850,7 +853,7 @@ class AsyncStreamsResource(AsyncAPIResource):
               organize a backup plan. In this case, the specified addresses will be selected
               one by one using round robin scheduling. If the first address does not respond,
               then the next one in the list will be automatically requested, returning to the
-              first and so on in a circle. Also, if the sucessfully working stream stops
+              first and so on in a circle. Also, if the successfully working stream stops
               sending data, then the next one will be selected according to the same scheme.
 
               After 2 hours of inactivity of your original stream, the system stops PULL
@@ -1083,6 +1086,9 @@ class AsyncStreamsResource(AsyncAPIResource):
         - `active`: Whether the stream is enabled in your account.
         - `live`: `true` if the primary ingest point is receiving a signal.
         - Backup fields like `backup_live` show if the redundant ingest is active.
+        - `active_ingest_region_primary` and `active_ingest_region_backup`: actual
+          ingest regions currently receiving the primary and backup streams. These
+          values are `null` when the corresponding ingest is not active.
 
         Ingestion URLs The response includes URLs for various ingestion protocols to
         start your broadcast:

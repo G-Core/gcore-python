@@ -9,14 +9,14 @@ __all__ = ["AIContentmoderationSoftnudity"]
 
 
 class AIContentmoderationSoftnudity(BaseModel):
-    category: Literal["soft_nudity", "sport", "nsfw", "hard_nudity"]
+    category: Literal["soft_nudity"]
     """AI content moderation with "soft_nudity" algorithm"""
 
     task_name: Literal["content-moderation"]
     """Name of the task to be performed"""
 
     url: str
-    """URL to the MP4 file to analyse.
+    """URL to the MP4 file to analyze.
 
     File must be publicly accessible via HTTP/HTTPS.
     """
@@ -32,6 +32,9 @@ class AIContentmoderationSoftnudity(BaseModel):
     associated video for which the task was performed will be explicitly indicated
     here.
     """
+
+    client_id: Optional[int] = None
+    """Client ID associated with the task."""
 
     client_user_id: Optional[str] = None
     """Meta parameter, designed to store your own identifier.
@@ -64,5 +67,5 @@ class AIContentmoderationSoftnudity(BaseModel):
     ] = None
     """
     Comma separated objects, and probabilities, that will cause the processing to
-    stop immediatelly after finding.
+    stop immediately after finding.
     """

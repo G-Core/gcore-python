@@ -13,7 +13,7 @@ class PlaylistUpdateParams(TypedDict, total=False):
     """Enables/Disables playlist. Has two possible values:
 
     - true – Playlist can be played.
-    - false – Playlist is disabled. No broadcast while it's desabled.
+    - false – Playlist is disabled. No broadcast while it's disabled.
     """
 
     ad_id: int
