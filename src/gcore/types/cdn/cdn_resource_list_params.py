@@ -90,6 +90,14 @@ class CDNResourceListParams(TypedDict, total=False):
     origin_group: Annotated[int, PropertyInfo(alias="originGroup")]
     """Origin group ID."""
 
+    origin_group_in: Annotated[str, PropertyInfo(alias="originGroup__in")]
+    """Origin group IDs. Values should be separated by a comma.
+
+    Example:
+
+    - ?`originGroup__in`=1,2,3
+    """
+
     origin_protocol: Annotated[Literal["HTTP", "HTTPS", "MATCH"], PropertyInfo(alias="originProtocol")]
     """Protocol used by CDN servers to request content from an origin source."""
 

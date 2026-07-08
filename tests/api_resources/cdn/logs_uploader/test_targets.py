@@ -24,13 +24,7 @@ class TestTargets:
     @parametrize
     def test_method_create(self, client: Gcore) -> None:
         target = client.cdn.logs_uploader.targets.create(
-            config={
-                "access_key_id": "access_key_id",
-                "bucket_name": "bucket_name",
-                "endpoint": "endpoint",
-                "region": "region",
-                "secret_access_key": "secret_access_key",
-            },
+            config={},
             storage_type="s3_gcore",
         )
         assert_matches_type(LogsUploaderTarget, target, path=["response"])
@@ -41,10 +35,10 @@ class TestTargets:
             config={
                 "access_key_id": "access_key_id",
                 "bucket_name": "bucket_name",
+                "directory": "directory",
                 "endpoint": "endpoint",
                 "region": "region",
                 "secret_access_key": "secret_access_key",
-                "directory": "directory",
                 "use_path_style": True,
             },
             storage_type="s3_gcore",
@@ -56,13 +50,7 @@ class TestTargets:
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
         response = client.cdn.logs_uploader.targets.with_raw_response.create(
-            config={
-                "access_key_id": "access_key_id",
-                "bucket_name": "bucket_name",
-                "endpoint": "endpoint",
-                "region": "region",
-                "secret_access_key": "secret_access_key",
-            },
+            config={},
             storage_type="s3_gcore",
         )
 
@@ -74,13 +62,7 @@ class TestTargets:
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
         with client.cdn.logs_uploader.targets.with_streaming_response.create(
-            config={
-                "access_key_id": "access_key_id",
-                "bucket_name": "bucket_name",
-                "endpoint": "endpoint",
-                "region": "region",
-                "secret_access_key": "secret_access_key",
-            },
+            config={},
             storage_type="s3_gcore",
         ) as response:
             assert not response.is_closed
@@ -105,10 +87,10 @@ class TestTargets:
             config={
                 "access_key_id": "access_key_id",
                 "bucket_name": "bucket_name",
+                "directory": "directory",
                 "endpoint": "endpoint",
                 "region": "region",
                 "secret_access_key": "secret_access_key",
-                "directory": "directory",
                 "use_path_style": True,
             },
             description="description",
@@ -246,13 +228,7 @@ class TestTargets:
     def test_method_replace(self, client: Gcore) -> None:
         target = client.cdn.logs_uploader.targets.replace(
             id=0,
-            config={
-                "access_key_id": "access_key_id",
-                "bucket_name": "bucket_name",
-                "endpoint": "endpoint",
-                "region": "region",
-                "secret_access_key": "secret_access_key",
-            },
+            config={},
             storage_type="s3_gcore",
         )
         assert_matches_type(LogsUploaderTarget, target, path=["response"])
@@ -264,10 +240,10 @@ class TestTargets:
             config={
                 "access_key_id": "access_key_id",
                 "bucket_name": "bucket_name",
+                "directory": "directory",
                 "endpoint": "endpoint",
                 "region": "region",
                 "secret_access_key": "secret_access_key",
-                "directory": "directory",
                 "use_path_style": True,
             },
             storage_type="s3_gcore",
@@ -280,13 +256,7 @@ class TestTargets:
     def test_raw_response_replace(self, client: Gcore) -> None:
         response = client.cdn.logs_uploader.targets.with_raw_response.replace(
             id=0,
-            config={
-                "access_key_id": "access_key_id",
-                "bucket_name": "bucket_name",
-                "endpoint": "endpoint",
-                "region": "region",
-                "secret_access_key": "secret_access_key",
-            },
+            config={},
             storage_type="s3_gcore",
         )
 
@@ -299,13 +269,7 @@ class TestTargets:
     def test_streaming_response_replace(self, client: Gcore) -> None:
         with client.cdn.logs_uploader.targets.with_streaming_response.replace(
             id=0,
-            config={
-                "access_key_id": "access_key_id",
-                "bucket_name": "bucket_name",
-                "endpoint": "endpoint",
-                "region": "region",
-                "secret_access_key": "secret_access_key",
-            },
+            config={},
             storage_type="s3_gcore",
         ) as response:
             assert not response.is_closed
@@ -356,13 +320,7 @@ class TestAsyncTargets:
     @parametrize
     async def test_method_create(self, async_client: AsyncGcore) -> None:
         target = await async_client.cdn.logs_uploader.targets.create(
-            config={
-                "access_key_id": "access_key_id",
-                "bucket_name": "bucket_name",
-                "endpoint": "endpoint",
-                "region": "region",
-                "secret_access_key": "secret_access_key",
-            },
+            config={},
             storage_type="s3_gcore",
         )
         assert_matches_type(LogsUploaderTarget, target, path=["response"])
@@ -373,10 +331,10 @@ class TestAsyncTargets:
             config={
                 "access_key_id": "access_key_id",
                 "bucket_name": "bucket_name",
+                "directory": "directory",
                 "endpoint": "endpoint",
                 "region": "region",
                 "secret_access_key": "secret_access_key",
-                "directory": "directory",
                 "use_path_style": True,
             },
             storage_type="s3_gcore",
@@ -388,13 +346,7 @@ class TestAsyncTargets:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
         response = await async_client.cdn.logs_uploader.targets.with_raw_response.create(
-            config={
-                "access_key_id": "access_key_id",
-                "bucket_name": "bucket_name",
-                "endpoint": "endpoint",
-                "region": "region",
-                "secret_access_key": "secret_access_key",
-            },
+            config={},
             storage_type="s3_gcore",
         )
 
@@ -406,13 +358,7 @@ class TestAsyncTargets:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
         async with async_client.cdn.logs_uploader.targets.with_streaming_response.create(
-            config={
-                "access_key_id": "access_key_id",
-                "bucket_name": "bucket_name",
-                "endpoint": "endpoint",
-                "region": "region",
-                "secret_access_key": "secret_access_key",
-            },
+            config={},
             storage_type="s3_gcore",
         ) as response:
             assert not response.is_closed
@@ -437,10 +383,10 @@ class TestAsyncTargets:
             config={
                 "access_key_id": "access_key_id",
                 "bucket_name": "bucket_name",
+                "directory": "directory",
                 "endpoint": "endpoint",
                 "region": "region",
                 "secret_access_key": "secret_access_key",
-                "directory": "directory",
                 "use_path_style": True,
             },
             description="description",
@@ -578,13 +524,7 @@ class TestAsyncTargets:
     async def test_method_replace(self, async_client: AsyncGcore) -> None:
         target = await async_client.cdn.logs_uploader.targets.replace(
             id=0,
-            config={
-                "access_key_id": "access_key_id",
-                "bucket_name": "bucket_name",
-                "endpoint": "endpoint",
-                "region": "region",
-                "secret_access_key": "secret_access_key",
-            },
+            config={},
             storage_type="s3_gcore",
         )
         assert_matches_type(LogsUploaderTarget, target, path=["response"])
@@ -596,10 +536,10 @@ class TestAsyncTargets:
             config={
                 "access_key_id": "access_key_id",
                 "bucket_name": "bucket_name",
+                "directory": "directory",
                 "endpoint": "endpoint",
                 "region": "region",
                 "secret_access_key": "secret_access_key",
-                "directory": "directory",
                 "use_path_style": True,
             },
             storage_type="s3_gcore",
@@ -612,13 +552,7 @@ class TestAsyncTargets:
     async def test_raw_response_replace(self, async_client: AsyncGcore) -> None:
         response = await async_client.cdn.logs_uploader.targets.with_raw_response.replace(
             id=0,
-            config={
-                "access_key_id": "access_key_id",
-                "bucket_name": "bucket_name",
-                "endpoint": "endpoint",
-                "region": "region",
-                "secret_access_key": "secret_access_key",
-            },
+            config={},
             storage_type="s3_gcore",
         )
 
@@ -631,13 +565,7 @@ class TestAsyncTargets:
     async def test_streaming_response_replace(self, async_client: AsyncGcore) -> None:
         async with async_client.cdn.logs_uploader.targets.with_streaming_response.replace(
             id=0,
-            config={
-                "access_key_id": "access_key_id",
-                "bucket_name": "bucket_name",
-                "endpoint": "endpoint",
-                "region": "region",
-                "secret_access_key": "secret_access_key",
-            },
+            config={},
             storage_type="s3_gcore",
         ) as response:
             assert not response.is_closed

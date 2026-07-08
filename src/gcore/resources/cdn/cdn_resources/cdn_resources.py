@@ -373,6 +373,7 @@ class CDNResourcesResource(SyncAPIResource):
         name: str | Omit = omit,
         offset: int | Omit = omit,
         origin_group: int | Omit = omit,
+        origin_group_in: str | Omit = omit,
         origin_protocol: Literal["HTTP", "HTTPS", "MATCH"] | Omit = omit,
         rules: str | Omit = omit,
         secondary_hostnames: str | Omit = omit,
@@ -449,6 +450,12 @@ class CDNResourcesResource(SyncAPIResource):
           offset: Number of items to skip from the beginning of the list.
 
           origin_group: Origin group ID.
+
+          origin_group_in: Origin group IDs. Values should be separated by a comma.
+
+              Example:
+
+              - ?`originGroup__in`=1,2,3
 
           origin_protocol: Protocol used by CDN servers to request content from an origin source.
 
@@ -537,6 +544,7 @@ class CDNResourcesResource(SyncAPIResource):
                         "name": name,
                         "offset": offset,
                         "origin_group": origin_group,
+                        "origin_group_in": origin_group_in,
                         "origin_protocol": origin_protocol,
                         "rules": rules,
                         "secondary_hostnames": secondary_hostnames,
@@ -1347,6 +1355,7 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
         name: str | Omit = omit,
         offset: int | Omit = omit,
         origin_group: int | Omit = omit,
+        origin_group_in: str | Omit = omit,
         origin_protocol: Literal["HTTP", "HTTPS", "MATCH"] | Omit = omit,
         rules: str | Omit = omit,
         secondary_hostnames: str | Omit = omit,
@@ -1423,6 +1432,12 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
           offset: Number of items to skip from the beginning of the list.
 
           origin_group: Origin group ID.
+
+          origin_group_in: Origin group IDs. Values should be separated by a comma.
+
+              Example:
+
+              - ?`originGroup__in`=1,2,3
 
           origin_protocol: Protocol used by CDN servers to request content from an origin source.
 
@@ -1511,6 +1526,7 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
                         "name": name,
                         "offset": offset,
                         "origin_group": origin_group,
+                        "origin_group_in": origin_group_in,
                         "origin_protocol": origin_protocol,
                         "rules": rules,
                         "secondary_hostnames": secondary_hostnames,

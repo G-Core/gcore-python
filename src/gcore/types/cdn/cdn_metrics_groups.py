@@ -1,13 +1,8 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
-
-from ..._models import BaseModel
-from .cdn_metrics_values import CDNMetricsValues
+from typing import Dict
+from typing_extensions import TypeAlias
 
 __all__ = ["CDNMetricsGroups"]
 
-
-class CDNMetricsGroups(BaseModel):
-    group: Optional[CDNMetricsValues] = None
-    """List of requested metrics sorted by timestamp in ascending order."""
+CDNMetricsGroups: TypeAlias = Dict[str, object]

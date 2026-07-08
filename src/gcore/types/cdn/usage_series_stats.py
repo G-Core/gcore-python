@@ -9,6 +9,9 @@ __all__ = ["UsageSeriesStats", "UsageSeriesStatItem"]
 
 
 class UsageSeriesStatItem(BaseModel):
+    id: Optional[int] = None
+    """Identifier of the paid feature usage record."""
+
     active_from: Optional[str] = None
     """Date and time when paid feature was enabled (ISO 8601/RFC 3339 format, UTC.)"""
 

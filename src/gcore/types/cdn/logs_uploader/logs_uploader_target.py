@@ -83,11 +83,9 @@ class ConfigBaseFtpConfig(BaseModel):
 
 
 class ConfigSftpConfigResponse(BaseModel):
-    hostname: str
-
-    user: str
-
     directory: Optional[str] = None
+
+    hostname: Optional[str] = None
 
     key_passphrase: Optional[str] = None
 
@@ -96,6 +94,8 @@ class ConfigSftpConfigResponse(BaseModel):
     private_key: Optional[str] = None
 
     timeout_seconds: Optional[int] = None
+
+    user: Optional[str] = None
 
 
 class ConfigHTTPConfigResponseAppendResponseAction(BaseModel):

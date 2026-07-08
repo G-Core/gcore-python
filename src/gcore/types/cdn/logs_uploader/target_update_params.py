@@ -9,7 +9,7 @@ __all__ = [
     "TargetUpdateParams",
     "Config",
     "ConfigS3GcoreConfig",
-    "ConfigS3AmazonConfig",
+    "ConfigBaseS3Config",
     "ConfigS3OssConfig",
     "ConfigS3OtherConfig",
     "ConfigS3V1Config",
@@ -52,22 +52,22 @@ class TargetUpdateParams(TypedDict, total=False):
 
 
 class ConfigS3GcoreConfig(TypedDict, total=False):
-    access_key_id: Required[str]
+    access_key_id: str
 
-    bucket_name: Required[str]
-
-    endpoint: Required[str]
-
-    region: Required[str]
-
-    secret_access_key: Required[str]
+    bucket_name: str
 
     directory: Optional[str]
+
+    endpoint: str
+
+    region: str
+
+    secret_access_key: str
 
     use_path_style: bool
 
 
-class ConfigS3AmazonConfig(TypedDict, total=False):
+class ConfigBaseS3Config(TypedDict, total=False):
     access_key_id: Required[str]
 
     bucket_name: Required[str]
@@ -80,11 +80,9 @@ class ConfigS3AmazonConfig(TypedDict, total=False):
 
 
 class ConfigS3OssConfig(TypedDict, total=False):
-    access_key_id: Required[str]
+    access_key_id: str
 
-    bucket_name: Required[str]
-
-    secret_access_key: Required[str]
+    bucket_name: str
 
     directory: Optional[str]
 
@@ -92,57 +90,57 @@ class ConfigS3OssConfig(TypedDict, total=False):
 
     region: Optional[str]
 
+    secret_access_key: str
+
 
 class ConfigS3OtherConfig(TypedDict, total=False):
-    access_key_id: Required[str]
+    access_key_id: str
 
-    bucket_name: Required[str]
-
-    endpoint: Required[str]
-
-    region: Required[str]
-
-    secret_access_key: Required[str]
+    bucket_name: str
 
     directory: Optional[str]
+
+    endpoint: str
+
+    region: str
+
+    secret_access_key: str
 
     use_path_style: bool
 
 
 class ConfigS3V1Config(TypedDict, total=False):
-    access_key_id: Required[str]
+    access_key_id: str
 
-    bucket_name: Required[str]
-
-    endpoint: Required[str]
-
-    region: Required[str]
-
-    secret_access_key: Required[str]
+    bucket_name: str
 
     directory: Optional[str]
+
+    endpoint: str
+
+    region: str
+
+    secret_access_key: str
 
     use_path_style: bool
 
 
 class ConfigFtpConfig(TypedDict, total=False):
-    hostname: Required[str]
-
-    password: Required[str]
-
-    user: Required[str]
-
     directory: Optional[str]
+
+    hostname: str
+
+    password: str
 
     timeout_seconds: int
 
+    user: str
+
 
 class ConfigSftpConfig(TypedDict, total=False):
-    hostname: Required[str]
-
-    user: Required[str]
-
     directory: Optional[str]
+
+    hostname: str
 
     key_passphrase: Optional[str]
 
@@ -151,6 +149,8 @@ class ConfigSftpConfig(TypedDict, total=False):
     private_key: Optional[str]
 
     timeout_seconds: int
+
+    user: str
 
 
 class ConfigHTTPConfigUploadResponseAction(TypedDict, total=False):
@@ -273,12 +273,12 @@ class ConfigAzureBlobConfigAuth(TypedDict, total=False):
 
 
 class ConfigAzureBlobConfig(TypedDict, total=False):
-    account_name: Required[str]
+    account_name: str
     """Azure Blob Storage account name."""
 
-    auth: Required[ConfigAzureBlobConfigAuth]
+    auth: ConfigAzureBlobConfigAuth
 
-    container_name: Required[str]
+    container_name: str
     """Azure Blob Storage container name."""
 
     directory: Optional[str]
@@ -307,19 +307,7 @@ class ConfigSlsConfigAuth(TypedDict, total=False):
 
 
 class ConfigSlsConfig(TypedDict, total=False):
-    auth: Required[ConfigSlsConfigAuth]
-
-    log_store: Required[str]
-    """SLS logstore name.
-
-    3-36 characters; lowercase letters, digits, hyphens, and underscores.
-    """
-
-    project: Required[str]
-    """SLS project name. 3-63 characters; lowercase letters, digits, and hyphens."""
-
-    region: Required[str]
-    """SLS region (e.g. `eu-central-1`)."""
+    auth: ConfigSlsConfigAuth
 
     endpoint: Optional[str]
     """SLS endpoint.
@@ -327,13 +315,25 @@ class ConfigSlsConfig(TypedDict, total=False):
     Optional — derived from the region as `{region}.log.aliyuncs.com` when omitted.
     """
 
+    log_store: str
+    """SLS logstore name.
+
+    3-36 characters; lowercase letters, digits, hyphens, and underscores.
+    """
+
+    project: str
+    """SLS project name. 3-63 characters; lowercase letters, digits, and hyphens."""
+
+    region: str
+    """SLS region (e.g. `eu-central-1`)."""
+
     topic: Optional[str]
     """Optional SLS topic (0-128 characters)."""
 
 
 Config: TypeAlias = Union[
     ConfigS3GcoreConfig,
-    ConfigS3AmazonConfig,
+    ConfigBaseS3Config,
     ConfigS3OssConfig,
     ConfigS3OtherConfig,
     ConfigS3V1Config,
