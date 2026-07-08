@@ -234,7 +234,7 @@ class RuleTemplatesResource(SyncAPIResource):
     def list(
         self,
         *,
-        limit: int | Omit = omit,
+        limit: int | Omit = 1000,  # CDN API only envelopes when limit>=1; default so list() always paginates
         offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -635,7 +635,7 @@ class AsyncRuleTemplatesResource(AsyncAPIResource):
     def list(
         self,
         *,
-        limit: int | Omit = omit,
+        limit: int | Omit = 1000,  # CDN API only envelopes when limit>=1; default so list() always paginates
         offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

@@ -365,7 +365,7 @@ class CDNResourcesResource(SyncAPIResource):
         deleted: bool | Omit = omit,
         enabled: bool | Omit = omit,
         is_primary: bool | Omit = omit,
-        limit: int | Omit = omit,
+        limit: int | Omit = 1000,  # CDN API only envelopes when limit>=1; default so list() always paginates
         max_created: str | Omit = omit,
         max_updated: str | Omit = omit,
         min_created: str | Omit = omit,
@@ -1339,7 +1339,7 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
         deleted: bool | Omit = omit,
         enabled: bool | Omit = omit,
         is_primary: bool | Omit = omit,
-        limit: int | Omit = omit,
+        limit: int | Omit = 1000,  # CDN API only envelopes when limit>=1; default so list() always paginates
         max_created: str | Omit = omit,
         max_updated: str | Omit = omit,
         min_created: str | Omit = omit,

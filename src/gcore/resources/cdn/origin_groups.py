@@ -426,7 +426,7 @@ class OriginGroupsResource(SyncAPIResource):
         self,
         *,
         has_related_resources: bool | Omit = omit,
-        limit: int | Omit = omit,
+        limit: int | Omit = 1000,  # CDN API only envelopes when limit>=1; default so list() always paginates
         name: str | Omit = omit,
         offset: int | Omit = omit,
         sources: str | Omit = omit,
@@ -1142,7 +1142,7 @@ class AsyncOriginGroupsResource(AsyncAPIResource):
         self,
         *,
         has_related_resources: bool | Omit = omit,
-        limit: int | Omit = omit,
+        limit: int | Omit = 1000,  # CDN API only envelopes when limit>=1; default so list() always paginates
         name: str | Omit = omit,
         offset: int | Omit = omit,
         sources: str | Omit = omit,

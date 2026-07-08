@@ -333,7 +333,7 @@ class CDNResource(SyncAPIResource):
     def list_alibaba_regions(
         self,
         *,
-        limit: int | Omit = omit,
+        limit: int | Omit = 1000,  # CDN API only envelopes when limit>=1; default so list() always paginates
         offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -380,7 +380,7 @@ class CDNResource(SyncAPIResource):
     def list_aws_regions(
         self,
         *,
-        limit: int | Omit = omit,
+        limit: int | Omit = 1000,  # CDN API only envelopes when limit>=1; default so list() always paginates
         offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -429,7 +429,7 @@ class CDNResource(SyncAPIResource):
         *,
         cname: str | Omit = omit,
         from_created: str | Omit = omit,
-        limit: int | Omit = omit,
+        limit: int | Omit = 1000,  # CDN API only envelopes when limit>=1; default so list() always paginates
         offset: int | Omit = omit,
         purge_type: str | Omit = omit,
         status: str | Omit = omit,
@@ -740,7 +740,7 @@ class AsyncCDNResource(AsyncAPIResource):
     def list_alibaba_regions(
         self,
         *,
-        limit: int | Omit = omit,
+        limit: int | Omit = 1000,  # CDN API only envelopes when limit>=1; default so list() always paginates
         offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -787,7 +787,7 @@ class AsyncCDNResource(AsyncAPIResource):
     def list_aws_regions(
         self,
         *,
-        limit: int | Omit = omit,
+        limit: int | Omit = 1000,  # CDN API only envelopes when limit>=1; default so list() always paginates
         offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -836,7 +836,7 @@ class AsyncCDNResource(AsyncAPIResource):
         *,
         cname: str | Omit = omit,
         from_created: str | Omit = omit,
-        limit: int | Omit = omit,
+        limit: int | Omit = 1000,  # CDN API only envelopes when limit>=1; default so list() always paginates
         offset: int | Omit = omit,
         purge_type: str | Omit = omit,
         status: str | Omit = omit,

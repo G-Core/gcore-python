@@ -312,7 +312,7 @@ class PoliciesResource(SyncAPIResource):
         self,
         *,
         config_ids: Iterable[int] | Omit = omit,
-        limit: int | Omit = omit,
+        limit: int | Omit = 1000,  # CDN API only envelopes when limit>=1; default so list() always paginates
         offset: int | Omit = omit,
         search: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -859,7 +859,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         self,
         *,
         config_ids: Iterable[int] | Omit = omit,
-        limit: int | Omit = omit,
+        limit: int | Omit = 1000,  # CDN API only envelopes when limit>=1; default so list() always paginates
         offset: int | Omit = omit,
         search: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

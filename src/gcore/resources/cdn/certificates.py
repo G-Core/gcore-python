@@ -189,7 +189,7 @@ class CertificatesResource(SyncAPIResource):
         self,
         *,
         automated: bool | Omit = omit,
-        limit: int | Omit = omit,
+        limit: int | Omit = 1000,  # CDN API only envelopes when limit>=1; default so list() always paginates
         offset: int | Omit = omit,
         resource_id: int | Omit = omit,
         validity_not_after_lte: str | Omit = omit,
@@ -645,7 +645,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
         self,
         *,
         automated: bool | Omit = omit,
-        limit: int | Omit = omit,
+        limit: int | Omit = 1000,  # CDN API only envelopes when limit>=1; default so list() always paginates
         offset: int | Omit = omit,
         resource_id: int | Omit = omit,
         validity_not_after_lte: str | Omit = omit,

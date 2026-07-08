@@ -180,7 +180,7 @@ class ConfigsResource(SyncAPIResource):
     def list(
         self,
         *,
-        limit: int | Omit = omit,
+        limit: int | Omit = 1000,  # CDN API only envelopes when limit>=1; default so list() always paginates
         offset: int | Omit = omit,
         resource_ids: Iterable[int] | Omit = omit,
         search: str | Omit = omit,
@@ -544,7 +544,7 @@ class AsyncConfigsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        limit: int | Omit = omit,
+        limit: int | Omit = 1000,  # CDN API only envelopes when limit>=1; default so list() always paginates
         offset: int | Omit = omit,
         resource_ids: Iterable[int] | Omit = omit,
         search: str | Omit = omit,
