@@ -2,13 +2,14 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+import time
+from typing import Dict, Optional, cast
 from typing_extensions import Literal
 
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import path_template, maybe_transform, async_maybe_transform
+from ...._utils import is_given, path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -686,12 +687,37 @@ class ImagesResource(SyncAPIResource):
         )
         if not task.created_resources or not task.created_resources.images or len(task.created_resources.images) != 1:
             raise ValueError(f"Expected exactly one resource to be created in a task")
-        return self.get(
-            image_id=task.created_resources.images[0],
-            project_id=project_id,
-            region_id=region_id,
-            extra_headers=extra_headers,
-        )
+        image_id = task.created_resources.images[0]
+
+        # The upload task is marked complete as soon as the image bytes are handed
+        # off to the image store; the image itself then transitions
+        # queued -> saving -> active asynchronously and only reports its final
+        # `size` once active. Poll the image until it settles so callers observe
+        # fully-resolved fields instead of a transient `status="saving", size=0`.
+        if not is_given(polling_interval_seconds):
+            polling_interval_seconds = cast(int, self._client.polling_interval_seconds)
+        polling_interval_seconds = max(1, polling_interval_seconds)
+        if not is_given(polling_timeout_seconds):
+            polling_timeout_seconds = cast(int, self._client.polling_timeout_seconds)
+        end_time = time.time() + polling_timeout_seconds
+        while True:
+            image = self.get(
+                image_id=image_id,
+                project_id=project_id,
+                region_id=region_id,
+                extra_headers=extra_headers,
+            )
+            if image.status == "active" and image.size:
+                return image
+            if image.status not in ("queued", "saving", "active"):
+                raise ValueError(
+                    f"Image {image_id} entered unexpected status {image.status!r} while waiting for it to become active"
+                )
+            if time.time() >= end_time:
+                raise RuntimeError(
+                    f"Timed out waiting for image {image_id} to become active (last status {image.status!r})"
+                )
+            self._sleep(polling_interval_seconds)
 
 
 class AsyncImagesResource(AsyncAPIResource):
@@ -1347,12 +1373,37 @@ class AsyncImagesResource(AsyncAPIResource):
         )
         if not task.created_resources or not task.created_resources.images or len(task.created_resources.images) != 1:
             raise ValueError(f"Expected exactly one resource to be created in a task")
-        return await self.get(
-            image_id=task.created_resources.images[0],
-            project_id=project_id,
-            region_id=region_id,
-            extra_headers=extra_headers,
-        )
+        image_id = task.created_resources.images[0]
+
+        # The upload task is marked complete as soon as the image bytes are handed
+        # off to the image store; the image itself then transitions
+        # queued -> saving -> active asynchronously and only reports its final
+        # `size` once active. Poll the image until it settles so callers observe
+        # fully-resolved fields instead of a transient `status="saving", size=0`.
+        if not is_given(polling_interval_seconds):
+            polling_interval_seconds = cast(int, self._client.polling_interval_seconds)
+        polling_interval_seconds = max(1, polling_interval_seconds)
+        if not is_given(polling_timeout_seconds):
+            polling_timeout_seconds = cast(int, self._client.polling_timeout_seconds)
+        end_time = time.time() + polling_timeout_seconds
+        while True:
+            image = await self.get(
+                image_id=image_id,
+                project_id=project_id,
+                region_id=region_id,
+                extra_headers=extra_headers,
+            )
+            if image.status == "active" and image.size:
+                return image
+            if image.status not in ("queued", "saving", "active"):
+                raise ValueError(
+                    f"Image {image_id} entered unexpected status {image.status!r} while waiting for it to become active"
+                )
+            if time.time() >= end_time:
+                raise RuntimeError(
+                    f"Timed out waiting for image {image_id} to become active (last status {image.status!r})"
+                )
+            await self._sleep(polling_interval_seconds)
 
 
 class ImagesResourceWithRawResponse:
