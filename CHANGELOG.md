@@ -1,5 +1,44 @@
 # Changelog
 
+## [0.51.0](https://github.com/G-Core/gcore-python/compare/v0.50.0...v0.51.0) (2026-07-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* **cloud:** refactor instance security groups, interfaces, and flavor/name models
+* **cdn:** recursive metrics response; optional logs-uploader target configs
+
+### Features
+
+* **cdn:** add resource list filters and paginated list response models ([cb2476e](https://github.com/G-Core/gcore-python/commit/cb2476e97da46d44f9315091f803e7975fb35fd3))
+* **cdn:** default limit=1000 on CDN list endpoints ([683c968](https://github.com/G-Core/gcore-python/commit/683c96892c7974b78c21e70d099304c70323314c))
+* **cdn:** recursive metrics response; optional logs-uploader target configs ([a1e4e66](https://github.com/G-Core/gcore-python/commit/a1e4e66ab34ed5fc69c02c80d79d4e2f6924bdd4))
+* **cloud:** refactor instance security groups, interfaces, and flavor/name models ([8866342](https://github.com/G-Core/gcore-python/commit/88663428bfecc35e1694fc63d1aa60c836385e40))
+* **cloud:** support gcore_cloud_quota data source ([9e1db66](https://github.com/G-Core/gcore-python/commit/9e1db66cebcb287692692d44097b820ef148938c))
+* enable offset/limit pagination for 7 list endpoints ([41c1d73](https://github.com/G-Core/gcore-python/commit/41c1d73a97326154960471dfc7c1489bb86c48f2))
+* **terraform:** expose gcore_cdn_origin_shielding ([7f8fa85](https://github.com/G-Core/gcore-python/commit/7f8fa850045e4075f5380fa53c2b983a857cd016))
+* **waap:** add order_by to analytics stats and length limits to filter suggestions ([d6d4221](https://github.com/G-Core/gcore-python/commit/d6d422196fdf70a56ff1ba662c8ace799753a39a))
+
+
+### Bug Fixes
+
+* **cdn:** update trusted CA cert examples for paginated list ([28d65ac](https://github.com/G-Core/gcore-python/commit/28d65ac3e40e8d660b69f480069e796af73d34ae))
+* **cloud:** correct quota model import in cloud examples ([bc9a3b2](https://github.com/G-Core/gcore-python/commit/bc9a3b2c07754876dbe524cd238f9637c193a950))
+* **cloud:** handle no-op updates in update_and_poll methods ([25c05bc](https://github.com/G-Core/gcore-python/commit/25c05bc0b9ee3dea90a73cfb49df6a29970afc9a))
+* **cloud:** update cloud examples for regenerated types ([9092e97](https://github.com/G-Core/gcore-python/commit/9092e979e9f6d6528d4537e2af18c3a6615a1c59))
+* **cloud:** wait for instance image to become active in upload_and_poll ([a58f2ba](https://github.com/G-Core/gcore-python/commit/a58f2bae542818c38399c2825e1c1fb1022c8418))
+
+
+### Chores
+
+* **fastedge:** update fastedge OpenAPI spec ([2d8737b](https://github.com/G-Core/gcore-python/commit/2d8737bdc72cc1a57fd746d6abecdf343aa64f38))
+* **storage:** add admin bucket search response schemas ([bb86353](https://github.com/G-Core/gcore-python/commit/bb863532e63b2b8aa94569cf9b306cd50bb0fe97))
+
+
+### Refactors
+
+* **cloud:** isolate custom *_and_poll methods into _custom.py mixins ([503ab9c](https://github.com/G-Core/gcore-python/commit/503ab9cfedf5b1aca36666091d60789fb1078835))
+
 ## [0.50.0](https://github.com/G-Core/gcore-python/compare/v0.49.0...v0.50.0) (2026-07-01)
 
 
