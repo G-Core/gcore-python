@@ -20,7 +20,7 @@ from ....._response import (
 from ....._base_client import make_request_options
 from .....types.cloud.task_id_list import TaskIDList
 from .....types.cloud.gpu_baremetal.clusters import interface_attach_params, interface_detach_params
-from .....types.cloud.network_interface_list import NetworkInterfaceList
+from .....types.cloud.gpu_baremetal.clusters.interface_list_response import InterfaceListResponse
 
 __all__ = ["InterfacesResource", "AsyncInterfacesResource"]
 
@@ -57,11 +57,17 @@ class InterfacesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NetworkInterfaceList:
+    ) -> InterfaceListResponse:
         """
         Retrieve a list of network interfaces attached to the GPU cluster servers.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_id: Cluster unique identifier
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -86,7 +92,7 @@ class InterfacesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NetworkInterfaceList,
+            cast_to=InterfaceListResponse,
         )
 
     @overload
@@ -430,11 +436,17 @@ class AsyncInterfacesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NetworkInterfaceList:
+    ) -> InterfaceListResponse:
         """
         Retrieve a list of network interfaces attached to the GPU cluster servers.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_id: Cluster unique identifier
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -459,7 +471,7 @@ class AsyncInterfacesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NetworkInterfaceList,
+            cast_to=InterfaceListResponse,
         )
 
     @overload

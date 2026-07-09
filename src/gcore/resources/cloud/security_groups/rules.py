@@ -233,36 +233,37 @@ class RulesResource(RulesResourceCustomMixin, SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         direction: Literal["egress", "ingress"],
-        security_group_id: str,
         description: str | Omit = omit,
-        ethertype: Optional[Literal["IPv4", "IPv6"]] | Omit = omit,
+        ethertype: Literal["IPv4", "IPv6"] | Omit = omit,
         port_range_max: Optional[int] | Omit = omit,
         port_range_min: Optional[int] | Omit = omit,
-        protocol: Literal[
-            "ah",
-            "any",
-            "dccp",
-            "egp",
-            "esp",
-            "gre",
-            "icmp",
-            "igmp",
-            "ipencap",
-            "ipip",
-            "ipv6-encap",
-            "ipv6-frag",
-            "ipv6-icmp",
-            "ipv6-nonxt",
-            "ipv6-opts",
-            "ipv6-route",
-            "ospf",
-            "pgm",
-            "rsvp",
-            "sctp",
-            "tcp",
-            "udp",
-            "udplite",
-            "vrrp",
+        protocol: Optional[
+            Literal[
+                "ah",
+                "any",
+                "dccp",
+                "egp",
+                "esp",
+                "gre",
+                "icmp",
+                "igmp",
+                "ipencap",
+                "ipip",
+                "ipv6-encap",
+                "ipv6-frag",
+                "ipv6-icmp",
+                "ipv6-nonxt",
+                "ipv6-opts",
+                "ipv6-route",
+                "ospf",
+                "pgm",
+                "rsvp",
+                "sctp",
+                "tcp",
+                "udp",
+                "udplite",
+                "vrrp",
+            ]
         ]
         | Omit = omit,
         remote_group_id: Optional[str] | Omit = omit,
@@ -289,15 +290,11 @@ class RulesResource(RulesResourceCustomMixin, SyncAPIResource):
 
           rule_id: Rule ID
 
-          direction: Ingress or egress, which is the direction in which the security group rule is
-              applied
-
-          security_group_id: Parent security group of this rule
+          direction: Ingress or egress, which is the direction in which the security group is applied
 
           description: Rule description
 
-          ethertype: Must be IPv4 or IPv6, and addresses represented in CIDR must match the ingress
-              or egress rules.
+          ethertype: Ether type
 
           port_range_max: The maximum port number in the range that is matched by the security group rule
 
@@ -305,7 +302,7 @@ class RulesResource(RulesResourceCustomMixin, SyncAPIResource):
 
           protocol: Protocol
 
-          remote_group_id: The remote group UUID to associate with this security group rule
+          remote_group_id: The remote group UUID to associate with this security group
 
           remote_ip_prefix: The remote IP prefix that is matched by this security group rule
 
@@ -333,7 +330,6 @@ class RulesResource(RulesResourceCustomMixin, SyncAPIResource):
             body=maybe_transform(
                 {
                     "direction": direction,
-                    "security_group_id": security_group_id,
                     "description": description,
                     "ethertype": ethertype,
                     "port_range_max": port_range_max,
@@ -557,36 +553,37 @@ class AsyncRulesResource(AsyncRulesResourceCustomMixin, AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         direction: Literal["egress", "ingress"],
-        security_group_id: str,
         description: str | Omit = omit,
-        ethertype: Optional[Literal["IPv4", "IPv6"]] | Omit = omit,
+        ethertype: Literal["IPv4", "IPv6"] | Omit = omit,
         port_range_max: Optional[int] | Omit = omit,
         port_range_min: Optional[int] | Omit = omit,
-        protocol: Literal[
-            "ah",
-            "any",
-            "dccp",
-            "egp",
-            "esp",
-            "gre",
-            "icmp",
-            "igmp",
-            "ipencap",
-            "ipip",
-            "ipv6-encap",
-            "ipv6-frag",
-            "ipv6-icmp",
-            "ipv6-nonxt",
-            "ipv6-opts",
-            "ipv6-route",
-            "ospf",
-            "pgm",
-            "rsvp",
-            "sctp",
-            "tcp",
-            "udp",
-            "udplite",
-            "vrrp",
+        protocol: Optional[
+            Literal[
+                "ah",
+                "any",
+                "dccp",
+                "egp",
+                "esp",
+                "gre",
+                "icmp",
+                "igmp",
+                "ipencap",
+                "ipip",
+                "ipv6-encap",
+                "ipv6-frag",
+                "ipv6-icmp",
+                "ipv6-nonxt",
+                "ipv6-opts",
+                "ipv6-route",
+                "ospf",
+                "pgm",
+                "rsvp",
+                "sctp",
+                "tcp",
+                "udp",
+                "udplite",
+                "vrrp",
+            ]
         ]
         | Omit = omit,
         remote_group_id: Optional[str] | Omit = omit,
@@ -613,15 +610,11 @@ class AsyncRulesResource(AsyncRulesResourceCustomMixin, AsyncAPIResource):
 
           rule_id: Rule ID
 
-          direction: Ingress or egress, which is the direction in which the security group rule is
-              applied
-
-          security_group_id: Parent security group of this rule
+          direction: Ingress or egress, which is the direction in which the security group is applied
 
           description: Rule description
 
-          ethertype: Must be IPv4 or IPv6, and addresses represented in CIDR must match the ingress
-              or egress rules.
+          ethertype: Ether type
 
           port_range_max: The maximum port number in the range that is matched by the security group rule
 
@@ -629,7 +622,7 @@ class AsyncRulesResource(AsyncRulesResourceCustomMixin, AsyncAPIResource):
 
           protocol: Protocol
 
-          remote_group_id: The remote group UUID to associate with this security group rule
+          remote_group_id: The remote group UUID to associate with this security group
 
           remote_ip_prefix: The remote IP prefix that is matched by this security group rule
 
@@ -657,7 +650,6 @@ class AsyncRulesResource(AsyncRulesResourceCustomMixin, AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "direction": direction,
-                    "security_group_id": security_group_id,
                     "description": description,
                     "ethertype": ethertype,
                     "port_range_max": port_range_max,

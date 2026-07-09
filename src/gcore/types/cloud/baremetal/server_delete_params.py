@@ -20,6 +20,12 @@ class ServerDeleteParams(TypedDict, total=False):
     Can't be used with `floating_ip_ids`.
     """
 
+    all_reserved_fixed_ips: bool
+    """True if it is required to delete reserved fixed IPs assigned to the instance.
+
+    Can't be used with `reserved_fixed_ip_ids`.
+    """
+
     floating_ip_ids: str
     """Comma separated list of floating ids that should be deleted.
 

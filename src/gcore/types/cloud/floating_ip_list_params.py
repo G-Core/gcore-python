@@ -26,6 +26,13 @@ class FloatingIPListParams(TypedDict, total=False):
     Offset value is used to exclude the first set of records from the result
     """
 
+    port_ids: SequenceNotStr[str]
+    """Optional.
+
+    Filter by the port ID the floating IP is attached to. Repeat the parameter to
+    filter by multiple ports (`?port_ids=id1&port_ids=id2`).
+    """
+
     status: FloatingIPStatus
     """Filter by floating IP status.
 

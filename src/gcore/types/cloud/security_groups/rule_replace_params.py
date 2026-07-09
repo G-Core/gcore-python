@@ -17,21 +17,14 @@ class RuleReplaceParams(TypedDict, total=False):
 
     direction: Required[Literal["egress", "ingress"]]
     """
-    Ingress or egress, which is the direction in which the security group rule is
-    applied
+    Ingress or egress, which is the direction in which the security group is applied
     """
-
-    security_group_id: Required[str]
-    """Parent security group of this rule"""
 
     description: str
     """Rule description"""
 
-    ethertype: Optional[Literal["IPv4", "IPv6"]]
-    """
-    Must be IPv4 or IPv6, and addresses represented in CIDR must match the ingress
-    or egress rules.
-    """
+    ethertype: Literal["IPv4", "IPv6"]
+    """Ether type"""
 
     port_range_max: Optional[int]
     """The maximum port number in the range that is matched by the security group rule"""
@@ -39,36 +32,38 @@ class RuleReplaceParams(TypedDict, total=False):
     port_range_min: Optional[int]
     """The minimum port number in the range that is matched by the security group rule"""
 
-    protocol: Literal[
-        "ah",
-        "any",
-        "dccp",
-        "egp",
-        "esp",
-        "gre",
-        "icmp",
-        "igmp",
-        "ipencap",
-        "ipip",
-        "ipv6-encap",
-        "ipv6-frag",
-        "ipv6-icmp",
-        "ipv6-nonxt",
-        "ipv6-opts",
-        "ipv6-route",
-        "ospf",
-        "pgm",
-        "rsvp",
-        "sctp",
-        "tcp",
-        "udp",
-        "udplite",
-        "vrrp",
+    protocol: Optional[
+        Literal[
+            "ah",
+            "any",
+            "dccp",
+            "egp",
+            "esp",
+            "gre",
+            "icmp",
+            "igmp",
+            "ipencap",
+            "ipip",
+            "ipv6-encap",
+            "ipv6-frag",
+            "ipv6-icmp",
+            "ipv6-nonxt",
+            "ipv6-opts",
+            "ipv6-route",
+            "ospf",
+            "pgm",
+            "rsvp",
+            "sctp",
+            "tcp",
+            "udp",
+            "udplite",
+            "vrrp",
+        ]
     ]
     """Protocol"""
 
     remote_group_id: Optional[str]
-    """The remote group UUID to associate with this security group rule"""
+    """The remote group UUID to associate with this security group"""
 
     remote_ip_prefix: Optional[str]
     """The remote IP prefix that is matched by this security group rule"""

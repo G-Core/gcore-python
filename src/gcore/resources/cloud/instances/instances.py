@@ -804,6 +804,12 @@ class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
         all ports, use the NULL value for the `port_id` field
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
           name: Security group name, applies to all ports
 
           ports_security_group_names: Port security groups mapping
@@ -1178,6 +1184,12 @@ class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
         groups to all ports, use the NULL value for the `port_id` field
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
           name: Security group name, applies to all ports
 
           ports_security_group_names: Port security groups mapping
@@ -1947,6 +1959,12 @@ class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource
         all ports, use the NULL value for the `port_id` field
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
           name: Security group name, applies to all ports
 
           ports_security_group_names: Port security groups mapping
@@ -2321,6 +2339,12 @@ class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource
         groups to all ports, use the NULL value for the `port_id` field
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
           name: Security group name, applies to all ports
 
           ports_security_group_names: Port security groups mapping

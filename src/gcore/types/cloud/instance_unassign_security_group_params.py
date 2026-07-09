@@ -12,8 +12,10 @@ __all__ = ["InstanceUnassignSecurityGroupParams", "PortsSecurityGroupName"]
 
 class InstanceUnassignSecurityGroupParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     name: str
     """Security group name, applies to all ports"""
@@ -23,8 +25,6 @@ class InstanceUnassignSecurityGroupParams(TypedDict, total=False):
 
 
 class PortsSecurityGroupName(TypedDict, total=False):
-    """Port security group names"""
-
     port_id: Required[Optional[str]]
     """Port ID. If None, security groups will be applied to all ports"""
 

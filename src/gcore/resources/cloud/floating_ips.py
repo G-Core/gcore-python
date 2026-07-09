@@ -262,6 +262,7 @@ class FloatingIPsResource(FloatingIPsResourceCustomMixin, SyncAPIResource):
         region_id: int | None = None,
         limit: int | Omit = omit,
         offset: int | Omit = omit,
+        port_ids: SequenceNotStr[str] | Omit = omit,
         status: FloatingIPStatus | Omit = omit,
         tag_key: SequenceNotStr[str] | Omit = omit,
         tag_key_value: str | Omit = omit,
@@ -284,6 +285,9 @@ class FloatingIPsResource(FloatingIPsResourceCustomMixin, SyncAPIResource):
 
           offset: Optional. Offset value is used to exclude the first set of records from the
               result
+
+          port_ids: Optional. Filter by the port ID the floating IP is attached to. Repeat the
+              parameter to filter by multiple ports (`?port_ids=id1&port_ids=id2`).
 
           status: Filter by floating IP status. DOWN - unassigned (available). ACTIVE - attached
               to a port (in use). ERROR - error state.
@@ -316,6 +320,7 @@ class FloatingIPsResource(FloatingIPsResourceCustomMixin, SyncAPIResource):
                     {
                         "limit": limit,
                         "offset": offset,
+                        "port_ids": port_ids,
                         "status": status,
                         "tag_key": tag_key,
                         "tag_key_value": tag_key_value,
@@ -772,6 +777,7 @@ class AsyncFloatingIPsResource(AsyncFloatingIPsResourceCustomMixin, AsyncAPIReso
         region_id: int | None = None,
         limit: int | Omit = omit,
         offset: int | Omit = omit,
+        port_ids: SequenceNotStr[str] | Omit = omit,
         status: FloatingIPStatus | Omit = omit,
         tag_key: SequenceNotStr[str] | Omit = omit,
         tag_key_value: str | Omit = omit,
@@ -794,6 +800,9 @@ class AsyncFloatingIPsResource(AsyncFloatingIPsResourceCustomMixin, AsyncAPIReso
 
           offset: Optional. Offset value is used to exclude the first set of records from the
               result
+
+          port_ids: Optional. Filter by the port ID the floating IP is attached to. Repeat the
+              parameter to filter by multiple ports (`?port_ids=id1&port_ids=id2`).
 
           status: Filter by floating IP status. DOWN - unassigned (available). ACTIVE - attached
               to a port (in use). ERROR - error state.
@@ -826,6 +835,7 @@ class AsyncFloatingIPsResource(AsyncFloatingIPsResourceCustomMixin, AsyncAPIReso
                     {
                         "limit": limit,
                         "offset": offset,
+                        "port_ids": port_ids,
                         "status": status,
                         "tag_key": tag_key,
                         "tag_key_value": tag_key_value,

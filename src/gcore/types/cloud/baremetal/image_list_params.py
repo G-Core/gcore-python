@@ -16,17 +16,29 @@ class ImageListParams(TypedDict, total=False):
     region_id: int
     """Region ID"""
 
+    architecture: Literal["aarch64", "x86_64"]
+    """Filter by image architecture."""
+
     include_prices: bool
     """Show price."""
 
     limit: int
     """Optional. Limit the number of returned items"""
 
+    name: str
+    """Filter by image name (case-insensitive substring match)"""
+
     offset: int
     """Optional.
 
     Offset value is used to exclude the first set of records from the result
     """
+
+    os_distro: str
+    """Filter by OS distribution (case-insensitive). E.g. `ubuntu`, `centos`, `debian`"""
+
+    os_version: str
+    """Filter by OS version (case-insensitive). E.g. `22.04`"""
 
     private: str
     """Any value to show private images"""

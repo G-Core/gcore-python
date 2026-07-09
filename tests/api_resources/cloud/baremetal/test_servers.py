@@ -237,6 +237,7 @@ class TestServers:
             project_id=1,
             region_id=1,
             all_floating_ips=True,
+            all_reserved_fixed_ips=True,
             floating_ip_ids="floating_ip_ids",
             reserved_fixed_ip_ids="reserved_fixed_ip_ids",
         )
@@ -603,6 +604,7 @@ class TestAsyncServers:
             project_id=1,
             region_id=1,
             all_floating_ips=True,
+            all_reserved_fixed_ips=True,
             floating_ip_ids="floating_ip_ids",
             reserved_fixed_ip_ids="reserved_fixed_ip_ids",
         )

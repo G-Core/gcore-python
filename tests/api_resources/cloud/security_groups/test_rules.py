@@ -152,7 +152,6 @@ class TestRules:
                 project_id=1,
                 region_id=1,
                 direction="ingress",
-                security_group_id="00000000-0000-4000-8000-000000000000",
             )
 
         assert_matches_type(SecurityGroupRule, rule, path=["response"])
@@ -165,7 +164,6 @@ class TestRules:
                 project_id=1,
                 region_id=1,
                 direction="ingress",
-                security_group_id="00000000-0000-4000-8000-000000000000",
                 description="Some description",
                 ethertype="IPv4",
                 port_range_max=80,
@@ -185,7 +183,6 @@ class TestRules:
                 project_id=1,
                 region_id=1,
                 direction="ingress",
-                security_group_id="00000000-0000-4000-8000-000000000000",
             )
 
         assert response.is_closed is True
@@ -201,7 +198,6 @@ class TestRules:
                 project_id=1,
                 region_id=1,
                 direction="ingress",
-                security_group_id="00000000-0000-4000-8000-000000000000",
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -220,7 +216,6 @@ class TestRules:
                     project_id=1,
                     region_id=1,
                     direction="ingress",
-                    security_group_id="00000000-0000-4000-8000-000000000000",
                 )
 
 
@@ -362,7 +357,6 @@ class TestAsyncRules:
                 project_id=1,
                 region_id=1,
                 direction="ingress",
-                security_group_id="00000000-0000-4000-8000-000000000000",
             )
 
         assert_matches_type(SecurityGroupRule, rule, path=["response"])
@@ -375,7 +369,6 @@ class TestAsyncRules:
                 project_id=1,
                 region_id=1,
                 direction="ingress",
-                security_group_id="00000000-0000-4000-8000-000000000000",
                 description="Some description",
                 ethertype="IPv4",
                 port_range_max=80,
@@ -395,7 +388,6 @@ class TestAsyncRules:
                 project_id=1,
                 region_id=1,
                 direction="ingress",
-                security_group_id="00000000-0000-4000-8000-000000000000",
             )
 
         assert response.is_closed is True
@@ -411,7 +403,6 @@ class TestAsyncRules:
                 project_id=1,
                 region_id=1,
                 direction="ingress",
-                security_group_id="00000000-0000-4000-8000-000000000000",
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -430,5 +421,4 @@ class TestAsyncRules:
                     project_id=1,
                     region_id=1,
                     direction="ingress",
-                    security_group_id="00000000-0000-4000-8000-000000000000",
                 )

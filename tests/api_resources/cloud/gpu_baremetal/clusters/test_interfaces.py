@@ -9,7 +9,10 @@ import pytest
 
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
-from gcore.types.cloud import TaskIDList, NetworkInterfaceList
+from gcore.types.cloud import TaskIDList
+from gcore.types.cloud.gpu_baremetal.clusters import (
+    InterfaceListResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -20,37 +23,37 @@ class TestInterfaces:
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
         interface = client.cloud.gpu_baremetal.clusters.interfaces.list(
-            cluster_id="cluster_id",
-            project_id=0,
-            region_id=0,
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
         )
-        assert_matches_type(NetworkInterfaceList, interface, path=["response"])
+        assert_matches_type(InterfaceListResponse, interface, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
         response = client.cloud.gpu_baremetal.clusters.interfaces.with_raw_response.list(
-            cluster_id="cluster_id",
-            project_id=0,
-            region_id=0,
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         interface = response.parse()
-        assert_matches_type(NetworkInterfaceList, interface, path=["response"])
+        assert_matches_type(InterfaceListResponse, interface, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
         with client.cloud.gpu_baremetal.clusters.interfaces.with_streaming_response.list(
-            cluster_id="cluster_id",
-            project_id=0,
-            region_id=0,
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             interface = response.parse()
-            assert_matches_type(NetworkInterfaceList, interface, path=["response"])
+            assert_matches_type(InterfaceListResponse, interface, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -59,8 +62,8 @@ class TestInterfaces:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_id` but received ''"):
             client.cloud.gpu_baremetal.clusters.interfaces.with_raw_response.list(
                 cluster_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=7,
             )
 
     @parametrize
@@ -435,37 +438,37 @@ class TestAsyncInterfaces:
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
         interface = await async_client.cloud.gpu_baremetal.clusters.interfaces.list(
-            cluster_id="cluster_id",
-            project_id=0,
-            region_id=0,
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
         )
-        assert_matches_type(NetworkInterfaceList, interface, path=["response"])
+        assert_matches_type(InterfaceListResponse, interface, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.gpu_baremetal.clusters.interfaces.with_raw_response.list(
-            cluster_id="cluster_id",
-            project_id=0,
-            region_id=0,
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         interface = await response.parse()
-        assert_matches_type(NetworkInterfaceList, interface, path=["response"])
+        assert_matches_type(InterfaceListResponse, interface, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.gpu_baremetal.clusters.interfaces.with_streaming_response.list(
-            cluster_id="cluster_id",
-            project_id=0,
-            region_id=0,
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             interface = await response.parse()
-            assert_matches_type(NetworkInterfaceList, interface, path=["response"])
+            assert_matches_type(InterfaceListResponse, interface, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -474,8 +477,8 @@ class TestAsyncInterfaces:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_id` but received ''"):
             await async_client.cloud.gpu_baremetal.clusters.interfaces.with_raw_response.list(
                 cluster_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=7,
             )
 
     @parametrize

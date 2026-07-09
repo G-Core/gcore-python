@@ -48,9 +48,13 @@ class ImagesResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        architecture: Literal["aarch64", "x86_64"] | Omit = omit,
         include_prices: bool | Omit = omit,
         limit: int | Omit = omit,
+        name: str | Omit = omit,
         offset: int | Omit = omit,
+        os_distro: str | Omit = omit,
+        os_version: str | Omit = omit,
         private: str | Omit = omit,
         tag_key: SequenceNotStr[str] | Omit = omit,
         tag_key_value: str | Omit = omit,
@@ -73,12 +77,20 @@ class ImagesResource(SyncAPIResource):
 
           region_id: Region ID
 
+          architecture: Filter by image architecture.
+
           include_prices: Show price.
 
           limit: Optional. Limit the number of returned items
 
+          name: Filter by image name (case-insensitive substring match)
+
           offset: Optional. Offset value is used to exclude the first set of records from the
               result
+
+          os_distro: Filter by OS distribution (case-insensitive). E.g. `ubuntu`, `centos`, `debian`
+
+          os_version: Filter by OS version (case-insensitive). E.g. `22.04`
 
           private: Any value to show private images
 
@@ -109,9 +121,13 @@ class ImagesResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "architecture": architecture,
                         "include_prices": include_prices,
                         "limit": limit,
+                        "name": name,
                         "offset": offset,
+                        "os_distro": os_distro,
+                        "os_version": os_version,
                         "private": private,
                         "tag_key": tag_key,
                         "tag_key_value": tag_key_value,
@@ -149,9 +165,13 @@ class AsyncImagesResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        architecture: Literal["aarch64", "x86_64"] | Omit = omit,
         include_prices: bool | Omit = omit,
         limit: int | Omit = omit,
+        name: str | Omit = omit,
         offset: int | Omit = omit,
+        os_distro: str | Omit = omit,
+        os_version: str | Omit = omit,
         private: str | Omit = omit,
         tag_key: SequenceNotStr[str] | Omit = omit,
         tag_key_value: str | Omit = omit,
@@ -174,12 +194,20 @@ class AsyncImagesResource(AsyncAPIResource):
 
           region_id: Region ID
 
+          architecture: Filter by image architecture.
+
           include_prices: Show price.
 
           limit: Optional. Limit the number of returned items
 
+          name: Filter by image name (case-insensitive substring match)
+
           offset: Optional. Offset value is used to exclude the first set of records from the
               result
+
+          os_distro: Filter by OS distribution (case-insensitive). E.g. `ubuntu`, `centos`, `debian`
+
+          os_version: Filter by OS version (case-insensitive). E.g. `22.04`
 
           private: Any value to show private images
 
@@ -210,9 +238,13 @@ class AsyncImagesResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
+                        "architecture": architecture,
                         "include_prices": include_prices,
                         "limit": limit,
+                        "name": name,
                         "offset": offset,
+                        "os_distro": os_distro,
+                        "os_version": os_version,
                         "private": private,
                         "tag_key": tag_key,
                         "tag_key_value": tag_key_value,

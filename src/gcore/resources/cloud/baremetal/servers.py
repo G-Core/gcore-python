@@ -439,6 +439,7 @@ class ServersResource(ServersResourceCustomMixin, SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         all_floating_ips: bool | Omit = omit,
+        all_reserved_fixed_ips: bool | Omit = omit,
         floating_ip_ids: str | Omit = omit,
         reserved_fixed_ip_ids: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -460,6 +461,9 @@ class ServersResource(ServersResourceCustomMixin, SyncAPIResource):
 
           all_floating_ips: True if it is required to delete floating IPs assigned to the instance. Can't be
               used with `floating_ip_ids`.
+
+          all_reserved_fixed_ips: True if it is required to delete reserved fixed IPs assigned to the instance.
+              Can't be used with `reserved_fixed_ip_ids`.
 
           floating_ip_ids: Comma separated list of floating ids that should be deleted. Can't be used with
               `all_floating_ips`.
@@ -495,6 +499,7 @@ class ServersResource(ServersResourceCustomMixin, SyncAPIResource):
                 query=maybe_transform(
                     {
                         "all_floating_ips": all_floating_ips,
+                        "all_reserved_fixed_ips": all_reserved_fixed_ips,
                         "floating_ip_ids": floating_ip_ids,
                         "reserved_fixed_ip_ids": reserved_fixed_ip_ids,
                     },
@@ -1027,6 +1032,7 @@ class AsyncServersResource(AsyncServersResourceCustomMixin, AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         all_floating_ips: bool | Omit = omit,
+        all_reserved_fixed_ips: bool | Omit = omit,
         floating_ip_ids: str | Omit = omit,
         reserved_fixed_ip_ids: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1048,6 +1054,9 @@ class AsyncServersResource(AsyncServersResourceCustomMixin, AsyncAPIResource):
 
           all_floating_ips: True if it is required to delete floating IPs assigned to the instance. Can't be
               used with `floating_ip_ids`.
+
+          all_reserved_fixed_ips: True if it is required to delete reserved fixed IPs assigned to the instance.
+              Can't be used with `reserved_fixed_ip_ids`.
 
           floating_ip_ids: Comma separated list of floating ids that should be deleted. Can't be used with
               `all_floating_ips`.
@@ -1083,6 +1092,7 @@ class AsyncServersResource(AsyncServersResourceCustomMixin, AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "all_floating_ips": all_floating_ips,
+                        "all_reserved_fixed_ips": all_reserved_fixed_ips,
                         "floating_ip_ids": floating_ip_ids,
                         "reserved_fixed_ip_ids": reserved_fixed_ip_ids,
                     },
