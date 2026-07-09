@@ -24,7 +24,7 @@ def main() -> None:
 
     # Rules
     rule_id = create_security_group_rule(client=gcore, security_group_id=security_group_id)
-    rule_id = replace_security_group_rule(client=gcore, rule_id=rule_id, security_group_id=security_group_id)
+    rule_id = replace_security_group_rule(client=gcore, rule_id=rule_id)
     delete_security_group_rule(client=gcore, rule_id=rule_id, security_group_id=security_group_id)
 
     delete_security_group(client=gcore, security_group_id=security_group_id)
@@ -102,12 +102,11 @@ def create_security_group_rule(*, client: Gcore, security_group_id: str) -> str:
     return rule.id
 
 
-def replace_security_group_rule(*, client: Gcore, rule_id: str, security_group_id: str) -> str:
+def replace_security_group_rule(*, client: Gcore, rule_id: str) -> str:
     print("\n=== REPLACE SECURITY GROUP RULE ===")
     rule = client.cloud.security_groups.rules.replace(  # pyright: ignore[reportDeprecated]
         rule_id=rule_id,
         direction="ingress",
-        security_group_id=security_group_id,
         protocol="tcp",
         ethertype="IPv4",
         port_range_min=443,
