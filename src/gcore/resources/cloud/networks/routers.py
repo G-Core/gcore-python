@@ -17,6 +17,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ....pagination import SyncOffsetPage, AsyncOffsetPage
+from .routers_custom import RoutersResourceCustomMixin, AsyncRoutersResourceCustomMixin
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.cloud.networks import (
     router_list_params,
@@ -31,7 +32,7 @@ from ....types.cloud.networks.router import Router
 __all__ = ["RoutersResource", "AsyncRoutersResource"]
 
 
-class RoutersResource(SyncAPIResource):
+class RoutersResource(RoutersResourceCustomMixin, SyncAPIResource):
     """
     Routers interconnect subnets and manage network routing, including external gateway connectivity and static routes.
     """
@@ -186,56 +187,6 @@ class RoutersResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=TaskIDList,
-        )
-
-    def update_and_poll(
-        self,
-        router_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        external_gateway_info: router_update_params.ExternalGatewayInfo | Omit = omit,
-        name: str | Omit = omit,
-        routes: Iterable[router_update_params.Route] | Omit = omit,
-        polling_interval_seconds: int | Omit = omit,
-        polling_timeout_seconds: int | Omit = omit,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-    ) -> Router:
-        """
-        Update router and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
-        """
-        response = self.update(
-            router_id=router_id,
-            project_id=project_id,
-            region_id=region_id,
-            external_gateway_info=external_gateway_info,
-            name=name,
-            routes=routes,
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-            timeout=timeout,
-        )
-        if response.tasks:
-            self._client.cloud.tasks.poll(
-                task_id=response.tasks[0],
-                extra_headers=extra_headers,
-                polling_interval_seconds=polling_interval_seconds,
-                polling_timeout_seconds=polling_timeout_seconds,
-            )
-        return self.get(
-            router_id=router_id,
-            project_id=project_id,
-            region_id=region_id,
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-            timeout=timeout,
         )
 
     def list(
@@ -518,7 +469,7 @@ class RoutersResource(SyncAPIResource):
         )
 
 
-class AsyncRoutersResource(AsyncAPIResource):
+class AsyncRoutersResource(AsyncRoutersResourceCustomMixin, AsyncAPIResource):
     """
     Routers interconnect subnets and manage network routing, including external gateway connectivity and static routes.
     """
@@ -673,56 +624,6 @@ class AsyncRoutersResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=TaskIDList,
-        )
-
-    async def update_and_poll(
-        self,
-        router_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        external_gateway_info: router_update_params.ExternalGatewayInfo | Omit = omit,
-        name: str | Omit = omit,
-        routes: Iterable[router_update_params.Route] | Omit = omit,
-        polling_interval_seconds: int | Omit = omit,
-        polling_timeout_seconds: int | Omit = omit,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-    ) -> Router:
-        """
-        Update router and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
-        """
-        response = await self.update(
-            router_id=router_id,
-            project_id=project_id,
-            region_id=region_id,
-            external_gateway_info=external_gateway_info,
-            name=name,
-            routes=routes,
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-            timeout=timeout,
-        )
-        if response.tasks:
-            await self._client.cloud.tasks.poll(
-                task_id=response.tasks[0],
-                extra_headers=extra_headers,
-                polling_interval_seconds=polling_interval_seconds,
-                polling_timeout_seconds=polling_timeout_seconds,
-            )
-        return await self.get(
-            router_id=router_id,
-            project_id=project_id,
-            region_id=region_id,
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-            timeout=timeout,
         )
 
     def list(

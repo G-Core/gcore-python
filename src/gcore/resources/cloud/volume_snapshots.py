@@ -19,13 +19,14 @@ from ..._response import (
 from ...types.cloud import volume_snapshot_create_params, volume_snapshot_update_params
 from ..._base_client import make_request_options
 from ...types.cloud.snapshot import Snapshot
+from .volume_snapshots_custom import VolumeSnapshotsResourceCustomMixin, AsyncVolumeSnapshotsResourceCustomMixin
 from ...types.cloud.task_id_list import TaskIDList
 from ...types.cloud.tag_update_map_param import TagUpdateMapParam
 
 __all__ = ["VolumeSnapshotsResource", "AsyncVolumeSnapshotsResource"]
 
 
-class VolumeSnapshotsResource(SyncAPIResource):
+class VolumeSnapshotsResource(VolumeSnapshotsResourceCustomMixin, SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> VolumeSnapshotsResourceWithRawResponse:
         """
@@ -295,98 +296,8 @@ class VolumeSnapshotsResource(SyncAPIResource):
             cast_to=Snapshot,
         )
 
-    def create_and_poll(
-        self,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        name: str,
-        volume_id: str,
-        description: str | Omit = omit,
-        tags: Dict[str, str] | Omit = omit,
-        polling_interval_seconds: int | Omit = omit,
-        polling_timeout_seconds: int | Omit = omit,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-    ) -> Snapshot:
-        """Create a new snapshot from a volume and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method."""
-        response = self.create(
-            project_id=project_id,
-            region_id=region_id,
-            name=name,
-            volume_id=volume_id,
-            description=description,
-            tags=tags,
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-            timeout=timeout,
-        )
-        if not response.tasks:
-            raise ValueError("Expected at least one task to be created")
-        task = self._client.cloud.tasks.poll(
-            task_id=response.tasks[0],
-            extra_headers=extra_headers,
-            polling_interval_seconds=polling_interval_seconds,
-            polling_timeout_seconds=polling_timeout_seconds,
-        )
-        if (
-            task.created_resources is None
-            or task.created_resources.snapshots is None
-            or len(task.created_resources.snapshots) != 1
-        ):
-            raise ValueError("Task completed but created_resources or snapshots is missing or invalid")
-        created_snapshot_id = task.created_resources.snapshots[0]
-        return self.get(
-            snapshot_id=created_snapshot_id,
-            project_id=project_id,
-            region_id=region_id,
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-            timeout=timeout,
-        )
 
-    def delete_and_poll(
-        self,
-        snapshot_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        polling_interval_seconds: int | Omit = omit,
-        polling_timeout_seconds: int | Omit = omit,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-    ) -> None:
-        """Delete a specific snapshot and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method."""
-        response = self.delete(
-            snapshot_id=snapshot_id,
-            project_id=project_id,
-            region_id=region_id,
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-            timeout=timeout,
-        )
-        if not response.tasks:
-            raise ValueError("Expected at least one task to be created")
-        self._client.cloud.tasks.poll(
-            task_id=response.tasks[0],
-            extra_headers=extra_headers,
-            polling_interval_seconds=polling_interval_seconds,
-            polling_timeout_seconds=polling_timeout_seconds,
-        )
-
-
-class AsyncVolumeSnapshotsResource(AsyncAPIResource):
+class AsyncVolumeSnapshotsResource(AsyncVolumeSnapshotsResourceCustomMixin, AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncVolumeSnapshotsResourceWithRawResponse:
         """
@@ -654,96 +565,6 @@ class AsyncVolumeSnapshotsResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=Snapshot,
-        )
-
-    async def create_and_poll(
-        self,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        name: str,
-        volume_id: str,
-        description: str | Omit = omit,
-        tags: Dict[str, str] | Omit = omit,
-        polling_interval_seconds: int | Omit = omit,
-        polling_timeout_seconds: int | Omit = omit,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-    ) -> Snapshot:
-        """Create a new snapshot from a volume and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method."""
-        response = await self.create(
-            project_id=project_id,
-            region_id=region_id,
-            name=name,
-            volume_id=volume_id,
-            description=description,
-            tags=tags,
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-            timeout=timeout,
-        )
-        if not response.tasks:
-            raise ValueError("Expected at least one task to be created")
-        task = await self._client.cloud.tasks.poll(
-            task_id=response.tasks[0],
-            extra_headers=extra_headers,
-            polling_interval_seconds=polling_interval_seconds,
-            polling_timeout_seconds=polling_timeout_seconds,
-        )
-        if (
-            task.created_resources is None
-            or task.created_resources.snapshots is None
-            or len(task.created_resources.snapshots) != 1
-        ):
-            raise ValueError("Task completed but created_resources or snapshots is missing or invalid")
-        created_snapshot_id = task.created_resources.snapshots[0]
-        return await self.get(
-            snapshot_id=created_snapshot_id,
-            project_id=project_id,
-            region_id=region_id,
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-            timeout=timeout,
-        )
-
-    async def delete_and_poll(
-        self,
-        snapshot_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        polling_interval_seconds: int | Omit = omit,
-        polling_timeout_seconds: int | Omit = omit,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-    ) -> None:
-        """Delete a specific snapshot and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method."""
-        response = await self.delete(
-            snapshot_id=snapshot_id,
-            project_id=project_id,
-            region_id=region_id,
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-            timeout=timeout,
-        )
-        if not response.tasks:
-            raise ValueError("Expected at least one task to be created")
-        await self._client.cloud.tasks.poll(
-            task_id=response.tasks[0],
-            extra_headers=extra_headers,
-            polling_interval_seconds=polling_interval_seconds,
-            polling_timeout_seconds=polling_timeout_seconds,
         )
 
 

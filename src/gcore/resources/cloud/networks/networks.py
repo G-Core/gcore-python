@@ -24,7 +24,7 @@ from .subnets import (
     SubnetsResourceWithStreamingResponse,
     AsyncSubnetsResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -37,6 +37,7 @@ from ...._response import (
 from ....pagination import SyncOffsetPage, AsyncOffsetPage
 from ....types.cloud import network_list_params, network_create_params, network_update_params
 from ...._base_client import AsyncPaginator, make_request_options
+from .networks_custom import NetworksResourceCustomMixin, AsyncNetworksResourceCustomMixin
 from ....types.cloud.network import Network
 from ....types.cloud.task_id_list import TaskIDList
 from ....types.cloud.tag_update_map_param import TagUpdateMapParam
@@ -44,7 +45,7 @@ from ....types.cloud.tag_update_map_param import TagUpdateMapParam
 __all__ = ["NetworksResource", "AsyncNetworksResource"]
 
 
-class NetworksResource(SyncAPIResource):
+class NetworksResource(NetworksResourceCustomMixin, SyncAPIResource):
     """
     Networks provide software-defined networking infrastructure for connecting instances and other cloud resources within a region.
     """
@@ -146,58 +147,6 @@ class NetworksResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=TaskIDList,
-        )
-
-    def create_and_poll(
-        self,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        name: str,
-        create_router: bool | Omit = omit,
-        tags: Dict[str, str] | Omit = omit,
-        type: Literal["vlan", "vxlan"] | Omit = omit,
-        polling_interval_seconds: int | Omit = omit,
-        polling_timeout_seconds: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Network:
-        """Create network and poll for the result."""
-        response = self.create(
-            project_id=project_id,
-            region_id=region_id,
-            name=name,
-            create_router=create_router,
-            tags=tags,
-            type=type,
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-            timeout=timeout,
-        )
-        if not response.tasks or len(response.tasks) != 1:
-            raise ValueError(f"Expected exactly one task to be created")
-        task = self._client.cloud.tasks.poll(
-            task_id=response.tasks[0],
-            extra_headers=extra_headers,
-            polling_interval_seconds=polling_interval_seconds,
-            polling_timeout_seconds=polling_timeout_seconds,
-        )
-        if (
-            not task.created_resources
-            or not task.created_resources.networks
-            or len(task.created_resources.networks) != 1
-        ):
-            raise ValueError(f"Expected exactly one resource to be created in a task")
-        return self.get(
-            network_id=task.created_resources.networks[0],
-            project_id=project_id,
-            region_id=region_id,
-            extra_headers=extra_headers,
         )
 
     @typing_extensions.deprecated("deprecated")
@@ -435,40 +384,6 @@ class NetworksResource(SyncAPIResource):
             cast_to=TaskIDList,
         )
 
-    def delete_and_poll(
-        self,
-        network_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        polling_interval_seconds: int | Omit = omit,
-        polling_timeout_seconds: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> None:
-        """Delete network and poll for the result."""
-        response = self.delete(
-            network_id=network_id,
-            project_id=project_id,
-            region_id=region_id,
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-            timeout=timeout,
-        )
-        if not response.tasks:
-            raise ValueError("Expected at least one task to be created")
-        self._client.cloud.tasks.poll(
-            task_id=response.tasks[0],
-            extra_headers=extra_headers,
-            polling_interval_seconds=polling_interval_seconds,
-            polling_timeout_seconds=polling_timeout_seconds,
-        )
-
     def get(
         self,
         network_id: str,
@@ -520,7 +435,7 @@ class NetworksResource(SyncAPIResource):
         )
 
 
-class AsyncNetworksResource(AsyncAPIResource):
+class AsyncNetworksResource(AsyncNetworksResourceCustomMixin, AsyncAPIResource):
     """
     Networks provide software-defined networking infrastructure for connecting instances and other cloud resources within a region.
     """
@@ -622,58 +537,6 @@ class AsyncNetworksResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=TaskIDList,
-        )
-
-    async def create_and_poll(
-        self,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        name: str,
-        create_router: bool | Omit = omit,
-        tags: Dict[str, str] | Omit = omit,
-        type: Literal["vlan", "vxlan"] | Omit = omit,
-        polling_interval_seconds: int | Omit = omit,
-        polling_timeout_seconds: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Network:
-        """Create network and poll for the result."""
-        response = await self.create(
-            project_id=project_id,
-            region_id=region_id,
-            name=name,
-            create_router=create_router,
-            tags=tags,
-            type=type,
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-            timeout=timeout,
-        )
-        if not response.tasks or len(response.tasks) != 1:
-            raise ValueError(f"Expected exactly one task to be created")
-        task = await self._client.cloud.tasks.poll(
-            task_id=response.tasks[0],
-            extra_headers=extra_headers,
-            polling_interval_seconds=polling_interval_seconds,
-            polling_timeout_seconds=polling_timeout_seconds,
-        )
-        if (
-            not task.created_resources
-            or not task.created_resources.networks
-            or len(task.created_resources.networks) != 1
-        ):
-            raise ValueError(f"Expected exactly one resource to be created in a task")
-        return await self.get(
-            network_id=task.created_resources.networks[0],
-            project_id=project_id,
-            region_id=region_id,
-            extra_headers=extra_headers,
         )
 
     @typing_extensions.deprecated("deprecated")
@@ -909,40 +772,6 @@ class AsyncNetworksResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=TaskIDList,
-        )
-
-    async def delete_and_poll(
-        self,
-        network_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        polling_interval_seconds: int | Omit = omit,
-        polling_timeout_seconds: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> None:
-        """Delete network and poll for the result."""
-        response = await self.delete(
-            network_id=network_id,
-            project_id=project_id,
-            region_id=region_id,
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-            timeout=timeout,
-        )
-        if not response.tasks:
-            raise ValueError("Expected at least one task to be created")
-        await self._client.cloud.tasks.poll(
-            task_id=response.tasks[0],
-            extra_headers=extra_headers,
-            polling_interval_seconds=polling_interval_seconds,
-            polling_timeout_seconds=polling_timeout_seconds,
         )
 
     async def get(

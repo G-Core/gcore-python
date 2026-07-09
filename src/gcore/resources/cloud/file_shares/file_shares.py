@@ -33,6 +33,7 @@ from ....types.cloud import (
     file_share_update_params,
 )
 from ...._base_client import AsyncPaginator, make_request_options
+from .file_shares_custom import FileSharesResourceCustomMixin, AsyncFileSharesResourceCustomMixin
 from ....types.cloud.file_share import FileShare
 from ....types.cloud.task_id_list import TaskIDList
 from ....types.cloud.tag_update_map_param import TagUpdateMapParam
@@ -40,7 +41,7 @@ from ....types.cloud.tag_update_map_param import TagUpdateMapParam
 __all__ = ["FileSharesResource", "AsyncFileSharesResource"]
 
 
-class FileSharesResource(SyncAPIResource):
+class FileSharesResource(FileSharesResourceCustomMixin, SyncAPIResource):
     """
     File shares provide NFS-based shared storage that can be mounted by virtual machines and Kubernetes clusters for persistent data.
     """
@@ -323,54 +324,6 @@ class FileSharesResource(SyncAPIResource):
             cast_to=TaskIDList,
         )
 
-    def update_and_poll(
-        self,
-        file_share_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        name: str | Omit = omit,
-        share_settings: file_share_update_params.ShareSettings | Omit = omit,
-        tags: Optional[TagUpdateMapParam] | Omit = omit,
-        polling_interval_seconds: int | Omit = omit,
-        polling_timeout_seconds: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FileShare:
-        response = self.update(
-            file_share_id,
-            project_id=project_id,
-            region_id=region_id,
-            name=name,
-            share_settings=share_settings,
-            tags=tags,
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-            timeout=timeout,
-        )
-        if not response.tasks:
-            raise ValueError("Expected at least one task to be created")
-        self._client.cloud.tasks.poll(
-            task_id=response.tasks[0],
-            extra_headers=extra_headers,
-            polling_interval_seconds=polling_interval_seconds,
-            polling_timeout_seconds=polling_timeout_seconds,
-        )
-        return self.get(
-            file_share_id,
-            project_id=project_id,
-            region_id=region_id,
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-            timeout=timeout,
-        )
-
     def list(
         self,
         *,
@@ -592,7 +545,7 @@ class FileSharesResource(SyncAPIResource):
         )
 
 
-class AsyncFileSharesResource(AsyncAPIResource):
+class AsyncFileSharesResource(AsyncFileSharesResourceCustomMixin, AsyncAPIResource):
     """
     File shares provide NFS-based shared storage that can be mounted by virtual machines and Kubernetes clusters for persistent data.
     """
@@ -873,54 +826,6 @@ class AsyncFileSharesResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=TaskIDList,
-        )
-
-    async def update_and_poll(
-        self,
-        file_share_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        name: str | Omit = omit,
-        share_settings: file_share_update_params.ShareSettings | Omit = omit,
-        tags: Optional[TagUpdateMapParam] | Omit = omit,
-        polling_interval_seconds: int | Omit = omit,
-        polling_timeout_seconds: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FileShare:
-        response = await self.update(
-            file_share_id,
-            project_id=project_id,
-            region_id=region_id,
-            name=name,
-            share_settings=share_settings,
-            tags=tags,
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-            timeout=timeout,
-        )
-        if not response.tasks:
-            raise ValueError("Expected at least one task to be created")
-        await self._client.cloud.tasks.poll(
-            task_id=response.tasks[0],
-            extra_headers=extra_headers,
-            polling_interval_seconds=polling_interval_seconds,
-            polling_timeout_seconds=polling_timeout_seconds,
-        )
-        return await self.get(
-            file_share_id,
-            project_id=project_id,
-            region_id=region_id,
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-            timeout=timeout,
         )
 
     def list(

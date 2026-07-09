@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -19,6 +19,7 @@ from ...._response import (
 )
 from ....pagination import SyncOffsetPage, AsyncOffsetPage
 from ....types.cloud import IPVersion
+from .subnets_custom import SubnetsResourceCustomMixin, AsyncSubnetsResourceCustomMixin
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.cloud.subnet import Subnet
 from ....types.cloud.networks import subnet_list_params, subnet_create_params, subnet_update_params
@@ -29,7 +30,7 @@ from ....types.cloud.tag_update_map_param import TagUpdateMapParam
 __all__ = ["SubnetsResource", "AsyncSubnetsResource"]
 
 
-class SubnetsResource(SyncAPIResource):
+class SubnetsResource(SubnetsResourceCustomMixin, SyncAPIResource):
     """
     Subnets define IP address ranges within a network for instance connectivity, with support for DHCP and DNS configuration.
     """
@@ -151,68 +152,6 @@ class SubnetsResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=TaskIDList,
-        )
-
-    def create_and_poll(
-        self,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        cidr: str,
-        name: str,
-        network_id: str,
-        connect_to_network_router: bool | Omit = omit,
-        dns_nameservers: Optional[SequenceNotStr[str]] | Omit = omit,
-        enable_dhcp: bool | Omit = omit,
-        gateway_ip: Optional[str] | Omit = omit,
-        host_routes: Optional[Iterable[subnet_create_params.HostRoute]] | Omit = omit,
-        ip_version: IPVersion | Omit = omit,
-        router_id_to_connect: Optional[str] | Omit = omit,
-        tags: Dict[str, str] | Omit = omit,
-        polling_interval_seconds: int | Omit = omit,
-        polling_timeout_seconds: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Subnet:
-        """Create subnet and poll for the result."""
-        response = self.create(
-            project_id=project_id,
-            region_id=region_id,
-            cidr=cidr,
-            name=name,
-            network_id=network_id,
-            connect_to_network_router=connect_to_network_router,
-            dns_nameservers=dns_nameservers,
-            enable_dhcp=enable_dhcp,
-            gateway_ip=gateway_ip,
-            host_routes=host_routes,
-            ip_version=ip_version,
-            router_id_to_connect=router_id_to_connect,
-            tags=tags,
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-            timeout=timeout,
-        )
-        if not response.tasks or len(response.tasks) != 1:
-            raise ValueError(f"Expected exactly one task to be created")
-        task = self._client.cloud.tasks.poll(
-            task_id=response.tasks[0],
-            extra_headers=extra_headers,
-            polling_interval_seconds=polling_interval_seconds,
-            polling_timeout_seconds=polling_timeout_seconds,
-        )
-        if not task.created_resources or not task.created_resources.subnets or len(task.created_resources.subnets) != 1:
-            raise ValueError(f"Expected exactly one resource to be created in a task")
-        return self.get(
-            subnet_id=task.created_resources.subnets[0],
-            project_id=project_id,
-            region_id=region_id,
-            extra_headers=extra_headers,
         )
 
     def update(
@@ -517,7 +456,7 @@ class SubnetsResource(SyncAPIResource):
         )
 
 
-class AsyncSubnetsResource(AsyncAPIResource):
+class AsyncSubnetsResource(AsyncSubnetsResourceCustomMixin, AsyncAPIResource):
     """
     Subnets define IP address ranges within a network for instance connectivity, with support for DHCP and DNS configuration.
     """
@@ -639,68 +578,6 @@ class AsyncSubnetsResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=TaskIDList,
-        )
-
-    async def create_and_poll(
-        self,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        cidr: str,
-        name: str,
-        network_id: str,
-        connect_to_network_router: bool | Omit = omit,
-        dns_nameservers: Optional[SequenceNotStr[str]] | Omit = omit,
-        enable_dhcp: bool | Omit = omit,
-        gateway_ip: Optional[str] | Omit = omit,
-        host_routes: Optional[Iterable[subnet_create_params.HostRoute]] | Omit = omit,
-        ip_version: IPVersion | Omit = omit,
-        router_id_to_connect: Optional[str] | Omit = omit,
-        tags: Dict[str, str] | Omit = omit,
-        polling_interval_seconds: int | Omit = omit,
-        polling_timeout_seconds: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Subnet:
-        """Create subnet and poll for the result."""
-        response = await self.create(
-            project_id=project_id,
-            region_id=region_id,
-            cidr=cidr,
-            name=name,
-            network_id=network_id,
-            connect_to_network_router=connect_to_network_router,
-            dns_nameservers=dns_nameservers,
-            enable_dhcp=enable_dhcp,
-            gateway_ip=gateway_ip,
-            host_routes=host_routes,
-            ip_version=ip_version,
-            router_id_to_connect=router_id_to_connect,
-            tags=tags,
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-            timeout=timeout,
-        )
-        if not response.tasks or len(response.tasks) != 1:
-            raise ValueError(f"Expected exactly one task to be created")
-        task = await self._client.cloud.tasks.poll(
-            task_id=response.tasks[0],
-            extra_headers=extra_headers,
-            polling_interval_seconds=polling_interval_seconds,
-            polling_timeout_seconds=polling_timeout_seconds,
-        )
-        if not task.created_resources or not task.created_resources.subnets or len(task.created_resources.subnets) != 1:
-            raise ValueError(f"Expected exactly one resource to be created in a task")
-        return await self.get(
-            subnet_id=task.created_resources.subnets[0],
-            project_id=project_id,
-            region_id=region_id,
-            extra_headers=extra_headers,
         )
 
     async def update(

@@ -14,7 +14,7 @@ from .rules import (
     RulesResourceWithStreamingResponse,
     AsyncRulesResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
+from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -32,6 +32,7 @@ from ....types.cloud import (
     security_group_update_params,
 )
 from ...._base_client import AsyncPaginator, make_request_options
+from .security_groups_custom import SecurityGroupsResourceCustomMixin, AsyncSecurityGroupsResourceCustomMixin
 from ....types.cloud.task_id_list import TaskIDList
 from ....types.cloud.security_group import SecurityGroup
 from ....types.cloud.tag_update_map_param import TagUpdateMapParam
@@ -39,7 +40,7 @@ from ....types.cloud.tag_update_map_param import TagUpdateMapParam
 __all__ = ["SecurityGroupsResource", "AsyncSecurityGroupsResource"]
 
 
-class SecurityGroupsResource(SyncAPIResource):
+class SecurityGroupsResource(SecurityGroupsResourceCustomMixin, SyncAPIResource):
     """
     Security groups act as virtual firewalls controlling inbound and outbound traffic for instances and other resources.
     """
@@ -526,114 +527,8 @@ class SecurityGroupsResource(SyncAPIResource):
             cast_to=SecurityGroup,
         )
 
-    def create_and_poll(
-        self,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        name: str,
-        description: str | Omit = omit,
-        rules: Iterable[security_group_create_params.Rule] | Omit = omit,
-        tags: Dict[str, str] | Omit = omit,
-        polling_interval_seconds: int | Omit = omit,
-        polling_timeout_seconds: int | Omit = omit,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-    ) -> SecurityGroup:
-        """
-        Create security group and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
-        """
-        response = self.create(
-            project_id=project_id,
-            region_id=region_id,
-            name=name,
-            description=description,
-            rules=rules,
-            tags=tags,
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-            timeout=timeout,
-        )
-        if not response.tasks:
-            raise ValueError("Expected at least one task to be created")
-        task = self._client.cloud.tasks.poll(
-            task_id=response.tasks[0],
-            extra_headers=extra_headers,
-            polling_interval_seconds=polling_interval_seconds,
-            polling_timeout_seconds=polling_timeout_seconds,
-        )
-        if task.created_resources is None or task.created_resources.security_groups is None:
-            raise ValueError("Task completed but created_resources or security_groups is missing")
-        security_group_id = task.created_resources.security_groups[0]
-        return self.get(
-            group_id=security_group_id,
-            project_id=project_id,
-            region_id=region_id,
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-            timeout=timeout,
-        )
 
-    def update_and_poll(
-        self,
-        group_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        description: str | Omit = omit,
-        name: str | Omit = omit,
-        rules: Iterable[security_group_update_params.Rule] | Omit = omit,
-        tags: Optional[TagUpdateMapParam] | Omit = omit,
-        polling_interval_seconds: int | Omit = omit,
-        polling_timeout_seconds: int | Omit = omit,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-    ) -> SecurityGroup:
-        """
-        Update security group and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
-        """
-        response = self.update(
-            group_id=group_id,
-            project_id=project_id,
-            region_id=region_id,
-            description=description,
-            name=name,
-            rules=rules,
-            tags=tags,
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-            timeout=timeout,
-        )
-        if response.tasks:
-            self._client.cloud.tasks.poll(
-                task_id=response.tasks[0],
-                extra_headers=extra_headers,
-                polling_interval_seconds=polling_interval_seconds,
-                polling_timeout_seconds=polling_timeout_seconds,
-            )
-        return self.get(
-            group_id=group_id,
-            project_id=project_id,
-            region_id=region_id,
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-            timeout=timeout,
-        )
-
-
-class AsyncSecurityGroupsResource(AsyncAPIResource):
+class AsyncSecurityGroupsResource(AsyncSecurityGroupsResourceCustomMixin, AsyncAPIResource):
     """
     Security groups act as virtual firewalls controlling inbound and outbound traffic for instances and other resources.
     """
@@ -1118,112 +1013,6 @@ class AsyncSecurityGroupsResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=SecurityGroup,
-        )
-
-    async def create_and_poll(
-        self,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        name: str,
-        description: str | Omit = omit,
-        rules: Iterable[security_group_create_params.Rule] | Omit = omit,
-        tags: Dict[str, str] | Omit = omit,
-        polling_interval_seconds: int | Omit = omit,
-        polling_timeout_seconds: int | Omit = omit,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-    ) -> SecurityGroup:
-        """
-        Create security group and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
-        """
-        response = await self.create(
-            project_id=project_id,
-            region_id=region_id,
-            name=name,
-            description=description,
-            rules=rules,
-            tags=tags,
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-            timeout=timeout,
-        )
-        if not response.tasks:
-            raise ValueError("Expected at least one task to be created")
-        task = await self._client.cloud.tasks.poll(
-            task_id=response.tasks[0],
-            extra_headers=extra_headers,
-            polling_interval_seconds=polling_interval_seconds,
-            polling_timeout_seconds=polling_timeout_seconds,
-        )
-        if task.created_resources is None or task.created_resources.security_groups is None:
-            raise ValueError("Task completed but created_resources or security_groups is missing")
-        security_group_id = task.created_resources.security_groups[0]
-        return await self.get(
-            group_id=security_group_id,
-            project_id=project_id,
-            region_id=region_id,
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-            timeout=timeout,
-        )
-
-    async def update_and_poll(
-        self,
-        group_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        description: str | Omit = omit,
-        name: str | Omit = omit,
-        rules: Iterable[security_group_update_params.Rule] | Omit = omit,
-        tags: Optional[TagUpdateMapParam] | Omit = omit,
-        polling_interval_seconds: int | Omit = omit,
-        polling_timeout_seconds: int | Omit = omit,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-    ) -> SecurityGroup:
-        """
-        Update security group and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
-        """
-        response = await self.update(
-            group_id=group_id,
-            project_id=project_id,
-            region_id=region_id,
-            description=description,
-            name=name,
-            rules=rules,
-            tags=tags,
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-            timeout=timeout,
-        )
-        if response.tasks:
-            await self._client.cloud.tasks.poll(
-                task_id=response.tasks[0],
-                extra_headers=extra_headers,
-                polling_interval_seconds=polling_interval_seconds,
-                polling_timeout_seconds=polling_timeout_seconds,
-            )
-        return await self.get(
-            group_id=group_id,
-            project_id=project_id,
-            region_id=region_id,
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-            timeout=timeout,
         )
 
 

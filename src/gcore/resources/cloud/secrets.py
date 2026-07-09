@@ -20,13 +20,14 @@ from ..._response import (
 from ...pagination import SyncOffsetPage, AsyncOffsetPage
 from ...types.cloud import secret_list_params, secret_upload_tls_certificate_params
 from ..._base_client import AsyncPaginator, make_request_options
+from .secrets_custom import SecretsResourceCustomMixin, AsyncSecretsResourceCustomMixin
 from ...types.cloud.secret import Secret
 from ...types.cloud.task_id_list import TaskIDList
 
 __all__ = ["SecretsResource", "AsyncSecretsResource"]
 
 
-class SecretsResource(SyncAPIResource):
+class SecretsResource(SecretsResourceCustomMixin, SyncAPIResource):
     """
     Secrets store sensitive data such as TLS certificates and private keys in encrypted form within a cloud region.
     """
@@ -265,51 +266,8 @@ class SecretsResource(SyncAPIResource):
             cast_to=TaskIDList,
         )
 
-    def upload_tls_certificate_and_poll(
-        self,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        name: str,
-        payload: secret_upload_tls_certificate_params.Payload,
-        expiration: Union[str, datetime, None] | Omit = omit,
-        polling_interval_seconds: int | Omit = omit,
-        polling_timeout_seconds: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-    ) -> Secret:
-        response = self.upload_tls_certificate(
-            project_id=project_id,
-            region_id=region_id,
-            name=name,
-            payload=payload,
-            expiration=expiration,
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-        )
-        if not response.tasks or len(response.tasks) != 1:
-            raise ValueError(f"Expected exactly one task to be created")
-        task = self._client.cloud.tasks.poll(
-            task_id=response.tasks[0],
-            extra_headers=extra_headers,
-            polling_interval_seconds=polling_interval_seconds,
-            polling_timeout_seconds=polling_timeout_seconds,
-        )
-        if not task.created_resources or not task.created_resources.secrets or len(task.created_resources.secrets) != 1:
-            raise ValueError(f"Expected exactly one resource to be created in a task")
-        return self.get(
-            secret_id=task.created_resources.secrets[0],
-            project_id=project_id,
-            region_id=region_id,
-            extra_headers=extra_headers,
-        )
 
-
-class AsyncSecretsResource(AsyncAPIResource):
+class AsyncSecretsResource(AsyncSecretsResourceCustomMixin, AsyncAPIResource):
     """
     Secrets store sensitive data such as TLS certificates and private keys in encrypted form within a cloud region.
     """
@@ -546,49 +504,6 @@ class AsyncSecretsResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=TaskIDList,
-        )
-
-    async def upload_tls_certificate_and_poll(
-        self,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        name: str,
-        payload: secret_upload_tls_certificate_params.Payload,
-        expiration: Union[str, datetime, None] | Omit = omit,
-        polling_interval_seconds: int | Omit = omit,
-        polling_timeout_seconds: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-    ) -> Secret:
-        response = await self.upload_tls_certificate(
-            project_id=project_id,
-            region_id=region_id,
-            name=name,
-            payload=payload,
-            expiration=expiration,
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-        )
-        if not response.tasks or len(response.tasks) != 1:
-            raise ValueError(f"Expected exactly one task to be created")
-        task = await self._client.cloud.tasks.poll(
-            task_id=response.tasks[0],
-            extra_headers=extra_headers,
-            polling_interval_seconds=polling_interval_seconds,
-            polling_timeout_seconds=polling_timeout_seconds,
-        )
-        if not task.created_resources or not task.created_resources.secrets or len(task.created_resources.secrets) != 1:
-            raise ValueError(f"Expected exactly one resource to be created in a task")
-        return await self.get(
-            secret_id=task.created_resources.secrets[0],
-            project_id=project_id,
-            region_id=region_id,
-            extra_headers=extra_headers,
         )
 
 

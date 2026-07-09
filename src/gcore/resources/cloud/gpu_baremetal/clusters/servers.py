@@ -20,6 +20,7 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from .....pagination import SyncOffsetPage, AsyncOffsetPage
+from .servers_custom import ServersResourceCustomMixin, AsyncServersResourceCustomMixin
 from ....._base_client import AsyncPaginator, make_request_options
 from .....types.cloud.console import Console
 from .....types.cloud.task_id_list import TaskIDList
@@ -30,7 +31,7 @@ from .....types.cloud.gpu_baremetal.clusters.gpu_baremetal_cluster_server_v1 imp
 __all__ = ["ServersResource", "AsyncServersResource"]
 
 
-class ServersResource(SyncAPIResource):
+class ServersResource(ServersResourceCustomMixin, SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ServersResourceWithRawResponse:
         """
@@ -425,48 +426,6 @@ class ServersResource(SyncAPIResource):
             cast_to=TaskIDList,
         )
 
-    def delete_and_poll(
-        self,
-        instance_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        cluster_id: str,
-        delete_floatings: bool | Omit = omit,
-        polling_interval_seconds: int | Omit = omit,
-        polling_timeout_seconds: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
-        """
-        Delete a bare metal GPU server from cluster and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
-        """
-        response = self.delete(
-            instance_id=instance_id,
-            project_id=project_id,
-            region_id=region_id,
-            cluster_id=cluster_id,
-            delete_floatings=delete_floatings,
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-            timeout=timeout,
-        )
-        if not response.tasks or len(response.tasks) < 1:
-            raise ValueError("Expected at least one task to be created")
-        self._client.cloud.tasks.poll(
-            response.tasks[0],
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-            polling_interval_seconds=polling_interval_seconds,
-            polling_timeout_seconds=polling_timeout_seconds,
-        )
-
     def replace(
         self,
         server_id: str,
@@ -533,115 +492,8 @@ class ServersResource(SyncAPIResource):
             cast_to=TaskIDList,
         )
 
-    def replace_and_poll(
-        self,
-        server_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        cluster_id: str,
-        polling_interval_seconds: int | Omit = omit,
-        polling_timeout_seconds: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> GPUBaremetalClusterServer:
-        """
-        Replace a bare metal GPU cluster server and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
-        """
-        response = self.replace(
-            server_id=server_id,
-            project_id=project_id,
-            region_id=region_id,
-            cluster_id=cluster_id,
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-            timeout=timeout,
-        )
-        if not response.tasks or len(response.tasks) < 1:
-            raise ValueError("Expected at least one task to be created")
-        task = self._client.cloud.tasks.poll(
-            response.tasks[0],
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-            polling_interval_seconds=polling_interval_seconds,
-            polling_timeout_seconds=polling_timeout_seconds,
-        )
-        if not task.created_resources or not task.created_resources.instances:
-            raise ValueError("No server was created")
-        new_server_id = task.created_resources.instances[0]
-        servers = self.list(
-            cluster_id=cluster_id,
-            project_id=project_id,
-            region_id=region_id,
-            uuids=[new_server_id],
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-        )
-        if not servers.results or len(servers.results) != 1:
-            raise ValueError(f"Server {new_server_id} not found")
-        return servers.results[0]
 
-    def rebuild_and_poll(
-        self,
-        server_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        cluster_id: str,
-        polling_interval_seconds: int | Omit = omit,
-        polling_timeout_seconds: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> GPUBaremetalClusterServer:
-        """
-        Rebuild a bare metal GPU cluster server and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
-        """
-        response = self.rebuild(  # pyright: ignore[reportDeprecated]
-            server_id=server_id,
-            project_id=project_id,
-            region_id=region_id,
-            cluster_id=cluster_id,
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-            timeout=timeout,
-        )
-        if not response.tasks or len(response.tasks) < 1:
-            raise ValueError("Expected at least one task to be created")
-        self._client.cloud.tasks.poll(
-            response.tasks[0],
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-            polling_interval_seconds=polling_interval_seconds,
-            polling_timeout_seconds=polling_timeout_seconds,
-        )
-        servers = self.list(
-            cluster_id=cluster_id,
-            project_id=project_id,
-            region_id=region_id,
-            uuids=[server_id],
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-        )
-        if not servers.results or len(servers.results) != 1:
-            raise ValueError(f"Server {server_id} not found")
-        return servers.results[0]
-
-
-class AsyncServersResource(AsyncAPIResource):
+class AsyncServersResource(AsyncServersResourceCustomMixin, AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncServersResourceWithRawResponse:
         """
@@ -1038,48 +890,6 @@ class AsyncServersResource(AsyncAPIResource):
             cast_to=TaskIDList,
         )
 
-    async def delete_and_poll(
-        self,
-        instance_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        cluster_id: str,
-        delete_floatings: bool | Omit = omit,
-        polling_interval_seconds: int | Omit = omit,
-        polling_timeout_seconds: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
-        """
-        Delete a bare metal GPU server from cluster and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
-        """
-        response = await self.delete(
-            instance_id=instance_id,
-            project_id=project_id,
-            region_id=region_id,
-            cluster_id=cluster_id,
-            delete_floatings=delete_floatings,
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-            timeout=timeout,
-        )
-        if not response.tasks or len(response.tasks) < 1:
-            raise ValueError("Expected at least one task to be created")
-        await self._client.cloud.tasks.poll(
-            response.tasks[0],
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-            polling_interval_seconds=polling_interval_seconds,
-            polling_timeout_seconds=polling_timeout_seconds,
-        )
-
     async def replace(
         self,
         server_id: str,
@@ -1147,113 +957,6 @@ class AsyncServersResource(AsyncAPIResource):
             ),
             cast_to=TaskIDList,
         )
-
-    async def replace_and_poll(
-        self,
-        server_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        cluster_id: str,
-        polling_interval_seconds: int | Omit = omit,
-        polling_timeout_seconds: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> GPUBaremetalClusterServer:
-        """
-        Replace a bare metal GPU cluster server and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
-        """
-        response = await self.replace(
-            server_id=server_id,
-            project_id=project_id,
-            region_id=region_id,
-            cluster_id=cluster_id,
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-            timeout=timeout,
-        )
-        if not response.tasks or len(response.tasks) < 1:
-            raise ValueError("Expected at least one task to be created")
-        task = await self._client.cloud.tasks.poll(
-            response.tasks[0],
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-            polling_interval_seconds=polling_interval_seconds,
-            polling_timeout_seconds=polling_timeout_seconds,
-        )
-        if not task.created_resources or not task.created_resources.instances:
-            raise ValueError("No server was created")
-        new_server_id = task.created_resources.instances[0]
-        servers = await self.list(
-            cluster_id=cluster_id,
-            project_id=project_id,
-            region_id=region_id,
-            uuids=[new_server_id],
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-        )
-        if not servers.results or len(servers.results) != 1:
-            raise ValueError(f"Server {new_server_id} not found")
-        return servers.results[0]
-
-    async def rebuild_and_poll(
-        self,
-        server_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        cluster_id: str,
-        polling_interval_seconds: int | Omit = omit,
-        polling_timeout_seconds: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> GPUBaremetalClusterServer:
-        """
-        Rebuild a bare metal GPU cluster server and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
-        """
-        response = await self.rebuild(  # pyright: ignore[reportDeprecated]
-            server_id=server_id,
-            project_id=project_id,
-            region_id=region_id,
-            cluster_id=cluster_id,
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-            timeout=timeout,
-        )
-        if not response.tasks or len(response.tasks) < 1:
-            raise ValueError("Expected at least one task to be created")
-        await self._client.cloud.tasks.poll(
-            response.tasks[0],
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-            polling_interval_seconds=polling_interval_seconds,
-            polling_timeout_seconds=polling_timeout_seconds,
-        )
-        servers = await self.list(
-            cluster_id=cluster_id,
-            project_id=project_id,
-            region_id=region_id,
-            uuids=[server_id],
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-        )
-        if not servers.results or len(servers.results) != 1:
-            raise ValueError(f"Server {server_id} not found")
-        return servers.results[0]
 
 
 class ServersResourceWithRawResponse:
