@@ -155,16 +155,15 @@ class ClustersResourceCustomMixin:
             extra_body=extra_body,
             timeout=timeout,
         )
-        if not response.tasks:
-            raise ValueError("Expected at least one task to be created")
-        self._client.cloud.tasks.poll(
-            response.tasks[0],
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-            polling_interval_seconds=polling_interval_seconds,
-            polling_timeout_seconds=polling_timeout_seconds,
-        )
+        if response.tasks:
+            self._client.cloud.tasks.poll(
+                response.tasks[0],
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                polling_interval_seconds=polling_interval_seconds,
+                polling_timeout_seconds=polling_timeout_seconds,
+            )
         return cast(
             K8SCluster,
             self.get(
@@ -407,16 +406,15 @@ class AsyncClustersResourceCustomMixin:
             extra_body=extra_body,
             timeout=timeout,
         )
-        if not response.tasks:
-            raise ValueError("Expected at least one task to be created")
-        await self._client.cloud.tasks.poll(
-            response.tasks[0],
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-            polling_interval_seconds=polling_interval_seconds,
-            polling_timeout_seconds=polling_timeout_seconds,
-        )
+        if response.tasks:
+            await self._client.cloud.tasks.poll(
+                response.tasks[0],
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                polling_interval_seconds=polling_interval_seconds,
+                polling_timeout_seconds=polling_timeout_seconds,
+            )
         return cast(
             K8SCluster,
             await self.get(

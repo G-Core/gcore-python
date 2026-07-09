@@ -186,14 +186,13 @@ class PoolsResourceCustomMixin:
             extra_body=extra_body,
             timeout=timeout,
         )
-        if not response.tasks:
-            raise ValueError("Expected at least one task to be created")
-        self._client.cloud.tasks.poll(
-            task_id=response.tasks[0],
-            extra_headers=extra_headers,
-            polling_interval_seconds=polling_interval_seconds,
-            polling_timeout_seconds=polling_timeout_seconds,
-        )
+        if response.tasks:
+            self._client.cloud.tasks.poll(
+                task_id=response.tasks[0],
+                extra_headers=extra_headers,
+                polling_interval_seconds=polling_interval_seconds,
+                polling_timeout_seconds=polling_timeout_seconds,
+            )
         return cast(
             LoadBalancerPool,
             self.get(
@@ -373,14 +372,13 @@ class AsyncPoolsResourceCustomMixin:
             extra_query=extra_query,
             extra_body=extra_body,
         )
-        if not response.tasks:
-            raise ValueError("Expected at least one task to be created")
-        await self._client.cloud.tasks.poll(
-            task_id=response.tasks[0],
-            extra_headers=extra_headers,
-            polling_interval_seconds=polling_interval_seconds,
-            polling_timeout_seconds=polling_timeout_seconds,
-        )
+        if response.tasks:
+            await self._client.cloud.tasks.poll(
+                task_id=response.tasks[0],
+                extra_headers=extra_headers,
+                polling_interval_seconds=polling_interval_seconds,
+                polling_timeout_seconds=polling_timeout_seconds,
+            )
         return cast(
             LoadBalancerPool,
             await self.get(

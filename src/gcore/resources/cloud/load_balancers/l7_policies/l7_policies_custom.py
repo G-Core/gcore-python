@@ -356,14 +356,13 @@ class L7PoliciesResourceCustomMixin:
             extra_body=extra_body,
             timeout=timeout,
         )
-        if not response.tasks or len(response.tasks) != 1:  # type: ignore[union-attr]
-            raise ValueError("Expected exactly one task to be created")
-        self._client.cloud.tasks.poll(
-            task_id=response.tasks[0],  # type: ignore[index]
-            extra_headers=extra_headers,
-            polling_interval_seconds=polling_interval_seconds,
-            polling_timeout_seconds=polling_timeout_seconds,
-        )
+        if response.tasks:  # type: ignore[union-attr]
+            self._client.cloud.tasks.poll(
+                task_id=response.tasks[0],  # type: ignore[index]
+                extra_headers=extra_headers,
+                polling_interval_seconds=polling_interval_seconds,
+                polling_timeout_seconds=polling_timeout_seconds,
+            )
         return cast(
             LoadBalancerL7Policy,
             self.get(
@@ -714,14 +713,13 @@ class AsyncL7PoliciesResourceCustomMixin:
             extra_body=extra_body,
             timeout=timeout,
         )
-        if not response.tasks or len(response.tasks) != 1:  # type: ignore[union-attr]
-            raise ValueError("Expected exactly one task to be created")
-        await self._client.cloud.tasks.poll(
-            task_id=response.tasks[0],  # type: ignore[index]
-            extra_headers=extra_headers,
-            polling_interval_seconds=polling_interval_seconds,
-            polling_timeout_seconds=polling_timeout_seconds,
-        )
+        if response.tasks:  # type: ignore[union-attr]
+            await self._client.cloud.tasks.poll(
+                task_id=response.tasks[0],  # type: ignore[index]
+                extra_headers=extra_headers,
+                polling_interval_seconds=polling_interval_seconds,
+                polling_timeout_seconds=polling_timeout_seconds,
+            )
         return cast(
             LoadBalancerL7Policy,
             await self.get(
