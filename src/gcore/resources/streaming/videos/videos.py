@@ -721,19 +721,19 @@ class VideosResource(SyncAPIResource):
         version only of tus-js-client.
 
         ```
-            uploads[data.video.id] = new tus.Upload(file, {
-              endpoint: `https://${data.servers[0].hostname}/upload/`,
-              metadata: {
-                filename: data.video.name,
-                token: data.token,
-                video_id: data.video.id,
-                client_id: data.video.client_id
-              },
-              onSuccess: function() {
-                ...
-              }
+          uploads[data.video.id] = new tus.Upload(file, {
+            endpoint: `https://${data.servers[0].hostname}/upload/`,
+            metadata: {
+              filename: data.video.name,
+              token: data.token,
+              video_id: data.video.id,
+              client_id: data.video.client_id
+            },
+            onSuccess: function() {
+              ...
             }
-            uploads[data.video.id].start();
+          }
+          uploads[data.video.id].start();
         ```
 
         Args:
@@ -1473,19 +1473,19 @@ class AsyncVideosResource(AsyncAPIResource):
         version only of tus-js-client.
 
         ```
-            uploads[data.video.id] = new tus.Upload(file, {
-              endpoint: `https://${data.servers[0].hostname}/upload/`,
-              metadata: {
-                filename: data.video.name,
-                token: data.token,
-                video_id: data.video.id,
-                client_id: data.video.client_id
-              },
-              onSuccess: function() {
-                ...
-              }
+          uploads[data.video.id] = new tus.Upload(file, {
+            endpoint: `https://${data.servers[0].hostname}/upload/`,
+            metadata: {
+              filename: data.video.name,
+              token: data.token,
+              video_id: data.video.id,
+              client_id: data.video.client_id
+            },
+            onSuccess: function() {
+              ...
             }
-            uploads[data.video.id].start();
+          }
+          uploads[data.video.id].start();
         ```
 
         Args:

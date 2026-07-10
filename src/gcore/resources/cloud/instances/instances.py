@@ -978,8 +978,8 @@ class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
 
         - `language` (str, optional): Language for the response content. Affects the
           `ddos_profile` field. Supported values:
-        - `'en'` (default)
-        - `'de'`
+          - `'en'` (default)
+          - `'de'`
 
         Args:
           project_id: Project ID
@@ -2133,8 +2133,8 @@ class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource
 
         - `language` (str, optional): Language for the response content. Affects the
           `ddos_profile` field. Supported values:
-        - `'en'` (default)
-        - `'de'`
+          - `'en'` (default)
+          - `'de'`
 
         Args:
           project_id: Project ID
