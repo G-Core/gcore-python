@@ -90,7 +90,7 @@ class RulesResource(RulesResourceCustomMixin, SyncAPIResource):
             ]
         ]
         | Omit = omit,
-        remote_group_id: Optional[str] | Omit = omit,
+        remote_group_id: str | Omit = omit,
         remote_ip_prefix: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -266,7 +266,7 @@ class RulesResource(RulesResourceCustomMixin, SyncAPIResource):
             ]
         ]
         | Omit = omit,
-        remote_group_id: Optional[str] | Omit = omit,
+        remote_group_id: str | Omit = omit,
         remote_ip_prefix: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -410,7 +410,7 @@ class AsyncRulesResource(AsyncRulesResourceCustomMixin, AsyncAPIResource):
             ]
         ]
         | Omit = omit,
-        remote_group_id: Optional[str] | Omit = omit,
+        remote_group_id: str | Omit = omit,
         remote_ip_prefix: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -586,7 +586,7 @@ class AsyncRulesResource(AsyncRulesResourceCustomMixin, AsyncAPIResource):
             ]
         ]
         | Omit = omit,
-        remote_group_id: Optional[str] | Omit = omit,
+        remote_group_id: str | Omit = omit,
         remote_ip_prefix: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

@@ -69,11 +69,15 @@ class FlavorsResource(SyncAPIResource):
         support.
 
         Args:
-          disabled: Flag for filtering disabled flavors in the region. Defaults to true
+          project_id: Project ID
 
-          exclude_linux: Set to true to exclude flavors dedicated to linux images. Default False
+          region_id: Region ID
 
-          exclude_windows: Set to true to exclude flavors dedicated to windows images. Default False
+          disabled: Flag for filtering disabled flavors in the region
+
+          exclude_linux: Set to true to exclude flavors dedicated to linux images
+
+          exclude_windows: Set to true to exclude flavors dedicated to windows images
 
           include_capacity: Set to true if the response should include flavor capacity
 
@@ -172,11 +176,15 @@ class AsyncFlavorsResource(AsyncAPIResource):
         support.
 
         Args:
-          disabled: Flag for filtering disabled flavors in the region. Defaults to true
+          project_id: Project ID
 
-          exclude_linux: Set to true to exclude flavors dedicated to linux images. Default False
+          region_id: Region ID
 
-          exclude_windows: Set to true to exclude flavors dedicated to windows images. Default False
+          disabled: Flag for filtering disabled flavors in the region
+
+          exclude_linux: Set to true to exclude flavors dedicated to linux images
+
+          exclude_windows: Set to true to exclude flavors dedicated to windows images
 
           include_capacity: Set to true if the response should include flavor capacity
 

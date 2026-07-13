@@ -9,8 +9,10 @@ __all__ = ["InstanceAddToPlacementGroupParams"]
 
 class InstanceAddToPlacementGroupParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     servergroup_id: Required[str]
     """Anti-affinity or affinity or soft-anti-affinity server group ID."""

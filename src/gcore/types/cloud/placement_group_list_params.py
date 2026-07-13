@@ -9,11 +9,16 @@ __all__ = ["PlacementGroupListParams"]
 
 class PlacementGroupListParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     limit: int
-    """Limit the number of returned items"""
+    """Optional. Limit the number of returned items"""
 
     offset: int
-    """Offset value is used to exclude the first set of records from the result"""
+    """Optional.
+
+    Offset value is used to exclude the first set of records from the result
+    """

@@ -20,23 +20,23 @@ class TestFlavors:
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
         flavor = client.cloud.baremetal.flavors.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=7,
         )
         assert_matches_type(BaremetalFlavorList, flavor, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
         flavor = client.cloud.baremetal.flavors.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=7,
             disabled=True,
             exclude_linux=True,
             exclude_windows=True,
             include_capacity=True,
             include_prices=True,
             include_reservation_stock=True,
-            limit=0,
+            limit=1000,
             offset=0,
         )
         assert_matches_type(BaremetalFlavorList, flavor, path=["response"])
@@ -44,8 +44,8 @@ class TestFlavors:
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
         response = client.cloud.baremetal.flavors.with_raw_response.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=7,
         )
 
         assert response.is_closed is True
@@ -56,8 +56,8 @@ class TestFlavors:
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
         with client.cloud.baremetal.flavors.with_streaming_response.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=7,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -76,23 +76,23 @@ class TestAsyncFlavors:
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
         flavor = await async_client.cloud.baremetal.flavors.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=7,
         )
         assert_matches_type(BaremetalFlavorList, flavor, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
         flavor = await async_client.cloud.baremetal.flavors.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=7,
             disabled=True,
             exclude_linux=True,
             exclude_windows=True,
             include_capacity=True,
             include_prices=True,
             include_reservation_stock=True,
-            limit=0,
+            limit=1000,
             offset=0,
         )
         assert_matches_type(BaremetalFlavorList, flavor, path=["response"])
@@ -100,8 +100,8 @@ class TestAsyncFlavors:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.baremetal.flavors.with_raw_response.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=7,
         )
 
         assert response.is_closed is True
@@ -112,8 +112,8 @@ class TestAsyncFlavors:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.baremetal.flavors.with_streaming_response.list(
-            project_id=0,
-            region_id=0,
+            project_id=1,
+            region_id=7,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

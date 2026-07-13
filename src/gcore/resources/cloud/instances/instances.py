@@ -749,6 +749,12 @@ class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
         group. Bare metal servers do not support server groups.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
           servergroup_id: Anti-affinity or affinity or soft-anti-affinity server group ID.
 
           extra_headers: Send extra headers
@@ -1087,6 +1093,12 @@ class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
         server group to be removed. Bare metal servers do not support server groups.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1904,6 +1916,12 @@ class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource
         group. Bare metal servers do not support server groups.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
           servergroup_id: Anti-affinity or affinity or soft-anti-affinity server group ID.
 
           extra_headers: Send extra headers
@@ -2242,6 +2260,12 @@ class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource
         server group to be removed. Bare metal servers do not support server groups.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

@@ -67,6 +67,10 @@ class PlacementGroupsResource(SyncAPIResource):
         Create an affinity or anti-affinity or soft-anti-affinity placement group
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           name: The name of the server group.
 
           policy: The server group policy.
@@ -115,12 +119,17 @@ class PlacementGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PlacementGroupList:
         """
-        List placement groups
+        List all placement groups in the specified project and region.
 
         Args:
-          limit: Limit the number of returned items
+          project_id: Project ID
 
-          offset: Offset value is used to exclude the first set of records from the result
+          region_id: Region ID
+
+          limit: Optional. Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           extra_headers: Send extra headers
 
@@ -168,9 +177,15 @@ class PlacementGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
-        Delete placement group
+        Delete a placement group by its ID.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          group_id: The ID of the server group.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -212,9 +227,15 @@ class PlacementGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PlacementGroup:
         """
-        Get placement group
+        Retrieve a single placement group by its ID.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          group_id: The ID of the server group.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -285,6 +306,10 @@ class AsyncPlacementGroupsResource(AsyncAPIResource):
         Create an affinity or anti-affinity or soft-anti-affinity placement group
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           name: The name of the server group.
 
           policy: The server group policy.
@@ -333,12 +358,17 @@ class AsyncPlacementGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PlacementGroupList:
         """
-        List placement groups
+        List all placement groups in the specified project and region.
 
         Args:
-          limit: Limit the number of returned items
+          project_id: Project ID
 
-          offset: Offset value is used to exclude the first set of records from the result
+          region_id: Region ID
+
+          limit: Optional. Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           extra_headers: Send extra headers
 
@@ -386,9 +416,15 @@ class AsyncPlacementGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
-        Delete placement group
+        Delete a placement group by its ID.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          group_id: The ID of the server group.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -430,9 +466,15 @@ class AsyncPlacementGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PlacementGroup:
         """
-        Get placement group
+        Retrieve a single placement group by its ID.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          group_id: The ID of the server group.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

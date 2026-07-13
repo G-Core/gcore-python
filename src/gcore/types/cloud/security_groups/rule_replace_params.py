@@ -62,7 +62,7 @@ class RuleReplaceParams(TypedDict, total=False):
     ]
     """Protocol"""
 
-    remote_group_id: Optional[str]
+    remote_group_id: str
     """The remote group UUID to associate with this security group"""
 
     remote_ip_prefix: Optional[str]
