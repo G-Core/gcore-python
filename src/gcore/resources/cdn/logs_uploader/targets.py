@@ -32,12 +32,8 @@ __all__ = ["TargetsResource", "AsyncTargetsResource"]
 
 
 class TargetsResource(SyncAPIResource):
-    """Logs uploader allows you to upload logs with desired format to desired storages.
-
-    Consists of three main parts:
-    - **Policies** - rules that define which logs are uploaded and how they are uploaded.
-    - **Targets** - destinations where logs are uploaded.
-    - **Configs** - combinations of logs uploader policies, targets and resources to which they are applied.
+    """
+    Logs uploader targets define destinations for CDN log delivery, such as S3 buckets or SFTP servers, with associated authentication and configuration settings.
     """
 
     @cached_property
@@ -377,12 +373,8 @@ class TargetsResource(SyncAPIResource):
 
 
 class AsyncTargetsResource(AsyncAPIResource):
-    """Logs uploader allows you to upload logs with desired format to desired storages.
-
-    Consists of three main parts:
-    - **Policies** - rules that define which logs are uploaded and how they are uploaded.
-    - **Targets** - destinations where logs are uploaded.
-    - **Configs** - combinations of logs uploader policies, targets and resources to which they are applied.
+    """
+    Logs uploader targets define destinations for CDN log delivery, such as S3 buckets or SFTP servers, with associated authentication and configuration settings.
     """
 
     @cached_property
