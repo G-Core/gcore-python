@@ -16,8 +16,13 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...types.cloud import volume_snapshot_create_params, volume_snapshot_update_params
-from ..._base_client import make_request_options
+from ...pagination import SyncOffsetPage, AsyncOffsetPage
+from ...types.cloud import (
+    volume_snapshot_list_params,
+    volume_snapshot_create_params,
+    volume_snapshot_update_params,
+)
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.cloud.snapshot import Snapshot
 from .volume_snapshots_custom import VolumeSnapshotsResourceCustomMixin, AsyncVolumeSnapshotsResourceCustomMixin
 from ...types.cloud.task_id_list import TaskIDList
@@ -194,6 +199,81 @@ class VolumeSnapshotsResource(VolumeSnapshotsResourceCustomMixin, SyncAPIResourc
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=Snapshot,
+        )
+
+    def list(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        instance_id: str | Omit = omit,
+        lifecycle_policy_id: int | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
+        schedule_id: str | Omit = omit,
+        volume_id: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncOffsetPage[Snapshot]:
+        """List all volume snapshots in the specified project and region.
+
+        Results can be
+        filtered by volume, instance, schedule, or lifecycle policy.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Optional. Filter snapshots by the instance whose volumes were snapshotted
+
+          lifecycle_policy_id: Optional. Filter by lifecycle policy ID
+
+          limit: Limit of items on a single page
+
+          offset: Offset in results list
+
+          schedule_id: Optional. Filter by schedule ID
+
+          volume_id: Optional. Filter by volume ID
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        return self._get_api_list(
+            path_template("/cloud/v1/snapshots/{project_id}/{region_id}", project_id=project_id, region_id=region_id),
+            page=SyncOffsetPage[Snapshot],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "instance_id": instance_id,
+                        "lifecycle_policy_id": lifecycle_policy_id,
+                        "limit": limit,
+                        "offset": offset,
+                        "schedule_id": schedule_id,
+                        "volume_id": volume_id,
+                    },
+                    volume_snapshot_list_params.VolumeSnapshotListParams,
+                ),
+            ),
+            model=Snapshot,
         )
 
     def delete(
@@ -467,6 +547,81 @@ class AsyncVolumeSnapshotsResource(AsyncVolumeSnapshotsResourceCustomMixin, Asyn
             cast_to=Snapshot,
         )
 
+    def list(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        instance_id: str | Omit = omit,
+        lifecycle_policy_id: int | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
+        schedule_id: str | Omit = omit,
+        volume_id: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[Snapshot, AsyncOffsetPage[Snapshot]]:
+        """List all volume snapshots in the specified project and region.
+
+        Results can be
+        filtered by volume, instance, schedule, or lifecycle policy.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Optional. Filter snapshots by the instance whose volumes were snapshotted
+
+          lifecycle_policy_id: Optional. Filter by lifecycle policy ID
+
+          limit: Limit of items on a single page
+
+          offset: Offset in results list
+
+          schedule_id: Optional. Filter by schedule ID
+
+          volume_id: Optional. Filter by volume ID
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        return self._get_api_list(
+            path_template("/cloud/v1/snapshots/{project_id}/{region_id}", project_id=project_id, region_id=region_id),
+            page=AsyncOffsetPage[Snapshot],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "instance_id": instance_id,
+                        "lifecycle_policy_id": lifecycle_policy_id,
+                        "limit": limit,
+                        "offset": offset,
+                        "schedule_id": schedule_id,
+                        "volume_id": volume_id,
+                    },
+                    volume_snapshot_list_params.VolumeSnapshotListParams,
+                ),
+            ),
+            model=Snapshot,
+        )
+
     async def delete(
         self,
         snapshot_id: str,
@@ -578,6 +733,9 @@ class VolumeSnapshotsResourceWithRawResponse:
         self.update = to_raw_response_wrapper(
             volume_snapshots.update,
         )
+        self.list = to_raw_response_wrapper(
+            volume_snapshots.list,
+        )
         self.delete = to_raw_response_wrapper(
             volume_snapshots.delete,
         )
@@ -601,6 +759,9 @@ class AsyncVolumeSnapshotsResourceWithRawResponse:
         )
         self.update = async_to_raw_response_wrapper(
             volume_snapshots.update,
+        )
+        self.list = async_to_raw_response_wrapper(
+            volume_snapshots.list,
         )
         self.delete = async_to_raw_response_wrapper(
             volume_snapshots.delete,
@@ -626,6 +787,9 @@ class VolumeSnapshotsResourceWithStreamingResponse:
         self.update = to_streamed_response_wrapper(
             volume_snapshots.update,
         )
+        self.list = to_streamed_response_wrapper(
+            volume_snapshots.list,
+        )
         self.delete = to_streamed_response_wrapper(
             volume_snapshots.delete,
         )
@@ -649,6 +813,9 @@ class AsyncVolumeSnapshotsResourceWithStreamingResponse:
         )
         self.update = async_to_streamed_response_wrapper(
             volume_snapshots.update,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            volume_snapshots.list,
         )
         self.delete = async_to_streamed_response_wrapper(
             volume_snapshots.delete,
