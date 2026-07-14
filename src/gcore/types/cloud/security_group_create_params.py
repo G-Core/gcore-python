@@ -22,7 +22,11 @@ class SecurityGroupCreateParams(TypedDict, total=False):
     """Security group description"""
 
     rules: Iterable[Rule]
-    """Security group rules"""
+    """Security group rules.
+
+    Omit to apply the default template (ingress + egress); send [] to create no
+    rules.
+    """
 
     tags: Dict[str, str]
     """Key-value tags to associate with the resource.

@@ -87,11 +87,13 @@ class SecurityGroupsResource(SecurityGroupsResourceCustomMixin, SyncAPIResource)
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
-        """Creates a new security group with the specified configuration.
+        """Creates a new security group.
 
-        If no egress
-        rules are provided, default set of egress rules will be applied If rules are
-        explicitly set to empty, no rules will be created.
+        Rule handling depends on the `rules` field:
+
+        - omitted: the default template (ingress + egress allow-all) is applied;
+        - non-empty list: exactly those rules are created (nothing is appended);
+        - empty list `[]`: no rules are created.
 
         Args:
           project_id: Project ID
@@ -102,7 +104,8 @@ class SecurityGroupsResource(SecurityGroupsResourceCustomMixin, SyncAPIResource)
 
           description: Security group description
 
-          rules: Security group rules
+          rules: Security group rules. Omit to apply the default template (ingress + egress);
+              send [] to create no rules.
 
           tags: Key-value tags to associate with the resource. A tag is a key-value pair that
               can be associated with a resource, enabling efficient filtering and grouping for
@@ -575,11 +578,13 @@ class AsyncSecurityGroupsResource(AsyncSecurityGroupsResourceCustomMixin, AsyncA
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
-        """Creates a new security group with the specified configuration.
+        """Creates a new security group.
 
-        If no egress
-        rules are provided, default set of egress rules will be applied If rules are
-        explicitly set to empty, no rules will be created.
+        Rule handling depends on the `rules` field:
+
+        - omitted: the default template (ingress + egress allow-all) is applied;
+        - non-empty list: exactly those rules are created (nothing is appended);
+        - empty list `[]`: no rules are created.
 
         Args:
           project_id: Project ID
@@ -590,7 +595,8 @@ class AsyncSecurityGroupsResource(AsyncSecurityGroupsResourceCustomMixin, AsyncA
 
           description: Security group description
 
-          rules: Security group rules
+          rules: Security group rules. Omit to apply the default template (ingress + egress);
+              send [] to create no rules.
 
           tags: Key-value tags to associate with the resource. A tag is a key-value pair that
               can be associated with a resource, enabling efficient filtering and grouping for
