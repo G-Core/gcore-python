@@ -1,5 +1,30 @@
 # Changelog
 
+## [0.52.0](https://github.com/G-Core/gcore-python/compare/v0.51.0...v0.52.0) (2026-07-14)
+
+
+### Features
+
+* **cdn:** add runnable Python examples for CDN presets ([cb23c5f](https://github.com/G-Core/gcore-python/commit/cb23c5f16dcc8462e23eb8c44d5c68ef82251010))
+* **cdn:** add support for CDN presets and applied presets ([719ef06](https://github.com/G-Core/gcore-python/commit/719ef06cff61795562f1488fe25f9b109adad48e))
+* **cdn:** support logs uploader targets in Terraform ([ff6640c](https://github.com/G-Core/gcore-python/commit/ff6640cbdec631ad108beb82780345f833448820))
+* **cloud:** enable list method for volume_snapshots ([3ee5cab](https://github.com/G-Core/gcore-python/commit/3ee5cabe96a2e5f883a6f0b6fade9b80735a5d12))
+* **examples:** add cloud volume snapshot examples ([f3b026b](https://github.com/G-Core/gcore-python/commit/f3b026b779700af5b4bee0f2e547b46b8ec6ec64))
+* **security:** add event log detail endpoint ([4fcebbb](https://github.com/G-Core/gcore-python/commit/4fcebbb4c3ad7f0bbc08d330ebb266baee71aaff))
+
+
+### Bug Fixes
+
+* **cdn:** default preset list limit to 1000 ([99917db](https://github.com/G-Core/gcore-python/commit/99917db0b4b9c1babcee3353c18aef44da56732e))
+
+
+### Chores
+
+* **cdn:** update cdn OpenAPI spec ([7c53924](https://github.com/G-Core/gcore-python/commit/7c53924f250b50040f59dc98a8f98dbd444c7c8e))
+* **cloud:** update cloud OpenAPI spec ([dda922f](https://github.com/G-Core/gcore-python/commit/dda922f47a28bb6c849d4e49cbd3098e28bdb30e))
+* **cloud:** update cloud OpenAPI spec ([7baf1ff](https://github.com/G-Core/gcore-python/commit/7baf1ff911dc654c3d2818af413175f092e27ecc))
+* **waap:** update waap OpenAPI spec ([e65639b](https://github.com/G-Core/gcore-python/commit/e65639b910fd5cf045d7320bacca190de545f592))
+
 ## [0.51.0](https://github.com/G-Core/gcore-python/compare/v0.50.0...v0.51.0) (2026-07-09)
 
 
