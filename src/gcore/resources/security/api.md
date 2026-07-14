@@ -5,12 +5,13 @@
 Types:
 
 ```python
-from gcore.types.security import ClientView
+from gcore.types.security import ClientView, EventLog
 ```
 
 Methods:
 
 - <code title="get /security/notifier/v1/event_logs">client.security.events.<a href="./src/gcore/resources/security/events.py">list</a>(\*\*<a href="src/gcore/types/security/event_list_params.py">params</a>) -> <a href="./src/gcore/types/security/client_view.py">SyncOffsetPage[ClientView]</a></code>
+- <code title="get /security/notifier/v1/event_logs/{event_log_id}">client.security.events.<a href="./src/gcore/resources/security/events.py">get</a>(event_log_id) -> <a href="./src/gcore/types/security/event_log.py">EventLog</a></code>
 
 ## BgpAnnounces
 

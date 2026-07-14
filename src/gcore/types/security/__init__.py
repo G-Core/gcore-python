@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from .event_log import EventLog as EventLog
 from .client_view import ClientView as ClientView
 from .client_profile import ClientProfile as ClientProfile
 from .client_announce import ClientAnnounce as ClientAnnounce
