@@ -32,6 +32,14 @@ from .metrics import (
     MetricsResourceWithStreamingResponse,
     AsyncMetricsResourceWithStreamingResponse,
 )
+from .presets import (
+    PresetsResource,
+    AsyncPresetsResource,
+    PresetsResourceWithRawResponse,
+    AsyncPresetsResourceWithRawResponse,
+    PresetsResourceWithStreamingResponse,
+    AsyncPresetsResourceWithStreamingResponse,
+)
 from .shields import (
     ShieldsResource,
     AsyncShieldsResource,
@@ -154,6 +162,12 @@ __all__ = [
     "AsyncRuleTemplatesResourceWithRawResponse",
     "RuleTemplatesResourceWithStreamingResponse",
     "AsyncRuleTemplatesResourceWithStreamingResponse",
+    "PresetsResource",
+    "AsyncPresetsResource",
+    "PresetsResourceWithRawResponse",
+    "AsyncPresetsResourceWithRawResponse",
+    "PresetsResourceWithStreamingResponse",
+    "AsyncPresetsResourceWithStreamingResponse",
     "CertificatesResource",
     "AsyncCertificatesResource",
     "CertificatesResourceWithRawResponse",

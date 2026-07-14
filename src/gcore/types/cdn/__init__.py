@@ -10,6 +10,7 @@ from .cdn_resource import CDNResource as CDNResource
 from .purge_status import PurgeStatus as PurgeStatus
 from .cdn_log_entry import CDNLogEntry as CDNLogEntry
 from .origin_groups import OriginGroups as OriginGroups
+from .preset_detail import PresetDetail as PresetDetail
 from .rule_template import RuleTemplate as RuleTemplate
 from .ca_certificate import CaCertificate as CaCertificate
 from .ip_list_params import IPListParams as IPListParams
@@ -24,6 +25,7 @@ from .cdn_metrics_groups import CDNMetricsGroups as CDNMetricsGroups
 from .cdn_metrics_values import CDNMetricsValues as CDNMetricsValues
 from .metric_list_params import MetricListParams as MetricListParams
 from .origin_groups_list import OriginGroupsList as OriginGroupsList
+from .preset_list_params import PresetListParams as PresetListParams
 from .rule_template_list import RuleTemplateList as RuleTemplateList
 from .shield_list_params import ShieldListParams as ShieldListParams
 from .ssl_request_status import SslRequestStatus as SslRequestStatus

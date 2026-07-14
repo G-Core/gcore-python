@@ -119,6 +119,35 @@ Methods:
 - <code title="get /cdn/resources/rule_templates/{rule_template_id}">client.cdn.rule_templates.<a href="./src/gcore/resources/cdn/rule_templates.py">get</a>(rule_template_id) -> <a href="./src/gcore/types/cdn/rule_template.py">RuleTemplate</a></code>
 - <code title="put /cdn/resources/rule_templates/{rule_template_id}">client.cdn.rule_templates.<a href="./src/gcore/resources/cdn/rule_templates.py">replace</a>(rule_template_id, \*\*<a href="src/gcore/types/cdn/rule_template_replace_params.py">params</a>) -> <a href="./src/gcore/types/cdn/rule_template.py">RuleTemplate</a></code>
 
+## Presets
+
+Types:
+
+```python
+from gcore.types.cdn import PresetDetail
+```
+
+Methods:
+
+- <code title="get /cdn/presets">client.cdn.presets.<a href="./src/gcore/resources/cdn/presets/presets.py">list</a>(\*\*<a href="src/gcore/types/cdn/preset_list_params.py">params</a>) -> <a href="./src/gcore/types/cdn/preset_detail.py">SyncOffsetPage[PresetDetail]</a></code>
+- <code title="get /cdn/presets/{preset_id}">client.cdn.presets.<a href="./src/gcore/resources/cdn/presets/presets.py">get</a>(preset_id) -> <a href="./src/gcore/types/cdn/preset_detail.py">PresetDetail</a></code>
+
+### Applied
+
+Types:
+
+```python
+from gcore.types.cdn.presets import AppliedPreset, AppliedPresetFields, AppliedApplyResponse
+```
+
+Methods:
+
+- <code title="post /cdn/presets/{preset_id}/applied">client.cdn.presets.applied.<a href="./src/gcore/resources/cdn/presets/applied.py">apply</a>(preset_id, \*\*<a href="src/gcore/types/cdn/presets/applied_apply_params.py">params</a>) -> <a href="./src/gcore/types/cdn/presets/applied_apply_response.py">AppliedApplyResponse</a></code>
+- <code title="get /cdn/presets/{preset_id}/applied">client.cdn.presets.applied.<a href="./src/gcore/resources/cdn/presets/applied.py">get_objects</a>(preset_id) -> <a href="./src/gcore/types/cdn/presets/applied_preset.py">AppliedPreset</a></code>
+- <code title="get /cdn/resources/{resource_id}/preset">client.cdn.presets.applied.<a href="./src/gcore/resources/cdn/presets/applied.py">get_resource_preset</a>(resource_id) -> <a href="./src/gcore/types/cdn/presets/applied_preset_fields.py">AppliedPresetFields</a></code>
+- <code title="get /cdn/resources/{resource_id}/rules/{rule_id}/preset">client.cdn.presets.applied.<a href="./src/gcore/resources/cdn/presets/applied.py">get_rule_preset</a>(rule_id, \*, resource_id) -> <a href="./src/gcore/types/cdn/presets/applied_preset_fields.py">AppliedPresetFields</a></code>
+- <code title="delete /cdn/presets/{preset_id}/applied/{object_id}">client.cdn.presets.applied.<a href="./src/gcore/resources/cdn/presets/applied.py">unapply</a>(object_id, \*, preset_id) -> None</code>
+
 ## Certificates
 
 Types:

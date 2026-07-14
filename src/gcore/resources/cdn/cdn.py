@@ -110,6 +110,14 @@ from .rule_templates import (
     RuleTemplatesResourceWithStreamingResponse,
     AsyncRuleTemplatesResourceWithStreamingResponse,
 )
+from .presets.presets import (
+    PresetsResource,
+    AsyncPresetsResource,
+    PresetsResourceWithRawResponse,
+    AsyncPresetsResourceWithRawResponse,
+    PresetsResourceWithStreamingResponse,
+    AsyncPresetsResourceWithStreamingResponse,
+)
 from .network_capacity import (
     NetworkCapacityResource,
     AsyncNetworkCapacityResource,
@@ -174,6 +182,13 @@ class CDNResource(SyncAPIResource):
         CDN rule templates define reusable rule configurations that can be applied across multiple CDN resources for consistent caching, delivery, and security policies.
         """
         return RuleTemplatesResource(self._client)
+
+    @cached_property
+    def presets(self) -> PresetsResource:
+        """
+        CDN presets are predefined sets of CDN resource or rule settings that can be applied to an object in a single request, letting you configure caching, delivery, and security options consistently.
+        """
+        return PresetsResource(self._client)
 
     @cached_property
     def certificates(self) -> CertificatesResource:
@@ -581,6 +596,13 @@ class AsyncCDNResource(AsyncAPIResource):
         CDN rule templates define reusable rule configurations that can be applied across multiple CDN resources for consistent caching, delivery, and security policies.
         """
         return AsyncRuleTemplatesResource(self._client)
+
+    @cached_property
+    def presets(self) -> AsyncPresetsResource:
+        """
+        CDN presets are predefined sets of CDN resource or rule settings that can be applied to an object in a single request, letting you configure caching, delivery, and security options consistently.
+        """
+        return AsyncPresetsResource(self._client)
 
     @cached_property
     def certificates(self) -> AsyncCertificatesResource:
@@ -1015,6 +1037,13 @@ class CDNResourceWithRawResponse:
         return RuleTemplatesResourceWithRawResponse(self._cdn.rule_templates)
 
     @cached_property
+    def presets(self) -> PresetsResourceWithRawResponse:
+        """
+        CDN presets are predefined sets of CDN resource or rule settings that can be applied to an object in a single request, letting you configure caching, delivery, and security options consistently.
+        """
+        return PresetsResourceWithRawResponse(self._cdn.presets)
+
+    @cached_property
     def certificates(self) -> CertificatesResourceWithRawResponse:
         """
         CDN SSL certificates enable HTTPS content delivery, supporting both uploaded certificates and automated Let's Encrypt provisioning.
@@ -1141,6 +1170,13 @@ class AsyncCDNResourceWithRawResponse:
         CDN rule templates define reusable rule configurations that can be applied across multiple CDN resources for consistent caching, delivery, and security policies.
         """
         return AsyncRuleTemplatesResourceWithRawResponse(self._cdn.rule_templates)
+
+    @cached_property
+    def presets(self) -> AsyncPresetsResourceWithRawResponse:
+        """
+        CDN presets are predefined sets of CDN resource or rule settings that can be applied to an object in a single request, letting you configure caching, delivery, and security options consistently.
+        """
+        return AsyncPresetsResourceWithRawResponse(self._cdn.presets)
 
     @cached_property
     def certificates(self) -> AsyncCertificatesResourceWithRawResponse:
@@ -1271,6 +1307,13 @@ class CDNResourceWithStreamingResponse:
         return RuleTemplatesResourceWithStreamingResponse(self._cdn.rule_templates)
 
     @cached_property
+    def presets(self) -> PresetsResourceWithStreamingResponse:
+        """
+        CDN presets are predefined sets of CDN resource or rule settings that can be applied to an object in a single request, letting you configure caching, delivery, and security options consistently.
+        """
+        return PresetsResourceWithStreamingResponse(self._cdn.presets)
+
+    @cached_property
     def certificates(self) -> CertificatesResourceWithStreamingResponse:
         """
         CDN SSL certificates enable HTTPS content delivery, supporting both uploaded certificates and automated Let's Encrypt provisioning.
@@ -1397,6 +1440,13 @@ class AsyncCDNResourceWithStreamingResponse:
         CDN rule templates define reusable rule configurations that can be applied across multiple CDN resources for consistent caching, delivery, and security policies.
         """
         return AsyncRuleTemplatesResourceWithStreamingResponse(self._cdn.rule_templates)
+
+    @cached_property
+    def presets(self) -> AsyncPresetsResourceWithStreamingResponse:
+        """
+        CDN presets are predefined sets of CDN resource or rule settings that can be applied to an object in a single request, letting you configure caching, delivery, and security options consistently.
+        """
+        return AsyncPresetsResourceWithStreamingResponse(self._cdn.presets)
 
     @cached_property
     def certificates(self) -> AsyncCertificatesResourceWithStreamingResponse:
