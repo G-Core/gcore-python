@@ -159,7 +159,7 @@ class AnalyticsGetRequestsParams(TypedDict, total=False):
     """Filter data by optional action."""
 
     ordering: str
-    """Sort data by given field."""
+    """Results sorting order."""
 
     organizations: SequenceNotStr[str]
     """Include entries whose organization exactly equals any supplied value.

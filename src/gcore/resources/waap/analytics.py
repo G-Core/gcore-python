@@ -361,7 +361,7 @@ class AnalyticsResource(SyncAPIResource):
 
           optional_action: Filter data by optional action.
 
-          ordering: Sort data by given field.
+          ordering: Results sorting order.
 
           organizations: Include entries whose organization exactly equals any supplied value. Omit or
               provide an empty list to apply no organization filter.
@@ -1092,7 +1092,7 @@ class AsyncAnalyticsResource(AsyncAPIResource):
 
           optional_action: Filter data by optional action.
 
-          ordering: Sort data by given field.
+          ordering: Results sorting order.
 
           organizations: Include entries whose organization exactly equals any supplied value. Omit or
               provide an empty list to apply no organization filter.
