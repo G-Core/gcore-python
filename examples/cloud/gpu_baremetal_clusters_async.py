@@ -9,7 +9,7 @@ from gcore.types.cloud.gpu_baremetal.cluster_create_params import (
 )
 from gcore.types.cloud.gpu_baremetal.gpu_baremetal_cluster import GPUBaremetalCluster
 from gcore.types.cloud.gpu_baremetal.clusters.gpu_baremetal_flavor import GPUBaremetalFlavor
-from gcore.types.cloud.gpu_baremetal.clusters.interface_list_response import Result
+from gcore.types.cloud.gpu_baremetal.clusters.interface_list_response import InterfaceListResponse
 from gcore.types.cloud.gpu_baremetal.clusters.gpu_baremetal_cluster_server import GPUBaremetalClusterServer
 
 
@@ -111,7 +111,7 @@ async def delete_cluster(*, client: AsyncGcore, cluster_id: str) -> None:
     print("========================")
 
 
-async def list_interfaces(*, client: AsyncGcore, cluster_id: str) -> List[Result]:
+async def list_interfaces(*, client: AsyncGcore, cluster_id: str) -> List[InterfaceListResponse]:
     print("\n=== LIST GPU BAREMETAL CLUSTER INTERFACES ===")
     interfaces = await client.cloud.gpu_baremetal.clusters.interfaces.list(cluster_id=cluster_id)
     for count, interface in enumerate(interfaces.results, 1):
