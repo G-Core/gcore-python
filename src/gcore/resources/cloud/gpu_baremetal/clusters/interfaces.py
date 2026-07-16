@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Any, Iterable, cast
 from typing_extensions import Literal, overload
 
 import httpx
@@ -17,9 +17,14 @@ from ....._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....._base_client import make_request_options
+from .....pagination import SyncOffsetPage, AsyncOffsetPage
+from ....._base_client import AsyncPaginator, make_request_options
 from .....types.cloud.task_id_list import TaskIDList
-from .....types.cloud.gpu_baremetal.clusters import interface_attach_params, interface_detach_params
+from .....types.cloud.gpu_baremetal.clusters import (
+    interface_list_params,
+    interface_attach_params,
+    interface_detach_params,
+)
 from .....types.cloud.gpu_baremetal.clusters.interface_list_response import InterfaceListResponse
 
 __all__ = ["InterfacesResource", "AsyncInterfacesResource"]
@@ -51,13 +56,15 @@ class InterfacesResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> InterfaceListResponse:
+    ) -> SyncOffsetPage[InterfaceListResponse]:
         """
         Retrieve a list of network interfaces attached to the GPU cluster servers.
 
@@ -67,6 +74,10 @@ class InterfacesResource(SyncAPIResource):
           region_id: Region ID
 
           cluster_id: Cluster unique identifier
+
+          limit: Limit of items on a single page
+
+          offset: Offset in results list
 
           extra_headers: Send extra headers
 
@@ -82,17 +93,28 @@ class InterfacesResource(SyncAPIResource):
             region_id = self._client._get_cloud_region_id_path_param()
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
-        return self._get(
+        return self._get_api_list(
             path_template(
                 "/cloud/v1/ai/clusters/{project_id}/{region_id}/{cluster_id}/interfaces",
                 project_id=project_id,
                 region_id=region_id,
                 cluster_id=cluster_id,
             ),
+            page=SyncOffsetPage[InterfaceListResponse],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    interface_list_params.InterfaceListParams,
+                ),
             ),
-            cast_to=InterfaceListResponse,
+            model=cast(Any, InterfaceListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
     @overload
@@ -424,19 +446,21 @@ class AsyncInterfacesResource(AsyncAPIResource):
         """
         return AsyncInterfacesResourceWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         cluster_id: str,
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> InterfaceListResponse:
+    ) -> AsyncPaginator[InterfaceListResponse, AsyncOffsetPage[InterfaceListResponse]]:
         """
         Retrieve a list of network interfaces attached to the GPU cluster servers.
 
@@ -446,6 +470,10 @@ class AsyncInterfacesResource(AsyncAPIResource):
           region_id: Region ID
 
           cluster_id: Cluster unique identifier
+
+          limit: Limit of items on a single page
+
+          offset: Offset in results list
 
           extra_headers: Send extra headers
 
@@ -461,17 +489,28 @@ class AsyncInterfacesResource(AsyncAPIResource):
             region_id = self._client._get_cloud_region_id_path_param()
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
-        return await self._get(
+        return self._get_api_list(
             path_template(
                 "/cloud/v1/ai/clusters/{project_id}/{region_id}/{cluster_id}/interfaces",
                 project_id=project_id,
                 region_id=region_id,
                 cluster_id=cluster_id,
             ),
+            page=AsyncOffsetPage[InterfaceListResponse],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    interface_list_params.InterfaceListParams,
+                ),
             ),
-            cast_to=InterfaceListResponse,
+            model=cast(Any, InterfaceListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
     @overload

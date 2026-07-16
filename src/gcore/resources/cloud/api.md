@@ -39,11 +39,9 @@ from gcore.types.cloud import (
     LoadBalancerStatistics,
     Logging,
     Network,
-    NetworkAnySubnetFip,
     NetworkDetails,
     NetworkInterface,
     NetworkInterfaceList,
-    NetworkSubnetFip,
     ProvisioningStatus,
     Route,
     Subnet,
@@ -825,7 +823,7 @@ from gcore.types.cloud.gpu_baremetal.clusters import InterfaceListResponse
 
 Methods:
 
-- <code title="get /cloud/v1/ai/clusters/{project_id}/{region_id}/{cluster_id}/interfaces">client.cloud.gpu_baremetal.clusters.interfaces.<a href="./src/gcore/resources/cloud/gpu_baremetal/clusters/interfaces.py">list</a>(cluster_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/gpu_baremetal/clusters/interface_list_response.py">InterfaceListResponse</a></code>
+- <code title="get /cloud/v1/ai/clusters/{project_id}/{region_id}/{cluster_id}/interfaces">client.cloud.gpu_baremetal.clusters.interfaces.<a href="./src/gcore/resources/cloud/gpu_baremetal/clusters/interfaces.py">list</a>(cluster_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/gpu_baremetal/clusters/interface_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/gpu_baremetal/clusters/interface_list_response.py">SyncOffsetPage[InterfaceListResponse]</a></code>
 - <code title="post /cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/attach_interface">client.cloud.gpu_baremetal.clusters.interfaces.<a href="./src/gcore/resources/cloud/gpu_baremetal/clusters/interfaces.py">attach</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/gpu_baremetal/clusters/interface_attach_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 - <code title="post /cloud/v1/ai/clusters/{project_id}/{region_id}/{instance_id}/detach_interface">client.cloud.gpu_baremetal.clusters.interfaces.<a href="./src/gcore/resources/cloud/gpu_baremetal/clusters/interfaces.py">detach</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/gpu_baremetal/clusters/interface_detach_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 

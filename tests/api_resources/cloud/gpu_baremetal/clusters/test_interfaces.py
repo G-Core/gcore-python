@@ -9,6 +9,7 @@ import pytest
 
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
+from gcore.pagination import SyncOffsetPage, AsyncOffsetPage
 from gcore.types.cloud import TaskIDList
 from gcore.types.cloud.gpu_baremetal.clusters import (
     InterfaceListResponse,
@@ -27,7 +28,18 @@ class TestInterfaces:
             project_id=1,
             region_id=7,
         )
-        assert_matches_type(InterfaceListResponse, interface, path=["response"])
+        assert_matches_type(SyncOffsetPage[InterfaceListResponse], interface, path=["response"])
+
+    @parametrize
+    def test_method_list_with_all_params(self, client: Gcore) -> None:
+        interface = client.cloud.gpu_baremetal.clusters.interfaces.list(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+            limit=1000,
+            offset=0,
+        )
+        assert_matches_type(SyncOffsetPage[InterfaceListResponse], interface, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
@@ -40,7 +52,7 @@ class TestInterfaces:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         interface = response.parse()
-        assert_matches_type(InterfaceListResponse, interface, path=["response"])
+        assert_matches_type(SyncOffsetPage[InterfaceListResponse], interface, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
@@ -53,7 +65,7 @@ class TestInterfaces:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             interface = response.parse()
-            assert_matches_type(InterfaceListResponse, interface, path=["response"])
+            assert_matches_type(SyncOffsetPage[InterfaceListResponse], interface, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -442,7 +454,18 @@ class TestAsyncInterfaces:
             project_id=1,
             region_id=7,
         )
-        assert_matches_type(InterfaceListResponse, interface, path=["response"])
+        assert_matches_type(AsyncOffsetPage[InterfaceListResponse], interface, path=["response"])
+
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
+        interface = await async_client.cloud.gpu_baremetal.clusters.interfaces.list(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+            limit=1000,
+            offset=0,
+        )
+        assert_matches_type(AsyncOffsetPage[InterfaceListResponse], interface, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
@@ -455,7 +478,7 @@ class TestAsyncInterfaces:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         interface = await response.parse()
-        assert_matches_type(InterfaceListResponse, interface, path=["response"])
+        assert_matches_type(AsyncOffsetPage[InterfaceListResponse], interface, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
@@ -468,7 +491,7 @@ class TestAsyncInterfaces:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             interface = await response.parse()
-            assert_matches_type(InterfaceListResponse, interface, path=["response"])
+            assert_matches_type(AsyncOffsetPage[InterfaceListResponse], interface, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
