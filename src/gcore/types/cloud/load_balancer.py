@@ -15,7 +15,7 @@ from .load_balancer_instance_role import LoadBalancerInstanceRole
 from .load_balancer_operating_status import LoadBalancerOperatingStatus
 from .load_balancer_member_connectivity import LoadBalancerMemberConnectivity
 
-__all__ = ["LoadBalancer", "AdditionalVip", "Flavor", "Listener", "VrrpIP"]
+__all__ = ["LoadBalancer", "AdditionalVip", "Flavor", "VrrpIP"]
 
 
 class AdditionalVip(BaseModel):
@@ -40,11 +40,6 @@ class Flavor(BaseModel):
 
     vcpus: int
     """Virtual CPU count. For bare metal flavors, it's a physical CPU count"""
-
-
-class Listener(BaseModel):
-    id: str
-    """Listener ID"""
 
 
 class VrrpIP(BaseModel):
@@ -114,9 +109,6 @@ class LoadBalancer(BaseModel):
 
     floating_ips: Optional[List[FloatingIP]] = None
     """List of assigned floating IPs"""
-
-    listeners: Optional[List[Listener]] = None
-    """Load balancer listeners"""
 
     logging: Optional[Logging] = None
     """Logging configuration"""
