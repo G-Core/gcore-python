@@ -220,9 +220,11 @@ async def remove_from_placement_group(*, client: AsyncGcore, instance_id: str) -
 
 async def detach_interface(*, client: AsyncGcore, instance_id: str, ip_address: str, port_id: str) -> None:
     print("\n=== DETACH INTERFACE ===")
-    interfaces = await client.cloud.instances.interfaces.detach_and_poll(
+    await client.cloud.instances.interfaces.detach_and_poll(
         instance_id=instance_id, ip_address=ip_address, port_id=port_id
     )
+    # detach_and_poll returns no body; list the interfaces to show the current state.
+    interfaces = await client.cloud.instances.interfaces.list(instance_id=instance_id)
     for count, interface in enumerate(interfaces.results, 1):
         print(f"  {count}. Interface: PortID={interface.port_id}, NetworkID={interface.network_id}")
     print(f"Detached interface (IP: {ip_address}, Port: {port_id}) from instance: {instance_id}")
@@ -231,9 +233,11 @@ async def detach_interface(*, client: AsyncGcore, instance_id: str, ip_address: 
 
 async def attach_interface(*, client: AsyncGcore, instance_id: str, network_id: str) -> None:
     print("\n=== ATTACH INTERFACE ===")
-    interfaces = await client.cloud.instances.interfaces.attach_and_poll(
+    await client.cloud.instances.interfaces.attach_and_poll(
         instance_id=instance_id, type="any_subnet", network_id=network_id
     )
+    # attach_and_poll returns no body; list the interfaces to show the current state.
+    interfaces = await client.cloud.instances.interfaces.list(instance_id=instance_id)
     for count, interface in enumerate(interfaces.results, 1):
         print(f"  {count}. Interface: PortID={interface.port_id}, NetworkID={interface.network_id}")
     print(f"Attached interface to any available subnet in network {network_id} (instance: {instance_id})")

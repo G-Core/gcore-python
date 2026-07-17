@@ -5,253 +5,249 @@ from __future__ import annotations
 from typing import Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
+from ..interface_ip_family import InterfaceIPFamily
+
 __all__ = [
     "InterfaceAttachParams",
-    "NewInterfaceExternalExtendSchemaWithDDOS",
-    "NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile",
-    "NewInterfaceExternalExtendSchemaWithDdosddosProfileField",
-    "NewInterfaceExternalExtendSchemaWithDDOSSecurityGroup",
-    "NewInterfaceSpecificSubnetSchema",
-    "NewInterfaceSpecificSubnetSchemaDDOSProfile",
-    "NewInterfaceSpecificSubnetSchemaDDOSProfileField",
-    "NewInterfaceSpecificSubnetSchemaSecurityGroup",
-    "NewInterfaceAnySubnetSchema",
-    "NewInterfaceAnySubnetSchemaDDOSProfile",
-    "NewInterfaceAnySubnetSchemaDDOSProfileField",
-    "NewInterfaceAnySubnetSchemaSecurityGroup",
-    "NewInterfaceReservedFixedIPSchema",
-    "NewInterfaceReservedFixedIPSchemaDDOSProfile",
-    "NewInterfaceReservedFixedIPSchemaDDOSProfileField",
-    "NewInterfaceReservedFixedIPSchemaSecurityGroup",
+    "AttachInterfaceExternalRequestSerializer",
+    "AttachInterfaceExternalRequestSerializerDDOSProfile",
+    "AttachInterfaceExternalRequestSerializerDDOSProfileField",
+    "AttachInterfaceExternalRequestSerializerSecurityGroup",
+    "AttachInterfaceSubnetRequestSerializer",
+    "AttachInterfaceSubnetRequestSerializerDDOSProfile",
+    "AttachInterfaceSubnetRequestSerializerDDOSProfileField",
+    "AttachInterfaceSubnetRequestSerializerSecurityGroup",
+    "AttachInterfaceAnySubnetRequestSerializer",
+    "AttachInterfaceAnySubnetRequestSerializerDDOSProfile",
+    "AttachInterfaceAnySubnetRequestSerializerDDOSProfileField",
+    "AttachInterfaceAnySubnetRequestSerializerSecurityGroup",
+    "AttachInterfaceReservedFixedIPRequestSerializer",
+    "AttachInterfaceReservedFixedIPRequestSerializerDDOSProfile",
+    "AttachInterfaceReservedFixedIPRequestSerializerDDOSProfileField",
+    "AttachInterfaceReservedFixedIPRequestSerializerSecurityGroup",
 ]
 
 
-class NewInterfaceExternalExtendSchemaWithDDOS(TypedDict, total=False):
+class AttachInterfaceExternalRequestSerializer(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
-    ddos_profile: NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile
+    ddos_profile: Optional[AttachInterfaceExternalRequestSerializerDDOSProfile]
     """Advanced DDoS protection."""
 
-    interface_name: str
-    """Interface name"""
+    interface_name: Optional[str]
+    """Interface name."""
 
-    ip_family: Literal["dual", "ipv4", "ipv6"]
-    """Which subnets should be selected: IPv4, IPv6 or use dual stack."""
+    ip_family: Optional[InterfaceIPFamily]
 
     port_group: int
-    """Each group will be added to the separate trunk."""
+    """Each group will be added to a separate trunk."""
 
-    security_groups: Iterable[NewInterfaceExternalExtendSchemaWithDDOSSecurityGroup]
-    """List of security group IDs"""
+    security_groups: Optional[Iterable[AttachInterfaceExternalRequestSerializerSecurityGroup]]
+    """List of security group IDs."""
 
-    type: str
-    """Must be 'external'. Union tag"""
+    type: Literal["external"]
 
 
-class NewInterfaceExternalExtendSchemaWithDdosddosProfileField(TypedDict, total=False):
+class AttachInterfaceExternalRequestSerializerDDOSProfileField(TypedDict, total=False):
     base_field: Required[int]
-    """ID of DDoS profile field"""
+    """ID of DDoS profile field."""
 
     field_value: object
-    """Complex value for the DDoS profile field"""
+    """Complex value for the DDoS profile field."""
 
     value: Optional[str]
-    """Basic type value. Only one of 'value' or 'field_value' must be specified."""
+    """Basic type value."""
 
 
-class NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile(TypedDict, total=False):
+class AttachInterfaceExternalRequestSerializerDDOSProfile(TypedDict, total=False):
     """Advanced DDoS protection."""
 
     profile_template: Required[int]
     """DDoS profile template ID."""
 
-    fields: Iterable[NewInterfaceExternalExtendSchemaWithDdosddosProfileField]
+    fields: Iterable[AttachInterfaceExternalRequestSerializerDDOSProfileField]
     """Protection parameters."""
 
-    profile_template_name: str
+    profile_template_name: Optional[str]
     """DDoS profile template name."""
 
 
-class NewInterfaceExternalExtendSchemaWithDDOSSecurityGroup(TypedDict, total=False):
-    """MandatoryIdSchema schema"""
-
+class AttachInterfaceExternalRequestSerializerSecurityGroup(TypedDict, total=False):
     id: Required[str]
     """Resource ID"""
 
 
-class NewInterfaceSpecificSubnetSchema(TypedDict, total=False):
+class AttachInterfaceSubnetRequestSerializer(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     subnet_id: Required[str]
-    """Port will get an IP address from this subnet"""
+    """Port will get an IP address from this subnet."""
 
-    ddos_profile: NewInterfaceSpecificSubnetSchemaDDOSProfile
+    ddos_profile: Optional[AttachInterfaceSubnetRequestSerializerDDOSProfile]
     """Advanced DDoS protection."""
 
-    interface_name: str
-    """Interface name"""
+    interface_name: Optional[str]
+    """Interface name."""
 
     port_group: int
-    """Each group will be added to the separate trunk."""
+    """Each group will be added to a separate trunk."""
 
-    security_groups: Iterable[NewInterfaceSpecificSubnetSchemaSecurityGroup]
-    """List of security group IDs"""
+    security_groups: Optional[Iterable[AttachInterfaceSubnetRequestSerializerSecurityGroup]]
+    """List of security group IDs."""
 
-    type: str
-    """Must be 'subnet'"""
+    type: Literal["subnet"]
 
 
-class NewInterfaceSpecificSubnetSchemaDDOSProfileField(TypedDict, total=False):
+class AttachInterfaceSubnetRequestSerializerDDOSProfileField(TypedDict, total=False):
     base_field: Required[int]
-    """ID of DDoS profile field"""
+    """ID of DDoS profile field."""
 
     field_value: object
-    """Complex value for the DDoS profile field"""
+    """Complex value for the DDoS profile field."""
 
     value: Optional[str]
-    """Basic type value. Only one of 'value' or 'field_value' must be specified."""
+    """Basic type value."""
 
 
-class NewInterfaceSpecificSubnetSchemaDDOSProfile(TypedDict, total=False):
+class AttachInterfaceSubnetRequestSerializerDDOSProfile(TypedDict, total=False):
     """Advanced DDoS protection."""
 
     profile_template: Required[int]
     """DDoS profile template ID."""
 
-    fields: Iterable[NewInterfaceSpecificSubnetSchemaDDOSProfileField]
+    fields: Iterable[AttachInterfaceSubnetRequestSerializerDDOSProfileField]
     """Protection parameters."""
 
-    profile_template_name: str
+    profile_template_name: Optional[str]
     """DDoS profile template name."""
 
 
-class NewInterfaceSpecificSubnetSchemaSecurityGroup(TypedDict, total=False):
-    """MandatoryIdSchema schema"""
-
+class AttachInterfaceSubnetRequestSerializerSecurityGroup(TypedDict, total=False):
     id: Required[str]
     """Resource ID"""
 
 
-class NewInterfaceAnySubnetSchema(TypedDict, total=False):
+class AttachInterfaceAnySubnetRequestSerializer(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     network_id: Required[str]
-    """Port will get an IP address in this network subnet"""
+    """Port will get an IP address in this network subnet."""
 
-    ddos_profile: NewInterfaceAnySubnetSchemaDDOSProfile
+    ddos_profile: Optional[AttachInterfaceAnySubnetRequestSerializerDDOSProfile]
     """Advanced DDoS protection."""
 
-    interface_name: str
-    """Interface name"""
+    interface_name: Optional[str]
+    """Interface name."""
 
-    ip_family: Literal["dual", "ipv4", "ipv6"]
-    """Which subnets should be selected: IPv4, IPv6 or use dual stack."""
+    ip_family: Optional[InterfaceIPFamily]
 
     port_group: int
-    """Each group will be added to the separate trunk."""
+    """Each group will be added to a separate trunk."""
 
-    security_groups: Iterable[NewInterfaceAnySubnetSchemaSecurityGroup]
-    """List of security group IDs"""
+    security_groups: Optional[Iterable[AttachInterfaceAnySubnetRequestSerializerSecurityGroup]]
+    """List of security group IDs."""
 
-    type: str
-    """Must be 'any_subnet'"""
+    type: Literal["any_subnet"]
 
 
-class NewInterfaceAnySubnetSchemaDDOSProfileField(TypedDict, total=False):
+class AttachInterfaceAnySubnetRequestSerializerDDOSProfileField(TypedDict, total=False):
     base_field: Required[int]
-    """ID of DDoS profile field"""
+    """ID of DDoS profile field."""
 
     field_value: object
-    """Complex value for the DDoS profile field"""
+    """Complex value for the DDoS profile field."""
 
     value: Optional[str]
-    """Basic type value. Only one of 'value' or 'field_value' must be specified."""
+    """Basic type value."""
 
 
-class NewInterfaceAnySubnetSchemaDDOSProfile(TypedDict, total=False):
+class AttachInterfaceAnySubnetRequestSerializerDDOSProfile(TypedDict, total=False):
     """Advanced DDoS protection."""
 
     profile_template: Required[int]
     """DDoS profile template ID."""
 
-    fields: Iterable[NewInterfaceAnySubnetSchemaDDOSProfileField]
+    fields: Iterable[AttachInterfaceAnySubnetRequestSerializerDDOSProfileField]
     """Protection parameters."""
 
-    profile_template_name: str
+    profile_template_name: Optional[str]
     """DDoS profile template name."""
 
 
-class NewInterfaceAnySubnetSchemaSecurityGroup(TypedDict, total=False):
-    """MandatoryIdSchema schema"""
-
+class AttachInterfaceAnySubnetRequestSerializerSecurityGroup(TypedDict, total=False):
     id: Required[str]
     """Resource ID"""
 
 
-class NewInterfaceReservedFixedIPSchema(TypedDict, total=False):
+class AttachInterfaceReservedFixedIPRequestSerializer(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     port_id: Required[str]
-    """Port ID"""
+    """Port ID."""
 
-    ddos_profile: NewInterfaceReservedFixedIPSchemaDDOSProfile
+    ddos_profile: Optional[AttachInterfaceReservedFixedIPRequestSerializerDDOSProfile]
     """Advanced DDoS protection."""
 
-    interface_name: str
-    """Interface name"""
+    interface_name: Optional[str]
+    """Interface name."""
 
     port_group: int
-    """Each group will be added to the separate trunk."""
+    """Each group will be added to a separate trunk."""
 
-    security_groups: Iterable[NewInterfaceReservedFixedIPSchemaSecurityGroup]
-    """List of security group IDs"""
+    security_groups: Optional[Iterable[AttachInterfaceReservedFixedIPRequestSerializerSecurityGroup]]
+    """List of security group IDs."""
 
-    type: str
-    """Must be 'reserved_fixed_ip'. Union tag"""
+    type: Literal["reserved_fixed_ip"]
 
 
-class NewInterfaceReservedFixedIPSchemaDDOSProfileField(TypedDict, total=False):
+class AttachInterfaceReservedFixedIPRequestSerializerDDOSProfileField(TypedDict, total=False):
     base_field: Required[int]
-    """ID of DDoS profile field"""
+    """ID of DDoS profile field."""
 
     field_value: object
-    """Complex value for the DDoS profile field"""
+    """Complex value for the DDoS profile field."""
 
     value: Optional[str]
-    """Basic type value. Only one of 'value' or 'field_value' must be specified."""
+    """Basic type value."""
 
 
-class NewInterfaceReservedFixedIPSchemaDDOSProfile(TypedDict, total=False):
+class AttachInterfaceReservedFixedIPRequestSerializerDDOSProfile(TypedDict, total=False):
     """Advanced DDoS protection."""
 
     profile_template: Required[int]
     """DDoS profile template ID."""
 
-    fields: Iterable[NewInterfaceReservedFixedIPSchemaDDOSProfileField]
+    fields: Iterable[AttachInterfaceReservedFixedIPRequestSerializerDDOSProfileField]
     """Protection parameters."""
 
-    profile_template_name: str
+    profile_template_name: Optional[str]
     """DDoS profile template name."""
 
 
-class NewInterfaceReservedFixedIPSchemaSecurityGroup(TypedDict, total=False):
-    """MandatoryIdSchema schema"""
-
+class AttachInterfaceReservedFixedIPRequestSerializerSecurityGroup(TypedDict, total=False):
     id: Required[str]
     """Resource ID"""
 
 
 InterfaceAttachParams: TypeAlias = Union[
-    NewInterfaceExternalExtendSchemaWithDDOS,
-    NewInterfaceSpecificSubnetSchema,
-    NewInterfaceAnySubnetSchema,
-    NewInterfaceReservedFixedIPSchema,
+    AttachInterfaceExternalRequestSerializer,
+    AttachInterfaceSubnetRequestSerializer,
+    AttachInterfaceAnySubnetRequestSerializer,
+    AttachInterfaceReservedFixedIPRequestSerializer,
 ]

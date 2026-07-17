@@ -62,7 +62,9 @@ async def list_snapshots(*, client: AsyncGcore) -> None:
     snapshots = await client.cloud.volume_snapshots.list()
     count = 0
     async for snapshot in snapshots:
-        print(f"{count}. Snapshot: ID={snapshot.id}, name={snapshot.name}, size={snapshot.size} GiB, status={snapshot.status}")
+        print(
+            f"{count}. Snapshot: ID={snapshot.id}, name={snapshot.name}, size={snapshot.size} GiB, status={snapshot.status}"
+        )
         count += 1
     print("======================")
 

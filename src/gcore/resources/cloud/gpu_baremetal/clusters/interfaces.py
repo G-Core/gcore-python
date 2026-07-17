@@ -20,12 +20,12 @@ from ....._response import (
 from .....pagination import SyncOffsetPage, AsyncOffsetPage
 from ....._base_client import AsyncPaginator, make_request_options
 from .....types.cloud.task_id_list import TaskIDList
+from .....types.cloud.network_interface import NetworkInterface
 from .....types.cloud.gpu_baremetal.clusters import (
     interface_list_params,
     interface_attach_params,
     interface_detach_params,
 )
-from .....types.cloud.gpu_baremetal.clusters.interface_list_response import InterfaceListResponse
 
 __all__ = ["InterfacesResource", "AsyncInterfacesResource"]
 
@@ -64,7 +64,7 @@ class InterfacesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncOffsetPage[InterfaceListResponse]:
+    ) -> SyncOffsetPage[NetworkInterface]:
         """
         Retrieve a list of network interfaces attached to the GPU cluster servers.
 
@@ -100,7 +100,7 @@ class InterfacesResource(SyncAPIResource):
                 region_id=region_id,
                 cluster_id=cluster_id,
             ),
-            page=SyncOffsetPage[InterfaceListResponse],
+            page=SyncOffsetPage[NetworkInterface],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -114,7 +114,7 @@ class InterfacesResource(SyncAPIResource):
                     interface_list_params.InterfaceListParams,
                 ),
             ),
-            model=cast(Any, InterfaceListResponse),  # Union types cannot be passed in as arguments in the type system
+            model=cast(Any, NetworkInterface),  # Union types cannot be passed in as arguments in the type system
         )
 
     @overload
@@ -460,7 +460,7 @@ class AsyncInterfacesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[InterfaceListResponse, AsyncOffsetPage[InterfaceListResponse]]:
+    ) -> AsyncPaginator[NetworkInterface, AsyncOffsetPage[NetworkInterface]]:
         """
         Retrieve a list of network interfaces attached to the GPU cluster servers.
 
@@ -496,7 +496,7 @@ class AsyncInterfacesResource(AsyncAPIResource):
                 region_id=region_id,
                 cluster_id=cluster_id,
             ),
-            page=AsyncOffsetPage[InterfaceListResponse],
+            page=AsyncOffsetPage[NetworkInterface],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -510,7 +510,7 @@ class AsyncInterfacesResource(AsyncAPIResource):
                     interface_list_params.InterfaceListParams,
                 ),
             ),
-            model=cast(Any, InterfaceListResponse),  # Union types cannot be passed in as arguments in the type system
+            model=cast(Any, NetworkInterface),  # Union types cannot be passed in as arguments in the type system
         )
 
     @overload

@@ -2,13 +2,13 @@ from typing import List
 
 from gcore import Gcore
 from gcore.types.cloud.gpu_image import GPUImage
+from gcore.types.cloud.network_interface import NetworkInterface
 from gcore.types.cloud.gpu_baremetal.cluster_create_params import (
     ServersSettings,
     ServersSettingsInterfaceExternalInterfaceInputSerializer,
 )
 from gcore.types.cloud.gpu_baremetal.gpu_baremetal_cluster import GPUBaremetalCluster
 from gcore.types.cloud.gpu_baremetal.clusters.gpu_baremetal_flavor import GPUBaremetalFlavor
-from gcore.types.cloud.gpu_baremetal.clusters.interface_list_response import InterfaceListResponse
 from gcore.types.cloud.gpu_baremetal.clusters.gpu_baremetal_cluster_server import GPUBaremetalClusterServer
 
 
@@ -108,7 +108,7 @@ def delete_cluster(*, client: Gcore, cluster_id: str) -> None:
     print("========================")
 
 
-def list_interfaces(*, client: Gcore, cluster_id: str) -> List[InterfaceListResponse]:
+def list_interfaces(*, client: Gcore, cluster_id: str) -> List[NetworkInterface]:
     print("\n=== LIST GPU BAREMETAL CLUSTER INTERFACES ===")
     interfaces = client.cloud.gpu_baremetal.clusters.interfaces.list(cluster_id=cluster_id)
     for count, interface in enumerate(interfaces.results, 1):

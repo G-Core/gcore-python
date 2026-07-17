@@ -9,7 +9,8 @@ import pytest
 
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
-from gcore.types.cloud import TaskIDList, NetworkInterfaceList
+from gcore.pagination import SyncOffsetPage, AsyncOffsetPage
+from gcore.types.cloud import TaskIDList, NetworkInterface
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -20,48 +21,48 @@ class TestInterfaces:
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
         interface = client.cloud.instances.interfaces.list(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
+            project_id=1,
+            region_id=1,
         )
-        assert_matches_type(NetworkInterfaceList, interface, path=["response"])
+        assert_matches_type(SyncOffsetPage[NetworkInterface], interface, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
         interface = client.cloud.instances.interfaces.list(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
-            limit=0,
+            instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
+            project_id=1,
+            region_id=1,
+            limit=1000,
             offset=0,
         )
-        assert_matches_type(NetworkInterfaceList, interface, path=["response"])
+        assert_matches_type(SyncOffsetPage[NetworkInterface], interface, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
         response = client.cloud.instances.interfaces.with_raw_response.list(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         interface = response.parse()
-        assert_matches_type(NetworkInterfaceList, interface, path=["response"])
+        assert_matches_type(SyncOffsetPage[NetworkInterface], interface, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
         with client.cloud.instances.interfaces.with_streaming_response.list(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             interface = response.parse()
-            assert_matches_type(NetworkInterfaceList, interface, path=["response"])
+            assert_matches_type(SyncOffsetPage[NetworkInterface], interface, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -70,31 +71,31 @@ class TestInterfaces:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
             client.cloud.instances.interfaces.with_raw_response.list(
                 instance_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
             )
 
     @parametrize
     def test_method_attach_overload_1(self, client: Gcore) -> None:
         interface = client.cloud.instances.interfaces.attach(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
+            project_id=1,
+            region_id=1,
         )
         assert_matches_type(TaskIDList, interface, path=["response"])
 
     @parametrize
     def test_method_attach_with_all_params_overload_1(self, client: Gcore) -> None:
         interface = client.cloud.instances.interfaces.attach(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
+            project_id=1,
+            region_id=1,
             ddos_profile={
-                "profile_template": 29,
+                "profile_template": 0,
                 "fields": [
                     {
-                        "base_field": 10,
-                        "field_value": [45046, 45047],
+                        "base_field": 0,
+                        "field_value": {},
                         "value": "value",
                     }
                 ],
@@ -103,10 +104,7 @@ class TestInterfaces:
             interface_name="interface_name",
             ip_family="dual",
             port_group=0,
-            security_groups=[
-                {"id": "4536dba1-93b1-492e-b3df-270b6b9f3650"},
-                {"id": "cee2ca1f-507a-4a31-b714-f6c1ffb4bdfa"},
-            ],
+            security_groups=[{"id": "ae74714c-c380-48b4-87f8-758d656cdad6"}],
             type="external",
         )
         assert_matches_type(TaskIDList, interface, path=["response"])
@@ -114,9 +112,9 @@ class TestInterfaces:
     @parametrize
     def test_raw_response_attach_overload_1(self, client: Gcore) -> None:
         response = client.cloud.instances.interfaces.with_raw_response.attach(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -127,9 +125,9 @@ class TestInterfaces:
     @parametrize
     def test_streaming_response_attach_overload_1(self, client: Gcore) -> None:
         with client.cloud.instances.interfaces.with_streaming_response.attach(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -144,44 +142,41 @@ class TestInterfaces:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
             client.cloud.instances.interfaces.with_raw_response.attach(
                 instance_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
             )
 
     @parametrize
     def test_method_attach_overload_2(self, client: Gcore) -> None:
         interface = client.cloud.instances.interfaces.attach(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
-            subnet_id="e3c6ee77-48cb-416b-b204-11b492cc776e3",
+            instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
+            project_id=1,
+            region_id=1,
+            subnet_id="subnet_id",
         )
         assert_matches_type(TaskIDList, interface, path=["response"])
 
     @parametrize
     def test_method_attach_with_all_params_overload_2(self, client: Gcore) -> None:
         interface = client.cloud.instances.interfaces.attach(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
-            subnet_id="e3c6ee77-48cb-416b-b204-11b492cc776e3",
+            instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
+            project_id=1,
+            region_id=1,
+            subnet_id="subnet_id",
             ddos_profile={
-                "profile_template": 29,
+                "profile_template": 0,
                 "fields": [
                     {
-                        "base_field": 10,
-                        "field_value": [45046, 45047],
+                        "base_field": 0,
+                        "field_value": {},
                         "value": "value",
                     }
                 ],
                 "profile_template_name": "profile_template_name",
             },
-            interface_name="my-subnet-interface",
+            interface_name="interface_name",
             port_group=0,
-            security_groups=[
-                {"id": "4536dba1-93b1-492e-b3df-270b6b9f3650"},
-                {"id": "cee2ca1f-507a-4a31-b714-f6c1ffb4bdfa"},
-            ],
+            security_groups=[{"id": "ae74714c-c380-48b4-87f8-758d656cdad6"}],
             type="subnet",
         )
         assert_matches_type(TaskIDList, interface, path=["response"])
@@ -189,10 +184,10 @@ class TestInterfaces:
     @parametrize
     def test_raw_response_attach_overload_2(self, client: Gcore) -> None:
         response = client.cloud.instances.interfaces.with_raw_response.attach(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
-            subnet_id="e3c6ee77-48cb-416b-b204-11b492cc776e3",
+            instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
+            project_id=1,
+            region_id=1,
+            subnet_id="subnet_id",
         )
 
         assert response.is_closed is True
@@ -203,10 +198,10 @@ class TestInterfaces:
     @parametrize
     def test_streaming_response_attach_overload_2(self, client: Gcore) -> None:
         with client.cloud.instances.interfaces.with_streaming_response.attach(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
-            subnet_id="e3c6ee77-48cb-416b-b204-11b492cc776e3",
+            instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
+            project_id=1,
+            region_id=1,
+            subnet_id="subnet_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -221,46 +216,43 @@ class TestInterfaces:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
             client.cloud.instances.interfaces.with_raw_response.attach(
                 instance_id="",
-                project_id=0,
-                region_id=0,
-                subnet_id="e3c6ee77-48cb-416b-b204-11b492cc776e3",
+                project_id=1,
+                region_id=1,
+                subnet_id="subnet_id",
             )
 
     @parametrize
     def test_method_attach_overload_3(self, client: Gcore) -> None:
         interface = client.cloud.instances.interfaces.attach(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
-            network_id="e3c6ee77-48cb-416b-b204-11b492cc776e3",
+            instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
+            project_id=1,
+            region_id=1,
+            network_id="network_id",
         )
         assert_matches_type(TaskIDList, interface, path=["response"])
 
     @parametrize
     def test_method_attach_with_all_params_overload_3(self, client: Gcore) -> None:
         interface = client.cloud.instances.interfaces.attach(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
-            network_id="e3c6ee77-48cb-416b-b204-11b492cc776e3",
+            instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
+            project_id=1,
+            region_id=1,
+            network_id="network_id",
             ddos_profile={
-                "profile_template": 29,
+                "profile_template": 0,
                 "fields": [
                     {
-                        "base_field": 10,
-                        "field_value": [45046, 45047],
+                        "base_field": 0,
+                        "field_value": {},
                         "value": "value",
                     }
                 ],
                 "profile_template_name": "profile_template_name",
             },
-            interface_name="my-any-subnet-interface",
+            interface_name="interface_name",
             ip_family="dual",
             port_group=0,
-            security_groups=[
-                {"id": "4536dba1-93b1-492e-b3df-270b6b9f3650"},
-                {"id": "cee2ca1f-507a-4a31-b714-f6c1ffb4bdfa"},
-            ],
+            security_groups=[{"id": "ae74714c-c380-48b4-87f8-758d656cdad6"}],
             type="any_subnet",
         )
         assert_matches_type(TaskIDList, interface, path=["response"])
@@ -268,10 +260,10 @@ class TestInterfaces:
     @parametrize
     def test_raw_response_attach_overload_3(self, client: Gcore) -> None:
         response = client.cloud.instances.interfaces.with_raw_response.attach(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
-            network_id="e3c6ee77-48cb-416b-b204-11b492cc776e3",
+            instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
+            project_id=1,
+            region_id=1,
+            network_id="network_id",
         )
 
         assert response.is_closed is True
@@ -282,10 +274,10 @@ class TestInterfaces:
     @parametrize
     def test_streaming_response_attach_overload_3(self, client: Gcore) -> None:
         with client.cloud.instances.interfaces.with_streaming_response.attach(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
-            network_id="e3c6ee77-48cb-416b-b204-11b492cc776e3",
+            instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
+            project_id=1,
+            region_id=1,
+            network_id="network_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -300,45 +292,42 @@ class TestInterfaces:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
             client.cloud.instances.interfaces.with_raw_response.attach(
                 instance_id="",
-                project_id=0,
-                region_id=0,
-                network_id="e3c6ee77-48cb-416b-b204-11b492cc776e3",
+                project_id=1,
+                region_id=1,
+                network_id="network_id",
             )
 
     @parametrize
     def test_method_attach_overload_4(self, client: Gcore) -> None:
         interface = client.cloud.instances.interfaces.attach(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
-            port_id="59905c8e-2619-420a-b046-536096473370",
+            instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
+            project_id=1,
+            region_id=1,
+            port_id="port_id",
         )
         assert_matches_type(TaskIDList, interface, path=["response"])
 
     @parametrize
     def test_method_attach_with_all_params_overload_4(self, client: Gcore) -> None:
         interface = client.cloud.instances.interfaces.attach(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
-            port_id="59905c8e-2619-420a-b046-536096473370",
+            instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
+            project_id=1,
+            region_id=1,
+            port_id="port_id",
             ddos_profile={
-                "profile_template": 29,
+                "profile_template": 0,
                 "fields": [
                     {
-                        "base_field": 10,
-                        "field_value": [45046, 45047],
+                        "base_field": 0,
+                        "field_value": {},
                         "value": "value",
                     }
                 ],
                 "profile_template_name": "profile_template_name",
             },
-            interface_name="my-rfip-interface",
+            interface_name="interface_name",
             port_group=0,
-            security_groups=[
-                {"id": "4536dba1-93b1-492e-b3df-270b6b9f3650"},
-                {"id": "cee2ca1f-507a-4a31-b714-f6c1ffb4bdfa"},
-            ],
+            security_groups=[{"id": "ae74714c-c380-48b4-87f8-758d656cdad6"}],
             type="reserved_fixed_ip",
         )
         assert_matches_type(TaskIDList, interface, path=["response"])
@@ -346,10 +335,10 @@ class TestInterfaces:
     @parametrize
     def test_raw_response_attach_overload_4(self, client: Gcore) -> None:
         response = client.cloud.instances.interfaces.with_raw_response.attach(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
-            port_id="59905c8e-2619-420a-b046-536096473370",
+            instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
+            project_id=1,
+            region_id=1,
+            port_id="port_id",
         )
 
         assert response.is_closed is True
@@ -360,10 +349,10 @@ class TestInterfaces:
     @parametrize
     def test_streaming_response_attach_overload_4(self, client: Gcore) -> None:
         with client.cloud.instances.interfaces.with_streaming_response.attach(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
-            port_id="59905c8e-2619-420a-b046-536096473370",
+            instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
+            project_id=1,
+            region_id=1,
+            port_id="port_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -378,30 +367,30 @@ class TestInterfaces:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
             client.cloud.instances.interfaces.with_raw_response.attach(
                 instance_id="",
-                project_id=0,
-                region_id=0,
-                port_id="59905c8e-2619-420a-b046-536096473370",
+                project_id=1,
+                region_id=1,
+                port_id="port_id",
             )
 
     @parametrize
     def test_method_detach(self, client: Gcore) -> None:
         interface = client.cloud.instances.interfaces.detach(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
-            ip_address="192.168.123.20",
-            port_id="351b0dd7-ca09-431c-be53-935db3785067",
+            instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
+            project_id=1,
+            region_id=1,
+            ip_address="ip_address",
+            port_id="port_id",
         )
         assert_matches_type(TaskIDList, interface, path=["response"])
 
     @parametrize
     def test_raw_response_detach(self, client: Gcore) -> None:
         response = client.cloud.instances.interfaces.with_raw_response.detach(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
-            ip_address="192.168.123.20",
-            port_id="351b0dd7-ca09-431c-be53-935db3785067",
+            instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
+            project_id=1,
+            region_id=1,
+            ip_address="ip_address",
+            port_id="port_id",
         )
 
         assert response.is_closed is True
@@ -412,11 +401,11 @@ class TestInterfaces:
     @parametrize
     def test_streaming_response_detach(self, client: Gcore) -> None:
         with client.cloud.instances.interfaces.with_streaming_response.detach(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
-            ip_address="192.168.123.20",
-            port_id="351b0dd7-ca09-431c-be53-935db3785067",
+            instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
+            project_id=1,
+            region_id=1,
+            ip_address="ip_address",
+            port_id="port_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -431,10 +420,10 @@ class TestInterfaces:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
             client.cloud.instances.interfaces.with_raw_response.detach(
                 instance_id="",
-                project_id=0,
-                region_id=0,
-                ip_address="192.168.123.20",
-                port_id="351b0dd7-ca09-431c-be53-935db3785067",
+                project_id=1,
+                region_id=1,
+                ip_address="ip_address",
+                port_id="port_id",
             )
 
 
@@ -446,48 +435,48 @@ class TestAsyncInterfaces:
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
         interface = await async_client.cloud.instances.interfaces.list(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
+            project_id=1,
+            region_id=1,
         )
-        assert_matches_type(NetworkInterfaceList, interface, path=["response"])
+        assert_matches_type(AsyncOffsetPage[NetworkInterface], interface, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
         interface = await async_client.cloud.instances.interfaces.list(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
-            limit=0,
+            instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
+            project_id=1,
+            region_id=1,
+            limit=1000,
             offset=0,
         )
-        assert_matches_type(NetworkInterfaceList, interface, path=["response"])
+        assert_matches_type(AsyncOffsetPage[NetworkInterface], interface, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.instances.interfaces.with_raw_response.list(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         interface = await response.parse()
-        assert_matches_type(NetworkInterfaceList, interface, path=["response"])
+        assert_matches_type(AsyncOffsetPage[NetworkInterface], interface, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.instances.interfaces.with_streaming_response.list(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             interface = await response.parse()
-            assert_matches_type(NetworkInterfaceList, interface, path=["response"])
+            assert_matches_type(AsyncOffsetPage[NetworkInterface], interface, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -496,31 +485,31 @@ class TestAsyncInterfaces:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
             await async_client.cloud.instances.interfaces.with_raw_response.list(
                 instance_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
             )
 
     @parametrize
     async def test_method_attach_overload_1(self, async_client: AsyncGcore) -> None:
         interface = await async_client.cloud.instances.interfaces.attach(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
+            project_id=1,
+            region_id=1,
         )
         assert_matches_type(TaskIDList, interface, path=["response"])
 
     @parametrize
     async def test_method_attach_with_all_params_overload_1(self, async_client: AsyncGcore) -> None:
         interface = await async_client.cloud.instances.interfaces.attach(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
+            project_id=1,
+            region_id=1,
             ddos_profile={
-                "profile_template": 29,
+                "profile_template": 0,
                 "fields": [
                     {
-                        "base_field": 10,
-                        "field_value": [45046, 45047],
+                        "base_field": 0,
+                        "field_value": {},
                         "value": "value",
                     }
                 ],
@@ -529,10 +518,7 @@ class TestAsyncInterfaces:
             interface_name="interface_name",
             ip_family="dual",
             port_group=0,
-            security_groups=[
-                {"id": "4536dba1-93b1-492e-b3df-270b6b9f3650"},
-                {"id": "cee2ca1f-507a-4a31-b714-f6c1ffb4bdfa"},
-            ],
+            security_groups=[{"id": "ae74714c-c380-48b4-87f8-758d656cdad6"}],
             type="external",
         )
         assert_matches_type(TaskIDList, interface, path=["response"])
@@ -540,9 +526,9 @@ class TestAsyncInterfaces:
     @parametrize
     async def test_raw_response_attach_overload_1(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.instances.interfaces.with_raw_response.attach(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -553,9 +539,9 @@ class TestAsyncInterfaces:
     @parametrize
     async def test_streaming_response_attach_overload_1(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.instances.interfaces.with_streaming_response.attach(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -570,44 +556,41 @@ class TestAsyncInterfaces:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
             await async_client.cloud.instances.interfaces.with_raw_response.attach(
                 instance_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
             )
 
     @parametrize
     async def test_method_attach_overload_2(self, async_client: AsyncGcore) -> None:
         interface = await async_client.cloud.instances.interfaces.attach(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
-            subnet_id="e3c6ee77-48cb-416b-b204-11b492cc776e3",
+            instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
+            project_id=1,
+            region_id=1,
+            subnet_id="subnet_id",
         )
         assert_matches_type(TaskIDList, interface, path=["response"])
 
     @parametrize
     async def test_method_attach_with_all_params_overload_2(self, async_client: AsyncGcore) -> None:
         interface = await async_client.cloud.instances.interfaces.attach(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
-            subnet_id="e3c6ee77-48cb-416b-b204-11b492cc776e3",
+            instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
+            project_id=1,
+            region_id=1,
+            subnet_id="subnet_id",
             ddos_profile={
-                "profile_template": 29,
+                "profile_template": 0,
                 "fields": [
                     {
-                        "base_field": 10,
-                        "field_value": [45046, 45047],
+                        "base_field": 0,
+                        "field_value": {},
                         "value": "value",
                     }
                 ],
                 "profile_template_name": "profile_template_name",
             },
-            interface_name="my-subnet-interface",
+            interface_name="interface_name",
             port_group=0,
-            security_groups=[
-                {"id": "4536dba1-93b1-492e-b3df-270b6b9f3650"},
-                {"id": "cee2ca1f-507a-4a31-b714-f6c1ffb4bdfa"},
-            ],
+            security_groups=[{"id": "ae74714c-c380-48b4-87f8-758d656cdad6"}],
             type="subnet",
         )
         assert_matches_type(TaskIDList, interface, path=["response"])
@@ -615,10 +598,10 @@ class TestAsyncInterfaces:
     @parametrize
     async def test_raw_response_attach_overload_2(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.instances.interfaces.with_raw_response.attach(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
-            subnet_id="e3c6ee77-48cb-416b-b204-11b492cc776e3",
+            instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
+            project_id=1,
+            region_id=1,
+            subnet_id="subnet_id",
         )
 
         assert response.is_closed is True
@@ -629,10 +612,10 @@ class TestAsyncInterfaces:
     @parametrize
     async def test_streaming_response_attach_overload_2(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.instances.interfaces.with_streaming_response.attach(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
-            subnet_id="e3c6ee77-48cb-416b-b204-11b492cc776e3",
+            instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
+            project_id=1,
+            region_id=1,
+            subnet_id="subnet_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -647,46 +630,43 @@ class TestAsyncInterfaces:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
             await async_client.cloud.instances.interfaces.with_raw_response.attach(
                 instance_id="",
-                project_id=0,
-                region_id=0,
-                subnet_id="e3c6ee77-48cb-416b-b204-11b492cc776e3",
+                project_id=1,
+                region_id=1,
+                subnet_id="subnet_id",
             )
 
     @parametrize
     async def test_method_attach_overload_3(self, async_client: AsyncGcore) -> None:
         interface = await async_client.cloud.instances.interfaces.attach(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
-            network_id="e3c6ee77-48cb-416b-b204-11b492cc776e3",
+            instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
+            project_id=1,
+            region_id=1,
+            network_id="network_id",
         )
         assert_matches_type(TaskIDList, interface, path=["response"])
 
     @parametrize
     async def test_method_attach_with_all_params_overload_3(self, async_client: AsyncGcore) -> None:
         interface = await async_client.cloud.instances.interfaces.attach(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
-            network_id="e3c6ee77-48cb-416b-b204-11b492cc776e3",
+            instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
+            project_id=1,
+            region_id=1,
+            network_id="network_id",
             ddos_profile={
-                "profile_template": 29,
+                "profile_template": 0,
                 "fields": [
                     {
-                        "base_field": 10,
-                        "field_value": [45046, 45047],
+                        "base_field": 0,
+                        "field_value": {},
                         "value": "value",
                     }
                 ],
                 "profile_template_name": "profile_template_name",
             },
-            interface_name="my-any-subnet-interface",
+            interface_name="interface_name",
             ip_family="dual",
             port_group=0,
-            security_groups=[
-                {"id": "4536dba1-93b1-492e-b3df-270b6b9f3650"},
-                {"id": "cee2ca1f-507a-4a31-b714-f6c1ffb4bdfa"},
-            ],
+            security_groups=[{"id": "ae74714c-c380-48b4-87f8-758d656cdad6"}],
             type="any_subnet",
         )
         assert_matches_type(TaskIDList, interface, path=["response"])
@@ -694,10 +674,10 @@ class TestAsyncInterfaces:
     @parametrize
     async def test_raw_response_attach_overload_3(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.instances.interfaces.with_raw_response.attach(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
-            network_id="e3c6ee77-48cb-416b-b204-11b492cc776e3",
+            instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
+            project_id=1,
+            region_id=1,
+            network_id="network_id",
         )
 
         assert response.is_closed is True
@@ -708,10 +688,10 @@ class TestAsyncInterfaces:
     @parametrize
     async def test_streaming_response_attach_overload_3(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.instances.interfaces.with_streaming_response.attach(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
-            network_id="e3c6ee77-48cb-416b-b204-11b492cc776e3",
+            instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
+            project_id=1,
+            region_id=1,
+            network_id="network_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -726,45 +706,42 @@ class TestAsyncInterfaces:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
             await async_client.cloud.instances.interfaces.with_raw_response.attach(
                 instance_id="",
-                project_id=0,
-                region_id=0,
-                network_id="e3c6ee77-48cb-416b-b204-11b492cc776e3",
+                project_id=1,
+                region_id=1,
+                network_id="network_id",
             )
 
     @parametrize
     async def test_method_attach_overload_4(self, async_client: AsyncGcore) -> None:
         interface = await async_client.cloud.instances.interfaces.attach(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
-            port_id="59905c8e-2619-420a-b046-536096473370",
+            instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
+            project_id=1,
+            region_id=1,
+            port_id="port_id",
         )
         assert_matches_type(TaskIDList, interface, path=["response"])
 
     @parametrize
     async def test_method_attach_with_all_params_overload_4(self, async_client: AsyncGcore) -> None:
         interface = await async_client.cloud.instances.interfaces.attach(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
-            port_id="59905c8e-2619-420a-b046-536096473370",
+            instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
+            project_id=1,
+            region_id=1,
+            port_id="port_id",
             ddos_profile={
-                "profile_template": 29,
+                "profile_template": 0,
                 "fields": [
                     {
-                        "base_field": 10,
-                        "field_value": [45046, 45047],
+                        "base_field": 0,
+                        "field_value": {},
                         "value": "value",
                     }
                 ],
                 "profile_template_name": "profile_template_name",
             },
-            interface_name="my-rfip-interface",
+            interface_name="interface_name",
             port_group=0,
-            security_groups=[
-                {"id": "4536dba1-93b1-492e-b3df-270b6b9f3650"},
-                {"id": "cee2ca1f-507a-4a31-b714-f6c1ffb4bdfa"},
-            ],
+            security_groups=[{"id": "ae74714c-c380-48b4-87f8-758d656cdad6"}],
             type="reserved_fixed_ip",
         )
         assert_matches_type(TaskIDList, interface, path=["response"])
@@ -772,10 +749,10 @@ class TestAsyncInterfaces:
     @parametrize
     async def test_raw_response_attach_overload_4(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.instances.interfaces.with_raw_response.attach(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
-            port_id="59905c8e-2619-420a-b046-536096473370",
+            instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
+            project_id=1,
+            region_id=1,
+            port_id="port_id",
         )
 
         assert response.is_closed is True
@@ -786,10 +763,10 @@ class TestAsyncInterfaces:
     @parametrize
     async def test_streaming_response_attach_overload_4(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.instances.interfaces.with_streaming_response.attach(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
-            port_id="59905c8e-2619-420a-b046-536096473370",
+            instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
+            project_id=1,
+            region_id=1,
+            port_id="port_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -804,30 +781,30 @@ class TestAsyncInterfaces:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
             await async_client.cloud.instances.interfaces.with_raw_response.attach(
                 instance_id="",
-                project_id=0,
-                region_id=0,
-                port_id="59905c8e-2619-420a-b046-536096473370",
+                project_id=1,
+                region_id=1,
+                port_id="port_id",
             )
 
     @parametrize
     async def test_method_detach(self, async_client: AsyncGcore) -> None:
         interface = await async_client.cloud.instances.interfaces.detach(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
-            ip_address="192.168.123.20",
-            port_id="351b0dd7-ca09-431c-be53-935db3785067",
+            instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
+            project_id=1,
+            region_id=1,
+            ip_address="ip_address",
+            port_id="port_id",
         )
         assert_matches_type(TaskIDList, interface, path=["response"])
 
     @parametrize
     async def test_raw_response_detach(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.instances.interfaces.with_raw_response.detach(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
-            ip_address="192.168.123.20",
-            port_id="351b0dd7-ca09-431c-be53-935db3785067",
+            instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
+            project_id=1,
+            region_id=1,
+            ip_address="ip_address",
+            port_id="port_id",
         )
 
         assert response.is_closed is True
@@ -838,11 +815,11 @@ class TestAsyncInterfaces:
     @parametrize
     async def test_streaming_response_detach(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.instances.interfaces.with_streaming_response.detach(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
-            ip_address="192.168.123.20",
-            port_id="351b0dd7-ca09-431c-be53-935db3785067",
+            instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
+            project_id=1,
+            region_id=1,
+            ip_address="ip_address",
+            port_id="port_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -857,8 +834,8 @@ class TestAsyncInterfaces:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
             await async_client.cloud.instances.interfaces.with_raw_response.detach(
                 instance_id="",
-                project_id=0,
-                region_id=0,
-                ip_address="192.168.123.20",
-                port_id="351b0dd7-ca09-431c-be53-935db3785067",
+                project_id=1,
+                region_id=1,
+                ip_address="ip_address",
+                port_id="port_id",
             )

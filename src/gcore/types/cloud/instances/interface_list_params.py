@@ -9,8 +9,10 @@ __all__ = ["InterfaceListParams"]
 
 class InterfaceListParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     limit: int
     """Limit the number of returned items"""

@@ -12,7 +12,6 @@ from .interface_list_params import InterfaceListParams as InterfaceListParams
 from .server_replace_params import ServerReplaceParams as ServerReplaceParams
 from .interface_attach_params import InterfaceAttachParams as InterfaceAttachParams
 from .interface_detach_params import InterfaceDetachParams as InterfaceDetachParams
-from .interface_list_response import InterfaceListResponse as InterfaceListResponse
 from .gpu_baremetal_flavor_list import GPUBaremetalFlavorList as GPUBaremetalFlavorList
 from .gpu_baremetal_cluster_server import GPUBaremetalClusterServer as GPUBaremetalClusterServer
 from .gpu_baremetal_cluster_server_v1 import GPUBaremetalClusterServerV1 as GPUBaremetalClusterServerV1

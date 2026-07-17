@@ -106,7 +106,6 @@ from .instance_delete_params import InstanceDeleteParams as InstanceDeleteParams
 from .instance_resize_params import InstanceResizeParams as InstanceResizeParams
 from .instance_update_params import InstanceUpdateParams as InstanceUpdateParams
 from .lb_health_monitor_type import LbHealthMonitorType as LbHealthMonitorType
-from .network_interface_list import NetworkInterfaceList as NetworkInterfaceList
 from .registry_create_params import RegistryCreateParams as RegistryCreateParams
 from .registry_resize_params import RegistryResizeParams as RegistryResizeParams
 from .floating_ip_list_params import FloatingIPListParams as FloatingIPListParams

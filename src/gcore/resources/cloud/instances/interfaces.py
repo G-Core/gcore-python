@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Any, Iterable, Optional, cast
 from typing_extensions import Literal, overload
 
 import httpx
@@ -17,11 +17,13 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._base_client import make_request_options
+from ....pagination import SyncOffsetPage, AsyncOffsetPage
+from ...._base_client import AsyncPaginator, make_request_options
 from .interfaces_custom import InterfacesResourceCustomMixin, AsyncInterfacesResourceCustomMixin
 from ....types.cloud.instances import interface_list_params, interface_attach_params, interface_detach_params
 from ....types.cloud.task_id_list import TaskIDList
-from ....types.cloud.network_interface_list import NetworkInterfaceList
+from ....types.cloud.network_interface import NetworkInterface
+from ....types.cloud.interface_ip_family import InterfaceIPFamily
 
 __all__ = ["InterfacesResource", "AsyncInterfacesResource"]
 
@@ -60,11 +62,17 @@ class InterfacesResource(InterfacesResourceCustomMixin, SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NetworkInterfaceList:
+    ) -> SyncOffsetPage[NetworkInterface]:
         """
         List all network interfaces attached to the specified instance.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
           limit: Limit the number of returned items
 
           offset: Offset value is used to exclude the first set of records from the result
@@ -83,13 +91,14 @@ class InterfacesResource(InterfacesResourceCustomMixin, SyncAPIResource):
             region_id = self._client._get_cloud_region_id_path_param()
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
-        return self._get(
+        return self._get_api_list(
             path_template(
                 "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/interfaces",
                 project_id=project_id,
                 region_id=region_id,
                 instance_id=instance_id,
             ),
+            page=SyncOffsetPage[NetworkInterface],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -103,7 +112,7 @@ class InterfacesResource(InterfacesResourceCustomMixin, SyncAPIResource):
                     interface_list_params.InterfaceListParams,
                 ),
             ),
-            cast_to=NetworkInterfaceList,
+            model=cast(Any, NetworkInterface),  # Union types cannot be passed in as arguments in the type system
         )
 
     @overload
@@ -113,13 +122,16 @@ class InterfacesResource(InterfacesResourceCustomMixin, SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        ddos_profile: interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile | Omit = omit,
-        interface_name: str | Omit = omit,
-        ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
-        port_group: int | Omit = omit,
-        security_groups: Iterable[interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSSecurityGroup]
+        ddos_profile: Optional[interface_attach_params.AttachInterfaceExternalRequestSerializerDDOSProfile]
         | Omit = omit,
-        type: str | Omit = omit,
+        interface_name: Optional[str] | Omit = omit,
+        ip_family: Optional[InterfaceIPFamily] | Omit = omit,
+        port_group: int | Omit = omit,
+        security_groups: Optional[
+            Iterable[interface_attach_params.AttachInterfaceExternalRequestSerializerSecurityGroup]
+        ]
+        | Omit = omit,
+        type: Literal["external"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -131,17 +143,19 @@ class InterfacesResource(InterfacesResourceCustomMixin, SyncAPIResource):
         Attach interface to instance
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
           ddos_profile: Advanced DDoS protection.
 
-          interface_name: Interface name
+          interface_name: Interface name.
 
-          ip_family: Which subnets should be selected: IPv4, IPv6 or use dual stack.
+          port_group: Each group will be added to a separate trunk.
 
-          port_group: Each group will be added to the separate trunk.
-
-          security_groups: List of security group IDs
-
-          type: Must be 'external'. Union tag
+          security_groups: List of security group IDs.
 
           extra_headers: Send extra headers
 
@@ -161,11 +175,12 @@ class InterfacesResource(InterfacesResourceCustomMixin, SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         subnet_id: str,
-        ddos_profile: interface_attach_params.NewInterfaceSpecificSubnetSchemaDDOSProfile | Omit = omit,
-        interface_name: str | Omit = omit,
+        ddos_profile: Optional[interface_attach_params.AttachInterfaceSubnetRequestSerializerDDOSProfile] | Omit = omit,
+        interface_name: Optional[str] | Omit = omit,
         port_group: int | Omit = omit,
-        security_groups: Iterable[interface_attach_params.NewInterfaceSpecificSubnetSchemaSecurityGroup] | Omit = omit,
-        type: str | Omit = omit,
+        security_groups: Optional[Iterable[interface_attach_params.AttachInterfaceSubnetRequestSerializerSecurityGroup]]
+        | Omit = omit,
+        type: Literal["subnet"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -177,17 +192,21 @@ class InterfacesResource(InterfacesResourceCustomMixin, SyncAPIResource):
         Attach interface to instance
 
         Args:
-          subnet_id: Port will get an IP address from this subnet
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
+          subnet_id: Port will get an IP address from this subnet.
 
           ddos_profile: Advanced DDoS protection.
 
-          interface_name: Interface name
+          interface_name: Interface name.
 
-          port_group: Each group will be added to the separate trunk.
+          port_group: Each group will be added to a separate trunk.
 
-          security_groups: List of security group IDs
-
-          type: Must be 'subnet'
+          security_groups: List of security group IDs.
 
           extra_headers: Send extra headers
 
@@ -207,12 +226,16 @@ class InterfacesResource(InterfacesResourceCustomMixin, SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         network_id: str,
-        ddos_profile: interface_attach_params.NewInterfaceAnySubnetSchemaDDOSProfile | Omit = omit,
-        interface_name: str | Omit = omit,
-        ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
+        ddos_profile: Optional[interface_attach_params.AttachInterfaceAnySubnetRequestSerializerDDOSProfile]
+        | Omit = omit,
+        interface_name: Optional[str] | Omit = omit,
+        ip_family: Optional[InterfaceIPFamily] | Omit = omit,
         port_group: int | Omit = omit,
-        security_groups: Iterable[interface_attach_params.NewInterfaceAnySubnetSchemaSecurityGroup] | Omit = omit,
-        type: str | Omit = omit,
+        security_groups: Optional[
+            Iterable[interface_attach_params.AttachInterfaceAnySubnetRequestSerializerSecurityGroup]
+        ]
+        | Omit = omit,
+        type: Literal["any_subnet"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -224,19 +247,21 @@ class InterfacesResource(InterfacesResourceCustomMixin, SyncAPIResource):
         Attach interface to instance
 
         Args:
-          network_id: Port will get an IP address in this network subnet
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
+          network_id: Port will get an IP address in this network subnet.
 
           ddos_profile: Advanced DDoS protection.
 
-          interface_name: Interface name
+          interface_name: Interface name.
 
-          ip_family: Which subnets should be selected: IPv4, IPv6 or use dual stack.
+          port_group: Each group will be added to a separate trunk.
 
-          port_group: Each group will be added to the separate trunk.
-
-          security_groups: List of security group IDs
-
-          type: Must be 'any_subnet'
+          security_groups: List of security group IDs.
 
           extra_headers: Send extra headers
 
@@ -256,11 +281,15 @@ class InterfacesResource(InterfacesResourceCustomMixin, SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         port_id: str,
-        ddos_profile: interface_attach_params.NewInterfaceReservedFixedIPSchemaDDOSProfile | Omit = omit,
-        interface_name: str | Omit = omit,
+        ddos_profile: Optional[interface_attach_params.AttachInterfaceReservedFixedIPRequestSerializerDDOSProfile]
+        | Omit = omit,
+        interface_name: Optional[str] | Omit = omit,
         port_group: int | Omit = omit,
-        security_groups: Iterable[interface_attach_params.NewInterfaceReservedFixedIPSchemaSecurityGroup] | Omit = omit,
-        type: str | Omit = omit,
+        security_groups: Optional[
+            Iterable[interface_attach_params.AttachInterfaceReservedFixedIPRequestSerializerSecurityGroup]
+        ]
+        | Omit = omit,
+        type: Literal["reserved_fixed_ip"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -272,17 +301,21 @@ class InterfacesResource(InterfacesResourceCustomMixin, SyncAPIResource):
         Attach interface to instance
 
         Args:
-          port_id: Port ID
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
+          port_id: Port ID.
 
           ddos_profile: Advanced DDoS protection.
 
-          interface_name: Interface name
+          interface_name: Interface name.
 
-          port_group: Each group will be added to the separate trunk.
+          port_group: Each group will be added to a separate trunk.
 
-          security_groups: List of security group IDs
-
-          type: Must be 'reserved_fixed_ip'. Union tag
+          security_groups: List of security group IDs.
 
           extra_headers: Send extra headers
 
@@ -300,20 +333,23 @@ class InterfacesResource(InterfacesResourceCustomMixin, SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        ddos_profile: interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile
-        | interface_attach_params.NewInterfaceSpecificSubnetSchemaDDOSProfile
-        | interface_attach_params.NewInterfaceAnySubnetSchemaDDOSProfile
-        | interface_attach_params.NewInterfaceReservedFixedIPSchemaDDOSProfile
+        ddos_profile: Optional[interface_attach_params.AttachInterfaceExternalRequestSerializerDDOSProfile]
+        | Optional[interface_attach_params.AttachInterfaceSubnetRequestSerializerDDOSProfile]
+        | Optional[interface_attach_params.AttachInterfaceAnySubnetRequestSerializerDDOSProfile]
+        | Optional[interface_attach_params.AttachInterfaceReservedFixedIPRequestSerializerDDOSProfile]
         | Omit = omit,
-        interface_name: str | Omit = omit,
-        ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
+        interface_name: Optional[str] | Omit = omit,
+        ip_family: Optional[InterfaceIPFamily] | Omit = omit,
         port_group: int | Omit = omit,
-        security_groups: Iterable[interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSSecurityGroup]
-        | Iterable[interface_attach_params.NewInterfaceSpecificSubnetSchemaSecurityGroup]
-        | Iterable[interface_attach_params.NewInterfaceAnySubnetSchemaSecurityGroup]
-        | Iterable[interface_attach_params.NewInterfaceReservedFixedIPSchemaSecurityGroup]
+        security_groups: Optional[
+            Iterable[interface_attach_params.AttachInterfaceExternalRequestSerializerSecurityGroup]
+        ]
         | Omit = omit,
-        type: str | Omit = omit,
+        type: Literal["external"]
+        | Literal["subnet"]
+        | Literal["any_subnet"]
+        | Literal["reserved_fixed_ip"]
+        | Omit = omit,
         subnet_id: str | Omit = omit,
         network_id: str | Omit = omit,
         port_id: str | Omit = omit,
@@ -376,6 +412,12 @@ class InterfacesResource(InterfacesResourceCustomMixin, SyncAPIResource):
         Detach interface from instance
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
           ip_address: IP address
 
           port_id: ID of the port
@@ -435,7 +477,7 @@ class AsyncInterfacesResource(AsyncInterfacesResourceCustomMixin, AsyncAPIResour
         """
         return AsyncInterfacesResourceWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         instance_id: str,
         *,
@@ -449,11 +491,17 @@ class AsyncInterfacesResource(AsyncInterfacesResourceCustomMixin, AsyncAPIResour
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NetworkInterfaceList:
+    ) -> AsyncPaginator[NetworkInterface, AsyncOffsetPage[NetworkInterface]]:
         """
         List all network interfaces attached to the specified instance.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
           limit: Limit the number of returned items
 
           offset: Offset value is used to exclude the first set of records from the result
@@ -472,19 +520,20 @@ class AsyncInterfacesResource(AsyncInterfacesResourceCustomMixin, AsyncAPIResour
             region_id = self._client._get_cloud_region_id_path_param()
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
-        return await self._get(
+        return self._get_api_list(
             path_template(
                 "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/interfaces",
                 project_id=project_id,
                 region_id=region_id,
                 instance_id=instance_id,
             ),
+            page=AsyncOffsetPage[NetworkInterface],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "limit": limit,
                         "offset": offset,
@@ -492,7 +541,7 @@ class AsyncInterfacesResource(AsyncInterfacesResourceCustomMixin, AsyncAPIResour
                     interface_list_params.InterfaceListParams,
                 ),
             ),
-            cast_to=NetworkInterfaceList,
+            model=cast(Any, NetworkInterface),  # Union types cannot be passed in as arguments in the type system
         )
 
     @overload
@@ -502,13 +551,16 @@ class AsyncInterfacesResource(AsyncInterfacesResourceCustomMixin, AsyncAPIResour
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        ddos_profile: interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile | Omit = omit,
-        interface_name: str | Omit = omit,
-        ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
-        port_group: int | Omit = omit,
-        security_groups: Iterable[interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSSecurityGroup]
+        ddos_profile: Optional[interface_attach_params.AttachInterfaceExternalRequestSerializerDDOSProfile]
         | Omit = omit,
-        type: str | Omit = omit,
+        interface_name: Optional[str] | Omit = omit,
+        ip_family: Optional[InterfaceIPFamily] | Omit = omit,
+        port_group: int | Omit = omit,
+        security_groups: Optional[
+            Iterable[interface_attach_params.AttachInterfaceExternalRequestSerializerSecurityGroup]
+        ]
+        | Omit = omit,
+        type: Literal["external"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -520,17 +572,19 @@ class AsyncInterfacesResource(AsyncInterfacesResourceCustomMixin, AsyncAPIResour
         Attach interface to instance
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
           ddos_profile: Advanced DDoS protection.
 
-          interface_name: Interface name
+          interface_name: Interface name.
 
-          ip_family: Which subnets should be selected: IPv4, IPv6 or use dual stack.
+          port_group: Each group will be added to a separate trunk.
 
-          port_group: Each group will be added to the separate trunk.
-
-          security_groups: List of security group IDs
-
-          type: Must be 'external'. Union tag
+          security_groups: List of security group IDs.
 
           extra_headers: Send extra headers
 
@@ -550,11 +604,12 @@ class AsyncInterfacesResource(AsyncInterfacesResourceCustomMixin, AsyncAPIResour
         project_id: int | None = None,
         region_id: int | None = None,
         subnet_id: str,
-        ddos_profile: interface_attach_params.NewInterfaceSpecificSubnetSchemaDDOSProfile | Omit = omit,
-        interface_name: str | Omit = omit,
+        ddos_profile: Optional[interface_attach_params.AttachInterfaceSubnetRequestSerializerDDOSProfile] | Omit = omit,
+        interface_name: Optional[str] | Omit = omit,
         port_group: int | Omit = omit,
-        security_groups: Iterable[interface_attach_params.NewInterfaceSpecificSubnetSchemaSecurityGroup] | Omit = omit,
-        type: str | Omit = omit,
+        security_groups: Optional[Iterable[interface_attach_params.AttachInterfaceSubnetRequestSerializerSecurityGroup]]
+        | Omit = omit,
+        type: Literal["subnet"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -566,17 +621,21 @@ class AsyncInterfacesResource(AsyncInterfacesResourceCustomMixin, AsyncAPIResour
         Attach interface to instance
 
         Args:
-          subnet_id: Port will get an IP address from this subnet
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
+          subnet_id: Port will get an IP address from this subnet.
 
           ddos_profile: Advanced DDoS protection.
 
-          interface_name: Interface name
+          interface_name: Interface name.
 
-          port_group: Each group will be added to the separate trunk.
+          port_group: Each group will be added to a separate trunk.
 
-          security_groups: List of security group IDs
-
-          type: Must be 'subnet'
+          security_groups: List of security group IDs.
 
           extra_headers: Send extra headers
 
@@ -596,12 +655,16 @@ class AsyncInterfacesResource(AsyncInterfacesResourceCustomMixin, AsyncAPIResour
         project_id: int | None = None,
         region_id: int | None = None,
         network_id: str,
-        ddos_profile: interface_attach_params.NewInterfaceAnySubnetSchemaDDOSProfile | Omit = omit,
-        interface_name: str | Omit = omit,
-        ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
+        ddos_profile: Optional[interface_attach_params.AttachInterfaceAnySubnetRequestSerializerDDOSProfile]
+        | Omit = omit,
+        interface_name: Optional[str] | Omit = omit,
+        ip_family: Optional[InterfaceIPFamily] | Omit = omit,
         port_group: int | Omit = omit,
-        security_groups: Iterable[interface_attach_params.NewInterfaceAnySubnetSchemaSecurityGroup] | Omit = omit,
-        type: str | Omit = omit,
+        security_groups: Optional[
+            Iterable[interface_attach_params.AttachInterfaceAnySubnetRequestSerializerSecurityGroup]
+        ]
+        | Omit = omit,
+        type: Literal["any_subnet"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -613,19 +676,21 @@ class AsyncInterfacesResource(AsyncInterfacesResourceCustomMixin, AsyncAPIResour
         Attach interface to instance
 
         Args:
-          network_id: Port will get an IP address in this network subnet
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
+          network_id: Port will get an IP address in this network subnet.
 
           ddos_profile: Advanced DDoS protection.
 
-          interface_name: Interface name
+          interface_name: Interface name.
 
-          ip_family: Which subnets should be selected: IPv4, IPv6 or use dual stack.
+          port_group: Each group will be added to a separate trunk.
 
-          port_group: Each group will be added to the separate trunk.
-
-          security_groups: List of security group IDs
-
-          type: Must be 'any_subnet'
+          security_groups: List of security group IDs.
 
           extra_headers: Send extra headers
 
@@ -645,11 +710,15 @@ class AsyncInterfacesResource(AsyncInterfacesResourceCustomMixin, AsyncAPIResour
         project_id: int | None = None,
         region_id: int | None = None,
         port_id: str,
-        ddos_profile: interface_attach_params.NewInterfaceReservedFixedIPSchemaDDOSProfile | Omit = omit,
-        interface_name: str | Omit = omit,
+        ddos_profile: Optional[interface_attach_params.AttachInterfaceReservedFixedIPRequestSerializerDDOSProfile]
+        | Omit = omit,
+        interface_name: Optional[str] | Omit = omit,
         port_group: int | Omit = omit,
-        security_groups: Iterable[interface_attach_params.NewInterfaceReservedFixedIPSchemaSecurityGroup] | Omit = omit,
-        type: str | Omit = omit,
+        security_groups: Optional[
+            Iterable[interface_attach_params.AttachInterfaceReservedFixedIPRequestSerializerSecurityGroup]
+        ]
+        | Omit = omit,
+        type: Literal["reserved_fixed_ip"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -661,17 +730,21 @@ class AsyncInterfacesResource(AsyncInterfacesResourceCustomMixin, AsyncAPIResour
         Attach interface to instance
 
         Args:
-          port_id: Port ID
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
+          port_id: Port ID.
 
           ddos_profile: Advanced DDoS protection.
 
-          interface_name: Interface name
+          interface_name: Interface name.
 
-          port_group: Each group will be added to the separate trunk.
+          port_group: Each group will be added to a separate trunk.
 
-          security_groups: List of security group IDs
-
-          type: Must be 'reserved_fixed_ip'. Union tag
+          security_groups: List of security group IDs.
 
           extra_headers: Send extra headers
 
@@ -689,20 +762,23 @@ class AsyncInterfacesResource(AsyncInterfacesResourceCustomMixin, AsyncAPIResour
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        ddos_profile: interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile
-        | interface_attach_params.NewInterfaceSpecificSubnetSchemaDDOSProfile
-        | interface_attach_params.NewInterfaceAnySubnetSchemaDDOSProfile
-        | interface_attach_params.NewInterfaceReservedFixedIPSchemaDDOSProfile
+        ddos_profile: Optional[interface_attach_params.AttachInterfaceExternalRequestSerializerDDOSProfile]
+        | Optional[interface_attach_params.AttachInterfaceSubnetRequestSerializerDDOSProfile]
+        | Optional[interface_attach_params.AttachInterfaceAnySubnetRequestSerializerDDOSProfile]
+        | Optional[interface_attach_params.AttachInterfaceReservedFixedIPRequestSerializerDDOSProfile]
         | Omit = omit,
-        interface_name: str | Omit = omit,
-        ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
+        interface_name: Optional[str] | Omit = omit,
+        ip_family: Optional[InterfaceIPFamily] | Omit = omit,
         port_group: int | Omit = omit,
-        security_groups: Iterable[interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSSecurityGroup]
-        | Iterable[interface_attach_params.NewInterfaceSpecificSubnetSchemaSecurityGroup]
-        | Iterable[interface_attach_params.NewInterfaceAnySubnetSchemaSecurityGroup]
-        | Iterable[interface_attach_params.NewInterfaceReservedFixedIPSchemaSecurityGroup]
+        security_groups: Optional[
+            Iterable[interface_attach_params.AttachInterfaceExternalRequestSerializerSecurityGroup]
+        ]
         | Omit = omit,
-        type: str | Omit = omit,
+        type: Literal["external"]
+        | Literal["subnet"]
+        | Literal["any_subnet"]
+        | Literal["reserved_fixed_ip"]
+        | Omit = omit,
         subnet_id: str | Omit = omit,
         network_id: str | Omit = omit,
         port_id: str | Omit = omit,
@@ -765,6 +841,12 @@ class AsyncInterfacesResource(AsyncInterfacesResourceCustomMixin, AsyncAPIResour
         Detach interface from instance
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
           ip_address: IP address
 
           port_id: ID of the port

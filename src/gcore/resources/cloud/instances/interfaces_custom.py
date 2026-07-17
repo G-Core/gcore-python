@@ -4,7 +4,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Iterable, cast
+from typing import TYPE_CHECKING, Any, Iterable
 from typing_extensions import Literal, overload
 
 import httpx
@@ -14,7 +14,6 @@ from ...._utils import maybe_transform, async_maybe_transform
 from ...._base_client import make_request_options
 from ....types.cloud.instances import interface_attach_params
 from ....types.cloud.task_id_list import TaskIDList
-from ....types.cloud.network_interface_list import NetworkInterfaceList
 
 if TYPE_CHECKING:
     from ...._client import Gcore, AsyncGcore
@@ -36,11 +35,11 @@ class InterfacesResourceCustomMixin:
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        ddos_profile: interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile | Omit = omit,
+        ddos_profile: interface_attach_params.AttachInterfaceExternalRequestSerializerDDOSProfile | Omit = omit,
         interface_name: str | Omit = omit,
         ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
         port_group: int | Omit = omit,
-        security_groups: Iterable[interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSSecurityGroup]
+        security_groups: Iterable[interface_attach_params.AttachInterfaceExternalRequestSerializerSecurityGroup]
         | Omit = omit,
         type: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -49,7 +48,7 @@ class InterfacesResourceCustomMixin:
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> NetworkInterfaceList:
+    ) -> None:
         """
         Attach interface to instance
 
@@ -84,10 +83,11 @@ class InterfacesResourceCustomMixin:
         project_id: int | None = None,
         region_id: int | None = None,
         subnet_id: str,
-        ddos_profile: interface_attach_params.NewInterfaceSpecificSubnetSchemaDDOSProfile | Omit = omit,
+        ddos_profile: interface_attach_params.AttachInterfaceSubnetRequestSerializerDDOSProfile | Omit = omit,
         interface_name: str | Omit = omit,
         port_group: int | Omit = omit,
-        security_groups: Iterable[interface_attach_params.NewInterfaceSpecificSubnetSchemaSecurityGroup] | Omit = omit,
+        security_groups: Iterable[interface_attach_params.AttachInterfaceSubnetRequestSerializerSecurityGroup]
+        | Omit = omit,
         type: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -95,7 +95,7 @@ class InterfacesResourceCustomMixin:
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> NetworkInterfaceList:
+    ) -> None:
         """
         Attach interface to instance
 
@@ -130,11 +130,12 @@ class InterfacesResourceCustomMixin:
         project_id: int | None = None,
         region_id: int | None = None,
         network_id: str,
-        ddos_profile: interface_attach_params.NewInterfaceAnySubnetSchemaDDOSProfile | Omit = omit,
+        ddos_profile: interface_attach_params.AttachInterfaceAnySubnetRequestSerializerDDOSProfile | Omit = omit,
         interface_name: str | Omit = omit,
         ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
         port_group: int | Omit = omit,
-        security_groups: Iterable[interface_attach_params.NewInterfaceAnySubnetSchemaSecurityGroup] | Omit = omit,
+        security_groups: Iterable[interface_attach_params.AttachInterfaceAnySubnetRequestSerializerSecurityGroup]
+        | Omit = omit,
         type: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -142,7 +143,7 @@ class InterfacesResourceCustomMixin:
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> NetworkInterfaceList:
+    ) -> None:
         """
         Attach interface to instance
 
@@ -179,10 +180,11 @@ class InterfacesResourceCustomMixin:
         project_id: int | None = None,
         region_id: int | None = None,
         port_id: str,
-        ddos_profile: interface_attach_params.NewInterfaceReservedFixedIPSchemaDDOSProfile | Omit = omit,
+        ddos_profile: interface_attach_params.AttachInterfaceReservedFixedIPRequestSerializerDDOSProfile | Omit = omit,
         interface_name: str | Omit = omit,
         port_group: int | Omit = omit,
-        security_groups: Iterable[interface_attach_params.NewInterfaceReservedFixedIPSchemaSecurityGroup] | Omit = omit,
+        security_groups: Iterable[interface_attach_params.AttachInterfaceReservedFixedIPRequestSerializerSecurityGroup]
+        | Omit = omit,
         type: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -190,7 +192,7 @@ class InterfacesResourceCustomMixin:
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> NetworkInterfaceList:
+    ) -> None:
         """
         Attach interface to instance
 
@@ -223,11 +225,11 @@ class InterfacesResourceCustomMixin:
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        ddos_profile: interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile | Omit = omit,
+        ddos_profile: interface_attach_params.AttachInterfaceExternalRequestSerializerDDOSProfile | Omit = omit,
         interface_name: str | Omit = omit,
         ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
         port_group: int | Omit = omit,
-        security_groups: Iterable[interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSSecurityGroup]
+        security_groups: Iterable[interface_attach_params.AttachInterfaceExternalRequestSerializerSecurityGroup]
         | Omit = omit,
         type: str | Omit = omit,
         subnet_id: str | Omit = omit,
@@ -241,7 +243,7 @@ class InterfacesResourceCustomMixin:
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> NetworkInterfaceList:
+    ) -> None:
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
@@ -277,10 +279,6 @@ class InterfacesResourceCustomMixin:
             polling_interval_seconds=polling_interval_seconds,
             polling_timeout_seconds=polling_timeout_seconds,
         )
-        return cast(
-            NetworkInterfaceList,
-            self.list(instance_id, project_id=project_id, region_id=region_id, extra_headers=extra_headers),
-        )
 
     def detach_and_poll(
         self,
@@ -298,7 +296,7 @@ class InterfacesResourceCustomMixin:
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> NetworkInterfaceList:
+    ) -> None:
         """
         Detach interface from instance and poll for completion. Only the first task will be polled.
         If you need to poll more tasks, use the `tasks.poll` method.
@@ -322,10 +320,6 @@ class InterfacesResourceCustomMixin:
             polling_interval_seconds=polling_interval_seconds,
             polling_timeout_seconds=polling_timeout_seconds,
         )
-        return cast(
-            NetworkInterfaceList,
-            self.list(instance_id, project_id=project_id, region_id=region_id, extra_headers=extra_headers),
-        )
 
 
 class AsyncInterfacesResourceCustomMixin:
@@ -344,11 +338,11 @@ class AsyncInterfacesResourceCustomMixin:
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        ddos_profile: interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile | Omit = omit,
+        ddos_profile: interface_attach_params.AttachInterfaceExternalRequestSerializerDDOSProfile | Omit = omit,
         interface_name: str | Omit = omit,
         ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
         port_group: int | Omit = omit,
-        security_groups: Iterable[interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSSecurityGroup]
+        security_groups: Iterable[interface_attach_params.AttachInterfaceExternalRequestSerializerSecurityGroup]
         | Omit = omit,
         type: str | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
@@ -359,7 +353,7 @@ class AsyncInterfacesResourceCustomMixin:
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> NetworkInterfaceList:
+    ) -> None:
         """
         Attach interface to instance using external extend and poll for completion. Only the first task will be polled.
         If you need to poll more tasks, use the `tasks.poll` method.
@@ -374,10 +368,11 @@ class AsyncInterfacesResourceCustomMixin:
         project_id: int | None = None,
         region_id: int | None = None,
         subnet_id: str,
-        ddos_profile: interface_attach_params.NewInterfaceSpecificSubnetSchemaDDOSProfile | Omit = omit,
+        ddos_profile: interface_attach_params.AttachInterfaceSubnetRequestSerializerDDOSProfile | Omit = omit,
         interface_name: str | Omit = omit,
         port_group: int | Omit = omit,
-        security_groups: Iterable[interface_attach_params.NewInterfaceSpecificSubnetSchemaSecurityGroup] | Omit = omit,
+        security_groups: Iterable[interface_attach_params.AttachInterfaceSubnetRequestSerializerSecurityGroup]
+        | Omit = omit,
         type: str | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
         polling_timeout_seconds: int | Omit = omit,
@@ -387,7 +382,7 @@ class AsyncInterfacesResourceCustomMixin:
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> NetworkInterfaceList:
+    ) -> None:
         """
         Attach interface to instance using specific subnet and poll for completion. Only the first task will be polled.
         If you need to poll more tasks, use the `tasks.poll` method.
@@ -402,11 +397,12 @@ class AsyncInterfacesResourceCustomMixin:
         project_id: int | None = None,
         region_id: int | None = None,
         network_id: str,
-        ddos_profile: interface_attach_params.NewInterfaceAnySubnetSchemaDDOSProfile | Omit = omit,
+        ddos_profile: interface_attach_params.AttachInterfaceAnySubnetRequestSerializerDDOSProfile | Omit = omit,
         interface_name: str | Omit = omit,
         ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
         port_group: int | Omit = omit,
-        security_groups: Iterable[interface_attach_params.NewInterfaceAnySubnetSchemaSecurityGroup] | Omit = omit,
+        security_groups: Iterable[interface_attach_params.AttachInterfaceAnySubnetRequestSerializerSecurityGroup]
+        | Omit = omit,
         type: str | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
         polling_timeout_seconds: int | Omit = omit,
@@ -416,7 +412,7 @@ class AsyncInterfacesResourceCustomMixin:
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> NetworkInterfaceList:
+    ) -> None:
         """
         Attach interface to instance using any subnet and poll for completion. Only the first task will be polled.
         If you need to poll more tasks, use the `tasks.poll` method.
@@ -431,10 +427,11 @@ class AsyncInterfacesResourceCustomMixin:
         project_id: int | None = None,
         region_id: int | None = None,
         port_id: str,
-        ddos_profile: interface_attach_params.NewInterfaceReservedFixedIPSchemaDDOSProfile | Omit = omit,
+        ddos_profile: interface_attach_params.AttachInterfaceReservedFixedIPRequestSerializerDDOSProfile | Omit = omit,
         interface_name: str | Omit = omit,
         port_group: int | Omit = omit,
-        security_groups: Iterable[interface_attach_params.NewInterfaceReservedFixedIPSchemaSecurityGroup] | Omit = omit,
+        security_groups: Iterable[interface_attach_params.AttachInterfaceReservedFixedIPRequestSerializerSecurityGroup]
+        | Omit = omit,
         type: str | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
         polling_timeout_seconds: int | Omit = omit,
@@ -444,7 +441,7 @@ class AsyncInterfacesResourceCustomMixin:
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> NetworkInterfaceList:
+    ) -> None:
         """
         Attach interface to instance using reserved fixed IP and poll for completion. Only the first task will be polled.
         If you need to poll more tasks, use the `tasks.poll` method.
@@ -457,11 +454,11 @@ class AsyncInterfacesResourceCustomMixin:
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        ddos_profile: interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile | Omit = omit,
+        ddos_profile: interface_attach_params.AttachInterfaceExternalRequestSerializerDDOSProfile | Omit = omit,
         interface_name: str | Omit = omit,
         ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
         port_group: int | Omit = omit,
-        security_groups: Iterable[interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSSecurityGroup]
+        security_groups: Iterable[interface_attach_params.AttachInterfaceExternalRequestSerializerSecurityGroup]
         | Omit = omit,
         type: str | Omit = omit,
         subnet_id: str | Omit = omit,
@@ -475,7 +472,7 @@ class AsyncInterfacesResourceCustomMixin:
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> NetworkInterfaceList:
+    ) -> None:
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
@@ -511,10 +508,6 @@ class AsyncInterfacesResourceCustomMixin:
             polling_interval_seconds=polling_interval_seconds,
             polling_timeout_seconds=polling_timeout_seconds,
         )
-        return cast(
-            NetworkInterfaceList,
-            await self.list(instance_id, project_id=project_id, region_id=region_id, extra_headers=extra_headers),
-        )
 
     async def detach_and_poll(
         self,
@@ -532,7 +525,7 @@ class AsyncInterfacesResourceCustomMixin:
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> NetworkInterfaceList:
+    ) -> None:
         """
         Detach interface from instance and poll for completion. Only the first task will be polled.
         If you need to poll more tasks, use the `tasks.poll` method.
@@ -555,8 +548,4 @@ class AsyncInterfacesResourceCustomMixin:
             extra_headers=extra_headers,
             polling_interval_seconds=polling_interval_seconds,
             polling_timeout_seconds=polling_timeout_seconds,
-        )
-        return cast(
-            NetworkInterfaceList,
-            await self.list(instance_id, project_id=project_id, region_id=region_id, extra_headers=extra_headers),
         )

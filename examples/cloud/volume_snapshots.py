@@ -59,7 +59,9 @@ def list_snapshots(*, client: Gcore) -> None:
     print("\n=== LIST SNAPSHOTS ===")
     snapshots = client.cloud.volume_snapshots.list()
     for count, snapshot in enumerate(snapshots):
-        print(f"{count}. Snapshot: ID={snapshot.id}, name={snapshot.name}, size={snapshot.size} GiB, status={snapshot.status}")
+        print(
+            f"{count}. Snapshot: ID={snapshot.id}, name={snapshot.name}, size={snapshot.size} GiB, status={snapshot.status}"
+        )
     print("======================")
 
 

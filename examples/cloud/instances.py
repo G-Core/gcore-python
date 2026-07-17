@@ -215,10 +215,9 @@ def remove_from_placement_group(*, client: Gcore, instance_id: str) -> None:
 
 def detach_interface(*, client: Gcore, instance_id: str, ip_address: str, port_id: str) -> None:
     print("\n=== DETACH INTERFACE ===")
-    interfaces = client.cloud.instances.interfaces.detach_and_poll(
-        instance_id=instance_id, ip_address=ip_address, port_id=port_id
-    )
-    for count, interface in enumerate(interfaces.results, 1):
+    client.cloud.instances.interfaces.detach_and_poll(instance_id=instance_id, ip_address=ip_address, port_id=port_id)
+    # detach_and_poll returns no body; list the interfaces to show the current state.
+    for count, interface in enumerate(client.cloud.instances.interfaces.list(instance_id=instance_id).results, 1):
         print(f"  {count}. Interface: PortID={interface.port_id}, NetworkID={interface.network_id}")
     print(f"Detached interface (IP: {ip_address}, Port: {port_id}) from instance: {instance_id}")
     print("========================")
@@ -226,10 +225,9 @@ def detach_interface(*, client: Gcore, instance_id: str, ip_address: str, port_i
 
 def attach_interface(*, client: Gcore, instance_id: str, network_id: str) -> None:
     print("\n=== ATTACH INTERFACE ===")
-    interfaces = client.cloud.instances.interfaces.attach_and_poll(
-        instance_id=instance_id, type="any_subnet", network_id=network_id
-    )
-    for count, interface in enumerate(interfaces.results, 1):
+    client.cloud.instances.interfaces.attach_and_poll(instance_id=instance_id, type="any_subnet", network_id=network_id)
+    # attach_and_poll returns no body; list the interfaces to show the current state.
+    for count, interface in enumerate(client.cloud.instances.interfaces.list(instance_id=instance_id).results, 1):
         print(f"  {count}. Interface: PortID={interface.port_id}, NetworkID={interface.network_id}")
     print(f"Attached interface to any available subnet in network {network_id} (instance: {instance_id})")
     print("========================")
