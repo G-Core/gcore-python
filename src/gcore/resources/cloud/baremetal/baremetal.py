@@ -35,6 +35,9 @@ __all__ = ["BaremetalResource", "AsyncBaremetalResource"]
 class BaremetalResource(SyncAPIResource):
     @cached_property
     def images(self) -> ImagesResource:
+        """
+        Bare metal images are operating system images used to boot bare metal servers, filterable by name, visibility, OS distribution, and architecture.
+        """
         return ImagesResource(self._client)
 
     @cached_property
@@ -71,6 +74,9 @@ class BaremetalResource(SyncAPIResource):
 class AsyncBaremetalResource(AsyncAPIResource):
     @cached_property
     def images(self) -> AsyncImagesResource:
+        """
+        Bare metal images are operating system images used to boot bare metal servers, filterable by name, visibility, OS distribution, and architecture.
+        """
         return AsyncImagesResource(self._client)
 
     @cached_property
@@ -110,6 +116,9 @@ class BaremetalResourceWithRawResponse:
 
     @cached_property
     def images(self) -> ImagesResourceWithRawResponse:
+        """
+        Bare metal images are operating system images used to boot bare metal servers, filterable by name, visibility, OS distribution, and architecture.
+        """
         return ImagesResourceWithRawResponse(self._baremetal.images)
 
     @cached_property
@@ -130,6 +139,9 @@ class AsyncBaremetalResourceWithRawResponse:
 
     @cached_property
     def images(self) -> AsyncImagesResourceWithRawResponse:
+        """
+        Bare metal images are operating system images used to boot bare metal servers, filterable by name, visibility, OS distribution, and architecture.
+        """
         return AsyncImagesResourceWithRawResponse(self._baremetal.images)
 
     @cached_property
@@ -150,6 +162,9 @@ class BaremetalResourceWithStreamingResponse:
 
     @cached_property
     def images(self) -> ImagesResourceWithStreamingResponse:
+        """
+        Bare metal images are operating system images used to boot bare metal servers, filterable by name, visibility, OS distribution, and architecture.
+        """
         return ImagesResourceWithStreamingResponse(self._baremetal.images)
 
     @cached_property
@@ -170,6 +185,9 @@ class AsyncBaremetalResourceWithStreamingResponse:
 
     @cached_property
     def images(self) -> AsyncImagesResourceWithStreamingResponse:
+        """
+        Bare metal images are operating system images used to boot bare metal servers, filterable by name, visibility, OS distribution, and architecture.
+        """
         return AsyncImagesResourceWithStreamingResponse(self._baremetal.images)
 
     @cached_property

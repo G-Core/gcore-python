@@ -642,12 +642,12 @@ Methods:
 Types:
 
 ```python
-from gcore.types.cloud.baremetal import BaremetalImage, BaremetalImageList
+from gcore.types.cloud.baremetal import BaremetalImage
 ```
 
 Methods:
 
-- <code title="get /cloud/v1/bmimages/{project_id}/{region_id}">client.cloud.baremetal.images.<a href="./src/gcore/resources/cloud/baremetal/images.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/baremetal/image_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/baremetal/baremetal_image_list.py">BaremetalImageList</a></code>
+- <code title="get /cloud/v1/bmimages/{project_id}/{region_id}">client.cloud.baremetal.images.<a href="./src/gcore/resources/cloud/baremetal/images.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/baremetal/image_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/baremetal/baremetal_image.py">SyncOffsetPage[BaremetalImage]</a></code>
 
 ### Flavors
 
