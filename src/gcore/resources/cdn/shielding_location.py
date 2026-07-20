@@ -14,33 +14,33 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...types.cdn import shield_list_params
+from ...types.cdn import shielding_location_list_params
 from ...pagination import SyncOffsetPage, AsyncOffsetPage
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.cdn.shield_list_response import ShieldListResponse
+from ...types.cdn.shielding_location import ShieldingLocation
 
-__all__ = ["ShieldsResource", "AsyncShieldsResource"]
+__all__ = ["ShieldingLocationResource", "AsyncShieldingLocationResource"]
 
 
-class ShieldsResource(SyncAPIResource):
+class ShieldingLocationResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ShieldsResourceWithRawResponse:
+    def with_raw_response(self) -> ShieldingLocationResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/G-Core/gcore-python#accessing-raw-response-data-eg-headers
         """
-        return ShieldsResourceWithRawResponse(self)
+        return ShieldingLocationResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ShieldsResourceWithStreamingResponse:
+    def with_streaming_response(self) -> ShieldingLocationResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/G-Core/gcore-python#with_streaming_response
         """
-        return ShieldsResourceWithStreamingResponse(self)
+        return ShieldingLocationResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -53,7 +53,7 @@ class ShieldsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncOffsetPage[ShieldListResponse]:
+    ) -> SyncOffsetPage[ShieldingLocation]:
         """
         Get information about all origin shielding locations available in the account.
 
@@ -72,7 +72,7 @@ class ShieldsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/cdn/shieldingpop_v2",
-            page=SyncOffsetPage[ShieldListResponse],
+            page=SyncOffsetPage[ShieldingLocation],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -83,32 +83,32 @@ class ShieldsResource(SyncAPIResource):
                         "limit": limit,
                         "offset": offset,
                     },
-                    shield_list_params.ShieldListParams,
+                    shielding_location_list_params.ShieldingLocationListParams,
                 ),
             ),
-            model=ShieldListResponse,
+            model=ShieldingLocation,
         )
 
 
-class AsyncShieldsResource(AsyncAPIResource):
+class AsyncShieldingLocationResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncShieldsResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncShieldingLocationResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/G-Core/gcore-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncShieldsResourceWithRawResponse(self)
+        return AsyncShieldingLocationResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncShieldsResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncShieldingLocationResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/G-Core/gcore-python#with_streaming_response
         """
-        return AsyncShieldsResourceWithStreamingResponse(self)
+        return AsyncShieldingLocationResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -121,7 +121,7 @@ class AsyncShieldsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[ShieldListResponse, AsyncOffsetPage[ShieldListResponse]]:
+    ) -> AsyncPaginator[ShieldingLocation, AsyncOffsetPage[ShieldingLocation]]:
         """
         Get information about all origin shielding locations available in the account.
 
@@ -140,7 +140,7 @@ class AsyncShieldsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/cdn/shieldingpop_v2",
-            page=AsyncOffsetPage[ShieldListResponse],
+            page=AsyncOffsetPage[ShieldingLocation],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -151,44 +151,44 @@ class AsyncShieldsResource(AsyncAPIResource):
                         "limit": limit,
                         "offset": offset,
                     },
-                    shield_list_params.ShieldListParams,
+                    shielding_location_list_params.ShieldingLocationListParams,
                 ),
             ),
-            model=ShieldListResponse,
+            model=ShieldingLocation,
         )
 
 
-class ShieldsResourceWithRawResponse:
-    def __init__(self, shields: ShieldsResource) -> None:
-        self._shields = shields
+class ShieldingLocationResourceWithRawResponse:
+    def __init__(self, shielding_location: ShieldingLocationResource) -> None:
+        self._shielding_location = shielding_location
 
         self.list = to_raw_response_wrapper(
-            shields.list,
+            shielding_location.list,
         )
 
 
-class AsyncShieldsResourceWithRawResponse:
-    def __init__(self, shields: AsyncShieldsResource) -> None:
-        self._shields = shields
+class AsyncShieldingLocationResourceWithRawResponse:
+    def __init__(self, shielding_location: AsyncShieldingLocationResource) -> None:
+        self._shielding_location = shielding_location
 
         self.list = async_to_raw_response_wrapper(
-            shields.list,
+            shielding_location.list,
         )
 
 
-class ShieldsResourceWithStreamingResponse:
-    def __init__(self, shields: ShieldsResource) -> None:
-        self._shields = shields
+class ShieldingLocationResourceWithStreamingResponse:
+    def __init__(self, shielding_location: ShieldingLocationResource) -> None:
+        self._shielding_location = shielding_location
 
         self.list = to_streamed_response_wrapper(
-            shields.list,
+            shielding_location.list,
         )
 
 
-class AsyncShieldsResourceWithStreamingResponse:
-    def __init__(self, shields: AsyncShieldsResource) -> None:
-        self._shields = shields
+class AsyncShieldingLocationResourceWithStreamingResponse:
+    def __init__(self, shielding_location: AsyncShieldingLocationResource) -> None:
+        self._shielding_location = shielding_location
 
         self.list = async_to_streamed_response_wrapper(
-            shields.list,
+            shielding_location.list,
         )

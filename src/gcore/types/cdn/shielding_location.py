@@ -4,10 +4,10 @@ from typing import Optional
 
 from ..._models import BaseModel
 
-__all__ = ["ShieldListResponse"]
+__all__ = ["ShieldingLocation"]
 
 
-class ShieldListResponse(BaseModel):
+class ShieldingLocation(BaseModel):
     id: Optional[int] = None
     """Origin shielding location ID."""
 

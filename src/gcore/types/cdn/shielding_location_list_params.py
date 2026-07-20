@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import TypedDict
 
-__all__ = ["ShieldListParams"]
+__all__ = ["ShieldingLocationListParams"]
 
 
-class ShieldListParams(TypedDict, total=False):
+class ShieldingLocationListParams(TypedDict, total=False):
     limit: int
     """Maximum number of items to return in the response. Cannot exceed 1000."""
 

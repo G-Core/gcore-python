@@ -40,14 +40,6 @@ from .presets import (
     PresetsResourceWithStreamingResponse,
     AsyncPresetsResourceWithStreamingResponse,
 )
-from .shields import (
-    ShieldsResource,
-    AsyncShieldsResource,
-    ShieldsResourceWithRawResponse,
-    AsyncShieldsResourceWithRawResponse,
-    ShieldsResourceWithStreamingResponse,
-    AsyncShieldsResourceWithStreamingResponse,
-)
 from .ip_ranges import (
     IPRangesResource,
     AsyncIPRangesResource,
@@ -128,6 +120,14 @@ from .network_capacity import (
     NetworkCapacityResourceWithStreamingResponse,
     AsyncNetworkCapacityResourceWithStreamingResponse,
 )
+from .shielding_location import (
+    ShieldingLocationResource,
+    AsyncShieldingLocationResource,
+    ShieldingLocationResourceWithRawResponse,
+    AsyncShieldingLocationResourceWithRawResponse,
+    ShieldingLocationResourceWithStreamingResponse,
+    AsyncShieldingLocationResourceWithStreamingResponse,
+)
 from .trusted_ca_certificates import (
     TrustedCaCertificatesResource,
     AsyncTrustedCaCertificatesResource,
@@ -144,12 +144,12 @@ __all__ = [
     "AsyncCDNResourcesResourceWithRawResponse",
     "CDNResourcesResourceWithStreamingResponse",
     "AsyncCDNResourcesResourceWithStreamingResponse",
-    "ShieldsResource",
-    "AsyncShieldsResource",
-    "ShieldsResourceWithRawResponse",
-    "AsyncShieldsResourceWithRawResponse",
-    "ShieldsResourceWithStreamingResponse",
-    "AsyncShieldsResourceWithStreamingResponse",
+    "ShieldingLocationResource",
+    "AsyncShieldingLocationResource",
+    "ShieldingLocationResourceWithRawResponse",
+    "AsyncShieldingLocationResourceWithRawResponse",
+    "ShieldingLocationResourceWithStreamingResponse",
+    "AsyncShieldingLocationResourceWithStreamingResponse",
     "OriginGroupsResource",
     "AsyncOriginGroupsResource",
     "OriginGroupsResourceWithRawResponse",

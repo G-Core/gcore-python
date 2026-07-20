@@ -28,14 +28,6 @@ from .metrics import (
     MetricsResourceWithStreamingResponse,
     AsyncMetricsResourceWithStreamingResponse,
 )
-from .shields import (
-    ShieldsResource,
-    AsyncShieldsResource,
-    ShieldsResourceWithRawResponse,
-    AsyncShieldsResourceWithRawResponse,
-    ShieldsResourceWithStreamingResponse,
-    AsyncShieldsResourceWithStreamingResponse,
-)
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
@@ -126,6 +118,14 @@ from .network_capacity import (
     NetworkCapacityResourceWithStreamingResponse,
     AsyncNetworkCapacityResourceWithStreamingResponse,
 )
+from .shielding_location import (
+    ShieldingLocationResource,
+    AsyncShieldingLocationResource,
+    ShieldingLocationResourceWithRawResponse,
+    AsyncShieldingLocationResourceWithRawResponse,
+    ShieldingLocationResourceWithStreamingResponse,
+    AsyncShieldingLocationResourceWithStreamingResponse,
+)
 from ...types.cdn.aws_regions import Result as AwsRegionsResult
 from ...types.cdn.cdn_account import CDNAccount
 from .trusted_ca_certificates import (
@@ -166,8 +166,8 @@ class CDNResource(SyncAPIResource):
         return CDNResourcesResource(self._client)
 
     @cached_property
-    def shields(self) -> ShieldsResource:
-        return ShieldsResource(self._client)
+    def shielding_location(self) -> ShieldingLocationResource:
+        return ShieldingLocationResource(self._client)
 
     @cached_property
     def origin_groups(self) -> OriginGroupsResource:
@@ -580,8 +580,8 @@ class AsyncCDNResource(AsyncAPIResource):
         return AsyncCDNResourcesResource(self._client)
 
     @cached_property
-    def shields(self) -> AsyncShieldsResource:
-        return AsyncShieldsResource(self._client)
+    def shielding_location(self) -> AsyncShieldingLocationResource:
+        return AsyncShieldingLocationResource(self._client)
 
     @cached_property
     def origin_groups(self) -> AsyncOriginGroupsResource:
@@ -1019,8 +1019,8 @@ class CDNResourceWithRawResponse:
         return CDNResourcesResourceWithRawResponse(self._cdn.cdn_resources)
 
     @cached_property
-    def shields(self) -> ShieldsResourceWithRawResponse:
-        return ShieldsResourceWithRawResponse(self._cdn.shields)
+    def shielding_location(self) -> ShieldingLocationResourceWithRawResponse:
+        return ShieldingLocationResourceWithRawResponse(self._cdn.shielding_location)
 
     @cached_property
     def origin_groups(self) -> OriginGroupsResourceWithRawResponse:
@@ -1154,8 +1154,8 @@ class AsyncCDNResourceWithRawResponse:
         return AsyncCDNResourcesResourceWithRawResponse(self._cdn.cdn_resources)
 
     @cached_property
-    def shields(self) -> AsyncShieldsResourceWithRawResponse:
-        return AsyncShieldsResourceWithRawResponse(self._cdn.shields)
+    def shielding_location(self) -> AsyncShieldingLocationResourceWithRawResponse:
+        return AsyncShieldingLocationResourceWithRawResponse(self._cdn.shielding_location)
 
     @cached_property
     def origin_groups(self) -> AsyncOriginGroupsResourceWithRawResponse:
@@ -1289,8 +1289,8 @@ class CDNResourceWithStreamingResponse:
         return CDNResourcesResourceWithStreamingResponse(self._cdn.cdn_resources)
 
     @cached_property
-    def shields(self) -> ShieldsResourceWithStreamingResponse:
-        return ShieldsResourceWithStreamingResponse(self._cdn.shields)
+    def shielding_location(self) -> ShieldingLocationResourceWithStreamingResponse:
+        return ShieldingLocationResourceWithStreamingResponse(self._cdn.shielding_location)
 
     @cached_property
     def origin_groups(self) -> OriginGroupsResourceWithStreamingResponse:
@@ -1424,8 +1424,8 @@ class AsyncCDNResourceWithStreamingResponse:
         return AsyncCDNResourcesResourceWithStreamingResponse(self._cdn.cdn_resources)
 
     @cached_property
-    def shields(self) -> AsyncShieldsResourceWithStreamingResponse:
-        return AsyncShieldsResourceWithStreamingResponse(self._cdn.shields)
+    def shielding_location(self) -> AsyncShieldingLocationResourceWithStreamingResponse:
+        return AsyncShieldingLocationResourceWithStreamingResponse(self._cdn.shielding_location)
 
     @cached_property
     def origin_groups(self) -> AsyncOriginGroupsResourceWithStreamingResponse:

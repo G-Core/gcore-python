@@ -73,17 +73,17 @@ Methods:
 - <code title="get /cdn/resources/{resource_id}/rules/{rule_id}">client.cdn.cdn_resources.rules.<a href="./src/gcore/resources/cdn/cdn_resources/rules.py">get</a>(rule_id, \*, resource_id) -> <a href="./src/gcore/types/cdn/cdn_resources/cdn_resource_rule.py">CDNResourceRule</a></code>
 - <code title="put /cdn/resources/{resource_id}/rules/{rule_id}">client.cdn.cdn_resources.rules.<a href="./src/gcore/resources/cdn/cdn_resources/rules.py">replace</a>(rule_id, \*, resource_id, \*\*<a href="src/gcore/types/cdn/cdn_resources/rule_replace_params.py">params</a>) -> <a href="./src/gcore/types/cdn/cdn_resources/cdn_resource_rule.py">CDNResourceRule</a></code>
 
-## Shields
+## ShieldingLocation
 
 Types:
 
 ```python
-from gcore.types.cdn import ShieldListResponse
+from gcore.types.cdn import ShieldingLocation, ShieldingLocationList
 ```
 
 Methods:
 
-- <code title="get /cdn/shieldingpop_v2">client.cdn.shields.<a href="./src/gcore/resources/cdn/shields.py">list</a>(\*\*<a href="src/gcore/types/cdn/shield_list_params.py">params</a>) -> <a href="./src/gcore/types/cdn/shield_list_response.py">SyncOffsetPage[ShieldListResponse]</a></code>
+- <code title="get /cdn/shieldingpop_v2">client.cdn.shielding_location.<a href="./src/gcore/resources/cdn/shielding_location.py">list</a>(\*\*<a href="src/gcore/types/cdn/shielding_location_list_params.py">params</a>) -> <a href="./src/gcore/types/cdn/shielding_location.py">SyncOffsetPage[ShieldingLocation]</a></code>
 
 ## OriginGroups
 

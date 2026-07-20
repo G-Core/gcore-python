@@ -27,7 +27,7 @@ from .metric_list_params import MetricListParams as MetricListParams
 from .origin_groups_list import OriginGroupsList as OriginGroupsList
 from .preset_list_params import PresetListParams as PresetListParams
 from .rule_template_list import RuleTemplateList as RuleTemplateList
-from .shield_list_params import ShieldListParams as ShieldListParams
+from .shielding_location import ShieldingLocation as ShieldingLocation
 from .ssl_request_status import SslRequestStatus as SslRequestStatus
 from .usage_series_stats import UsageSeriesStats as UsageSeriesStats
 from .ca_certificate_list import CaCertificateList as CaCertificateList
@@ -36,12 +36,12 @@ from .log_download_params import LogDownloadParams as LogDownloadParams
 from .public_network_list import PublicNetworkList as PublicNetworkList
 from .ip_range_list_params import IPRangeListParams as IPRangeListParams
 from .resource_usage_stats import ResourceUsageStats as ResourceUsageStats
-from .shield_list_response import ShieldListResponse as ShieldListResponse
 from .audit_log_list_params import AuditLogListParams as AuditLogListParams
 from .logs_aggregated_stats import LogsAggregatedStats as LogsAggregatedStats
 from .cdn_available_features import CDNAvailableFeatures as CDNAvailableFeatures
 from .certificate_list_params import CertificateListParams as CertificateListParams
 from .shield_aggregated_stats import ShieldAggregatedStats as ShieldAggregatedStats
+from .shielding_location_list import ShieldingLocationList as ShieldingLocationList
 from .cdn_resource_list_params import CDNResourceListParams as CDNResourceListParams
 from .logs_uploader_validation import LogsUploaderValidation as LogsUploaderValidation
 from .origin_group_list_params import OriginGroupListParams as OriginGroupListParams
@@ -64,6 +64,7 @@ from .cdn_resource_prefetch_params import CDNResourcePrefetchParams as CDNResour
 from .rule_template_replace_params import RuleTemplateReplaceParams as RuleTemplateReplaceParams
 from .certificate_get_status_params import CertificateGetStatusParams as CertificateGetStatusParams
 from .cdn_list_purge_statuses_params import CDNListPurgeStatusesParams as CDNListPurgeStatusesParams
+from .shielding_location_list_params import ShieldingLocationListParams as ShieldingLocationListParams
 from .cdn_list_alibaba_regions_params import CDNListAlibabaRegionsParams as CDNListAlibabaRegionsParams
 from .trusted_ca_certificate_list_params import TrustedCaCertificateListParams as TrustedCaCertificateListParams
 from .trusted_ca_certificate_create_params import TrustedCaCertificateCreateParams as TrustedCaCertificateCreateParams
