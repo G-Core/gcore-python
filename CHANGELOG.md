@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.53.0](https://github.com/G-Core/gcore-python/compare/v0.52.0...v0.53.0) (2026-07-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* **cloud:** update cloud spec and paginate gpu baremetal interfaces list
+
+### Features
+
+* **cloud:** expose bare metal images as a terraform data source ([8a26ef4](https://github.com/G-Core/gcore-python/commit/8a26ef4f527474412c5ce697def3e60ed1e7d0d9))
+* **cloud:** update cloud spec and paginate gpu baremetal interfaces list ([2c46be3](https://github.com/G-Core/gcore-python/commit/2c46be3f3629ad9b4d301532aa2bdf45883210e4))
+
+
+### Bug Fixes
+
+* **cloud:** make load balancer inline listeners create-only in terraform ([ebf9602](https://github.com/G-Core/gcore-python/commit/ebf9602b06e115fc5daa3f8deb19593775bc9b99))
+* **cloud:** mark volume snapshot tags as computed_optional in terraform ([8a5eddc](https://github.com/G-Core/gcore-python/commit/8a5eddc0fa10300bbbfcad6ada5e928c2c3d3527))
+* **cloud:** revert non-target-scoped listeners removeProperties transform ([0628596](https://github.com/G-Core/gcore-python/commit/06285969c1eea5a15bf72f16e8f8c19a86f3a6ab))
+* **cloud:** update gpu baremetal interfaces examples for paginated list ([7fcfd6d](https://github.com/G-Core/gcore-python/commit/7fcfd6d919ae2ac77c61adedff964ff4e840d84f))
+
 ## [0.52.0](https://github.com/G-Core/gcore-python/compare/v0.51.0...v0.52.0) (2026-07-14)
 
 
