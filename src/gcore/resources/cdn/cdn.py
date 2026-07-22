@@ -167,6 +167,9 @@ class CDNResource(SyncAPIResource):
 
     @cached_property
     def shielding_location(self) -> ShieldingLocationResource:
+        """
+        CDN origin shielding locations are the available shield (precache) points of presence that can be referenced when configuring origin shielding for a CDN resource.
+        """
         return ShieldingLocationResource(self._client)
 
     @cached_property
@@ -581,6 +584,9 @@ class AsyncCDNResource(AsyncAPIResource):
 
     @cached_property
     def shielding_location(self) -> AsyncShieldingLocationResource:
+        """
+        CDN origin shielding locations are the available shield (precache) points of presence that can be referenced when configuring origin shielding for a CDN resource.
+        """
         return AsyncShieldingLocationResource(self._client)
 
     @cached_property
@@ -1020,6 +1026,9 @@ class CDNResourceWithRawResponse:
 
     @cached_property
     def shielding_location(self) -> ShieldingLocationResourceWithRawResponse:
+        """
+        CDN origin shielding locations are the available shield (precache) points of presence that can be referenced when configuring origin shielding for a CDN resource.
+        """
         return ShieldingLocationResourceWithRawResponse(self._cdn.shielding_location)
 
     @cached_property
@@ -1155,6 +1164,9 @@ class AsyncCDNResourceWithRawResponse:
 
     @cached_property
     def shielding_location(self) -> AsyncShieldingLocationResourceWithRawResponse:
+        """
+        CDN origin shielding locations are the available shield (precache) points of presence that can be referenced when configuring origin shielding for a CDN resource.
+        """
         return AsyncShieldingLocationResourceWithRawResponse(self._cdn.shielding_location)
 
     @cached_property
@@ -1290,6 +1302,9 @@ class CDNResourceWithStreamingResponse:
 
     @cached_property
     def shielding_location(self) -> ShieldingLocationResourceWithStreamingResponse:
+        """
+        CDN origin shielding locations are the available shield (precache) points of presence that can be referenced when configuring origin shielding for a CDN resource.
+        """
         return ShieldingLocationResourceWithStreamingResponse(self._cdn.shielding_location)
 
     @cached_property
@@ -1425,6 +1440,9 @@ class AsyncCDNResourceWithStreamingResponse:
 
     @cached_property
     def shielding_location(self) -> AsyncShieldingLocationResourceWithStreamingResponse:
+        """
+        CDN origin shielding locations are the available shield (precache) points of presence that can be referenced when configuring origin shielding for a CDN resource.
+        """
         return AsyncShieldingLocationResourceWithStreamingResponse(self._cdn.shielding_location)
 
     @cached_property

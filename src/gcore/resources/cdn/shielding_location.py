@@ -23,6 +23,10 @@ __all__ = ["ShieldingLocationResource", "AsyncShieldingLocationResource"]
 
 
 class ShieldingLocationResource(SyncAPIResource):
+    """
+    CDN origin shielding locations are the available shield (precache) points of presence that can be referenced when configuring origin shielding for a CDN resource.
+    """
+
     @cached_property
     def with_raw_response(self) -> ShieldingLocationResourceWithRawResponse:
         """
@@ -91,6 +95,10 @@ class ShieldingLocationResource(SyncAPIResource):
 
 
 class AsyncShieldingLocationResource(AsyncAPIResource):
+    """
+    CDN origin shielding locations are the available shield (precache) points of presence that can be referenced when configuring origin shielding for a CDN resource.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncShieldingLocationResourceWithRawResponse:
         """
