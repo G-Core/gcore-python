@@ -9,7 +9,8 @@ import pytest
 
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
-from gcore.types.cloud.registries import RegistryArtifactList
+from gcore.pagination import SyncOffsetPage, AsyncOffsetPage
+from gcore.types.cloud.registries import RegistryArtifact
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -25,7 +26,7 @@ class TestArtifacts:
             region_id=0,
             registry_id=0,
         )
-        assert_matches_type(RegistryArtifactList, artifact, path=["response"])
+        assert_matches_type(SyncOffsetPage[RegistryArtifact], artifact, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
@@ -37,7 +38,7 @@ class TestArtifacts:
             limit=0,
             offset=0,
         )
-        assert_matches_type(RegistryArtifactList, artifact, path=["response"])
+        assert_matches_type(SyncOffsetPage[RegistryArtifact], artifact, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
@@ -51,7 +52,7 @@ class TestArtifacts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         artifact = response.parse()
-        assert_matches_type(RegistryArtifactList, artifact, path=["response"])
+        assert_matches_type(SyncOffsetPage[RegistryArtifact], artifact, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
@@ -65,7 +66,7 @@ class TestArtifacts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             artifact = response.parse()
-            assert_matches_type(RegistryArtifactList, artifact, path=["response"])
+            assert_matches_type(SyncOffsetPage[RegistryArtifact], artifact, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -156,7 +157,7 @@ class TestAsyncArtifacts:
             region_id=0,
             registry_id=0,
         )
-        assert_matches_type(RegistryArtifactList, artifact, path=["response"])
+        assert_matches_type(AsyncOffsetPage[RegistryArtifact], artifact, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -168,7 +169,7 @@ class TestAsyncArtifacts:
             limit=0,
             offset=0,
         )
-        assert_matches_type(RegistryArtifactList, artifact, path=["response"])
+        assert_matches_type(AsyncOffsetPage[RegistryArtifact], artifact, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
@@ -182,7 +183,7 @@ class TestAsyncArtifacts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         artifact = await response.parse()
-        assert_matches_type(RegistryArtifactList, artifact, path=["response"])
+        assert_matches_type(AsyncOffsetPage[RegistryArtifact], artifact, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
@@ -196,7 +197,7 @@ class TestAsyncArtifacts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             artifact = await response.parse()
-            assert_matches_type(RegistryArtifactList, artifact, path=["response"])
+            assert_matches_type(AsyncOffsetPage[RegistryArtifact], artifact, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

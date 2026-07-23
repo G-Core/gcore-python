@@ -17,8 +17,9 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ....pagination import SyncOffsetPage, AsyncOffsetPage
 from .images_custom import ImagesResourceCustomMixin, AsyncImagesResourceCustomMixin
-from ...._base_client import make_request_options
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.cloud.instances import (
     image_get_params,
     image_list_params,
@@ -28,7 +29,6 @@ from ....types.cloud.instances import (
 )
 from ....types.cloud.task_id_list import TaskIDList
 from ....types.cloud.instances.image import Image
-from ....types.cloud.instances.image_list import ImageList
 from ....types.cloud.tag_update_map_param import TagUpdateMapParam
 
 __all__ = ["ImagesResource", "AsyncImagesResource"]
@@ -168,7 +168,7 @@ class ImagesResource(ImagesResourceCustomMixin, SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ImageList:
+    ) -> SyncOffsetPage[Image]:
         """Retrieve a list of available images in the project and region.
 
         The list can be
@@ -215,8 +215,9 @@ class ImagesResource(ImagesResourceCustomMixin, SyncAPIResource):
             project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
-        return self._get(
+        return self._get_api_list(
             path_template("/cloud/v1/images/{project_id}/{region_id}", project_id=project_id, region_id=region_id),
+            page=SyncOffsetPage[Image],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -239,7 +240,7 @@ class ImagesResource(ImagesResourceCustomMixin, SyncAPIResource):
                     image_list_params.ImageListParams,
                 ),
             ),
-            cast_to=ImageList,
+            model=Image,
         )
 
     def delete(
@@ -659,7 +660,7 @@ class AsyncImagesResource(AsyncImagesResourceCustomMixin, AsyncAPIResource):
             cast_to=Image,
         )
 
-    async def list(
+    def list(
         self,
         *,
         project_id: int | None = None,
@@ -681,7 +682,7 @@ class AsyncImagesResource(AsyncImagesResourceCustomMixin, AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ImageList:
+    ) -> AsyncPaginator[Image, AsyncOffsetPage[Image]]:
         """Retrieve a list of available images in the project and region.
 
         The list can be
@@ -728,14 +729,15 @@ class AsyncImagesResource(AsyncImagesResourceCustomMixin, AsyncAPIResource):
             project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
-        return await self._get(
+        return self._get_api_list(
             path_template("/cloud/v1/images/{project_id}/{region_id}", project_id=project_id, region_id=region_id),
+            page=AsyncOffsetPage[Image],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "architecture": architecture,
                         "include_prices": include_prices,
@@ -752,7 +754,7 @@ class AsyncImagesResource(AsyncImagesResourceCustomMixin, AsyncAPIResource):
                     image_list_params.ImageListParams,
                 ),
             ),
-            cast_to=ImageList,
+            model=Image,
         )
 
     async def delete(

@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ......_types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ......_utils import path_template, maybe_transform, async_maybe_transform
+from ......_utils import path_template, maybe_transform
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
 from ......_response import (
@@ -14,8 +14,9 @@ from ......_response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ......_base_client import make_request_options
-from ......types.cloud.instance_list import InstanceList
+from ......pagination import SyncOffsetPage, AsyncOffsetPage
+from ......_base_client import AsyncPaginator, make_request_options
+from ......types.cloud.instance import Instance
 from ......types.cloud.k8s.clusters.pools import node_list_params
 
 __all__ = ["NodesResource", "AsyncNodesResource"]
@@ -57,7 +58,7 @@ class NodesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> InstanceList:
+    ) -> SyncOffsetPage[Instance]:
         """
         List k8s cluster pool nodes
 
@@ -93,7 +94,7 @@ class NodesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
         if not pool_name:
             raise ValueError(f"Expected a non-empty value for `pool_name` but received {pool_name!r}")
-        return self._get(
+        return self._get_api_list(
             path_template(
                 "/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}/instances",
                 project_id=project_id,
@@ -101,6 +102,7 @@ class NodesResource(SyncAPIResource):
                 cluster_name=cluster_name,
                 pool_name=pool_name,
             ),
+            page=SyncOffsetPage[Instance],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -115,7 +117,7 @@ class NodesResource(SyncAPIResource):
                     node_list_params.NodeListParams,
                 ),
             ),
-            cast_to=InstanceList,
+            model=Instance,
         )
 
     def delete(
@@ -203,7 +205,7 @@ class AsyncNodesResource(AsyncAPIResource):
         """
         return AsyncNodesResourceWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         pool_name: str,
         *,
@@ -219,7 +221,7 @@ class AsyncNodesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> InstanceList:
+    ) -> AsyncPaginator[Instance, AsyncOffsetPage[Instance]]:
         """
         List k8s cluster pool nodes
 
@@ -255,7 +257,7 @@ class AsyncNodesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
         if not pool_name:
             raise ValueError(f"Expected a non-empty value for `pool_name` but received {pool_name!r}")
-        return await self._get(
+        return self._get_api_list(
             path_template(
                 "/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}/instances",
                 project_id=project_id,
@@ -263,12 +265,13 @@ class AsyncNodesResource(AsyncAPIResource):
                 cluster_name=cluster_name,
                 pool_name=pool_name,
             ),
+            page=AsyncOffsetPage[Instance],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "limit": limit,
                         "offset": offset,
@@ -277,7 +280,7 @@ class AsyncNodesResource(AsyncAPIResource):
                     node_list_params.NodeListParams,
                 ),
             ),
-            cast_to=InstanceList,
+            model=Instance,
         )
 
     async def delete(

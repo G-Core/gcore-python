@@ -18,10 +18,10 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from .images_custom import ImagesResourceCustomMixin, AsyncImagesResourceCustomMixin
-from ....._base_client import make_request_options
+from .....pagination import SyncOffsetPage, AsyncOffsetPage
+from ....._base_client import AsyncPaginator, make_request_options
 from .....types.cloud.gpu_image import GPUImage
 from .....types.cloud.task_id_list import TaskIDList
-from .....types.cloud.gpu_image_list import GPUImageList
 from .....types.cloud.gpu_virtual.clusters import image_list_params, image_upload_params
 
 __all__ = ["ImagesResource", "AsyncImagesResource"]
@@ -62,7 +62,7 @@ class ImagesResource(ImagesResourceCustomMixin, SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> GPUImageList:
+    ) -> SyncOffsetPage[GPUImage]:
         """
         List virtual GPU images
 
@@ -88,10 +88,11 @@ class ImagesResource(ImagesResourceCustomMixin, SyncAPIResource):
             project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
-        return self._get(
+        return self._get_api_list(
             path_template(
                 "/cloud/v3/gpu/virtual/{project_id}/{region_id}/images", project_id=project_id, region_id=region_id
             ),
+            page=SyncOffsetPage[GPUImage],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -105,7 +106,7 @@ class ImagesResource(ImagesResourceCustomMixin, SyncAPIResource):
                     image_list_params.ImageListParams,
                 ),
             ),
-            cast_to=GPUImageList,
+            model=GPUImage,
         )
 
     def delete(
@@ -324,7 +325,7 @@ class AsyncImagesResource(AsyncImagesResourceCustomMixin, AsyncAPIResource):
         """
         return AsyncImagesResourceWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         *,
         project_id: int | None = None,
@@ -337,7 +338,7 @@ class AsyncImagesResource(AsyncImagesResourceCustomMixin, AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> GPUImageList:
+    ) -> AsyncPaginator[GPUImage, AsyncOffsetPage[GPUImage]]:
         """
         List virtual GPU images
 
@@ -363,16 +364,17 @@ class AsyncImagesResource(AsyncImagesResourceCustomMixin, AsyncAPIResource):
             project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
-        return await self._get(
+        return self._get_api_list(
             path_template(
                 "/cloud/v3/gpu/virtual/{project_id}/{region_id}/images", project_id=project_id, region_id=region_id
             ),
+            page=AsyncOffsetPage[GPUImage],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "limit": limit,
                         "offset": offset,
@@ -380,7 +382,7 @@ class AsyncImagesResource(AsyncImagesResourceCustomMixin, AsyncAPIResource):
                     image_list_params.ImageListParams,
                 ),
             ),
-            cast_to=GPUImageList,
+            model=GPUImage,
         )
 
     async def delete(

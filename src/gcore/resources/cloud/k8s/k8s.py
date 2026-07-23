@@ -13,7 +13,7 @@ from .flavors import (
     AsyncFlavorsResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import path_template, maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -22,8 +22,9 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ....pagination import SyncOffsetPage, AsyncOffsetPage
 from ....types.cloud import k8s_list_versions_params
-from ...._base_client import make_request_options
+from ...._base_client import AsyncPaginator, make_request_options
 from .clusters.clusters import (
     ClustersResource,
     AsyncClustersResource,
@@ -32,7 +33,7 @@ from .clusters.clusters import (
     ClustersResourceWithStreamingResponse,
     AsyncClustersResourceWithStreamingResponse,
 )
-from ....types.cloud.k8s_cluster_version_list import K8SClusterVersionList
+from ....types.cloud.k8s_cluster_version import K8SClusterVersion
 
 __all__ = ["K8SResource", "AsyncK8SResource"]
 
@@ -81,7 +82,7 @@ class K8SResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> K8SClusterVersionList:
+    ) -> SyncOffsetPage[K8SClusterVersion]:
         """
         List available k8s cluster versions for creation
 
@@ -107,10 +108,11 @@ class K8SResource(SyncAPIResource):
             project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
-        return self._get(
+        return self._get_api_list(
             path_template(
                 "/cloud/v2/k8s/{project_id}/{region_id}/create_versions", project_id=project_id, region_id=region_id
             ),
+            page=SyncOffsetPage[K8SClusterVersion],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -124,7 +126,7 @@ class K8SResource(SyncAPIResource):
                     k8s_list_versions_params.K8SListVersionsParams,
                 ),
             ),
-            cast_to=K8SClusterVersionList,
+            model=K8SClusterVersion,
         )
 
 
@@ -159,7 +161,7 @@ class AsyncK8SResource(AsyncAPIResource):
         """
         return AsyncK8SResourceWithStreamingResponse(self)
 
-    async def list_versions(
+    def list_versions(
         self,
         *,
         project_id: int | None = None,
@@ -172,7 +174,7 @@ class AsyncK8SResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> K8SClusterVersionList:
+    ) -> AsyncPaginator[K8SClusterVersion, AsyncOffsetPage[K8SClusterVersion]]:
         """
         List available k8s cluster versions for creation
 
@@ -198,16 +200,17 @@ class AsyncK8SResource(AsyncAPIResource):
             project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
-        return await self._get(
+        return self._get_api_list(
             path_template(
                 "/cloud/v2/k8s/{project_id}/{region_id}/create_versions", project_id=project_id, region_id=region_id
             ),
+            page=AsyncOffsetPage[K8SClusterVersion],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "limit": limit,
                         "offset": offset,
@@ -215,7 +218,7 @@ class AsyncK8SResource(AsyncAPIResource):
                     k8s_list_versions_params.K8SListVersionsParams,
                 ),
             ),
-            cast_to=K8SClusterVersionList,
+            model=K8SClusterVersion,
         )
 
 

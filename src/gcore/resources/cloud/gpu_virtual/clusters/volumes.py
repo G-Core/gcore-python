@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import path_template, maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -14,9 +14,10 @@ from ....._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....._base_client import make_request_options
+from .....pagination import SyncOffsetPage, AsyncOffsetPage
+from ....._base_client import AsyncPaginator, make_request_options
 from .....types.cloud.gpu_virtual.clusters import volume_list_params
-from .....types.cloud.gpu_virtual.clusters.gpu_virtual_cluster_volume_list import GPUVirtualClusterVolumeList
+from .....types.cloud.gpu_virtual.clusters.gpu_virtual_cluster_volume import GPUVirtualClusterVolume
 
 __all__ = ["VolumesResource", "AsyncVolumesResource"]
 
@@ -55,7 +56,7 @@ class VolumesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> GPUVirtualClusterVolumeList:
+    ) -> SyncOffsetPage[GPUVirtualClusterVolume]:
         """
         List all volumes attached to servers in a virtual GPU cluster.
 
@@ -85,13 +86,14 @@ class VolumesResource(SyncAPIResource):
             region_id = self._client._get_cloud_region_id_path_param()
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
-        return self._get(
+        return self._get_api_list(
             path_template(
                 "/cloud/v3/gpu/virtual/{project_id}/{region_id}/clusters/{cluster_id}/volumes",
                 project_id=project_id,
                 region_id=region_id,
                 cluster_id=cluster_id,
             ),
+            page=SyncOffsetPage[GPUVirtualClusterVolume],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -105,7 +107,7 @@ class VolumesResource(SyncAPIResource):
                     volume_list_params.VolumeListParams,
                 ),
             ),
-            cast_to=GPUVirtualClusterVolumeList,
+            model=GPUVirtualClusterVolume,
         )
 
 
@@ -129,7 +131,7 @@ class AsyncVolumesResource(AsyncAPIResource):
         """
         return AsyncVolumesResourceWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         cluster_id: str,
         *,
@@ -143,7 +145,7 @@ class AsyncVolumesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> GPUVirtualClusterVolumeList:
+    ) -> AsyncPaginator[GPUVirtualClusterVolume, AsyncOffsetPage[GPUVirtualClusterVolume]]:
         """
         List all volumes attached to servers in a virtual GPU cluster.
 
@@ -173,19 +175,20 @@ class AsyncVolumesResource(AsyncAPIResource):
             region_id = self._client._get_cloud_region_id_path_param()
         if not cluster_id:
             raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
-        return await self._get(
+        return self._get_api_list(
             path_template(
                 "/cloud/v3/gpu/virtual/{project_id}/{region_id}/clusters/{cluster_id}/volumes",
                 project_id=project_id,
                 region_id=region_id,
                 cluster_id=cluster_id,
             ),
+            page=AsyncOffsetPage[GPUVirtualClusterVolume],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "limit": limit,
                         "offset": offset,
@@ -193,7 +196,7 @@ class AsyncVolumesResource(AsyncAPIResource):
                     volume_list_params.VolumeListParams,
                 ),
             ),
-            cast_to=GPUVirtualClusterVolumeList,
+            model=GPUVirtualClusterVolume,
         )
 
 

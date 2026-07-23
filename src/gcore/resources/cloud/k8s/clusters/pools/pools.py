@@ -26,7 +26,8 @@ from ......_response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ......_base_client import make_request_options
+from ......pagination import SyncOffsetPage, AsyncOffsetPage
+from ......_base_client import AsyncPaginator, make_request_options
 from ......types.cloud.k8s.clusters import (
     pool_list_params,
     pool_create_params,
@@ -36,7 +37,6 @@ from ......types.cloud.k8s.clusters import (
 )
 from ......types.cloud.task_id_list import TaskIDList
 from ......types.cloud.k8s.clusters.k8s_cluster_pool import K8SClusterPool
-from ......types.cloud.k8s.clusters.k8s_cluster_pool_list import K8SClusterPoolList
 from ......types.cloud.k8s.clusters.k8s_cluster_pool_quota import K8SClusterPoolQuota
 
 __all__ = ["PoolsResource", "AsyncPoolsResource"]
@@ -282,7 +282,7 @@ class PoolsResource(PoolsResourceCustomMixin, SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> K8SClusterPoolList:
+    ) -> SyncOffsetPage[K8SClusterPool]:
         """
         List k8s cluster pools
 
@@ -312,13 +312,14 @@ class PoolsResource(PoolsResourceCustomMixin, SyncAPIResource):
             region_id = self._client._get_cloud_region_id_path_param()
         if not cluster_name:
             raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
-        return self._get(
+        return self._get_api_list(
             path_template(
                 "/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools",
                 project_id=project_id,
                 region_id=region_id,
                 cluster_name=cluster_name,
             ),
+            page=SyncOffsetPage[K8SClusterPool],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -332,7 +333,7 @@ class PoolsResource(PoolsResourceCustomMixin, SyncAPIResource):
                     pool_list_params.PoolListParams,
                 ),
             ),
-            cast_to=K8SClusterPoolList,
+            model=K8SClusterPool,
         )
 
     def delete(
@@ -815,7 +816,7 @@ class AsyncPoolsResource(AsyncPoolsResourceCustomMixin, AsyncAPIResource):
             cast_to=K8SClusterPool,
         )
 
-    async def list(
+    def list(
         self,
         cluster_name: str,
         *,
@@ -829,7 +830,7 @@ class AsyncPoolsResource(AsyncPoolsResourceCustomMixin, AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> K8SClusterPoolList:
+    ) -> AsyncPaginator[K8SClusterPool, AsyncOffsetPage[K8SClusterPool]]:
         """
         List k8s cluster pools
 
@@ -859,19 +860,20 @@ class AsyncPoolsResource(AsyncPoolsResourceCustomMixin, AsyncAPIResource):
             region_id = self._client._get_cloud_region_id_path_param()
         if not cluster_name:
             raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
-        return await self._get(
+        return self._get_api_list(
             path_template(
                 "/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools",
                 project_id=project_id,
                 region_id=region_id,
                 cluster_name=cluster_name,
             ),
+            page=AsyncOffsetPage[K8SClusterPool],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "limit": limit,
                         "offset": offset,
@@ -879,7 +881,7 @@ class AsyncPoolsResource(AsyncPoolsResourceCustomMixin, AsyncAPIResource):
                     pool_list_params.PoolListParams,
                 ),
             ),
-            cast_to=K8SClusterPoolList,
+            model=K8SClusterPool,
         )
 
     async def delete(

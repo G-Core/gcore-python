@@ -40,8 +40,9 @@ from ....._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from .....pagination import SyncOffsetPage, AsyncOffsetPage
 from .clusters_custom import ClustersResourceCustomMixin, AsyncClustersResourceCustomMixin
-from ....._base_client import make_request_options
+from ....._base_client import AsyncPaginator, make_request_options
 from .....types.cloud.k8s import (
     cluster_list_params,
     cluster_create_params,
@@ -52,8 +53,7 @@ from .....types.cloud.k8s import (
 )
 from .....types.cloud.task_id_list import TaskIDList
 from .....types.cloud.k8s.k8s_cluster import K8SCluster
-from .....types.cloud.k8s.k8s_cluster_list import K8SClusterList
-from .....types.cloud.k8s_cluster_version_list import K8SClusterVersionList
+from .....types.cloud.k8s_cluster_version import K8SClusterVersion
 from .....types.cloud.k8s.k8s_cluster_certificate import K8SClusterCertificate
 
 __all__ = ["ClustersResource", "AsyncClustersResource"]
@@ -421,7 +421,7 @@ class ClustersResource(ClustersResourceCustomMixin, SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> K8SClusterList:
+    ) -> SyncOffsetPage[K8SCluster]:
         """
         List k8s clusters
 
@@ -447,10 +447,11 @@ class ClustersResource(ClustersResourceCustomMixin, SyncAPIResource):
             project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
-        return self._get(
+        return self._get_api_list(
             path_template(
                 "/cloud/v2/k8s/clusters/{project_id}/{region_id}", project_id=project_id, region_id=region_id
             ),
+            page=SyncOffsetPage[K8SCluster],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -464,7 +465,7 @@ class ClustersResource(ClustersResourceCustomMixin, SyncAPIResource):
                     cluster_list_params.ClusterListParams,
                 ),
             ),
-            cast_to=K8SClusterList,
+            model=K8SCluster,
         )
 
     def delete(
@@ -638,7 +639,7 @@ class ClustersResource(ClustersResourceCustomMixin, SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> K8SClusterVersionList:
+    ) -> SyncOffsetPage[K8SClusterVersion]:
         """
         List available k8s cluster versions for upgrade
 
@@ -668,13 +669,14 @@ class ClustersResource(ClustersResourceCustomMixin, SyncAPIResource):
             region_id = self._client._get_cloud_region_id_path_param()
         if not cluster_name:
             raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
-        return self._get(
+        return self._get_api_list(
             path_template(
                 "/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/upgrade_versions",
                 project_id=project_id,
                 region_id=region_id,
                 cluster_name=cluster_name,
             ),
+            page=SyncOffsetPage[K8SClusterVersion],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -688,7 +690,7 @@ class ClustersResource(ClustersResourceCustomMixin, SyncAPIResource):
                     cluster_list_versions_for_upgrade_params.ClusterListVersionsForUpgradeParams,
                 ),
             ),
-            cast_to=K8SClusterVersionList,
+            model=K8SClusterVersion,
         )
 
     def upgrade(
@@ -1095,7 +1097,7 @@ class AsyncClustersResource(AsyncClustersResourceCustomMixin, AsyncAPIResource):
             cast_to=TaskIDList,
         )
 
-    async def list(
+    def list(
         self,
         *,
         project_id: int | None = None,
@@ -1108,7 +1110,7 @@ class AsyncClustersResource(AsyncClustersResourceCustomMixin, AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> K8SClusterList:
+    ) -> AsyncPaginator[K8SCluster, AsyncOffsetPage[K8SCluster]]:
         """
         List k8s clusters
 
@@ -1134,16 +1136,17 @@ class AsyncClustersResource(AsyncClustersResourceCustomMixin, AsyncAPIResource):
             project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
-        return await self._get(
+        return self._get_api_list(
             path_template(
                 "/cloud/v2/k8s/clusters/{project_id}/{region_id}", project_id=project_id, region_id=region_id
             ),
+            page=AsyncOffsetPage[K8SCluster],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "limit": limit,
                         "offset": offset,
@@ -1151,7 +1154,7 @@ class AsyncClustersResource(AsyncClustersResourceCustomMixin, AsyncAPIResource):
                     cluster_list_params.ClusterListParams,
                 ),
             ),
-            cast_to=K8SClusterList,
+            model=K8SCluster,
         )
 
     async def delete(
@@ -1311,7 +1314,7 @@ class AsyncClustersResource(AsyncClustersResourceCustomMixin, AsyncAPIResource):
             cast_to=K8SClusterCertificate,
         )
 
-    async def list_versions_for_upgrade(
+    def list_versions_for_upgrade(
         self,
         cluster_name: str,
         *,
@@ -1325,7 +1328,7 @@ class AsyncClustersResource(AsyncClustersResourceCustomMixin, AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> K8SClusterVersionList:
+    ) -> AsyncPaginator[K8SClusterVersion, AsyncOffsetPage[K8SClusterVersion]]:
         """
         List available k8s cluster versions for upgrade
 
@@ -1355,19 +1358,20 @@ class AsyncClustersResource(AsyncClustersResourceCustomMixin, AsyncAPIResource):
             region_id = self._client._get_cloud_region_id_path_param()
         if not cluster_name:
             raise ValueError(f"Expected a non-empty value for `cluster_name` but received {cluster_name!r}")
-        return await self._get(
+        return self._get_api_list(
             path_template(
                 "/cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/upgrade_versions",
                 project_id=project_id,
                 region_id=region_id,
                 cluster_name=cluster_name,
             ),
+            page=AsyncOffsetPage[K8SClusterVersion],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "limit": limit,
                         "offset": offset,
@@ -1375,7 +1379,7 @@ class AsyncClustersResource(AsyncClustersResourceCustomMixin, AsyncAPIResource):
                     cluster_list_versions_for_upgrade_params.ClusterListVersionsForUpgradeParams,
                 ),
             ),
-            cast_to=K8SClusterVersionList,
+            model=K8SClusterVersion,
         )
 
     async def upgrade(

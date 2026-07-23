@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ...._utils import path_template, maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -14,9 +14,10 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._base_client import make_request_options
+from ....pagination import SyncOffsetPage, AsyncOffsetPage
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.cloud.registries import artifact_list_params
-from ....types.cloud.registries.registry_artifact_list import RegistryArtifactList
+from ....types.cloud.registries.registry_artifact import RegistryArtifact
 
 __all__ = ["ArtifactsResource", "AsyncArtifactsResource"]
 
@@ -56,7 +57,7 @@ class ArtifactsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RegistryArtifactList:
+    ) -> SyncOffsetPage[RegistryArtifact]:
         """
         List all artifacts in a specific repository.
 
@@ -79,7 +80,7 @@ class ArtifactsResource(SyncAPIResource):
             region_id = self._client._get_cloud_region_id_path_param()
         if not repository_name:
             raise ValueError(f"Expected a non-empty value for `repository_name` but received {repository_name!r}")
-        return self._get(
+        return self._get_api_list(
             path_template(
                 "/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories/{repository_name}/artifacts",
                 project_id=project_id,
@@ -87,6 +88,7 @@ class ArtifactsResource(SyncAPIResource):
                 registry_id=registry_id,
                 repository_name=repository_name,
             ),
+            page=SyncOffsetPage[RegistryArtifact],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -100,7 +102,7 @@ class ArtifactsResource(SyncAPIResource):
                     artifact_list_params.ArtifactListParams,
                 ),
             ),
-            cast_to=RegistryArtifactList,
+            model=RegistryArtifact,
         )
 
     def delete(
@@ -175,7 +177,7 @@ class AsyncArtifactsResource(AsyncAPIResource):
         """
         return AsyncArtifactsResourceWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         repository_name: str,
         *,
@@ -190,7 +192,7 @@ class AsyncArtifactsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RegistryArtifactList:
+    ) -> AsyncPaginator[RegistryArtifact, AsyncOffsetPage[RegistryArtifact]]:
         """
         List all artifacts in a specific repository.
 
@@ -213,7 +215,7 @@ class AsyncArtifactsResource(AsyncAPIResource):
             region_id = self._client._get_cloud_region_id_path_param()
         if not repository_name:
             raise ValueError(f"Expected a non-empty value for `repository_name` but received {repository_name!r}")
-        return await self._get(
+        return self._get_api_list(
             path_template(
                 "/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories/{repository_name}/artifacts",
                 project_id=project_id,
@@ -221,12 +223,13 @@ class AsyncArtifactsResource(AsyncAPIResource):
                 registry_id=registry_id,
                 repository_name=repository_name,
             ),
+            page=AsyncOffsetPage[RegistryArtifact],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "limit": limit,
                         "offset": offset,
@@ -234,7 +237,7 @@ class AsyncArtifactsResource(AsyncAPIResource):
                     artifact_list_params.ArtifactListParams,
                 ),
             ),
-            cast_to=RegistryArtifactList,
+            model=RegistryArtifact,
         )
 
     async def delete(

@@ -9,7 +9,8 @@ import pytest
 
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
-from gcore.types.cloud.gpu_virtual.clusters import GPUVirtualClusterVolumeList
+from gcore.pagination import SyncOffsetPage, AsyncOffsetPage
+from gcore.types.cloud.gpu_virtual.clusters import GPUVirtualClusterVolume
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,7 +25,7 @@ class TestVolumes:
             project_id=1,
             region_id=7,
         )
-        assert_matches_type(GPUVirtualClusterVolumeList, volume, path=["response"])
+        assert_matches_type(SyncOffsetPage[GPUVirtualClusterVolume], volume, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
@@ -35,7 +36,7 @@ class TestVolumes:
             limit=1000,
             offset=0,
         )
-        assert_matches_type(GPUVirtualClusterVolumeList, volume, path=["response"])
+        assert_matches_type(SyncOffsetPage[GPUVirtualClusterVolume], volume, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
@@ -48,7 +49,7 @@ class TestVolumes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         volume = response.parse()
-        assert_matches_type(GPUVirtualClusterVolumeList, volume, path=["response"])
+        assert_matches_type(SyncOffsetPage[GPUVirtualClusterVolume], volume, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
@@ -61,7 +62,7 @@ class TestVolumes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             volume = response.parse()
-            assert_matches_type(GPUVirtualClusterVolumeList, volume, path=["response"])
+            assert_matches_type(SyncOffsetPage[GPUVirtualClusterVolume], volume, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -87,7 +88,7 @@ class TestAsyncVolumes:
             project_id=1,
             region_id=7,
         )
-        assert_matches_type(GPUVirtualClusterVolumeList, volume, path=["response"])
+        assert_matches_type(AsyncOffsetPage[GPUVirtualClusterVolume], volume, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -98,7 +99,7 @@ class TestAsyncVolumes:
             limit=1000,
             offset=0,
         )
-        assert_matches_type(GPUVirtualClusterVolumeList, volume, path=["response"])
+        assert_matches_type(AsyncOffsetPage[GPUVirtualClusterVolume], volume, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
@@ -111,7 +112,7 @@ class TestAsyncVolumes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         volume = await response.parse()
-        assert_matches_type(GPUVirtualClusterVolumeList, volume, path=["response"])
+        assert_matches_type(AsyncOffsetPage[GPUVirtualClusterVolume], volume, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
@@ -124,7 +125,7 @@ class TestAsyncVolumes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             volume = await response.parse()
-            assert_matches_type(GPUVirtualClusterVolumeList, volume, path=["response"])
+            assert_matches_type(AsyncOffsetPage[GPUVirtualClusterVolume], volume, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

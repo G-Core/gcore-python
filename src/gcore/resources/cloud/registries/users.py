@@ -16,7 +16,8 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._base_client import make_request_options
+from ....pagination import SyncOffsetPage, AsyncOffsetPage
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.cloud.registries import (
     user_list_params,
     user_create_params,
@@ -24,7 +25,6 @@ from ....types.cloud.registries import (
     user_create_multiple_params,
 )
 from ....types.cloud.registries.registry_user import RegistryUser
-from ....types.cloud.registries.registry_user_list import RegistryUserList
 from ....types.cloud.registries.registry_user_created import RegistryUserCreated
 from ....types.cloud.registries.user_refresh_secret_response import UserRefreshSecretResponse
 
@@ -189,7 +189,7 @@ class UsersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RegistryUserList:
+    ) -> SyncOffsetPage[RegistryUser]:
         """
         List all users with access to the container registry.
 
@@ -210,13 +210,14 @@ class UsersResource(SyncAPIResource):
             project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
-        return self._get(
+        return self._get_api_list(
             path_template(
                 "/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users",
                 project_id=project_id,
                 region_id=region_id,
                 registry_id=registry_id,
             ),
+            page=SyncOffsetPage[RegistryUser],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -230,7 +231,7 @@ class UsersResource(SyncAPIResource):
                     user_list_params.UserListParams,
                 ),
             ),
-            cast_to=RegistryUserList,
+            model=RegistryUser,
         )
 
     def delete(
@@ -513,7 +514,7 @@ class AsyncUsersResource(AsyncAPIResource):
             cast_to=RegistryUser,
         )
 
-    async def list(
+    def list(
         self,
         registry_id: int,
         *,
@@ -527,7 +528,7 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RegistryUserList:
+    ) -> AsyncPaginator[RegistryUser, AsyncOffsetPage[RegistryUser]]:
         """
         List all users with access to the container registry.
 
@@ -548,19 +549,20 @@ class AsyncUsersResource(AsyncAPIResource):
             project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
-        return await self._get(
+        return self._get_api_list(
             path_template(
                 "/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/users",
                 project_id=project_id,
                 region_id=region_id,
                 registry_id=registry_id,
             ),
+            page=AsyncOffsetPage[RegistryUser],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "limit": limit,
                         "offset": offset,
@@ -568,7 +570,7 @@ class AsyncUsersResource(AsyncAPIResource):
                     user_list_params.UserListParams,
                 ),
             ),
-            cast_to=RegistryUserList,
+            model=RegistryUser,
         )
 
     async def delete(

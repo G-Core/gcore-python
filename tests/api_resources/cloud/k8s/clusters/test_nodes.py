@@ -9,7 +9,8 @@ import pytest
 
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
-from gcore.types.cloud import InstanceList
+from gcore.pagination import SyncOffsetPage, AsyncOffsetPage
+from gcore.types.cloud import Instance
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,7 +25,7 @@ class TestNodes:
             project_id=1,
             region_id=7,
         )
-        assert_matches_type(InstanceList, node, path=["response"])
+        assert_matches_type(SyncOffsetPage[Instance], node, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
@@ -36,7 +37,7 @@ class TestNodes:
             offset=0,
             with_ddos=False,
         )
-        assert_matches_type(InstanceList, node, path=["response"])
+        assert_matches_type(SyncOffsetPage[Instance], node, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
@@ -49,7 +50,7 @@ class TestNodes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         node = response.parse()
-        assert_matches_type(InstanceList, node, path=["response"])
+        assert_matches_type(SyncOffsetPage[Instance], node, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
@@ -62,7 +63,7 @@ class TestNodes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             node = response.parse()
-            assert_matches_type(InstanceList, node, path=["response"])
+            assert_matches_type(SyncOffsetPage[Instance], node, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -146,7 +147,7 @@ class TestAsyncNodes:
             project_id=1,
             region_id=7,
         )
-        assert_matches_type(InstanceList, node, path=["response"])
+        assert_matches_type(AsyncOffsetPage[Instance], node, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -158,7 +159,7 @@ class TestAsyncNodes:
             offset=0,
             with_ddos=False,
         )
-        assert_matches_type(InstanceList, node, path=["response"])
+        assert_matches_type(AsyncOffsetPage[Instance], node, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
@@ -171,7 +172,7 @@ class TestAsyncNodes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         node = await response.parse()
-        assert_matches_type(InstanceList, node, path=["response"])
+        assert_matches_type(AsyncOffsetPage[Instance], node, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
@@ -184,7 +185,7 @@ class TestAsyncNodes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             node = await response.parse()
-            assert_matches_type(InstanceList, node, path=["response"])
+            assert_matches_type(AsyncOffsetPage[Instance], node, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
+from typing import Any, cast
+
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import path_template, maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -14,9 +16,10 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._base_client import make_request_options
+from ....pagination import SyncOffsetPage, AsyncOffsetPage
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.cloud.instances import flavor_list_params
-from ....types.cloud.instances.instance_flavor_list import InstanceFlavorList
+from ....types.cloud.instances.instance_flavor_detailed import InstanceFlavorDetailed
 
 __all__ = ["FlavorsResource", "AsyncFlavorsResource"]
 
@@ -62,7 +65,7 @@ class FlavorsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> InstanceFlavorList:
+    ) -> SyncOffsetPage[InstanceFlavorDetailed]:
         """Retrieve a list of available instance flavors in the project and region.
 
         When
@@ -99,8 +102,9 @@ class FlavorsResource(SyncAPIResource):
             project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
-        return self._get(
+        return self._get_api_list(
             path_template("/cloud/v1/flavors/{project_id}/{region_id}", project_id=project_id, region_id=region_id),
+            page=SyncOffsetPage[InstanceFlavorDetailed],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -118,7 +122,7 @@ class FlavorsResource(SyncAPIResource):
                     flavor_list_params.FlavorListParams,
                 ),
             ),
-            cast_to=InstanceFlavorList,
+            model=cast(Any, InstanceFlavorDetailed),  # Union types cannot be passed in as arguments in the type system
         )
 
 
@@ -146,7 +150,7 @@ class AsyncFlavorsResource(AsyncAPIResource):
         """
         return AsyncFlavorsResourceWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         *,
         project_id: int | None = None,
@@ -163,7 +167,7 @@ class AsyncFlavorsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> InstanceFlavorList:
+    ) -> AsyncPaginator[InstanceFlavorDetailed, AsyncOffsetPage[InstanceFlavorDetailed]]:
         """Retrieve a list of available instance flavors in the project and region.
 
         When
@@ -200,14 +204,15 @@ class AsyncFlavorsResource(AsyncAPIResource):
             project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
-        return await self._get(
+        return self._get_api_list(
             path_template("/cloud/v1/flavors/{project_id}/{region_id}", project_id=project_id, region_id=region_id),
+            page=AsyncOffsetPage[InstanceFlavorDetailed],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "disabled": disabled,
                         "exclude_linux": exclude_linux,
@@ -219,7 +224,7 @@ class AsyncFlavorsResource(AsyncAPIResource):
                     flavor_list_params.FlavorListParams,
                 ),
             ),
-            cast_to=InstanceFlavorList,
+            model=cast(Any, InstanceFlavorDetailed),  # Union types cannot be passed in as arguments in the type system
         )
 
 

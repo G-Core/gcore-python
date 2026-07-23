@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ...._utils import path_template, maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -14,9 +14,10 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._base_client import make_request_options
+from ....pagination import SyncOffsetPage, AsyncOffsetPage
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.cloud.registries import repository_list_params
-from ....types.cloud.registries.registry_repository_list import RegistryRepositoryList
+from ....types.cloud.registries.registry_repository import RegistryRepository
 
 __all__ = ["RepositoriesResource", "AsyncRepositoriesResource"]
 
@@ -55,7 +56,7 @@ class RepositoriesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RegistryRepositoryList:
+    ) -> SyncOffsetPage[RegistryRepository]:
         """
         List all repositories in the container registry.
 
@@ -76,13 +77,14 @@ class RepositoriesResource(SyncAPIResource):
             project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
-        return self._get(
+        return self._get_api_list(
             path_template(
                 "/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories",
                 project_id=project_id,
                 region_id=region_id,
                 registry_id=registry_id,
             ),
+            page=SyncOffsetPage[RegistryRepository],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -96,7 +98,7 @@ class RepositoriesResource(SyncAPIResource):
                     repository_list_params.RepositoryListParams,
                 ),
             ),
-            cast_to=RegistryRepositoryList,
+            model=RegistryRepository,
         )
 
     def delete(
@@ -167,7 +169,7 @@ class AsyncRepositoriesResource(AsyncAPIResource):
         """
         return AsyncRepositoriesResourceWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         registry_id: int,
         *,
@@ -181,7 +183,7 @@ class AsyncRepositoriesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RegistryRepositoryList:
+    ) -> AsyncPaginator[RegistryRepository, AsyncOffsetPage[RegistryRepository]]:
         """
         List all repositories in the container registry.
 
@@ -202,19 +204,20 @@ class AsyncRepositoriesResource(AsyncAPIResource):
             project_id = self._client._get_cloud_project_id_path_param()
         if region_id is None:
             region_id = self._client._get_cloud_region_id_path_param()
-        return await self._get(
+        return self._get_api_list(
             path_template(
                 "/cloud/v1/registries/{project_id}/{region_id}/{registry_id}/repositories",
                 project_id=project_id,
                 region_id=region_id,
                 registry_id=registry_id,
             ),
+            page=AsyncOffsetPage[RegistryRepository],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "limit": limit,
                         "offset": offset,
@@ -222,7 +225,7 @@ class AsyncRepositoriesResource(AsyncAPIResource):
                     repository_list_params.RepositoryListParams,
                 ),
             ),
-            cast_to=RegistryRepositoryList,
+            model=RegistryRepository,
         )
 
     async def delete(
