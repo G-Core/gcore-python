@@ -4,13 +4,14 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Dict, cast
+from typing import TYPE_CHECKING, Any, Dict, Optional, cast
 from typing_extensions import Literal
 
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Omit, Query, Headers, NotGiven, omit
 from ....types.cloud.network import Network
+from ....types.cloud.tag_update_map_param import TagUpdateMapParam
 
 if TYPE_CHECKING:
     from ...._client import Gcore, AsyncGcore
@@ -77,6 +78,61 @@ class NetworksResourceCustomMixin:
                 project_id=project_id,
                 region_id=region_id,
                 extra_headers=extra_headers,
+            ),
+        )
+
+    def update_and_poll(
+        self,
+        network_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        name: str | Omit = omit,
+        tags: Optional[TagUpdateMapParam] | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Network:
+        """
+        Update network and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
+
+        When a provided field already matches the network's current state the API creates
+        no task and returns an empty task list; in that no-op case this method skips
+        polling and simply returns the current network via `get`.
+        """
+        response = self.update(
+            network_id=network_id,
+            project_id=project_id,
+            region_id=region_id,
+            name=name,
+            tags=tags,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if response.tasks:
+            self._client.cloud.tasks.poll(
+                task_id=response.tasks[0],
+                extra_headers=extra_headers,
+                polling_interval_seconds=polling_interval_seconds,
+                polling_timeout_seconds=polling_timeout_seconds,
+            )
+        return cast(
+            Network,
+            self.get(
+                network_id=network_id,
+                project_id=project_id,
+                region_id=region_id,
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
             ),
         )
 
@@ -176,6 +232,61 @@ class AsyncNetworksResourceCustomMixin:
                 project_id=project_id,
                 region_id=region_id,
                 extra_headers=extra_headers,
+            ),
+        )
+
+    async def update_and_poll(
+        self,
+        network_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        name: str | Omit = omit,
+        tags: Optional[TagUpdateMapParam] | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Network:
+        """
+        Update network and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
+
+        When a provided field already matches the network's current state the API creates
+        no task and returns an empty task list; in that no-op case this method skips
+        polling and simply returns the current network via `get`.
+        """
+        response = await self.update(
+            network_id=network_id,
+            project_id=project_id,
+            region_id=region_id,
+            name=name,
+            tags=tags,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if response.tasks:
+            await self._client.cloud.tasks.poll(
+                task_id=response.tasks[0],
+                extra_headers=extra_headers,
+                polling_interval_seconds=polling_interval_seconds,
+                polling_timeout_seconds=polling_timeout_seconds,
+            )
+        return cast(
+            Network,
+            await self.get(
+                network_id=network_id,
+                project_id=project_id,
+                region_id=region_id,
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
             ),
         )
 

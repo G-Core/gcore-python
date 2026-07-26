@@ -44,7 +44,7 @@ async def main() -> None:
 
 async def create_network(*, client: AsyncGcore) -> str:
     print("\n=== CREATE NETWORK ===")
-    network = await client.cloud.networks.create_and_poll(name="gcore-go-example", create_router=True, type="vxlan")
+    network = await client.cloud.networks.create_and_poll(name="gcore-python-example", create_router=True, type="vxlan")
     print(f"Created network: ID={network.id}, name={network.name}, type={network.type}")
     print("========================")
     return network.id
@@ -69,7 +69,7 @@ async def get_network(*, client: AsyncGcore, network_id: str) -> None:
 
 async def update_network(*, client: AsyncGcore, network_id: str) -> None:
     print("\n=== UPDATE NETWORK ===")
-    network = await client.cloud.networks.update(network_id=network_id, name="gcore-go-example-updated")  # pyright: ignore[reportDeprecated]
+    network = await client.cloud.networks.update_and_poll(network_id=network_id, name="gcore-python-example-updated")
     print(f"Updated network: ID={network.id}, name={network.name}")
     print("========================")
 
@@ -79,7 +79,7 @@ async def create_subnet(*, client: AsyncGcore, network_id: str) -> str:
     subnet = await client.cloud.networks.subnets.create_and_poll(
         network_id=network_id,
         cidr="192.168.1.0/24",
-        name="gcore-go-example",
+        name="gcore-python-example",
         enable_dhcp=True,
         ip_version=4,
     )
@@ -107,14 +107,14 @@ async def get_subnet(*, client: AsyncGcore, subnet_id: str) -> None:
 
 async def update_subnet(*, client: AsyncGcore, subnet_id: str) -> None:
     print("\n=== UPDATE SUBNET ===")
-    subnet = await client.cloud.networks.subnets.update(subnet_id=subnet_id, name="gcore-go-example-updated")
+    subnet = await client.cloud.networks.subnets.update(subnet_id=subnet_id, name="gcore-python-example-updated")
     print(f"Updated subnet: ID={subnet.id}, name={subnet.name}")
     print("========================")
 
 
 async def create_router(*, client: AsyncGcore) -> str:
     print("\n=== CREATE ROUTER ===")
-    response = await client.cloud.networks.routers.create(name="gcore-go-example")
+    response = await client.cloud.networks.routers.create(name="gcore-python-example")
     task_id = response.tasks[0]
     task = await client.cloud.tasks.poll(task_id=task_id)
     if task.created_resources is None or task.created_resources.routers is None:
@@ -144,7 +144,9 @@ async def get_router(*, client: AsyncGcore, router_id: str) -> None:
 
 async def update_router(*, client: AsyncGcore, router_id: str) -> None:
     print("\n=== UPDATE ROUTER ===")
-    router = await client.cloud.networks.routers.update_and_poll(router_id=router_id, name="gcore-go-example-updated")
+    router = await client.cloud.networks.routers.update_and_poll(
+        router_id=router_id, name="gcore-python-example-updated"
+    )
     print(f"Updated router: ID={router.id}, name={router.name}")
     print("========================")
 

@@ -92,6 +92,10 @@ UPDATE_AND_POLL_CASES: list[tuple[str, Callable[[Any], Any]]] = [
         lambda c: c.cloud.load_balancers.pools.update_and_poll("test", project_id=1, region_id=1),
     ),
     (
+        "cloud.networks.update_and_poll",
+        lambda c: c.cloud.networks.update_and_poll("test", project_id=1, region_id=1),
+    ),
+    (
         "cloud.networks.routers.update_and_poll",
         lambda c: c.cloud.networks.routers.update_and_poll("test", project_id=1, region_id=1),
     ),
@@ -140,4 +144,4 @@ async def test_update_and_poll_with_task_async(invoke: Callable[[Any], Any]) -> 
 
 
 def test_update_and_poll_case_count() -> None:
-    assert len(UPDATE_AND_POLL_CASES) == 9
+    assert len(UPDATE_AND_POLL_CASES) == 10

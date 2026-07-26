@@ -835,6 +835,9 @@ class NetworksResourceWithRawResponse:
         self.update = to_raw_response_wrapper(
             networks.update,
         )
+        self.update_and_poll = to_raw_response_wrapper(
+            networks.update_and_poll,
+        )
         self.list = to_raw_response_wrapper(
             networks.list,
         )
@@ -875,6 +878,9 @@ class AsyncNetworksResourceWithRawResponse:
         )
         self.update = async_to_raw_response_wrapper(
             networks.update,
+        )
+        self.update_and_poll = async_to_raw_response_wrapper(
+            networks.update_and_poll,
         )
         self.list = async_to_raw_response_wrapper(
             networks.list,
@@ -917,6 +923,9 @@ class NetworksResourceWithStreamingResponse:
         self.update = to_streamed_response_wrapper(
             networks.update,
         )
+        self.update_and_poll = to_streamed_response_wrapper(
+            networks.update_and_poll,
+        )
         self.list = to_streamed_response_wrapper(
             networks.list,
         )
@@ -957,6 +966,9 @@ class AsyncNetworksResourceWithStreamingResponse:
         )
         self.update = async_to_streamed_response_wrapper(
             networks.update,
+        )
+        self.update_and_poll = async_to_streamed_response_wrapper(
+            networks.update_and_poll,
         )
         self.list = async_to_streamed_response_wrapper(
             networks.list,

@@ -42,7 +42,7 @@ def main() -> None:
 
 def create_network(*, client: Gcore) -> str:
     print("\n=== CREATE NETWORK ===")
-    network = client.cloud.networks.create_and_poll(name="gcore-go-example", create_router=True, type="vxlan")
+    network = client.cloud.networks.create_and_poll(name="gcore-python-example", create_router=True, type="vxlan")
     print(f"Created network: ID={network.id}, name={network.name}, type={network.type}")
     print("========================")
     return network.id
@@ -65,7 +65,7 @@ def get_network(*, client: Gcore, network_id: str) -> None:
 
 def update_network(*, client: Gcore, network_id: str) -> None:
     print("\n=== UPDATE NETWORK ===")
-    network = client.cloud.networks.update(network_id=network_id, name="gcore-go-example-updated")  # pyright: ignore[reportDeprecated]
+    network = client.cloud.networks.update_and_poll(network_id=network_id, name="gcore-python-example-updated")
     print(f"Updated network: ID={network.id}, name={network.name}")
     print("========================")
 
@@ -75,7 +75,7 @@ def create_subnet(*, client: Gcore, network_id: str) -> str:
     subnet = client.cloud.networks.subnets.create_and_poll(
         network_id=network_id,
         cidr="192.168.1.0/24",
-        name="gcore-go-example",
+        name="gcore-python-example",
         enable_dhcp=True,
         ip_version=4,
     )
@@ -101,14 +101,14 @@ def get_subnet(*, client: Gcore, subnet_id: str) -> None:
 
 def update_subnet(*, client: Gcore, subnet_id: str) -> None:
     print("\n=== UPDATE SUBNET ===")
-    subnet = client.cloud.networks.subnets.update(subnet_id=subnet_id, name="gcore-go-example-updated")
+    subnet = client.cloud.networks.subnets.update(subnet_id=subnet_id, name="gcore-python-example-updated")
     print(f"Updated subnet: ID={subnet.id}, name={subnet.name}")
     print("========================")
 
 
 def create_router(*, client: Gcore) -> str:
     print("\n=== CREATE ROUTER ===")
-    response = client.cloud.networks.routers.create(name="gcore-go-example")
+    response = client.cloud.networks.routers.create(name="gcore-python-example")
     task_id = response.tasks[0]
     task = client.cloud.tasks.poll(task_id=task_id)
     if task.created_resources is None or task.created_resources.routers is None:
@@ -136,7 +136,7 @@ def get_router(*, client: Gcore, router_id: str) -> None:
 
 def update_router(*, client: Gcore, router_id: str) -> None:
     print("\n=== UPDATE ROUTER ===")
-    router = client.cloud.networks.routers.update_and_poll(router_id=router_id, name="gcore-go-example-updated")
+    router = client.cloud.networks.routers.update_and_poll(router_id=router_id, name="gcore-python-example-updated")
     print(f"Updated router: ID={router.id}, name={router.name}")
     print("========================")
 
