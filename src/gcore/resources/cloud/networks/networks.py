@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import typing_extensions
 from typing import Dict, Optional
 from typing_extensions import Literal
 
@@ -149,7 +148,6 @@ class NetworksResource(NetworksResourceCustomMixin, SyncAPIResource):
             cast_to=TaskIDList,
         )
 
-    @typing_extensions.deprecated("deprecated")
     def update(
         self,
         network_id: str,
@@ -164,15 +162,15 @@ class NetworksResource(NetworksResourceCustomMixin, SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Network:
-        """Rename network and/or update network tags.
+    ) -> TaskIDList:
+        """Rename network and/or update network tags in a background task.
 
-        The request will only process the
-        fields that are provided in the request body. Any fields that are not included
-        will remain unchanged.
-
-        **Deprecated**: Use `PATCH /v2/networks/{project_id}/{region_id}/{network_id}`
-        instead.
+        Returns a task
+        ID and uses a network task lock, so concurrent update/delete task creation fails
+        with conflict. The request will only process the fields that are provided in the
+        request body. Any fields that are not included will remain unchanged. If a
+        provided field already matches the current network state it is skipped, and when
+        no field changes anything no task is created and an empty task list is returned.
 
         Args:
           project_id: Project ID
@@ -221,7 +219,7 @@ class NetworksResource(NetworksResourceCustomMixin, SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `network_id` but received {network_id!r}")
         return self._patch(
             path_template(
-                "/cloud/v1/networks/{project_id}/{region_id}/{network_id}",
+                "/cloud/v2/networks/{project_id}/{region_id}/{network_id}",
                 project_id=project_id,
                 region_id=region_id,
                 network_id=network_id,
@@ -236,7 +234,7 @@ class NetworksResource(NetworksResourceCustomMixin, SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Network,
+            cast_to=TaskIDList,
         )
 
     def list(
@@ -539,7 +537,6 @@ class AsyncNetworksResource(AsyncNetworksResourceCustomMixin, AsyncAPIResource):
             cast_to=TaskIDList,
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def update(
         self,
         network_id: str,
@@ -554,15 +551,15 @@ class AsyncNetworksResource(AsyncNetworksResourceCustomMixin, AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Network:
-        """Rename network and/or update network tags.
+    ) -> TaskIDList:
+        """Rename network and/or update network tags in a background task.
 
-        The request will only process the
-        fields that are provided in the request body. Any fields that are not included
-        will remain unchanged.
-
-        **Deprecated**: Use `PATCH /v2/networks/{project_id}/{region_id}/{network_id}`
-        instead.
+        Returns a task
+        ID and uses a network task lock, so concurrent update/delete task creation fails
+        with conflict. The request will only process the fields that are provided in the
+        request body. Any fields that are not included will remain unchanged. If a
+        provided field already matches the current network state it is skipped, and when
+        no field changes anything no task is created and an empty task list is returned.
 
         Args:
           project_id: Project ID
@@ -611,7 +608,7 @@ class AsyncNetworksResource(AsyncNetworksResourceCustomMixin, AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `network_id` but received {network_id!r}")
         return await self._patch(
             path_template(
-                "/cloud/v1/networks/{project_id}/{region_id}/{network_id}",
+                "/cloud/v2/networks/{project_id}/{region_id}/{network_id}",
                 project_id=project_id,
                 region_id=region_id,
                 network_id=network_id,
@@ -626,7 +623,7 @@ class AsyncNetworksResource(AsyncNetworksResourceCustomMixin, AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Network,
+            cast_to=TaskIDList,
         )
 
     def list(
@@ -835,10 +832,8 @@ class NetworksResourceWithRawResponse:
         self.create_and_poll = to_raw_response_wrapper(
             networks.create_and_poll,
         )
-        self.update = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                networks.update,  # pyright: ignore[reportDeprecated],
-            )
+        self.update = to_raw_response_wrapper(
+            networks.update,
         )
         self.list = to_raw_response_wrapper(
             networks.list,
@@ -878,10 +873,8 @@ class AsyncNetworksResourceWithRawResponse:
         self.create_and_poll = async_to_raw_response_wrapper(
             networks.create_and_poll,
         )
-        self.update = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                networks.update,  # pyright: ignore[reportDeprecated],
-            )
+        self.update = async_to_raw_response_wrapper(
+            networks.update,
         )
         self.list = async_to_raw_response_wrapper(
             networks.list,
@@ -921,10 +914,8 @@ class NetworksResourceWithStreamingResponse:
         self.create_and_poll = to_streamed_response_wrapper(
             networks.create_and_poll,
         )
-        self.update = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                networks.update,  # pyright: ignore[reportDeprecated],
-            )
+        self.update = to_streamed_response_wrapper(
+            networks.update,
         )
         self.list = to_streamed_response_wrapper(
             networks.list,
@@ -964,10 +955,8 @@ class AsyncNetworksResourceWithStreamingResponse:
         self.create_and_poll = async_to_streamed_response_wrapper(
             networks.create_and_poll,
         )
-        self.update = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                networks.update,  # pyright: ignore[reportDeprecated],
-            )
+        self.update = async_to_streamed_response_wrapper(
+            networks.update,
         )
         self.list = async_to_streamed_response_wrapper(
             networks.list,
