@@ -16,8 +16,8 @@ jobs:
     if: github.repository == 'G-Core/gcore-python-staging'
     environment: production
     env:
-      PRODUCTION_REPO: G-Core/gcore-python
-      GH_TOKEN: ${{ secrets.SDK_PROD_WRITE_TOKEN }}
+      PRODUCTION_OWNER: G-Core
+      PRODUCTION_REPOSITORY: gcore-python
     steps:
       - name: Check out staging
         uses: actions/checkout@v6
@@ -25,10 +25,23 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
+      - name: Generate gcore-sdk-bot token
+        id: app-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.GCORE_SDK_BOT_CLIENT_ID }}
+          private-key: ${{ secrets.GCORE_SDK_BOT_PRIVATE_KEY }}
+          owner: ${{ env.PRODUCTION_OWNER }}
+          repositories: ${{ env.PRODUCTION_REPOSITORY }}
+          permission-contents: write
+          permission-workflows: write
+
       - name: Fetch production main
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
           git remote add production \
-            "https://x-access-token:${GH_TOKEN}@github.com/${PRODUCTION_REPO}.git"
+            "https://x-access-token:${GH_TOKEN}@github.com/${PRODUCTION_OWNER}/${PRODUCTION_REPOSITORY}.git"
           git fetch production main
 
       - name: Check whether production already has staging's content
