@@ -1,5 +1,27 @@
 # Changelog
 
+## [0.54.0](https://github.com/G-Core/gcore-python/compare/v0.53.0...v0.54.0) (2026-07-28)
+
+
+### Features
+
+* **cdn:** add origin shielding locations terraform data source ([17240db](https://github.com/G-Core/gcore-python/commit/17240db174a440820de5e9bf7b256b2549ae9925))
+* **cloud:** add file shares create_and_poll, delete_and_poll and resize_and_poll ([88abf82](https://github.com/G-Core/gcore-python/commit/88abf820abcfe65991c480d4dfa7c26d909d429a))
+* **cloud:** add networks update_and_poll convenience method ([1432b87](https://github.com/G-Core/gcore-python/commit/1432b8748b45ebb337fb2707b29cad4760ba2fa0))
+* **cloud:** enable Terraform list data sources for paginated cloud resources ([98cbfed](https://github.com/G-Core/gcore-python/commit/98cbfed6341a0e65d89994c66fcc22cc971d9b9b))
+
+
+### Bug Fixes
+
+* **cloud:** make volume size computed_optional to stop perpetual plan drift ([d714dc2](https://github.com/G-Core/gcore-python/commit/d714dc26f736c8a53aba98de83666739a23155e9))
+* **cloud:** mark k8s pool security_group_ids computed_optional in Terraform ([afaa8e6](https://github.com/G-Core/gcore-python/commit/afaa8e662c56f551b26561c95b22eb9db2b74c55))
+
+
+### Chores
+
+* **cloud:** update cloud OpenAPI spec ([7464a3b](https://github.com/G-Core/gcore-python/commit/7464a3b7d82d1ba6f7b5b5fe64d42f98bee4be8e))
+* **dns:** update dns OpenAPI spec ([669cedc](https://github.com/G-Core/gcore-python/commit/669cedcacfde1c9e75f2545106343144ce6ceb0b))
+
 ## [0.53.0](https://github.com/G-Core/gcore-python/compare/v0.52.0...v0.53.0) (2026-07-22)
 
 
