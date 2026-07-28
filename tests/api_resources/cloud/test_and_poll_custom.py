@@ -126,6 +126,18 @@ AND_POLL_CASES: list[tuple[str, Callable[[Any], Any]]] = [
         lambda c: c.cloud.baremetal.servers.rebuild_and_poll("test", project_id=1, region_id=1),
     ),
     (
+        "cloud.file_shares.create_and_poll",
+        lambda c: c.cloud.file_shares.create_and_poll(project_id=1, region_id=1, name="test", protocol="NFS", size=1),
+    ),
+    (
+        "cloud.file_shares.delete_and_poll",
+        lambda c: c.cloud.file_shares.delete_and_poll("test", project_id=1, region_id=1),
+    ),
+    (
+        "cloud.file_shares.resize_and_poll",
+        lambda c: c.cloud.file_shares.resize_and_poll("test", project_id=1, region_id=1, size=2),
+    ),
+    (
         "cloud.file_shares.update_and_poll",
         lambda c: c.cloud.file_shares.update_and_poll("test", project_id=1, region_id=1),
     ),
@@ -628,7 +640,7 @@ async def test_and_poll_async(case_id: str, invoke: Callable[[Any], Any]) -> Non
 
 def test_and_poll_case_count() -> None:
     # Canary: if codegen adds/removes an *_and_poll method, keep the table in sync.
-    assert len(AND_POLL_CASES) == 103
+    assert len(AND_POLL_CASES) == 106
 
 
 def test_create_and_poll_requires_task() -> None:

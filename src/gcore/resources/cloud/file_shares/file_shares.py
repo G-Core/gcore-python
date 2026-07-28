@@ -1056,6 +1056,9 @@ class FileSharesResourceWithRawResponse:
         self.create = to_raw_response_wrapper(
             file_shares.create,
         )
+        self.create_and_poll = to_raw_response_wrapper(
+            file_shares.create_and_poll,
+        )
         self.update = to_raw_response_wrapper(
             file_shares.update,
         )
@@ -1068,11 +1071,17 @@ class FileSharesResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             file_shares.delete,
         )
+        self.delete_and_poll = to_raw_response_wrapper(
+            file_shares.delete_and_poll,
+        )
         self.get = to_raw_response_wrapper(
             file_shares.get,
         )
         self.resize = to_raw_response_wrapper(
             file_shares.resize,
+        )
+        self.resize_and_poll = to_raw_response_wrapper(
+            file_shares.resize_and_poll,
         )
 
     @cached_property
@@ -1090,6 +1099,9 @@ class AsyncFileSharesResourceWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             file_shares.create,
         )
+        self.create_and_poll = async_to_raw_response_wrapper(
+            file_shares.create_and_poll,
+        )
         self.update = async_to_raw_response_wrapper(
             file_shares.update,
         )
@@ -1102,11 +1114,17 @@ class AsyncFileSharesResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             file_shares.delete,
         )
+        self.delete_and_poll = async_to_raw_response_wrapper(
+            file_shares.delete_and_poll,
+        )
         self.get = async_to_raw_response_wrapper(
             file_shares.get,
         )
         self.resize = async_to_raw_response_wrapper(
             file_shares.resize,
+        )
+        self.resize_and_poll = async_to_raw_response_wrapper(
+            file_shares.resize_and_poll,
         )
 
     @cached_property
@@ -1124,6 +1142,9 @@ class FileSharesResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             file_shares.create,
         )
+        self.create_and_poll = to_streamed_response_wrapper(
+            file_shares.create_and_poll,
+        )
         self.update = to_streamed_response_wrapper(
             file_shares.update,
         )
@@ -1136,11 +1157,17 @@ class FileSharesResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             file_shares.delete,
         )
+        self.delete_and_poll = to_streamed_response_wrapper(
+            file_shares.delete_and_poll,
+        )
         self.get = to_streamed_response_wrapper(
             file_shares.get,
         )
         self.resize = to_streamed_response_wrapper(
             file_shares.resize,
+        )
+        self.resize_and_poll = to_streamed_response_wrapper(
+            file_shares.resize_and_poll,
         )
 
     @cached_property
@@ -1158,10 +1185,13 @@ class AsyncFileSharesResourceWithStreamingResponse:
         self.create = async_to_streamed_response_wrapper(
             file_shares.create,
         )
+        self.create_and_poll = async_to_streamed_response_wrapper(
+            file_shares.create_and_poll,
+        )
         self.update = async_to_streamed_response_wrapper(
             file_shares.update,
         )
-        self.update_and_pol = async_to_streamed_response_wrapper(
+        self.update_and_poll = async_to_streamed_response_wrapper(
             file_shares.update_and_poll,
         )
         self.list = async_to_streamed_response_wrapper(
@@ -1170,11 +1200,17 @@ class AsyncFileSharesResourceWithStreamingResponse:
         self.delete = async_to_streamed_response_wrapper(
             file_shares.delete,
         )
+        self.delete_and_poll = async_to_streamed_response_wrapper(
+            file_shares.delete_and_poll,
+        )
         self.get = async_to_streamed_response_wrapper(
             file_shares.get,
         )
         self.resize = async_to_streamed_response_wrapper(
             file_shares.resize,
+        )
+        self.resize_and_poll = async_to_streamed_response_wrapper(
+            file_shares.resize_and_poll,
         )
 
     @cached_property
