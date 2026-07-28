@@ -36,7 +36,6 @@ from .instance_list import InstanceList as InstanceList
 from .ip_assignment import IPAssignment as IPAssignment
 from .load_balancer import LoadBalancer as LoadBalancer
 from .member_status import MemberStatus as MemberStatus
-from .registry_list import RegistryList as RegistryList
 from .blackhole_port import BlackholePort as BlackholePort
 from .gpu_image_list import GPUImageList as GPUImageList
 from .health_monitor import HealthMonitor as HealthMonitor
@@ -87,7 +86,6 @@ from .volume_resize_params import VolumeResizeParams as VolumeResizeParams
 from .volume_update_params import VolumeUpdateParams as VolumeUpdateParams
 from .allowed_address_pairs import AllowedAddressPairs as AllowedAddressPairs
 from .audit_log_list_params import AuditLogListParams as AuditLogListParams
-from .baremetal_flavor_list import BaremetalFlavorList as BaremetalFlavorList
 from .ddos_profile_template import DDOSProfileTemplate as DDOSProfileTemplate
 from .health_monitor_status import HealthMonitorStatus as HealthMonitorStatus
 from .load_balancer_l7_rule import LoadBalancerL7Rule as LoadBalancerL7Rule

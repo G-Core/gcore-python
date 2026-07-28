@@ -6,7 +6,6 @@ Types:
 from gcore.types.cloud import (
     AllowedAddressPairs,
     BaremetalFlavor,
-    BaremetalFlavorList,
     BlackholePort,
     Console,
     DDOSProfile,
@@ -681,7 +680,7 @@ Methods:
 Types:
 
 ```python
-from gcore.types.cloud import Registry, RegistryList, RegistryTag
+from gcore.types.cloud import Registry, RegistryTag
 ```
 
 Methods:
@@ -697,7 +696,7 @@ Methods:
 Types:
 
 ```python
-from gcore.types.cloud.registries import RegistryRepository, RegistryRepositoryList
+from gcore.types.cloud.registries import RegistryRepository
 ```
 
 Methods:
@@ -710,7 +709,7 @@ Methods:
 Types:
 
 ```python
-from gcore.types.cloud.registries import RegistryArtifact, RegistryArtifactList
+from gcore.types.cloud.registries import RegistryArtifact
 ```
 
 Methods:
@@ -732,7 +731,6 @@ Types:
 from gcore.types.cloud.registries import (
     RegistryUser,
     RegistryUserCreated,
-    RegistryUserList,
     UserRefreshSecretResponse,
 )
 ```
@@ -847,7 +845,7 @@ Methods:
 Types:
 
 ```python
-from gcore.types.cloud.gpu_baremetal.clusters import GPUBaremetalFlavor, GPUBaremetalFlavorList
+from gcore.types.cloud.gpu_baremetal.clusters import GPUBaremetalFlavor
 ```
 
 Methods:
@@ -903,10 +901,7 @@ Methods:
 Types:
 
 ```python
-from gcore.types.cloud.gpu_virtual.clusters import (
-    GPUVirtualClusterVolume,
-    GPUVirtualClusterVolumeList,
-)
+from gcore.types.cloud.gpu_virtual.clusters import GPUVirtualClusterVolume
 ```
 
 Methods:
@@ -918,7 +913,7 @@ Methods:
 Types:
 
 ```python
-from gcore.types.cloud.gpu_virtual.clusters import GPUVirtualInterface, GPUVirtualInterfaceList
+from gcore.types.cloud.gpu_virtual.clusters import GPUVirtualInterface
 ```
 
 Methods:
@@ -930,7 +925,7 @@ Methods:
 Types:
 
 ```python
-from gcore.types.cloud.gpu_virtual.clusters import GPUVirtualFlavor, GPUVirtualFlavorList
+from gcore.types.cloud.gpu_virtual.clusters import GPUVirtualFlavor
 ```
 
 Methods:
@@ -1080,7 +1075,7 @@ Methods:
 Types:
 
 ```python
-from gcore.types.cloud.k8s.clusters import K8SClusterPool, K8SClusterPoolList, K8SClusterPoolQuota
+from gcore.types.cloud.k8s.clusters import K8SClusterPool, K8SClusterPoolQuota
 ```
 
 Methods:
