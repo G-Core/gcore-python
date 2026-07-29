@@ -62,6 +62,7 @@ class PoliciesResource(SyncAPIResource):
         description: str | Omit = omit,
         escape_special_characters: bool | Omit = omit,
         field_delimiter: str | Omit = omit,
+        field_remap: Dict[str, str] | Omit = omit,
         field_separator: str | Omit = omit,
         fields: SequenceNotStr[str] | Omit = omit,
         file_name_template: str | Omit = omit,
@@ -103,9 +104,16 @@ class PoliciesResource(SyncAPIResource):
 
           field_delimiter: Field delimiter for logs.
 
+          field_remap: Per-field output-name remap for exported logs. Maps a canonical Gcore field name
+              (from `/cdn/logs_uploader/policies/fields`, and must be present in `fields`) to
+              the field name it should have in the exported logs. Unmapped fields keep their
+              canonical name. Output names (after remapping) must be unique.
+
           field_separator: Field separator for logs.
 
-          fields: List of fields to include in logs.
+          fields: List of fields to include in logs. Duplicate names are allowed for plain text
+              output, but rejected when `format_type` is `json` or a `field_remap` is set
+              (each field becomes a distinct output key).
 
           file_name_template: Template for log file name.
 
@@ -159,6 +167,7 @@ class PoliciesResource(SyncAPIResource):
                     "description": description,
                     "escape_special_characters": escape_special_characters,
                     "field_delimiter": field_delimiter,
+                    "field_remap": field_remap,
                     "field_separator": field_separator,
                     "fields": fields,
                     "file_name_template": file_name_template,
@@ -189,6 +198,7 @@ class PoliciesResource(SyncAPIResource):
         description: str | Omit = omit,
         escape_special_characters: bool | Omit = omit,
         field_delimiter: str | Omit = omit,
+        field_remap: Dict[str, str] | Omit = omit,
         field_separator: str | Omit = omit,
         fields: SequenceNotStr[str] | Omit = omit,
         file_name_template: str | Omit = omit,
@@ -230,9 +240,16 @@ class PoliciesResource(SyncAPIResource):
 
           field_delimiter: Field delimiter for logs.
 
+          field_remap: Per-field output-name remap for exported logs. Maps a canonical Gcore field name
+              (from `/cdn/logs_uploader/policies/fields`, and must be present in `fields`) to
+              the field name it should have in the exported logs. Unmapped fields keep their
+              canonical name. Output names (after remapping) must be unique.
+
           field_separator: Field separator for logs.
 
-          fields: List of fields to include in logs.
+          fields: List of fields to include in logs. Duplicate names are allowed for plain text
+              output, but rejected when `format_type` is `json` or a `field_remap` is set
+              (each field becomes a distinct output key).
 
           file_name_template: Template for log file name.
 
@@ -286,6 +303,7 @@ class PoliciesResource(SyncAPIResource):
                     "description": description,
                     "escape_special_characters": escape_special_characters,
                     "field_delimiter": field_delimiter,
+                    "field_remap": field_remap,
                     "field_separator": field_separator,
                     "fields": fields,
                     "file_name_template": file_name_template,
@@ -458,6 +476,7 @@ class PoliciesResource(SyncAPIResource):
         description: str | Omit = omit,
         escape_special_characters: bool | Omit = omit,
         field_delimiter: str | Omit = omit,
+        field_remap: Dict[str, str] | Omit = omit,
         field_separator: str | Omit = omit,
         fields: SequenceNotStr[str] | Omit = omit,
         file_name_template: str | Omit = omit,
@@ -499,9 +518,16 @@ class PoliciesResource(SyncAPIResource):
 
           field_delimiter: Field delimiter for logs.
 
+          field_remap: Per-field output-name remap for exported logs. Maps a canonical Gcore field name
+              (from `/cdn/logs_uploader/policies/fields`, and must be present in `fields`) to
+              the field name it should have in the exported logs. Unmapped fields keep their
+              canonical name. Output names (after remapping) must be unique.
+
           field_separator: Field separator for logs.
 
-          fields: List of fields to include in logs.
+          fields: List of fields to include in logs. Duplicate names are allowed for plain text
+              output, but rejected when `format_type` is `json` or a `field_remap` is set
+              (each field becomes a distinct output key).
 
           file_name_template: Template for log file name.
 
@@ -555,6 +581,7 @@ class PoliciesResource(SyncAPIResource):
                     "description": description,
                     "escape_special_characters": escape_special_characters,
                     "field_delimiter": field_delimiter,
+                    "field_remap": field_remap,
                     "field_separator": field_separator,
                     "fields": fields,
                     "file_name_template": file_name_template,
@@ -609,6 +636,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         description: str | Omit = omit,
         escape_special_characters: bool | Omit = omit,
         field_delimiter: str | Omit = omit,
+        field_remap: Dict[str, str] | Omit = omit,
         field_separator: str | Omit = omit,
         fields: SequenceNotStr[str] | Omit = omit,
         file_name_template: str | Omit = omit,
@@ -650,9 +678,16 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
           field_delimiter: Field delimiter for logs.
 
+          field_remap: Per-field output-name remap for exported logs. Maps a canonical Gcore field name
+              (from `/cdn/logs_uploader/policies/fields`, and must be present in `fields`) to
+              the field name it should have in the exported logs. Unmapped fields keep their
+              canonical name. Output names (after remapping) must be unique.
+
           field_separator: Field separator for logs.
 
-          fields: List of fields to include in logs.
+          fields: List of fields to include in logs. Duplicate names are allowed for plain text
+              output, but rejected when `format_type` is `json` or a `field_remap` is set
+              (each field becomes a distinct output key).
 
           file_name_template: Template for log file name.
 
@@ -706,6 +741,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
                     "description": description,
                     "escape_special_characters": escape_special_characters,
                     "field_delimiter": field_delimiter,
+                    "field_remap": field_remap,
                     "field_separator": field_separator,
                     "fields": fields,
                     "file_name_template": file_name_template,
@@ -736,6 +772,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         description: str | Omit = omit,
         escape_special_characters: bool | Omit = omit,
         field_delimiter: str | Omit = omit,
+        field_remap: Dict[str, str] | Omit = omit,
         field_separator: str | Omit = omit,
         fields: SequenceNotStr[str] | Omit = omit,
         file_name_template: str | Omit = omit,
@@ -777,9 +814,16 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
           field_delimiter: Field delimiter for logs.
 
+          field_remap: Per-field output-name remap for exported logs. Maps a canonical Gcore field name
+              (from `/cdn/logs_uploader/policies/fields`, and must be present in `fields`) to
+              the field name it should have in the exported logs. Unmapped fields keep their
+              canonical name. Output names (after remapping) must be unique.
+
           field_separator: Field separator for logs.
 
-          fields: List of fields to include in logs.
+          fields: List of fields to include in logs. Duplicate names are allowed for plain text
+              output, but rejected when `format_type` is `json` or a `field_remap` is set
+              (each field becomes a distinct output key).
 
           file_name_template: Template for log file name.
 
@@ -833,6 +877,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
                     "description": description,
                     "escape_special_characters": escape_special_characters,
                     "field_delimiter": field_delimiter,
+                    "field_remap": field_remap,
                     "field_separator": field_separator,
                     "fields": fields,
                     "file_name_template": file_name_template,
@@ -1005,6 +1050,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         description: str | Omit = omit,
         escape_special_characters: bool | Omit = omit,
         field_delimiter: str | Omit = omit,
+        field_remap: Dict[str, str] | Omit = omit,
         field_separator: str | Omit = omit,
         fields: SequenceNotStr[str] | Omit = omit,
         file_name_template: str | Omit = omit,
@@ -1046,9 +1092,16 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
           field_delimiter: Field delimiter for logs.
 
+          field_remap: Per-field output-name remap for exported logs. Maps a canonical Gcore field name
+              (from `/cdn/logs_uploader/policies/fields`, and must be present in `fields`) to
+              the field name it should have in the exported logs. Unmapped fields keep their
+              canonical name. Output names (after remapping) must be unique.
+
           field_separator: Field separator for logs.
 
-          fields: List of fields to include in logs.
+          fields: List of fields to include in logs. Duplicate names are allowed for plain text
+              output, but rejected when `format_type` is `json` or a `field_remap` is set
+              (each field becomes a distinct output key).
 
           file_name_template: Template for log file name.
 
@@ -1102,6 +1155,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
                     "description": description,
                     "escape_special_characters": escape_special_characters,
                     "field_delimiter": field_delimiter,
+                    "field_remap": field_remap,
                     "field_separator": field_separator,
                     "fields": fields,
                     "file_name_template": file_name_template,

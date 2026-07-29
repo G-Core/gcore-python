@@ -34,11 +34,25 @@ class PolicyReplaceParams(TypedDict, total=False):
     field_delimiter: str
     """Field delimiter for logs."""
 
+    field_remap: Dict[str, str]
+    """Per-field output-name remap for exported logs.
+
+    Maps a canonical Gcore field name (from `/cdn/logs_uploader/policies/fields`,
+    and must be present in `fields`) to the field name it should have in the
+    exported logs. Unmapped fields keep their canonical name. Output names (after
+    remapping) must be unique.
+    """
+
     field_separator: str
     """Field separator for logs."""
 
     fields: SequenceNotStr[str]
-    """List of fields to include in logs."""
+    """List of fields to include in logs.
+
+    Duplicate names are allowed for plain text output, but rejected when
+    `format_type` is `json` or a `field_remap` is set (each field becomes a distinct
+    output key).
+    """
 
     file_name_template: str
     """Template for log file name."""
