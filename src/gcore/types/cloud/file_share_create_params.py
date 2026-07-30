@@ -10,6 +10,8 @@ __all__ = [
     "CreateStandardFileShareSerializer",
     "CreateStandardFileShareSerializerNetwork",
     "CreateStandardFileShareSerializerAccess",
+    "CreateDdnFileShareSerializer",
+    "CreateDdnFileShareSerializerShareSettings",
     "CreateVastFileShareSerializer",
     "CreateVastFileShareSerializerShareSettings",
 ]
@@ -73,6 +75,52 @@ class CreateStandardFileShareSerializerAccess(TypedDict, total=False):
 
     ip_address: Required[str]
     """Source IP or network"""
+
+
+class CreateDdnFileShareSerializer(TypedDict, total=False):
+    project_id: int
+    """Project ID"""
+
+    region_id: int
+    """Region ID"""
+
+    name: Required[str]
+    """File share name"""
+
+    protocol: Required[Literal["LUSTRE"]]
+    """File share protocol"""
+
+    size: Required[int]
+    """File share size in GiB"""
+
+    share_settings: CreateDdnFileShareSerializerShareSettings
+    """Configuration settings for the share"""
+
+    tags: Dict[str, str]
+    """Key-value tags to associate with the resource.
+
+    A tag is a key-value pair that can be associated with a resource, enabling
+    efficient filtering and grouping for better organization and management. Both
+    tag keys and values have a maximum length of 255 characters. Some tags are
+    read-only and cannot be modified by the user. Tags are also integrated with cost
+    reports, allowing cost data to be filtered based on tag keys or values.
+    """
+
+    type_name: Literal["ddn"]
+    """DDN file share type"""
+
+    volume_type: Literal["ddn_share_type"]
+    """Deprecated. Use `type_name` instead."""
+
+
+class CreateDdnFileShareSerializerShareSettings(TypedDict, total=False):
+    """Configuration settings for the share"""
+
+    gid: int
+    """When set created file share will be owned by user with given GID"""
+
+    uid: int
+    """When set created file share will be owned by group with given UID"""
 
 
 class CreateVastFileShareSerializer(TypedDict, total=False):
@@ -145,4 +193,6 @@ class CreateVastFileShareSerializerShareSettings(TypedDict, total=False):
     """
 
 
-FileShareCreateParams: TypeAlias = Union[CreateStandardFileShareSerializer, CreateVastFileShareSerializer]
+FileShareCreateParams: TypeAlias = Union[
+    CreateStandardFileShareSerializer, CreateDdnFileShareSerializer, CreateVastFileShareSerializer
+]

@@ -9,8 +9,10 @@ __all__ = ["ClusterResizeParams"]
 
 class ClusterResizeParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     instances_count: Required[int]
     """Resized (total) number of instances"""

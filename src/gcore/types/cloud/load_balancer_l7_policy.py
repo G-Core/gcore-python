@@ -83,7 +83,7 @@ class LoadBalancerL7Policy(BaseModel):
     """Rules.
 
     All the rules associated with a given policy are logically ANDed together. A
-    request must match all the policy’s rules to match the policy.If you need to
+    request must match all the policy's rules to match the policy.If you need to
     express a logical OR operation between rules, then do this by creating multiple
     policies with the same action.
     """

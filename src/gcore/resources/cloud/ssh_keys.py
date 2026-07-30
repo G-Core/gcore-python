@@ -75,7 +75,7 @@ class SSHKeysResource(SyncAPIResource):
               can be safely sent to servers or services to grant access. It does not contain
               sensitive information.
 
-              - If you’re uploading your own key, provide the public part here (usually found
+              - If you're uploading your own key, provide the public part here (usually found
                 in a file like `id_ed25519.pub`).
               - If you want the platform to generate an Ed25519 key pair for you, leave this
                 field empty — the system will return the private key in the response **once
@@ -346,7 +346,7 @@ class AsyncSSHKeysResource(AsyncAPIResource):
               can be safely sent to servers or services to grant access. It does not contain
               sensitive information.
 
-              - If you’re uploading your own key, provide the public part here (usually found
+              - If you're uploading your own key, provide the public part here (usually found
                 in a file like `id_ed25519.pub`).
               - If you want the platform to generate an Ed25519 key pair for you, leave this
                 field empty — the system will return the private key in the response **once

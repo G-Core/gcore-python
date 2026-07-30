@@ -191,8 +191,15 @@ class ServersResource(ServersResourceCustomMixin, SyncAPIResource):
         allows deletion.
 
         Args:
-          delete_floatings: Set False if you do not want to delete assigned floating IPs. By default, it's
-              True.
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_id: GPU cluster ID
+
+          instance_id: Instance ID
+
+          delete_floatings: Set False if you do not want to delete assigned floating IPs
 
           extra_headers: Send extra headers
 
@@ -653,8 +660,15 @@ class AsyncServersResource(AsyncServersResourceCustomMixin, AsyncAPIResource):
         allows deletion.
 
         Args:
-          delete_floatings: Set False if you do not want to delete assigned floating IPs. By default, it's
-              True.
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_id: GPU cluster ID
+
+          instance_id: Instance ID
+
+          delete_floatings: Set False if you do not want to delete assigned floating IPs
 
           extra_headers: Send extra headers
 

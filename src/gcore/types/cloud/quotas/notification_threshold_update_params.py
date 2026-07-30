@@ -147,160 +147,160 @@ class LastMessageGlobalQuotasInferenceCPUMillicoreCountLimit(TypedDict, total=Fa
     """Inference CPU millicore count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageGlobalQuotasInferenceCPUMillicoreCountUsage(TypedDict, total=False):
     """Inference CPU millicore count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageGlobalQuotasInferenceGPUA100CountLimit(TypedDict, total=False):
     """Inference GPU A100 Count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageGlobalQuotasInferenceGPUA100CountUsage(TypedDict, total=False):
     """Inference GPU A100 Count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageGlobalQuotasInferenceGPUH100CountLimit(TypedDict, total=False):
     """Inference GPU H100 Count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageGlobalQuotasInferenceGPUH100CountUsage(TypedDict, total=False):
     """Inference GPU H100 Count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageGlobalQuotasInferenceGPUL40sCountLimit(TypedDict, total=False):
     """Inference GPU L40s Count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageGlobalQuotasInferenceGPUL40sCountUsage(TypedDict, total=False):
     """Inference GPU L40s Count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageGlobalQuotasInferenceInstanceCountLimit(TypedDict, total=False):
     """Inference instance count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageGlobalQuotasInferenceInstanceCountUsage(TypedDict, total=False):
     """Inference instance count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageGlobalQuotasInferencePublicModelAPIKeyCountLimit(TypedDict, total=False):
     """Public model API keys count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageGlobalQuotasInferencePublicModelAPIKeyCountUsage(TypedDict, total=False):
     """Public model API keys count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageGlobalQuotasKeypairCountLimit(TypedDict, total=False):
     """SSH Keys Count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageGlobalQuotasKeypairCountUsage(TypedDict, total=False):
     """SSH Keys Count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageGlobalQuotasProjectCountLimit(TypedDict, total=False):
     """Projects Count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageGlobalQuotasProjectCountUsage(TypedDict, total=False):
     """Projects Count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageGlobalQuotas(TypedDict, total=False):
@@ -359,1000 +359,1000 @@ class LastMessageRegionalQuotaBaremetalBasicCountLimit(TypedDict, total=False):
     """Basic bare metal servers count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaBaremetalBasicCountUsage(TypedDict, total=False):
     """Basic bare metal servers count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaBaremetalGPUA100CountLimit(TypedDict, total=False):
     """Bare metal A100 GPU server count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaBaremetalGPUA100CountUsage(TypedDict, total=False):
     """Bare metal A100 GPU server count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaBaremetalGPUH100CountLimit(TypedDict, total=False):
     """Bare metal H100 GPU server count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaBaremetalGPUH100CountUsage(TypedDict, total=False):
     """Bare metal H100 GPU server count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaBaremetalGPUH200CountLimit(TypedDict, total=False):
     """Bare metal H200 GPU server count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaBaremetalGPUH200CountUsage(TypedDict, total=False):
     """Bare metal H200 GPU server count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaBaremetalGPUL40sCountLimit(TypedDict, total=False):
     """Bare metal L40S GPU server count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaBaremetalGPUL40sCountUsage(TypedDict, total=False):
     """Bare metal L40S GPU server count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaBaremetalHfCountLimit(TypedDict, total=False):
     """High-frequency bare metal servers count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaBaremetalHfCountUsage(TypedDict, total=False):
     """High-frequency bare metal servers count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaBaremetalInfrastructureCountLimit(TypedDict, total=False):
     """Infrastructure bare metal servers count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaBaremetalInfrastructureCountUsage(TypedDict, total=False):
     """Infrastructure bare metal servers count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaBaremetalNetworkCountLimit(TypedDict, total=False):
     """Bare metal Network Count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaBaremetalNetworkCountUsage(TypedDict, total=False):
     """Bare metal Network Count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaBaremetalStorageCountLimit(TypedDict, total=False):
     """Storage bare metal servers count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaBaremetalStorageCountUsage(TypedDict, total=False):
     """Storage bare metal servers count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaCaasContainerCountLimit(TypedDict, total=False):
     """Containers count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaCaasContainerCountUsage(TypedDict, total=False):
     """Containers count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaCaasCPUCountLimit(TypedDict, total=False):
     """mCPU count for containers limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaCaasCPUCountUsage(TypedDict, total=False):
     """mCPU count for containers usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaCaasGPUCountLimit(TypedDict, total=False):
     """Containers gpu count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaCaasGPUCountUsage(TypedDict, total=False):
     """Containers gpu count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaCaasRamSizeLimit(TypedDict, total=False):
     """MiB memory count for containers limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaCaasRamSizeUsage(TypedDict, total=False):
     """MiB memory count for containers usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaClusterCountLimit(TypedDict, total=False):
     """K8s clusters count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaClusterCountUsage(TypedDict, total=False):
     """K8s clusters count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaCPUCountLimit(TypedDict, total=False):
     """vCPU Count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaCPUCountUsage(TypedDict, total=False):
     """vCPU Count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaDbaasPostgresClusterCountLimit(TypedDict, total=False):
     """DBaaS cluster count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaDbaasPostgresClusterCountUsage(TypedDict, total=False):
     """DBaaS cluster count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaExternalIPCountLimit(TypedDict, total=False):
     """External IP Count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaExternalIPCountUsage(TypedDict, total=False):
     """External IP Count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaFaasCPUCountLimit(TypedDict, total=False):
     """mCPU count for functions limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaFaasCPUCountUsage(TypedDict, total=False):
     """mCPU count for functions usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaFaasFunctionCountLimit(TypedDict, total=False):
     """Functions count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaFaasFunctionCountUsage(TypedDict, total=False):
     """Functions count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaFaasNamespaceCountLimit(TypedDict, total=False):
     """Functions namespace count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaFaasNamespaceCountUsage(TypedDict, total=False):
     """Functions namespace count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaFaasRamSizeLimit(TypedDict, total=False):
     """MiB memory count for functions limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaFaasRamSizeUsage(TypedDict, total=False):
     """MiB memory count for functions usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaFirewallCountLimit(TypedDict, total=False):
     """Firewalls Count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaFirewallCountUsage(TypedDict, total=False):
     """Firewalls Count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaFloatingCountLimit(TypedDict, total=False):
     """Floating IP Count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaFloatingCountUsage(TypedDict, total=False):
     """Floating IP Count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaGPUCountLimit(TypedDict, total=False):
     """GPU Count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaGPUCountUsage(TypedDict, total=False):
     """GPU Count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaGPUVirtualA100CountLimit(TypedDict, total=False):
     """Virtual A100 GPU card count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaGPUVirtualA100CountUsage(TypedDict, total=False):
     """Virtual A100 GPU card count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaGPUVirtualH100CountLimit(TypedDict, total=False):
     """Virtual H100 GPU card count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaGPUVirtualH100CountUsage(TypedDict, total=False):
     """Virtual H100 GPU card count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaGPUVirtualH200CountLimit(TypedDict, total=False):
     """Virtual H200 GPU card count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaGPUVirtualH200CountUsage(TypedDict, total=False):
     """Virtual H200 GPU card count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaGPUVirtualL40sCountLimit(TypedDict, total=False):
     """Virtual L40S GPU card count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaGPUVirtualL40sCountUsage(TypedDict, total=False):
     """Virtual L40S GPU card count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaImageCountLimit(TypedDict, total=False):
     """Images Count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaImageCountUsage(TypedDict, total=False):
     """Images Count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaImageSizeLimit(TypedDict, total=False):
     """Images Size, bytes limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaImageSizeUsage(TypedDict, total=False):
     """Images Size, bytes usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaIpuCountLimit(TypedDict, total=False):
     """IPU Count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaIpuCountUsage(TypedDict, total=False):
     """IPU Count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaLaasTopicCountLimit(TypedDict, total=False):
     """LaaS Topics Count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaLaasTopicCountUsage(TypedDict, total=False):
     """LaaS Topics Count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaLoadbalancerCountLimit(TypedDict, total=False):
     """Load Balancers Count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaLoadbalancerCountUsage(TypedDict, total=False):
     """Load Balancers Count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaNetworkCountLimit(TypedDict, total=False):
     """Networks Count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaNetworkCountUsage(TypedDict, total=False):
     """Networks Count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaRamLimit(TypedDict, total=False):
     """RAM Size, MiB limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaRamUsage(TypedDict, total=False):
     """RAM Size, MiB usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaRegistryCountLimit(TypedDict, total=False):
     """Registries count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaRegistryCountUsage(TypedDict, total=False):
     """Registries count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaRegistryStorageLimit(TypedDict, total=False):
     """Registries volume usage, GiB limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaRegistryStorageUsage(TypedDict, total=False):
     """Registries volume usage, GiB usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaRouterCountLimit(TypedDict, total=False):
     """Routers Count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaRouterCountUsage(TypedDict, total=False):
     """Routers Count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaSecretCountLimit(TypedDict, total=False):
     """Secret Count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaSecretCountUsage(TypedDict, total=False):
     """Secret Count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaServergroupCountLimit(TypedDict, total=False):
     """Placement Group Count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaServergroupCountUsage(TypedDict, total=False):
     """Placement Group Count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaSfsCountLimit(TypedDict, total=False):
     """Shared file system Count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaSfsCountUsage(TypedDict, total=False):
     """Shared file system Count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaSfsSizeLimit(TypedDict, total=False):
     """Shared file system Size, GiB limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaSfsSizeUsage(TypedDict, total=False):
     """Shared file system Size, GiB usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaSharedVmCountLimit(TypedDict, total=False):
     """Basic VMs Count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaSharedVmCountUsage(TypedDict, total=False):
     """Basic VMs Count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaSnapshotScheduleCountLimit(TypedDict, total=False):
     """Snapshot Schedules Count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaSnapshotScheduleCountUsage(TypedDict, total=False):
     """Snapshot Schedules Count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaSubnetCountLimit(TypedDict, total=False):
     """Subnets Count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaSubnetCountUsage(TypedDict, total=False):
     """Subnets Count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaVmCountLimit(TypedDict, total=False):
     """Instances Dedicated Count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaVmCountUsage(TypedDict, total=False):
     """Instances Dedicated Count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaVolumeCountLimit(TypedDict, total=False):
     """Volumes Count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaVolumeCountUsage(TypedDict, total=False):
     """Volumes Count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaVolumeSizeLimit(TypedDict, total=False):
     """Volumes Size, GiB limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaVolumeSizeUsage(TypedDict, total=False):
     """Volumes Size, GiB usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaVolumeSnapshotsCountLimit(TypedDict, total=False):
     """Snapshots Count limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaVolumeSnapshotsCountUsage(TypedDict, total=False):
     """Snapshots Count usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaVolumeSnapshotsSizeLimit(TypedDict, total=False):
     """Snapshots Size, GiB limit"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaVolumeSnapshotsSizeUsage(TypedDict, total=False):
     """Snapshots Size, GiB usage"""
 
     limit: Required[int]
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: Required[int]
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuota(TypedDict, total=False):

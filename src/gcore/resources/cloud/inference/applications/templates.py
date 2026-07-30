@@ -79,7 +79,7 @@ class TemplatesResource(SyncAPIResource):
     ) -> InferenceApplicationTemplate:
         """
         Retrieves detailed information about a specific machine learning application
-        template from the catalog. The response includes the application’s metadata,
+        template from the catalog. The response includes the application's metadata,
         documentation, tags, and a complete set of components with configuration
         options, compatible flavors, and deployment capabilities — all necessary for
         building and customizing an AI application.
@@ -166,7 +166,7 @@ class AsyncTemplatesResource(AsyncAPIResource):
     ) -> InferenceApplicationTemplate:
         """
         Retrieves detailed information about a specific machine learning application
-        template from the catalog. The response includes the application’s metadata,
+        template from the catalog. The response includes the application's metadata,
         documentation, tags, and a complete set of components with configuration
         options, compatible flavors, and deployment capabilities — all necessary for
         building and customizing an AI application.

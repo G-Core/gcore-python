@@ -695,6 +695,12 @@ class ClustersResource(ClustersResourceCustomMixin, SyncAPIResource):
         down.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_id: GPU cluster ID
+
           instances_count: Resized (total) number of instances
 
           extra_headers: Send extra headers
@@ -1422,6 +1428,12 @@ class AsyncClustersResource(AsyncClustersResourceCustomMixin, AsyncAPIResource):
         down.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_id: GPU cluster ID
+
           instances_count: Resized (total) number of instances
 
           extra_headers: Send extra headers

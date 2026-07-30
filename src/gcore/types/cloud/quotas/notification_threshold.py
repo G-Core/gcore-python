@@ -133,160 +133,160 @@ class LastMessageGlobalQuotasInferenceCPUMillicoreCountLimit(BaseModel):
     """Inference CPU millicore count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageGlobalQuotasInferenceCPUMillicoreCountUsage(BaseModel):
     """Inference CPU millicore count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageGlobalQuotasInferenceGPUA100CountLimit(BaseModel):
     """Inference GPU A100 Count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageGlobalQuotasInferenceGPUA100CountUsage(BaseModel):
     """Inference GPU A100 Count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageGlobalQuotasInferenceGPUH100CountLimit(BaseModel):
     """Inference GPU H100 Count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageGlobalQuotasInferenceGPUH100CountUsage(BaseModel):
     """Inference GPU H100 Count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageGlobalQuotasInferenceGPUL40sCountLimit(BaseModel):
     """Inference GPU L40s Count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageGlobalQuotasInferenceGPUL40sCountUsage(BaseModel):
     """Inference GPU L40s Count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageGlobalQuotasInferenceInstanceCountLimit(BaseModel):
     """Inference instance count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageGlobalQuotasInferenceInstanceCountUsage(BaseModel):
     """Inference instance count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageGlobalQuotasInferencePublicModelAPIKeyCountLimit(BaseModel):
     """Public model API keys count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageGlobalQuotasInferencePublicModelAPIKeyCountUsage(BaseModel):
     """Public model API keys count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageGlobalQuotasKeypairCountLimit(BaseModel):
     """SSH Keys Count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageGlobalQuotasKeypairCountUsage(BaseModel):
     """SSH Keys Count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageGlobalQuotasProjectCountLimit(BaseModel):
     """Projects Count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageGlobalQuotasProjectCountUsage(BaseModel):
     """Projects Count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageGlobalQuotas(BaseModel):
@@ -349,1000 +349,1000 @@ class LastMessageRegionalQuotaBaremetalBasicCountLimit(BaseModel):
     """Basic bare metal servers count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaBaremetalBasicCountUsage(BaseModel):
     """Basic bare metal servers count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaBaremetalGPUA100CountLimit(BaseModel):
     """Bare metal A100 GPU server count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaBaremetalGPUA100CountUsage(BaseModel):
     """Bare metal A100 GPU server count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaBaremetalGPUH100CountLimit(BaseModel):
     """Bare metal H100 GPU server count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaBaremetalGPUH100CountUsage(BaseModel):
     """Bare metal H100 GPU server count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaBaremetalGPUH200CountLimit(BaseModel):
     """Bare metal H200 GPU server count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaBaremetalGPUH200CountUsage(BaseModel):
     """Bare metal H200 GPU server count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaBaremetalGPUL40sCountLimit(BaseModel):
     """Bare metal L40S GPU server count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaBaremetalGPUL40sCountUsage(BaseModel):
     """Bare metal L40S GPU server count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaBaremetalHfCountLimit(BaseModel):
     """High-frequency bare metal servers count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaBaremetalHfCountUsage(BaseModel):
     """High-frequency bare metal servers count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaBaremetalInfrastructureCountLimit(BaseModel):
     """Infrastructure bare metal servers count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaBaremetalInfrastructureCountUsage(BaseModel):
     """Infrastructure bare metal servers count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaBaremetalNetworkCountLimit(BaseModel):
     """Bare metal Network Count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaBaremetalNetworkCountUsage(BaseModel):
     """Bare metal Network Count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaBaremetalStorageCountLimit(BaseModel):
     """Storage bare metal servers count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaBaremetalStorageCountUsage(BaseModel):
     """Storage bare metal servers count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaCaasContainerCountLimit(BaseModel):
     """Containers count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaCaasContainerCountUsage(BaseModel):
     """Containers count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaCaasCPUCountLimit(BaseModel):
     """mCPU count for containers limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaCaasCPUCountUsage(BaseModel):
     """mCPU count for containers usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaCaasGPUCountLimit(BaseModel):
     """Containers gpu count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaCaasGPUCountUsage(BaseModel):
     """Containers gpu count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaCaasRamSizeLimit(BaseModel):
     """MiB memory count for containers limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaCaasRamSizeUsage(BaseModel):
     """MiB memory count for containers usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaClusterCountLimit(BaseModel):
     """K8s clusters count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaClusterCountUsage(BaseModel):
     """K8s clusters count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaCPUCountLimit(BaseModel):
     """vCPU Count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaCPUCountUsage(BaseModel):
     """vCPU Count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaDbaasPostgresClusterCountLimit(BaseModel):
     """DBaaS cluster count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaDbaasPostgresClusterCountUsage(BaseModel):
     """DBaaS cluster count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaExternalIPCountLimit(BaseModel):
     """External IP Count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaExternalIPCountUsage(BaseModel):
     """External IP Count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaFaasCPUCountLimit(BaseModel):
     """mCPU count for functions limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaFaasCPUCountUsage(BaseModel):
     """mCPU count for functions usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaFaasFunctionCountLimit(BaseModel):
     """Functions count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaFaasFunctionCountUsage(BaseModel):
     """Functions count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaFaasNamespaceCountLimit(BaseModel):
     """Functions namespace count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaFaasNamespaceCountUsage(BaseModel):
     """Functions namespace count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaFaasRamSizeLimit(BaseModel):
     """MiB memory count for functions limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaFaasRamSizeUsage(BaseModel):
     """MiB memory count for functions usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaFirewallCountLimit(BaseModel):
     """Firewalls Count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaFirewallCountUsage(BaseModel):
     """Firewalls Count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaFloatingCountLimit(BaseModel):
     """Floating IP Count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaFloatingCountUsage(BaseModel):
     """Floating IP Count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaGPUCountLimit(BaseModel):
     """GPU Count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaGPUCountUsage(BaseModel):
     """GPU Count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaGPUVirtualA100CountLimit(BaseModel):
     """Virtual A100 GPU card count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaGPUVirtualA100CountUsage(BaseModel):
     """Virtual A100 GPU card count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaGPUVirtualH100CountLimit(BaseModel):
     """Virtual H100 GPU card count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaGPUVirtualH100CountUsage(BaseModel):
     """Virtual H100 GPU card count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaGPUVirtualH200CountLimit(BaseModel):
     """Virtual H200 GPU card count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaGPUVirtualH200CountUsage(BaseModel):
     """Virtual H200 GPU card count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaGPUVirtualL40sCountLimit(BaseModel):
     """Virtual L40S GPU card count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaGPUVirtualL40sCountUsage(BaseModel):
     """Virtual L40S GPU card count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaImageCountLimit(BaseModel):
     """Images Count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaImageCountUsage(BaseModel):
     """Images Count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaImageSizeLimit(BaseModel):
     """Images Size, bytes limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaImageSizeUsage(BaseModel):
     """Images Size, bytes usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaIpuCountLimit(BaseModel):
     """IPU Count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaIpuCountUsage(BaseModel):
     """IPU Count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaLaasTopicCountLimit(BaseModel):
     """LaaS Topics Count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaLaasTopicCountUsage(BaseModel):
     """LaaS Topics Count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaLoadbalancerCountLimit(BaseModel):
     """Load Balancers Count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaLoadbalancerCountUsage(BaseModel):
     """Load Balancers Count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaNetworkCountLimit(BaseModel):
     """Networks Count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaNetworkCountUsage(BaseModel):
     """Networks Count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaRamLimit(BaseModel):
     """RAM Size, MiB limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaRamUsage(BaseModel):
     """RAM Size, MiB usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaRegistryCountLimit(BaseModel):
     """Registries count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaRegistryCountUsage(BaseModel):
     """Registries count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaRegistryStorageLimit(BaseModel):
     """Registries volume usage, GiB limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaRegistryStorageUsage(BaseModel):
     """Registries volume usage, GiB usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaRouterCountLimit(BaseModel):
     """Routers Count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaRouterCountUsage(BaseModel):
     """Routers Count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaSecretCountLimit(BaseModel):
     """Secret Count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaSecretCountUsage(BaseModel):
     """Secret Count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaServergroupCountLimit(BaseModel):
     """Placement Group Count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaServergroupCountUsage(BaseModel):
     """Placement Group Count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaSfsCountLimit(BaseModel):
     """Shared file system Count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaSfsCountUsage(BaseModel):
     """Shared file system Count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaSfsSizeLimit(BaseModel):
     """Shared file system Size, GiB limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaSfsSizeUsage(BaseModel):
     """Shared file system Size, GiB usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaSharedVmCountLimit(BaseModel):
     """Basic VMs Count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaSharedVmCountUsage(BaseModel):
     """Basic VMs Count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaSnapshotScheduleCountLimit(BaseModel):
     """Snapshot Schedules Count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaSnapshotScheduleCountUsage(BaseModel):
     """Snapshot Schedules Count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaSubnetCountLimit(BaseModel):
     """Subnets Count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaSubnetCountUsage(BaseModel):
     """Subnets Count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaVmCountLimit(BaseModel):
     """Instances Dedicated Count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaVmCountUsage(BaseModel):
     """Instances Dedicated Count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaVolumeCountLimit(BaseModel):
     """Volumes Count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaVolumeCountUsage(BaseModel):
     """Volumes Count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaVolumeSizeLimit(BaseModel):
     """Volumes Size, GiB limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaVolumeSizeUsage(BaseModel):
     """Volumes Size, GiB usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaVolumeSnapshotsCountLimit(BaseModel):
     """Snapshots Count limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaVolumeSnapshotsCountUsage(BaseModel):
     """Snapshots Count usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaVolumeSnapshotsSizeLimit(BaseModel):
     """Snapshots Size, GiB limit"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuotaVolumeSnapshotsSizeUsage(BaseModel):
     """Snapshots Size, GiB usage"""
 
     limit: int
-    """Сurrent quota limit"""
+    """Current quota limit"""
 
     usage: int
-    """Сurrent amount of resource used"""
+    """Current amount of resource used"""
 
 
 class LastMessageRegionalQuota(BaseModel):

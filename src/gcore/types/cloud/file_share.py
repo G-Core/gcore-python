@@ -11,6 +11,7 @@ __all__ = [
     "FileShare",
     "ShareSettings",
     "ShareSettingsStandardShareSettingsOutputSerializer",
+    "ShareSettingsDdnShareSettingsOutputSerializer",
     "ShareSettingsVastShareSettingsOutputSerializer",
 ]
 
@@ -18,6 +19,20 @@ __all__ = [
 class ShareSettingsStandardShareSettingsOutputSerializer(BaseModel):
     type_name: Literal["standard"]
     """Standard file share type"""
+
+
+class ShareSettingsDdnShareSettingsOutputSerializer(BaseModel):
+    gid: Optional[int] = None
+    """Group ID being owner of the share"""
+
+    projid: Optional[int] = None
+    """Exascaler project ID"""
+
+    type_name: Literal["ddn"]
+    """DDN file share type"""
+
+    uid: Optional[int] = None
+    """User ID being owner of the share"""
 
 
 class ShareSettingsVastShareSettingsOutputSerializer(BaseModel):
@@ -39,7 +54,11 @@ class ShareSettingsVastShareSettingsOutputSerializer(BaseModel):
 
 
 ShareSettings: TypeAlias = Annotated[
-    Union[ShareSettingsStandardShareSettingsOutputSerializer, ShareSettingsVastShareSettingsOutputSerializer],
+    Union[
+        ShareSettingsStandardShareSettingsOutputSerializer,
+        ShareSettingsDdnShareSettingsOutputSerializer,
+        ShareSettingsVastShareSettingsOutputSerializer,
+    ],
     PropertyInfo(discriminator="type_name"),
 ]
 
@@ -145,8 +164,8 @@ class FileShare(BaseModel):
     the resource is not locked.
     """
 
-    type_name: Literal["standard", "vast"]
+    type_name: Literal["ddn", "standard", "vast"]
     """File share type name"""
 
-    volume_type: Literal["default_share_type", "vast_share_type"]
+    volume_type: Literal["ddn_share_type", "default_share_type", "vast_share_type"]
     """Deprecated. Use `type_name` instead. File share disk type"""

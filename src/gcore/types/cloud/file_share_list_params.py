@@ -26,5 +26,5 @@ class FileShareListParams(TypedDict, total=False):
     Offset value is used to exclude the first set of records from the result
     """
 
-    type_name: Literal["standard", "vast"]
+    type_name: Literal["ddn", "standard", "vast"]
     """File share type name"""

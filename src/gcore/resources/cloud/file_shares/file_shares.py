@@ -139,6 +139,63 @@ class FileSharesResource(FileSharesResourceCustomMixin, SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         name: str,
+        protocol: Literal["LUSTRE"],
+        size: int,
+        share_settings: file_share_create_params.CreateDdnFileShareSerializerShareSettings | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
+        type_name: Literal["ddn"] | Omit = omit,
+        volume_type: Literal["ddn_share_type"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """
+        Create file share
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          name: File share name
+
+          protocol: File share protocol
+
+          size: File share size in GiB
+
+          share_settings: Configuration settings for the share
+
+          tags: Key-value tags to associate with the resource. A tag is a key-value pair that
+              can be associated with a resource, enabling efficient filtering and grouping for
+              better organization and management. Both tag keys and values have a maximum
+              length of 255 characters. Some tags are read-only and cannot be modified by the
+              user. Tags are also integrated with cost reports, allowing cost data to be
+              filtered based on tag keys or values.
+
+          type_name: DDN file share type
+
+          volume_type: Deprecated. Use `type_name` instead.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        name: str,
         protocol: Literal["NFS"],
         size: int,
         share_settings: file_share_create_params.CreateVastFileShareSerializerShareSettings | Omit = omit,
@@ -197,13 +254,18 @@ class FileSharesResource(FileSharesResourceCustomMixin, SyncAPIResource):
         region_id: int | None = None,
         name: str,
         network: file_share_create_params.CreateStandardFileShareSerializerNetwork | Omit = omit,
-        protocol: Literal["NFS"],
+        protocol: Literal["NFS"] | Literal["LUSTRE"],
         size: int,
         access: Iterable[file_share_create_params.CreateStandardFileShareSerializerAccess] | Omit = omit,
         tags: Dict[str, str] | Omit = omit,
-        type_name: Literal["standard"] | Literal["vast"] | Omit = omit,
-        volume_type: Literal["default_share_type"] | Literal["vast_share_type"] | Omit = omit,
-        share_settings: file_share_create_params.CreateVastFileShareSerializerShareSettings | Omit = omit,
+        type_name: Literal["standard"] | Literal["ddn"] | Literal["vast"] | Omit = omit,
+        volume_type: Literal["default_share_type"]
+        | Literal["ddn_share_type"]
+        | Literal["vast_share_type"]
+        | Omit = omit,
+        share_settings: file_share_create_params.CreateDdnFileShareSerializerShareSettings
+        | file_share_create_params.CreateVastFileShareSerializerShareSettings
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -332,7 +394,7 @@ class FileSharesResource(FileSharesResourceCustomMixin, SyncAPIResource):
         limit: int | Omit = omit,
         name: str | Omit = omit,
         offset: int | Omit = omit,
-        type_name: Literal["standard", "vast"] | Omit = omit,
+        type_name: Literal["ddn", "standard", "vast"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -643,6 +705,63 @@ class AsyncFileSharesResource(AsyncFileSharesResourceCustomMixin, AsyncAPIResour
         project_id: int | None = None,
         region_id: int | None = None,
         name: str,
+        protocol: Literal["LUSTRE"],
+        size: int,
+        share_settings: file_share_create_params.CreateDdnFileShareSerializerShareSettings | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
+        type_name: Literal["ddn"] | Omit = omit,
+        volume_type: Literal["ddn_share_type"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """
+        Create file share
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          name: File share name
+
+          protocol: File share protocol
+
+          size: File share size in GiB
+
+          share_settings: Configuration settings for the share
+
+          tags: Key-value tags to associate with the resource. A tag is a key-value pair that
+              can be associated with a resource, enabling efficient filtering and grouping for
+              better organization and management. Both tag keys and values have a maximum
+              length of 255 characters. Some tags are read-only and cannot be modified by the
+              user. Tags are also integrated with cost reports, allowing cost data to be
+              filtered based on tag keys or values.
+
+          type_name: DDN file share type
+
+          volume_type: Deprecated. Use `type_name` instead.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        name: str,
         protocol: Literal["NFS"],
         size: int,
         share_settings: file_share_create_params.CreateVastFileShareSerializerShareSettings | Omit = omit,
@@ -701,13 +820,18 @@ class AsyncFileSharesResource(AsyncFileSharesResourceCustomMixin, AsyncAPIResour
         region_id: int | None = None,
         name: str,
         network: file_share_create_params.CreateStandardFileShareSerializerNetwork | Omit = omit,
-        protocol: Literal["NFS"],
+        protocol: Literal["NFS"] | Literal["LUSTRE"],
         size: int,
         access: Iterable[file_share_create_params.CreateStandardFileShareSerializerAccess] | Omit = omit,
         tags: Dict[str, str] | Omit = omit,
-        type_name: Literal["standard"] | Literal["vast"] | Omit = omit,
-        volume_type: Literal["default_share_type"] | Literal["vast_share_type"] | Omit = omit,
-        share_settings: file_share_create_params.CreateVastFileShareSerializerShareSettings | Omit = omit,
+        type_name: Literal["standard"] | Literal["ddn"] | Literal["vast"] | Omit = omit,
+        volume_type: Literal["default_share_type"]
+        | Literal["ddn_share_type"]
+        | Literal["vast_share_type"]
+        | Omit = omit,
+        share_settings: file_share_create_params.CreateDdnFileShareSerializerShareSettings
+        | file_share_create_params.CreateVastFileShareSerializerShareSettings
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -836,7 +960,7 @@ class AsyncFileSharesResource(AsyncFileSharesResourceCustomMixin, AsyncAPIResour
         limit: int | Omit = omit,
         name: str | Omit = omit,
         offset: int | Omit = omit,
-        type_name: Literal["standard", "vast"] | Omit = omit,
+        type_name: Literal["ddn", "standard", "vast"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

@@ -95,3 +95,9 @@ class GPUVirtualClusterServer(BaseModel):
 
     updated_at: datetime
     """Server update date and time"""
+
+    user_data_applied: bool
+    """
+    True if user data (cloud-init) was applied when this server was last created or
+    rebuilt.
+    """

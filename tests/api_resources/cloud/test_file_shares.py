@@ -97,13 +97,74 @@ class TestFileShares:
             project_id=1,
             region_id=1,
             name="test-share-file-system",
-            protocol="NFS",
+            protocol="LUSTRE",
             size=5,
         )
         assert_matches_type(TaskIDList, file_share, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params_overload_2(self, client: Gcore) -> None:
+        file_share = client.cloud.file_shares.create(
+            project_id=1,
+            region_id=1,
+            name="test-share-file-system",
+            protocol="LUSTRE",
+            size=5,
+            share_settings={
+                "gid": 1000,
+                "uid": 1000,
+            },
+            tags={"my-tag": "my-tag-value"},
+            type_name="ddn",
+            volume_type="ddn_share_type",
+        )
+        assert_matches_type(TaskIDList, file_share, path=["response"])
+
+    @parametrize
+    def test_raw_response_create_overload_2(self, client: Gcore) -> None:
+        response = client.cloud.file_shares.with_raw_response.create(
+            project_id=1,
+            region_id=1,
+            name="test-share-file-system",
+            protocol="LUSTRE",
+            size=5,
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        file_share = response.parse()
+        assert_matches_type(TaskIDList, file_share, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create_overload_2(self, client: Gcore) -> None:
+        with client.cloud.file_shares.with_streaming_response.create(
+            project_id=1,
+            region_id=1,
+            name="test-share-file-system",
+            protocol="LUSTRE",
+            size=5,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            file_share = response.parse()
+            assert_matches_type(TaskIDList, file_share, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_create_overload_3(self, client: Gcore) -> None:
+        file_share = client.cloud.file_shares.create(
+            project_id=1,
+            region_id=1,
+            name="test-share-file-system",
+            protocol="NFS",
+            size=5,
+        )
+        assert_matches_type(TaskIDList, file_share, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params_overload_3(self, client: Gcore) -> None:
         file_share = client.cloud.file_shares.create(
             project_id=1,
             region_id=1,
@@ -122,7 +183,7 @@ class TestFileShares:
         assert_matches_type(TaskIDList, file_share, path=["response"])
 
     @parametrize
-    def test_raw_response_create_overload_2(self, client: Gcore) -> None:
+    def test_raw_response_create_overload_3(self, client: Gcore) -> None:
         response = client.cloud.file_shares.with_raw_response.create(
             project_id=1,
             region_id=1,
@@ -137,7 +198,7 @@ class TestFileShares:
         assert_matches_type(TaskIDList, file_share, path=["response"])
 
     @parametrize
-    def test_streaming_response_create_overload_2(self, client: Gcore) -> None:
+    def test_streaming_response_create_overload_3(self, client: Gcore) -> None:
         with client.cloud.file_shares.with_streaming_response.create(
             project_id=1,
             region_id=1,
@@ -170,9 +231,8 @@ class TestFileShares:
             region_id=1,
             name="some_name",
             share_settings={
-                "allowed_characters": "LCD",
-                "path_length": "LCD",
-                "root_squash": True,
+                "gid": 1000,
+                "uid": 1000,
             },
             tags={
                 "my-tag": "my-tag-value",
@@ -488,13 +548,74 @@ class TestAsyncFileShares:
             project_id=1,
             region_id=1,
             name="test-share-file-system",
-            protocol="NFS",
+            protocol="LUSTRE",
             size=5,
         )
         assert_matches_type(TaskIDList, file_share, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params_overload_2(self, async_client: AsyncGcore) -> None:
+        file_share = await async_client.cloud.file_shares.create(
+            project_id=1,
+            region_id=1,
+            name="test-share-file-system",
+            protocol="LUSTRE",
+            size=5,
+            share_settings={
+                "gid": 1000,
+                "uid": 1000,
+            },
+            tags={"my-tag": "my-tag-value"},
+            type_name="ddn",
+            volume_type="ddn_share_type",
+        )
+        assert_matches_type(TaskIDList, file_share, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create_overload_2(self, async_client: AsyncGcore) -> None:
+        response = await async_client.cloud.file_shares.with_raw_response.create(
+            project_id=1,
+            region_id=1,
+            name="test-share-file-system",
+            protocol="LUSTRE",
+            size=5,
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        file_share = await response.parse()
+        assert_matches_type(TaskIDList, file_share, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create_overload_2(self, async_client: AsyncGcore) -> None:
+        async with async_client.cloud.file_shares.with_streaming_response.create(
+            project_id=1,
+            region_id=1,
+            name="test-share-file-system",
+            protocol="LUSTRE",
+            size=5,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            file_share = await response.parse()
+            assert_matches_type(TaskIDList, file_share, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_create_overload_3(self, async_client: AsyncGcore) -> None:
+        file_share = await async_client.cloud.file_shares.create(
+            project_id=1,
+            region_id=1,
+            name="test-share-file-system",
+            protocol="NFS",
+            size=5,
+        )
+        assert_matches_type(TaskIDList, file_share, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params_overload_3(self, async_client: AsyncGcore) -> None:
         file_share = await async_client.cloud.file_shares.create(
             project_id=1,
             region_id=1,
@@ -513,7 +634,7 @@ class TestAsyncFileShares:
         assert_matches_type(TaskIDList, file_share, path=["response"])
 
     @parametrize
-    async def test_raw_response_create_overload_2(self, async_client: AsyncGcore) -> None:
+    async def test_raw_response_create_overload_3(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.file_shares.with_raw_response.create(
             project_id=1,
             region_id=1,
@@ -528,7 +649,7 @@ class TestAsyncFileShares:
         assert_matches_type(TaskIDList, file_share, path=["response"])
 
     @parametrize
-    async def test_streaming_response_create_overload_2(self, async_client: AsyncGcore) -> None:
+    async def test_streaming_response_create_overload_3(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.file_shares.with_streaming_response.create(
             project_id=1,
             region_id=1,
@@ -561,9 +682,8 @@ class TestAsyncFileShares:
             region_id=1,
             name="some_name",
             share_settings={
-                "allowed_characters": "LCD",
-                "path_length": "LCD",
-                "root_squash": True,
+                "gid": 1000,
+                "uid": 1000,
             },
             tags={
                 "my-tag": "my-tag-value",

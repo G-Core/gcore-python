@@ -2,12 +2,17 @@
 
 from __future__ import annotations
 
-from typing import Optional
-from typing_extensions import Literal, TypedDict
+from typing import Union, Optional
+from typing_extensions import Literal, TypeAlias, TypedDict
 
 from .tag_update_map_param import TagUpdateMapParam
 
-__all__ = ["FileShareUpdateParams", "ShareSettings"]
+__all__ = [
+    "FileShareUpdateParams",
+    "ShareSettings",
+    "ShareSettingsDdnFileShareSettingsInputSerializer",
+    "ShareSettingsVastFileShareSettingsInputSerializer",
+]
 
 
 class FileShareUpdateParams(TypedDict, total=False):
@@ -49,9 +54,15 @@ class FileShareUpdateParams(TypedDict, total=False):
     """
 
 
-class ShareSettings(TypedDict, total=False):
-    """Configuration settings for the share"""
+class ShareSettingsDdnFileShareSettingsInputSerializer(TypedDict, total=False):
+    gid: int
+    """When set created file share will be owned by user with given GID"""
 
+    uid: int
+    """When set created file share will be owned by group with given UID"""
+
+
+class ShareSettingsVastFileShareSettingsInputSerializer(TypedDict, total=False):
     allowed_characters: Literal["LCD", "NPL"]
     """Determines which characters are allowed in file names. Choose between:
 
@@ -81,3 +92,8 @@ class ShareSettings(TypedDict, total=False):
       privileges. Use this option if you trust the root user not to perform
       operations that will corrupt data.
     """
+
+
+ShareSettings: TypeAlias = Union[
+    ShareSettingsDdnFileShareSettingsInputSerializer, ShareSettingsVastFileShareSettingsInputSerializer
+]
