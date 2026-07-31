@@ -18,6 +18,8 @@ from gcore.types.waap import (
     AnalyticsGetTrafficFilteredResponse,
 )
 
+# pyright: reportDeprecated=false
+
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
@@ -121,65 +123,70 @@ class TestAnalytics:
 
     @parametrize
     def test_method_get_requests(self, client: Gcore) -> None:
-        analytics = client.waap.analytics.get_requests(
-            start="2024-04-13T00:00:00+01:00",
-        )
+        with pytest.warns(DeprecationWarning):
+            analytics = client.waap.analytics.get_requests(
+                start="2024-04-13T00:00:00+01:00",
+            )
+
         assert_matches_type(SyncOffsetPage[WaapRequestSummary], analytics, path=["response"])
 
     @parametrize
     def test_method_get_requests_with_all_params(self, client: Gcore) -> None:
-        analytics = client.waap.analytics.get_requests(
-            start="2024-04-13T00:00:00+01:00",
-            countries=["DE", "MY"],
-            decision=["allowed", "blocked"],
-            domains=[1, 2, 3],
-            end="2024-04-14T12:00:00Z",
-            exclude_countries=["DE", "MY"],
-            exclude_decision=["allowed", "blocked"],
-            exclude_domains=[0],
-            exclude_http_methods=["POST", "PUT"],
-            exclude_ips=["1.2.3.4", "2001:678:194::3c25:ddad"],
-            exclude_ja3=["e7d705a3286e19ea42f587b344ee6865"],
-            exclude_ja4=["t13d3113h2_e8f1e7e78f70_ce5650b735ce"],
-            exclude_optional_action=["captcha", "challenge"],
-            exclude_organizations=["Acme corp"],
-            exclude_path=["/home", "/users/*/profile"],
-            exclude_reference_ids=["210b9798eb53baa4e69d31c1071cf03d"],
-            exclude_request_ids=["96763b8fb655e9f18a2e04097b704e39-458959"],
-            exclude_security_rule_names=["SQL injection"],
-            exclude_session_ids=["210b9798eb53baa4e69d31c1071cf03d"],
-            exclude_status_codes=[100],
-            exclude_tags=["mousedevice"],
-            exclude_user_agent=["python-requests", "bot"],
-            exclude_user_agent_clients=["OpenAI GPTBot", "Uptimerobot"],
-            exclude_user_agent_devices=["SMART TV"],
-            http_methods=["GET", "HEAD"],
-            ips=["1.2.3.4", "2001:678:194::3c25:ddad"],
-            ja3=["e7d705a3286e19ea42f587b344ee6865"],
-            ja4=["t13d3113h2_e8f1e7e78f70_ce5650b735ce"],
-            limit=0,
-            offset=0,
-            optional_action=["captcha", "challenge"],
-            ordering="request_time",
-            organizations=["Example Org", "Acme Corp"],
-            path=["/home", "/users/*/profile"],
-            reference_ids=["1140fcddf208cbdf01694e8e2f818a68"],
-            request_ids=["96763b8fb655e9f18a2e04097b704e39-458959"],
-            security_rule_names=["SQL injection"],
-            session_ids=["edab69d73b47cfecc3d3c038ada6c7de"],
-            status_codes=[100],
-            tags=["evasiveclient", "injectionattack"],
-            user_agent=["Mozilla/5.0", "python-requests"],
-            user_agent_clients=["Chrome", "Firefox"],
-            user_agent_devices=["mac", "Nokia", "PlayStation"],
-        )
+        with pytest.warns(DeprecationWarning):
+            analytics = client.waap.analytics.get_requests(
+                start="2024-04-13T00:00:00+01:00",
+                countries=["DE", "MY"],
+                decision=["allowed", "blocked"],
+                domains=[1, 2, 3],
+                end="2024-04-14T12:00:00Z",
+                exclude_countries=["DE", "MY"],
+                exclude_decision=["allowed", "blocked"],
+                exclude_domains=[0],
+                exclude_http_methods=["POST", "PUT"],
+                exclude_ips=["1.2.3.4", "2001:678:194::3c25:ddad"],
+                exclude_ja3=["e7d705a3286e19ea42f587b344ee6865"],
+                exclude_ja4=["t13d3113h2_e8f1e7e78f70_ce5650b735ce"],
+                exclude_optional_action=["captcha", "challenge"],
+                exclude_organizations=["Acme corp"],
+                exclude_path=["/home", "/users/*/profile"],
+                exclude_reference_ids=["210b9798eb53baa4e69d31c1071cf03d"],
+                exclude_request_ids=["96763b8fb655e9f18a2e04097b704e39-458959"],
+                exclude_security_rule_names=["SQL injection"],
+                exclude_session_ids=["210b9798eb53baa4e69d31c1071cf03d"],
+                exclude_status_codes=[100],
+                exclude_tags=["mousedevice"],
+                exclude_user_agent=["python-requests", "bot"],
+                exclude_user_agent_clients=["OpenAI GPTBot", "Uptimerobot"],
+                exclude_user_agent_devices=["SMART TV"],
+                http_methods=["GET", "HEAD"],
+                ips=["1.2.3.4", "2001:678:194::3c25:ddad"],
+                ja3=["e7d705a3286e19ea42f587b344ee6865"],
+                ja4=["t13d3113h2_e8f1e7e78f70_ce5650b735ce"],
+                limit=0,
+                offset=0,
+                optional_action=["captcha", "challenge"],
+                ordering="request_time",
+                organizations=["Example Org", "Acme Corp"],
+                path=["/home", "/users/*/profile"],
+                reference_ids=["1140fcddf208cbdf01694e8e2f818a68"],
+                request_ids=["96763b8fb655e9f18a2e04097b704e39-458959"],
+                security_rule_names=["SQL injection"],
+                session_ids=["edab69d73b47cfecc3d3c038ada6c7de"],
+                status_codes=[100],
+                tags=["evasiveclient", "injectionattack"],
+                user_agent=["Mozilla/5.0", "python-requests"],
+                user_agent_clients=["Chrome", "Firefox"],
+                user_agent_devices=["mac", "Nokia", "PlayStation"],
+            )
+
         assert_matches_type(SyncOffsetPage[WaapRequestSummary], analytics, path=["response"])
 
     @parametrize
     def test_raw_response_get_requests(self, client: Gcore) -> None:
-        response = client.waap.analytics.with_raw_response.get_requests(
-            start="2024-04-13T00:00:00+01:00",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = client.waap.analytics.with_raw_response.get_requests(
+                start="2024-04-13T00:00:00+01:00",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -188,14 +195,15 @@ class TestAnalytics:
 
     @parametrize
     def test_streaming_response_get_requests(self, client: Gcore) -> None:
-        with client.waap.analytics.with_streaming_response.get_requests(
-            start="2024-04-13T00:00:00+01:00",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.waap.analytics.with_streaming_response.get_requests(
+                start="2024-04-13T00:00:00+01:00",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            analytics = response.parse()
-            assert_matches_type(SyncOffsetPage[WaapRequestSummary], analytics, path=["response"])
+                analytics = response.parse()
+                assert_matches_type(SyncOffsetPage[WaapRequestSummary], analytics, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -429,65 +437,70 @@ class TestAsyncAnalytics:
 
     @parametrize
     async def test_method_get_requests(self, async_client: AsyncGcore) -> None:
-        analytics = await async_client.waap.analytics.get_requests(
-            start="2024-04-13T00:00:00+01:00",
-        )
+        with pytest.warns(DeprecationWarning):
+            analytics = await async_client.waap.analytics.get_requests(
+                start="2024-04-13T00:00:00+01:00",
+            )
+
         assert_matches_type(AsyncOffsetPage[WaapRequestSummary], analytics, path=["response"])
 
     @parametrize
     async def test_method_get_requests_with_all_params(self, async_client: AsyncGcore) -> None:
-        analytics = await async_client.waap.analytics.get_requests(
-            start="2024-04-13T00:00:00+01:00",
-            countries=["DE", "MY"],
-            decision=["allowed", "blocked"],
-            domains=[1, 2, 3],
-            end="2024-04-14T12:00:00Z",
-            exclude_countries=["DE", "MY"],
-            exclude_decision=["allowed", "blocked"],
-            exclude_domains=[0],
-            exclude_http_methods=["POST", "PUT"],
-            exclude_ips=["1.2.3.4", "2001:678:194::3c25:ddad"],
-            exclude_ja3=["e7d705a3286e19ea42f587b344ee6865"],
-            exclude_ja4=["t13d3113h2_e8f1e7e78f70_ce5650b735ce"],
-            exclude_optional_action=["captcha", "challenge"],
-            exclude_organizations=["Acme corp"],
-            exclude_path=["/home", "/users/*/profile"],
-            exclude_reference_ids=["210b9798eb53baa4e69d31c1071cf03d"],
-            exclude_request_ids=["96763b8fb655e9f18a2e04097b704e39-458959"],
-            exclude_security_rule_names=["SQL injection"],
-            exclude_session_ids=["210b9798eb53baa4e69d31c1071cf03d"],
-            exclude_status_codes=[100],
-            exclude_tags=["mousedevice"],
-            exclude_user_agent=["python-requests", "bot"],
-            exclude_user_agent_clients=["OpenAI GPTBot", "Uptimerobot"],
-            exclude_user_agent_devices=["SMART TV"],
-            http_methods=["GET", "HEAD"],
-            ips=["1.2.3.4", "2001:678:194::3c25:ddad"],
-            ja3=["e7d705a3286e19ea42f587b344ee6865"],
-            ja4=["t13d3113h2_e8f1e7e78f70_ce5650b735ce"],
-            limit=0,
-            offset=0,
-            optional_action=["captcha", "challenge"],
-            ordering="request_time",
-            organizations=["Example Org", "Acme Corp"],
-            path=["/home", "/users/*/profile"],
-            reference_ids=["1140fcddf208cbdf01694e8e2f818a68"],
-            request_ids=["96763b8fb655e9f18a2e04097b704e39-458959"],
-            security_rule_names=["SQL injection"],
-            session_ids=["edab69d73b47cfecc3d3c038ada6c7de"],
-            status_codes=[100],
-            tags=["evasiveclient", "injectionattack"],
-            user_agent=["Mozilla/5.0", "python-requests"],
-            user_agent_clients=["Chrome", "Firefox"],
-            user_agent_devices=["mac", "Nokia", "PlayStation"],
-        )
+        with pytest.warns(DeprecationWarning):
+            analytics = await async_client.waap.analytics.get_requests(
+                start="2024-04-13T00:00:00+01:00",
+                countries=["DE", "MY"],
+                decision=["allowed", "blocked"],
+                domains=[1, 2, 3],
+                end="2024-04-14T12:00:00Z",
+                exclude_countries=["DE", "MY"],
+                exclude_decision=["allowed", "blocked"],
+                exclude_domains=[0],
+                exclude_http_methods=["POST", "PUT"],
+                exclude_ips=["1.2.3.4", "2001:678:194::3c25:ddad"],
+                exclude_ja3=["e7d705a3286e19ea42f587b344ee6865"],
+                exclude_ja4=["t13d3113h2_e8f1e7e78f70_ce5650b735ce"],
+                exclude_optional_action=["captcha", "challenge"],
+                exclude_organizations=["Acme corp"],
+                exclude_path=["/home", "/users/*/profile"],
+                exclude_reference_ids=["210b9798eb53baa4e69d31c1071cf03d"],
+                exclude_request_ids=["96763b8fb655e9f18a2e04097b704e39-458959"],
+                exclude_security_rule_names=["SQL injection"],
+                exclude_session_ids=["210b9798eb53baa4e69d31c1071cf03d"],
+                exclude_status_codes=[100],
+                exclude_tags=["mousedevice"],
+                exclude_user_agent=["python-requests", "bot"],
+                exclude_user_agent_clients=["OpenAI GPTBot", "Uptimerobot"],
+                exclude_user_agent_devices=["SMART TV"],
+                http_methods=["GET", "HEAD"],
+                ips=["1.2.3.4", "2001:678:194::3c25:ddad"],
+                ja3=["e7d705a3286e19ea42f587b344ee6865"],
+                ja4=["t13d3113h2_e8f1e7e78f70_ce5650b735ce"],
+                limit=0,
+                offset=0,
+                optional_action=["captcha", "challenge"],
+                ordering="request_time",
+                organizations=["Example Org", "Acme Corp"],
+                path=["/home", "/users/*/profile"],
+                reference_ids=["1140fcddf208cbdf01694e8e2f818a68"],
+                request_ids=["96763b8fb655e9f18a2e04097b704e39-458959"],
+                security_rule_names=["SQL injection"],
+                session_ids=["edab69d73b47cfecc3d3c038ada6c7de"],
+                status_codes=[100],
+                tags=["evasiveclient", "injectionattack"],
+                user_agent=["Mozilla/5.0", "python-requests"],
+                user_agent_clients=["Chrome", "Firefox"],
+                user_agent_devices=["mac", "Nokia", "PlayStation"],
+            )
+
         assert_matches_type(AsyncOffsetPage[WaapRequestSummary], analytics, path=["response"])
 
     @parametrize
     async def test_raw_response_get_requests(self, async_client: AsyncGcore) -> None:
-        response = await async_client.waap.analytics.with_raw_response.get_requests(
-            start="2024-04-13T00:00:00+01:00",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.waap.analytics.with_raw_response.get_requests(
+                start="2024-04-13T00:00:00+01:00",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -496,14 +509,15 @@ class TestAsyncAnalytics:
 
     @parametrize
     async def test_streaming_response_get_requests(self, async_client: AsyncGcore) -> None:
-        async with async_client.waap.analytics.with_streaming_response.get_requests(
-            start="2024-04-13T00:00:00+01:00",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.waap.analytics.with_streaming_response.get_requests(
+                start="2024-04-13T00:00:00+01:00",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            analytics = await response.parse()
-            assert_matches_type(AsyncOffsetPage[WaapRequestSummary], analytics, path=["response"])
+                analytics = await response.parse()
+                assert_matches_type(AsyncOffsetPage[WaapRequestSummary], analytics, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -107,16 +107,6 @@ class TestCustomRules:
                         "ips": ["string"],
                         "user_defined_tag": "SQfNklznVLBBpr",
                     },
-                    "response_header": {
-                        "header": "header",
-                        "value": "value",
-                        "match_type": "Exact",
-                        "negation": True,
-                    },
-                    "response_header_exists": {
-                        "header": "header",
-                        "negation": True,
-                    },
                     "session_request_count": {
                         "request_count": 1,
                         "negation": True,
@@ -263,16 +253,6 @@ class TestCustomRules:
                         "http_methods": ["CONNECT"],
                         "ips": ["string"],
                         "user_defined_tag": "SQfNklznVLBBpr",
-                    },
-                    "response_header": {
-                        "header": "header",
-                        "value": "value",
-                        "match_type": "Exact",
-                        "negation": True,
-                    },
-                    "response_header_exists": {
-                        "header": "header",
-                        "negation": True,
                     },
                     "session_request_count": {
                         "request_count": 1,
@@ -607,16 +587,6 @@ class TestAsyncCustomRules:
                         "ips": ["string"],
                         "user_defined_tag": "SQfNklznVLBBpr",
                     },
-                    "response_header": {
-                        "header": "header",
-                        "value": "value",
-                        "match_type": "Exact",
-                        "negation": True,
-                    },
-                    "response_header_exists": {
-                        "header": "header",
-                        "negation": True,
-                    },
                     "session_request_count": {
                         "request_count": 1,
                         "negation": True,
@@ -763,16 +733,6 @@ class TestAsyncCustomRules:
                         "http_methods": ["CONNECT"],
                         "ips": ["string"],
                         "user_defined_tag": "SQfNklznVLBBpr",
-                    },
-                    "response_header": {
-                        "header": "header",
-                        "value": "value",
-                        "match_type": "Exact",
-                        "negation": True,
-                    },
-                    "response_header_exists": {
-                        "header": "header",
-                        "negation": True,
                     },
                     "session_request_count": {
                         "request_count": 1,

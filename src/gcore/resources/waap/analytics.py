@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import List, Iterable, Optional
 from typing_extensions import Literal
 
@@ -214,6 +215,7 @@ class AnalyticsResource(SyncAPIResource):
             model=AnalyticsGetFiltersResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def get_requests(
         self,
         *,
@@ -271,7 +273,9 @@ class AnalyticsResource(SyncAPIResource):
         """Retrieve request log data over account's domains.
 
         The log records every request
-        passing through WAAP towards the origin server.
+        passing through WAAP towards the origin server. Deprecated. Use
+        [GET /v2/analytics/events](/docs/api-reference/waap/analytics/get-security-events)
+        instead.
 
         Args:
           start: Filter data items starting from a specified date in ISO 8601 format
@@ -945,6 +949,7 @@ class AsyncAnalyticsResource(AsyncAPIResource):
             model=AnalyticsGetFiltersResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def get_requests(
         self,
         *,
@@ -1002,7 +1007,9 @@ class AsyncAnalyticsResource(AsyncAPIResource):
         """Retrieve request log data over account's domains.
 
         The log records every request
-        passing through WAAP towards the origin server.
+        passing through WAAP towards the origin server. Deprecated. Use
+        [GET /v2/analytics/events](/docs/api-reference/waap/analytics/get-security-events)
+        instead.
 
         Args:
           start: Filter data items starting from a specified date in ISO 8601 format
@@ -1507,8 +1514,10 @@ class AnalyticsResourceWithRawResponse:
         self.get_filters = to_raw_response_wrapper(
             analytics.get_filters,
         )
-        self.get_requests = to_raw_response_wrapper(
-            analytics.get_requests,
+        self.get_requests = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                analytics.get_requests,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.get_traffic = to_raw_response_wrapper(
             analytics.get_traffic,
@@ -1528,8 +1537,10 @@ class AsyncAnalyticsResourceWithRawResponse:
         self.get_filters = async_to_raw_response_wrapper(
             analytics.get_filters,
         )
-        self.get_requests = async_to_raw_response_wrapper(
-            analytics.get_requests,
+        self.get_requests = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                analytics.get_requests,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.get_traffic = async_to_raw_response_wrapper(
             analytics.get_traffic,
@@ -1549,8 +1560,10 @@ class AnalyticsResourceWithStreamingResponse:
         self.get_filters = to_streamed_response_wrapper(
             analytics.get_filters,
         )
-        self.get_requests = to_streamed_response_wrapper(
-            analytics.get_requests,
+        self.get_requests = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                analytics.get_requests,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.get_traffic = to_streamed_response_wrapper(
             analytics.get_traffic,
@@ -1570,8 +1583,10 @@ class AsyncAnalyticsResourceWithStreamingResponse:
         self.get_filters = async_to_streamed_response_wrapper(
             analytics.get_filters,
         )
-        self.get_requests = async_to_streamed_response_wrapper(
-            analytics.get_requests,
+        self.get_requests = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                analytics.get_requests,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.get_traffic = async_to_streamed_response_wrapper(
             analytics.get_traffic,

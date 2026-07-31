@@ -26,8 +26,6 @@ __all__ = [
     "ConditionOrganization",
     "ConditionOwnerTypes",
     "ConditionRequestRate",
-    "ConditionResponseHeader",
-    "ConditionResponseHeaderExists",
     "ConditionSessionRequestCount",
     "ConditionTags",
     "ConditionURL",
@@ -293,32 +291,6 @@ class ConditionRequestRate(TypedDict, total=False):
     """
 
 
-class ConditionResponseHeader(TypedDict, total=False):
-    """Match a response header"""
-
-    header: Required[str]
-    """The response header name"""
-
-    value: Required[str]
-    """The response header value"""
-
-    match_type: Literal["Exact", "Contains"]
-    """The type of matching condition for header and value."""
-
-    negation: bool
-    """Whether or not to apply a boolean NOT operation to the rule's condition"""
-
-
-class ConditionResponseHeaderExists(TypedDict, total=False):
-    """Match when a response header is present"""
-
-    header: Required[str]
-    """The response header name"""
-
-    negation: bool
-    """Whether or not to apply a boolean NOT operation to the rule's condition"""
-
-
 class ConditionSessionRequestCount(TypedDict, total=False):
     """Match the number of dynamic page requests made in a WAAP session"""
 
@@ -385,7 +357,11 @@ class ConditionUserDefinedTags(TypedDict, total=False):
 
 class Condition(TypedDict, total=False):
     """
-    The criteria of an incoming web request and the models of the various values those criteria can take
+    The criteria of an incoming web request and the models of the various values those criteria can take.
+
+    Used for creating and updating custom rules. Does not include the ResponseHeader/
+    ResponseHeaderExists condition types, which are only readable on existing rules
+    (see CustomRuleConditionResponse).
     """
 
     content_type: ConditionContentType
@@ -432,12 +408,6 @@ class Condition(TypedDict, total=False):
 
     request_rate: ConditionRequestRate
     """Match the rate at which requests come in that match certain conditions"""
-
-    response_header: ConditionResponseHeader
-    """Match a response header"""
-
-    response_header_exists: ConditionResponseHeaderExists
-    """Match when a response header is present"""
 
     session_request_count: ConditionSessionRequestCount
     """Match the number of dynamic page requests made in a WAAP session"""

@@ -363,7 +363,9 @@ class ConditionUserDefinedTags(BaseModel):
 
 class Condition(BaseModel):
     """
-    The criteria of an incoming web request and the models of the various values those criteria can take
+    The full set of custom rule condition types, including ResponseHeader/ResponseHeaderExists
+    conditions that may exist on rules already stored in Lime but cannot be created or updated
+    through the API.
     """
 
     content_type: Optional[ConditionContentType] = None
