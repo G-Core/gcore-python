@@ -541,6 +541,12 @@ class ClustersResource(ClustersResourceCustomMixin, SyncAPIResource):
         instead.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_id: GPU cluster ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -588,6 +594,12 @@ class ClustersResource(ClustersResourceCustomMixin, SyncAPIResource):
         instead.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_id: GPU cluster ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1274,6 +1286,12 @@ class AsyncClustersResource(AsyncClustersResourceCustomMixin, AsyncAPIResource):
         instead.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_id: GPU cluster ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1321,6 +1339,12 @@ class AsyncClustersResource(AsyncClustersResourceCustomMixin, AsyncAPIResource):
         instead.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_id: GPU cluster ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

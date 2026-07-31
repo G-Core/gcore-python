@@ -24,7 +24,12 @@ from .servers_custom import ServersResourceCustomMixin, AsyncServersResourceCust
 from ....._base_client import AsyncPaginator, make_request_options
 from .....types.cloud.console import Console
 from .....types.cloud.task_id_list import TaskIDList
-from .....types.cloud.gpu_baremetal.clusters import server_list_params, server_delete_params, server_replace_params
+from .....types.cloud.gpu_baremetal.clusters import (
+    server_list_params,
+    server_delete_params,
+    server_replace_params,
+    server_get_console_params,
+)
 from .....types.cloud.gpu_baremetal.clusters.gpu_baremetal_cluster_server import GPUBaremetalClusterServer
 from .....types.cloud.gpu_baremetal.clusters.gpu_baremetal_cluster_server_v1 import GPUBaremetalClusterServerV1
 
@@ -241,6 +246,7 @@ class ServersResource(ServersResourceCustomMixin, SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        console_type: Literal["novnc", "serial", "spice", "vnc"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -252,6 +258,14 @@ class ServersResource(ServersResourceCustomMixin, SyncAPIResource):
         Get bare metal GPU cluster server console URL
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
+          console_type: Console type
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -274,7 +288,11 @@ class ServersResource(ServersResourceCustomMixin, SyncAPIResource):
                 instance_id=instance_id,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"console_type": console_type}, server_get_console_params.ServerGetConsoleParams),
             ),
             cast_to=Console,
         )
@@ -293,9 +311,15 @@ class ServersResource(ServersResourceCustomMixin, SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GPUBaremetalClusterServerV1:
         """
-        Stops and then starts the server, effectively performing a hard reboot.
+        Stops and then starts the server, performing a hard reboot.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -340,6 +364,12 @@ class ServersResource(ServersResourceCustomMixin, SyncAPIResource):
         Reboot one bare metal GPU cluster server
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -712,6 +742,7 @@ class AsyncServersResource(AsyncServersResourceCustomMixin, AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
+        console_type: Literal["novnc", "serial", "spice", "vnc"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -723,6 +754,14 @@ class AsyncServersResource(AsyncServersResourceCustomMixin, AsyncAPIResource):
         Get bare metal GPU cluster server console URL
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
+          console_type: Console type
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -745,7 +784,13 @@ class AsyncServersResource(AsyncServersResourceCustomMixin, AsyncAPIResource):
                 instance_id=instance_id,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"console_type": console_type}, server_get_console_params.ServerGetConsoleParams
+                ),
             ),
             cast_to=Console,
         )
@@ -764,9 +809,15 @@ class AsyncServersResource(AsyncServersResourceCustomMixin, AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GPUBaremetalClusterServerV1:
         """
-        Stops and then starts the server, effectively performing a hard reboot.
+        Stops and then starts the server, performing a hard reboot.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -811,6 +862,12 @@ class AsyncServersResource(AsyncServersResourceCustomMixin, AsyncAPIResource):
         Reboot one bare metal GPU cluster server
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
