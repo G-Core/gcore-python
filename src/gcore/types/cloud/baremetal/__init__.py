@@ -7,6 +7,7 @@ from .baremetal_server import BaremetalServer as BaremetalServer
 from .image_list_params import ImageListParams as ImageListParams
 from .flavor_list_params import FlavorListParams as FlavorListParams
 from .server_list_params import ServerListParams as ServerListParams
+from .server_action_params import ServerActionParams as ServerActionParams
 from .server_create_params import ServerCreateParams as ServerCreateParams
 from .server_delete_params import ServerDeleteParams as ServerDeleteParams
 from .server_update_params import ServerUpdateParams as ServerUpdateParams

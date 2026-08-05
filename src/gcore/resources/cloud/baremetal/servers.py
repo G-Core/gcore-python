@@ -4,12 +4,12 @@ from __future__ import annotations
 
 from typing import Dict, Union, Iterable, Optional
 from datetime import datetime
-from typing_extensions import Literal
+from typing_extensions import Literal, overload
 
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import path_template, maybe_transform, async_maybe_transform
+from ...._utils import path_template, required_args, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -23,6 +23,7 @@ from .servers_custom import ServersResourceCustomMixin, AsyncServersResourceCust
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.cloud.baremetal import (
     server_list_params,
+    server_action_params,
     server_create_params,
     server_delete_params,
     server_update_params,
@@ -505,6 +506,125 @@ class ServersResource(ServersResourceCustomMixin, SyncAPIResource):
                     },
                     server_delete_params.ServerDeleteParams,
                 ),
+            ),
+            cast_to=TaskIDList,
+        )
+
+    @overload
+    def action(
+        self,
+        server_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["start"],
+        activate_profile: Optional[bool] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """
+        The action can be one of: start, stop, reboot or `reboot_hard`.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          server_id: Server ID
+
+          action: Instance action name
+
+          activate_profile: Used on start instance to activate Advanced DDoS profile
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def action(
+        self,
+        server_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["reboot", "reboot_hard", "stop"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """
+        The action can be one of: start, stop, reboot or `reboot_hard`.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          server_id: Server ID
+
+          action: Instance action name
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["action"])
+    def action(
+        self,
+        server_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["start"] | Literal["reboot", "reboot_hard", "stop"],
+        activate_profile: Optional[bool] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not server_id:
+            raise ValueError(f"Expected a non-empty value for `server_id` but received {server_id!r}")
+        return self._post(
+            path_template(
+                "/cloud/v2/baremetal/{project_id}/{region_id}/{server_id}/action",
+                project_id=project_id,
+                region_id=region_id,
+                server_id=server_id,
+            ),
+            body=maybe_transform(
+                {
+                    "action": action,
+                    "activate_profile": activate_profile,
+                },
+                server_action_params.ServerActionParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=TaskIDList,
         )
@@ -1102,6 +1222,125 @@ class AsyncServersResource(AsyncServersResourceCustomMixin, AsyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    @overload
+    async def action(
+        self,
+        server_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["start"],
+        activate_profile: Optional[bool] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """
+        The action can be one of: start, stop, reboot or `reboot_hard`.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          server_id: Server ID
+
+          action: Instance action name
+
+          activate_profile: Used on start instance to activate Advanced DDoS profile
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def action(
+        self,
+        server_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["reboot", "reboot_hard", "stop"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """
+        The action can be one of: start, stop, reboot or `reboot_hard`.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          server_id: Server ID
+
+          action: Instance action name
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["action"])
+    async def action(
+        self,
+        server_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["start"] | Literal["reboot", "reboot_hard", "stop"],
+        activate_profile: Optional[bool] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not server_id:
+            raise ValueError(f"Expected a non-empty value for `server_id` but received {server_id!r}")
+        return await self._post(
+            path_template(
+                "/cloud/v2/baremetal/{project_id}/{region_id}/{server_id}/action",
+                project_id=project_id,
+                region_id=region_id,
+                server_id=server_id,
+            ),
+            body=await async_maybe_transform(
+                {
+                    "action": action,
+                    "activate_profile": activate_profile,
+                },
+                server_action_params.ServerActionParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TaskIDList,
+        )
+
     async def get(
         self,
         server_id: str,
@@ -1237,6 +1476,9 @@ class ServersResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             servers.delete,
         )
+        self.action = to_raw_response_wrapper(
+            servers.action,
+        )
         self.get = to_raw_response_wrapper(
             servers.get,
         )
@@ -1266,6 +1508,9 @@ class AsyncServersResourceWithRawResponse:
         )
         self.delete = async_to_raw_response_wrapper(
             servers.delete,
+        )
+        self.action = async_to_raw_response_wrapper(
+            servers.action,
         )
         self.get = async_to_raw_response_wrapper(
             servers.get,
@@ -1297,6 +1542,9 @@ class ServersResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             servers.delete,
         )
+        self.action = to_streamed_response_wrapper(
+            servers.action,
+        )
         self.get = to_streamed_response_wrapper(
             servers.get,
         )
@@ -1326,6 +1574,9 @@ class AsyncServersResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             servers.delete,
+        )
+        self.action = async_to_streamed_response_wrapper(
+            servers.action,
         )
         self.get = async_to_streamed_response_wrapper(
             servers.get,

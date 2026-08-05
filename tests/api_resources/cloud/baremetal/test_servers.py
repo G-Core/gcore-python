@@ -281,6 +281,117 @@ class TestServers:
             )
 
     @parametrize
+    def test_method_action_overload_1(self, client: Gcore) -> None:
+        server = client.cloud.baremetal.servers.action(
+            server_id="024a29e-b4b7-4c91-9a46-505be123d9f8",
+            project_id=1,
+            region_id=1,
+            action="start",
+        )
+        assert_matches_type(TaskIDList, server, path=["response"])
+
+    @parametrize
+    def test_method_action_with_all_params_overload_1(self, client: Gcore) -> None:
+        server = client.cloud.baremetal.servers.action(
+            server_id="024a29e-b4b7-4c91-9a46-505be123d9f8",
+            project_id=1,
+            region_id=1,
+            action="start",
+            activate_profile=True,
+        )
+        assert_matches_type(TaskIDList, server, path=["response"])
+
+    @parametrize
+    def test_raw_response_action_overload_1(self, client: Gcore) -> None:
+        response = client.cloud.baremetal.servers.with_raw_response.action(
+            server_id="024a29e-b4b7-4c91-9a46-505be123d9f8",
+            project_id=1,
+            region_id=1,
+            action="start",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        server = response.parse()
+        assert_matches_type(TaskIDList, server, path=["response"])
+
+    @parametrize
+    def test_streaming_response_action_overload_1(self, client: Gcore) -> None:
+        with client.cloud.baremetal.servers.with_streaming_response.action(
+            server_id="024a29e-b4b7-4c91-9a46-505be123d9f8",
+            project_id=1,
+            region_id=1,
+            action="start",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            server = response.parse()
+            assert_matches_type(TaskIDList, server, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_action_overload_1(self, client: Gcore) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `server_id` but received ''"):
+            client.cloud.baremetal.servers.with_raw_response.action(
+                server_id="",
+                project_id=1,
+                region_id=1,
+                action="start",
+            )
+
+    @parametrize
+    def test_method_action_overload_2(self, client: Gcore) -> None:
+        server = client.cloud.baremetal.servers.action(
+            server_id="024a29e-b4b7-4c91-9a46-505be123d9f8",
+            project_id=1,
+            region_id=1,
+            action="stop",
+        )
+        assert_matches_type(TaskIDList, server, path=["response"])
+
+    @parametrize
+    def test_raw_response_action_overload_2(self, client: Gcore) -> None:
+        response = client.cloud.baremetal.servers.with_raw_response.action(
+            server_id="024a29e-b4b7-4c91-9a46-505be123d9f8",
+            project_id=1,
+            region_id=1,
+            action="stop",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        server = response.parse()
+        assert_matches_type(TaskIDList, server, path=["response"])
+
+    @parametrize
+    def test_streaming_response_action_overload_2(self, client: Gcore) -> None:
+        with client.cloud.baremetal.servers.with_streaming_response.action(
+            server_id="024a29e-b4b7-4c91-9a46-505be123d9f8",
+            project_id=1,
+            region_id=1,
+            action="stop",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            server = response.parse()
+            assert_matches_type(TaskIDList, server, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_action_overload_2(self, client: Gcore) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `server_id` but received ''"):
+            client.cloud.baremetal.servers.with_raw_response.action(
+                server_id="",
+                project_id=1,
+                region_id=1,
+                action="stop",
+            )
+
+    @parametrize
     def test_method_get(self, client: Gcore) -> None:
         server = client.cloud.baremetal.servers.get(
             server_id="024a29e-b4b7-4c91-9a46-505be123d9f8",
@@ -645,6 +756,117 @@ class TestAsyncServers:
                 server_id="",
                 project_id=1,
                 region_id=1,
+            )
+
+    @parametrize
+    async def test_method_action_overload_1(self, async_client: AsyncGcore) -> None:
+        server = await async_client.cloud.baremetal.servers.action(
+            server_id="024a29e-b4b7-4c91-9a46-505be123d9f8",
+            project_id=1,
+            region_id=1,
+            action="start",
+        )
+        assert_matches_type(TaskIDList, server, path=["response"])
+
+    @parametrize
+    async def test_method_action_with_all_params_overload_1(self, async_client: AsyncGcore) -> None:
+        server = await async_client.cloud.baremetal.servers.action(
+            server_id="024a29e-b4b7-4c91-9a46-505be123d9f8",
+            project_id=1,
+            region_id=1,
+            action="start",
+            activate_profile=True,
+        )
+        assert_matches_type(TaskIDList, server, path=["response"])
+
+    @parametrize
+    async def test_raw_response_action_overload_1(self, async_client: AsyncGcore) -> None:
+        response = await async_client.cloud.baremetal.servers.with_raw_response.action(
+            server_id="024a29e-b4b7-4c91-9a46-505be123d9f8",
+            project_id=1,
+            region_id=1,
+            action="start",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        server = await response.parse()
+        assert_matches_type(TaskIDList, server, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_action_overload_1(self, async_client: AsyncGcore) -> None:
+        async with async_client.cloud.baremetal.servers.with_streaming_response.action(
+            server_id="024a29e-b4b7-4c91-9a46-505be123d9f8",
+            project_id=1,
+            region_id=1,
+            action="start",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            server = await response.parse()
+            assert_matches_type(TaskIDList, server, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_action_overload_1(self, async_client: AsyncGcore) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `server_id` but received ''"):
+            await async_client.cloud.baremetal.servers.with_raw_response.action(
+                server_id="",
+                project_id=1,
+                region_id=1,
+                action="start",
+            )
+
+    @parametrize
+    async def test_method_action_overload_2(self, async_client: AsyncGcore) -> None:
+        server = await async_client.cloud.baremetal.servers.action(
+            server_id="024a29e-b4b7-4c91-9a46-505be123d9f8",
+            project_id=1,
+            region_id=1,
+            action="stop",
+        )
+        assert_matches_type(TaskIDList, server, path=["response"])
+
+    @parametrize
+    async def test_raw_response_action_overload_2(self, async_client: AsyncGcore) -> None:
+        response = await async_client.cloud.baremetal.servers.with_raw_response.action(
+            server_id="024a29e-b4b7-4c91-9a46-505be123d9f8",
+            project_id=1,
+            region_id=1,
+            action="stop",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        server = await response.parse()
+        assert_matches_type(TaskIDList, server, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_action_overload_2(self, async_client: AsyncGcore) -> None:
+        async with async_client.cloud.baremetal.servers.with_streaming_response.action(
+            server_id="024a29e-b4b7-4c91-9a46-505be123d9f8",
+            project_id=1,
+            region_id=1,
+            action="stop",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            server = await response.parse()
+            assert_matches_type(TaskIDList, server, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_action_overload_2(self, async_client: AsyncGcore) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `server_id` but received ''"):
+            await async_client.cloud.baremetal.servers.with_raw_response.action(
+                server_id="",
+                project_id=1,
+                region_id=1,
+                action="stop",
             )
 
     @parametrize
