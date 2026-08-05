@@ -1,5 +1,27 @@
 # Changelog
 
+## [0.55.0](https://github.com/G-Core/gcore-python/compare/v0.54.0...v0.55.0) (2026-08-05)
+
+
+### Features
+
+* **cdn:** add logs uploader field remapping ([4acc29c](https://github.com/G-Core/gcore-python/commit/4acc29cbc55f1a56aac8519cea5dd2b802fe1a72))
+* **cloud:** add console_type parameter to GPU cluster server console endpoint ([6abfa4e](https://github.com/G-Core/gcore-python/commit/6abfa4e84462a0d42bfe6c13b74a4886034bfb56))
+* **cloud:** expose bare metal server action endpoint ([b680979](https://github.com/G-Core/gcore-python/commit/b6809793158aeec1ae42ec76940b3f9e7fa8da0c))
+* **cloud:** update cloud OpenAPI spec ([506cae5](https://github.com/G-Core/gcore-python/commit/506cae5b7417287128ee7b9b392b2b1ceb6a7de1))
+
+
+### Bug Fixes
+
+* **cdn:** update applied-preset examples for flattened response model ([a40591f](https://github.com/G-Core/gcore-python/commit/a40591f609d365b47b2ce8abfebae77d10bec470))
+
+
+### Chores
+
+* **cdn:** update cdn OpenAPI spec ([e640b7e](https://github.com/G-Core/gcore-python/commit/e640b7ee0778412f51e0f602fcb915c2c752317b))
+* **dns:** update dns OpenAPI spec ([7b293b9](https://github.com/G-Core/gcore-python/commit/7b293b958eb3bfb614c0cc0afed0fc187d443261))
+* **waap:** update waap OpenAPI spec ([e713f6d](https://github.com/G-Core/gcore-python/commit/e713f6dcee62144f361389545027ef0b805eb00a))
+
 ## [0.54.0](https://github.com/G-Core/gcore-python/compare/v0.53.0...v0.54.0) (2026-07-28)
 
 
