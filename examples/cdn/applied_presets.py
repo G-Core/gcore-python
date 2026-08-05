@@ -6,7 +6,6 @@ from gcore import Gcore
 from gcore.types.cdn import CDNResource, PresetDetail
 from gcore.types.cdn.presets import AppliedPresetFields
 from gcore.types.cdn.cdn_resources import CDNResourceRule
-from gcore.types.cdn.presets.applied_preset import AppliedObjects
 
 
 def main() -> None:
@@ -98,8 +97,10 @@ def apply_preset(*, client: Gcore, preset_id: int, object_id: int) -> None:
 def get_applied_objects(*, client: Gcore, preset_id: int) -> None:
     print("\n=== GET APPLIED OBJECTS ===")
     result = client.cdn.presets.applied.get_objects(preset_id)
-    if isinstance(result, AppliedObjects) and result.object_ids:
-        print(f"Preset {preset_id} is applied to {result.object_type} objects: {result.object_ids}")
+    object_ids = getattr(result, "object_ids", None)
+    if object_ids:
+        object_type = getattr(result, "object_type", None)
+        print(f"Preset {preset_id} is applied to {object_type} objects: {object_ids}")
     else:
         message = getattr(result, "message", None)
         print(f"Preset {preset_id} is not applied to any objects: {message}")
