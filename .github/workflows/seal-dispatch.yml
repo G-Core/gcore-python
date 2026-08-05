@@ -6,6 +6,17 @@ name: Seal custom code (dispatch)
 # skipped by the loop guard below, so the bot's own pushes (the "Build SDK"
 # squash commit and the docs-regen commit) can't trigger a reseal loop.
 #
+# Automation pushes are skipped wholesale (guard 3): "Sync from production"
+# fast-forwards this trunk with release commits (version/CHANGELOG) using a
+# gcore-sdk-bot App token, and App-token pushes DO trigger workflows (unlike
+# the built-in GITHUB_TOKEN). Those release commits need no dispatch: stlc's
+# `advanceIntegratedForward` moves each tracking file's recorded `integrated`
+# up to the live origin/main tip at the start of every build, so a back-synced
+# release commit is absorbed by the next regular build. Dispatching anyway
+# would run a full multi-target reseal build per release, and its codegen-side
+# trunk lock spuriously fails while a sibling language's back-sync is still
+# pending.
+#
 # This workflow is itself custom code: it must be sealed once (stlc build
 # --commit) to bootstrap, after which it is preserved across regenerations.
 on:
@@ -50,6 +61,16 @@ jobs:
           # Loop guard 2: skip stlc-bot commits (e.g. the docs-regen commit).
           if [ "$HEAD_AUTHOR_USERNAME" = "stlc-bot" ] || [ "$HEAD_AUTHOR_NAME" = "stlc-bot" ]; then
             echo "Head commit authored by stlc-bot — skipping dispatch."
+            exit 0
+          fi
+
+          # Loop guard 3: skip pushes made by the gcore-sdk-bot App. Every such
+          # push is automation — the stlc build push (already caught above) and
+          # the "Sync from production" back-sync, whose head is a release commit
+          # that needs no reseal (see the header comment). Genuine out-of-band
+          # custom code arrives as a human PR merge, where the actor is a user.
+          if [ "$ACTOR" = "gcore-sdk-bot[bot]" ]; then
+            echo "Push performed by gcore-sdk-bot[bot] (automation, e.g. production back-sync) — skipping dispatch."
             exit 0
           fi
 

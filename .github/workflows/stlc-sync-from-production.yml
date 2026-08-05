@@ -11,7 +11,7 @@ on:
     types: [prod-released]
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: stlc-sync-from-production
@@ -24,14 +24,26 @@ jobs:
     env:
       PRODUCTION_REPO: G-Core/gcore-python
     steps:
+      - name: Generate gcore-sdk-bot token
+        id: app-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.GCORE_SDK_BOT_CLIENT_ID }}
+          private-key: ${{ secrets.GCORE_SDK_BOT_PRIVATE_KEY }}
+          owner: G-Core
+          repositories: gcore-python-staging
+          permission-contents: write
+          permission-workflows: write
+
       - name: Check out staging
         uses: actions/checkout@v6
         with:
           fetch-depth: 0
+          token: ${{ steps.app-token.outputs.token }}
 
       - name: Fetch production main
         run: |
-          # Read-only public fetch via the built-in token.
+          # Read-only public fetch without repository credentials.
           git remote add production "https://github.com/${PRODUCTION_REPO}.git"
           git fetch production main
 
