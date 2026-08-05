@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
-
 import httpx
 
 from ...._types import Body, Query, Headers, NoneType, NotGiven, not_given
@@ -114,15 +112,12 @@ class AppliedResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            AppliedPreset,
-            self._get(
-                path_template("/cdn/presets/{preset_id}/applied", preset_id=preset_id),
-                options=make_request_options(
-                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-                ),
-                cast_to=cast(Any, AppliedPreset),  # Union types cannot be passed in as arguments in the type system
+        return self._get(
+            path_template("/cdn/presets/{preset_id}/applied", preset_id=preset_id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
+            cast_to=AppliedPreset,
         )
 
     def get_resource_preset(
@@ -317,15 +312,12 @@ class AsyncAppliedResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            AppliedPreset,
-            await self._get(
-                path_template("/cdn/presets/{preset_id}/applied", preset_id=preset_id),
-                options=make_request_options(
-                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-                ),
-                cast_to=cast(Any, AppliedPreset),  # Union types cannot be passed in as arguments in the type system
+        return await self._get(
+            path_template("/cdn/presets/{preset_id}/applied", preset_id=preset_id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
+            cast_to=AppliedPreset,
         )
 
     async def get_resource_preset(

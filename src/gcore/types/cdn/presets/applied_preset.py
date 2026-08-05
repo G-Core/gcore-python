@@ -1,23 +1,25 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
-from typing_extensions import TypeAlias
+from typing import List, Optional
 
 from ...._models import BaseModel
 
-__all__ = ["AppliedPreset", "AppliedObjects", "NoAppliedObjects"]
+__all__ = ["AppliedPreset"]
 
 
-class AppliedObjects(BaseModel):
-    object_ids: Optional[List[int]] = None
-    """IDs of the objects the preset is currently applied to."""
+class AppliedPreset(BaseModel):
+    object_ids: List[int]
+    """IDs of the objects the preset is currently applied to.
 
-    object_type: Optional[str] = None
+    Empty when the preset is not applied to anything.
+    """
+
+    object_type: str
     """Type of objects the preset is applied to."""
 
-
-class NoAppliedObjects(BaseModel):
     message: Optional[str] = None
+    """Deprecated.
 
-
-AppliedPreset: TypeAlias = Union[AppliedObjects, NoAppliedObjects]
+    Present only when `object_ids` is empty. Check `object_ids` instead. This field
+    is kept for backward compatibility and will be removed in a future version.
+    """
