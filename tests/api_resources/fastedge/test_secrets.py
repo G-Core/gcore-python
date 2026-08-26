@@ -9,9 +9,10 @@ import pytest
 
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
+from gcore.pagination import SyncOffsetPageFastedgeSecrets, AsyncOffsetPageFastedgeSecrets
 from gcore.types.fastedge import (
     Secret,
-    SecretListResponse,
+    SecretShort,
     SecretCreateResponse,
 )
 
@@ -115,15 +116,18 @@ class TestSecrets:
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
         secret = client.fastedge.secrets.list()
-        assert_matches_type(SecretListResponse, secret, path=["response"])
+        assert_matches_type(SyncOffsetPageFastedgeSecrets[SecretShort], secret, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
         secret = client.fastedge.secrets.list(
             app_id=1,
+            limit=1,
+            offset=0,
+            search="x",
             secret_name="x",
         )
-        assert_matches_type(SecretListResponse, secret, path=["response"])
+        assert_matches_type(SyncOffsetPageFastedgeSecrets[SecretShort], secret, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
@@ -132,7 +136,7 @@ class TestSecrets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         secret = response.parse()
-        assert_matches_type(SecretListResponse, secret, path=["response"])
+        assert_matches_type(SyncOffsetPageFastedgeSecrets[SecretShort], secret, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
@@ -141,7 +145,7 @@ class TestSecrets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             secret = response.parse()
-            assert_matches_type(SecretListResponse, secret, path=["response"])
+            assert_matches_type(SyncOffsetPageFastedgeSecrets[SecretShort], secret, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -364,15 +368,18 @@ class TestAsyncSecrets:
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
         secret = await async_client.fastedge.secrets.list()
-        assert_matches_type(SecretListResponse, secret, path=["response"])
+        assert_matches_type(AsyncOffsetPageFastedgeSecrets[SecretShort], secret, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
         secret = await async_client.fastedge.secrets.list(
             app_id=1,
+            limit=1,
+            offset=0,
+            search="x",
             secret_name="x",
         )
-        assert_matches_type(SecretListResponse, secret, path=["response"])
+        assert_matches_type(AsyncOffsetPageFastedgeSecrets[SecretShort], secret, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
@@ -381,7 +388,7 @@ class TestAsyncSecrets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         secret = await response.parse()
-        assert_matches_type(SecretListResponse, secret, path=["response"])
+        assert_matches_type(AsyncOffsetPageFastedgeSecrets[SecretShort], secret, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
@@ -390,7 +397,7 @@ class TestAsyncSecrets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             secret = await response.parse()
-            assert_matches_type(SecretListResponse, secret, path=["response"])
+            assert_matches_type(AsyncOffsetPageFastedgeSecrets[SecretShort], secret, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

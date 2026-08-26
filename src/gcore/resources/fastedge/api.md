@@ -31,14 +31,14 @@ Methods:
 Types:
 
 ```python
-from gcore.types.fastedge import Secret, SecretShort, SecretCreateResponse, SecretListResponse
+from gcore.types.fastedge import Secret, SecretShort, SecretCreateResponse
 ```
 
 Methods:
 
 - <code title="post /fastedge/v1/secrets">client.fastedge.secrets.<a href="./src/gcore/resources/fastedge/secrets.py">create</a>(\*\*<a href="src/gcore/types/fastedge/secret_create_params.py">params</a>) -> <a href="./src/gcore/types/fastedge/secret_create_response.py">SecretCreateResponse</a></code>
 - <code title="patch /fastedge/v1/secrets/{secret_id}">client.fastedge.secrets.<a href="./src/gcore/resources/fastedge/secrets.py">update</a>(secret_id, \*\*<a href="src/gcore/types/fastedge/secret_update_params.py">params</a>) -> <a href="./src/gcore/types/fastedge/secret.py">Secret</a></code>
-- <code title="get /fastedge/v1/secrets">client.fastedge.secrets.<a href="./src/gcore/resources/fastedge/secrets.py">list</a>(\*\*<a href="src/gcore/types/fastedge/secret_list_params.py">params</a>) -> <a href="./src/gcore/types/fastedge/secret_list_response.py">SecretListResponse</a></code>
+- <code title="get /fastedge/v1/secrets">client.fastedge.secrets.<a href="./src/gcore/resources/fastedge/secrets.py">list</a>(\*\*<a href="src/gcore/types/fastedge/secret_list_params.py">params</a>) -> <a href="./src/gcore/types/fastedge/secret_short.py">SyncOffsetPageFastedgeSecrets[SecretShort]</a></code>
 - <code title="delete /fastedge/v1/secrets/{secret_id}">client.fastedge.secrets.<a href="./src/gcore/resources/fastedge/secrets.py">delete</a>(secret_id, \*\*<a href="src/gcore/types/fastedge/secret_delete_params.py">params</a>) -> None</code>
 - <code title="get /fastedge/v1/secrets/{secret_id}">client.fastedge.secrets.<a href="./src/gcore/resources/fastedge/secrets.py">get</a>(secret_id) -> <a href="./src/gcore/types/fastedge/secret.py">Secret</a></code>
 - <code title="put /fastedge/v1/secrets/{secret_id}">client.fastedge.secrets.<a href="./src/gcore/resources/fastedge/secrets.py">replace</a>(secret_id, \*\*<a href="src/gcore/types/fastedge/secret_replace_params.py">params</a>) -> <a href="./src/gcore/types/fastedge/secret.py">Secret</a></code>

@@ -76,6 +76,7 @@ class TestKvStores:
             app_id=1,
             limit=1,
             offset=0,
+            search="x",
         )
         assert_matches_type(SyncOffsetPageFastedgeKvStores[KvStoreShort], kv_store, path=["response"])
 
@@ -268,6 +269,7 @@ class TestAsyncKvStores:
             app_id=1,
             limit=1,
             offset=0,
+            search="x",
         )
         assert_matches_type(AsyncOffsetPageFastedgeKvStores[KvStoreShort], kv_store, path=["response"])
 

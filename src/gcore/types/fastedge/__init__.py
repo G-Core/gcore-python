@@ -27,7 +27,6 @@ from .binary_list_response import BinaryListResponse as BinaryListResponse
 from .kv_store_list_params import KvStoreListParams as KvStoreListParams
 from .secret_create_params import SecretCreateParams as SecretCreateParams
 from .secret_delete_params import SecretDeleteParams as SecretDeleteParams
-from .secret_list_response import SecretListResponse as SecretListResponse
 from .secret_update_params import SecretUpdateParams as SecretUpdateParams
 from .template_list_params import TemplateListParams as TemplateListParams
 from .secret_replace_params import SecretReplaceParams as SecretReplaceParams

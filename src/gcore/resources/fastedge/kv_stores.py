@@ -101,6 +101,7 @@ class KvStoresResource(SyncAPIResource):
         app_id: int | Omit = omit,
         limit: int | Omit = omit,
         offset: int | Omit = omit,
+        search: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -119,6 +120,8 @@ class KvStoresResource(SyncAPIResource):
           limit: Maximum number of stores to return per page
 
           offset: Number of stores to skip for pagination
+
+          search: Search term for store names
 
           extra_headers: Send extra headers
 
@@ -141,6 +144,7 @@ class KvStoresResource(SyncAPIResource):
                         "app_id": app_id,
                         "limit": limit,
                         "offset": offset,
+                        "search": search,
                     },
                     kv_store_list_params.KvStoreListParams,
                 ),
@@ -341,6 +345,7 @@ class AsyncKvStoresResource(AsyncAPIResource):
         app_id: int | Omit = omit,
         limit: int | Omit = omit,
         offset: int | Omit = omit,
+        search: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -359,6 +364,8 @@ class AsyncKvStoresResource(AsyncAPIResource):
           limit: Maximum number of stores to return per page
 
           offset: Number of stores to skip for pagination
+
+          search: Search term for store names
 
           extra_headers: Send extra headers
 
@@ -381,6 +388,7 @@ class AsyncKvStoresResource(AsyncAPIResource):
                         "app_id": app_id,
                         "limit": limit,
                         "offset": offset,
+                        "search": search,
                     },
                     kv_store_list_params.KvStoreListParams,
                 ),

@@ -16,7 +16,8 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
+from ...pagination import SyncOffsetPageFastedgeSecrets, AsyncOffsetPageFastedgeSecrets
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.fastedge import (
     secret_list_params,
     secret_create_params,
@@ -25,7 +26,7 @@ from ...types.fastedge import (
     secret_replace_params,
 )
 from ...types.fastedge.secret import Secret
-from ...types.fastedge.secret_list_response import SecretListResponse
+from ...types.fastedge.secret_short import SecretShort
 from ...types.fastedge.secret_create_response import SecretCreateResponse
 
 __all__ = ["SecretsResource", "AsyncSecretsResource"]
@@ -156,6 +157,9 @@ class SecretsResource(SyncAPIResource):
         self,
         *,
         app_id: int | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
+        search: str | Omit = omit,
         secret_name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -163,7 +167,7 @@ class SecretsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SecretListResponse:
+    ) -> SyncOffsetPageFastedgeSecrets[SecretShort]:
         """Retrieve encrypted secrets available to the authenticated client.
 
         Secrets can be
@@ -171,6 +175,12 @@ class SecretsResource(SyncAPIResource):
 
         Args:
           app_id: App ID
+
+          limit: Maximum number of secrets to return per page
+
+          offset: Number of secrets to skip for pagination
+
+          search: Search term for secret names
 
           secret_name: Secret name
 
@@ -182,8 +192,9 @@ class SecretsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/fastedge/v1/secrets",
+            page=SyncOffsetPageFastedgeSecrets[SecretShort],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -192,12 +203,15 @@ class SecretsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "app_id": app_id,
+                        "limit": limit,
+                        "offset": offset,
+                        "search": search,
                         "secret_name": secret_name,
                     },
                     secret_list_params.SecretListParams,
                 ),
             ),
-            cast_to=SecretListResponse,
+            model=SecretShort,
         )
 
     def delete(
@@ -444,10 +458,13 @@ class AsyncSecretsResource(AsyncAPIResource):
             cast_to=Secret,
         )
 
-    async def list(
+    def list(
         self,
         *,
         app_id: int | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
+        search: str | Omit = omit,
         secret_name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -455,7 +472,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SecretListResponse:
+    ) -> AsyncPaginator[SecretShort, AsyncOffsetPageFastedgeSecrets[SecretShort]]:
         """Retrieve encrypted secrets available to the authenticated client.
 
         Secrets can be
@@ -463,6 +480,12 @@ class AsyncSecretsResource(AsyncAPIResource):
 
         Args:
           app_id: App ID
+
+          limit: Maximum number of secrets to return per page
+
+          offset: Number of secrets to skip for pagination
+
+          search: Search term for secret names
 
           secret_name: Secret name
 
@@ -474,22 +497,26 @@ class AsyncSecretsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/fastedge/v1/secrets",
+            page=AsyncOffsetPageFastedgeSecrets[SecretShort],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "app_id": app_id,
+                        "limit": limit,
+                        "offset": offset,
+                        "search": search,
                         "secret_name": secret_name,
                     },
                     secret_list_params.SecretListParams,
                 ),
             ),
-            cast_to=SecretListResponse,
+            model=SecretShort,
         )
 
     async def delete(

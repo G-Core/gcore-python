@@ -11,5 +11,14 @@ class SecretListParams(TypedDict, total=False):
     app_id: int
     """App ID"""
 
+    limit: int
+    """Maximum number of secrets to return per page"""
+
+    offset: int
+    """Number of secrets to skip for pagination"""
+
+    search: str
+    """Search term for secret names"""
+
     secret_name: str
     """Secret name"""

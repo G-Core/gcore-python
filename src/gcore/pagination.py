@@ -35,6 +35,8 @@ __all__ = [
     "AsyncOffsetPageDNSNetworkMappings",
     "SyncOffsetPageFastedgeKvStores",
     "AsyncOffsetPageFastedgeKvStores",
+    "SyncOffsetPageFastedgeSecrets",
+    "AsyncOffsetPageFastedgeSecrets",
 ]
 
 _BaseModelT = TypeVar("_BaseModelT", bound=BaseModel)
@@ -694,6 +696,62 @@ class AsyncOffsetPageFastedgeKvStores(BaseAsyncPage[_T], BasePage[_T], Generic[_
         if not stores:
             return []
         return stores
+
+    @override
+    def next_page_info(self) -> Optional[PageInfo]:
+        offset = self._options.params.get("offset") or 0
+        if not isinstance(offset, int):
+            raise ValueError(f'Expected "offset" param to be an integer but got {offset}')
+
+        length = len(self._get_page_items())
+        current_count = offset + length
+
+        count = self.count
+
+        if current_count < count:
+            return PageInfo(params={"offset": current_count})
+
+        return None
+
+
+class SyncOffsetPageFastedgeSecrets(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
+    secrets: List[_T]
+    count: int
+
+    @override
+    def _get_page_items(self) -> List[_T]:
+        secrets = self.secrets
+        if not secrets:
+            return []
+        return secrets
+
+    @override
+    def next_page_info(self) -> Optional[PageInfo]:
+        offset = self._options.params.get("offset") or 0
+        if not isinstance(offset, int):
+            raise ValueError(f'Expected "offset" param to be an integer but got {offset}')
+
+        length = len(self._get_page_items())
+        current_count = offset + length
+
+        count = self.count
+
+        if current_count < count:
+            return PageInfo(params={"offset": current_count})
+
+        return None
+
+
+class AsyncOffsetPageFastedgeSecrets(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
+    secrets: List[_T]
+    count: int
+
+    @override
+    def _get_page_items(self) -> List[_T]:
+        secrets = self.secrets
+        if not secrets:
+            return []
+        return secrets
 
     @override
     def next_page_info(self) -> Optional[PageInfo]:

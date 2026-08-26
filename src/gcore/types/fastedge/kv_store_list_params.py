@@ -16,3 +16,6 @@ class KvStoreListParams(TypedDict, total=False):
 
     offset: int
     """Number of stores to skip for pagination"""
+
+    search: str
+    """Search term for store names"""
