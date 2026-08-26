@@ -8,7 +8,10 @@ __all__ = ["SslRequestStatus", "LatestStatus", "Status"]
 
 
 class LatestStatus(BaseModel):
-    """Detailed information about last attempt to issue a Let's Encrypt certificate."""
+    """Detailed information about last attempt to issue a Let's Encrypt certificate.
+
+    The field is **null** until the first attempt of the issuing process has been recorded.
+    """
 
     id: Optional[int] = None
     """ID of the attempt to issue the Let's Encrypt certificate."""
@@ -116,7 +119,11 @@ class SslRequestStatus(BaseModel):
     """
 
     latest_status: Optional[LatestStatus] = None
-    """Detailed information about last attempt to issue a Let's Encrypt certificate."""
+    """Detailed information about last attempt to issue a Let's Encrypt certificate.
+
+    The field is **null** until the first attempt of the issuing process has been
+    recorded.
+    """
 
     next_attempt_time: Optional[str] = None
     """

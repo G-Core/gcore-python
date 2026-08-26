@@ -60,13 +60,13 @@ class Data(BaseModel):
 class Meta(BaseModel):
     """Contains meta-information."""
 
-    count: Optional[int] = None
+    count: int
     """Total number of records which match given parameters."""
 
 
 class CDNLogEntry(BaseModel):
-    data: Optional[List[Data]] = None
+    data: List[Data]
     """Contains requested logs."""
 
-    meta: Optional[Meta] = None
+    meta: Meta
     """Contains meta-information."""

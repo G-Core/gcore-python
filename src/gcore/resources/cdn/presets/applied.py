@@ -101,8 +101,6 @@ class AppliedResource(SyncAPIResource):
         """
         Get the list of objects the preset is currently applied to.
 
-        Non-staff users only see objects that belong to their account.
-
         Args:
           extra_headers: Send extra headers
 
@@ -300,8 +298,6 @@ class AsyncAppliedResource(AsyncAPIResource):
     ) -> AppliedPreset:
         """
         Get the list of objects the preset is currently applied to.
-
-        Non-staff users only see objects that belong to their account.
 
         Args:
           extra_headers: Send extra headers
