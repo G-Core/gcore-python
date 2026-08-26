@@ -93,6 +93,8 @@ class AuditLogsResource(SyncAPIResource):
         api_group: List[
             Literal[
                 "ai_cluster",
+                "baremetal",
+                "basic_vm",
                 "caas_container",
                 "caas_key",
                 "caas_pull_secret",
@@ -130,6 +132,7 @@ class AuditLogsResource(SyncAPIResource):
                 "reserved_fixed_ip",
                 "role",
                 "router",
+                "rtbh",
                 "secret",
                 "securitygroup",
                 "securitygrouprule",
@@ -312,6 +315,8 @@ class AsyncAuditLogsResource(AsyncAPIResource):
         api_group: List[
             Literal[
                 "ai_cluster",
+                "baremetal",
+                "basic_vm",
                 "caas_container",
                 "caas_key",
                 "caas_pull_secret",
@@ -349,6 +354,7 @@ class AsyncAuditLogsResource(AsyncAPIResource):
                 "reserved_fixed_ip",
                 "role",
                 "router",
+                "rtbh",
                 "secret",
                 "securitygroup",
                 "securitygrouprule",

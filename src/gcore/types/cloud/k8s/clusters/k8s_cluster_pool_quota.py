@@ -77,6 +77,15 @@ class K8SClusterPoolQuota(BaseModel):
     cpu_count_usage: Optional[int] = None
     """vCPU Count usage"""
 
+    external_ip_count_limit: Optional[int] = None
+    """External IP Count limit"""
+
+    external_ip_count_requested: Optional[int] = None
+    """External IP Count requested"""
+
+    external_ip_count_usage: Optional[int] = None
+    """External IP Count usage"""
+
     firewall_count_limit: Optional[int] = None
     """Firewalls Count limit"""
 

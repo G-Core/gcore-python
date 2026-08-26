@@ -57,7 +57,12 @@ class LoadBalancerPool(BaseModel):
     """Load balancers IDs"""
 
     members: List[Member]
-    """Pool members"""
+    """Pool members.
+
+    Deprecated. Use
+    `GET /v1/loadbalancers/{project_id}/{region_id}/pools/{pool_id}/members`
+    instead.
+    """
 
     name: str
     """Pool name"""

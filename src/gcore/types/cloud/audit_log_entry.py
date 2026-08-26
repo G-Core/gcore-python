@@ -14,6 +14,8 @@ class Resource(BaseModel):
     """Resource ID"""
 
     resource_type: Literal[
+        "baremetal_server",
+        "basic_vm",
         "caas_container",
         "caas_key",
         "caas_pull_secret",
@@ -162,6 +164,8 @@ class AuditLogEntry(BaseModel):
 
     api_group: Literal[
         "ai_cluster",
+        "baremetal",
+        "basic_vm",
         "caas_container",
         "caas_key",
         "caas_pull_secret",
@@ -199,6 +203,7 @@ class AuditLogEntry(BaseModel):
         "reserved_fixed_ip",
         "role",
         "router",
+        "rtbh",
         "secret",
         "securitygroup",
         "securitygrouprule",

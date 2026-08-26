@@ -346,7 +346,7 @@ class SecurityGroupsResource(SecurityGroupsResourceCustomMixin, SyncAPIResource)
 
           region_id: Region ID
 
-          group_id: Group ID
+          group_id: Security group ID
 
           extra_headers: Send extra headers
 
@@ -398,7 +398,7 @@ class SecurityGroupsResource(SecurityGroupsResourceCustomMixin, SyncAPIResource)
 
           region_id: Region ID
 
-          group_id: Group ID
+          group_id: Security group ID
 
           name: Name.
 
@@ -451,7 +451,7 @@ class SecurityGroupsResource(SecurityGroupsResourceCustomMixin, SyncAPIResource)
 
           region_id: Region ID
 
-          group_id: Group ID
+          group_id: Security group ID
 
           extra_headers: Send extra headers
 
@@ -501,7 +501,7 @@ class SecurityGroupsResource(SecurityGroupsResourceCustomMixin, SyncAPIResource)
 
           region_id: Region ID
 
-          group_id: Group ID
+          group_id: Security group ID
 
           extra_headers: Send extra headers
 
@@ -837,7 +837,7 @@ class AsyncSecurityGroupsResource(AsyncSecurityGroupsResourceCustomMixin, AsyncA
 
           region_id: Region ID
 
-          group_id: Group ID
+          group_id: Security group ID
 
           extra_headers: Send extra headers
 
@@ -889,7 +889,7 @@ class AsyncSecurityGroupsResource(AsyncSecurityGroupsResourceCustomMixin, AsyncA
 
           region_id: Region ID
 
-          group_id: Group ID
+          group_id: Security group ID
 
           name: Name.
 
@@ -942,7 +942,7 @@ class AsyncSecurityGroupsResource(AsyncSecurityGroupsResourceCustomMixin, AsyncA
 
           region_id: Region ID
 
-          group_id: Group ID
+          group_id: Security group ID
 
           extra_headers: Send extra headers
 
@@ -992,7 +992,7 @@ class AsyncSecurityGroupsResource(AsyncSecurityGroupsResourceCustomMixin, AsyncA
 
           region_id: Region ID
 
-          group_id: Group ID
+          group_id: Security group ID
 
           extra_headers: Send extra headers
 

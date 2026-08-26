@@ -31,6 +31,18 @@ class Member(BaseModel):
     configuration. Default is false
     """
 
+    monitor_address: Optional[str] = None
+    """An alternate IP address used for health monitoring of a backend member.
+
+    Default is null which monitors the member address.
+    """
+
+    monitor_port: Optional[int] = None
+    """An alternate protocol port used for health monitoring of a backend member.
+
+    Default is null which monitors the member `protocol_port`.
+    """
+
     operating_status: LoadBalancerOperatingStatus
     """Member operating status of the entity"""
 
@@ -62,16 +74,4 @@ class Member(BaseModel):
       weight = more hash buckets, so more client IPs map to that member. Example:
       weights 2 vs 1 = roughly two-thirds of distinct client IPs map to the
       higher-weight member.
-    """
-
-    monitor_address: Optional[str] = None
-    """An alternate IP address used for health monitoring of a backend member.
-
-    Default is null which monitors the member address.
-    """
-
-    monitor_port: Optional[int] = None
-    """An alternate protocol port used for health monitoring of a backend member.
-
-    Default is null which monitors the member `protocol_port`.
     """

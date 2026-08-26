@@ -128,18 +128,18 @@ class TestInstances:
     @parametrize
     def test_method_update(self, client: Gcore) -> None:
         instance = client.cloud.instances.update(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
         )
         assert_matches_type(Instance, instance, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Gcore) -> None:
         instance = client.cloud.instances.update(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
             name="instance_name",
             tags={
                 "my-tag": "my-tag-value",
@@ -151,9 +151,9 @@ class TestInstances:
     @parametrize
     def test_raw_response_update(self, client: Gcore) -> None:
         response = client.cloud.instances.with_raw_response.update(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -164,9 +164,9 @@ class TestInstances:
     @parametrize
     def test_streaming_response_update(self, client: Gcore) -> None:
         with client.cloud.instances.with_streaming_response.update(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -181,8 +181,8 @@ class TestInstances:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
             client.cloud.instances.with_raw_response.update(
                 instance_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
             )
 
     @parametrize
@@ -256,18 +256,18 @@ class TestInstances:
     @parametrize
     def test_method_delete(self, client: Gcore) -> None:
         instance = client.cloud.instances.delete(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
         )
         assert_matches_type(TaskIDList, instance, path=["response"])
 
     @parametrize
     def test_method_delete_with_all_params(self, client: Gcore) -> None:
         instance = client.cloud.instances.delete(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
             delete_floatings=True,
             floatings="floatings",
             reserved_fixed_ips="reserved_fixed_ips",
@@ -278,9 +278,9 @@ class TestInstances:
     @parametrize
     def test_raw_response_delete(self, client: Gcore) -> None:
         response = client.cloud.instances.with_raw_response.delete(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -291,9 +291,9 @@ class TestInstances:
     @parametrize
     def test_streaming_response_delete(self, client: Gcore) -> None:
         with client.cloud.instances.with_streaming_response.delete(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -308,16 +308,16 @@ class TestInstances:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
             client.cloud.instances.with_raw_response.delete(
                 instance_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
             )
 
     @parametrize
     def test_method_action_overload_1(self, client: Gcore) -> None:
         instance = client.cloud.instances.action(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
             action="start",
         )
         assert_matches_type(TaskIDList, instance, path=["response"])
@@ -325,9 +325,9 @@ class TestInstances:
     @parametrize
     def test_method_action_with_all_params_overload_1(self, client: Gcore) -> None:
         instance = client.cloud.instances.action(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
             action="start",
             activate_profile=True,
         )
@@ -336,9 +336,9 @@ class TestInstances:
     @parametrize
     def test_raw_response_action_overload_1(self, client: Gcore) -> None:
         response = client.cloud.instances.with_raw_response.action(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
             action="start",
         )
 
@@ -350,9 +350,9 @@ class TestInstances:
     @parametrize
     def test_streaming_response_action_overload_1(self, client: Gcore) -> None:
         with client.cloud.instances.with_streaming_response.action(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
             action="start",
         ) as response:
             assert not response.is_closed
@@ -368,17 +368,17 @@ class TestInstances:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
             client.cloud.instances.with_raw_response.action(
                 instance_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
                 action="start",
             )
 
     @parametrize
     def test_method_action_overload_2(self, client: Gcore) -> None:
         instance = client.cloud.instances.action(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
             action="stop",
         )
         assert_matches_type(TaskIDList, instance, path=["response"])
@@ -386,9 +386,9 @@ class TestInstances:
     @parametrize
     def test_raw_response_action_overload_2(self, client: Gcore) -> None:
         response = client.cloud.instances.with_raw_response.action(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
             action="stop",
         )
 
@@ -400,9 +400,9 @@ class TestInstances:
     @parametrize
     def test_streaming_response_action_overload_2(self, client: Gcore) -> None:
         with client.cloud.instances.with_streaming_response.action(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
             action="stop",
         ) as response:
             assert not response.is_closed
@@ -418,17 +418,17 @@ class TestInstances:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
             client.cloud.instances.with_raw_response.action(
                 instance_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
                 action="stop",
             )
 
     @parametrize
     def test_method_add_to_placement_group(self, client: Gcore) -> None:
         instance = client.cloud.instances.add_to_placement_group(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
             servergroup_id="47003067-550a-6f17-93b6-81ee16ba061e",
         )
         assert_matches_type(TaskIDList, instance, path=["response"])
@@ -436,9 +436,9 @@ class TestInstances:
     @parametrize
     def test_raw_response_add_to_placement_group(self, client: Gcore) -> None:
         response = client.cloud.instances.with_raw_response.add_to_placement_group(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
             servergroup_id="47003067-550a-6f17-93b6-81ee16ba061e",
         )
 
@@ -450,9 +450,9 @@ class TestInstances:
     @parametrize
     def test_streaming_response_add_to_placement_group(self, client: Gcore) -> None:
         with client.cloud.instances.with_streaming_response.add_to_placement_group(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
             servergroup_id="47003067-550a-6f17-93b6-81ee16ba061e",
         ) as response:
             assert not response.is_closed
@@ -468,26 +468,26 @@ class TestInstances:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
             client.cloud.instances.with_raw_response.add_to_placement_group(
                 instance_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
                 servergroup_id="47003067-550a-6f17-93b6-81ee16ba061e",
             )
 
     @parametrize
     def test_method_assign_security_group(self, client: Gcore) -> None:
         instance = client.cloud.instances.assign_security_group(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
         )
         assert instance is None
 
     @parametrize
     def test_method_assign_security_group_with_all_params(self, client: Gcore) -> None:
         instance = client.cloud.instances.assign_security_group(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
             name="some_name",
             ports_security_group_names=[
                 {
@@ -505,9 +505,9 @@ class TestInstances:
     @parametrize
     def test_raw_response_assign_security_group(self, client: Gcore) -> None:
         response = client.cloud.instances.with_raw_response.assign_security_group(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -518,9 +518,9 @@ class TestInstances:
     @parametrize
     def test_streaming_response_assign_security_group(self, client: Gcore) -> None:
         with client.cloud.instances.with_streaming_response.assign_security_group(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -535,8 +535,8 @@ class TestInstances:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
             client.cloud.instances.with_raw_response.assign_security_group(
                 instance_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
             )
 
     @parametrize
@@ -644,18 +644,18 @@ class TestInstances:
     @parametrize
     def test_method_get(self, client: Gcore) -> None:
         instance = client.cloud.instances.get(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
         )
         assert_matches_type(Instance, instance, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Gcore) -> None:
         response = client.cloud.instances.with_raw_response.get(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -666,9 +666,9 @@ class TestInstances:
     @parametrize
     def test_streaming_response_get(self, client: Gcore) -> None:
         with client.cloud.instances.with_streaming_response.get(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -683,35 +683,35 @@ class TestInstances:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
             client.cloud.instances.with_raw_response.get(
                 instance_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
             )
 
     @parametrize
     def test_method_get_console(self, client: Gcore) -> None:
         instance = client.cloud.instances.get_console(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
         )
         assert_matches_type(Console, instance, path=["response"])
 
     @parametrize
     def test_method_get_console_with_all_params(self, client: Gcore) -> None:
         instance = client.cloud.instances.get_console(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
-            console_type="console_type",
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
+            console_type="novnc",
         )
         assert_matches_type(Console, instance, path=["response"])
 
     @parametrize
     def test_raw_response_get_console(self, client: Gcore) -> None:
         response = client.cloud.instances.with_raw_response.get_console(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -722,9 +722,9 @@ class TestInstances:
     @parametrize
     def test_streaming_response_get_console(self, client: Gcore) -> None:
         with client.cloud.instances.with_streaming_response.get_console(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -739,25 +739,25 @@ class TestInstances:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
             client.cloud.instances.with_raw_response.get_console(
                 instance_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
             )
 
     @parametrize
     def test_method_remove_from_placement_group(self, client: Gcore) -> None:
         instance = client.cloud.instances.remove_from_placement_group(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
         )
         assert_matches_type(TaskIDList, instance, path=["response"])
 
     @parametrize
     def test_raw_response_remove_from_placement_group(self, client: Gcore) -> None:
         response = client.cloud.instances.with_raw_response.remove_from_placement_group(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -768,9 +768,9 @@ class TestInstances:
     @parametrize
     def test_streaming_response_remove_from_placement_group(self, client: Gcore) -> None:
         with client.cloud.instances.with_streaming_response.remove_from_placement_group(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -785,16 +785,16 @@ class TestInstances:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
             client.cloud.instances.with_raw_response.remove_from_placement_group(
                 instance_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
             )
 
     @parametrize
     def test_method_resize(self, client: Gcore) -> None:
         instance = client.cloud.instances.resize(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
             flavor_id="g1s-shared-1-0.5",
         )
         assert_matches_type(TaskIDList, instance, path=["response"])
@@ -802,9 +802,9 @@ class TestInstances:
     @parametrize
     def test_raw_response_resize(self, client: Gcore) -> None:
         response = client.cloud.instances.with_raw_response.resize(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
             flavor_id="g1s-shared-1-0.5",
         )
 
@@ -816,9 +816,9 @@ class TestInstances:
     @parametrize
     def test_streaming_response_resize(self, client: Gcore) -> None:
         with client.cloud.instances.with_streaming_response.resize(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
             flavor_id="g1s-shared-1-0.5",
         ) as response:
             assert not response.is_closed
@@ -834,26 +834,26 @@ class TestInstances:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
             client.cloud.instances.with_raw_response.resize(
                 instance_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
                 flavor_id="g1s-shared-1-0.5",
             )
 
     @parametrize
     def test_method_unassign_security_group(self, client: Gcore) -> None:
         instance = client.cloud.instances.unassign_security_group(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
         )
         assert instance is None
 
     @parametrize
     def test_method_unassign_security_group_with_all_params(self, client: Gcore) -> None:
         instance = client.cloud.instances.unassign_security_group(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
             name="some_name",
             ports_security_group_names=[
                 {
@@ -871,9 +871,9 @@ class TestInstances:
     @parametrize
     def test_raw_response_unassign_security_group(self, client: Gcore) -> None:
         response = client.cloud.instances.with_raw_response.unassign_security_group(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -884,9 +884,9 @@ class TestInstances:
     @parametrize
     def test_streaming_response_unassign_security_group(self, client: Gcore) -> None:
         with client.cloud.instances.with_streaming_response.unassign_security_group(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -901,8 +901,8 @@ class TestInstances:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
             client.cloud.instances.with_raw_response.unassign_security_group(
                 instance_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
             )
 
 
@@ -1013,18 +1013,18 @@ class TestAsyncInstances:
     @parametrize
     async def test_method_update(self, async_client: AsyncGcore) -> None:
         instance = await async_client.cloud.instances.update(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
         )
         assert_matches_type(Instance, instance, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncGcore) -> None:
         instance = await async_client.cloud.instances.update(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
             name="instance_name",
             tags={
                 "my-tag": "my-tag-value",
@@ -1036,9 +1036,9 @@ class TestAsyncInstances:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.instances.with_raw_response.update(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -1049,9 +1049,9 @@ class TestAsyncInstances:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.instances.with_streaming_response.update(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1066,8 +1066,8 @@ class TestAsyncInstances:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
             await async_client.cloud.instances.with_raw_response.update(
                 instance_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
             )
 
     @parametrize
@@ -1141,18 +1141,18 @@ class TestAsyncInstances:
     @parametrize
     async def test_method_delete(self, async_client: AsyncGcore) -> None:
         instance = await async_client.cloud.instances.delete(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
         )
         assert_matches_type(TaskIDList, instance, path=["response"])
 
     @parametrize
     async def test_method_delete_with_all_params(self, async_client: AsyncGcore) -> None:
         instance = await async_client.cloud.instances.delete(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
             delete_floatings=True,
             floatings="floatings",
             reserved_fixed_ips="reserved_fixed_ips",
@@ -1163,9 +1163,9 @@ class TestAsyncInstances:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.instances.with_raw_response.delete(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -1176,9 +1176,9 @@ class TestAsyncInstances:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.instances.with_streaming_response.delete(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1193,16 +1193,16 @@ class TestAsyncInstances:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
             await async_client.cloud.instances.with_raw_response.delete(
                 instance_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
             )
 
     @parametrize
     async def test_method_action_overload_1(self, async_client: AsyncGcore) -> None:
         instance = await async_client.cloud.instances.action(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
             action="start",
         )
         assert_matches_type(TaskIDList, instance, path=["response"])
@@ -1210,9 +1210,9 @@ class TestAsyncInstances:
     @parametrize
     async def test_method_action_with_all_params_overload_1(self, async_client: AsyncGcore) -> None:
         instance = await async_client.cloud.instances.action(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
             action="start",
             activate_profile=True,
         )
@@ -1221,9 +1221,9 @@ class TestAsyncInstances:
     @parametrize
     async def test_raw_response_action_overload_1(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.instances.with_raw_response.action(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
             action="start",
         )
 
@@ -1235,9 +1235,9 @@ class TestAsyncInstances:
     @parametrize
     async def test_streaming_response_action_overload_1(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.instances.with_streaming_response.action(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
             action="start",
         ) as response:
             assert not response.is_closed
@@ -1253,17 +1253,17 @@ class TestAsyncInstances:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
             await async_client.cloud.instances.with_raw_response.action(
                 instance_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
                 action="start",
             )
 
     @parametrize
     async def test_method_action_overload_2(self, async_client: AsyncGcore) -> None:
         instance = await async_client.cloud.instances.action(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
             action="stop",
         )
         assert_matches_type(TaskIDList, instance, path=["response"])
@@ -1271,9 +1271,9 @@ class TestAsyncInstances:
     @parametrize
     async def test_raw_response_action_overload_2(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.instances.with_raw_response.action(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
             action="stop",
         )
 
@@ -1285,9 +1285,9 @@ class TestAsyncInstances:
     @parametrize
     async def test_streaming_response_action_overload_2(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.instances.with_streaming_response.action(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
             action="stop",
         ) as response:
             assert not response.is_closed
@@ -1303,17 +1303,17 @@ class TestAsyncInstances:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
             await async_client.cloud.instances.with_raw_response.action(
                 instance_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
                 action="stop",
             )
 
     @parametrize
     async def test_method_add_to_placement_group(self, async_client: AsyncGcore) -> None:
         instance = await async_client.cloud.instances.add_to_placement_group(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
             servergroup_id="47003067-550a-6f17-93b6-81ee16ba061e",
         )
         assert_matches_type(TaskIDList, instance, path=["response"])
@@ -1321,9 +1321,9 @@ class TestAsyncInstances:
     @parametrize
     async def test_raw_response_add_to_placement_group(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.instances.with_raw_response.add_to_placement_group(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
             servergroup_id="47003067-550a-6f17-93b6-81ee16ba061e",
         )
 
@@ -1335,9 +1335,9 @@ class TestAsyncInstances:
     @parametrize
     async def test_streaming_response_add_to_placement_group(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.instances.with_streaming_response.add_to_placement_group(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
             servergroup_id="47003067-550a-6f17-93b6-81ee16ba061e",
         ) as response:
             assert not response.is_closed
@@ -1353,26 +1353,26 @@ class TestAsyncInstances:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
             await async_client.cloud.instances.with_raw_response.add_to_placement_group(
                 instance_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
                 servergroup_id="47003067-550a-6f17-93b6-81ee16ba061e",
             )
 
     @parametrize
     async def test_method_assign_security_group(self, async_client: AsyncGcore) -> None:
         instance = await async_client.cloud.instances.assign_security_group(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
         )
         assert instance is None
 
     @parametrize
     async def test_method_assign_security_group_with_all_params(self, async_client: AsyncGcore) -> None:
         instance = await async_client.cloud.instances.assign_security_group(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
             name="some_name",
             ports_security_group_names=[
                 {
@@ -1390,9 +1390,9 @@ class TestAsyncInstances:
     @parametrize
     async def test_raw_response_assign_security_group(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.instances.with_raw_response.assign_security_group(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -1403,9 +1403,9 @@ class TestAsyncInstances:
     @parametrize
     async def test_streaming_response_assign_security_group(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.instances.with_streaming_response.assign_security_group(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1420,8 +1420,8 @@ class TestAsyncInstances:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
             await async_client.cloud.instances.with_raw_response.assign_security_group(
                 instance_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
             )
 
     @parametrize
@@ -1529,18 +1529,18 @@ class TestAsyncInstances:
     @parametrize
     async def test_method_get(self, async_client: AsyncGcore) -> None:
         instance = await async_client.cloud.instances.get(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
         )
         assert_matches_type(Instance, instance, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.instances.with_raw_response.get(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -1551,9 +1551,9 @@ class TestAsyncInstances:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.instances.with_streaming_response.get(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1568,35 +1568,35 @@ class TestAsyncInstances:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
             await async_client.cloud.instances.with_raw_response.get(
                 instance_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
             )
 
     @parametrize
     async def test_method_get_console(self, async_client: AsyncGcore) -> None:
         instance = await async_client.cloud.instances.get_console(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
         )
         assert_matches_type(Console, instance, path=["response"])
 
     @parametrize
     async def test_method_get_console_with_all_params(self, async_client: AsyncGcore) -> None:
         instance = await async_client.cloud.instances.get_console(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
-            console_type="console_type",
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
+            console_type="novnc",
         )
         assert_matches_type(Console, instance, path=["response"])
 
     @parametrize
     async def test_raw_response_get_console(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.instances.with_raw_response.get_console(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -1607,9 +1607,9 @@ class TestAsyncInstances:
     @parametrize
     async def test_streaming_response_get_console(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.instances.with_streaming_response.get_console(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1624,25 +1624,25 @@ class TestAsyncInstances:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
             await async_client.cloud.instances.with_raw_response.get_console(
                 instance_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
             )
 
     @parametrize
     async def test_method_remove_from_placement_group(self, async_client: AsyncGcore) -> None:
         instance = await async_client.cloud.instances.remove_from_placement_group(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
         )
         assert_matches_type(TaskIDList, instance, path=["response"])
 
     @parametrize
     async def test_raw_response_remove_from_placement_group(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.instances.with_raw_response.remove_from_placement_group(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -1653,9 +1653,9 @@ class TestAsyncInstances:
     @parametrize
     async def test_streaming_response_remove_from_placement_group(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.instances.with_streaming_response.remove_from_placement_group(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1670,16 +1670,16 @@ class TestAsyncInstances:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
             await async_client.cloud.instances.with_raw_response.remove_from_placement_group(
                 instance_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
             )
 
     @parametrize
     async def test_method_resize(self, async_client: AsyncGcore) -> None:
         instance = await async_client.cloud.instances.resize(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
             flavor_id="g1s-shared-1-0.5",
         )
         assert_matches_type(TaskIDList, instance, path=["response"])
@@ -1687,9 +1687,9 @@ class TestAsyncInstances:
     @parametrize
     async def test_raw_response_resize(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.instances.with_raw_response.resize(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
             flavor_id="g1s-shared-1-0.5",
         )
 
@@ -1701,9 +1701,9 @@ class TestAsyncInstances:
     @parametrize
     async def test_streaming_response_resize(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.instances.with_streaming_response.resize(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
             flavor_id="g1s-shared-1-0.5",
         ) as response:
             assert not response.is_closed
@@ -1719,26 +1719,26 @@ class TestAsyncInstances:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
             await async_client.cloud.instances.with_raw_response.resize(
                 instance_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
                 flavor_id="g1s-shared-1-0.5",
             )
 
     @parametrize
     async def test_method_unassign_security_group(self, async_client: AsyncGcore) -> None:
         instance = await async_client.cloud.instances.unassign_security_group(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
         )
         assert instance is None
 
     @parametrize
     async def test_method_unassign_security_group_with_all_params(self, async_client: AsyncGcore) -> None:
         instance = await async_client.cloud.instances.unassign_security_group(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
             name="some_name",
             ports_security_group_names=[
                 {
@@ -1756,9 +1756,9 @@ class TestAsyncInstances:
     @parametrize
     async def test_raw_response_unassign_security_group(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.instances.with_raw_response.unassign_security_group(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -1769,9 +1769,9 @@ class TestAsyncInstances:
     @parametrize
     async def test_streaming_response_unassign_security_group(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.instances.with_streaming_response.unassign_security_group(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1786,6 +1786,6 @@ class TestAsyncInstances:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
             await async_client.cloud.instances.with_raw_response.unassign_security_group(
                 instance_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
             )

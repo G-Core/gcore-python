@@ -10,8 +10,10 @@ __all__ = ["InstanceActionParams", "StartActionInstanceSerializer", "BasicAction
 
 class StartActionInstanceSerializer(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     action: Required[Literal["start"]]
     """Instance action name"""
@@ -22,8 +24,10 @@ class StartActionInstanceSerializer(TypedDict, total=False):
 
 class BasicActionInstanceSerializer(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     action: Required[Literal["reboot", "reboot_hard", "resume", "stop", "suspend"]]
     """Instance action name"""

@@ -136,8 +136,11 @@ class RoutersResource(RoutersResourceCustomMixin, SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
-        """
-        Update the configuration of an existing router.
+        """Update the configuration of an existing router.
+
+        Fields that already match the
+        current router state are skipped. If no fields change, no task is created and an
+        empty task list is returned.
 
         Args:
           project_id: Project ID
@@ -573,8 +576,11 @@ class AsyncRoutersResource(AsyncRoutersResourceCustomMixin, AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
-        """
-        Update the configuration of an existing router.
+        """Update the configuration of an existing router.
+
+        Fields that already match the
+        current router state are skipped. If no fields change, no task is created and an
+        empty task list is returned.
 
         Args:
           project_id: Project ID

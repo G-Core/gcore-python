@@ -9,8 +9,10 @@ __all__ = ["InterfaceDetachParams"]
 
 class InterfaceDetachParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     ip_address: Required[str]
     """IP address"""

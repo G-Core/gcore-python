@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Optional
 
 import httpx
@@ -47,6 +48,7 @@ class MembersResource(SyncAPIResource):
         """
         return MembersResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def create(
         self,
         pool_id: str,
@@ -70,7 +72,9 @@ class MembersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
-        Create load balancer pool member
+        **Deprecated**: Use
+        `POST /v1/loadbalancers/{project_id}/{region_id}/pools/{pool_id}/members`
+        instead.
 
         Args:
           project_id: Project ID
@@ -161,6 +165,7 @@ class MembersResource(SyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def delete(
         self,
         member_id: str,
@@ -176,7 +181,9 @@ class MembersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
-        Delete load balancer pool member
+        **Deprecated**: Use
+        `DELETE /v1/loadbalancers/{project_id}/{region_id}/pools/{pool_id}/members/{member_id}`
+        instead.
 
         Args:
           project_id: Project ID
@@ -242,6 +249,7 @@ class AsyncMembersResource(AsyncAPIResource):
         """
         return AsyncMembersResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def create(
         self,
         pool_id: str,
@@ -265,7 +273,9 @@ class AsyncMembersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
-        Create load balancer pool member
+        **Deprecated**: Use
+        `POST /v1/loadbalancers/{project_id}/{region_id}/pools/{pool_id}/members`
+        instead.
 
         Args:
           project_id: Project ID
@@ -356,6 +366,7 @@ class AsyncMembersResource(AsyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def delete(
         self,
         member_id: str,
@@ -371,7 +382,9 @@ class AsyncMembersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
-        Delete load balancer pool member
+        **Deprecated**: Use
+        `DELETE /v1/loadbalancers/{project_id}/{region_id}/pools/{pool_id}/members/{member_id}`
+        instead.
 
         Args:
           project_id: Project ID
@@ -417,11 +430,15 @@ class MembersResourceWithRawResponse:
     def __init__(self, members: MembersResource) -> None:
         self._members = members
 
-        self.create = to_raw_response_wrapper(
-            members.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                members.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = to_raw_response_wrapper(
-            members.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                members.delete,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -429,11 +446,15 @@ class AsyncMembersResourceWithRawResponse:
     def __init__(self, members: AsyncMembersResource) -> None:
         self._members = members
 
-        self.create = async_to_raw_response_wrapper(
-            members.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                members.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = async_to_raw_response_wrapper(
-            members.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                members.delete,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -441,11 +462,15 @@ class MembersResourceWithStreamingResponse:
     def __init__(self, members: MembersResource) -> None:
         self._members = members
 
-        self.create = to_streamed_response_wrapper(
-            members.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                members.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = to_streamed_response_wrapper(
-            members.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                members.delete,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -453,9 +478,13 @@ class AsyncMembersResourceWithStreamingResponse:
     def __init__(self, members: AsyncMembersResource) -> None:
         self._members = members
 
-        self.create = async_to_streamed_response_wrapper(
-            members.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                members.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = async_to_streamed_response_wrapper(
-            members.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                members.delete,  # pyright: ignore[reportDeprecated],
+            )
         )

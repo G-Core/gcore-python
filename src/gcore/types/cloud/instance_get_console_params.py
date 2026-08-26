@@ -2,15 +2,17 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing_extensions import Literal, TypedDict
 
 __all__ = ["InstanceGetConsoleParams"]
 
 
 class InstanceGetConsoleParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
-    console_type: str
+    console_type: Literal["novnc", "serial", "spice", "vnc"]
     """Console type"""

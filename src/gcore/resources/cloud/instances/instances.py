@@ -637,10 +637,16 @@ class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
-        The action can be one of: start, stop, reboot, powercycle, suspend or resume.
+        The action can be one of: start, stop, reboot, `reboot_hard`, suspend or resume.
         Suspend and resume are not available for bare metal instances.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
           action: Instance action name
 
           activate_profile: Used on start instance to activate Advanced DDoS profile
@@ -671,10 +677,16 @@ class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
-        The action can be one of: start, stop, reboot, powercycle, suspend or resume.
+        The action can be one of: start, stop, reboot, `reboot_hard`, suspend or resume.
         Suspend and resume are not available for bare metal instances.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
           action: Instance action name
 
           extra_headers: Send extra headers
@@ -1027,7 +1039,7 @@ class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        console_type: str | Omit = omit,
+        console_type: Literal["novnc", "serial", "spice", "vnc"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1035,10 +1047,19 @@ class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Console:
-        """
-        Get instance console URL
+        """Returns a URL to access the remote console for an instance.
+
+        Supported console
+        types depend on instance type: novnc and spice for virtual instances, vnc and
+        serial for bare metal instances.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
           console_type: Console type
 
           extra_headers: Send extra headers
@@ -1141,9 +1162,15 @@ class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
-        Change flavor of the instance
+        Change flavor of the instance.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
           flavor_id: Flavor ID
 
           extra_headers: Send extra headers
@@ -1804,10 +1831,16 @@ class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
-        The action can be one of: start, stop, reboot, powercycle, suspend or resume.
+        The action can be one of: start, stop, reboot, `reboot_hard`, suspend or resume.
         Suspend and resume are not available for bare metal instances.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
           action: Instance action name
 
           activate_profile: Used on start instance to activate Advanced DDoS profile
@@ -1838,10 +1871,16 @@ class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
-        The action can be one of: start, stop, reboot, powercycle, suspend or resume.
+        The action can be one of: start, stop, reboot, `reboot_hard`, suspend or resume.
         Suspend and resume are not available for bare metal instances.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
           action: Instance action name
 
           extra_headers: Send extra headers
@@ -2194,7 +2233,7 @@ class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        console_type: str | Omit = omit,
+        console_type: Literal["novnc", "serial", "spice", "vnc"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2202,10 +2241,19 @@ class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Console:
-        """
-        Get instance console URL
+        """Returns a URL to access the remote console for an instance.
+
+        Supported console
+        types depend on instance type: novnc and spice for virtual instances, vnc and
+        serial for bare metal instances.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
           console_type: Console type
 
           extra_headers: Send extra headers
@@ -2308,9 +2356,15 @@ class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
-        Change flavor of the instance
+        Change flavor of the instance.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
           flavor_id: Flavor ID
 
           extra_headers: Send extra headers

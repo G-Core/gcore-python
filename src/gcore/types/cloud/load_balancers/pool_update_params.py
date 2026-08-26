@@ -44,7 +44,9 @@ class PoolUpdateParams(TypedDict, total=False):
     """New sequence of load balancer pool members.
 
     If members are the same (by address + port), they will be kept as is without
-    recreation and downtime.
+    recreation and downtime. Deprecated. Use
+    `PUT /v1/loadbalancers/{project_id}/{region_id}/pools/{pool_id}/members`
+    instead.
     """
 
     name: str

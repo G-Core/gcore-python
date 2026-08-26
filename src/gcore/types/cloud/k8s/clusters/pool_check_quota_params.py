@@ -21,6 +21,12 @@ class PoolCheckQuotaParams(TypedDict, total=False):
     boot_volume_size: Optional[int]
     """Boot volume size"""
 
+    is_public_ipv4: bool
+    """Enable public IPv4 address for pool nodes.
+
+    Each node consumes one external IP quota unit
+    """
+
     max_node_count: Optional[int]
     """Maximum node count"""
 

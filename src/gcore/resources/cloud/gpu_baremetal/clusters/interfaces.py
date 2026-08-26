@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Iterable, cast
+from typing import Any, Iterable, Optional, cast
 from typing_extensions import Literal, overload
 
 import httpx
@@ -18,9 +18,11 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from .....pagination import SyncOffsetPage, AsyncOffsetPage
+from .....types.cloud import InterfaceIPFamily
 from ....._base_client import AsyncPaginator, make_request_options
 from .....types.cloud.task_id_list import TaskIDList
 from .....types.cloud.network_interface import NetworkInterface
+from .....types.cloud.interface_ip_family import InterfaceIPFamily
 from .....types.cloud.gpu_baremetal.clusters import (
     interface_list_params,
     interface_attach_params,
@@ -124,13 +126,16 @@ class InterfacesResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        ddos_profile: interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile | Omit = omit,
-        interface_name: str | Omit = omit,
-        ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
-        port_group: int | Omit = omit,
-        security_groups: Iterable[interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSSecurityGroup]
+        ddos_profile: Optional[interface_attach_params.AttachInterfaceExternalRequestSerializerDDOSProfile]
         | Omit = omit,
-        type: str | Omit = omit,
+        interface_name: Optional[str] | Omit = omit,
+        ip_family: Optional[InterfaceIPFamily] | Omit = omit,
+        port_group: int | Omit = omit,
+        security_groups: Optional[
+            Iterable[interface_attach_params.AttachInterfaceExternalRequestSerializerSecurityGroup]
+        ]
+        | Omit = omit,
+        type: Literal["external"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -139,20 +144,22 @@ class InterfacesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
-        Attach interface to bare metal GPU cluster server
+        Attach interface to bare metal GPU cluster server.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
           ddos_profile: Advanced DDoS protection.
 
-          interface_name: Interface name
+          interface_name: Interface name.
 
-          ip_family: Which subnets should be selected: IPv4, IPv6 or use dual stack.
+          port_group: Each group will be added to a separate trunk.
 
-          port_group: Each group will be added to the separate trunk.
-
-          security_groups: List of security group IDs
-
-          type: Must be 'external'. Union tag
+          security_groups: List of security group IDs.
 
           extra_headers: Send extra headers
 
@@ -172,11 +179,12 @@ class InterfacesResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         subnet_id: str,
-        ddos_profile: interface_attach_params.NewInterfaceSpecificSubnetSchemaDDOSProfile | Omit = omit,
-        interface_name: str | Omit = omit,
+        ddos_profile: Optional[interface_attach_params.AttachInterfaceSubnetRequestSerializerDDOSProfile] | Omit = omit,
+        interface_name: Optional[str] | Omit = omit,
         port_group: int | Omit = omit,
-        security_groups: Iterable[interface_attach_params.NewInterfaceSpecificSubnetSchemaSecurityGroup] | Omit = omit,
-        type: str | Omit = omit,
+        security_groups: Optional[Iterable[interface_attach_params.AttachInterfaceSubnetRequestSerializerSecurityGroup]]
+        | Omit = omit,
+        type: Literal["subnet"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -185,20 +193,24 @@ class InterfacesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
-        Attach interface to bare metal GPU cluster server
+        Attach interface to bare metal GPU cluster server.
 
         Args:
-          subnet_id: Port will get an IP address from this subnet
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
+          subnet_id: Port will get an IP address from this subnet.
 
           ddos_profile: Advanced DDoS protection.
 
-          interface_name: Interface name
+          interface_name: Interface name.
 
-          port_group: Each group will be added to the separate trunk.
+          port_group: Each group will be added to a separate trunk.
 
-          security_groups: List of security group IDs
-
-          type: Must be 'subnet'
+          security_groups: List of security group IDs.
 
           extra_headers: Send extra headers
 
@@ -218,12 +230,16 @@ class InterfacesResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         network_id: str,
-        ddos_profile: interface_attach_params.NewInterfaceAnySubnetSchemaDDOSProfile | Omit = omit,
-        interface_name: str | Omit = omit,
-        ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
+        ddos_profile: Optional[interface_attach_params.AttachInterfaceAnySubnetRequestSerializerDDOSProfile]
+        | Omit = omit,
+        interface_name: Optional[str] | Omit = omit,
+        ip_family: Optional[InterfaceIPFamily] | Omit = omit,
         port_group: int | Omit = omit,
-        security_groups: Iterable[interface_attach_params.NewInterfaceAnySubnetSchemaSecurityGroup] | Omit = omit,
-        type: str | Omit = omit,
+        security_groups: Optional[
+            Iterable[interface_attach_params.AttachInterfaceAnySubnetRequestSerializerSecurityGroup]
+        ]
+        | Omit = omit,
+        type: Literal["any_subnet"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -232,22 +248,24 @@ class InterfacesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
-        Attach interface to bare metal GPU cluster server
+        Attach interface to bare metal GPU cluster server.
 
         Args:
-          network_id: Port will get an IP address in this network subnet
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
+          network_id: Port will get an IP address in this network subnet.
 
           ddos_profile: Advanced DDoS protection.
 
-          interface_name: Interface name
+          interface_name: Interface name.
 
-          ip_family: Which subnets should be selected: IPv4, IPv6 or use dual stack.
+          port_group: Each group will be added to a separate trunk.
 
-          port_group: Each group will be added to the separate trunk.
-
-          security_groups: List of security group IDs
-
-          type: Must be 'any_subnet'
+          security_groups: List of security group IDs.
 
           extra_headers: Send extra headers
 
@@ -267,11 +285,15 @@ class InterfacesResource(SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         port_id: str,
-        ddos_profile: interface_attach_params.NewInterfaceReservedFixedIPSchemaDDOSProfile | Omit = omit,
-        interface_name: str | Omit = omit,
+        ddos_profile: Optional[interface_attach_params.AttachInterfaceReservedFixedIPRequestSerializerDDOSProfile]
+        | Omit = omit,
+        interface_name: Optional[str] | Omit = omit,
         port_group: int | Omit = omit,
-        security_groups: Iterable[interface_attach_params.NewInterfaceReservedFixedIPSchemaSecurityGroup] | Omit = omit,
-        type: str | Omit = omit,
+        security_groups: Optional[
+            Iterable[interface_attach_params.AttachInterfaceReservedFixedIPRequestSerializerSecurityGroup]
+        ]
+        | Omit = omit,
+        type: Literal["reserved_fixed_ip"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -280,20 +302,24 @@ class InterfacesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
-        Attach interface to bare metal GPU cluster server
+        Attach interface to bare metal GPU cluster server.
 
         Args:
-          port_id: Port ID
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
+          port_id: Port ID.
 
           ddos_profile: Advanced DDoS protection.
 
-          interface_name: Interface name
+          interface_name: Interface name.
 
-          port_group: Each group will be added to the separate trunk.
+          port_group: Each group will be added to a separate trunk.
 
-          security_groups: List of security group IDs
-
-          type: Must be 'reserved_fixed_ip'. Union tag
+          security_groups: List of security group IDs.
 
           extra_headers: Send extra headers
 
@@ -311,20 +337,23 @@ class InterfacesResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        ddos_profile: interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile
-        | interface_attach_params.NewInterfaceSpecificSubnetSchemaDDOSProfile
-        | interface_attach_params.NewInterfaceAnySubnetSchemaDDOSProfile
-        | interface_attach_params.NewInterfaceReservedFixedIPSchemaDDOSProfile
+        ddos_profile: Optional[interface_attach_params.AttachInterfaceExternalRequestSerializerDDOSProfile]
+        | Optional[interface_attach_params.AttachInterfaceSubnetRequestSerializerDDOSProfile]
+        | Optional[interface_attach_params.AttachInterfaceAnySubnetRequestSerializerDDOSProfile]
+        | Optional[interface_attach_params.AttachInterfaceReservedFixedIPRequestSerializerDDOSProfile]
         | Omit = omit,
-        interface_name: str | Omit = omit,
-        ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
+        interface_name: Optional[str] | Omit = omit,
+        ip_family: Optional[InterfaceIPFamily] | Omit = omit,
         port_group: int | Omit = omit,
-        security_groups: Iterable[interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSSecurityGroup]
-        | Iterable[interface_attach_params.NewInterfaceSpecificSubnetSchemaSecurityGroup]
-        | Iterable[interface_attach_params.NewInterfaceAnySubnetSchemaSecurityGroup]
-        | Iterable[interface_attach_params.NewInterfaceReservedFixedIPSchemaSecurityGroup]
+        security_groups: Optional[
+            Iterable[interface_attach_params.AttachInterfaceExternalRequestSerializerSecurityGroup]
+        ]
         | Omit = omit,
-        type: str | Omit = omit,
+        type: Literal["external"]
+        | Literal["subnet"]
+        | Literal["any_subnet"]
+        | Literal["reserved_fixed_ip"]
+        | Omit = omit,
         subnet_id: str | Omit = omit,
         network_id: str | Omit = omit,
         port_id: str | Omit = omit,
@@ -384,9 +413,15 @@ class InterfacesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
-        Detach interface from bare metal GPU cluster server
+        Detach interface from bare metal GPU cluster server.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
           ip_address: IP address
 
           port_id: ID of the port
@@ -520,13 +555,16 @@ class AsyncInterfacesResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        ddos_profile: interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile | Omit = omit,
-        interface_name: str | Omit = omit,
-        ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
-        port_group: int | Omit = omit,
-        security_groups: Iterable[interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSSecurityGroup]
+        ddos_profile: Optional[interface_attach_params.AttachInterfaceExternalRequestSerializerDDOSProfile]
         | Omit = omit,
-        type: str | Omit = omit,
+        interface_name: Optional[str] | Omit = omit,
+        ip_family: Optional[InterfaceIPFamily] | Omit = omit,
+        port_group: int | Omit = omit,
+        security_groups: Optional[
+            Iterable[interface_attach_params.AttachInterfaceExternalRequestSerializerSecurityGroup]
+        ]
+        | Omit = omit,
+        type: Literal["external"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -535,20 +573,22 @@ class AsyncInterfacesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
-        Attach interface to bare metal GPU cluster server
+        Attach interface to bare metal GPU cluster server.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
           ddos_profile: Advanced DDoS protection.
 
-          interface_name: Interface name
+          interface_name: Interface name.
 
-          ip_family: Which subnets should be selected: IPv4, IPv6 or use dual stack.
+          port_group: Each group will be added to a separate trunk.
 
-          port_group: Each group will be added to the separate trunk.
-
-          security_groups: List of security group IDs
-
-          type: Must be 'external'. Union tag
+          security_groups: List of security group IDs.
 
           extra_headers: Send extra headers
 
@@ -568,11 +608,12 @@ class AsyncInterfacesResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         subnet_id: str,
-        ddos_profile: interface_attach_params.NewInterfaceSpecificSubnetSchemaDDOSProfile | Omit = omit,
-        interface_name: str | Omit = omit,
+        ddos_profile: Optional[interface_attach_params.AttachInterfaceSubnetRequestSerializerDDOSProfile] | Omit = omit,
+        interface_name: Optional[str] | Omit = omit,
         port_group: int | Omit = omit,
-        security_groups: Iterable[interface_attach_params.NewInterfaceSpecificSubnetSchemaSecurityGroup] | Omit = omit,
-        type: str | Omit = omit,
+        security_groups: Optional[Iterable[interface_attach_params.AttachInterfaceSubnetRequestSerializerSecurityGroup]]
+        | Omit = omit,
+        type: Literal["subnet"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -581,20 +622,24 @@ class AsyncInterfacesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
-        Attach interface to bare metal GPU cluster server
+        Attach interface to bare metal GPU cluster server.
 
         Args:
-          subnet_id: Port will get an IP address from this subnet
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
+          subnet_id: Port will get an IP address from this subnet.
 
           ddos_profile: Advanced DDoS protection.
 
-          interface_name: Interface name
+          interface_name: Interface name.
 
-          port_group: Each group will be added to the separate trunk.
+          port_group: Each group will be added to a separate trunk.
 
-          security_groups: List of security group IDs
-
-          type: Must be 'subnet'
+          security_groups: List of security group IDs.
 
           extra_headers: Send extra headers
 
@@ -614,12 +659,16 @@ class AsyncInterfacesResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         network_id: str,
-        ddos_profile: interface_attach_params.NewInterfaceAnySubnetSchemaDDOSProfile | Omit = omit,
-        interface_name: str | Omit = omit,
-        ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
+        ddos_profile: Optional[interface_attach_params.AttachInterfaceAnySubnetRequestSerializerDDOSProfile]
+        | Omit = omit,
+        interface_name: Optional[str] | Omit = omit,
+        ip_family: Optional[InterfaceIPFamily] | Omit = omit,
         port_group: int | Omit = omit,
-        security_groups: Iterable[interface_attach_params.NewInterfaceAnySubnetSchemaSecurityGroup] | Omit = omit,
-        type: str | Omit = omit,
+        security_groups: Optional[
+            Iterable[interface_attach_params.AttachInterfaceAnySubnetRequestSerializerSecurityGroup]
+        ]
+        | Omit = omit,
+        type: Literal["any_subnet"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -628,22 +677,24 @@ class AsyncInterfacesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
-        Attach interface to bare metal GPU cluster server
+        Attach interface to bare metal GPU cluster server.
 
         Args:
-          network_id: Port will get an IP address in this network subnet
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
+          network_id: Port will get an IP address in this network subnet.
 
           ddos_profile: Advanced DDoS protection.
 
-          interface_name: Interface name
+          interface_name: Interface name.
 
-          ip_family: Which subnets should be selected: IPv4, IPv6 or use dual stack.
+          port_group: Each group will be added to a separate trunk.
 
-          port_group: Each group will be added to the separate trunk.
-
-          security_groups: List of security group IDs
-
-          type: Must be 'any_subnet'
+          security_groups: List of security group IDs.
 
           extra_headers: Send extra headers
 
@@ -663,11 +714,15 @@ class AsyncInterfacesResource(AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         port_id: str,
-        ddos_profile: interface_attach_params.NewInterfaceReservedFixedIPSchemaDDOSProfile | Omit = omit,
-        interface_name: str | Omit = omit,
+        ddos_profile: Optional[interface_attach_params.AttachInterfaceReservedFixedIPRequestSerializerDDOSProfile]
+        | Omit = omit,
+        interface_name: Optional[str] | Omit = omit,
         port_group: int | Omit = omit,
-        security_groups: Iterable[interface_attach_params.NewInterfaceReservedFixedIPSchemaSecurityGroup] | Omit = omit,
-        type: str | Omit = omit,
+        security_groups: Optional[
+            Iterable[interface_attach_params.AttachInterfaceReservedFixedIPRequestSerializerSecurityGroup]
+        ]
+        | Omit = omit,
+        type: Literal["reserved_fixed_ip"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -676,20 +731,24 @@ class AsyncInterfacesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
-        Attach interface to bare metal GPU cluster server
+        Attach interface to bare metal GPU cluster server.
 
         Args:
-          port_id: Port ID
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
+          port_id: Port ID.
 
           ddos_profile: Advanced DDoS protection.
 
-          interface_name: Interface name
+          interface_name: Interface name.
 
-          port_group: Each group will be added to the separate trunk.
+          port_group: Each group will be added to a separate trunk.
 
-          security_groups: List of security group IDs
-
-          type: Must be 'reserved_fixed_ip'. Union tag
+          security_groups: List of security group IDs.
 
           extra_headers: Send extra headers
 
@@ -707,20 +766,23 @@ class AsyncInterfacesResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        ddos_profile: interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSDDOSProfile
-        | interface_attach_params.NewInterfaceSpecificSubnetSchemaDDOSProfile
-        | interface_attach_params.NewInterfaceAnySubnetSchemaDDOSProfile
-        | interface_attach_params.NewInterfaceReservedFixedIPSchemaDDOSProfile
+        ddos_profile: Optional[interface_attach_params.AttachInterfaceExternalRequestSerializerDDOSProfile]
+        | Optional[interface_attach_params.AttachInterfaceSubnetRequestSerializerDDOSProfile]
+        | Optional[interface_attach_params.AttachInterfaceAnySubnetRequestSerializerDDOSProfile]
+        | Optional[interface_attach_params.AttachInterfaceReservedFixedIPRequestSerializerDDOSProfile]
         | Omit = omit,
-        interface_name: str | Omit = omit,
-        ip_family: Literal["dual", "ipv4", "ipv6"] | Omit = omit,
+        interface_name: Optional[str] | Omit = omit,
+        ip_family: Optional[InterfaceIPFamily] | Omit = omit,
         port_group: int | Omit = omit,
-        security_groups: Iterable[interface_attach_params.NewInterfaceExternalExtendSchemaWithDDOSSecurityGroup]
-        | Iterable[interface_attach_params.NewInterfaceSpecificSubnetSchemaSecurityGroup]
-        | Iterable[interface_attach_params.NewInterfaceAnySubnetSchemaSecurityGroup]
-        | Iterable[interface_attach_params.NewInterfaceReservedFixedIPSchemaSecurityGroup]
+        security_groups: Optional[
+            Iterable[interface_attach_params.AttachInterfaceExternalRequestSerializerSecurityGroup]
+        ]
         | Omit = omit,
-        type: str | Omit = omit,
+        type: Literal["external"]
+        | Literal["subnet"]
+        | Literal["any_subnet"]
+        | Literal["reserved_fixed_ip"]
+        | Omit = omit,
         subnet_id: str | Omit = omit,
         network_id: str | Omit = omit,
         port_id: str | Omit = omit,
@@ -780,9 +842,15 @@ class AsyncInterfacesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
-        Detach interface from bare metal GPU cluster server
+        Detach interface from bare metal GPU cluster server.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
           ip_address: IP address
 
           port_id: ID of the port

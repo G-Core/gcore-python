@@ -797,8 +797,8 @@ class VolumesResource(VolumesResourceCustomMixin, SyncAPIResource):
     ) -> TaskIDList:
         """Increase the size of a volume.
 
-        The new size must be greater than the current
-        size.
+        The volume must be in an available or in-use
+        state to be extended. The new size must be greater than the current size.
 
         Args:
           project_id: Project ID
@@ -1653,8 +1653,8 @@ class AsyncVolumesResource(AsyncVolumesResourceCustomMixin, AsyncAPIResource):
     ) -> TaskIDList:
         """Increase the size of a volume.
 
-        The new size must be greater than the current
-        size.
+        The volume must be in an available or in-use
+        state to be extended. The new size must be greater than the current size.
 
         Args:
           project_id: Project ID

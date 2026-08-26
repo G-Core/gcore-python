@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Optional
 from typing_extensions import TypedDict
 
 __all__ = ["ClusterUpdateServersSettingsParams", "ServersSettings", "ServersSettingsCredentials"]
@@ -22,7 +23,10 @@ class ClusterUpdateServersSettingsParams(TypedDict, total=False):
 
 
 class ServersSettingsCredentials(TypedDict, total=False):
-    """Optional server access credentials"""
+    """Optional server access credentials.
+
+    Omit the field to leave it unchanged, or set it to `null` to clear the currently stored value.
+    """
 
     ssh_key_name: str
     """
@@ -34,8 +38,16 @@ class ServersSettingsCredentials(TypedDict, total=False):
 class ServersSettings(TypedDict, total=False):
     """Configuration settings for the servers in the cluster"""
 
-    credentials: ServersSettingsCredentials
-    """Optional server access credentials"""
+    credentials: Optional[ServersSettingsCredentials]
+    """Optional server access credentials.
 
-    user_data: str
-    """Optional custom user data (Base64-encoded)"""
+    Omit the field to leave it unchanged, or set it to `null` to clear the currently
+    stored value.
+    """
+
+    user_data: Optional[str]
+    """Optional custom user data (Base64-encoded).
+
+    Omit the field to leave it unchanged, or set it to `null` to clear the currently
+    stored value.
+    """

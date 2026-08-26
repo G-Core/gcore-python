@@ -399,6 +399,7 @@ class PoolsResource(PoolsResourceCustomMixin, SyncAPIResource):
         region_id: int | None = None,
         flavor_id: str,
         boot_volume_size: Optional[int] | Omit = omit,
+        is_public_ipv4: bool | Omit = omit,
         max_node_count: Optional[int] | Omit = omit,
         min_node_count: Optional[int] | Omit = omit,
         name: Optional[str] | Omit = omit,
@@ -415,8 +416,9 @@ class PoolsResource(PoolsResourceCustomMixin, SyncAPIResource):
 
         Returns
         exceeded quotas if regional limits would be violated. Use before pool creation
-        to validate resource availability. Checks: CPU, RAM, volumes, VMs, GPUs, and
-        baremetal quotas depending on flavor type.
+        to validate resource availability. Checks: CPU, RAM, volumes, VMs, GPUs,
+        external IPs (for pools with `is_public_ipv4`), and baremetal quotas depending
+        on flavor type.
 
         Args:
           project_id: Project ID
@@ -426,6 +428,9 @@ class PoolsResource(PoolsResourceCustomMixin, SyncAPIResource):
           flavor_id: Flavor ID
 
           boot_volume_size: Boot volume size
+
+          is_public_ipv4: Enable public IPv4 address for pool nodes. Each node consumes one external IP
+              quota unit
 
           max_node_count: Maximum node count
 
@@ -459,6 +464,7 @@ class PoolsResource(PoolsResourceCustomMixin, SyncAPIResource):
                 {
                     "flavor_id": flavor_id,
                     "boot_volume_size": boot_volume_size,
+                    "is_public_ipv4": is_public_ipv4,
                     "max_node_count": max_node_count,
                     "min_node_count": min_node_count,
                     "name": name,
@@ -947,6 +953,7 @@ class AsyncPoolsResource(AsyncPoolsResourceCustomMixin, AsyncAPIResource):
         region_id: int | None = None,
         flavor_id: str,
         boot_volume_size: Optional[int] | Omit = omit,
+        is_public_ipv4: bool | Omit = omit,
         max_node_count: Optional[int] | Omit = omit,
         min_node_count: Optional[int] | Omit = omit,
         name: Optional[str] | Omit = omit,
@@ -963,8 +970,9 @@ class AsyncPoolsResource(AsyncPoolsResourceCustomMixin, AsyncAPIResource):
 
         Returns
         exceeded quotas if regional limits would be violated. Use before pool creation
-        to validate resource availability. Checks: CPU, RAM, volumes, VMs, GPUs, and
-        baremetal quotas depending on flavor type.
+        to validate resource availability. Checks: CPU, RAM, volumes, VMs, GPUs,
+        external IPs (for pools with `is_public_ipv4`), and baremetal quotas depending
+        on flavor type.
 
         Args:
           project_id: Project ID
@@ -974,6 +982,9 @@ class AsyncPoolsResource(AsyncPoolsResourceCustomMixin, AsyncAPIResource):
           flavor_id: Flavor ID
 
           boot_volume_size: Boot volume size
+
+          is_public_ipv4: Enable public IPv4 address for pool nodes. Each node consumes one external IP
+              quota unit
 
           max_node_count: Maximum node count
 
@@ -1007,6 +1018,7 @@ class AsyncPoolsResource(AsyncPoolsResourceCustomMixin, AsyncAPIResource):
                 {
                     "flavor_id": flavor_id,
                     "boot_volume_size": boot_volume_size,
+                    "is_public_ipv4": is_public_ipv4,
                     "max_node_count": max_node_count,
                     "min_node_count": min_node_count,
                     "name": name,

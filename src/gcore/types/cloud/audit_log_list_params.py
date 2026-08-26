@@ -58,6 +58,8 @@ class AuditLogListParams(TypedDict, total=False):
     api_group: List[
         Literal[
             "ai_cluster",
+            "baremetal",
+            "basic_vm",
             "caas_container",
             "caas_key",
             "caas_pull_secret",
@@ -95,6 +97,7 @@ class AuditLogListParams(TypedDict, total=False):
             "reserved_fixed_ip",
             "role",
             "router",
+            "rtbh",
             "secret",
             "securitygroup",
             "securitygrouprule",

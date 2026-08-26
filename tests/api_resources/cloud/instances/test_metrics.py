@@ -20,9 +20,9 @@ class TestMetrics:
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
         metric = client.cloud.instances.metrics.list(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
             time_interval=6,
             time_unit="hour",
         )
@@ -31,9 +31,9 @@ class TestMetrics:
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
         metric = client.cloud.instances.metrics.list(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
             time_interval=6,
             time_unit="hour",
             limit=1000,
@@ -44,9 +44,9 @@ class TestMetrics:
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
         response = client.cloud.instances.metrics.with_raw_response.list(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
             time_interval=6,
             time_unit="hour",
         )
@@ -59,9 +59,9 @@ class TestMetrics:
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
         with client.cloud.instances.metrics.with_streaming_response.list(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
             time_interval=6,
             time_unit="hour",
         ) as response:
@@ -78,8 +78,8 @@ class TestMetrics:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
             client.cloud.instances.metrics.with_raw_response.list(
                 instance_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
                 time_interval=6,
                 time_unit="hour",
             )
@@ -93,9 +93,9 @@ class TestAsyncMetrics:
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
         metric = await async_client.cloud.instances.metrics.list(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
             time_interval=6,
             time_unit="hour",
         )
@@ -104,9 +104,9 @@ class TestAsyncMetrics:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
         metric = await async_client.cloud.instances.metrics.list(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
             time_interval=6,
             time_unit="hour",
             limit=1000,
@@ -117,9 +117,9 @@ class TestAsyncMetrics:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.instances.metrics.with_raw_response.list(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
             time_interval=6,
             time_unit="hour",
         )
@@ -132,9 +132,9 @@ class TestAsyncMetrics:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.instances.metrics.with_streaming_response.list(
-            instance_id="instance_id",
-            project_id=0,
-            region_id=0,
+            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            project_id=1,
+            region_id=1,
             time_interval=6,
             time_unit="hour",
         ) as response:
@@ -151,8 +151,8 @@ class TestAsyncMetrics:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
             await async_client.cloud.instances.metrics.with_raw_response.list(
                 instance_id="",
-                project_id=0,
-                region_id=0,
+                project_id=1,
+                region_id=1,
                 time_interval=6,
                 time_unit="hour",
             )
