@@ -29,6 +29,7 @@ from .....types.cloud.gpu_baremetal.clusters import (
     server_delete_params,
     server_replace_params,
     server_get_console_params,
+    server_apply_settings_params,
 )
 from .....types.cloud.gpu_baremetal.clusters.gpu_baremetal_cluster_server import GPUBaremetalClusterServer
 from .....types.cloud.gpu_baremetal.clusters.gpu_baremetal_cluster_server_v1 import GPUBaremetalClusterServerV1
@@ -236,6 +237,75 @@ class ServersResource(ServersResourceCustomMixin, SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"delete_floatings": delete_floatings}, server_delete_params.ServerDeleteParams),
+            ),
+            cast_to=TaskIDList,
+        )
+
+    def apply_settings(
+        self,
+        server_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        cluster_id: str,
+        max_disruption: Literal["none", "rebuild"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """
+        Apply updated server settings to a specific server in a bare metal GPU cluster.
+        During this process, the server receives a new image, SSH key, and user data.
+        Important: Before applying settings, the cluster must have updated server
+        settings. These cluster settings must be patched using the following endpoint:
+        PATCH '/v3/gpu/baremetal/{`project_id`}/{`region_id`}/clusters/{`cluster_id`}'
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_id: Cluster unique identifier
+
+          server_id: Server unique identifier
+
+          max_disruption: The most disruptive operation the request is permitted to perform on existing
+              servers. Applying settings re-images the servers, so this must be set to
+              'rebuild' to proceed. The default 'none' always fails with a validation error
+              and exists only to prevent accidental destructive applies.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not cluster_id:
+            raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
+        if not server_id:
+            raise ValueError(f"Expected a non-empty value for `server_id` but received {server_id!r}")
+        return self._post(
+            path_template(
+                "/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/servers/{server_id}/apply_settings",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_id=cluster_id,
+                server_id=server_id,
+            ),
+            body=maybe_transform(
+                {"max_disruption": max_disruption}, server_apply_settings_params.ServerApplySettingsParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=TaskIDList,
         )
@@ -736,6 +806,75 @@ class AsyncServersResource(AsyncServersResourceCustomMixin, AsyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    async def apply_settings(
+        self,
+        server_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        cluster_id: str,
+        max_disruption: Literal["none", "rebuild"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """
+        Apply updated server settings to a specific server in a bare metal GPU cluster.
+        During this process, the server receives a new image, SSH key, and user data.
+        Important: Before applying settings, the cluster must have updated server
+        settings. These cluster settings must be patched using the following endpoint:
+        PATCH '/v3/gpu/baremetal/{`project_id`}/{`region_id`}/clusters/{`cluster_id`}'
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_id: Cluster unique identifier
+
+          server_id: Server unique identifier
+
+          max_disruption: The most disruptive operation the request is permitted to perform on existing
+              servers. Applying settings re-images the servers, so this must be set to
+              'rebuild' to proceed. The default 'none' always fails with a validation error
+              and exists only to prevent accidental destructive applies.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not cluster_id:
+            raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
+        if not server_id:
+            raise ValueError(f"Expected a non-empty value for `server_id` but received {server_id!r}")
+        return await self._post(
+            path_template(
+                "/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/servers/{server_id}/apply_settings",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_id=cluster_id,
+                server_id=server_id,
+            ),
+            body=await async_maybe_transform(
+                {"max_disruption": max_disruption}, server_apply_settings_params.ServerApplySettingsParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TaskIDList,
+        )
+
     async def get_console(
         self,
         instance_id: str,
@@ -1040,6 +1179,9 @@ class ServersResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             servers.delete,
         )
+        self.apply_settings = to_raw_response_wrapper(
+            servers.apply_settings,
+        )
         self.get_console = to_raw_response_wrapper(
             servers.get_console,
         )
@@ -1077,6 +1219,9 @@ class AsyncServersResourceWithRawResponse:
         )
         self.delete = async_to_raw_response_wrapper(
             servers.delete,
+        )
+        self.apply_settings = async_to_raw_response_wrapper(
+            servers.apply_settings,
         )
         self.get_console = async_to_raw_response_wrapper(
             servers.get_console,
@@ -1116,6 +1261,9 @@ class ServersResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             servers.delete,
         )
+        self.apply_settings = to_streamed_response_wrapper(
+            servers.apply_settings,
+        )
         self.get_console = to_streamed_response_wrapper(
             servers.get_console,
         )
@@ -1153,6 +1301,9 @@ class AsyncServersResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             servers.delete,
+        )
+        self.apply_settings = async_to_streamed_response_wrapper(
+            servers.apply_settings,
         )
         self.get_console = async_to_streamed_response_wrapper(
             servers.get_console,

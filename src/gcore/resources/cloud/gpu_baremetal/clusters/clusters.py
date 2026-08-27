@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import typing_extensions
 from typing import Dict, List, Optional
-from typing_extensions import Literal
+from typing_extensions import Literal, overload
 
 import httpx
 
@@ -33,7 +33,7 @@ from .servers import (
     AsyncServersResourceWithStreamingResponse,
 )
 from ....._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ....._utils import path_template, maybe_transform, async_maybe_transform
+from ....._utils import path_template, required_args, maybe_transform, async_maybe_transform
 from .interfaces import (
     InterfacesResource,
     AsyncInterfacesResource,
@@ -56,10 +56,12 @@ from ....._base_client import AsyncPaginator, make_request_options
 from .....types.cloud.task_id_list import TaskIDList
 from .....types.cloud.gpu_baremetal import (
     cluster_list_params,
+    cluster_action_params,
     cluster_create_params,
     cluster_delete_params,
     cluster_resize_params,
     cluster_update_params,
+    cluster_apply_settings_params,
     cluster_update_servers_settings_params,
 )
 from .....types.cloud.tag_update_map_param import TagUpdateMapParam
@@ -467,6 +469,257 @@ class ClustersResource(ClustersResourceCustomMixin, SyncAPIResource):
                     },
                     cluster_delete_params.ClusterDeleteParams,
                 ),
+            ),
+            cast_to=TaskIDList,
+        )
+
+    @overload
+    def action(
+        self,
+        cluster_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["start"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """
+        Immediately perform a specific action on all instances in baremetal GPU cluster.
+        Available actions: start, stop, soft reboot, hard reboot.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_id: Cluster unique identifier
+
+          action: Action name
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def action(
+        self,
+        cluster_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["stop"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """
+        Immediately perform a specific action on all instances in baremetal GPU cluster.
+        Available actions: start, stop, soft reboot, hard reboot.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_id: Cluster unique identifier
+
+          action: Action name
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def action(
+        self,
+        cluster_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["soft_reboot"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """
+        Immediately perform a specific action on all instances in baremetal GPU cluster.
+        Available actions: start, stop, soft reboot, hard reboot.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_id: Cluster unique identifier
+
+          action: Action name
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def action(
+        self,
+        cluster_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["hard_reboot"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """
+        Immediately perform a specific action on all instances in baremetal GPU cluster.
+        Available actions: start, stop, soft reboot, hard reboot.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_id: Cluster unique identifier
+
+          action: Action name
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["action"])
+    def action(
+        self,
+        cluster_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["start"] | Literal["stop"] | Literal["soft_reboot"] | Literal["hard_reboot"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not cluster_id:
+            raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
+        return self._post(
+            path_template(
+                "/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/action",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_id=cluster_id,
+            ),
+            body=maybe_transform({"action": action}, cluster_action_params.ClusterActionParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TaskIDList,
+        )
+
+    def apply_settings(
+        self,
+        cluster_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        max_disruption: Literal["none", "rebuild"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """Apply updated server settings to all servers in a bare metal GPU cluster.
+
+        During
+        this process, the servers receive a new image, SSH key, and user data.
+        Important: Before applying settings, the cluster must have updated server
+        settings. These cluster settings must be patched using the following endpoint:
+        PATCH '/v3/gpu/baremetal/{`project_id`}/{`region_id`}/clusters/{`cluster_id`}'
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_id: Cluster unique identifier
+
+          max_disruption: The most disruptive operation the request is permitted to perform on existing
+              servers. Applying settings re-images the servers, so this must be set to
+              'rebuild' to proceed. The default 'none' always fails with a validation error
+              and exists only to prevent accidental destructive applies.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not cluster_id:
+            raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
+        return self._post(
+            path_template(
+                "/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/apply_settings",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_id=cluster_id,
+            ),
+            body=maybe_transform(
+                {"max_disruption": max_disruption}, cluster_apply_settings_params.ClusterApplySettingsParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=TaskIDList,
         )
@@ -1216,6 +1469,257 @@ class AsyncClustersResource(AsyncClustersResourceCustomMixin, AsyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    @overload
+    async def action(
+        self,
+        cluster_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["start"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """
+        Immediately perform a specific action on all instances in baremetal GPU cluster.
+        Available actions: start, stop, soft reboot, hard reboot.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_id: Cluster unique identifier
+
+          action: Action name
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def action(
+        self,
+        cluster_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["stop"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """
+        Immediately perform a specific action on all instances in baremetal GPU cluster.
+        Available actions: start, stop, soft reboot, hard reboot.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_id: Cluster unique identifier
+
+          action: Action name
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def action(
+        self,
+        cluster_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["soft_reboot"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """
+        Immediately perform a specific action on all instances in baremetal GPU cluster.
+        Available actions: start, stop, soft reboot, hard reboot.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_id: Cluster unique identifier
+
+          action: Action name
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def action(
+        self,
+        cluster_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["hard_reboot"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """
+        Immediately perform a specific action on all instances in baremetal GPU cluster.
+        Available actions: start, stop, soft reboot, hard reboot.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_id: Cluster unique identifier
+
+          action: Action name
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["action"])
+    async def action(
+        self,
+        cluster_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["start"] | Literal["stop"] | Literal["soft_reboot"] | Literal["hard_reboot"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not cluster_id:
+            raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
+        return await self._post(
+            path_template(
+                "/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/action",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_id=cluster_id,
+            ),
+            body=await async_maybe_transform({"action": action}, cluster_action_params.ClusterActionParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TaskIDList,
+        )
+
+    async def apply_settings(
+        self,
+        cluster_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        max_disruption: Literal["none", "rebuild"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """Apply updated server settings to all servers in a bare metal GPU cluster.
+
+        During
+        this process, the servers receive a new image, SSH key, and user data.
+        Important: Before applying settings, the cluster must have updated server
+        settings. These cluster settings must be patched using the following endpoint:
+        PATCH '/v3/gpu/baremetal/{`project_id`}/{`region_id`}/clusters/{`cluster_id`}'
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          cluster_id: Cluster unique identifier
+
+          max_disruption: The most disruptive operation the request is permitted to perform on existing
+              servers. Applying settings re-images the servers, so this must be set to
+              'rebuild' to proceed. The default 'none' always fails with a validation error
+              and exists only to prevent accidental destructive applies.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not cluster_id:
+            raise ValueError(f"Expected a non-empty value for `cluster_id` but received {cluster_id!r}")
+        return await self._post(
+            path_template(
+                "/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/apply_settings",
+                project_id=project_id,
+                region_id=region_id,
+                cluster_id=cluster_id,
+            ),
+            body=await async_maybe_transform(
+                {"max_disruption": max_disruption}, cluster_apply_settings_params.ClusterApplySettingsParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TaskIDList,
+        )
+
     async def get(
         self,
         cluster_id: str,
@@ -1577,6 +2081,12 @@ class ClustersResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             clusters.delete,
         )
+        self.action = to_raw_response_wrapper(
+            clusters.action,
+        )
+        self.apply_settings = to_raw_response_wrapper(
+            clusters.apply_settings,
+        )
         self.get = to_raw_response_wrapper(
             clusters.get,
         )
@@ -1649,6 +2159,12 @@ class AsyncClustersResourceWithRawResponse:
         )
         self.delete = async_to_raw_response_wrapper(
             clusters.delete,
+        )
+        self.action = async_to_raw_response_wrapper(
+            clusters.action,
+        )
+        self.apply_settings = async_to_raw_response_wrapper(
+            clusters.apply_settings,
         )
         self.get = async_to_raw_response_wrapper(
             clusters.get,
@@ -1723,6 +2239,12 @@ class ClustersResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             clusters.delete,
         )
+        self.action = to_streamed_response_wrapper(
+            clusters.action,
+        )
+        self.apply_settings = to_streamed_response_wrapper(
+            clusters.apply_settings,
+        )
         self.get = to_streamed_response_wrapper(
             clusters.get,
         )
@@ -1795,6 +2317,12 @@ class AsyncClustersResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             clusters.delete,
+        )
+        self.action = async_to_streamed_response_wrapper(
+            clusters.action,
+        )
+        self.apply_settings = async_to_streamed_response_wrapper(
+            clusters.apply_settings,
         )
         self.get = async_to_streamed_response_wrapper(
             clusters.get,

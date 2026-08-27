@@ -329,6 +329,262 @@ class TestClusters:
             )
 
     @parametrize
+    def test_method_action_overload_1(self, client: Gcore) -> None:
+        cluster = client.cloud.gpu_baremetal.clusters.action(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+            action="start",
+        )
+        assert_matches_type(TaskIDList, cluster, path=["response"])
+
+    @parametrize
+    def test_raw_response_action_overload_1(self, client: Gcore) -> None:
+        response = client.cloud.gpu_baremetal.clusters.with_raw_response.action(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+            action="start",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        cluster = response.parse()
+        assert_matches_type(TaskIDList, cluster, path=["response"])
+
+    @parametrize
+    def test_streaming_response_action_overload_1(self, client: Gcore) -> None:
+        with client.cloud.gpu_baremetal.clusters.with_streaming_response.action(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+            action="start",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            cluster = response.parse()
+            assert_matches_type(TaskIDList, cluster, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_action_overload_1(self, client: Gcore) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_id` but received ''"):
+            client.cloud.gpu_baremetal.clusters.with_raw_response.action(
+                cluster_id="",
+                project_id=1,
+                region_id=7,
+                action="start",
+            )
+
+    @parametrize
+    def test_method_action_overload_2(self, client: Gcore) -> None:
+        cluster = client.cloud.gpu_baremetal.clusters.action(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+            action="stop",
+        )
+        assert_matches_type(TaskIDList, cluster, path=["response"])
+
+    @parametrize
+    def test_raw_response_action_overload_2(self, client: Gcore) -> None:
+        response = client.cloud.gpu_baremetal.clusters.with_raw_response.action(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+            action="stop",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        cluster = response.parse()
+        assert_matches_type(TaskIDList, cluster, path=["response"])
+
+    @parametrize
+    def test_streaming_response_action_overload_2(self, client: Gcore) -> None:
+        with client.cloud.gpu_baremetal.clusters.with_streaming_response.action(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+            action="stop",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            cluster = response.parse()
+            assert_matches_type(TaskIDList, cluster, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_action_overload_2(self, client: Gcore) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_id` but received ''"):
+            client.cloud.gpu_baremetal.clusters.with_raw_response.action(
+                cluster_id="",
+                project_id=1,
+                region_id=7,
+                action="stop",
+            )
+
+    @parametrize
+    def test_method_action_overload_3(self, client: Gcore) -> None:
+        cluster = client.cloud.gpu_baremetal.clusters.action(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+            action="soft_reboot",
+        )
+        assert_matches_type(TaskIDList, cluster, path=["response"])
+
+    @parametrize
+    def test_raw_response_action_overload_3(self, client: Gcore) -> None:
+        response = client.cloud.gpu_baremetal.clusters.with_raw_response.action(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+            action="soft_reboot",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        cluster = response.parse()
+        assert_matches_type(TaskIDList, cluster, path=["response"])
+
+    @parametrize
+    def test_streaming_response_action_overload_3(self, client: Gcore) -> None:
+        with client.cloud.gpu_baremetal.clusters.with_streaming_response.action(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+            action="soft_reboot",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            cluster = response.parse()
+            assert_matches_type(TaskIDList, cluster, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_action_overload_3(self, client: Gcore) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_id` but received ''"):
+            client.cloud.gpu_baremetal.clusters.with_raw_response.action(
+                cluster_id="",
+                project_id=1,
+                region_id=7,
+                action="soft_reboot",
+            )
+
+    @parametrize
+    def test_method_action_overload_4(self, client: Gcore) -> None:
+        cluster = client.cloud.gpu_baremetal.clusters.action(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+            action="hard_reboot",
+        )
+        assert_matches_type(TaskIDList, cluster, path=["response"])
+
+    @parametrize
+    def test_raw_response_action_overload_4(self, client: Gcore) -> None:
+        response = client.cloud.gpu_baremetal.clusters.with_raw_response.action(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+            action="hard_reboot",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        cluster = response.parse()
+        assert_matches_type(TaskIDList, cluster, path=["response"])
+
+    @parametrize
+    def test_streaming_response_action_overload_4(self, client: Gcore) -> None:
+        with client.cloud.gpu_baremetal.clusters.with_streaming_response.action(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+            action="hard_reboot",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            cluster = response.parse()
+            assert_matches_type(TaskIDList, cluster, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_action_overload_4(self, client: Gcore) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_id` but received ''"):
+            client.cloud.gpu_baremetal.clusters.with_raw_response.action(
+                cluster_id="",
+                project_id=1,
+                region_id=7,
+                action="hard_reboot",
+            )
+
+    @parametrize
+    def test_method_apply_settings(self, client: Gcore) -> None:
+        cluster = client.cloud.gpu_baremetal.clusters.apply_settings(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+        )
+        assert_matches_type(TaskIDList, cluster, path=["response"])
+
+    @parametrize
+    def test_method_apply_settings_with_all_params(self, client: Gcore) -> None:
+        cluster = client.cloud.gpu_baremetal.clusters.apply_settings(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+            max_disruption="rebuild",
+        )
+        assert_matches_type(TaskIDList, cluster, path=["response"])
+
+    @parametrize
+    def test_raw_response_apply_settings(self, client: Gcore) -> None:
+        response = client.cloud.gpu_baremetal.clusters.with_raw_response.apply_settings(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        cluster = response.parse()
+        assert_matches_type(TaskIDList, cluster, path=["response"])
+
+    @parametrize
+    def test_streaming_response_apply_settings(self, client: Gcore) -> None:
+        with client.cloud.gpu_baremetal.clusters.with_streaming_response.apply_settings(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            cluster = response.parse()
+            assert_matches_type(TaskIDList, cluster, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_apply_settings(self, client: Gcore) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_id` but received ''"):
+            client.cloud.gpu_baremetal.clusters.with_raw_response.apply_settings(
+                cluster_id="",
+                project_id=1,
+                region_id=7,
+            )
+
+    @parametrize
     def test_method_get(self, client: Gcore) -> None:
         cluster = client.cloud.gpu_baremetal.clusters.get(
             cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
@@ -948,6 +1204,262 @@ class TestAsyncClusters:
     async def test_path_params_delete(self, async_client: AsyncGcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_id` but received ''"):
             await async_client.cloud.gpu_baremetal.clusters.with_raw_response.delete(
+                cluster_id="",
+                project_id=1,
+                region_id=7,
+            )
+
+    @parametrize
+    async def test_method_action_overload_1(self, async_client: AsyncGcore) -> None:
+        cluster = await async_client.cloud.gpu_baremetal.clusters.action(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+            action="start",
+        )
+        assert_matches_type(TaskIDList, cluster, path=["response"])
+
+    @parametrize
+    async def test_raw_response_action_overload_1(self, async_client: AsyncGcore) -> None:
+        response = await async_client.cloud.gpu_baremetal.clusters.with_raw_response.action(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+            action="start",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        cluster = await response.parse()
+        assert_matches_type(TaskIDList, cluster, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_action_overload_1(self, async_client: AsyncGcore) -> None:
+        async with async_client.cloud.gpu_baremetal.clusters.with_streaming_response.action(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+            action="start",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            cluster = await response.parse()
+            assert_matches_type(TaskIDList, cluster, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_action_overload_1(self, async_client: AsyncGcore) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_id` but received ''"):
+            await async_client.cloud.gpu_baremetal.clusters.with_raw_response.action(
+                cluster_id="",
+                project_id=1,
+                region_id=7,
+                action="start",
+            )
+
+    @parametrize
+    async def test_method_action_overload_2(self, async_client: AsyncGcore) -> None:
+        cluster = await async_client.cloud.gpu_baremetal.clusters.action(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+            action="stop",
+        )
+        assert_matches_type(TaskIDList, cluster, path=["response"])
+
+    @parametrize
+    async def test_raw_response_action_overload_2(self, async_client: AsyncGcore) -> None:
+        response = await async_client.cloud.gpu_baremetal.clusters.with_raw_response.action(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+            action="stop",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        cluster = await response.parse()
+        assert_matches_type(TaskIDList, cluster, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_action_overload_2(self, async_client: AsyncGcore) -> None:
+        async with async_client.cloud.gpu_baremetal.clusters.with_streaming_response.action(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+            action="stop",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            cluster = await response.parse()
+            assert_matches_type(TaskIDList, cluster, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_action_overload_2(self, async_client: AsyncGcore) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_id` but received ''"):
+            await async_client.cloud.gpu_baremetal.clusters.with_raw_response.action(
+                cluster_id="",
+                project_id=1,
+                region_id=7,
+                action="stop",
+            )
+
+    @parametrize
+    async def test_method_action_overload_3(self, async_client: AsyncGcore) -> None:
+        cluster = await async_client.cloud.gpu_baremetal.clusters.action(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+            action="soft_reboot",
+        )
+        assert_matches_type(TaskIDList, cluster, path=["response"])
+
+    @parametrize
+    async def test_raw_response_action_overload_3(self, async_client: AsyncGcore) -> None:
+        response = await async_client.cloud.gpu_baremetal.clusters.with_raw_response.action(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+            action="soft_reboot",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        cluster = await response.parse()
+        assert_matches_type(TaskIDList, cluster, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_action_overload_3(self, async_client: AsyncGcore) -> None:
+        async with async_client.cloud.gpu_baremetal.clusters.with_streaming_response.action(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+            action="soft_reboot",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            cluster = await response.parse()
+            assert_matches_type(TaskIDList, cluster, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_action_overload_3(self, async_client: AsyncGcore) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_id` but received ''"):
+            await async_client.cloud.gpu_baremetal.clusters.with_raw_response.action(
+                cluster_id="",
+                project_id=1,
+                region_id=7,
+                action="soft_reboot",
+            )
+
+    @parametrize
+    async def test_method_action_overload_4(self, async_client: AsyncGcore) -> None:
+        cluster = await async_client.cloud.gpu_baremetal.clusters.action(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+            action="hard_reboot",
+        )
+        assert_matches_type(TaskIDList, cluster, path=["response"])
+
+    @parametrize
+    async def test_raw_response_action_overload_4(self, async_client: AsyncGcore) -> None:
+        response = await async_client.cloud.gpu_baremetal.clusters.with_raw_response.action(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+            action="hard_reboot",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        cluster = await response.parse()
+        assert_matches_type(TaskIDList, cluster, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_action_overload_4(self, async_client: AsyncGcore) -> None:
+        async with async_client.cloud.gpu_baremetal.clusters.with_streaming_response.action(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+            action="hard_reboot",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            cluster = await response.parse()
+            assert_matches_type(TaskIDList, cluster, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_action_overload_4(self, async_client: AsyncGcore) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_id` but received ''"):
+            await async_client.cloud.gpu_baremetal.clusters.with_raw_response.action(
+                cluster_id="",
+                project_id=1,
+                region_id=7,
+                action="hard_reboot",
+            )
+
+    @parametrize
+    async def test_method_apply_settings(self, async_client: AsyncGcore) -> None:
+        cluster = await async_client.cloud.gpu_baremetal.clusters.apply_settings(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+        )
+        assert_matches_type(TaskIDList, cluster, path=["response"])
+
+    @parametrize
+    async def test_method_apply_settings_with_all_params(self, async_client: AsyncGcore) -> None:
+        cluster = await async_client.cloud.gpu_baremetal.clusters.apply_settings(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+            max_disruption="rebuild",
+        )
+        assert_matches_type(TaskIDList, cluster, path=["response"])
+
+    @parametrize
+    async def test_raw_response_apply_settings(self, async_client: AsyncGcore) -> None:
+        response = await async_client.cloud.gpu_baremetal.clusters.with_raw_response.apply_settings(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        cluster = await response.parse()
+        assert_matches_type(TaskIDList, cluster, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_apply_settings(self, async_client: AsyncGcore) -> None:
+        async with async_client.cloud.gpu_baremetal.clusters.with_streaming_response.apply_settings(
+            cluster_id="1aaaab48-10d0-46d9-80cc-85209284ceb4",
+            project_id=1,
+            region_id=7,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            cluster = await response.parse()
+            assert_matches_type(TaskIDList, cluster, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_apply_settings(self, async_client: AsyncGcore) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `cluster_id` but received ''"):
+            await async_client.cloud.gpu_baremetal.clusters.with_raw_response.apply_settings(
                 cluster_id="",
                 project_id=1,
                 region_id=7,
