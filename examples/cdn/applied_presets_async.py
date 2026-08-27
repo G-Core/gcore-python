@@ -33,6 +33,7 @@ async def main() -> None:
     try:
         # --- Applied preset lifecycle for a CDN resource ---
         await apply_preset(client=gcore, preset_id=resource_preset.id, object_id=resource.id)
+        await get_applied_object(client=gcore, preset_id=resource_preset.id, object_id=resource.id)
         await get_applied_objects(client=gcore, preset_id=resource_preset.id)
         await get_resource_preset(client=gcore, resource_id=resource.id)
         await unapply_preset(client=gcore, preset_id=resource_preset.id, object_id=resource.id)
@@ -93,20 +94,26 @@ async def create_rule(*, client: AsyncGcore, resource_id: int) -> CDNResourceRul
 async def apply_preset(*, client: AsyncGcore, preset_id: int, object_id: int) -> None:
     print("\n=== APPLY PRESET ===")
     result = await client.cdn.presets.applied.apply(preset_id, object_id=object_id)
-    print(f"Applied preset {preset_id} to object {object_id}: {result.message}")
+    print(f"Applied preset {result.preset_id} to object {result.object_id}")
     print("====================")
+
+
+async def get_applied_object(*, client: AsyncGcore, preset_id: int, object_id: int) -> None:
+    print("\n=== GET APPLIED OBJECT ===")
+    # Reads a single (preset, object) pair. The API returns 404 when the preset is
+    # not applied to the object, so this is how you check the relationship exists.
+    applied = await client.cdn.presets.applied.get(object_id, preset_id=preset_id)
+    print(f"Preset {applied.preset_id} is applied to object {applied.object_id}")
+    print("==========================")
 
 
 async def get_applied_objects(*, client: AsyncGcore, preset_id: int) -> None:
     print("\n=== GET APPLIED OBJECTS ===")
     result = await client.cdn.presets.applied.get_objects(preset_id)
-    object_ids = getattr(result, "object_ids", None)
-    if object_ids:
-        object_type = getattr(result, "object_type", None)
-        print(f"Preset {preset_id} is applied to {object_type} objects: {object_ids}")
+    if result.object_ids:
+        print(f"Preset {preset_id} is applied to {result.object_type} objects: {result.object_ids}")
     else:
-        message = getattr(result, "message", None)
-        print(f"Preset {preset_id} is not applied to any objects: {message}")
+        print(f"Preset {preset_id} is not applied to any objects")
     print("===========================")
 
 
