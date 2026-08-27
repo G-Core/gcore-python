@@ -140,6 +140,14 @@ from .networks.networks import (
     NetworksResourceWithStreamingResponse,
     AsyncNetworksResourceWithStreamingResponse,
 )
+from .lifecycle_policies import (
+    LifecyclePoliciesResource,
+    AsyncLifecyclePoliciesResource,
+    LifecyclePoliciesResourceWithRawResponse,
+    AsyncLifecyclePoliciesResourceWithRawResponse,
+    LifecyclePoliciesResourceWithStreamingResponse,
+    AsyncLifecyclePoliciesResourceWithStreamingResponse,
+)
 from .baremetal.baremetal import (
     BaremetalResource,
     AsyncBaremetalResource,
@@ -397,6 +405,13 @@ class CloudResource(SyncAPIResource):
         return DatabasesResource(self._client)
 
     @cached_property
+    def lifecycle_policies(self) -> LifecyclePoliciesResource:
+        """
+        Snapshot schedule policies describe when volume snapshots are taken and which volumes they cover. Volume membership is owned by the policy: attach and detach are policy-side operations, so a volume can join or leave a policy without being recreated.
+        """
+        return LifecyclePoliciesResource(self._client)
+
+    @cached_property
     def volume_snapshots(self) -> VolumeSnapshotsResource:
         return VolumeSnapshotsResource(self._client)
 
@@ -575,6 +590,13 @@ class AsyncCloudResource(AsyncAPIResource):
     @cached_property
     def databases(self) -> AsyncDatabasesResource:
         return AsyncDatabasesResource(self._client)
+
+    @cached_property
+    def lifecycle_policies(self) -> AsyncLifecyclePoliciesResource:
+        """
+        Snapshot schedule policies describe when volume snapshots are taken and which volumes they cover. Volume membership is owned by the policy: attach and detach are policy-side operations, so a volume can join or leave a policy without being recreated.
+        """
+        return AsyncLifecyclePoliciesResource(self._client)
 
     @cached_property
     def volume_snapshots(self) -> AsyncVolumeSnapshotsResource:
@@ -760,6 +782,13 @@ class CloudResourceWithRawResponse:
         return DatabasesResourceWithRawResponse(self._cloud.databases)
 
     @cached_property
+    def lifecycle_policies(self) -> LifecyclePoliciesResourceWithRawResponse:
+        """
+        Snapshot schedule policies describe when volume snapshots are taken and which volumes they cover. Volume membership is owned by the policy: attach and detach are policy-side operations, so a volume can join or leave a policy without being recreated.
+        """
+        return LifecyclePoliciesResourceWithRawResponse(self._cloud.lifecycle_policies)
+
+    @cached_property
     def volume_snapshots(self) -> VolumeSnapshotsResourceWithRawResponse:
         return VolumeSnapshotsResourceWithRawResponse(self._cloud.volume_snapshots)
 
@@ -922,6 +951,13 @@ class AsyncCloudResourceWithRawResponse:
     @cached_property
     def databases(self) -> AsyncDatabasesResourceWithRawResponse:
         return AsyncDatabasesResourceWithRawResponse(self._cloud.databases)
+
+    @cached_property
+    def lifecycle_policies(self) -> AsyncLifecyclePoliciesResourceWithRawResponse:
+        """
+        Snapshot schedule policies describe when volume snapshots are taken and which volumes they cover. Volume membership is owned by the policy: attach and detach are policy-side operations, so a volume can join or leave a policy without being recreated.
+        """
+        return AsyncLifecyclePoliciesResourceWithRawResponse(self._cloud.lifecycle_policies)
 
     @cached_property
     def volume_snapshots(self) -> AsyncVolumeSnapshotsResourceWithRawResponse:
@@ -1088,6 +1124,13 @@ class CloudResourceWithStreamingResponse:
         return DatabasesResourceWithStreamingResponse(self._cloud.databases)
 
     @cached_property
+    def lifecycle_policies(self) -> LifecyclePoliciesResourceWithStreamingResponse:
+        """
+        Snapshot schedule policies describe when volume snapshots are taken and which volumes they cover. Volume membership is owned by the policy: attach and detach are policy-side operations, so a volume can join or leave a policy without being recreated.
+        """
+        return LifecyclePoliciesResourceWithStreamingResponse(self._cloud.lifecycle_policies)
+
+    @cached_property
     def volume_snapshots(self) -> VolumeSnapshotsResourceWithStreamingResponse:
         return VolumeSnapshotsResourceWithStreamingResponse(self._cloud.volume_snapshots)
 
@@ -1250,6 +1293,13 @@ class AsyncCloudResourceWithStreamingResponse:
     @cached_property
     def databases(self) -> AsyncDatabasesResourceWithStreamingResponse:
         return AsyncDatabasesResourceWithStreamingResponse(self._cloud.databases)
+
+    @cached_property
+    def lifecycle_policies(self) -> AsyncLifecyclePoliciesResourceWithStreamingResponse:
+        """
+        Snapshot schedule policies describe when volume snapshots are taken and which volumes they cover. Volume membership is owned by the policy: attach and detach are policy-side operations, so a volume can join or leave a policy without being recreated.
+        """
+        return AsyncLifecyclePoliciesResourceWithStreamingResponse(self._cloud.lifecycle_policies)
 
     @cached_property
     def volume_snapshots(self) -> AsyncVolumeSnapshotsResourceWithStreamingResponse:

@@ -48,6 +48,7 @@ from .ssh_key_created import SSHKeyCreated as SSHKeyCreated
 from .baremetal_flavor import BaremetalFlavor as BaremetalFlavor
 from .floating_address import FloatingAddress as FloatingAddress
 from .lb_pool_protocol import LbPoolProtocol as LbPoolProtocol
+from .lifecycle_policy import LifecyclePolicy as LifecyclePolicy
 from .task_list_params import TaskListParams as TaskListParams
 from .network_interface import NetworkInterface as NetworkInterface
 from .region_get_params import RegionGetParams as RegionGetParams
@@ -157,6 +158,9 @@ from .volume_snapshot_create_params import VolumeSnapshotCreateParams as VolumeS
 from .volume_snapshot_update_params import VolumeSnapshotUpdateParams as VolumeSnapshotUpdateParams
 from .cost_report_aggregated_monthly import CostReportAggregatedMonthly as CostReportAggregatedMonthly
 from .inference_region_capacity_list import InferenceRegionCapacityList as InferenceRegionCapacityList
+from .lifecycle_policy_create_params import LifecyclePolicyCreateParams as LifecyclePolicyCreateParams
+from .lifecycle_policy_list_response import LifecyclePolicyListResponse as LifecyclePolicyListResponse
+from .lifecycle_policy_update_params import LifecyclePolicyUpdateParams as LifecyclePolicyUpdateParams
 from .load_balancer_operating_status import LoadBalancerOperatingStatus as LoadBalancerOperatingStatus
 from .billing_reservation_list_params import BillingReservationListParams as BillingReservationListParams
 from .cost_report_get_detailed_params import CostReportGetDetailedParams as CostReportGetDetailedParams
@@ -167,16 +171,32 @@ from .cost_report_get_aggregated_params import CostReportGetAggregatedParams as 
 from .laas_index_retention_policy_param import LaasIndexRetentionPolicyParam as LaasIndexRetentionPolicyParam
 from .load_balancer_member_connectivity import LoadBalancerMemberConnectivity as LoadBalancerMemberConnectivity
 from .volume_detach_from_instance_params import VolumeDetachFromInstanceParams as VolumeDetachFromInstanceParams
+from .lifecycle_policy_add_volumes_params import LifecyclePolicyAddVolumesParams as LifecyclePolicyAddVolumesParams
 from .secret_upload_tls_certificate_params import SecretUploadTlsCertificateParams as SecretUploadTlsCertificateParams
 from .instance_assign_security_group_params import (
     InstanceAssignSecurityGroupParams as InstanceAssignSecurityGroupParams,
 )
+from .lifecycle_policy_add_schedules_params import (
+    LifecyclePolicyAddSchedulesParams as LifecyclePolicyAddSchedulesParams,
+)
 from .instance_add_to_placement_group_params import (
     InstanceAddToPlacementGroupParams as InstanceAddToPlacementGroupParams,
+)
+from .lifecycle_policy_remove_volumes_params import (
+    LifecyclePolicyRemoveVolumesParams as LifecyclePolicyRemoveVolumesParams,
 )
 from .instance_unassign_security_group_params import (
     InstanceUnassignSecurityGroupParams as InstanceUnassignSecurityGroupParams,
 )
+from .lifecycle_policy_remove_schedules_params import (
+    LifecyclePolicyRemoveSchedulesParams as LifecyclePolicyRemoveSchedulesParams,
+)
 from .cost_report_get_aggregated_monthly_params import (
     CostReportGetAggregatedMonthlyParams as CostReportGetAggregatedMonthlyParams,
+)
+from .lifecycle_policy_estimate_max_usage_params import (
+    LifecyclePolicyEstimateMaxUsageParams as LifecyclePolicyEstimateMaxUsageParams,
+)
+from .lifecycle_policy_estimate_max_usage_response import (
+    LifecyclePolicyEstimateMaxUsageResponse as LifecyclePolicyEstimateMaxUsageResponse,
 )

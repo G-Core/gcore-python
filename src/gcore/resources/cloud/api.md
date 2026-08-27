@@ -1191,6 +1191,31 @@ Methods:
 
 - <code title="post /cloud/v1/dbaas/postgres/validate_pg_conf/{project_id}/{region_id}">client.cloud.databases.postgres.custom_configurations.<a href="./src/gcore/resources/cloud/databases/postgres/custom_configurations.py">validate</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/databases/postgres/custom_configuration_validate_params.py">params</a>) -> <a href="./src/gcore/types/cloud/databases/postgres/pg_conf_validation.py">PgConfValidation</a></code>
 
+## LifecyclePolicies
+
+Types:
+
+```python
+from gcore.types.cloud import (
+    LifecyclePolicy,
+    LifecyclePolicyListResponse,
+    LifecyclePolicyEstimateMaxUsageResponse,
+)
+```
+
+Methods:
+
+- <code title="post /cloud/v1/lifecycle_policy/{project_id}/{region_id}">client.cloud.lifecycle_policies.<a href="./src/gcore/resources/cloud/lifecycle_policies.py">create</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/lifecycle_policy_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/lifecycle_policy.py">LifecyclePolicy</a></code>
+- <code title="patch /cloud/v1/lifecycle_policy/{project_id}/{region_id}/{policy_id}">client.cloud.lifecycle_policies.<a href="./src/gcore/resources/cloud/lifecycle_policies.py">update</a>(policy_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/lifecycle_policy_update_params.py">params</a>) -> <a href="./src/gcore/types/cloud/lifecycle_policy.py">LifecyclePolicy</a></code>
+- <code title="get /cloud/v1/lifecycle_policy/{project_id}/{region_id}">client.cloud.lifecycle_policies.<a href="./src/gcore/resources/cloud/lifecycle_policies.py">list</a>(\*, project_id, region_id) -> <a href="./src/gcore/types/cloud/lifecycle_policy_list_response.py">LifecyclePolicyListResponse</a></code>
+- <code title="delete /cloud/v1/lifecycle_policy/{project_id}/{region_id}/{policy_id}">client.cloud.lifecycle_policies.<a href="./src/gcore/resources/cloud/lifecycle_policies.py">delete</a>(policy_id, \*, project_id, region_id) -> None</code>
+- <code title="post /cloud/v1/lifecycle_policy/{project_id}/{region_id}/{policy_id}/add_schedules">client.cloud.lifecycle_policies.<a href="./src/gcore/resources/cloud/lifecycle_policies.py">add_schedules</a>(policy_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/lifecycle_policy_add_schedules_params.py">params</a>) -> <a href="./src/gcore/types/cloud/lifecycle_policy.py">LifecyclePolicy</a></code>
+- <code title="put /cloud/v1/lifecycle_policy/{project_id}/{region_id}/{policy_id}/add_volumes_to_policy">client.cloud.lifecycle_policies.<a href="./src/gcore/resources/cloud/lifecycle_policies.py">add_volumes</a>(policy_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/lifecycle_policy_add_volumes_params.py">params</a>) -> <a href="./src/gcore/types/cloud/lifecycle_policy.py">LifecyclePolicy</a></code>
+- <code title="post /cloud/v1/lifecycle_policy/{project_id}/{region_id}/estimate_max_policy_usage">client.cloud.lifecycle_policies.<a href="./src/gcore/resources/cloud/lifecycle_policies.py">estimate_max_usage</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/lifecycle_policy_estimate_max_usage_params.py">params</a>) -> <a href="./src/gcore/types/cloud/lifecycle_policy_estimate_max_usage_response.py">LifecyclePolicyEstimateMaxUsageResponse</a></code>
+- <code title="get /cloud/v1/lifecycle_policy/{project_id}/{region_id}/{policy_id}">client.cloud.lifecycle_policies.<a href="./src/gcore/resources/cloud/lifecycle_policies.py">get</a>(policy_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/lifecycle_policy.py">LifecyclePolicy</a></code>
+- <code title="post /cloud/v1/lifecycle_policy/{project_id}/{region_id}/{policy_id}/remove_schedules">client.cloud.lifecycle_policies.<a href="./src/gcore/resources/cloud/lifecycle_policies.py">remove_schedules</a>(policy_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/lifecycle_policy_remove_schedules_params.py">params</a>) -> <a href="./src/gcore/types/cloud/lifecycle_policy.py">LifecyclePolicy</a></code>
+- <code title="put /cloud/v1/lifecycle_policy/{project_id}/{region_id}/{policy_id}/remove_volumes_from_policy">client.cloud.lifecycle_policies.<a href="./src/gcore/resources/cloud/lifecycle_policies.py">remove_volumes</a>(policy_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/lifecycle_policy_remove_volumes_params.py">params</a>) -> <a href="./src/gcore/types/cloud/lifecycle_policy.py">LifecyclePolicy</a></code>
+
 ## VolumeSnapshots
 
 Types:

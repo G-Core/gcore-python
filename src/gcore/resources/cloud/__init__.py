@@ -224,6 +224,14 @@ from .volume_snapshots import (
     VolumeSnapshotsResourceWithStreamingResponse,
     AsyncVolumeSnapshotsResourceWithStreamingResponse,
 )
+from .lifecycle_policies import (
+    LifecyclePoliciesResource,
+    AsyncLifecyclePoliciesResource,
+    LifecyclePoliciesResourceWithRawResponse,
+    AsyncLifecyclePoliciesResourceWithRawResponse,
+    LifecyclePoliciesResourceWithStreamingResponse,
+    AsyncLifecyclePoliciesResourceWithStreamingResponse,
+)
 from .reserved_fixed_ips import (
     ReservedFixedIPsResource,
     AsyncReservedFixedIPsResource,
@@ -410,6 +418,12 @@ __all__ = [
     "AsyncDatabasesResourceWithRawResponse",
     "DatabasesResourceWithStreamingResponse",
     "AsyncDatabasesResourceWithStreamingResponse",
+    "LifecyclePoliciesResource",
+    "AsyncLifecyclePoliciesResource",
+    "LifecyclePoliciesResourceWithRawResponse",
+    "AsyncLifecyclePoliciesResourceWithRawResponse",
+    "LifecyclePoliciesResourceWithStreamingResponse",
+    "AsyncLifecyclePoliciesResourceWithStreamingResponse",
     "VolumeSnapshotsResource",
     "AsyncVolumeSnapshotsResource",
     "VolumeSnapshotsResourceWithRawResponse",
