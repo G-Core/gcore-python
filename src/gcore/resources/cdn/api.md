@@ -137,12 +137,18 @@ Methods:
 Types:
 
 ```python
-from gcore.types.cdn.presets import AppliedPreset, AppliedPresetFields, AppliedApplyResponse
+from gcore.types.cdn.presets import (
+    AppliedPreset,
+    AppliedPresetCreated,
+    AppliedPresetFields,
+    AppliedPresetObject,
+)
 ```
 
 Methods:
 
-- <code title="post /cdn/presets/{preset_id}/applied">client.cdn.presets.applied.<a href="./src/gcore/resources/cdn/presets/applied.py">apply</a>(preset_id, \*\*<a href="src/gcore/types/cdn/presets/applied_apply_params.py">params</a>) -> <a href="./src/gcore/types/cdn/presets/applied_apply_response.py">AppliedApplyResponse</a></code>
+- <code title="post /cdn/presets/{preset_id}/applied">client.cdn.presets.applied.<a href="./src/gcore/resources/cdn/presets/applied.py">apply</a>(preset_id, \*\*<a href="src/gcore/types/cdn/presets/applied_apply_params.py">params</a>) -> <a href="./src/gcore/types/cdn/presets/applied_preset_created.py">AppliedPresetCreated</a></code>
+- <code title="get /cdn/presets/{preset_id}/applied/{object_id}">client.cdn.presets.applied.<a href="./src/gcore/resources/cdn/presets/applied.py">get</a>(object_id, \*, preset_id) -> <a href="./src/gcore/types/cdn/presets/applied_preset_object.py">AppliedPresetObject</a></code>
 - <code title="get /cdn/presets/{preset_id}/applied">client.cdn.presets.applied.<a href="./src/gcore/resources/cdn/presets/applied.py">get_objects</a>(preset_id) -> <a href="./src/gcore/types/cdn/presets/applied_preset.py">AppliedPreset</a></code>
 - <code title="get /cdn/resources/{resource_id}/preset">client.cdn.presets.applied.<a href="./src/gcore/resources/cdn/presets/applied.py">get_resource_preset</a>(resource_id) -> <a href="./src/gcore/types/cdn/presets/applied_preset_fields.py">AppliedPresetFields</a></code>
 - <code title="get /cdn/resources/{resource_id}/rules/{rule_id}/preset">client.cdn.presets.applied.<a href="./src/gcore/resources/cdn/presets/applied.py">get_rule_preset</a>(rule_id, \*, resource_id) -> <a href="./src/gcore/types/cdn/presets/applied_preset_fields.py">AppliedPresetFields</a></code>

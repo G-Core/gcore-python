@@ -18,7 +18,8 @@ from ...._base_client import make_request_options
 from ....types.cdn.presets import applied_apply_params
 from ....types.cdn.presets.applied_preset import AppliedPreset
 from ....types.cdn.presets.applied_preset_fields import AppliedPresetFields
-from ....types.cdn.presets.applied_apply_response import AppliedApplyResponse
+from ....types.cdn.presets.applied_preset_object import AppliedPresetObject
+from ....types.cdn.presets.applied_preset_created import AppliedPresetCreated
 
 __all__ = ["AppliedResource", "AsyncAppliedResource"]
 
@@ -58,7 +59,7 @@ class AppliedResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AppliedApplyResponse:
+    ) -> AppliedPresetCreated:
         """
         Apply the preset to an object (CDN resource or rule, according to the preset
         `object_type`).
@@ -84,7 +85,42 @@ class AppliedResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AppliedApplyResponse,
+            cast_to=AppliedPresetCreated,
+        )
+
+    def get(
+        self,
+        object_id: int,
+        *,
+        preset_id: int,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AppliedPresetObject:
+        """
+        Get a single object the preset is applied to.
+
+        Returns `404` if the preset is not applied to the object, so you can use this
+        endpoint to check whether the relationship exists.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            path_template("/cdn/presets/{preset_id}/applied/{object_id}", preset_id=preset_id, object_id=object_id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=AppliedPresetObject,
         )
 
     def get_objects(
@@ -256,7 +292,7 @@ class AsyncAppliedResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AppliedApplyResponse:
+    ) -> AppliedPresetCreated:
         """
         Apply the preset to an object (CDN resource or rule, according to the preset
         `object_type`).
@@ -282,7 +318,42 @@ class AsyncAppliedResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AppliedApplyResponse,
+            cast_to=AppliedPresetCreated,
+        )
+
+    async def get(
+        self,
+        object_id: int,
+        *,
+        preset_id: int,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AppliedPresetObject:
+        """
+        Get a single object the preset is applied to.
+
+        Returns `404` if the preset is not applied to the object, so you can use this
+        endpoint to check whether the relationship exists.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
+            path_template("/cdn/presets/{preset_id}/applied/{object_id}", preset_id=preset_id, object_id=object_id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=AppliedPresetObject,
         )
 
     async def get_objects(
@@ -426,6 +497,9 @@ class AppliedResourceWithRawResponse:
         self.apply = to_raw_response_wrapper(
             applied.apply,
         )
+        self.get = to_raw_response_wrapper(
+            applied.get,
+        )
         self.get_objects = to_raw_response_wrapper(
             applied.get_objects,
         )
@@ -446,6 +520,9 @@ class AsyncAppliedResourceWithRawResponse:
 
         self.apply = async_to_raw_response_wrapper(
             applied.apply,
+        )
+        self.get = async_to_raw_response_wrapper(
+            applied.get,
         )
         self.get_objects = async_to_raw_response_wrapper(
             applied.get_objects,
@@ -468,6 +545,9 @@ class AppliedResourceWithStreamingResponse:
         self.apply = to_streamed_response_wrapper(
             applied.apply,
         )
+        self.get = to_streamed_response_wrapper(
+            applied.get,
+        )
         self.get_objects = to_streamed_response_wrapper(
             applied.get_objects,
         )
@@ -488,6 +568,9 @@ class AsyncAppliedResourceWithStreamingResponse:
 
         self.apply = async_to_streamed_response_wrapper(
             applied.apply,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            applied.get,
         )
         self.get_objects = async_to_streamed_response_wrapper(
             applied.get_objects,

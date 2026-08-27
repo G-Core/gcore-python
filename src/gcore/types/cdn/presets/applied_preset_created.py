@@ -4,10 +4,10 @@ from typing import Optional
 
 from ...._models import BaseModel
 
-__all__ = ["AppliedApplyResponse"]
+__all__ = ["AppliedPresetCreated"]
 
 
-class AppliedApplyResponse(BaseModel):
+class AppliedPresetCreated(BaseModel):
     object_id: int
     """
     ID of the object (CDN resource or rule, according to the preset `object_type`)
