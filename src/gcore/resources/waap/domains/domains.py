@@ -194,7 +194,7 @@ class DomainsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> WaapDetailedDomain:
         """
         Update Domain
 
@@ -211,14 +211,13 @@ class DomainsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._patch(
-            path_template("/waap/v1/domains/{domain_id}", domain_id=domain_id),
+            path_template("/waap/v2/domains/{domain_id}", domain_id=domain_id),
             body=maybe_transform({"status": status}, domain_update_params.DomainUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=WaapDetailedDomain,
         )
 
     def list(
@@ -228,7 +227,21 @@ class DomainsResource(SyncAPIResource):
         limit: int | Omit = omit,
         name: str | Omit = omit,
         offset: int | Omit = omit,
-        ordering: Literal["id", "name", "status", "created_at", "-id", "-name", "-status", "-created_at"] | Omit = omit,
+        ordering: Literal[
+            "id",
+            "name",
+            "status",
+            "created_at",
+            "-id",
+            "-name",
+            "-status",
+            "-created_at",
+            "total_requests",
+            "-total_requests",
+            "attacks_detected",
+            "-attacks_detected",
+        ]
+        | Omit = omit,
         status: Literal["active", "bypass", "monitor", "locked"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -238,7 +251,8 @@ class DomainsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[WaapSummaryDomain]:
         """
-        Retrieve a list of domains associated with the client
+        Retrieve a list of domains associated with the client, including traffic
+        statistics
 
         Args:
           ids: Filter domains based on their IDs
@@ -262,7 +276,7 @@ class DomainsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/waap/v1/domains",
+            "/waap/v2/domains",
             page=SyncOffsetPage[WaapSummaryDomain],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -313,7 +327,7 @@ class DomainsResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            path_template("/waap/v1/domains/{domain_id}", domain_id=domain_id),
+            path_template("/waap/v2/domains/{domain_id}", domain_id=domain_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -346,7 +360,7 @@ class DomainsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            path_template("/waap/v1/domains/{domain_id}", domain_id=domain_id),
+            path_template("/waap/v2/domains/{domain_id}", domain_id=domain_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -466,7 +480,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> WaapDetailedDomain:
         """
         Update Domain
 
@@ -483,14 +497,13 @@ class AsyncDomainsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._patch(
-            path_template("/waap/v1/domains/{domain_id}", domain_id=domain_id),
+            path_template("/waap/v2/domains/{domain_id}", domain_id=domain_id),
             body=await async_maybe_transform({"status": status}, domain_update_params.DomainUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=WaapDetailedDomain,
         )
 
     def list(
@@ -500,7 +513,21 @@ class AsyncDomainsResource(AsyncAPIResource):
         limit: int | Omit = omit,
         name: str | Omit = omit,
         offset: int | Omit = omit,
-        ordering: Literal["id", "name", "status", "created_at", "-id", "-name", "-status", "-created_at"] | Omit = omit,
+        ordering: Literal[
+            "id",
+            "name",
+            "status",
+            "created_at",
+            "-id",
+            "-name",
+            "-status",
+            "-created_at",
+            "total_requests",
+            "-total_requests",
+            "attacks_detected",
+            "-attacks_detected",
+        ]
+        | Omit = omit,
         status: Literal["active", "bypass", "monitor", "locked"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -510,7 +537,8 @@ class AsyncDomainsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[WaapSummaryDomain, AsyncOffsetPage[WaapSummaryDomain]]:
         """
-        Retrieve a list of domains associated with the client
+        Retrieve a list of domains associated with the client, including traffic
+        statistics
 
         Args:
           ids: Filter domains based on their IDs
@@ -534,7 +562,7 @@ class AsyncDomainsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/waap/v1/domains",
+            "/waap/v2/domains",
             page=AsyncOffsetPage[WaapSummaryDomain],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -585,7 +613,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            path_template("/waap/v1/domains/{domain_id}", domain_id=domain_id),
+            path_template("/waap/v2/domains/{domain_id}", domain_id=domain_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -618,7 +646,7 @@ class AsyncDomainsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            path_template("/waap/v1/domains/{domain_id}", domain_id=domain_id),
+            path_template("/waap/v2/domains/{domain_id}", domain_id=domain_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

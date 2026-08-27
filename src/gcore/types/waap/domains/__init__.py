@@ -7,12 +7,12 @@ from .waap_api_path import WaapAPIPath as WaapAPIPath
 from .waap_ddos_info import WaapDDOSInfo as WaapDDOSInfo
 from .waap_custom_rule import WaapCustomRule as WaapCustomRule
 from .waap_ddos_attack import WaapDDOSAttack as WaapDDOSAttack
-from .waap_policy_mode import WaapPolicyMode as WaapPolicyMode
 from .waap_advanced_rule import WaapAdvancedRule as WaapAdvancedRule
 from .waap_firewall_rule import WaapFirewallRule as WaapFirewallRule
 from .api_path_group_list import APIPathGroupList as APIPathGroupList
 from .insight_list_params import InsightListParams as InsightListParams
 from .api_path_list_params import APIPathListParams as APIPathListParams
+from .policy_toggle_params import PolicyToggleParams as PolicyToggleParams
 from .waap_insight_silence import WaapInsightSilence as WaapInsightSilence
 from .waap_request_details import WaapRequestDetails as WaapRequestDetails
 from .setting_update_params import SettingUpdateParams as SettingUpdateParams
@@ -29,15 +29,23 @@ from .custom_rule_update_params import CustomRuleUpdateParams as CustomRuleUpdat
 from .firewall_rule_list_params import FirewallRuleListParams as FirewallRuleListParams
 from .advanced_rule_create_params import AdvancedRuleCreateParams as AdvancedRuleCreateParams
 from .advanced_rule_update_params import AdvancedRuleUpdateParams as AdvancedRuleUpdateParams
+from .custom_rule_toggle_response import CustomRuleToggleResponse as CustomRuleToggleResponse
 from .firewall_rule_create_params import FirewallRuleCreateParams as FirewallRuleCreateParams
 from .firewall_rule_update_params import FirewallRuleUpdateParams as FirewallRuleUpdateParams
 from .insight_silence_list_params import InsightSilenceListParams as InsightSilenceListParams
+from .waap_domain_policy_settings import WaapDomainPolicySettings as WaapDomainPolicySettings
+from .advanced_rule_toggle_response import AdvancedRuleToggleResponse as AdvancedRuleToggleResponse
+from .firewall_rule_toggle_response import FirewallRuleToggleResponse as FirewallRuleToggleResponse
 from .insight_silence_create_params import InsightSilenceCreateParams as InsightSilenceCreateParams
 from .insight_silence_update_params import InsightSilenceUpdateParams as InsightSilenceUpdateParams
 from .statistic_get_ddos_info_params import StatisticGetDDOSInfoParams as StatisticGetDDOSInfoParams
 from .statistic_get_ddos_attacks_params import StatisticGetDDOSAttacksParams as StatisticGetDDOSAttacksParams
 from .custom_rule_delete_multiple_params import CustomRuleDeleteMultipleParams as CustomRuleDeleteMultipleParams
+from .custom_rule_delete_multiple_response import CustomRuleDeleteMultipleResponse as CustomRuleDeleteMultipleResponse
 from .firewall_rule_delete_multiple_params import FirewallRuleDeleteMultipleParams as FirewallRuleDeleteMultipleParams
+from .firewall_rule_delete_multiple_response import (
+    FirewallRuleDeleteMultipleResponse as FirewallRuleDeleteMultipleResponse,
+)
 from .statistic_get_events_aggregated_params import (
     StatisticGetEventsAggregatedParams as StatisticGetEventsAggregatedParams,
 )

@@ -21,6 +21,7 @@ from ....pagination import SyncOffsetPage, AsyncOffsetPage
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.waap.domains import advanced_rule_list_params, advanced_rule_create_params, advanced_rule_update_params
 from ....types.waap.domains.waap_advanced_rule import WaapAdvancedRule
+from ....types.waap.domains.advanced_rule_toggle_response import AdvancedRuleToggleResponse
 
 __all__ = ["AdvancedRulesResource", "AsyncAdvancedRulesResource"]
 
@@ -139,7 +140,7 @@ class AdvancedRulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> WaapAdvancedRule:
         """
         Only properties present in the request will be updated
 
@@ -182,10 +183,9 @@ class AdvancedRulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._patch(
             path_template(
-                "/waap/v1/domains/{domain_id}/advanced-rules/{rule_id}", domain_id=domain_id, rule_id=rule_id
+                "/waap/v2/domains/{domain_id}/advanced-rules/{rule_id}", domain_id=domain_id, rule_id=rule_id
             ),
             body=maybe_transform(
                 {
@@ -201,7 +201,7 @@ class AdvancedRulesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=WaapAdvancedRule,
         )
 
     def list(
@@ -393,7 +393,7 @@ class AdvancedRulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> AdvancedRuleToggleResponse:
         """
         Toggle an advanced rule
 
@@ -414,10 +414,9 @@ class AdvancedRulesResource(SyncAPIResource):
         """
         if not action:
             raise ValueError(f"Expected a non-empty value for `action` but received {action!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._patch(
             path_template(
-                "/waap/v1/domains/{domain_id}/advanced-rules/{rule_id}/{action}",
+                "/waap/v2/domains/{domain_id}/advanced-rules/{rule_id}/{action}",
                 domain_id=domain_id,
                 rule_id=rule_id,
                 action=action,
@@ -425,7 +424,7 @@ class AdvancedRulesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=AdvancedRuleToggleResponse,
         )
 
 
@@ -543,7 +542,7 @@ class AsyncAdvancedRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> WaapAdvancedRule:
         """
         Only properties present in the request will be updated
 
@@ -586,10 +585,9 @@ class AsyncAdvancedRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._patch(
             path_template(
-                "/waap/v1/domains/{domain_id}/advanced-rules/{rule_id}", domain_id=domain_id, rule_id=rule_id
+                "/waap/v2/domains/{domain_id}/advanced-rules/{rule_id}", domain_id=domain_id, rule_id=rule_id
             ),
             body=await async_maybe_transform(
                 {
@@ -605,7 +603,7 @@ class AsyncAdvancedRulesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=WaapAdvancedRule,
         )
 
     def list(
@@ -797,7 +795,7 @@ class AsyncAdvancedRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> AdvancedRuleToggleResponse:
         """
         Toggle an advanced rule
 
@@ -818,10 +816,9 @@ class AsyncAdvancedRulesResource(AsyncAPIResource):
         """
         if not action:
             raise ValueError(f"Expected a non-empty value for `action` but received {action!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._patch(
             path_template(
-                "/waap/v1/domains/{domain_id}/advanced-rules/{rule_id}/{action}",
+                "/waap/v2/domains/{domain_id}/advanced-rules/{rule_id}/{action}",
                 domain_id=domain_id,
                 rule_id=rule_id,
                 action=action,
@@ -829,7 +826,7 @@ class AsyncAdvancedRulesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=AdvancedRuleToggleResponse,
         )
 
 

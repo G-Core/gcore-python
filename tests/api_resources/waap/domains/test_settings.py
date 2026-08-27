@@ -22,7 +22,7 @@ class TestSettings:
         setting = client.waap.domains.settings.update(
             domain_id=1,
         )
-        assert setting is None
+        assert_matches_type(WaapDomainSettingsModel, setting, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Gcore) -> None:
@@ -37,7 +37,7 @@ class TestSettings:
                 "global_threshold": 250,
             },
         )
-        assert setting is None
+        assert_matches_type(WaapDomainSettingsModel, setting, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Gcore) -> None:
@@ -48,7 +48,7 @@ class TestSettings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         setting = response.parse()
-        assert setting is None
+        assert_matches_type(WaapDomainSettingsModel, setting, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Gcore) -> None:
@@ -59,7 +59,7 @@ class TestSettings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             setting = response.parse()
-            assert setting is None
+            assert_matches_type(WaapDomainSettingsModel, setting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -105,7 +105,7 @@ class TestAsyncSettings:
         setting = await async_client.waap.domains.settings.update(
             domain_id=1,
         )
-        assert setting is None
+        assert_matches_type(WaapDomainSettingsModel, setting, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -120,7 +120,7 @@ class TestAsyncSettings:
                 "global_threshold": 250,
             },
         )
-        assert setting is None
+        assert_matches_type(WaapDomainSettingsModel, setting, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncGcore) -> None:
@@ -131,7 +131,7 @@ class TestAsyncSettings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         setting = await response.parse()
-        assert setting is None
+        assert_matches_type(WaapDomainSettingsModel, setting, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncGcore) -> None:
@@ -142,7 +142,7 @@ class TestAsyncSettings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             setting = await response.parse()
-            assert setting is None
+            assert_matches_type(WaapDomainSettingsModel, setting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

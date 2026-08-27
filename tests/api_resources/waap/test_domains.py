@@ -28,7 +28,7 @@ class TestDomains:
             domain_id=1,
             status="active",
         )
-        assert domain is None
+        assert_matches_type(WaapDetailedDomain, domain, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Gcore) -> None:
@@ -40,7 +40,7 @@ class TestDomains:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         domain = response.parse()
-        assert domain is None
+        assert_matches_type(WaapDetailedDomain, domain, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Gcore) -> None:
@@ -52,7 +52,7 @@ class TestDomains:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             domain = response.parse()
-            assert domain is None
+            assert_matches_type(WaapDetailedDomain, domain, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -198,7 +198,7 @@ class TestAsyncDomains:
             domain_id=1,
             status="active",
         )
-        assert domain is None
+        assert_matches_type(WaapDetailedDomain, domain, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncGcore) -> None:
@@ -210,7 +210,7 @@ class TestAsyncDomains:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         domain = await response.parse()
-        assert domain is None
+        assert_matches_type(WaapDetailedDomain, domain, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncGcore) -> None:
@@ -222,7 +222,7 @@ class TestAsyncDomains:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             domain = await response.parse()
-            assert domain is None
+            assert_matches_type(WaapDetailedDomain, domain, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ...._types import Body, Query, Headers, NotGiven, not_given
-from ...._utils import path_template
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -15,7 +15,8 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.waap.domains.waap_policy_mode import WaapPolicyMode
+from ....types.waap.domains import policy_toggle_params
+from ....types.waap.domains.waap_domain_policy_settings import WaapDomainPolicySettings
 
 __all__ = ["PoliciesResource", "AsyncPoliciesResource"]
 
@@ -45,20 +46,23 @@ class PoliciesResource(SyncAPIResource):
         policy_id: str,
         *,
         domain_id: int,
+        mode: bool,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> WaapPolicyMode:
+    ) -> WaapDomainPolicySettings:
         """
-        Modify the activation state of a policy associated with a domain
+        Configure a security policy on a domain.
 
         Args:
           domain_id: The domain ID
 
           policy_id: The ID of the policy to toggle
+
+          mode: Indicates if the security rule is active
 
           extra_headers: Send extra headers
 
@@ -72,12 +76,13 @@ class PoliciesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return self._patch(
             path_template(
-                "/waap/v1/domains/{domain_id}/policies/{policy_id}/toggle", domain_id=domain_id, policy_id=policy_id
+                "/waap/v1/domains/{domain_id}/policies/{policy_id}", domain_id=domain_id, policy_id=policy_id
             ),
+            body=maybe_transform({"mode": mode}, policy_toggle_params.PolicyToggleParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=WaapPolicyMode,
+            cast_to=WaapDomainPolicySettings,
         )
 
 
@@ -106,20 +111,23 @@ class AsyncPoliciesResource(AsyncAPIResource):
         policy_id: str,
         *,
         domain_id: int,
+        mode: bool,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> WaapPolicyMode:
+    ) -> WaapDomainPolicySettings:
         """
-        Modify the activation state of a policy associated with a domain
+        Configure a security policy on a domain.
 
         Args:
           domain_id: The domain ID
 
           policy_id: The ID of the policy to toggle
+
+          mode: Indicates if the security rule is active
 
           extra_headers: Send extra headers
 
@@ -133,12 +141,13 @@ class AsyncPoliciesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return await self._patch(
             path_template(
-                "/waap/v1/domains/{domain_id}/policies/{policy_id}/toggle", domain_id=domain_id, policy_id=policy_id
+                "/waap/v1/domains/{domain_id}/policies/{policy_id}", domain_id=domain_id, policy_id=policy_id
             ),
+            body=await async_maybe_transform({"mode": mode}, policy_toggle_params.PolicyToggleParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=WaapPolicyMode,
+            cast_to=WaapDomainPolicySettings,
         )
 
 

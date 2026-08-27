@@ -64,10 +64,10 @@ from gcore.types.waap import (
 
 Methods:
 
-- <code title="patch /waap/v1/domains/{domain_id}">client.waap.domains.<a href="./src/gcore/resources/waap/domains/domains.py">update</a>(domain_id, \*\*<a href="src/gcore/types/waap/domain_update_params.py">params</a>) -> None</code>
-- <code title="get /waap/v1/domains">client.waap.domains.<a href="./src/gcore/resources/waap/domains/domains.py">list</a>(\*\*<a href="src/gcore/types/waap/domain_list_params.py">params</a>) -> <a href="./src/gcore/types/waap/waap_summary_domain.py">SyncOffsetPage[WaapSummaryDomain]</a></code>
-- <code title="delete /waap/v1/domains/{domain_id}">client.waap.domains.<a href="./src/gcore/resources/waap/domains/domains.py">delete</a>(domain_id) -> None</code>
-- <code title="get /waap/v1/domains/{domain_id}">client.waap.domains.<a href="./src/gcore/resources/waap/domains/domains.py">get</a>(domain_id) -> <a href="./src/gcore/types/waap/waap_detailed_domain.py">WaapDetailedDomain</a></code>
+- <code title="patch /waap/v2/domains/{domain_id}">client.waap.domains.<a href="./src/gcore/resources/waap/domains/domains.py">update</a>(domain_id, \*\*<a href="src/gcore/types/waap/domain_update_params.py">params</a>) -> <a href="./src/gcore/types/waap/waap_detailed_domain.py">WaapDetailedDomain</a></code>
+- <code title="get /waap/v2/domains">client.waap.domains.<a href="./src/gcore/resources/waap/domains/domains.py">list</a>(\*\*<a href="src/gcore/types/waap/domain_list_params.py">params</a>) -> <a href="./src/gcore/types/waap/waap_summary_domain.py">SyncOffsetPage[WaapSummaryDomain]</a></code>
+- <code title="delete /waap/v2/domains/{domain_id}">client.waap.domains.<a href="./src/gcore/resources/waap/domains/domains.py">delete</a>(domain_id) -> None</code>
+- <code title="get /waap/v2/domains/{domain_id}">client.waap.domains.<a href="./src/gcore/resources/waap/domains/domains.py">get</a>(domain_id) -> <a href="./src/gcore/types/waap/waap_detailed_domain.py">WaapDetailedDomain</a></code>
 - <code title="get /waap/v1/domains/{domain_id}/rule-sets">client.waap.domains.<a href="./src/gcore/resources/waap/domains/domains.py">list_rule_sets</a>(domain_id) -> <a href="./src/gcore/types/waap/domain_list_rule_sets_response.py">DomainListRuleSetsResponse</a></code>
 
 ### Policies
@@ -75,19 +75,19 @@ Methods:
 Types:
 
 ```python
-from gcore.types.waap.domains import WaapPolicyMode
+from gcore.types.waap.domains import WaapDomainPolicySettings
 ```
 
 Methods:
 
-- <code title="patch /waap/v1/domains/{domain_id}/policies/{policy_id}/toggle">client.waap.domains.policies.<a href="./src/gcore/resources/waap/domains/policies.py">toggle</a>(policy_id, \*, domain_id) -> <a href="./src/gcore/types/waap/domains/waap_policy_mode.py">WaapPolicyMode</a></code>
+- <code title="patch /waap/v1/domains/{domain_id}/policies/{policy_id}">client.waap.domains.policies.<a href="./src/gcore/resources/waap/domains/policies.py">toggle</a>(policy_id, \*, domain_id, \*\*<a href="src/gcore/types/waap/domains/policy_toggle_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/waap_domain_policy_settings.py">WaapDomainPolicySettings</a></code>
 
 ### Settings
 
 Methods:
 
-- <code title="patch /waap/v1/domains/{domain_id}/settings">client.waap.domains.settings.<a href="./src/gcore/resources/waap/domains/settings.py">update</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/setting_update_params.py">params</a>) -> None</code>
-- <code title="get /waap/v1/domains/{domain_id}/settings">client.waap.domains.settings.<a href="./src/gcore/resources/waap/domains/settings.py">get</a>(domain_id) -> <a href="./src/gcore/types/waap/waap_domain_settings_model.py">WaapDomainSettingsModel</a></code>
+- <code title="patch /waap/v2/domains/{domain_id}/settings">client.waap.domains.settings.<a href="./src/gcore/resources/waap/domains/settings.py">update</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/setting_update_params.py">params</a>) -> <a href="./src/gcore/types/waap/waap_domain_settings_model.py">WaapDomainSettingsModel</a></code>
+- <code title="get /waap/v2/domains/{domain_id}/settings">client.waap.domains.settings.<a href="./src/gcore/resources/waap/domains/settings.py">get</a>(domain_id) -> <a href="./src/gcore/types/waap/waap_domain_settings_model.py">WaapDomainSettingsModel</a></code>
 
 ### APIPaths
 
@@ -99,11 +99,11 @@ from gcore.types.waap.domains import WaapAPIPath
 
 Methods:
 
-- <code title="post /waap/v1/domains/{domain_id}/api-paths">client.waap.domains.api_paths.<a href="./src/gcore/resources/waap/domains/api_paths.py">create</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/api_path_create_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/waap_api_path.py">WaapAPIPath</a></code>
-- <code title="patch /waap/v1/domains/{domain_id}/api-paths/{path_id}">client.waap.domains.api_paths.<a href="./src/gcore/resources/waap/domains/api_paths.py">update</a>(path_id, \*, domain_id, \*\*<a href="src/gcore/types/waap/domains/api_path_update_params.py">params</a>) -> None</code>
-- <code title="get /waap/v1/domains/{domain_id}/api-paths">client.waap.domains.api_paths.<a href="./src/gcore/resources/waap/domains/api_paths.py">list</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/api_path_list_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/waap_api_path.py">SyncOffsetPage[WaapAPIPath]</a></code>
-- <code title="delete /waap/v1/domains/{domain_id}/api-paths/{path_id}">client.waap.domains.api_paths.<a href="./src/gcore/resources/waap/domains/api_paths.py">delete</a>(path_id, \*, domain_id) -> None</code>
-- <code title="get /waap/v1/domains/{domain_id}/api-paths/{path_id}">client.waap.domains.api_paths.<a href="./src/gcore/resources/waap/domains/api_paths.py">get</a>(path_id, \*, domain_id) -> <a href="./src/gcore/types/waap/domains/waap_api_path.py">WaapAPIPath</a></code>
+- <code title="post /waap/v2/domains/{domain_id}/api-paths">client.waap.domains.api_paths.<a href="./src/gcore/resources/waap/domains/api_paths.py">create</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/api_path_create_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/waap_api_path.py">WaapAPIPath</a></code>
+- <code title="patch /waap/v2/domains/{domain_id}/api-paths/{path_id}">client.waap.domains.api_paths.<a href="./src/gcore/resources/waap/domains/api_paths.py">update</a>(path_id, \*, domain_id, \*\*<a href="src/gcore/types/waap/domains/api_path_update_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/waap_api_path.py">WaapAPIPath</a></code>
+- <code title="get /waap/v2/domains/{domain_id}/api-paths">client.waap.domains.api_paths.<a href="./src/gcore/resources/waap/domains/api_paths.py">list</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/api_path_list_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/waap_api_path.py">SyncOffsetPage[WaapAPIPath]</a></code>
+- <code title="delete /waap/v2/domains/{domain_id}/api-paths/{path_id}">client.waap.domains.api_paths.<a href="./src/gcore/resources/waap/domains/api_paths.py">delete</a>(path_id, \*, domain_id) -> None</code>
+- <code title="get /waap/v2/domains/{domain_id}/api-paths/{path_id}">client.waap.domains.api_paths.<a href="./src/gcore/resources/waap/domains/api_paths.py">get</a>(path_id, \*, domain_id) -> <a href="./src/gcore/types/waap/domains/waap_api_path.py">WaapAPIPath</a></code>
 
 ### APIPathGroups
 
@@ -215,53 +215,61 @@ Methods:
 Types:
 
 ```python
-from gcore.types.waap.domains import WaapCustomRule
+from gcore.types.waap.domains import (
+    WaapCustomRule,
+    CustomRuleDeleteMultipleResponse,
+    CustomRuleToggleResponse,
+)
 ```
 
 Methods:
 
 - <code title="post /waap/v1/domains/{domain_id}/custom-rules">client.waap.domains.custom_rules.<a href="./src/gcore/resources/waap/domains/custom_rules.py">create</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/custom_rule_create_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/waap_custom_rule.py">WaapCustomRule</a></code>
-- <code title="patch /waap/v1/domains/{domain_id}/custom-rules/{rule_id}">client.waap.domains.custom_rules.<a href="./src/gcore/resources/waap/domains/custom_rules.py">update</a>(rule_id, \*, domain_id, \*\*<a href="src/gcore/types/waap/domains/custom_rule_update_params.py">params</a>) -> None</code>
+- <code title="patch /waap/v2/domains/{domain_id}/custom-rules/{rule_id}">client.waap.domains.custom_rules.<a href="./src/gcore/resources/waap/domains/custom_rules.py">update</a>(rule_id, \*, domain_id, \*\*<a href="src/gcore/types/waap/domains/custom_rule_update_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/waap_custom_rule.py">WaapCustomRule</a></code>
 - <code title="get /waap/v1/domains/{domain_id}/custom-rules">client.waap.domains.custom_rules.<a href="./src/gcore/resources/waap/domains/custom_rules.py">list</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/custom_rule_list_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/waap_custom_rule.py">SyncOffsetPage[WaapCustomRule]</a></code>
 - <code title="delete /waap/v1/domains/{domain_id}/custom-rules/{rule_id}">client.waap.domains.custom_rules.<a href="./src/gcore/resources/waap/domains/custom_rules.py">delete</a>(rule_id, \*, domain_id) -> None</code>
-- <code title="post /waap/v1/domains/{domain_id}/custom-rules/bulk_delete">client.waap.domains.custom_rules.<a href="./src/gcore/resources/waap/domains/custom_rules.py">delete_multiple</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/custom_rule_delete_multiple_params.py">params</a>) -> None</code>
+- <code title="post /waap/v2/domains/{domain_id}/custom-rules/bulk_delete">client.waap.domains.custom_rules.<a href="./src/gcore/resources/waap/domains/custom_rules.py">delete_multiple</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/custom_rule_delete_multiple_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/custom_rule_delete_multiple_response.py">CustomRuleDeleteMultipleResponse</a></code>
 - <code title="get /waap/v1/domains/{domain_id}/custom-rules/{rule_id}">client.waap.domains.custom_rules.<a href="./src/gcore/resources/waap/domains/custom_rules.py">get</a>(rule_id, \*, domain_id) -> <a href="./src/gcore/types/waap/domains/waap_custom_rule.py">WaapCustomRule</a></code>
-- <code title="patch /waap/v1/domains/{domain_id}/custom-rules/{rule_id}/{action}">client.waap.domains.custom_rules.<a href="./src/gcore/resources/waap/domains/custom_rules.py">toggle</a>(action, \*, domain_id, rule_id) -> None</code>
+- <code title="patch /waap/v2/domains/{domain_id}/custom-rules/{rule_id}/{action}">client.waap.domains.custom_rules.<a href="./src/gcore/resources/waap/domains/custom_rules.py">toggle</a>(action, \*, domain_id, rule_id) -> <a href="./src/gcore/types/waap/domains/custom_rule_toggle_response.py">CustomRuleToggleResponse</a></code>
 
 ### FirewallRules
 
 Types:
 
 ```python
-from gcore.types.waap.domains import WaapFirewallRule
+from gcore.types.waap.domains import (
+    WaapFirewallRule,
+    FirewallRuleDeleteMultipleResponse,
+    FirewallRuleToggleResponse,
+)
 ```
 
 Methods:
 
 - <code title="post /waap/v1/domains/{domain_id}/firewall-rules">client.waap.domains.firewall_rules.<a href="./src/gcore/resources/waap/domains/firewall_rules.py">create</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/firewall_rule_create_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/waap_firewall_rule.py">WaapFirewallRule</a></code>
-- <code title="patch /waap/v1/domains/{domain_id}/firewall-rules/{rule_id}">client.waap.domains.firewall_rules.<a href="./src/gcore/resources/waap/domains/firewall_rules.py">update</a>(rule_id, \*, domain_id, \*\*<a href="src/gcore/types/waap/domains/firewall_rule_update_params.py">params</a>) -> None</code>
+- <code title="patch /waap/v2/domains/{domain_id}/firewall-rules/{rule_id}">client.waap.domains.firewall_rules.<a href="./src/gcore/resources/waap/domains/firewall_rules.py">update</a>(rule_id, \*, domain_id, \*\*<a href="src/gcore/types/waap/domains/firewall_rule_update_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/waap_firewall_rule.py">WaapFirewallRule</a></code>
 - <code title="get /waap/v1/domains/{domain_id}/firewall-rules">client.waap.domains.firewall_rules.<a href="./src/gcore/resources/waap/domains/firewall_rules.py">list</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/firewall_rule_list_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/waap_firewall_rule.py">SyncOffsetPage[WaapFirewallRule]</a></code>
 - <code title="delete /waap/v1/domains/{domain_id}/firewall-rules/{rule_id}">client.waap.domains.firewall_rules.<a href="./src/gcore/resources/waap/domains/firewall_rules.py">delete</a>(rule_id, \*, domain_id) -> None</code>
-- <code title="post /waap/v1/domains/{domain_id}/firewall-rules/bulk_delete">client.waap.domains.firewall_rules.<a href="./src/gcore/resources/waap/domains/firewall_rules.py">delete_multiple</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/firewall_rule_delete_multiple_params.py">params</a>) -> None</code>
+- <code title="post /waap/v2/domains/{domain_id}/firewall-rules/bulk_delete">client.waap.domains.firewall_rules.<a href="./src/gcore/resources/waap/domains/firewall_rules.py">delete_multiple</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/firewall_rule_delete_multiple_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/firewall_rule_delete_multiple_response.py">FirewallRuleDeleteMultipleResponse</a></code>
 - <code title="get /waap/v1/domains/{domain_id}/firewall-rules/{rule_id}">client.waap.domains.firewall_rules.<a href="./src/gcore/resources/waap/domains/firewall_rules.py">get</a>(rule_id, \*, domain_id) -> <a href="./src/gcore/types/waap/domains/waap_firewall_rule.py">WaapFirewallRule</a></code>
-- <code title="patch /waap/v1/domains/{domain_id}/firewall-rules/{rule_id}/{action}">client.waap.domains.firewall_rules.<a href="./src/gcore/resources/waap/domains/firewall_rules.py">toggle</a>(action, \*, domain_id, rule_id) -> None</code>
+- <code title="patch /waap/v2/domains/{domain_id}/firewall-rules/{rule_id}/{action}">client.waap.domains.firewall_rules.<a href="./src/gcore/resources/waap/domains/firewall_rules.py">toggle</a>(action, \*, domain_id, rule_id) -> <a href="./src/gcore/types/waap/domains/firewall_rule_toggle_response.py">FirewallRuleToggleResponse</a></code>
 
 ### AdvancedRules
 
 Types:
 
 ```python
-from gcore.types.waap.domains import WaapAdvancedRule
+from gcore.types.waap.domains import WaapAdvancedRule, AdvancedRuleToggleResponse
 ```
 
 Methods:
 
 - <code title="post /waap/v1/domains/{domain_id}/advanced-rules">client.waap.domains.advanced_rules.<a href="./src/gcore/resources/waap/domains/advanced_rules.py">create</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/advanced_rule_create_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/waap_advanced_rule.py">WaapAdvancedRule</a></code>
-- <code title="patch /waap/v1/domains/{domain_id}/advanced-rules/{rule_id}">client.waap.domains.advanced_rules.<a href="./src/gcore/resources/waap/domains/advanced_rules.py">update</a>(rule_id, \*, domain_id, \*\*<a href="src/gcore/types/waap/domains/advanced_rule_update_params.py">params</a>) -> None</code>
+- <code title="patch /waap/v2/domains/{domain_id}/advanced-rules/{rule_id}">client.waap.domains.advanced_rules.<a href="./src/gcore/resources/waap/domains/advanced_rules.py">update</a>(rule_id, \*, domain_id, \*\*<a href="src/gcore/types/waap/domains/advanced_rule_update_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/waap_advanced_rule.py">WaapAdvancedRule</a></code>
 - <code title="get /waap/v1/domains/{domain_id}/advanced-rules">client.waap.domains.advanced_rules.<a href="./src/gcore/resources/waap/domains/advanced_rules.py">list</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/advanced_rule_list_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/waap_advanced_rule.py">SyncOffsetPage[WaapAdvancedRule]</a></code>
 - <code title="delete /waap/v1/domains/{domain_id}/advanced-rules/{rule_id}">client.waap.domains.advanced_rules.<a href="./src/gcore/resources/waap/domains/advanced_rules.py">delete</a>(rule_id, \*, domain_id) -> None</code>
 - <code title="get /waap/v1/domains/{domain_id}/advanced-rules/{rule_id}">client.waap.domains.advanced_rules.<a href="./src/gcore/resources/waap/domains/advanced_rules.py">get</a>(rule_id, \*, domain_id) -> <a href="./src/gcore/types/waap/domains/waap_advanced_rule.py">WaapAdvancedRule</a></code>
-- <code title="patch /waap/v1/domains/{domain_id}/advanced-rules/{rule_id}/{action}">client.waap.domains.advanced_rules.<a href="./src/gcore/resources/waap/domains/advanced_rules.py">toggle</a>(action, \*, domain_id, rule_id) -> None</code>
+- <code title="patch /waap/v2/domains/{domain_id}/advanced-rules/{rule_id}/{action}">client.waap.domains.advanced_rules.<a href="./src/gcore/resources/waap/domains/advanced_rules.py">toggle</a>(action, \*, domain_id, rule_id) -> <a href="./src/gcore/types/waap/domains/advanced_rule_toggle_response.py">AdvancedRuleToggleResponse</a></code>
 
 ## CustomPageSets
 
@@ -274,7 +282,7 @@ from gcore.types.waap import WaapCustomPagePreview, WaapCustomPageSet
 Methods:
 
 - <code title="post /waap/v1/custom-page-sets">client.waap.custom_page_sets.<a href="./src/gcore/resources/waap/custom_page_sets.py">create</a>(\*\*<a href="src/gcore/types/waap/custom_page_set_create_params.py">params</a>) -> <a href="./src/gcore/types/waap/waap_custom_page_set.py">WaapCustomPageSet</a></code>
-- <code title="patch /waap/v1/custom-page-sets/{set_id}">client.waap.custom_page_sets.<a href="./src/gcore/resources/waap/custom_page_sets.py">update</a>(set_id, \*\*<a href="src/gcore/types/waap/custom_page_set_update_params.py">params</a>) -> None</code>
+- <code title="patch /waap/v1/custom-page-sets/{set_id}">client.waap.custom_page_sets.<a href="./src/gcore/resources/waap/custom_page_sets.py">update</a>(set_id, \*\*<a href="src/gcore/types/waap/custom_page_set_update_params.py">params</a>) -> <a href="./src/gcore/types/waap/waap_custom_page_set.py">WaapCustomPageSet</a></code>
 - <code title="get /waap/v1/custom-page-sets">client.waap.custom_page_sets.<a href="./src/gcore/resources/waap/custom_page_sets.py">list</a>(\*\*<a href="src/gcore/types/waap/custom_page_set_list_params.py">params</a>) -> <a href="./src/gcore/types/waap/waap_custom_page_set.py">SyncOffsetPage[WaapCustomPageSet]</a></code>
 - <code title="delete /waap/v1/custom-page-sets/{set_id}">client.waap.custom_page_sets.<a href="./src/gcore/resources/waap/custom_page_sets.py">delete</a>(set_id) -> None</code>
 - <code title="get /waap/v1/custom-page-sets/{set_id}">client.waap.custom_page_sets.<a href="./src/gcore/resources/waap/custom_page_sets.py">get</a>(set_id) -> <a href="./src/gcore/types/waap/waap_custom_page_set.py">WaapCustomPageSet</a></code>

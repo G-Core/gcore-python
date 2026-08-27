@@ -26,6 +26,8 @@ from ....types.waap.domains import (
     firewall_rule_delete_multiple_params,
 )
 from ....types.waap.domains.waap_firewall_rule import WaapFirewallRule
+from ....types.waap.domains.firewall_rule_toggle_response import FirewallRuleToggleResponse
+from ....types.waap.domains.firewall_rule_delete_multiple_response import FirewallRuleDeleteMultipleResponse
 
 __all__ = ["FirewallRulesResource", "AsyncFirewallRulesResource"]
 
@@ -124,7 +126,7 @@ class FirewallRulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> WaapFirewallRule:
         """
         Only properties present in the request will be updated
 
@@ -151,10 +153,9 @@ class FirewallRulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._patch(
             path_template(
-                "/waap/v1/domains/{domain_id}/firewall-rules/{rule_id}", domain_id=domain_id, rule_id=rule_id
+                "/waap/v2/domains/{domain_id}/firewall-rules/{rule_id}", domain_id=domain_id, rule_id=rule_id
             ),
             body=maybe_transform(
                 {
@@ -169,7 +170,7 @@ class FirewallRulesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=WaapFirewallRule,
         )
 
     def list(
@@ -298,7 +299,7 @@ class FirewallRulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> FirewallRuleDeleteMultipleResponse:
         """
         Delete multiple WAAP rules
 
@@ -315,16 +316,15 @@ class FirewallRulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            path_template("/waap/v1/domains/{domain_id}/firewall-rules/bulk_delete", domain_id=domain_id),
+            path_template("/waap/v2/domains/{domain_id}/firewall-rules/bulk_delete", domain_id=domain_id),
             body=maybe_transform(
                 {"rule_ids": rule_ids}, firewall_rule_delete_multiple_params.FirewallRuleDeleteMultipleParams
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=FirewallRuleDeleteMultipleResponse,
         )
 
     def get(
@@ -377,7 +377,7 @@ class FirewallRulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> FirewallRuleToggleResponse:
         """
         Toggle a firewall rule
 
@@ -398,10 +398,9 @@ class FirewallRulesResource(SyncAPIResource):
         """
         if not action:
             raise ValueError(f"Expected a non-empty value for `action` but received {action!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._patch(
             path_template(
-                "/waap/v1/domains/{domain_id}/firewall-rules/{rule_id}/{action}",
+                "/waap/v2/domains/{domain_id}/firewall-rules/{rule_id}/{action}",
                 domain_id=domain_id,
                 rule_id=rule_id,
                 action=action,
@@ -409,7 +408,7 @@ class FirewallRulesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=FirewallRuleToggleResponse,
         )
 
 
@@ -507,7 +506,7 @@ class AsyncFirewallRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> WaapFirewallRule:
         """
         Only properties present in the request will be updated
 
@@ -534,10 +533,9 @@ class AsyncFirewallRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._patch(
             path_template(
-                "/waap/v1/domains/{domain_id}/firewall-rules/{rule_id}", domain_id=domain_id, rule_id=rule_id
+                "/waap/v2/domains/{domain_id}/firewall-rules/{rule_id}", domain_id=domain_id, rule_id=rule_id
             ),
             body=await async_maybe_transform(
                 {
@@ -552,7 +550,7 @@ class AsyncFirewallRulesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=WaapFirewallRule,
         )
 
     def list(
@@ -681,7 +679,7 @@ class AsyncFirewallRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> FirewallRuleDeleteMultipleResponse:
         """
         Delete multiple WAAP rules
 
@@ -698,16 +696,15 @@ class AsyncFirewallRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            path_template("/waap/v1/domains/{domain_id}/firewall-rules/bulk_delete", domain_id=domain_id),
+            path_template("/waap/v2/domains/{domain_id}/firewall-rules/bulk_delete", domain_id=domain_id),
             body=await async_maybe_transform(
                 {"rule_ids": rule_ids}, firewall_rule_delete_multiple_params.FirewallRuleDeleteMultipleParams
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=FirewallRuleDeleteMultipleResponse,
         )
 
     async def get(
@@ -760,7 +757,7 @@ class AsyncFirewallRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> FirewallRuleToggleResponse:
         """
         Toggle a firewall rule
 
@@ -781,10 +778,9 @@ class AsyncFirewallRulesResource(AsyncAPIResource):
         """
         if not action:
             raise ValueError(f"Expected a non-empty value for `action` but received {action!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._patch(
             path_template(
-                "/waap/v1/domains/{domain_id}/firewall-rules/{rule_id}/{action}",
+                "/waap/v2/domains/{domain_id}/firewall-rules/{rule_id}/{action}",
                 domain_id=domain_id,
                 rule_id=rule_id,
                 action=action,
@@ -792,7 +788,7 @@ class AsyncFirewallRulesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=FirewallRuleToggleResponse,
         )
 
 

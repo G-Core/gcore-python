@@ -26,6 +26,8 @@ from ....types.waap.domains import (
     custom_rule_delete_multiple_params,
 )
 from ....types.waap.domains.waap_custom_rule import WaapCustomRule
+from ....types.waap.domains.custom_rule_toggle_response import CustomRuleToggleResponse
+from ....types.waap.domains.custom_rule_delete_multiple_response import CustomRuleDeleteMultipleResponse
 
 __all__ = ["CustomRulesResource", "AsyncCustomRulesResource"]
 
@@ -126,7 +128,7 @@ class CustomRulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> WaapCustomRule:
         """
         Only properties present in the request will be updated
 
@@ -154,9 +156,8 @@ class CustomRulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._patch(
-            path_template("/waap/v1/domains/{domain_id}/custom-rules/{rule_id}", domain_id=domain_id, rule_id=rule_id),
+            path_template("/waap/v2/domains/{domain_id}/custom-rules/{rule_id}", domain_id=domain_id, rule_id=rule_id),
             body=maybe_transform(
                 {
                     "action": action,
@@ -170,7 +171,7 @@ class CustomRulesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=WaapCustomRule,
         )
 
     def list(
@@ -297,7 +298,7 @@ class CustomRulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> CustomRuleDeleteMultipleResponse:
         """
         Delete multiple WAAP rules
 
@@ -314,16 +315,15 @@ class CustomRulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            path_template("/waap/v1/domains/{domain_id}/custom-rules/bulk_delete", domain_id=domain_id),
+            path_template("/waap/v2/domains/{domain_id}/custom-rules/bulk_delete", domain_id=domain_id),
             body=maybe_transform(
                 {"rule_ids": rule_ids}, custom_rule_delete_multiple_params.CustomRuleDeleteMultipleParams
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=CustomRuleDeleteMultipleResponse,
         )
 
     def get(
@@ -374,7 +374,7 @@ class CustomRulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> CustomRuleToggleResponse:
         """
         Toggle a custom rule
 
@@ -395,10 +395,9 @@ class CustomRulesResource(SyncAPIResource):
         """
         if not action:
             raise ValueError(f"Expected a non-empty value for `action` but received {action!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._patch(
             path_template(
-                "/waap/v1/domains/{domain_id}/custom-rules/{rule_id}/{action}",
+                "/waap/v2/domains/{domain_id}/custom-rules/{rule_id}/{action}",
                 domain_id=domain_id,
                 rule_id=rule_id,
                 action=action,
@@ -406,7 +405,7 @@ class CustomRulesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=CustomRuleToggleResponse,
         )
 
 
@@ -506,7 +505,7 @@ class AsyncCustomRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> WaapCustomRule:
         """
         Only properties present in the request will be updated
 
@@ -534,9 +533,8 @@ class AsyncCustomRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._patch(
-            path_template("/waap/v1/domains/{domain_id}/custom-rules/{rule_id}", domain_id=domain_id, rule_id=rule_id),
+            path_template("/waap/v2/domains/{domain_id}/custom-rules/{rule_id}", domain_id=domain_id, rule_id=rule_id),
             body=await async_maybe_transform(
                 {
                     "action": action,
@@ -550,7 +548,7 @@ class AsyncCustomRulesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=WaapCustomRule,
         )
 
     def list(
@@ -677,7 +675,7 @@ class AsyncCustomRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> CustomRuleDeleteMultipleResponse:
         """
         Delete multiple WAAP rules
 
@@ -694,16 +692,15 @@ class AsyncCustomRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            path_template("/waap/v1/domains/{domain_id}/custom-rules/bulk_delete", domain_id=domain_id),
+            path_template("/waap/v2/domains/{domain_id}/custom-rules/bulk_delete", domain_id=domain_id),
             body=await async_maybe_transform(
                 {"rule_ids": rule_ids}, custom_rule_delete_multiple_params.CustomRuleDeleteMultipleParams
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=CustomRuleDeleteMultipleResponse,
         )
 
     async def get(
@@ -754,7 +751,7 @@ class AsyncCustomRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> CustomRuleToggleResponse:
         """
         Toggle a custom rule
 
@@ -775,10 +772,9 @@ class AsyncCustomRulesResource(AsyncAPIResource):
         """
         if not action:
             raise ValueError(f"Expected a non-empty value for `action` but received {action!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._patch(
             path_template(
-                "/waap/v1/domains/{domain_id}/custom-rules/{rule_id}/{action}",
+                "/waap/v2/domains/{domain_id}/custom-rules/{rule_id}/{action}",
                 domain_id=domain_id,
                 rule_id=rule_id,
                 action=action,
@@ -786,7 +782,7 @@ class AsyncCustomRulesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=CustomRuleToggleResponse,
         )
 
 

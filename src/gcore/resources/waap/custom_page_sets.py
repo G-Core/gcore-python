@@ -126,7 +126,7 @@ class CustomPageSetsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> WaapCustomPageSet:
         """Update a custom page set based on the provided parameters.
 
         To update a field,
@@ -150,7 +150,6 @@ class CustomPageSetsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._patch(
             path_template("/waap/v1/custom-page-sets/{set_id}", set_id=set_id),
             body=maybe_transform(
@@ -169,7 +168,7 @@ class CustomPageSetsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=WaapCustomPageSet,
         )
 
     def list(
@@ -468,7 +467,7 @@ class AsyncCustomPageSetsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> WaapCustomPageSet:
         """Update a custom page set based on the provided parameters.
 
         To update a field,
@@ -492,7 +491,6 @@ class AsyncCustomPageSetsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._patch(
             path_template("/waap/v1/custom-page-sets/{set_id}", set_id=set_id),
             body=await async_maybe_transform(
@@ -511,7 +509,7 @@ class AsyncCustomPageSetsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=WaapCustomPageSet,
         )
 
     def list(

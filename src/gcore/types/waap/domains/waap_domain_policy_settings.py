@@ -2,11 +2,11 @@
 
 from ...._models import BaseModel
 
-__all__ = ["WaapPolicyMode"]
+__all__ = ["WaapDomainPolicySettings"]
 
 
-class WaapPolicyMode(BaseModel):
-    """Represents the mode of a security rule."""
+class WaapDomainPolicySettings(BaseModel):
+    """Configurable settings of a security rule (a.k.a. policy) on a domain."""
 
     mode: bool
     """Indicates if the security rule is active"""

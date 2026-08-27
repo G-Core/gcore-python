@@ -21,7 +21,20 @@ class DomainListParams(TypedDict, total=False):
     offset: int
     """Number of items to skip"""
 
-    ordering: Literal["id", "name", "status", "created_at", "-id", "-name", "-status", "-created_at"]
+    ordering: Literal[
+        "id",
+        "name",
+        "status",
+        "created_at",
+        "-id",
+        "-name",
+        "-status",
+        "-created_at",
+        "total_requests",
+        "-total_requests",
+        "attacks_detected",
+        "-attacks_detected",
+    ]
     """Sort the response by given field."""
 
     status: Literal["active", "bypass", "monitor", "locked"]
