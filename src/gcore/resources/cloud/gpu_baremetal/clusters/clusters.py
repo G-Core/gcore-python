@@ -2116,6 +2116,12 @@ class ClustersResourceWithRawResponse:
         self.create_and_poll = to_raw_response_wrapper(
             clusters.create_and_poll,
         )
+        self.action_and_poll = to_raw_response_wrapper(
+            clusters.action_and_poll,
+        )
+        self.apply_settings_and_poll = to_raw_response_wrapper(
+            clusters.apply_settings_and_poll,
+        )
         self.rebuild_and_poll = to_raw_response_wrapper(
             clusters.rebuild_and_poll,
         )
@@ -2194,6 +2200,12 @@ class AsyncClustersResourceWithRawResponse:
         )
         self.create_and_poll = async_to_raw_response_wrapper(
             clusters.create_and_poll,
+        )
+        self.action_and_poll = async_to_raw_response_wrapper(
+            clusters.action_and_poll,
+        )
+        self.apply_settings_and_poll = async_to_raw_response_wrapper(
+            clusters.apply_settings_and_poll,
         )
         self.rebuild_and_poll = async_to_raw_response_wrapper(
             clusters.rebuild_and_poll,
@@ -2274,6 +2286,12 @@ class ClustersResourceWithStreamingResponse:
         self.create_and_poll = to_streamed_response_wrapper(
             clusters.create_and_poll,
         )
+        self.action_and_poll = to_streamed_response_wrapper(
+            clusters.action_and_poll,
+        )
+        self.apply_settings_and_poll = to_streamed_response_wrapper(
+            clusters.apply_settings_and_poll,
+        )
         self.rebuild_and_poll = to_streamed_response_wrapper(
             clusters.rebuild_and_poll,
         )
@@ -2352,6 +2370,12 @@ class AsyncClustersResourceWithStreamingResponse:
         )
         self.create_and_poll = async_to_streamed_response_wrapper(
             clusters.create_and_poll,
+        )
+        self.action_and_poll = async_to_streamed_response_wrapper(
+            clusters.action_and_poll,
+        )
+        self.apply_settings_and_poll = async_to_streamed_response_wrapper(
+            clusters.apply_settings_and_poll,
         )
         self.rebuild_and_poll = async_to_streamed_response_wrapper(
             clusters.rebuild_and_poll,

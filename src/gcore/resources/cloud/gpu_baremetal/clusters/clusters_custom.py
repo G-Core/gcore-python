@@ -4,7 +4,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Dict, cast
+from typing import TYPE_CHECKING, Any, Dict, Literal, cast
 
 import httpx
 
@@ -80,6 +80,112 @@ class ClustersResourceCustomMixin:
         return cast(
             GPUBaremetalCluster,
             self.get(  # pyright: ignore[reportDeprecated]
+                cluster_id=cluster_id,
+                project_id=project_id,
+                region_id=region_id,
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+            ),
+        )
+
+    def action_and_poll(
+        self,
+        cluster_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["start", "stop", "soft_reboot", "hard_reboot"],
+        polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> GPUBaremetalCluster:
+        """
+        Perform an action on a bare metal GPU cluster and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
+        """
+        response = self.action(
+            cluster_id=cluster_id,
+            project_id=project_id,
+            region_id=region_id,
+            action=action,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks:
+            raise ValueError("Expected at least one task to be created")
+        self._client.cloud.tasks.poll(
+            response.tasks[0],
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            polling_interval_seconds=polling_interval_seconds,
+            polling_timeout_seconds=polling_timeout_seconds,
+        )
+        return cast(
+            GPUBaremetalCluster,
+            self.get(
+                cluster_id=cluster_id,
+                project_id=project_id,
+                region_id=region_id,
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+            ),
+        )
+
+    def apply_settings_and_poll(
+        self,
+        cluster_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        max_disruption: Literal["none", "rebuild"] | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> GPUBaremetalCluster:
+        """
+        Apply the cluster's server settings to all of its servers and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
+
+        Patch the settings first via `update`, then call this to roll them out. Applying settings re-images the servers, so `max_disruption` must be set to "rebuild" — the default "none" always fails validation and exists only to guard against accidental destructive applies.
+        """
+        response = self.apply_settings(
+            cluster_id=cluster_id,
+            project_id=project_id,
+            region_id=region_id,
+            max_disruption=max_disruption,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks:
+            raise ValueError("Expected at least one task to be created")
+        self._client.cloud.tasks.poll(
+            response.tasks[0],
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            polling_interval_seconds=polling_interval_seconds,
+            polling_timeout_seconds=polling_timeout_seconds,
+        )
+        return cast(
+            GPUBaremetalCluster,
+            self.get(
                 cluster_id=cluster_id,
                 project_id=project_id,
                 region_id=region_id,
@@ -301,6 +407,112 @@ class AsyncClustersResourceCustomMixin:
         return cast(
             GPUBaremetalCluster,
             await self.get(  # pyright: ignore[reportDeprecated]
+                cluster_id=cluster_id,
+                project_id=project_id,
+                region_id=region_id,
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+            ),
+        )
+
+    async def action_and_poll(
+        self,
+        cluster_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["start", "stop", "soft_reboot", "hard_reboot"],
+        polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> GPUBaremetalCluster:
+        """
+        Perform an action on a bare metal GPU cluster and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
+        """
+        response = await self.action(
+            cluster_id=cluster_id,
+            project_id=project_id,
+            region_id=region_id,
+            action=action,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks:
+            raise ValueError("Expected at least one task to be created")
+        await self._client.cloud.tasks.poll(
+            response.tasks[0],
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            polling_interval_seconds=polling_interval_seconds,
+            polling_timeout_seconds=polling_timeout_seconds,
+        )
+        return cast(
+            GPUBaremetalCluster,
+            await self.get(
+                cluster_id=cluster_id,
+                project_id=project_id,
+                region_id=region_id,
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+            ),
+        )
+
+    async def apply_settings_and_poll(
+        self,
+        cluster_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        max_disruption: Literal["none", "rebuild"] | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> GPUBaremetalCluster:
+        """
+        Apply the cluster's server settings to all of its servers and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
+
+        Patch the settings first via `update`, then call this to roll them out. Applying settings re-images the servers, so `max_disruption` must be set to "rebuild" — the default "none" always fails validation and exists only to guard against accidental destructive applies.
+        """
+        response = await self.apply_settings(
+            cluster_id=cluster_id,
+            project_id=project_id,
+            region_id=region_id,
+            max_disruption=max_disruption,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks:
+            raise ValueError("Expected at least one task to be created")
+        await self._client.cloud.tasks.poll(
+            response.tasks[0],
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            polling_interval_seconds=polling_interval_seconds,
+            polling_timeout_seconds=polling_timeout_seconds,
+        )
+        return cast(
+            GPUBaremetalCluster,
+            await self.get(
                 cluster_id=cluster_id,
                 project_id=project_id,
                 region_id=region_id,

@@ -4,7 +4,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, cast
+from typing import TYPE_CHECKING, Any, Literal, cast
 
 import httpx
 
@@ -119,6 +119,62 @@ class ServersResourceCustomMixin:
         )
         if not servers.results or len(servers.results) != 1:
             raise ValueError(f"Server {new_server_id} not found")
+        return cast(GPUBaremetalClusterServer, servers.results[0])
+
+    def apply_settings_and_poll(
+        self,
+        server_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        cluster_id: str,
+        max_disruption: Literal["none", "rebuild"] | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> GPUBaremetalClusterServer:
+        """
+        Apply the cluster's server settings to a single server and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
+
+        Patch the cluster settings first via `clusters.update`, then call this to roll them out to this server. Applying settings re-images the server, so `max_disruption` must be set to "rebuild" — the default "none" always fails validation and exists only to guard against accidental destructive applies.
+        """
+        response = self.apply_settings(
+            server_id=server_id,
+            project_id=project_id,
+            region_id=region_id,
+            cluster_id=cluster_id,
+            max_disruption=max_disruption,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) < 1:
+            raise ValueError("Expected at least one task to be created")
+        self._client.cloud.tasks.poll(
+            response.tasks[0],
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            polling_interval_seconds=polling_interval_seconds,
+            polling_timeout_seconds=polling_timeout_seconds,
+        )
+        servers = self.list(
+            cluster_id=cluster_id,
+            project_id=project_id,
+            region_id=region_id,
+            uuids=[server_id],
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+        )
+        if not servers.results or len(servers.results) != 1:
+            raise ValueError(f"Server {server_id} not found")
         return cast(GPUBaremetalClusterServer, servers.results[0])
 
     def rebuild_and_poll(
@@ -278,6 +334,62 @@ class AsyncServersResourceCustomMixin:
         )
         if not servers.results or len(servers.results) != 1:
             raise ValueError(f"Server {new_server_id} not found")
+        return cast(GPUBaremetalClusterServer, servers.results[0])
+
+    async def apply_settings_and_poll(
+        self,
+        server_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        cluster_id: str,
+        max_disruption: Literal["none", "rebuild"] | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> GPUBaremetalClusterServer:
+        """
+        Apply the cluster's server settings to a single server and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
+
+        Patch the cluster settings first via `clusters.update`, then call this to roll them out to this server. Applying settings re-images the server, so `max_disruption` must be set to "rebuild" — the default "none" always fails validation and exists only to guard against accidental destructive applies.
+        """
+        response = await self.apply_settings(
+            server_id=server_id,
+            project_id=project_id,
+            region_id=region_id,
+            cluster_id=cluster_id,
+            max_disruption=max_disruption,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks or len(response.tasks) < 1:
+            raise ValueError("Expected at least one task to be created")
+        await self._client.cloud.tasks.poll(
+            response.tasks[0],
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            polling_interval_seconds=polling_interval_seconds,
+            polling_timeout_seconds=polling_timeout_seconds,
+        )
+        servers = await self.list(
+            cluster_id=cluster_id,
+            project_id=project_id,
+            region_id=region_id,
+            uuids=[server_id],
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+        )
+        if not servers.results or len(servers.results) != 1:
+            raise ValueError(f"Server {server_id} not found")
         return cast(GPUBaremetalClusterServer, servers.results[0])
 
     async def rebuild_and_poll(

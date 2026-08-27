@@ -48,7 +48,8 @@ async def main() -> None:
     # Servers
     servers = await list_servers(client=gcore, cluster_id=cluster.id)
     if servers:
-        await rebuild_server(client=gcore, cluster_id=cluster.id, server_id=servers[0].id)
+        await update_cluster_servers_settings(client=gcore, cluster_id=cluster.id)
+        await apply_settings_to_server(client=gcore, cluster_id=cluster.id, server_id=servers[0].id)
         await replace_server(client=gcore, cluster_id=cluster.id, server_id=servers[0].id)
 
     # Delete
@@ -129,13 +130,28 @@ async def list_servers(*, client: AsyncGcore, cluster_id: str) -> List[GPUBareme
     return servers.results
 
 
-async def rebuild_server(*, client: AsyncGcore, cluster_id: str, server_id: str) -> GPUBaremetalClusterServer:
-    print("\n=== REBUILD GPU BAREMETAL CLUSTER SERVER ===")
-    server = await client.cloud.gpu_baremetal.clusters.servers.rebuild_and_poll(
+async def update_cluster_servers_settings(*, client: AsyncGcore, cluster_id: str) -> None:
+    print("\n=== UPDATE GPU BAREMETAL CLUSTER SERVER SETTINGS ===")
+    # apply_settings only rolls out what is already on the cluster template, so the
+    # settings have to be patched here first — otherwise there is nothing to apply.
+    cluster = await client.cloud.gpu_baremetal.clusters.update(
+        cluster_id=cluster_id,
+        servers_settings={"user_data": "IyEvYmluL2Jhc2gKZWNobyB1cGRhdGVkCg=="},
+    )
+    print(f"Patched cluster servers_settings: ID={cluster.id}")
+    print("========================")
+
+
+async def apply_settings_to_server(*, client: AsyncGcore, cluster_id: str, server_id: str) -> GPUBaremetalClusterServer:
+    print("\n=== APPLY SETTINGS TO GPU BAREMETAL CLUSTER SERVER ===")
+    # Rolls the cluster's current server settings out to this one server. It re-images the
+    # server, so max_disruption must be "rebuild" — the default "none" always fails validation.
+    server = await client.cloud.gpu_baremetal.clusters.servers.apply_settings_and_poll(
         server_id=server_id,
         cluster_id=cluster_id,
+        max_disruption="rebuild",
     )
-    print(f"Rebuilt server: ID={server.id}, name={server.name}, status={server.status}")
+    print(f"Applied settings to server: ID={server.id}, name={server.name}, status={server.status}")
     print("========================")
     return server
 

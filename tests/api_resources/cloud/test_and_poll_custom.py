@@ -171,6 +171,16 @@ AND_POLL_CASES: list[tuple[str, Callable[[Any], Any]]] = [
         ),
     ),
     (
+        "cloud.gpu_baremetal.clusters.action_and_poll",
+        lambda c: c.cloud.gpu_baremetal.clusters.action_and_poll(
+            "test", project_id=1, region_id=1, action="hard_reboot"
+        ),
+    ),
+    (
+        "cloud.gpu_baremetal.clusters.apply_settings_and_poll",
+        lambda c: c.cloud.gpu_baremetal.clusters.apply_settings_and_poll("test", project_id=1, region_id=1),
+    ),
+    (
         "cloud.gpu_baremetal.clusters.rebuild_and_poll",
         lambda c: c.cloud.gpu_baremetal.clusters.rebuild_and_poll("test", project_id=1, region_id=1),
     ),
@@ -181,6 +191,12 @@ AND_POLL_CASES: list[tuple[str, Callable[[Any], Any]]] = [
     (
         "cloud.gpu_baremetal.clusters.servers.delete_and_poll",
         lambda c: c.cloud.gpu_baremetal.clusters.servers.delete_and_poll(
+            "test", project_id=1, region_id=1, cluster_id="test"
+        ),
+    ),
+    (
+        "cloud.gpu_baremetal.clusters.servers.apply_settings_and_poll",
+        lambda c: c.cloud.gpu_baremetal.clusters.servers.apply_settings_and_poll(
             "test", project_id=1, region_id=1, cluster_id="test"
         ),
     ),
@@ -640,7 +656,7 @@ async def test_and_poll_async(case_id: str, invoke: Callable[[Any], Any]) -> Non
 
 def test_and_poll_case_count() -> None:
     # Canary: if codegen adds/removes an *_and_poll method, keep the table in sync.
-    assert len(AND_POLL_CASES) == 106
+    assert len(AND_POLL_CASES) == 109
 
 
 def test_create_and_poll_requires_task() -> None:
