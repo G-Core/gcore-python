@@ -1,5 +1,40 @@
 # Changelog
 
+## [0.56.0](https://github.com/G-Core/gcore-python/compare/v0.55.0...v0.56.0) (2026-08-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* **cloud:** remove task_id and tasks from images
+* **terraform:** rename tags_v2 to tags and drop the resource mirror
+* **cdn:** map the applied-preset read endpoint and name the apply response
+* **fastedge:** add search/pagination params and paginate the secrets list
+* **cloud:** update cloud OpenAPI spec
+
+### Features
+
+* **cdn:** map the applied-preset read endpoint and name the apply response ([af5d572](https://github.com/G-Core/gcore-python/commit/af5d572a6f9bf77e16a087f3808582e8eaea3ed5))
+* **cloud:** add polling helpers for the consolidated GPU baremetal endpoints ([3bbea35](https://github.com/G-Core/gcore-python/commit/3bbea35888a9be76e524b7dabae3963eb386d15d))
+* **cloud:** map the consolidated GPU baremetal cluster endpoints ([3ae8a6a](https://github.com/G-Core/gcore-python/commit/3ae8a6ab6728325fece4f0201d8f4835981d0cc8))
+* **cloud:** map the lifecycle policy endpoints ([dce5461](https://github.com/G-Core/gcore-python/commit/dce54611b671b4ea4291a9c49e12e6e9460fe2c6))
+* **cloud:** update cloud OpenAPI spec ([dc2beab](https://github.com/G-Core/gcore-python/commit/dc2beab5934082c45f24081bc06e688391c4046d))
+* **fastedge:** add search/pagination params and paginate the secrets list ([d324807](https://github.com/G-Core/gcore-python/commit/d324807fd7047bac8dd9db61db4dbf92a3c804c5))
+* **terraform:** rename tags_v2 to tags and drop the resource mirror ([527af15](https://github.com/G-Core/gcore-python/commit/527af15c7540d496f291cb84831ea296de4b17d1))
+
+
+### Bug Fixes
+
+* **cdn:** use the applied-preset object instead of the message in examples ([089763c](https://github.com/G-Core/gcore-python/commit/089763c7def3be2faf9b1ff83d2669ebc41caacc))
+* **cloud:** remove task_id and tasks from images ([847060b](https://github.com/G-Core/gcore-python/commit/847060b306d8a0486c2b903229b4cd4c1ecc1a15))
+
+
+### Chores
+
+* **cdn:** update cdn OpenAPI spec ([6e6a8e7](https://github.com/G-Core/gcore-python/commit/6e6a8e70948fb1bcc29d5d0cdc53d502e876f1fa))
+* **cloud:** update cloud OpenAPI spec ([3003583](https://github.com/G-Core/gcore-python/commit/3003583a6de38f05ba844907161accabb67431a5))
+* **dns:** update dns OpenAPI spec ([3539a0d](https://github.com/G-Core/gcore-python/commit/3539a0d66472a5e5765a2a401097fccd6d80b312))
+* **waap:** update waap OpenAPI spec ([225a485](https://github.com/G-Core/gcore-python/commit/225a4857ea9dc0345bb7344463ecf0ba06b5bc30))
+
 ## [0.55.0](https://github.com/G-Core/gcore-python/compare/v0.54.0...v0.55.0) (2026-08-05)
 
 
