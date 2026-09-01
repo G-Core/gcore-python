@@ -38,9 +38,25 @@ jobs:
     # Canonical staging repo on the upstream only (never forks).
     if: github.repository == 'G-Core/gcore-python-staging'
     steps:
+      # Dispatch auth: a short-lived gcore-sdk-bot App token scoped to
+      # stlc-config alone (repository_dispatch needs contents: write there),
+      # replacing the long-lived org-wide STLC_CONFIG_DISPATCH_TOKEN PAT.
+      # The token is minted before the loop guards run, so automation pushes
+      # mint one and then skip — harmless, and it keeps this file a minimal
+      # single-step diff over the sealed original.
+      - name: Generate gcore-sdk-bot token
+        id: app-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.GCORE_SDK_BOT_CLIENT_ID }}
+          private-key: ${{ secrets.GCORE_SDK_BOT_PRIVATE_KEY }}
+          owner: G-Core
+          repositories: stlc-config
+          permission-contents: write
+
       - name: Loop-guard and send reseal dispatch
         env:
-          DISPATCH_TOKEN: ${{ secrets.STLC_CONFIG_DISPATCH_TOKEN }}
+          DISPATCH_TOKEN: ${{ steps.app-token.outputs.token }}
           HEAD_MSG: ${{ github.event.head_commit.message }}
           HEAD_AUTHOR_USERNAME: ${{ github.event.head_commit.author.username }}
           HEAD_AUTHOR_NAME: ${{ github.event.head_commit.author.name }}
@@ -75,7 +91,7 @@ jobs:
           fi
 
           if [ -z "${DISPATCH_TOKEN}" ]; then
-            echo "STLC_CONFIG_DISPATCH_TOKEN is not set — cannot send dispatch." >&2
+            echo "No gcore-sdk-bot App token — cannot send dispatch." >&2
             exit 1
           fi
 
