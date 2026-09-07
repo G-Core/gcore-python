@@ -108,6 +108,10 @@ class RegistriesResource(SyncAPIResource):
         Create a new container registry with the specified configuration.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           name: A name for the container registry.
 
               Should be in lowercase, consisting only of numbers, letters and -,
@@ -161,9 +165,14 @@ class RegistriesResource(SyncAPIResource):
         List all container registries in the specified project and region.
 
         Args:
-          limit: Limit the number of returned items
+          project_id: Project ID
 
-          offset: Offset value is used to exclude the first set of records from the result
+          region_id: Region ID
+
+          limit: Optional. Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           extra_headers: Send extra headers
 
@@ -213,6 +222,12 @@ class RegistriesResource(SyncAPIResource):
         Delete a specific container registry and all its associated resources.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          registry_id: Registry ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -256,6 +271,12 @@ class RegistriesResource(SyncAPIResource):
         Get detailed information about a specific container registry.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          registry_id: Registry ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -299,6 +320,12 @@ class RegistriesResource(SyncAPIResource):
         Update the size of a container registry.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          registry_id: Registry ID
+
           storage_limit: Registry storage limit, GiB
 
           extra_headers: Send extra headers
@@ -382,6 +409,10 @@ class AsyncRegistriesResource(AsyncAPIResource):
         Create a new container registry with the specified configuration.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
           name: A name for the container registry.
 
               Should be in lowercase, consisting only of numbers, letters and -,
@@ -435,9 +466,14 @@ class AsyncRegistriesResource(AsyncAPIResource):
         List all container registries in the specified project and region.
 
         Args:
-          limit: Limit the number of returned items
+          project_id: Project ID
 
-          offset: Offset value is used to exclude the first set of records from the result
+          region_id: Region ID
+
+          limit: Optional. Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           extra_headers: Send extra headers
 
@@ -487,6 +523,12 @@ class AsyncRegistriesResource(AsyncAPIResource):
         Delete a specific container registry and all its associated resources.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          registry_id: Registry ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -530,6 +572,12 @@ class AsyncRegistriesResource(AsyncAPIResource):
         Get detailed information about a specific container registry.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          registry_id: Registry ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -573,6 +621,12 @@ class AsyncRegistriesResource(AsyncAPIResource):
         Update the size of a container registry.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          registry_id: Registry ID
+
           storage_limit: Registry storage limit, GiB
 
           extra_headers: Send extra headers

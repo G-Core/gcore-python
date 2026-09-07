@@ -10,8 +10,10 @@ __all__ = ["UserCreateMultipleParams", "User"]
 
 class UserCreateMultipleParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     users: Required[Iterable[User]]
     """Set of users"""

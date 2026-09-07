@@ -9,8 +9,10 @@ __all__ = ["RegistryCreateParams"]
 
 class RegistryCreateParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     name: Required[str]
     """A name for the container registry.

@@ -13,3 +13,4 @@ from .registry_user_created import RegistryUserCreated as RegistryUserCreated
 from .repository_list_params import RepositoryListParams as RepositoryListParams
 from .user_create_multiple_params import UserCreateMultipleParams as UserCreateMultipleParams
 from .user_refresh_secret_response import UserRefreshSecretResponse as UserRefreshSecretResponse
+from .user_create_multiple_response import UserCreateMultipleResponse as UserCreateMultipleResponse

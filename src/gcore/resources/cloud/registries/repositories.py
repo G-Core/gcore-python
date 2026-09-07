@@ -61,9 +61,16 @@ class RepositoriesResource(SyncAPIResource):
         List all repositories in the container registry.
 
         Args:
-          limit: Limit the number of returned items
+          project_id: Project ID
 
-          offset: Offset value is used to exclude the first set of records from the result
+          region_id: Region ID
+
+          registry_id: Registry ID
+
+          limit: Optional. Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           extra_headers: Send extra headers
 
@@ -119,6 +126,15 @@ class RepositoriesResource(SyncAPIResource):
         Delete a specific repository from the container registry.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          registry_id: Registry ID
+
+          repository_name: Repository name. If it contains a slash, encode it with URL encoding, e.g. a/b
+              -> a%252Fb
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -188,9 +204,16 @@ class AsyncRepositoriesResource(AsyncAPIResource):
         List all repositories in the container registry.
 
         Args:
-          limit: Limit the number of returned items
+          project_id: Project ID
 
-          offset: Offset value is used to exclude the first set of records from the result
+          region_id: Region ID
+
+          registry_id: Registry ID
+
+          limit: Optional. Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           extra_headers: Send extra headers
 
@@ -246,6 +269,15 @@ class AsyncRepositoriesResource(AsyncAPIResource):
         Delete a specific repository from the container registry.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          registry_id: Registry ID
+
+          repository_name: Repository name. If it contains a slash, encode it with URL encoding, e.g. a/b
+              -> a%252Fb
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

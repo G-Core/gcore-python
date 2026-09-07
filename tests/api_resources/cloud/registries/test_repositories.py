@@ -21,19 +21,19 @@ class TestRepositories:
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
         repository = client.cloud.registries.repositories.list(
-            registry_id=0,
-            project_id=0,
-            region_id=0,
+            registry_id=1,
+            project_id=1,
+            region_id=1,
         )
         assert_matches_type(SyncOffsetPage[RegistryRepository], repository, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
         repository = client.cloud.registries.repositories.list(
-            registry_id=0,
-            project_id=0,
-            region_id=0,
-            limit=0,
+            registry_id=1,
+            project_id=1,
+            region_id=1,
+            limit=1000,
             offset=0,
         )
         assert_matches_type(SyncOffsetPage[RegistryRepository], repository, path=["response"])
@@ -41,9 +41,9 @@ class TestRepositories:
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
         response = client.cloud.registries.repositories.with_raw_response.list(
-            registry_id=0,
-            project_id=0,
-            region_id=0,
+            registry_id=1,
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -54,9 +54,9 @@ class TestRepositories:
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
         with client.cloud.registries.repositories.with_streaming_response.list(
-            registry_id=0,
-            project_id=0,
-            region_id=0,
+            registry_id=1,
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -69,20 +69,20 @@ class TestRepositories:
     @parametrize
     def test_method_delete(self, client: Gcore) -> None:
         repository = client.cloud.registries.repositories.delete(
-            repository_name="repository_name",
-            project_id=0,
-            region_id=0,
-            registry_id=0,
+            repository_name="nginx",
+            project_id=1,
+            region_id=1,
+            registry_id=1,
         )
         assert repository is None
 
     @parametrize
     def test_raw_response_delete(self, client: Gcore) -> None:
         response = client.cloud.registries.repositories.with_raw_response.delete(
-            repository_name="repository_name",
-            project_id=0,
-            region_id=0,
-            registry_id=0,
+            repository_name="nginx",
+            project_id=1,
+            region_id=1,
+            registry_id=1,
         )
 
         assert response.is_closed is True
@@ -93,10 +93,10 @@ class TestRepositories:
     @parametrize
     def test_streaming_response_delete(self, client: Gcore) -> None:
         with client.cloud.registries.repositories.with_streaming_response.delete(
-            repository_name="repository_name",
-            project_id=0,
-            region_id=0,
-            registry_id=0,
+            repository_name="nginx",
+            project_id=1,
+            region_id=1,
+            registry_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -111,9 +111,9 @@ class TestRepositories:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `repository_name` but received ''"):
             client.cloud.registries.repositories.with_raw_response.delete(
                 repository_name="",
-                project_id=0,
-                region_id=0,
-                registry_id=0,
+                project_id=1,
+                region_id=1,
+                registry_id=1,
             )
 
 
@@ -125,19 +125,19 @@ class TestAsyncRepositories:
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
         repository = await async_client.cloud.registries.repositories.list(
-            registry_id=0,
-            project_id=0,
-            region_id=0,
+            registry_id=1,
+            project_id=1,
+            region_id=1,
         )
         assert_matches_type(AsyncOffsetPage[RegistryRepository], repository, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
         repository = await async_client.cloud.registries.repositories.list(
-            registry_id=0,
-            project_id=0,
-            region_id=0,
-            limit=0,
+            registry_id=1,
+            project_id=1,
+            region_id=1,
+            limit=1000,
             offset=0,
         )
         assert_matches_type(AsyncOffsetPage[RegistryRepository], repository, path=["response"])
@@ -145,9 +145,9 @@ class TestAsyncRepositories:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.registries.repositories.with_raw_response.list(
-            registry_id=0,
-            project_id=0,
-            region_id=0,
+            registry_id=1,
+            project_id=1,
+            region_id=1,
         )
 
         assert response.is_closed is True
@@ -158,9 +158,9 @@ class TestAsyncRepositories:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.registries.repositories.with_streaming_response.list(
-            registry_id=0,
-            project_id=0,
-            region_id=0,
+            registry_id=1,
+            project_id=1,
+            region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -173,20 +173,20 @@ class TestAsyncRepositories:
     @parametrize
     async def test_method_delete(self, async_client: AsyncGcore) -> None:
         repository = await async_client.cloud.registries.repositories.delete(
-            repository_name="repository_name",
-            project_id=0,
-            region_id=0,
-            registry_id=0,
+            repository_name="nginx",
+            project_id=1,
+            region_id=1,
+            registry_id=1,
         )
         assert repository is None
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.registries.repositories.with_raw_response.delete(
-            repository_name="repository_name",
-            project_id=0,
-            region_id=0,
-            registry_id=0,
+            repository_name="nginx",
+            project_id=1,
+            region_id=1,
+            registry_id=1,
         )
 
         assert response.is_closed is True
@@ -197,10 +197,10 @@ class TestAsyncRepositories:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.registries.repositories.with_streaming_response.delete(
-            repository_name="repository_name",
-            project_id=0,
-            region_id=0,
-            registry_id=0,
+            repository_name="nginx",
+            project_id=1,
+            region_id=1,
+            registry_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -215,7 +215,7 @@ class TestAsyncRepositories:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `repository_name` but received ''"):
             await async_client.cloud.registries.repositories.with_raw_response.delete(
                 repository_name="",
-                project_id=0,
-                region_id=0,
-                registry_id=0,
+                project_id=1,
+                region_id=1,
+                registry_id=1,
             )

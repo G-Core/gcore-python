@@ -27,6 +27,7 @@ from ....types.cloud.registries import (
 from ....types.cloud.registries.registry_user import RegistryUser
 from ....types.cloud.registries.registry_user_created import RegistryUserCreated
 from ....types.cloud.registries.user_refresh_secret_response import UserRefreshSecretResponse
+from ....types.cloud.registries.user_create_multiple_response import UserCreateMultipleResponse
 
 __all__ = ["UsersResource", "AsyncUsersResource"]
 
@@ -72,6 +73,12 @@ class UsersResource(SyncAPIResource):
         Create a new user for accessing the container registry.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          registry_id: Registry ID
+
           duration: User account operating time, days
 
           name: A name for the registry user.
@@ -138,6 +145,14 @@ class UsersResource(SyncAPIResource):
         Update the configuration of a specific registry user.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          registry_id: Registry ID
+
+          user_id: User ID
+
           duration: User account operating time, days
 
           read_only: Read-only user
@@ -194,9 +209,16 @@ class UsersResource(SyncAPIResource):
         List all users with access to the container registry.
 
         Args:
-          limit: Limit the number of returned items
+          project_id: Project ID
 
-          offset: Offset value is used to exclude the first set of records from the result
+          region_id: Region ID
+
+          registry_id: Registry ID
+
+          limit: Optional. Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           extra_headers: Send extra headers
 
@@ -252,6 +274,14 @@ class UsersResource(SyncAPIResource):
         Delete a specific user from the container registry.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          registry_id: Registry ID
+
+          user_id: User ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -292,11 +322,17 @@ class UsersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RegistryUserCreated:
+    ) -> UserCreateMultipleResponse:
         """
         Create multiple users for accessing the container registry in a single request.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          registry_id: Registry ID
+
           users: Set of users
 
           extra_headers: Send extra headers
@@ -322,7 +358,7 @@ class UsersResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RegistryUserCreated,
+            cast_to=UserCreateMultipleResponse,
         )
 
     def refresh_secret(
@@ -343,6 +379,14 @@ class UsersResource(SyncAPIResource):
         Generate a new secret for a specific registry user.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          registry_id: Registry ID
+
+          user_id: User ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -411,6 +455,12 @@ class AsyncUsersResource(AsyncAPIResource):
         Create a new user for accessing the container registry.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          registry_id: Registry ID
+
           duration: User account operating time, days
 
           name: A name for the registry user.
@@ -477,6 +527,14 @@ class AsyncUsersResource(AsyncAPIResource):
         Update the configuration of a specific registry user.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          registry_id: Registry ID
+
+          user_id: User ID
+
           duration: User account operating time, days
 
           read_only: Read-only user
@@ -533,9 +591,16 @@ class AsyncUsersResource(AsyncAPIResource):
         List all users with access to the container registry.
 
         Args:
-          limit: Limit the number of returned items
+          project_id: Project ID
 
-          offset: Offset value is used to exclude the first set of records from the result
+          region_id: Region ID
+
+          registry_id: Registry ID
+
+          limit: Optional. Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           extra_headers: Send extra headers
 
@@ -591,6 +656,14 @@ class AsyncUsersResource(AsyncAPIResource):
         Delete a specific user from the container registry.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          registry_id: Registry ID
+
+          user_id: User ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -631,11 +704,17 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RegistryUserCreated:
+    ) -> UserCreateMultipleResponse:
         """
         Create multiple users for accessing the container registry in a single request.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          registry_id: Registry ID
+
           users: Set of users
 
           extra_headers: Send extra headers
@@ -661,7 +740,7 @@ class AsyncUsersResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RegistryUserCreated,
+            cast_to=UserCreateMultipleResponse,
         )
 
     async def refresh_secret(
@@ -682,6 +761,14 @@ class AsyncUsersResource(AsyncAPIResource):
         Generate a new secret for a specific registry user.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          registry_id: Registry ID
+
+          user_id: User ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

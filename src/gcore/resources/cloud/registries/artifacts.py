@@ -62,9 +62,19 @@ class ArtifactsResource(SyncAPIResource):
         List all artifacts in a specific repository.
 
         Args:
-          limit: Limit the number of returned items
+          project_id: Project ID
 
-          offset: Offset value is used to exclude the first set of records from the result
+          region_id: Region ID
+
+          registry_id: Registry ID
+
+          repository_name: Repository name. If it contains a slash, encode it with URL encoding, e.g. a/b
+              -> a%252Fb
+
+          limit: Optional. Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           extra_headers: Send extra headers
 
@@ -124,6 +134,17 @@ class ArtifactsResource(SyncAPIResource):
         Delete a specific artifact from a repository.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          registry_id: Registry ID
+
+          repository_name: Repository name. If it contains a slash, encode it with URL encoding, e.g. a/b
+              -> a%252Fb
+
+          digest: Artifact digest
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -197,9 +218,19 @@ class AsyncArtifactsResource(AsyncAPIResource):
         List all artifacts in a specific repository.
 
         Args:
-          limit: Limit the number of returned items
+          project_id: Project ID
 
-          offset: Offset value is used to exclude the first set of records from the result
+          region_id: Region ID
+
+          registry_id: Registry ID
+
+          repository_name: Repository name. If it contains a slash, encode it with URL encoding, e.g. a/b
+              -> a%252Fb
+
+          limit: Optional. Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
 
           extra_headers: Send extra headers
 
@@ -259,6 +290,17 @@ class AsyncArtifactsResource(AsyncAPIResource):
         Delete a specific artifact from a repository.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          registry_id: Registry ID
+
+          repository_name: Repository name. If it contains a slash, encode it with URL encoding, e.g. a/b
+              -> a%252Fb
+
+          digest: Artifact digest
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

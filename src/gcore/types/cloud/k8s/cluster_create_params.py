@@ -315,6 +315,17 @@ class Cni(TypedDict, total=False):
 class CsiNfs(TypedDict, total=False):
     """NFS CSI driver settings"""
 
+    ddn_enabled: bool
+    """Enable or disable DDN (Lustre) integration.
+
+    The default value is `false`. When set to `true`, the DDN EXAScaler CSI driver
+    will be deployed in the cluster with a dedicated StorageClass for each DDN file
+    share defined in the cloud. At least one DDN file share must already exist in
+    the project; otherwise cluster creation fails with a `400` validation error.
+    Existing file shares are available immediately, while those created after the
+    cluster may take a few minutes to appear.
+    """
+
     vast_enabled: bool
     """Enable or disable VAST NFS integration.
 

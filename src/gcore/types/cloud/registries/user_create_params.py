@@ -9,8 +9,10 @@ __all__ = ["UserCreateParams"]
 
 class UserCreateParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     duration: Required[int]
     """User account operating time, days"""

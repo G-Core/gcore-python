@@ -102,7 +102,12 @@ class TestClusters:
                 },
                 "provider": "cilium",
             },
-            csi={"nfs": {"vast_enabled": True}},
+            csi={
+                "nfs": {
+                    "ddn_enabled": False,
+                    "vast_enabled": True,
+                }
+            },
             ddos_profile={
                 "enabled": True,
                 "fields": [
@@ -669,7 +674,12 @@ class TestAsyncClusters:
                 },
                 "provider": "cilium",
             },
-            csi={"nfs": {"vast_enabled": True}},
+            csi={
+                "nfs": {
+                    "ddn_enabled": False,
+                    "vast_enabled": True,
+                }
+            },
             ddos_profile={
                 "enabled": True,
                 "fields": [

@@ -9,8 +9,10 @@ __all__ = ["RegistryResizeParams"]
 
 class RegistryResizeParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     storage_limit: int
     """Registry storage limit, GiB"""

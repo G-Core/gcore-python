@@ -59,6 +59,19 @@ class TagsResource(SyncAPIResource):
         Delete a specific tag from an artifact.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          registry_id: Registry ID
+
+          repository_name: Repository name. If it contains a slash, encode it with URL encoding, e.g. a/b
+              -> a%252Fb
+
+          digest: Artifact digest
+
+          tag_name: Tag name
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -135,6 +148,19 @@ class AsyncTagsResource(AsyncAPIResource):
         Delete a specific tag from an artifact.
 
         Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          registry_id: Registry ID
+
+          repository_name: Repository name. If it contains a slash, encode it with URL encoding, e.g. a/b
+              -> a%252Fb
+
+          digest: Artifact digest
+
+          tag_name: Tag name
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

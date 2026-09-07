@@ -9,13 +9,19 @@ __all__ = ["ArtifactListParams"]
 
 class ArtifactListParams(TypedDict, total=False):
     project_id: int
+    """Project ID"""
 
     region_id: int
+    """Region ID"""
 
     registry_id: Required[int]
+    """Registry ID"""
 
     limit: int
-    """Limit the number of returned items"""
+    """Optional. Limit the number of returned items"""
 
     offset: int
-    """Offset value is used to exclude the first set of records from the result"""
+    """Optional.
+
+    Offset value is used to exclude the first set of records from the result
+    """

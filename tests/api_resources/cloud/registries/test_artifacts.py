@@ -21,21 +21,21 @@ class TestArtifacts:
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
         artifact = client.cloud.registries.artifacts.list(
-            repository_name="repository_name",
-            project_id=0,
-            region_id=0,
-            registry_id=0,
+            repository_name="nginx",
+            project_id=1,
+            region_id=1,
+            registry_id=1,
         )
         assert_matches_type(SyncOffsetPage[RegistryArtifact], artifact, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
         artifact = client.cloud.registries.artifacts.list(
-            repository_name="repository_name",
-            project_id=0,
-            region_id=0,
-            registry_id=0,
-            limit=0,
+            repository_name="nginx",
+            project_id=1,
+            region_id=1,
+            registry_id=1,
+            limit=1000,
             offset=0,
         )
         assert_matches_type(SyncOffsetPage[RegistryArtifact], artifact, path=["response"])
@@ -43,10 +43,10 @@ class TestArtifacts:
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
         response = client.cloud.registries.artifacts.with_raw_response.list(
-            repository_name="repository_name",
-            project_id=0,
-            region_id=0,
-            registry_id=0,
+            repository_name="nginx",
+            project_id=1,
+            region_id=1,
+            registry_id=1,
         )
 
         assert response.is_closed is True
@@ -57,10 +57,10 @@ class TestArtifacts:
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
         with client.cloud.registries.artifacts.with_streaming_response.list(
-            repository_name="repository_name",
-            project_id=0,
-            region_id=0,
-            registry_id=0,
+            repository_name="nginx",
+            project_id=1,
+            region_id=1,
+            registry_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -75,30 +75,30 @@ class TestArtifacts:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `repository_name` but received ''"):
             client.cloud.registries.artifacts.with_raw_response.list(
                 repository_name="",
-                project_id=0,
-                region_id=0,
-                registry_id=0,
+                project_id=1,
+                region_id=1,
+                registry_id=1,
             )
 
     @parametrize
     def test_method_delete(self, client: Gcore) -> None:
         artifact = client.cloud.registries.artifacts.delete(
-            digest="digest",
-            project_id=0,
-            region_id=0,
-            registry_id=0,
-            repository_name="repository_name",
+            digest="sha256:5414002a0c147f8e41da0d0764b5074480012852d5d9a0ef8bd2fec904e62b7c",
+            project_id=1,
+            region_id=1,
+            registry_id=1,
+            repository_name="nginx",
         )
         assert artifact is None
 
     @parametrize
     def test_raw_response_delete(self, client: Gcore) -> None:
         response = client.cloud.registries.artifacts.with_raw_response.delete(
-            digest="digest",
-            project_id=0,
-            region_id=0,
-            registry_id=0,
-            repository_name="repository_name",
+            digest="sha256:5414002a0c147f8e41da0d0764b5074480012852d5d9a0ef8bd2fec904e62b7c",
+            project_id=1,
+            region_id=1,
+            registry_id=1,
+            repository_name="nginx",
         )
 
         assert response.is_closed is True
@@ -109,11 +109,11 @@ class TestArtifacts:
     @parametrize
     def test_streaming_response_delete(self, client: Gcore) -> None:
         with client.cloud.registries.artifacts.with_streaming_response.delete(
-            digest="digest",
-            project_id=0,
-            region_id=0,
-            registry_id=0,
-            repository_name="repository_name",
+            digest="sha256:5414002a0c147f8e41da0d0764b5074480012852d5d9a0ef8bd2fec904e62b7c",
+            project_id=1,
+            region_id=1,
+            registry_id=1,
+            repository_name="nginx",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -127,20 +127,20 @@ class TestArtifacts:
     def test_path_params_delete(self, client: Gcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `repository_name` but received ''"):
             client.cloud.registries.artifacts.with_raw_response.delete(
-                digest="digest",
-                project_id=0,
-                region_id=0,
-                registry_id=0,
+                digest="sha256:5414002a0c147f8e41da0d0764b5074480012852d5d9a0ef8bd2fec904e62b7c",
+                project_id=1,
+                region_id=1,
+                registry_id=1,
                 repository_name="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `digest` but received ''"):
             client.cloud.registries.artifacts.with_raw_response.delete(
                 digest="",
-                project_id=0,
-                region_id=0,
-                registry_id=0,
-                repository_name="repository_name",
+                project_id=1,
+                region_id=1,
+                registry_id=1,
+                repository_name="nginx",
             )
 
 
@@ -152,21 +152,21 @@ class TestAsyncArtifacts:
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
         artifact = await async_client.cloud.registries.artifacts.list(
-            repository_name="repository_name",
-            project_id=0,
-            region_id=0,
-            registry_id=0,
+            repository_name="nginx",
+            project_id=1,
+            region_id=1,
+            registry_id=1,
         )
         assert_matches_type(AsyncOffsetPage[RegistryArtifact], artifact, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
         artifact = await async_client.cloud.registries.artifacts.list(
-            repository_name="repository_name",
-            project_id=0,
-            region_id=0,
-            registry_id=0,
-            limit=0,
+            repository_name="nginx",
+            project_id=1,
+            region_id=1,
+            registry_id=1,
+            limit=1000,
             offset=0,
         )
         assert_matches_type(AsyncOffsetPage[RegistryArtifact], artifact, path=["response"])
@@ -174,10 +174,10 @@ class TestAsyncArtifacts:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.registries.artifacts.with_raw_response.list(
-            repository_name="repository_name",
-            project_id=0,
-            region_id=0,
-            registry_id=0,
+            repository_name="nginx",
+            project_id=1,
+            region_id=1,
+            registry_id=1,
         )
 
         assert response.is_closed is True
@@ -188,10 +188,10 @@ class TestAsyncArtifacts:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.registries.artifacts.with_streaming_response.list(
-            repository_name="repository_name",
-            project_id=0,
-            region_id=0,
-            registry_id=0,
+            repository_name="nginx",
+            project_id=1,
+            region_id=1,
+            registry_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -206,30 +206,30 @@ class TestAsyncArtifacts:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `repository_name` but received ''"):
             await async_client.cloud.registries.artifacts.with_raw_response.list(
                 repository_name="",
-                project_id=0,
-                region_id=0,
-                registry_id=0,
+                project_id=1,
+                region_id=1,
+                registry_id=1,
             )
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncGcore) -> None:
         artifact = await async_client.cloud.registries.artifacts.delete(
-            digest="digest",
-            project_id=0,
-            region_id=0,
-            registry_id=0,
-            repository_name="repository_name",
+            digest="sha256:5414002a0c147f8e41da0d0764b5074480012852d5d9a0ef8bd2fec904e62b7c",
+            project_id=1,
+            region_id=1,
+            registry_id=1,
+            repository_name="nginx",
         )
         assert artifact is None
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.registries.artifacts.with_raw_response.delete(
-            digest="digest",
-            project_id=0,
-            region_id=0,
-            registry_id=0,
-            repository_name="repository_name",
+            digest="sha256:5414002a0c147f8e41da0d0764b5074480012852d5d9a0ef8bd2fec904e62b7c",
+            project_id=1,
+            region_id=1,
+            registry_id=1,
+            repository_name="nginx",
         )
 
         assert response.is_closed is True
@@ -240,11 +240,11 @@ class TestAsyncArtifacts:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.registries.artifacts.with_streaming_response.delete(
-            digest="digest",
-            project_id=0,
-            region_id=0,
-            registry_id=0,
-            repository_name="repository_name",
+            digest="sha256:5414002a0c147f8e41da0d0764b5074480012852d5d9a0ef8bd2fec904e62b7c",
+            project_id=1,
+            region_id=1,
+            registry_id=1,
+            repository_name="nginx",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -258,18 +258,18 @@ class TestAsyncArtifacts:
     async def test_path_params_delete(self, async_client: AsyncGcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `repository_name` but received ''"):
             await async_client.cloud.registries.artifacts.with_raw_response.delete(
-                digest="digest",
-                project_id=0,
-                region_id=0,
-                registry_id=0,
+                digest="sha256:5414002a0c147f8e41da0d0764b5074480012852d5d9a0ef8bd2fec904e62b7c",
+                project_id=1,
+                region_id=1,
+                registry_id=1,
                 repository_name="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `digest` but received ''"):
             await async_client.cloud.registries.artifacts.with_raw_response.delete(
                 digest="",
-                project_id=0,
-                region_id=0,
-                registry_id=0,
-                repository_name="repository_name",
+                project_id=1,
+                region_id=1,
+                registry_id=1,
+                repository_name="nginx",
             )
