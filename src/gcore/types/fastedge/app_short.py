@@ -18,6 +18,9 @@ class AppShort(BaseModel):
     binary: int
     """Binary ID"""
 
+    created_at: datetime
+    """Timestamp of app creation"""
+
     name: str
     """App name"""
 
@@ -34,6 +37,9 @@ class AppShort(BaseModel):
     4 - daily call limit exceeded
     5 - suspended
     """
+
+    updated_at: datetime
+    """Timestamp of last app update"""
 
     comment: Optional[str] = None
     """Description of the binary"""

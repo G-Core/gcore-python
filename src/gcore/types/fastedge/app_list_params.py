@@ -22,7 +22,7 @@ class AppListParams(TypedDict, total=False):
     """Maximum number of results to return"""
 
     name: str
-    """Filter by application name (case-insensitive partial match)"""
+    """Filter by application name, exact match only (with or without client suffix)"""
 
     offset: int
     """Number of results to skip for pagination"""

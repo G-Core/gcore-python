@@ -285,7 +285,7 @@ class AppsResource(SyncAPIResource):
 
           limit: Maximum number of results to return
 
-          name: Filter by application name (case-insensitive partial match)
+          name: Filter by application name, exact match only (with or without client suffix)
 
           offset: Number of results to skip for pagination
 
@@ -692,7 +692,7 @@ class AsyncAppsResource(AsyncAPIResource):
 
           limit: Maximum number of results to return
 
-          name: Filter by application name (case-insensitive partial match)
+          name: Filter by application name, exact match only (with or without client suffix)
 
           offset: Number of results to skip for pagination
 

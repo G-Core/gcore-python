@@ -45,6 +45,9 @@ class App(BaseModel):
     comment: Optional[str] = None
     """Optional human-readable description of the application's purpose"""
 
+    created_at: Optional[datetime] = None
+    """Timestamp of app creation"""
+
     debug_until: Optional[datetime] = None
     """When debugging finishes"""
 
@@ -88,6 +91,9 @@ class App(BaseModel):
 
     template_name: Optional[str] = None
     """Template name"""
+
+    updated_at: Optional[datetime] = None
+    """Timestamp of last app update"""
 
     url: Optional[str] = None
     """Auto-generated URL where the application is accessible"""
