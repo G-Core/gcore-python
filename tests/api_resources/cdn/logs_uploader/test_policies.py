@@ -13,6 +13,7 @@ from gcore.pagination import SyncOffsetPage, AsyncOffsetPage
 from gcore.types.cdn.logs_uploader import (
     LogsUploaderPolicy,
     PolicyListFieldsResponse,
+    PolicyListFieldsAllowedConversionsResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -32,10 +33,38 @@ class TestPolicies:
             date_format="[02/Jan/2006:15:04:05 -0700]",
             description="New policy",
             escape_special_characters=True,
+            field_conversions={
+                "request_time": {
+                    "conversions": [
+                        {
+                            "config": {
+                                "factor": 1000,
+                                "precision": 0,
+                                "rounding": "nearest",
+                            },
+                            "type": "scale",
+                        }
+                    ]
+                },
+                "upstream_cache_status": {
+                    "conversions": [
+                        {
+                            "config": {
+                                "values": {
+                                    "HIT": "cached",
+                                    "MISS": "uncached",
+                                },
+                                "default": "other",
+                            },
+                            "type": "replace",
+                        }
+                    ]
+                },
+            },
             field_delimiter=",",
             field_remap={},
             field_separator=";",
-            fields=["remote_addr", "status"],
+            fields=["remote_addr", "request_time", "upstream_cache_status"],
             file_name_template="{{YYYY}}_{{MM}}_{{DD}}_{{HH}}_{{mm}}_{{ss}}_access.log.gz",
             format_type="json",
             include_empty_logs=True,
@@ -84,6 +113,7 @@ class TestPolicies:
             date_format="[02/Jan/2006:15:04:05 -0700]",
             description="New policy",
             escape_special_characters=True,
+            field_conversions={},
             field_delimiter=",",
             field_remap={},
             field_separator=";",
@@ -253,6 +283,31 @@ class TestPolicies:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
+    def test_method_list_fields_allowed_conversions(self, client: Gcore) -> None:
+        policy = client.cdn.logs_uploader.policies.list_fields_allowed_conversions()
+        assert_matches_type(PolicyListFieldsAllowedConversionsResponse, policy, path=["response"])
+
+    @parametrize
+    def test_raw_response_list_fields_allowed_conversions(self, client: Gcore) -> None:
+        response = client.cdn.logs_uploader.policies.with_raw_response.list_fields_allowed_conversions()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        policy = response.parse()
+        assert_matches_type(PolicyListFieldsAllowedConversionsResponse, policy, path=["response"])
+
+    @parametrize
+    def test_streaming_response_list_fields_allowed_conversions(self, client: Gcore) -> None:
+        with client.cdn.logs_uploader.policies.with_streaming_response.list_fields_allowed_conversions() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            policy = response.parse()
+            assert_matches_type(PolicyListFieldsAllowedConversionsResponse, policy, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
     def test_method_replace(self, client: Gcore) -> None:
         policy = client.cdn.logs_uploader.policies.replace(
             id=0,
@@ -266,10 +321,38 @@ class TestPolicies:
             date_format="[02/Jan/2006:15:04:05 -0700]",
             description="New policy",
             escape_special_characters=True,
+            field_conversions={
+                "request_time": {
+                    "conversions": [
+                        {
+                            "config": {
+                                "factor": 1000,
+                                "precision": 0,
+                                "rounding": "nearest",
+                            },
+                            "type": "scale",
+                        }
+                    ]
+                },
+                "upstream_cache_status": {
+                    "conversions": [
+                        {
+                            "config": {
+                                "values": {
+                                    "HIT": "cached",
+                                    "MISS": "uncached",
+                                },
+                                "default": "other",
+                            },
+                            "type": "replace",
+                        }
+                    ]
+                },
+            },
             field_delimiter=",",
             field_remap={},
             field_separator=";",
-            fields=["remote_addr", "status"],
+            fields=["remote_addr", "request_time", "upstream_cache_status"],
             file_name_template="{{YYYY}}_{{MM}}_{{DD}}_{{HH}}_{{mm}}_{{ss}}_access.log.gz",
             format_type="json",
             include_empty_logs=True,
@@ -325,10 +408,38 @@ class TestAsyncPolicies:
             date_format="[02/Jan/2006:15:04:05 -0700]",
             description="New policy",
             escape_special_characters=True,
+            field_conversions={
+                "request_time": {
+                    "conversions": [
+                        {
+                            "config": {
+                                "factor": 1000,
+                                "precision": 0,
+                                "rounding": "nearest",
+                            },
+                            "type": "scale",
+                        }
+                    ]
+                },
+                "upstream_cache_status": {
+                    "conversions": [
+                        {
+                            "config": {
+                                "values": {
+                                    "HIT": "cached",
+                                    "MISS": "uncached",
+                                },
+                                "default": "other",
+                            },
+                            "type": "replace",
+                        }
+                    ]
+                },
+            },
             field_delimiter=",",
             field_remap={},
             field_separator=";",
-            fields=["remote_addr", "status"],
+            fields=["remote_addr", "request_time", "upstream_cache_status"],
             file_name_template="{{YYYY}}_{{MM}}_{{DD}}_{{HH}}_{{mm}}_{{ss}}_access.log.gz",
             format_type="json",
             include_empty_logs=True,
@@ -377,6 +488,7 @@ class TestAsyncPolicies:
             date_format="[02/Jan/2006:15:04:05 -0700]",
             description="New policy",
             escape_special_characters=True,
+            field_conversions={},
             field_delimiter=",",
             field_remap={},
             field_separator=";",
@@ -546,6 +658,33 @@ class TestAsyncPolicies:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
+    async def test_method_list_fields_allowed_conversions(self, async_client: AsyncGcore) -> None:
+        policy = await async_client.cdn.logs_uploader.policies.list_fields_allowed_conversions()
+        assert_matches_type(PolicyListFieldsAllowedConversionsResponse, policy, path=["response"])
+
+    @parametrize
+    async def test_raw_response_list_fields_allowed_conversions(self, async_client: AsyncGcore) -> None:
+        response = await async_client.cdn.logs_uploader.policies.with_raw_response.list_fields_allowed_conversions()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        policy = await response.parse()
+        assert_matches_type(PolicyListFieldsAllowedConversionsResponse, policy, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_list_fields_allowed_conversions(self, async_client: AsyncGcore) -> None:
+        async with (
+            async_client.cdn.logs_uploader.policies.with_streaming_response.list_fields_allowed_conversions()
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            policy = await response.parse()
+            assert_matches_type(PolicyListFieldsAllowedConversionsResponse, policy, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
     async def test_method_replace(self, async_client: AsyncGcore) -> None:
         policy = await async_client.cdn.logs_uploader.policies.replace(
             id=0,
@@ -559,10 +698,38 @@ class TestAsyncPolicies:
             date_format="[02/Jan/2006:15:04:05 -0700]",
             description="New policy",
             escape_special_characters=True,
+            field_conversions={
+                "request_time": {
+                    "conversions": [
+                        {
+                            "config": {
+                                "factor": 1000,
+                                "precision": 0,
+                                "rounding": "nearest",
+                            },
+                            "type": "scale",
+                        }
+                    ]
+                },
+                "upstream_cache_status": {
+                    "conversions": [
+                        {
+                            "config": {
+                                "values": {
+                                    "HIT": "cached",
+                                    "MISS": "uncached",
+                                },
+                                "default": "other",
+                            },
+                            "type": "replace",
+                        }
+                    ]
+                },
+            },
             field_delimiter=",",
             field_remap={},
             field_separator=";",
-            fields=["remote_addr", "status"],
+            fields=["remote_addr", "request_time", "upstream_cache_status"],
             file_name_template="{{YYYY}}_{{MM}}_{{DD}}_{{HH}}_{{mm}}_{{ss}}_access.log.gz",
             format_type="json",
             include_empty_logs=True,

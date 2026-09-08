@@ -60,6 +60,7 @@ __all__ = [
     "OptionsStaticResponseHeadersValue",
     "OptionsStaticHeaders",
     "OptionsStaticRequestHeaders",
+    "OptionsTlsCiphers",
     "OptionsTlsVersions",
     "OptionsUseDefaultLeChain",
     "OptionsUseDns01LeChallenge",
@@ -1498,11 +1499,49 @@ class OptionsStaticRequestHeaders(BaseModel):
     """
 
 
+class OptionsTlsCiphers(BaseModel):
+    """
+    Cipher suite policy for HTTPS connections from end users to the domain, selected from predefined profiles.
+
+    The exact cipher suites the policy enforces are returned in the `ciphers` field, and each profile defines which TLS versions may be enabled together with it. While the option is active:
+    - The `tls_versions` option can include only the versions the profile allows.
+    - The `tls_versions` option cannot be deleted or disabled.
+
+    The option is read-only. Contact support to change it.
+
+    When the option is absent or disabled, the default cipher suites of the CDN are used.
+    """
+
+    enabled: bool
+    """Controls the option state.
+
+    Possible values:
+
+    - **true** - Option is enabled.
+    - **false** - Option is disabled.
+    """
+
+    mode: Literal["pci_dss"]
+    """Name of the cipher profile.
+
+    Possible values:
+
+    - **`pci_dss`** - TLS 1.2 cipher suites compliant with PCI DSS. Allows only
+      `TLSv1.2` and `TLSv1.3`; TLS 1.3 connections use the protocol's own standard
+      cipher suites, which are PCI DSS compliant.
+    """
+
+    ciphers: Optional[List[str]] = None
+    """Cipher suites the profile resolves to, in the server preference order."""
+
+
 class OptionsTlsVersions(BaseModel):
     """
     List of SSL/TLS protocol versions allowed for HTTPS connections from end users to the domain.
 
     When the option is disabled, all protocols versions are allowed.
+
+    While the `tls_ciphers` option is active on the resource, only the TLS versions its cipher profile allows can be enabled, and this option cannot be deleted or disabled.
     """
 
     enabled: bool
@@ -2005,12 +2044,34 @@ class Options(BaseModel):
     Up to fifty custom HTTP Headers can be specified.
     """
 
+    tls_ciphers: Optional[OptionsTlsCiphers] = None
+    """
+    Cipher suite policy for HTTPS connections from end users to the domain, selected
+    from predefined profiles.
+
+    The exact cipher suites the policy enforces are returned in the `ciphers` field,
+    and each profile defines which TLS versions may be enabled together with it.
+    While the option is active:
+
+    - The `tls_versions` option can include only the versions the profile allows.
+    - The `tls_versions` option cannot be deleted or disabled.
+
+    The option is read-only. Contact support to change it.
+
+    When the option is absent or disabled, the default cipher suites of the CDN are
+    used.
+    """
+
     tls_versions: Optional[OptionsTlsVersions] = None
     """
     List of SSL/TLS protocol versions allowed for HTTPS connections from end users
     to the domain.
 
     When the option is disabled, all protocols versions are allowed.
+
+    While the `tls_ciphers` option is active on the resource, only the TLS versions
+    its cipher profile allows can be enabled, and this option cannot be deleted or
+    disabled.
     """
 
     use_default_le_chain: Optional[OptionsUseDefaultLeChain] = None

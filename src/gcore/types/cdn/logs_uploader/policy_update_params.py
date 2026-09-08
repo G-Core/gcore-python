@@ -2,12 +2,20 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
-from typing_extensions import Literal, TypedDict
+from typing import Dict, Union, Iterable, Optional
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from ...._types import SequenceNotStr
 
-__all__ = ["PolicyUpdateParams"]
+__all__ = [
+    "PolicyUpdateParams",
+    "FieldConversions",
+    "FieldConversionsConversion",
+    "FieldConversionsConversionScaleFieldConversion",
+    "FieldConversionsConversionScaleFieldConversionConfig",
+    "FieldConversionsConversionReplaceFieldConversion",
+    "FieldConversionsConversionReplaceFieldConversionConfig",
+]
 
 
 class PolicyUpdateParams(TypedDict, total=False):
@@ -29,6 +37,18 @@ class PolicyUpdateParams(TypedDict, total=False):
     - Characters outside the standard ASCII range
 
     The resulting output contains only printable ASCII characters.
+    """
+
+    field_conversions: Dict[str, FieldConversions]
+    """Per-field value conversions for exported logs.
+
+    Maps a canonical Gcore field name to the pipeline applied to its values. Field
+    names are limited to 255 characters and must not be empty. Each key must be
+    present in `fields`, and each conversion type must be listed in that field's
+    `allowed_conversions` from `/cdn/v2/logs_uploader/policies/fields`. Conversions
+    in a pipeline are applied in array order. Values are converted independently of
+    `field_remap`, which renames the exported field: both are keyed on the canonical
+    field name.
     """
 
     field_delimiter: str
@@ -105,3 +125,54 @@ class PolicyUpdateParams(TypedDict, total=False):
     format. These tags serve as customizable key-value pairs that can be included in
     log entries to enhance context and readability.
     """
+
+
+class FieldConversionsConversionScaleFieldConversionConfig(TypedDict, total=False):
+    factor: Required[float]
+    """Multiplier applied to the field value."""
+
+    precision: Optional[int]
+    """Optional number of decimal places in the converted value.
+
+    Must be specified together with `rounding`; returned as `null` when unspecified.
+    """
+
+    rounding: Optional[Literal["nearest", "down", "up"]]
+    """Optional rounding mode.
+
+    Must be specified together with `precision`; returned as `null` when
+    unspecified.
+    """
+
+
+class FieldConversionsConversionScaleFieldConversion(TypedDict, total=False):
+    config: Required[FieldConversionsConversionScaleFieldConversionConfig]
+
+    type: Required[Literal["scale"]]
+
+
+class FieldConversionsConversionReplaceFieldConversionConfig(TypedDict, total=False):
+    values: Required[Dict[str, str]]
+    """Exact, case-sensitive replacements, matched and written without trimming.
+
+    Keys must not be empty and are limited to 255 characters; values are limited to
+    100 characters and may be empty.
+    """
+
+    default: str
+    """Value used when the input does not match any key in `values`."""
+
+
+class FieldConversionsConversionReplaceFieldConversion(TypedDict, total=False):
+    config: Required[FieldConversionsConversionReplaceFieldConversionConfig]
+
+    type: Required[Literal["replace"]]
+
+
+FieldConversionsConversion: TypeAlias = Union[
+    FieldConversionsConversionScaleFieldConversion, FieldConversionsConversionReplaceFieldConversion
+]
+
+
+class FieldConversions(TypedDict, total=False):
+    conversions: Required[Iterable[FieldConversionsConversion]]

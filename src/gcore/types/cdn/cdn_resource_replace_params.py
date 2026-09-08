@@ -156,15 +156,6 @@ class CDNResourceReplaceParams(TypedDict, total=False):
     - **false** - HTTPS is disabled.
     """
 
-    waap_api_domain_enabled: bool
-    """Defines whether the associated WAAP Domain is identified as an API Domain.
-
-    Possible values:
-
-    - **true** - The associated WAAP Domain is designated as an API Domain.
-    - **false** - The associated WAAP Domain is not designated as an API Domain.
-    """
-
 
 class OptionsAllowedHTTPMethods(TypedDict, total=False):
     """HTTP methods allowed for content requests from the CDN."""
@@ -1603,6 +1594,8 @@ class OptionsTlsVersions(TypedDict, total=False):
     List of SSL/TLS protocol versions allowed for HTTPS connections from end users to the domain.
 
     When the option is disabled, all protocols versions are allowed.
+
+    While the `tls_ciphers` option is active on the resource, only the TLS versions its cipher profile allows can be enabled, and this option cannot be deleted or disabled.
     """
 
     enabled: Required[bool]
@@ -2109,6 +2102,10 @@ class Options(TypedDict, total=False):
     to the domain.
 
     When the option is disabled, all protocols versions are allowed.
+
+    While the `tls_ciphers` option is active on the resource, only the TLS versions
+    its cipher profile allows can be enabled, and this option cannot be deleted or
+    disabled.
     """
 
     use_default_le_chain: Optional[OptionsUseDefaultLeChain]

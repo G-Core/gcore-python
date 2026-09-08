@@ -335,7 +335,6 @@ class TestCDNResources:
             secondary_hostnames=["first.example.com", "second.example.com"],
             ssl_data=192,
             ssl_enabled=False,
-            waap_api_domain_enabled=True,
         )
         assert_matches_type(CDNResource, cdn_resource, path=["response"])
 
@@ -1326,7 +1325,6 @@ class TestCDNResources:
             secondary_hostnames=["first.example.com", "second.example.com"],
             ssl_data=192,
             ssl_enabled=False,
-            waap_api_domain_enabled=True,
         )
         assert_matches_type(CDNResource, cdn_resource, path=["response"])
 
@@ -1677,7 +1675,6 @@ class TestAsyncCDNResources:
             secondary_hostnames=["first.example.com", "second.example.com"],
             ssl_data=192,
             ssl_enabled=False,
-            waap_api_domain_enabled=True,
         )
         assert_matches_type(CDNResource, cdn_resource, path=["response"])
 
@@ -2668,7 +2665,6 @@ class TestAsyncCDNResources:
             secondary_hostnames=["first.example.com", "second.example.com"],
             ssl_data=192,
             ssl_enabled=False,
-            waap_api_domain_enabled=True,
         )
         assert_matches_type(CDNResource, cdn_resource, path=["response"])
 

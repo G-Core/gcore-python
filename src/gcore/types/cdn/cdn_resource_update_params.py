@@ -1594,6 +1594,8 @@ class OptionsTlsVersions(TypedDict, total=False):
     List of SSL/TLS protocol versions allowed for HTTPS connections from end users to the domain.
 
     When the option is disabled, all protocols versions are allowed.
+
+    While the `tls_ciphers` option is active on the resource, only the TLS versions its cipher profile allows can be enabled, and this option cannot be deleted or disabled.
     """
 
     enabled: Required[bool]
@@ -2100,6 +2102,10 @@ class Options(TypedDict, total=False):
     to the domain.
 
     When the option is disabled, all protocols versions are allowed.
+
+    While the `tls_ciphers` option is active on the resource, only the TLS versions
+    its cipher profile allows can be enabled, and this option cannot be deleted or
+    disabled.
     """
 
     use_default_le_chain: Optional[OptionsUseDefaultLeChain]

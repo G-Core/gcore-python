@@ -27,6 +27,9 @@ from ....types.cdn.logs_uploader import (
 )
 from ....types.cdn.logs_uploader.logs_uploader_policy import LogsUploaderPolicy
 from ....types.cdn.logs_uploader.policy_list_fields_response import PolicyListFieldsResponse
+from ....types.cdn.logs_uploader.policy_list_fields_allowed_conversions_response import (
+    PolicyListFieldsAllowedConversionsResponse,
+)
 
 __all__ = ["PoliciesResource", "AsyncPoliciesResource"]
 
@@ -61,6 +64,7 @@ class PoliciesResource(SyncAPIResource):
         date_format: str | Omit = omit,
         description: str | Omit = omit,
         escape_special_characters: bool | Omit = omit,
+        field_conversions: Dict[str, policy_create_params.FieldConversions] | Omit = omit,
         field_delimiter: str | Omit = omit,
         field_remap: Dict[str, str] | Omit = omit,
         field_separator: str | Omit = omit,
@@ -101,6 +105,14 @@ class PoliciesResource(SyncAPIResource):
               - Characters outside the standard ASCII range
 
               The resulting output contains only printable ASCII characters.
+
+          field_conversions: Per-field value conversions for exported logs. Maps a canonical Gcore field name
+              to the pipeline applied to its values. Field names are limited to 255 characters
+              and must not be empty. Each key must be present in `fields`, and each conversion
+              type must be listed in that field's `allowed_conversions` from
+              `/cdn/v2/logs_uploader/policies/fields`. Conversions in a pipeline are applied
+              in array order. Values are converted independently of `field_remap`, which
+              renames the exported field: both are keyed on the canonical field name.
 
           field_delimiter: Field delimiter for logs.
 
@@ -166,6 +178,7 @@ class PoliciesResource(SyncAPIResource):
                     "date_format": date_format,
                     "description": description,
                     "escape_special_characters": escape_special_characters,
+                    "field_conversions": field_conversions,
                     "field_delimiter": field_delimiter,
                     "field_remap": field_remap,
                     "field_separator": field_separator,
@@ -197,6 +210,7 @@ class PoliciesResource(SyncAPIResource):
         date_format: str | Omit = omit,
         description: str | Omit = omit,
         escape_special_characters: bool | Omit = omit,
+        field_conversions: Dict[str, policy_update_params.FieldConversions] | Omit = omit,
         field_delimiter: str | Omit = omit,
         field_remap: Dict[str, str] | Omit = omit,
         field_separator: str | Omit = omit,
@@ -237,6 +251,14 @@ class PoliciesResource(SyncAPIResource):
               - Characters outside the standard ASCII range
 
               The resulting output contains only printable ASCII characters.
+
+          field_conversions: Per-field value conversions for exported logs. Maps a canonical Gcore field name
+              to the pipeline applied to its values. Field names are limited to 255 characters
+              and must not be empty. Each key must be present in `fields`, and each conversion
+              type must be listed in that field's `allowed_conversions` from
+              `/cdn/v2/logs_uploader/policies/fields`. Conversions in a pipeline are applied
+              in array order. Values are converted independently of `field_remap`, which
+              renames the exported field: both are keyed on the canonical field name.
 
           field_delimiter: Field delimiter for logs.
 
@@ -302,6 +324,7 @@ class PoliciesResource(SyncAPIResource):
                     "date_format": date_format,
                     "description": description,
                     "escape_special_characters": escape_special_characters,
+                    "field_conversions": field_conversions,
                     "field_delimiter": field_delimiter,
                     "field_remap": field_remap,
                     "field_separator": field_separator,
@@ -459,13 +482,45 @@ class PoliciesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PolicyListFieldsResponse:
-        """Get list of available fields for logs uploader policy."""
+        """
+        Get list of available fields for logs uploader policy.
+
+        `/cdn/v2/logs_uploader/policies/fields` returns the same fields together with
+        the conversion types each one permits.
+        """
         return self._get(
             "/cdn/logs_uploader/policies/fields",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=PolicyListFieldsResponse,
+        )
+
+    def list_fields_allowed_conversions(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> PolicyListFieldsAllowedConversionsResponse:
+        """
+        Get the available fields for a logs uploader policy, each with the conversion
+        types it permits in `field_conversions`.
+
+        Supersedes `/cdn/logs_uploader/policies/fields`, which returns field names only.
+
+        `-` is the placeholder for a skipped column: it may appear in `fields` and
+        permits no conversion.
+        """
+        return self._get(
+            "/cdn/v2/logs_uploader/policies/fields",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=PolicyListFieldsAllowedConversionsResponse,
         )
 
     def replace(
@@ -475,6 +530,7 @@ class PoliciesResource(SyncAPIResource):
         date_format: str | Omit = omit,
         description: str | Omit = omit,
         escape_special_characters: bool | Omit = omit,
+        field_conversions: Dict[str, policy_replace_params.FieldConversions] | Omit = omit,
         field_delimiter: str | Omit = omit,
         field_remap: Dict[str, str] | Omit = omit,
         field_separator: str | Omit = omit,
@@ -515,6 +571,14 @@ class PoliciesResource(SyncAPIResource):
               - Characters outside the standard ASCII range
 
               The resulting output contains only printable ASCII characters.
+
+          field_conversions: Per-field value conversions for exported logs. Maps a canonical Gcore field name
+              to the pipeline applied to its values. Field names are limited to 255 characters
+              and must not be empty. Each key must be present in `fields`, and each conversion
+              type must be listed in that field's `allowed_conversions` from
+              `/cdn/v2/logs_uploader/policies/fields`. Conversions in a pipeline are applied
+              in array order. Values are converted independently of `field_remap`, which
+              renames the exported field: both are keyed on the canonical field name.
 
           field_delimiter: Field delimiter for logs.
 
@@ -580,6 +644,7 @@ class PoliciesResource(SyncAPIResource):
                     "date_format": date_format,
                     "description": description,
                     "escape_special_characters": escape_special_characters,
+                    "field_conversions": field_conversions,
                     "field_delimiter": field_delimiter,
                     "field_remap": field_remap,
                     "field_separator": field_separator,
@@ -635,6 +700,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         date_format: str | Omit = omit,
         description: str | Omit = omit,
         escape_special_characters: bool | Omit = omit,
+        field_conversions: Dict[str, policy_create_params.FieldConversions] | Omit = omit,
         field_delimiter: str | Omit = omit,
         field_remap: Dict[str, str] | Omit = omit,
         field_separator: str | Omit = omit,
@@ -675,6 +741,14 @@ class AsyncPoliciesResource(AsyncAPIResource):
               - Characters outside the standard ASCII range
 
               The resulting output contains only printable ASCII characters.
+
+          field_conversions: Per-field value conversions for exported logs. Maps a canonical Gcore field name
+              to the pipeline applied to its values. Field names are limited to 255 characters
+              and must not be empty. Each key must be present in `fields`, and each conversion
+              type must be listed in that field's `allowed_conversions` from
+              `/cdn/v2/logs_uploader/policies/fields`. Conversions in a pipeline are applied
+              in array order. Values are converted independently of `field_remap`, which
+              renames the exported field: both are keyed on the canonical field name.
 
           field_delimiter: Field delimiter for logs.
 
@@ -740,6 +814,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
                     "date_format": date_format,
                     "description": description,
                     "escape_special_characters": escape_special_characters,
+                    "field_conversions": field_conversions,
                     "field_delimiter": field_delimiter,
                     "field_remap": field_remap,
                     "field_separator": field_separator,
@@ -771,6 +846,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         date_format: str | Omit = omit,
         description: str | Omit = omit,
         escape_special_characters: bool | Omit = omit,
+        field_conversions: Dict[str, policy_update_params.FieldConversions] | Omit = omit,
         field_delimiter: str | Omit = omit,
         field_remap: Dict[str, str] | Omit = omit,
         field_separator: str | Omit = omit,
@@ -811,6 +887,14 @@ class AsyncPoliciesResource(AsyncAPIResource):
               - Characters outside the standard ASCII range
 
               The resulting output contains only printable ASCII characters.
+
+          field_conversions: Per-field value conversions for exported logs. Maps a canonical Gcore field name
+              to the pipeline applied to its values. Field names are limited to 255 characters
+              and must not be empty. Each key must be present in `fields`, and each conversion
+              type must be listed in that field's `allowed_conversions` from
+              `/cdn/v2/logs_uploader/policies/fields`. Conversions in a pipeline are applied
+              in array order. Values are converted independently of `field_remap`, which
+              renames the exported field: both are keyed on the canonical field name.
 
           field_delimiter: Field delimiter for logs.
 
@@ -876,6 +960,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
                     "date_format": date_format,
                     "description": description,
                     "escape_special_characters": escape_special_characters,
+                    "field_conversions": field_conversions,
                     "field_delimiter": field_delimiter,
                     "field_remap": field_remap,
                     "field_separator": field_separator,
@@ -1033,13 +1118,45 @@ class AsyncPoliciesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PolicyListFieldsResponse:
-        """Get list of available fields for logs uploader policy."""
+        """
+        Get list of available fields for logs uploader policy.
+
+        `/cdn/v2/logs_uploader/policies/fields` returns the same fields together with
+        the conversion types each one permits.
+        """
         return await self._get(
             "/cdn/logs_uploader/policies/fields",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=PolicyListFieldsResponse,
+        )
+
+    async def list_fields_allowed_conversions(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> PolicyListFieldsAllowedConversionsResponse:
+        """
+        Get the available fields for a logs uploader policy, each with the conversion
+        types it permits in `field_conversions`.
+
+        Supersedes `/cdn/logs_uploader/policies/fields`, which returns field names only.
+
+        `-` is the placeholder for a skipped column: it may appear in `fields` and
+        permits no conversion.
+        """
+        return await self._get(
+            "/cdn/v2/logs_uploader/policies/fields",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=PolicyListFieldsAllowedConversionsResponse,
         )
 
     async def replace(
@@ -1049,6 +1166,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         date_format: str | Omit = omit,
         description: str | Omit = omit,
         escape_special_characters: bool | Omit = omit,
+        field_conversions: Dict[str, policy_replace_params.FieldConversions] | Omit = omit,
         field_delimiter: str | Omit = omit,
         field_remap: Dict[str, str] | Omit = omit,
         field_separator: str | Omit = omit,
@@ -1089,6 +1207,14 @@ class AsyncPoliciesResource(AsyncAPIResource):
               - Characters outside the standard ASCII range
 
               The resulting output contains only printable ASCII characters.
+
+          field_conversions: Per-field value conversions for exported logs. Maps a canonical Gcore field name
+              to the pipeline applied to its values. Field names are limited to 255 characters
+              and must not be empty. Each key must be present in `fields`, and each conversion
+              type must be listed in that field's `allowed_conversions` from
+              `/cdn/v2/logs_uploader/policies/fields`. Conversions in a pipeline are applied
+              in array order. Values are converted independently of `field_remap`, which
+              renames the exported field: both are keyed on the canonical field name.
 
           field_delimiter: Field delimiter for logs.
 
@@ -1154,6 +1280,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
                     "date_format": date_format,
                     "description": description,
                     "escape_special_characters": escape_special_characters,
+                    "field_conversions": field_conversions,
                     "field_delimiter": field_delimiter,
                     "field_remap": field_remap,
                     "field_separator": field_separator,
@@ -1201,6 +1328,9 @@ class PoliciesResourceWithRawResponse:
         self.list_fields = to_raw_response_wrapper(
             policies.list_fields,
         )
+        self.list_fields_allowed_conversions = to_raw_response_wrapper(
+            policies.list_fields_allowed_conversions,
+        )
         self.replace = to_raw_response_wrapper(
             policies.replace,
         )
@@ -1227,6 +1357,9 @@ class AsyncPoliciesResourceWithRawResponse:
         )
         self.list_fields = async_to_raw_response_wrapper(
             policies.list_fields,
+        )
+        self.list_fields_allowed_conversions = async_to_raw_response_wrapper(
+            policies.list_fields_allowed_conversions,
         )
         self.replace = async_to_raw_response_wrapper(
             policies.replace,
@@ -1255,6 +1388,9 @@ class PoliciesResourceWithStreamingResponse:
         self.list_fields = to_streamed_response_wrapper(
             policies.list_fields,
         )
+        self.list_fields_allowed_conversions = to_streamed_response_wrapper(
+            policies.list_fields_allowed_conversions,
+        )
         self.replace = to_streamed_response_wrapper(
             policies.replace,
         )
@@ -1281,6 +1417,9 @@ class AsyncPoliciesResourceWithStreamingResponse:
         )
         self.list_fields = async_to_streamed_response_wrapper(
             policies.list_fields,
+        )
+        self.list_fields_allowed_conversions = async_to_streamed_response_wrapper(
+            policies.list_fields_allowed_conversions,
         )
         self.replace = async_to_streamed_response_wrapper(
             policies.replace,

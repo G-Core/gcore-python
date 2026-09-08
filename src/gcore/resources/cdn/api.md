@@ -230,8 +230,10 @@ Types:
 ```python
 from gcore.types.cdn.logs_uploader import (
     LogsUploaderPolicy,
+    LogsUploaderPolicyField,
     LogsUploaderPolicyList,
     PolicyListFieldsResponse,
+    PolicyListFieldsAllowedConversionsResponse,
 )
 ```
 
@@ -243,6 +245,7 @@ Methods:
 - <code title="delete /cdn/logs_uploader/policies/{id}">client.cdn.logs_uploader.policies.<a href="./src/gcore/resources/cdn/logs_uploader/policies.py">delete</a>(id) -> None</code>
 - <code title="get /cdn/logs_uploader/policies/{id}">client.cdn.logs_uploader.policies.<a href="./src/gcore/resources/cdn/logs_uploader/policies.py">get</a>(id) -> <a href="./src/gcore/types/cdn/logs_uploader/logs_uploader_policy.py">LogsUploaderPolicy</a></code>
 - <code title="get /cdn/logs_uploader/policies/fields">client.cdn.logs_uploader.policies.<a href="./src/gcore/resources/cdn/logs_uploader/policies.py">list_fields</a>() -> <a href="./src/gcore/types/cdn/logs_uploader/policy_list_fields_response.py">PolicyListFieldsResponse</a></code>
+- <code title="get /cdn/v2/logs_uploader/policies/fields">client.cdn.logs_uploader.policies.<a href="./src/gcore/resources/cdn/logs_uploader/policies.py">list_fields_allowed_conversions</a>() -> <a href="./src/gcore/types/cdn/logs_uploader/policy_list_fields_allowed_conversions_response.py">PolicyListFieldsAllowedConversionsResponse</a></code>
 - <code title="put /cdn/logs_uploader/policies/{id}">client.cdn.logs_uploader.policies.<a href="./src/gcore/resources/cdn/logs_uploader/policies.py">replace</a>(id, \*\*<a href="src/gcore/types/cdn/logs_uploader/policy_replace_params.py">params</a>) -> <a href="./src/gcore/types/cdn/logs_uploader/logs_uploader_policy.py">LogsUploaderPolicy</a></code>
 
 ### Targets

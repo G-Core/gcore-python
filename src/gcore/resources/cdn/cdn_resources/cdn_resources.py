@@ -100,7 +100,6 @@ class CDNResourcesResource(SyncAPIResource):
         secondary_hostnames: SequenceNotStr[str] | Omit = omit,
         ssl_data: Optional[int] | Omit = omit,
         ssl_enabled: bool | Omit = omit,
-        waap_api_domain_enabled: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -192,13 +191,6 @@ class CDNResourcesResource(SyncAPIResource):
               - **true** - HTTPS is enabled.
               - **false** - HTTPS is disabled.
 
-          waap_api_domain_enabled: Defines whether the associated WAAP Domain is identified as an API Domain.
-
-              Possible values:
-
-              - **true** - The associated WAAP Domain is designated as an API Domain.
-              - **false** - The associated WAAP Domain is not designated as an API Domain.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -226,7 +218,6 @@ class CDNResourcesResource(SyncAPIResource):
                     "secondary_hostnames": secondary_hostnames,
                     "ssl_data": ssl_data,
                     "ssl_enabled": ssl_enabled,
-                    "waap_api_domain_enabled": waap_api_domain_enabled,
                 },
                 cdn_resource_create_params.CDNResourceCreateParams,
             ),
@@ -915,7 +906,6 @@ class CDNResourcesResource(SyncAPIResource):
         secondary_hostnames: SequenceNotStr[str] | Omit = omit,
         ssl_data: Optional[int] | Omit = omit,
         ssl_enabled: bool | Omit = omit,
-        waap_api_domain_enabled: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -988,13 +978,6 @@ class CDNResourcesResource(SyncAPIResource):
               - **true** - HTTPS is enabled.
               - **false** - HTTPS is disabled.
 
-          waap_api_domain_enabled: Defines whether the associated WAAP Domain is identified as an API Domain.
-
-              Possible values:
-
-              - **true** - The associated WAAP Domain is designated as an API Domain.
-              - **false** - The associated WAAP Domain is not designated as an API Domain.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1019,7 +1002,6 @@ class CDNResourcesResource(SyncAPIResource):
                     "secondary_hostnames": secondary_hostnames,
                     "ssl_data": ssl_data,
                     "ssl_enabled": ssl_enabled,
-                    "waap_api_domain_enabled": waap_api_domain_enabled,
                 },
                 cdn_resource_replace_params.CDNResourceReplaceParams,
             ),
@@ -1082,7 +1064,6 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
         secondary_hostnames: SequenceNotStr[str] | Omit = omit,
         ssl_data: Optional[int] | Omit = omit,
         ssl_enabled: bool | Omit = omit,
-        waap_api_domain_enabled: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1174,13 +1155,6 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
               - **true** - HTTPS is enabled.
               - **false** - HTTPS is disabled.
 
-          waap_api_domain_enabled: Defines whether the associated WAAP Domain is identified as an API Domain.
-
-              Possible values:
-
-              - **true** - The associated WAAP Domain is designated as an API Domain.
-              - **false** - The associated WAAP Domain is not designated as an API Domain.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1208,7 +1182,6 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
                     "secondary_hostnames": secondary_hostnames,
                     "ssl_data": ssl_data,
                     "ssl_enabled": ssl_enabled,
-                    "waap_api_domain_enabled": waap_api_domain_enabled,
                 },
                 cdn_resource_create_params.CDNResourceCreateParams,
             ),
@@ -1897,7 +1870,6 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
         secondary_hostnames: SequenceNotStr[str] | Omit = omit,
         ssl_data: Optional[int] | Omit = omit,
         ssl_enabled: bool | Omit = omit,
-        waap_api_domain_enabled: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1970,13 +1942,6 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
               - **true** - HTTPS is enabled.
               - **false** - HTTPS is disabled.
 
-          waap_api_domain_enabled: Defines whether the associated WAAP Domain is identified as an API Domain.
-
-              Possible values:
-
-              - **true** - The associated WAAP Domain is designated as an API Domain.
-              - **false** - The associated WAAP Domain is not designated as an API Domain.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -2001,7 +1966,6 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
                     "secondary_hostnames": secondary_hostnames,
                     "ssl_data": ssl_data,
                     "ssl_enabled": ssl_enabled,
-                    "waap_api_domain_enabled": waap_api_domain_enabled,
                 },
                 cdn_resource_replace_params.CDNResourceReplaceParams,
             ),

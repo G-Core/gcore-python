@@ -20,4 +20,8 @@ from .target_replace_params import TargetReplaceParams as TargetReplaceParams
 from .logs_uploader_config_list import LogsUploaderConfigList as LogsUploaderConfigList
 from .logs_uploader_policy_list import LogsUploaderPolicyList as LogsUploaderPolicyList
 from .logs_uploader_target_list import LogsUploaderTargetList as LogsUploaderTargetList
+from .logs_uploader_policy_field import LogsUploaderPolicyField as LogsUploaderPolicyField
 from .policy_list_fields_response import PolicyListFieldsResponse as PolicyListFieldsResponse
+from .policy_list_fields_allowed_conversions_response import (
+    PolicyListFieldsAllowedConversionsResponse as PolicyListFieldsAllowedConversionsResponse,
+)
