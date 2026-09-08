@@ -11,6 +11,9 @@ class CDNAccountLimits(BaseModel):
     id: Optional[int] = None
     """Account ID."""
 
+    aliases_limit: Optional[int] = None
+    """Maximum number of aliases that can be created on your tariff plan."""
+
     origins_in_group_limit: Optional[int] = None
     """
     Maximum number of origins that can be added to the origin group on your tariff
