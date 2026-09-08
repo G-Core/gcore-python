@@ -2,8 +2,6 @@ name: Trigger staging back-sync on release
 
 # Production-only. On a published release, notify the staging repo to sync from
 # production, shrinking the post-release sync delay (vs. the scheduled poll).
-# Requires STAGING_DISPATCH_TOKEN (write on the staging repo); repository_dispatch
-# cannot be sent across repos with the built-in token.
 on:
   release:
     types: [published]
@@ -17,13 +15,22 @@ jobs:
     runs-on: ubuntu-latest
     if: github.repository == 'G-Core/gcore-python'
     steps:
+      - name: Generate gcore-sdk-bot token
+        id: app-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.GCORE_SDK_BOT_CLIENT_ID }}
+          private-key: ${{ secrets.GCORE_SDK_BOT_PRIVATE_KEY }}
+          owner: G-Core
+          repositories: gcore-python-staging
+          permission-contents: write
+
       - name: Dispatch back-sync to staging
         env:
-          DISPATCH_TOKEN: ${{ secrets.STAGING_DISPATCH_TOKEN }}
+          DISPATCH_TOKEN: ${{ steps.app-token.outputs.token }}
           REF_NAME: ${{ github.ref_name }}
         run: |
           set -euo pipefail
-          [ -n "${DISPATCH_TOKEN:-}" ] || { echo "STAGING_DISPATCH_TOKEN not set" >&2; exit 1; }
           payload=$(jq -n --arg ref "$REF_NAME" '{event_type:"prod-released",client_payload:{ref:$ref}}')
           code=$(curl -sS -o /tmp/r.txt -w '%{http_code}' -X POST \
             -H "Authorization: Bearer ${DISPATCH_TOKEN}" \
