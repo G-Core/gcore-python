@@ -23,6 +23,16 @@ def main() -> None:
     resize_load_balancer(client=gcore, load_balancer_id=lb_id)
     failover_load_balancer(client=gcore, load_balancer_id=lb_id)
 
+    # Pools and members
+    pool_id = create_pool(client=gcore, load_balancer_id=lb_id)
+    list_pools(client=gcore)
+    member_id = create_pool_member(client=gcore, pool_id=pool_id)
+    list_pool_members(client=gcore, pool_id=pool_id)
+    get_pool_member(client=gcore, pool_id=pool_id, member_id=member_id)
+    update_pool_member(client=gcore, pool_id=pool_id, member_id=member_id)
+    delete_pool_member(client=gcore, pool_id=pool_id, member_id=member_id)
+    delete_pool(client=gcore, pool_id=pool_id)
+
     # Statuses
     list_load_balancer_statuses(client=gcore)
     get_load_balancer_status(client=gcore, load_balancer_id=lb_id)
@@ -115,6 +125,88 @@ def delete_load_balancer(*, client: Gcore, load_balancer_id: str) -> None:
     print("\n=== DELETE LOAD BALANCER ===")
     client.cloud.load_balancers.delete_and_poll(load_balancer_id=load_balancer_id)
     print(f"Deleted load balancer: ID={load_balancer_id}")
+    print("========================")
+
+
+def create_pool(*, client: Gcore, load_balancer_id: str) -> str:
+    print("\n=== CREATE POOL ===")
+    pool = client.cloud.load_balancers.pools.create_and_poll(
+        name="gcore-python-example-pool",
+        lb_algorithm="ROUND_ROBIN",
+        protocol="HTTP",
+        load_balancer_id=load_balancer_id,
+    )
+    print(f"Created pool: ID={pool.id}, name={pool.name}, protocol={pool.protocol}, algorithm={pool.lb_algorithm}")
+    print("========================")
+    return pool.id
+
+
+def list_pools(*, client: Gcore) -> None:
+    print("\n=== LIST POOLS ===")
+    pools = client.cloud.load_balancers.pools.list()
+    for count, pool in enumerate(pools, 1):
+        print(f"{count}. Pool: ID={pool.id}, name={pool.name}, protocol={pool.protocol}")
+    print("========================")
+
+
+def create_pool_member(*, client: Gcore, pool_id: str) -> str:
+    print("\n=== CREATE POOL MEMBER ===")
+    member = client.cloud.load_balancers.pools.members.create_and_poll(
+        pool_id=pool_id,
+        address="192.168.1.10",
+        protocol_port=80,
+    )
+    print(
+        f"Created member: ID={member.id}, address={member.address}, "
+        f"port={member.protocol_port}, status={member.operating_status}"
+    )
+    print("========================")
+    return member.id
+
+
+def list_pool_members(*, client: Gcore, pool_id: str) -> None:
+    print("\n=== LIST POOL MEMBERS ===")
+    members = client.cloud.load_balancers.pools.members.list(pool_id=pool_id)
+    for count, member in enumerate(members, 1):
+        print(
+            f"{count}. Member: ID={member.id}, address={member.address}, "
+            f"port={member.protocol_port}, status={member.operating_status}"
+        )
+    print("========================")
+
+
+def get_pool_member(*, client: Gcore, pool_id: str, member_id: str) -> None:
+    print("\n=== GET POOL MEMBER ===")
+    member = client.cloud.load_balancers.pools.members.get(member_id=member_id, pool_id=pool_id)
+    print(
+        f"Member: ID={member.id}, address={member.address}, port={member.protocol_port}, "
+        f"weight={member.weight}, status={member.provisioning_status}"
+    )
+    print("========================")
+
+
+def update_pool_member(*, client: Gcore, pool_id: str, member_id: str) -> None:
+    print("\n=== UPDATE POOL MEMBER ===")
+    member = client.cloud.load_balancers.pools.members.update_and_poll(
+        member_id=member_id,
+        pool_id=pool_id,
+        weight=2,
+    )
+    print(f"Updated member: ID={member.id}, weight={member.weight}, status={member.operating_status}")
+    print("========================")
+
+
+def delete_pool_member(*, client: Gcore, pool_id: str, member_id: str) -> None:
+    print("\n=== DELETE POOL MEMBER ===")
+    client.cloud.load_balancers.pools.members.delete_and_poll(member_id=member_id, pool_id=pool_id)
+    print(f"Deleted member: ID={member_id}")
+    print("========================")
+
+
+def delete_pool(*, client: Gcore, pool_id: str) -> None:
+    print("\n=== DELETE POOL ===")
+    client.cloud.load_balancers.pools.delete_and_poll(pool_id=pool_id)
+    print(f"Deleted pool: ID={pool_id}")
     print("========================")
 
 

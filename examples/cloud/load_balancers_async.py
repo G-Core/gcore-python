@@ -27,6 +27,16 @@ async def main() -> None:
     await resize_load_balancer(client=gcore, load_balancer_id=lb_id)
     await failover_load_balancer(client=gcore, load_balancer_id=lb_id)
 
+    # Pools and members
+    pool_id = await create_pool(client=gcore, load_balancer_id=lb_id)
+    await list_pools(client=gcore)
+    member_id = await create_pool_member(client=gcore, pool_id=pool_id)
+    await list_pool_members(client=gcore, pool_id=pool_id)
+    await get_pool_member(client=gcore, pool_id=pool_id, member_id=member_id)
+    await update_pool_member(client=gcore, pool_id=pool_id, member_id=member_id)
+    await delete_pool_member(client=gcore, pool_id=pool_id, member_id=member_id)
+    await delete_pool(client=gcore, pool_id=pool_id)
+
     # Statuses
     await list_load_balancer_statuses(client=gcore)
     await get_load_balancer_status(client=gcore, load_balancer_id=lb_id)
@@ -121,6 +131,90 @@ async def delete_load_balancer(*, client: AsyncGcore, load_balancer_id: str) -> 
     print("\n=== DELETE LOAD BALANCER ===")
     await client.cloud.load_balancers.delete_and_poll(load_balancer_id=load_balancer_id)
     print(f"Deleted load balancer: ID={load_balancer_id}")
+    print("========================")
+
+
+async def create_pool(*, client: AsyncGcore, load_balancer_id: str) -> str:
+    print("\n=== CREATE POOL ===")
+    pool = await client.cloud.load_balancers.pools.create_and_poll(
+        name="gcore-python-example-pool",
+        lb_algorithm="ROUND_ROBIN",
+        protocol="HTTP",
+        load_balancer_id=load_balancer_id,
+    )
+    print(f"Created pool: ID={pool.id}, name={pool.name}, protocol={pool.protocol}, algorithm={pool.lb_algorithm}")
+    print("========================")
+    return pool.id
+
+
+async def list_pools(*, client: AsyncGcore) -> None:
+    print("\n=== LIST POOLS ===")
+    count = 0
+    async for pool in client.cloud.load_balancers.pools.list():
+        count += 1
+        print(f"{count}. Pool: ID={pool.id}, name={pool.name}, protocol={pool.protocol}")
+    print("========================")
+
+
+async def create_pool_member(*, client: AsyncGcore, pool_id: str) -> str:
+    print("\n=== CREATE POOL MEMBER ===")
+    member = await client.cloud.load_balancers.pools.members.create_and_poll(
+        pool_id=pool_id,
+        address="192.168.1.10",
+        protocol_port=80,
+    )
+    print(
+        f"Created member: ID={member.id}, address={member.address}, "
+        f"port={member.protocol_port}, status={member.operating_status}"
+    )
+    print("========================")
+    return member.id
+
+
+async def list_pool_members(*, client: AsyncGcore, pool_id: str) -> None:
+    print("\n=== LIST POOL MEMBERS ===")
+    count = 0
+    async for member in client.cloud.load_balancers.pools.members.list(pool_id=pool_id):
+        count += 1
+        print(
+            f"{count}. Member: ID={member.id}, address={member.address}, "
+            f"port={member.protocol_port}, status={member.operating_status}"
+        )
+    print("========================")
+
+
+async def get_pool_member(*, client: AsyncGcore, pool_id: str, member_id: str) -> None:
+    print("\n=== GET POOL MEMBER ===")
+    member = await client.cloud.load_balancers.pools.members.get(member_id=member_id, pool_id=pool_id)
+    print(
+        f"Member: ID={member.id}, address={member.address}, port={member.protocol_port}, "
+        f"weight={member.weight}, status={member.provisioning_status}"
+    )
+    print("========================")
+
+
+async def update_pool_member(*, client: AsyncGcore, pool_id: str, member_id: str) -> None:
+    print("\n=== UPDATE POOL MEMBER ===")
+    member = await client.cloud.load_balancers.pools.members.update_and_poll(
+        member_id=member_id,
+        pool_id=pool_id,
+        weight=2,
+    )
+    print(f"Updated member: ID={member.id}, weight={member.weight}, status={member.operating_status}")
+    print("========================")
+
+
+async def delete_pool_member(*, client: AsyncGcore, pool_id: str, member_id: str) -> None:
+    print("\n=== DELETE POOL MEMBER ===")
+    await client.cloud.load_balancers.pools.members.delete_and_poll(member_id=member_id, pool_id=pool_id)
+    print(f"Deleted member: ID={member_id}")
+    print("========================")
+
+
+async def delete_pool(*, client: AsyncGcore, pool_id: str) -> None:
+    print("\n=== DELETE POOL ===")
+    await client.cloud.load_balancers.pools.delete_and_poll(pool_id=pool_id)
+    print(f"Deleted pool: ID={pool_id}")
     print("========================")
 
 

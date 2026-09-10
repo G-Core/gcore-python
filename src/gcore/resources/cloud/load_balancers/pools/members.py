@@ -18,6 +18,7 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from .....pagination import SyncOffsetPage, AsyncOffsetPage
+from .members_custom import MembersResourceCustomMixin, AsyncMembersResourceCustomMixin
 from ....._base_client import AsyncPaginator, make_request_options
 from .....types.cloud.member import Member
 from .....types.cloud.task_id_list import TaskIDList
@@ -31,7 +32,7 @@ from .....types.cloud.load_balancers.pools import (
 __all__ = ["MembersResource", "AsyncMembersResource"]
 
 
-class MembersResource(SyncAPIResource):
+class MembersResource(MembersResourceCustomMixin, SyncAPIResource):
     """
     Pool members represent backend instances that receive load-balanced traffic from a pool.
     """
@@ -525,7 +526,7 @@ class MembersResource(SyncAPIResource):
         )
 
 
-class AsyncMembersResource(AsyncAPIResource):
+class AsyncMembersResource(AsyncMembersResourceCustomMixin, AsyncAPIResource):
     """
     Pool members represent backend instances that receive load-balanced traffic from a pool.
     """
