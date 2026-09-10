@@ -1,0 +1,67 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from __future__ import annotations
+
+from typing import Optional
+from typing_extensions import Required, TypedDict
+
+__all__ = ["MemberUpdateParams"]
+
+
+class MemberUpdateParams(TypedDict, total=False):
+    project_id: int
+    """Project ID"""
+
+    region_id: int
+    """Region ID"""
+
+    pool_id: Required[str]
+    """Pool ID"""
+
+    admin_state_up: bool
+    """Administrative state of the member.
+
+    Omit to leave unchanged; `false` disables the member so it receives no traffic.
+    """
+
+    backup: bool
+    """
+    Set to true if the member is a backup member, to which traffic will be sent
+    exclusively when all non-backup members will be unreachable. Omit to leave
+    unchanged.
+    """
+
+    monitor_address: Optional[str]
+    """Alternate IP address used for health monitoring of a backend member.
+
+    Set to `null` to clear it and fall back to the member address; omit to leave
+    unchanged.
+    """
+
+    monitor_port: Optional[int]
+    """Alternate protocol port used for health monitoring of a backend member.
+
+    Set to `null` to clear it and fall back to the member `protocol_port`; omit to
+    leave unchanged.
+    """
+
+    weight: int
+    """Member weight.
+
+    Valid values are 0 < `weight` <= 256. Omit to leave unchanged. Controls traffic
+    distribution based on the pool's load balancing algorithm:
+
+    - `ROUND_ROBIN`: Distributes connections to each member in turn according to
+      weights. Higher weight = more turns in the cycle. Example: weights 3 vs 1 =
+      ~75% vs ~25% of requests.
+    - `LEAST_CONNECTIONS`: Sends new connections to the member with fewest active
+      connections, performing round-robin within groups of the same normalized load.
+      Higher weight = allowed to hold more simultaneous connections before being
+      considered 'more loaded'. Example: weights 2 vs 1 means 20 vs 10 active
+      connections is treated as balanced.
+    - `SOURCE_IP`: Routes clients consistently to the same member by hashing client
+      source IP; hash result is modulo total weight of running members. Higher
+      weight = more hash buckets, so more client IPs map to that member. Example:
+      weights 2 vs 1 = roughly two-thirds of distinct client IPs map to the
+      higher-weight member.
+    """

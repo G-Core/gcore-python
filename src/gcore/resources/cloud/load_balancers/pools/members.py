@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-import typing_extensions
-from typing import Optional
+from typing import Iterable, Optional
+from typing_extensions import Literal
 
 import httpx
 
@@ -17,9 +17,16 @@ from ....._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....._base_client import make_request_options
+from .....pagination import SyncOffsetPage, AsyncOffsetPage
+from ....._base_client import AsyncPaginator, make_request_options
+from .....types.cloud.member import Member
 from .....types.cloud.task_id_list import TaskIDList
-from .....types.cloud.load_balancers.pools import member_create_params
+from .....types.cloud.load_balancers.pools import (
+    member_list_params,
+    member_create_params,
+    member_update_params,
+    member_replace_params,
+)
 
 __all__ = ["MembersResource", "AsyncMembersResource"]
 
@@ -48,7 +55,6 @@ class MembersResource(SyncAPIResource):
         """
         return MembersResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("deprecated")
     def create(
         self,
         pool_id: str,
@@ -72,9 +78,7 @@ class MembersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
-        **Deprecated**: Use
-        `POST /v1/loadbalancers/{project_id}/{region_id}/pools/{pool_id}/members`
-        instead.
+        Create load balancer pool member
 
         Args:
           project_id: Project ID
@@ -140,7 +144,7 @@ class MembersResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
         return self._post(
             path_template(
-                "/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/member",
+                "/cloud/v1/loadbalancers/{project_id}/{region_id}/pools/{pool_id}/members",
                 project_id=project_id,
                 region_id=region_id,
                 pool_id=pool_id,
@@ -165,7 +169,184 @@ class MembersResource(SyncAPIResource):
             cast_to=TaskIDList,
         )
 
-    @typing_extensions.deprecated("deprecated")
+    def update(
+        self,
+        member_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        pool_id: str,
+        admin_state_up: bool | Omit = omit,
+        backup: bool | Omit = omit,
+        monitor_address: Optional[str] | Omit = omit,
+        monitor_port: Optional[int] | Omit = omit,
+        weight: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """Updates the specified member's mutable settings.
+
+        `address`, `protocol_port` and
+        `subnet_id` cannot be changed after creation. If no changes are detected, no
+        task is created and an empty task list is returned.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          pool_id: Pool ID
+
+          member_id: Member ID
+
+          admin_state_up: Administrative state of the member. Omit to leave unchanged; `false` disables
+              the member so it receives no traffic.
+
+          backup: Set to true if the member is a backup member, to which traffic will be sent
+              exclusively when all non-backup members will be unreachable. Omit to leave
+              unchanged.
+
+          monitor_address: Alternate IP address used for health monitoring of a backend member. Set to
+              `null` to clear it and fall back to the member address; omit to leave unchanged.
+
+          monitor_port: Alternate protocol port used for health monitoring of a backend member. Set to
+              `null` to clear it and fall back to the member `protocol_port`; omit to leave
+              unchanged.
+
+          weight: Member weight. Valid values are 0 < `weight` <= 256. Omit to leave unchanged.
+              Controls traffic distribution based on the pool's load balancing algorithm:
+
+              - `ROUND_ROBIN`: Distributes connections to each member in turn according to
+                weights. Higher weight = more turns in the cycle. Example: weights 3 vs 1 =
+                ~75% vs ~25% of requests.
+              - `LEAST_CONNECTIONS`: Sends new connections to the member with fewest active
+                connections, performing round-robin within groups of the same normalized load.
+                Higher weight = allowed to hold more simultaneous connections before being
+                considered 'more loaded'. Example: weights 2 vs 1 means 20 vs 10 active
+                connections is treated as balanced.
+              - `SOURCE_IP`: Routes clients consistently to the same member by hashing client
+                source IP; hash result is modulo total weight of running members. Higher
+                weight = more hash buckets, so more client IPs map to that member. Example:
+                weights 2 vs 1 = roughly two-thirds of distinct client IPs map to the
+                higher-weight member.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not pool_id:
+            raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
+        if not member_id:
+            raise ValueError(f"Expected a non-empty value for `member_id` but received {member_id!r}")
+        return self._patch(
+            path_template(
+                "/cloud/v1/loadbalancers/{project_id}/{region_id}/pools/{pool_id}/members/{member_id}",
+                project_id=project_id,
+                region_id=region_id,
+                pool_id=pool_id,
+                member_id=member_id,
+            ),
+            body=maybe_transform(
+                {
+                    "admin_state_up": admin_state_up,
+                    "backup": backup,
+                    "monitor_address": monitor_address,
+                    "monitor_port": monitor_port,
+                    "weight": weight,
+                },
+                member_update_params.MemberUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TaskIDList,
+        )
+
+    def list(
+        self,
+        pool_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
+        order_by: Literal["address.asc", "address.desc", "created_at.asc", "created_at.desc"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncOffsetPage[Member]:
+        """
+        List load balancer pool members
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          pool_id: Pool ID
+
+          limit: Optional. Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
+
+          order_by: Ordering pool members list result by `address` or `created_at` fields and
+              directions (e.g. `address.desc`). Default is `address.asc`.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not pool_id:
+            raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
+        return self._get_api_list(
+            path_template(
+                "/cloud/v1/loadbalancers/{project_id}/{region_id}/pools/{pool_id}/members",
+                project_id=project_id,
+                region_id=region_id,
+                pool_id=pool_id,
+            ),
+            page=SyncOffsetPage[Member],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                        "order_by": order_by,
+                    },
+                    member_list_params.MemberListParams,
+                ),
+            ),
+            model=Member,
+        )
+
     def delete(
         self,
         member_id: str,
@@ -181,9 +362,7 @@ class MembersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
-        **Deprecated**: Use
-        `DELETE /v1/loadbalancers/{project_id}/{region_id}/pools/{pool_id}/members/{member_id}`
-        instead.
+        Delete load balancer pool member
 
         Args:
           project_id: Project ID
@@ -212,12 +391,133 @@ class MembersResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `member_id` but received {member_id!r}")
         return self._delete(
             path_template(
-                "/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/member/{member_id}",
+                "/cloud/v1/loadbalancers/{project_id}/{region_id}/pools/{pool_id}/members/{member_id}",
                 project_id=project_id,
                 region_id=region_id,
                 pool_id=pool_id,
                 member_id=member_id,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TaskIDList,
+        )
+
+    def get(
+        self,
+        member_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        pool_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Member:
+        """
+        Get load balancer pool member
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          pool_id: Pool ID
+
+          member_id: Member ID
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not pool_id:
+            raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
+        if not member_id:
+            raise ValueError(f"Expected a non-empty value for `member_id` but received {member_id!r}")
+        return self._get(
+            path_template(
+                "/cloud/v1/loadbalancers/{project_id}/{region_id}/pools/{pool_id}/members/{member_id}",
+                project_id=project_id,
+                region_id=region_id,
+                pool_id=pool_id,
+                member_id=member_id,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Member,
+        )
+
+    def replace(
+        self,
+        pool_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        body: Iterable[member_replace_params.Body] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """
+        Replaces the full set of pool members with the provided list (declarative,
+        desired-state semantics): members present in the payload are created or updated,
+        members currently on the pool but absent from the payload are deleted. If a
+        member is unchanged (same address + port), it is kept as is without recreation
+        and downtime. If no changes are detected, no task is created and an empty task
+        list is returned.
+
+        For updating a single existing member without affecting the rest of the pool,
+        use
+        `PATCH /v1/loadbalancers/{project_id}/{region_id}/pools/{pool_id}/members/{member_id}`
+        instead.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          pool_id: Pool ID
+
+          body: New sequence of load balancer pool members. If members are the same (by
+              address + port), they will be kept as is without recreation and downtime.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not pool_id:
+            raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
+        return self._put(
+            path_template(
+                "/cloud/v1/loadbalancers/{project_id}/{region_id}/pools/{pool_id}/members",
+                project_id=project_id,
+                region_id=region_id,
+                pool_id=pool_id,
+            ),
+            body=maybe_transform(body, Iterable[member_replace_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -249,7 +549,6 @@ class AsyncMembersResource(AsyncAPIResource):
         """
         return AsyncMembersResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("deprecated")
     async def create(
         self,
         pool_id: str,
@@ -273,9 +572,7 @@ class AsyncMembersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
-        **Deprecated**: Use
-        `POST /v1/loadbalancers/{project_id}/{region_id}/pools/{pool_id}/members`
-        instead.
+        Create load balancer pool member
 
         Args:
           project_id: Project ID
@@ -341,7 +638,7 @@ class AsyncMembersResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
         return await self._post(
             path_template(
-                "/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/member",
+                "/cloud/v1/loadbalancers/{project_id}/{region_id}/pools/{pool_id}/members",
                 project_id=project_id,
                 region_id=region_id,
                 pool_id=pool_id,
@@ -366,7 +663,184 @@ class AsyncMembersResource(AsyncAPIResource):
             cast_to=TaskIDList,
         )
 
-    @typing_extensions.deprecated("deprecated")
+    async def update(
+        self,
+        member_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        pool_id: str,
+        admin_state_up: bool | Omit = omit,
+        backup: bool | Omit = omit,
+        monitor_address: Optional[str] | Omit = omit,
+        monitor_port: Optional[int] | Omit = omit,
+        weight: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """Updates the specified member's mutable settings.
+
+        `address`, `protocol_port` and
+        `subnet_id` cannot be changed after creation. If no changes are detected, no
+        task is created and an empty task list is returned.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          pool_id: Pool ID
+
+          member_id: Member ID
+
+          admin_state_up: Administrative state of the member. Omit to leave unchanged; `false` disables
+              the member so it receives no traffic.
+
+          backup: Set to true if the member is a backup member, to which traffic will be sent
+              exclusively when all non-backup members will be unreachable. Omit to leave
+              unchanged.
+
+          monitor_address: Alternate IP address used for health monitoring of a backend member. Set to
+              `null` to clear it and fall back to the member address; omit to leave unchanged.
+
+          monitor_port: Alternate protocol port used for health monitoring of a backend member. Set to
+              `null` to clear it and fall back to the member `protocol_port`; omit to leave
+              unchanged.
+
+          weight: Member weight. Valid values are 0 < `weight` <= 256. Omit to leave unchanged.
+              Controls traffic distribution based on the pool's load balancing algorithm:
+
+              - `ROUND_ROBIN`: Distributes connections to each member in turn according to
+                weights. Higher weight = more turns in the cycle. Example: weights 3 vs 1 =
+                ~75% vs ~25% of requests.
+              - `LEAST_CONNECTIONS`: Sends new connections to the member with fewest active
+                connections, performing round-robin within groups of the same normalized load.
+                Higher weight = allowed to hold more simultaneous connections before being
+                considered 'more loaded'. Example: weights 2 vs 1 means 20 vs 10 active
+                connections is treated as balanced.
+              - `SOURCE_IP`: Routes clients consistently to the same member by hashing client
+                source IP; hash result is modulo total weight of running members. Higher
+                weight = more hash buckets, so more client IPs map to that member. Example:
+                weights 2 vs 1 = roughly two-thirds of distinct client IPs map to the
+                higher-weight member.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not pool_id:
+            raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
+        if not member_id:
+            raise ValueError(f"Expected a non-empty value for `member_id` but received {member_id!r}")
+        return await self._patch(
+            path_template(
+                "/cloud/v1/loadbalancers/{project_id}/{region_id}/pools/{pool_id}/members/{member_id}",
+                project_id=project_id,
+                region_id=region_id,
+                pool_id=pool_id,
+                member_id=member_id,
+            ),
+            body=await async_maybe_transform(
+                {
+                    "admin_state_up": admin_state_up,
+                    "backup": backup,
+                    "monitor_address": monitor_address,
+                    "monitor_port": monitor_port,
+                    "weight": weight,
+                },
+                member_update_params.MemberUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TaskIDList,
+        )
+
+    def list(
+        self,
+        pool_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
+        order_by: Literal["address.asc", "address.desc", "created_at.asc", "created_at.desc"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[Member, AsyncOffsetPage[Member]]:
+        """
+        List load balancer pool members
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          pool_id: Pool ID
+
+          limit: Optional. Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
+
+          order_by: Ordering pool members list result by `address` or `created_at` fields and
+              directions (e.g. `address.desc`). Default is `address.asc`.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not pool_id:
+            raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
+        return self._get_api_list(
+            path_template(
+                "/cloud/v1/loadbalancers/{project_id}/{region_id}/pools/{pool_id}/members",
+                project_id=project_id,
+                region_id=region_id,
+                pool_id=pool_id,
+            ),
+            page=AsyncOffsetPage[Member],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                        "order_by": order_by,
+                    },
+                    member_list_params.MemberListParams,
+                ),
+            ),
+            model=Member,
+        )
+
     async def delete(
         self,
         member_id: str,
@@ -382,9 +856,7 @@ class AsyncMembersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
-        **Deprecated**: Use
-        `DELETE /v1/loadbalancers/{project_id}/{region_id}/pools/{pool_id}/members/{member_id}`
-        instead.
+        Delete load balancer pool member
 
         Args:
           project_id: Project ID
@@ -413,7 +885,7 @@ class AsyncMembersResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `member_id` but received {member_id!r}")
         return await self._delete(
             path_template(
-                "/cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/member/{member_id}",
+                "/cloud/v1/loadbalancers/{project_id}/{region_id}/pools/{pool_id}/members/{member_id}",
                 project_id=project_id,
                 region_id=region_id,
                 pool_id=pool_id,
@@ -425,20 +897,149 @@ class AsyncMembersResource(AsyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    async def get(
+        self,
+        member_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        pool_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Member:
+        """
+        Get load balancer pool member
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          pool_id: Pool ID
+
+          member_id: Member ID
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not pool_id:
+            raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
+        if not member_id:
+            raise ValueError(f"Expected a non-empty value for `member_id` but received {member_id!r}")
+        return await self._get(
+            path_template(
+                "/cloud/v1/loadbalancers/{project_id}/{region_id}/pools/{pool_id}/members/{member_id}",
+                project_id=project_id,
+                region_id=region_id,
+                pool_id=pool_id,
+                member_id=member_id,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Member,
+        )
+
+    async def replace(
+        self,
+        pool_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        body: Iterable[member_replace_params.Body] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """
+        Replaces the full set of pool members with the provided list (declarative,
+        desired-state semantics): members present in the payload are created or updated,
+        members currently on the pool but absent from the payload are deleted. If a
+        member is unchanged (same address + port), it is kept as is without recreation
+        and downtime. If no changes are detected, no task is created and an empty task
+        list is returned.
+
+        For updating a single existing member without affecting the rest of the pool,
+        use
+        `PATCH /v1/loadbalancers/{project_id}/{region_id}/pools/{pool_id}/members/{member_id}`
+        instead.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          pool_id: Pool ID
+
+          body: New sequence of load balancer pool members. If members are the same (by
+              address + port), they will be kept as is without recreation and downtime.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not pool_id:
+            raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
+        return await self._put(
+            path_template(
+                "/cloud/v1/loadbalancers/{project_id}/{region_id}/pools/{pool_id}/members",
+                project_id=project_id,
+                region_id=region_id,
+                pool_id=pool_id,
+            ),
+            body=await async_maybe_transform(body, Iterable[member_replace_params.Body]),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TaskIDList,
+        )
+
 
 class MembersResourceWithRawResponse:
     def __init__(self, members: MembersResource) -> None:
         self._members = members
 
-        self.create = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                members.create,  # pyright: ignore[reportDeprecated],
-            )
+        self.create = to_raw_response_wrapper(
+            members.create,
         )
-        self.delete = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                members.delete,  # pyright: ignore[reportDeprecated],
-            )
+        self.update = to_raw_response_wrapper(
+            members.update,
+        )
+        self.list = to_raw_response_wrapper(
+            members.list,
+        )
+        self.delete = to_raw_response_wrapper(
+            members.delete,
+        )
+        self.get = to_raw_response_wrapper(
+            members.get,
+        )
+        self.replace = to_raw_response_wrapper(
+            members.replace,
         )
 
 
@@ -446,15 +1047,23 @@ class AsyncMembersResourceWithRawResponse:
     def __init__(self, members: AsyncMembersResource) -> None:
         self._members = members
 
-        self.create = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                members.create,  # pyright: ignore[reportDeprecated],
-            )
+        self.create = async_to_raw_response_wrapper(
+            members.create,
         )
-        self.delete = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                members.delete,  # pyright: ignore[reportDeprecated],
-            )
+        self.update = async_to_raw_response_wrapper(
+            members.update,
+        )
+        self.list = async_to_raw_response_wrapper(
+            members.list,
+        )
+        self.delete = async_to_raw_response_wrapper(
+            members.delete,
+        )
+        self.get = async_to_raw_response_wrapper(
+            members.get,
+        )
+        self.replace = async_to_raw_response_wrapper(
+            members.replace,
         )
 
 
@@ -462,15 +1071,23 @@ class MembersResourceWithStreamingResponse:
     def __init__(self, members: MembersResource) -> None:
         self._members = members
 
-        self.create = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                members.create,  # pyright: ignore[reportDeprecated],
-            )
+        self.create = to_streamed_response_wrapper(
+            members.create,
         )
-        self.delete = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                members.delete,  # pyright: ignore[reportDeprecated],
-            )
+        self.update = to_streamed_response_wrapper(
+            members.update,
+        )
+        self.list = to_streamed_response_wrapper(
+            members.list,
+        )
+        self.delete = to_streamed_response_wrapper(
+            members.delete,
+        )
+        self.get = to_streamed_response_wrapper(
+            members.get,
+        )
+        self.replace = to_streamed_response_wrapper(
+            members.replace,
         )
 
 
@@ -478,13 +1095,21 @@ class AsyncMembersResourceWithStreamingResponse:
     def __init__(self, members: AsyncMembersResource) -> None:
         self._members = members
 
-        self.create = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                members.create,  # pyright: ignore[reportDeprecated],
-            )
+        self.create = async_to_streamed_response_wrapper(
+            members.create,
         )
-        self.delete = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                members.delete,  # pyright: ignore[reportDeprecated],
-            )
+        self.update = async_to_streamed_response_wrapper(
+            members.update,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            members.list,
+        )
+        self.delete = async_to_streamed_response_wrapper(
+            members.delete,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            members.get,
+        )
+        self.replace = async_to_streamed_response_wrapper(
+            members.replace,
         )
