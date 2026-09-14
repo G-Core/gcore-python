@@ -374,8 +374,10 @@ class RrsetsResource(SyncAPIResource):
         *,
         zone_name: str,
         rrset_name: str,
+        from_: str | Omit = omit,
         limit: int | Omit = omit,
         offset: int | Omit = omit,
+        to: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -387,9 +389,14 @@ class RrsetsResource(SyncAPIResource):
         Get failover history for the RRset
 
         Args:
+          from_: Only show history from that time (RFC3339). If omitted, a default lookback
+              window is used.
+
           limit: Max number of records in response
 
           offset: Amount of records to skip before beginning to write in response.
+
+          to: Only show history up to that time (RFC3339).
 
           extra_headers: Send extra headers
 
@@ -419,8 +426,10 @@ class RrsetsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "from_": from_,
                         "limit": limit,
                         "offset": offset,
+                        "to": to,
                     },
                     rrset_get_failover_logs_params.RrsetGetFailoverLogsParams,
                 ),
@@ -835,8 +844,10 @@ class AsyncRrsetsResource(AsyncAPIResource):
         *,
         zone_name: str,
         rrset_name: str,
+        from_: str | Omit = omit,
         limit: int | Omit = omit,
         offset: int | Omit = omit,
+        to: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -848,9 +859,14 @@ class AsyncRrsetsResource(AsyncAPIResource):
         Get failover history for the RRset
 
         Args:
+          from_: Only show history from that time (RFC3339). If omitted, a default lookback
+              window is used.
+
           limit: Max number of records in response
 
           offset: Amount of records to skip before beginning to write in response.
+
+          to: Only show history up to that time (RFC3339).
 
           extra_headers: Send extra headers
 
@@ -880,8 +896,10 @@ class AsyncRrsetsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
+                        "from_": from_,
                         "limit": limit,
                         "offset": offset,
+                        "to": to,
                     },
                     rrset_get_failover_logs_params.RrsetGetFailoverLogsParams,
                 ),

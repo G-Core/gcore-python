@@ -300,8 +300,10 @@ class TestRrsets:
             rrset_type="rrsetType",
             zone_name="zoneName",
             rrset_name="rrsetName",
+            from_="from",
             limit=0,
             offset=0,
+            to="to",
         )
         assert_matches_type(RrsetGetFailoverLogsResponse, rrset, path=["response"])
 
@@ -732,8 +734,10 @@ class TestAsyncRrsets:
             rrset_type="rrsetType",
             zone_name="zoneName",
             rrset_name="rrsetName",
+            from_="from",
             limit=0,
             offset=0,
+            to="to",
         )
         assert_matches_type(RrsetGetFailoverLogsResponse, rrset, path=["response"])
 

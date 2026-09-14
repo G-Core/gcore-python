@@ -14,8 +14,17 @@ class RrsetGetFailoverLogsParams(TypedDict, total=False):
 
     rrset_name: Required[Annotated[str, PropertyInfo(alias="rrsetName")]]
 
+    from_: Annotated[str, PropertyInfo(alias="from")]
+    """Only show history from that time (RFC3339).
+
+    If omitted, a default lookback window is used.
+    """
+
     limit: int
     """Max number of records in response"""
 
     offset: int
     """Amount of records to skip before beginning to write in response."""
+
+    to: str
+    """Only show history up to that time (RFC3339)."""
