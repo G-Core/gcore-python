@@ -127,13 +127,10 @@ class CustomPageSetsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapCustomPageSet:
-        """Update a custom page set based on the provided parameters.
-
-        To update a field,
-        provide the field with the new value. To remove a field, provide it as null. To
-        keep a field unaltered, do not include it in the request. Note: `name` cannot be
-        removed. When updating a custom page, include all the fields that you want it to
-        have. Any field not included will be removed.
+        """
+        Fields with a value are updated, fields set to null are removed, and fields
+        omitted are left unchanged (`name` cannot be removed). When updating a custom
+        page, include all fields it should have — any field not included is removed.
 
         Args:
           set_id: The ID of the custom page set
@@ -151,7 +148,7 @@ class CustomPageSetsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._patch(
-            path_template("/waap/v1/custom-page-sets/{set_id}", set_id=set_id),
+            path_template("/waap/v2/custom-page-sets/{set_id}", set_id=set_id),
             body=maybe_transform(
                 {
                     "block": block,
@@ -468,13 +465,10 @@ class AsyncCustomPageSetsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapCustomPageSet:
-        """Update a custom page set based on the provided parameters.
-
-        To update a field,
-        provide the field with the new value. To remove a field, provide it as null. To
-        keep a field unaltered, do not include it in the request. Note: `name` cannot be
-        removed. When updating a custom page, include all the fields that you want it to
-        have. Any field not included will be removed.
+        """
+        Fields with a value are updated, fields set to null are removed, and fields
+        omitted are left unchanged (`name` cannot be removed). When updating a custom
+        page, include all fields it should have — any field not included is removed.
 
         Args:
           set_id: The ID of the custom page set
@@ -492,7 +486,7 @@ class AsyncCustomPageSetsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._patch(
-            path_template("/waap/v1/custom-page-sets/{set_id}", set_id=set_id),
+            path_template("/waap/v2/custom-page-sets/{set_id}", set_id=set_id),
             body=await async_maybe_transform(
                 {
                     "block": block,

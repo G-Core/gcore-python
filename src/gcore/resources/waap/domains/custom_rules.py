@@ -300,7 +300,7 @@ class CustomRulesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomRuleDeleteMultipleResponse:
         """
-        Delete multiple WAAP rules
+        Delete Multiple Custom WAAP Rules
 
         Args:
           domain_id: The domain ID
@@ -376,7 +376,7 @@ class CustomRulesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomRuleToggleResponse:
         """
-        Toggle a custom rule
+        Toggle Custom Rule
 
         Args:
           domain_id: The domain ID
@@ -677,7 +677,7 @@ class AsyncCustomRulesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomRuleDeleteMultipleResponse:
         """
-        Delete multiple WAAP rules
+        Delete Multiple Custom WAAP Rules
 
         Args:
           domain_id: The domain ID
@@ -753,7 +753,7 @@ class AsyncCustomRulesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomRuleToggleResponse:
         """
-        Toggle a custom rule
+        Toggle Custom Rule
 
         Args:
           domain_id: The domain ID

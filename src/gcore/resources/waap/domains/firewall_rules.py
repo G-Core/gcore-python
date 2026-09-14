@@ -301,7 +301,7 @@ class FirewallRulesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FirewallRuleDeleteMultipleResponse:
         """
-        Delete multiple WAAP rules
+        Delete Multiple WAAP Firewall Rules
 
         Args:
           domain_id: The domain ID
@@ -379,7 +379,7 @@ class FirewallRulesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FirewallRuleToggleResponse:
         """
-        Toggle a firewall rule
+        Toggle Firewall Rule
 
         Args:
           domain_id: The domain ID
@@ -681,7 +681,7 @@ class AsyncFirewallRulesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FirewallRuleDeleteMultipleResponse:
         """
-        Delete multiple WAAP rules
+        Delete Multiple WAAP Firewall Rules
 
         Args:
           domain_id: The domain ID
@@ -759,7 +759,7 @@ class AsyncFirewallRulesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FirewallRuleToggleResponse:
         """
-        Toggle a firewall rule
+        Toggle Firewall Rule
 
         Args:
           domain_id: The domain ID

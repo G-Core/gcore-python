@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Iterable
 from typing_extensions import Literal
 
@@ -196,7 +197,7 @@ class DomainsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapDetailedDomain:
         """
-        Update Domain
+        Set Domain Status
 
         Args:
           domain_id: The domain ID
@@ -367,6 +368,7 @@ class DomainsResource(SyncAPIResource):
             cast_to=WaapDetailedDomain,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def list_rule_sets(
         self,
         domain_id: int,
@@ -379,7 +381,12 @@ class DomainsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DomainListRuleSetsResponse:
         """
-        Retrieve all rule sets linked to a particular domain
+        Retrieve all rule sets linked to a particular domain, each with its policies
+        embedded. Deprecated. Will become unavailable after Sun, 13 Dec 2026. Use
+        [GET /v2/domains/{`domain_id`}/rule-sets](#operation/`list_policy_rule_sets_v2_domains__domain_id__rule_sets_get`)
+        for the rule sets and
+        [GET /v2/domains/{`domain_id`}/policies](#operation/`list_domain_policies_v2_domains__domain_id__policies_get`)
+        for their policies instead
 
         Args:
           domain_id: The domain ID
@@ -482,7 +489,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapDetailedDomain:
         """
-        Update Domain
+        Set Domain Status
 
         Args:
           domain_id: The domain ID
@@ -653,6 +660,7 @@ class AsyncDomainsResource(AsyncAPIResource):
             cast_to=WaapDetailedDomain,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def list_rule_sets(
         self,
         domain_id: int,
@@ -665,7 +673,12 @@ class AsyncDomainsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DomainListRuleSetsResponse:
         """
-        Retrieve all rule sets linked to a particular domain
+        Retrieve all rule sets linked to a particular domain, each with its policies
+        embedded. Deprecated. Will become unavailable after Sun, 13 Dec 2026. Use
+        [GET /v2/domains/{`domain_id`}/rule-sets](#operation/`list_policy_rule_sets_v2_domains__domain_id__rule_sets_get`)
+        for the rule sets and
+        [GET /v2/domains/{`domain_id`}/policies](#operation/`list_domain_policies_v2_domains__domain_id__policies_get`)
+        for their policies instead
 
         Args:
           domain_id: The domain ID
@@ -703,8 +716,10 @@ class DomainsResourceWithRawResponse:
         self.get = to_raw_response_wrapper(
             domains.get,
         )
-        self.list_rule_sets = to_raw_response_wrapper(
-            domains.list_rule_sets,
+        self.list_rule_sets = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                domains.list_rule_sets,  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property
@@ -768,8 +783,10 @@ class AsyncDomainsResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             domains.get,
         )
-        self.list_rule_sets = async_to_raw_response_wrapper(
-            domains.list_rule_sets,
+        self.list_rule_sets = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                domains.list_rule_sets,  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property
@@ -833,8 +850,10 @@ class DomainsResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             domains.get,
         )
-        self.list_rule_sets = to_streamed_response_wrapper(
-            domains.list_rule_sets,
+        self.list_rule_sets = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                domains.list_rule_sets,  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property
@@ -898,8 +917,10 @@ class AsyncDomainsResourceWithStreamingResponse:
         self.get = async_to_streamed_response_wrapper(
             domains.get,
         )
-        self.list_rule_sets = async_to_streamed_response_wrapper(
-            domains.list_rule_sets,
+        self.list_rule_sets = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                domains.list_rule_sets,  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property

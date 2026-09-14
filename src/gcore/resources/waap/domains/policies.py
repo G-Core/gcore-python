@@ -60,7 +60,7 @@ class PoliciesResource(SyncAPIResource):
         Args:
           domain_id: The domain ID
 
-          policy_id: The ID of the policy to toggle
+          policy_id: The ID of the policy to update
 
           mode: Indicates if the security rule is active
 
@@ -76,7 +76,7 @@ class PoliciesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return self._patch(
             path_template(
-                "/waap/v1/domains/{domain_id}/policies/{policy_id}", domain_id=domain_id, policy_id=policy_id
+                "/waap/v2/domains/{domain_id}/policies/{policy_id}", domain_id=domain_id, policy_id=policy_id
             ),
             body=maybe_transform({"mode": mode}, policy_toggle_params.PolicyToggleParams),
             options=make_request_options(
@@ -125,7 +125,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         Args:
           domain_id: The domain ID
 
-          policy_id: The ID of the policy to toggle
+          policy_id: The ID of the policy to update
 
           mode: Indicates if the security rule is active
 
@@ -141,7 +141,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return await self._patch(
             path_template(
-                "/waap/v1/domains/{domain_id}/policies/{policy_id}", domain_id=domain_id, policy_id=policy_id
+                "/waap/v2/domains/{domain_id}/policies/{policy_id}", domain_id=domain_id, policy_id=policy_id
             ),
             body=await async_maybe_transform({"mode": mode}, policy_toggle_params.PolicyToggleParams),
             options=make_request_options(

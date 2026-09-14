@@ -54,8 +54,10 @@ class SettingsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapDomainSettingsModel:
-        """
-        Update settings for a specific domain
+        """Set various settings for a specific domain.
+
+        Omitted settings will remain
+        unchanged.
 
         Args:
           domain_id: The domain ID
@@ -154,8 +156,10 @@ class AsyncSettingsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapDomainSettingsModel:
-        """
-        Update settings for a specific domain
+        """Set various settings for a specific domain.
+
+        Omitted settings will remain
+        unchanged.
 
         Args:
           domain_id: The domain ID

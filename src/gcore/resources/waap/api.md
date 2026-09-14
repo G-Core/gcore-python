@@ -80,7 +80,7 @@ from gcore.types.waap.domains import WaapDomainPolicySettings
 
 Methods:
 
-- <code title="patch /waap/v1/domains/{domain_id}/policies/{policy_id}">client.waap.domains.policies.<a href="./src/gcore/resources/waap/domains/policies.py">toggle</a>(policy_id, \*, domain_id, \*\*<a href="src/gcore/types/waap/domains/policy_toggle_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/waap_domain_policy_settings.py">WaapDomainPolicySettings</a></code>
+- <code title="patch /waap/v2/domains/{domain_id}/policies/{policy_id}">client.waap.domains.policies.<a href="./src/gcore/resources/waap/domains/policies.py">toggle</a>(policy_id, \*, domain_id, \*\*<a href="src/gcore/types/waap/domains/policy_toggle_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/waap_domain_policy_settings.py">WaapDomainPolicySettings</a></code>
 
 ### Settings
 
@@ -182,11 +182,11 @@ from gcore.types.waap.domains import WaapInsightSilence
 
 Methods:
 
-- <code title="post /waap/v1/domains/{domain_id}/insight-silences">client.waap.domains.insight_silences.<a href="./src/gcore/resources/waap/domains/insight_silences.py">create</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/insight_silence_create_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/waap_insight_silence.py">WaapInsightSilence</a></code>
-- <code title="patch /waap/v1/domains/{domain_id}/insight-silences/{silence_id}">client.waap.domains.insight_silences.<a href="./src/gcore/resources/waap/domains/insight_silences.py">update</a>(silence_id, \*, domain_id, \*\*<a href="src/gcore/types/waap/domains/insight_silence_update_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/waap_insight_silence.py">WaapInsightSilence</a></code>
-- <code title="get /waap/v1/domains/{domain_id}/insight-silences">client.waap.domains.insight_silences.<a href="./src/gcore/resources/waap/domains/insight_silences.py">list</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/insight_silence_list_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/waap_insight_silence.py">SyncOffsetPage[WaapInsightSilence]</a></code>
-- <code title="delete /waap/v1/domains/{domain_id}/insight-silences/{silence_id}">client.waap.domains.insight_silences.<a href="./src/gcore/resources/waap/domains/insight_silences.py">delete</a>(silence_id, \*, domain_id) -> None</code>
-- <code title="get /waap/v1/domains/{domain_id}/insight-silences/{silence_id}">client.waap.domains.insight_silences.<a href="./src/gcore/resources/waap/domains/insight_silences.py">get</a>(silence_id, \*, domain_id) -> <a href="./src/gcore/types/waap/domains/waap_insight_silence.py">WaapInsightSilence</a></code>
+- <code title="post /waap/v2/domains/{domain_id}/insight-silences">client.waap.domains.insight_silences.<a href="./src/gcore/resources/waap/domains/insight_silences.py">create</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/insight_silence_create_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/waap_insight_silence.py">WaapInsightSilence</a></code>
+- <code title="patch /waap/v2/domains/{domain_id}/insight-silences/{silence_id}">client.waap.domains.insight_silences.<a href="./src/gcore/resources/waap/domains/insight_silences.py">update</a>(silence_id, \*, domain_id, \*\*<a href="src/gcore/types/waap/domains/insight_silence_update_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/waap_insight_silence.py">WaapInsightSilence</a></code>
+- <code title="get /waap/v2/domains/{domain_id}/insight-silences">client.waap.domains.insight_silences.<a href="./src/gcore/resources/waap/domains/insight_silences.py">list</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/insight_silence_list_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/waap_insight_silence.py">SyncOffsetPage[WaapInsightSilence]</a></code>
+- <code title="delete /waap/v2/domains/{domain_id}/insight-silences/{silence_id}">client.waap.domains.insight_silences.<a href="./src/gcore/resources/waap/domains/insight_silences.py">delete</a>(silence_id, \*, domain_id) -> None</code>
+- <code title="get /waap/v2/domains/{domain_id}/insight-silences/{silence_id}">client.waap.domains.insight_silences.<a href="./src/gcore/resources/waap/domains/insight_silences.py">get</a>(silence_id, \*, domain_id) -> <a href="./src/gcore/types/waap/domains/waap_insight_silence.py">WaapInsightSilence</a></code>
 
 ### Statistics
 
@@ -282,7 +282,7 @@ from gcore.types.waap import WaapCustomPagePreview, WaapCustomPageSet
 Methods:
 
 - <code title="post /waap/v1/custom-page-sets">client.waap.custom_page_sets.<a href="./src/gcore/resources/waap/custom_page_sets.py">create</a>(\*\*<a href="src/gcore/types/waap/custom_page_set_create_params.py">params</a>) -> <a href="./src/gcore/types/waap/waap_custom_page_set.py">WaapCustomPageSet</a></code>
-- <code title="patch /waap/v1/custom-page-sets/{set_id}">client.waap.custom_page_sets.<a href="./src/gcore/resources/waap/custom_page_sets.py">update</a>(set_id, \*\*<a href="src/gcore/types/waap/custom_page_set_update_params.py">params</a>) -> <a href="./src/gcore/types/waap/waap_custom_page_set.py">WaapCustomPageSet</a></code>
+- <code title="patch /waap/v2/custom-page-sets/{set_id}">client.waap.custom_page_sets.<a href="./src/gcore/resources/waap/custom_page_sets.py">update</a>(set_id, \*\*<a href="src/gcore/types/waap/custom_page_set_update_params.py">params</a>) -> <a href="./src/gcore/types/waap/waap_custom_page_set.py">WaapCustomPageSet</a></code>
 - <code title="get /waap/v1/custom-page-sets">client.waap.custom_page_sets.<a href="./src/gcore/resources/waap/custom_page_sets.py">list</a>(\*\*<a href="src/gcore/types/waap/custom_page_set_list_params.py">params</a>) -> <a href="./src/gcore/types/waap/waap_custom_page_set.py">SyncOffsetPage[WaapCustomPageSet]</a></code>
 - <code title="delete /waap/v1/custom-page-sets/{set_id}">client.waap.custom_page_sets.<a href="./src/gcore/resources/waap/custom_page_sets.py">delete</a>(set_id) -> None</code>
 - <code title="get /waap/v1/custom-page-sets/{set_id}">client.waap.custom_page_sets.<a href="./src/gcore/resources/waap/custom_page_sets.py">get</a>(set_id) -> <a href="./src/gcore/types/waap/waap_custom_page_set.py">WaapCustomPageSet</a></code>

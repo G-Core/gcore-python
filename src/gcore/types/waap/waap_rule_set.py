@@ -5,20 +5,7 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["WaapRuleSet", "Tag", "Rule"]
-
-
-class Tag(BaseModel):
-    """A single tag associated with a rule set."""
-
-    id: int
-    """Identifier of the tag."""
-
-    description: str
-    """Detailed description of the tag."""
-
-    name: str
-    """Name of the tag."""
+__all__ = ["WaapRuleSet", "Rule", "Tag"]
 
 
 class Rule(BaseModel):
@@ -46,8 +33,21 @@ class Rule(BaseModel):
     """Identifier of the rule set to which the rule belongs"""
 
 
+class Tag(BaseModel):
+    """A single tag associated with a rule set."""
+
+    id: int
+    """Identifier of the tag."""
+
+    description: str
+    """Detailed description of the tag."""
+
+    name: str
+    """Name of the tag."""
+
+
 class WaapRuleSet(BaseModel):
-    """Represents a custom rule set."""
+    """Represents a custom rule set with associated rules."""
 
     id: int
     """Identifier of the rule set."""
@@ -61,10 +61,11 @@ class WaapRuleSet(BaseModel):
     name: str
     """Name of the rule set."""
 
+    rules: List[Rule]
+    """Collection of security rules associated with the rule set."""
+
     tags: List[Tag]
     """Collection of tags associated with the rule set."""
 
     resource_slug: Optional[str] = None
     """The resource slug associated with the rule set."""
-
-    rules: Optional[List[Rule]] = None

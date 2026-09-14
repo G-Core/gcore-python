@@ -13,7 +13,7 @@ __all__ = ["StatisticGetDDOSAttacksParams"]
 
 class StatisticGetDDOSAttacksParams(TypedDict, total=False):
     end_time: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
-    """Filter attacks up to a specified end date in ISO 8601 format"""
+    """End time of the search interval. Excludes attacks that started after it"""
 
     limit: int
     """Number of items to return"""
@@ -25,4 +25,4 @@ class StatisticGetDDOSAttacksParams(TypedDict, total=False):
     """Sort the response by given field."""
 
     start_time: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
-    """Filter attacks starting from a specified date in ISO 8601 format"""
+    """Start time of the search interval. Excludes attacks that ended before it"""

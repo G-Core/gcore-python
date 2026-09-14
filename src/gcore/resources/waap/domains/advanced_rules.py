@@ -395,7 +395,7 @@ class AdvancedRulesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AdvancedRuleToggleResponse:
         """
-        Toggle an advanced rule
+        Toggle Advanced Rule
 
         Args:
           domain_id: The domain ID
@@ -797,7 +797,7 @@ class AsyncAdvancedRulesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AdvancedRuleToggleResponse:
         """
-        Toggle an advanced rule
+        Toggle Advanced Rule
 
         Args:
           domain_id: The domain ID

@@ -93,7 +93,7 @@ class InsightSilencesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            path_template("/waap/v1/domains/{domain_id}/insight-silences", domain_id=domain_id),
+            path_template("/waap/v2/domains/{domain_id}/insight-silences", domain_id=domain_id),
             body=maybe_transform(
                 {
                     "author": author,
@@ -154,7 +154,7 @@ class InsightSilencesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `silence_id` but received {silence_id!r}")
         return self._patch(
             path_template(
-                "/waap/v1/domains/{domain_id}/insight-silences/{silence_id}", domain_id=domain_id, silence_id=silence_id
+                "/waap/v2/domains/{domain_id}/insight-silences/{silence_id}", domain_id=domain_id, silence_id=silence_id
             ),
             body=maybe_transform(
                 {
@@ -230,7 +230,7 @@ class InsightSilencesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            path_template("/waap/v1/domains/{domain_id}/insight-silences", domain_id=domain_id),
+            path_template("/waap/v2/domains/{domain_id}/insight-silences", domain_id=domain_id),
             page=SyncOffsetPage[WaapInsightSilence],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -286,7 +286,7 @@ class InsightSilencesResource(SyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             path_template(
-                "/waap/v1/domains/{domain_id}/insight-silences/{silence_id}", domain_id=domain_id, silence_id=silence_id
+                "/waap/v2/domains/{domain_id}/insight-silences/{silence_id}", domain_id=domain_id, silence_id=silence_id
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -326,7 +326,7 @@ class InsightSilencesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `silence_id` but received {silence_id!r}")
         return self._get(
             path_template(
-                "/waap/v1/domains/{domain_id}/insight-silences/{silence_id}", domain_id=domain_id, silence_id=silence_id
+                "/waap/v2/domains/{domain_id}/insight-silences/{silence_id}", domain_id=domain_id, silence_id=silence_id
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -398,7 +398,7 @@ class AsyncInsightSilencesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            path_template("/waap/v1/domains/{domain_id}/insight-silences", domain_id=domain_id),
+            path_template("/waap/v2/domains/{domain_id}/insight-silences", domain_id=domain_id),
             body=await async_maybe_transform(
                 {
                     "author": author,
@@ -459,7 +459,7 @@ class AsyncInsightSilencesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `silence_id` but received {silence_id!r}")
         return await self._patch(
             path_template(
-                "/waap/v1/domains/{domain_id}/insight-silences/{silence_id}", domain_id=domain_id, silence_id=silence_id
+                "/waap/v2/domains/{domain_id}/insight-silences/{silence_id}", domain_id=domain_id, silence_id=silence_id
             ),
             body=await async_maybe_transform(
                 {
@@ -535,7 +535,7 @@ class AsyncInsightSilencesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            path_template("/waap/v1/domains/{domain_id}/insight-silences", domain_id=domain_id),
+            path_template("/waap/v2/domains/{domain_id}/insight-silences", domain_id=domain_id),
             page=AsyncOffsetPage[WaapInsightSilence],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -591,7 +591,7 @@ class AsyncInsightSilencesResource(AsyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             path_template(
-                "/waap/v1/domains/{domain_id}/insight-silences/{silence_id}", domain_id=domain_id, silence_id=silence_id
+                "/waap/v2/domains/{domain_id}/insight-silences/{silence_id}", domain_id=domain_id, silence_id=silence_id
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -631,7 +631,7 @@ class AsyncInsightSilencesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `silence_id` but received {silence_id!r}")
         return await self._get(
             path_template(
-                "/waap/v1/domains/{domain_id}/insight-silences/{silence_id}", domain_id=domain_id, silence_id=silence_id
+                "/waap/v2/domains/{domain_id}/insight-silences/{silence_id}", domain_id=domain_id, silence_id=silence_id
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
