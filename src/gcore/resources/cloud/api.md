@@ -276,7 +276,9 @@ Methods:
 Methods:
 
 - <code title="post /cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/healthmonitor">client.cloud.load_balancers.pools.health_monitors.<a href="./src/gcore/resources/cloud/load_balancers/pools/health_monitors.py">create</a>(pool_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/load_balancers/pools/health_monitor_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="patch /cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/healthmonitor">client.cloud.load_balancers.pools.health_monitors.<a href="./src/gcore/resources/cloud/load_balancers/pools/health_monitors.py">update</a>(pool_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/load_balancers/pools/health_monitor_update_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 - <code title="delete /cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/healthmonitor">client.cloud.load_balancers.pools.health_monitors.<a href="./src/gcore/resources/cloud/load_balancers/pools/health_monitors.py">delete</a>(pool_id, \*, project_id, region_id) -> None</code>
+- <code title="get /cloud/v1/lbpools/{project_id}/{region_id}/{pool_id}/healthmonitor">client.cloud.load_balancers.pools.health_monitors.<a href="./src/gcore/resources/cloud/load_balancers/pools/health_monitors.py">get</a>(pool_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/health_monitor.py">HealthMonitor</a></code>
 
 #### Members
 

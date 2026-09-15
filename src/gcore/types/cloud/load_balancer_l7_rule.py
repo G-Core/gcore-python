@@ -44,7 +44,7 @@ class LoadBalancerL7Rule(BaseModel):
     region_id: int
     """Region ID"""
 
-    tags: Optional[List[str]] = None
+    tags: List[str]
     """A list of simple strings assigned to the l7 rule"""
 
     task_id: Optional[str] = None

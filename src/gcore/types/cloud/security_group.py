@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import List
 from datetime import datetime
 
 from .tag import Tag
@@ -35,6 +35,9 @@ class SecurityGroup(BaseModel):
     revision_number: int
     """The number of revisions"""
 
+    security_group_rules: List[SecurityGroupRule]
+    """Security group rules"""
+
     tags_v2: List[Tag]
     """List of key-value tags associated with the resource.
 
@@ -47,6 +50,3 @@ class SecurityGroup(BaseModel):
 
     updated_at: datetime
     """Datetime when the security group was last updated"""
-
-    security_group_rules: Optional[List[SecurityGroupRule]] = None
-    """Security group rules"""

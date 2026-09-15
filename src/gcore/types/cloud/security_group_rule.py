@@ -25,7 +25,7 @@ class SecurityGroupRule(BaseModel):
     applied
     """
 
-    ethertype: Optional[Literal["IPv4", "IPv6"]] = None
+    ethertype: Literal["IPv4", "IPv6"]
     """
     Must be IPv4 or IPv6, and addresses represented in CIDR must match the ingress
     or egress rules.

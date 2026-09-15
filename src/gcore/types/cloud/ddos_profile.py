@@ -35,11 +35,11 @@ class DDOSProfile(BaseModel):
     profile_template_description: Optional[str] = None
     """Detailed description of the protection template used for this profile"""
 
-    protocols: Optional[List[Protocol]] = None
+    protocols: List[Protocol]
     """List of network protocols and ports configured for protection"""
 
-    site: Optional[str] = None
+    site: str
     """Geographic site identifier where the protection is deployed"""
 
-    status: Optional[DDOSProfileStatus] = None
+    status: DDOSProfileStatus
     """Current operational status and any error information for the profile"""

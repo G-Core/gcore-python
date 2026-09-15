@@ -20,8 +20,14 @@ class InstanceInterfaceTrunkSerializerSubPort(BaseModel):
     floatingip_details: List[FloatingIP]
     """Bodies of floating IPs that are NAT-ing IPs of this port"""
 
+    interface_name: Optional[str] = None
+    """Interface name. Null when the interface has no name set."""
+
     ip_assignments: List[IPAssignment]
     """IP addresses assigned to this port"""
+
+    mac_address: str
+    """MAC address of the virtual port"""
 
     network_details: NetworkDetails
     """Body of the network this port is attached to"""
@@ -41,12 +47,6 @@ class InstanceInterfaceTrunkSerializerSubPort(BaseModel):
     segmentation_type: str
     """type of network segment"""
 
-    interface_name: Optional[str] = None
-    """Interface name"""
-
-    mac_address: Optional[str] = None
-    """MAC address of the virtual port"""
-
 
 class InstanceInterfaceTrunkSerializer(BaseModel):
     allowed_address_pairs: List[AllowedAddressPairs]
@@ -55,8 +55,14 @@ class InstanceInterfaceTrunkSerializer(BaseModel):
     floatingip_details: List[FloatingIP]
     """Bodies of floating IPs that are NAT-ing IPs of this port"""
 
+    interface_name: Optional[str] = None
+    """Interface name. Null when the interface has no name set."""
+
     ip_assignments: List[IPAssignment]
     """IP addresses assigned to this port"""
+
+    mac_address: str
+    """MAC address of the virtual port"""
 
     network_details: NetworkDetails
     """Body of the network this port is attached to"""
@@ -72,12 +78,6 @@ class InstanceInterfaceTrunkSerializer(BaseModel):
 
     sub_ports: List[InstanceInterfaceTrunkSerializerSubPort]
     """body of ports that are included into trunk port"""
-
-    interface_name: Optional[str] = None
-    """Interface name"""
-
-    mac_address: Optional[str] = None
-    """MAC address of the virtual port"""
 
 
 NetworkInterface: TypeAlias = Union[InstanceInterfaceTrunkSerializer, InstanceInterface]

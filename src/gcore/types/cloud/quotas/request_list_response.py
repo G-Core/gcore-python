@@ -177,6 +177,9 @@ class RequestedLimitsRegionalLimit(BaseModel):
     shared_vm_count_limit: Optional[int] = None
     """Basic VMs Count limit"""
 
+    slurm_cluster_count_limit: Optional[int] = None
+    """Slurm cluster count limit for this region. 0 disables Slurm in this region."""
+
     snapshot_schedule_count_limit: Optional[int] = None
     """Snapshot Schedules Count limit"""
 

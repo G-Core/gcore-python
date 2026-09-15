@@ -27,7 +27,7 @@ class AdditionalVip(BaseModel):
 
 
 class Flavor(BaseModel):
-    """Load balancer flavor (if not default)"""
+    """Load balancer flavor. Null when using the default flavor."""
 
     flavor_id: str
     """Flavor ID is the same as name"""
@@ -62,6 +62,9 @@ class LoadBalancer(BaseModel):
     id: str
     """Load balancer ID"""
 
+    additional_vips: List[AdditionalVip]
+    """List of additional IP addresses"""
+
     admin_state_up: bool
     """Administrative state of the resource.
 
@@ -72,11 +75,41 @@ class LoadBalancer(BaseModel):
     created_at: datetime
     """Datetime when the load balancer was created"""
 
+    creator_task_id: Optional[str] = None
+    """Task that created this entity.
+
+    Null when the load balancer wasn't created via a tracked task.
+    """
+
+    ddos_profile: Optional[DDOSProfile] = None
+    """Loadbalancer advanced DDoS protection profile.
+
+    Null unless requested via `with_ddos`, or when no profile is attached.
+    """
+
+    flavor: Optional[Flavor] = None
+    """Load balancer flavor. Null when using the default flavor."""
+
+    floating_ips: List[FloatingIP]
+    """List of assigned floating IPs"""
+
+    listeners: List[Listener]
+    """Load balancer listeners"""
+
+    logging: Optional[Logging] = None
+    """Logging configuration. Null when logging isn't configured."""
+
     name: str
     """Load balancer name"""
 
     operating_status: LoadBalancerOperatingStatus
     """Load balancer operating status"""
+
+    preferred_connectivity: LoadBalancerMemberConnectivity
+    """
+    Preferred option to establish connectivity between load balancer and its pools
+    members
+    """
 
     project_id: int
     """Project ID"""
@@ -90,6 +123,9 @@ class LoadBalancer(BaseModel):
     region_id: int
     """Region ID"""
 
+    stats: Optional[LoadBalancerStatistics] = None
+    """Statistics of load balancer. Null unless requested via `show_stats`."""
+
     tags_v2: List[Tag]
     """List of key-value tags associated with the resource.
 
@@ -100,36 +136,6 @@ class LoadBalancer(BaseModel):
     values.
     """
 
-    additional_vips: Optional[List[AdditionalVip]] = None
-    """List of additional IP addresses"""
-
-    creator_task_id: Optional[str] = None
-    """Task that created this entity"""
-
-    ddos_profile: Optional[DDOSProfile] = None
-    """Loadbalancer advanced DDoS protection profile."""
-
-    flavor: Optional[Flavor] = None
-    """Load balancer flavor (if not default)"""
-
-    floating_ips: Optional[List[FloatingIP]] = None
-    """List of assigned floating IPs"""
-
-    listeners: Optional[List[Listener]] = None
-    """Load balancer listeners"""
-
-    logging: Optional[Logging] = None
-    """Logging configuration"""
-
-    preferred_connectivity: Optional[LoadBalancerMemberConnectivity] = None
-    """
-    Preferred option to establish connectivity between load balancer and its pools
-    members
-    """
-
-    stats: Optional[LoadBalancerStatistics] = None
-    """Statistics of load balancer."""
-
     task_id: Optional[str] = None
     """The UUID of the active task that currently holds a lock on the resource.
 
@@ -138,19 +144,22 @@ class LoadBalancer(BaseModel):
     """
 
     updated_at: Optional[datetime] = None
-    """Datetime when the load balancer was last updated"""
+    """Datetime when the load balancer was last updated. Null until the first update."""
 
-    vip_address: Optional[str] = None
+    vip_address: str
     """Load balancer IP address"""
 
     vip_fqdn: Optional[str] = None
-    """Fully qualified domain name for the load balancer VIP"""
+    """Fully qualified domain name for the load balancer VIP.
+
+    Null when no FQDN is assigned.
+    """
 
     vip_ip_family: Optional[InterfaceIPFamily] = None
     """Load balancer IP family"""
 
-    vip_port_id: Optional[str] = None
+    vip_port_id: str
     """The ID of the Virtual IP (VIP) port."""
 
-    vrrp_ips: Optional[List[VrrpIP]] = None
+    vrrp_ips: List[VrrpIP]
     """List of VRRP IP addresses"""

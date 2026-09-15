@@ -18,8 +18,14 @@ class InstanceInterface(BaseModel):
     floatingip_details: List[FloatingIP]
     """Bodies of floating IPs that are NAT-ing IPs of this port"""
 
+    interface_name: Optional[str] = None
+    """Interface name. Null when the interface has no name set."""
+
     ip_assignments: List[IPAssignment]
     """IP addresses assigned to this port"""
+
+    mac_address: str
+    """MAC address of the virtual port"""
 
     network_details: NetworkDetails
     """Body of the network this port is attached to"""
@@ -32,9 +38,3 @@ class InstanceInterface(BaseModel):
 
     port_security_enabled: bool
     """Port security status"""
-
-    interface_name: Optional[str] = None
-    """Interface name"""
-
-    mac_address: Optional[str] = None
-    """MAC address of the virtual port"""

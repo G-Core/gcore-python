@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import List
 
 from .tag import Tag
 from ..._models import BaseModel
@@ -27,7 +27,7 @@ class LoadBalancerStatus(BaseModel):
     provisioning_status: ProvisioningStatus
     """Provisioning status of the entity"""
 
-    tags: Optional[List[Tag]] = None
+    tags: List[Tag]
     """List of key-value tags associated with the resource.
 
     A tag is a key-value pair that can be associated with a resource, enabling

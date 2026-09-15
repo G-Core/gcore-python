@@ -445,6 +445,14 @@ class TestNotificationThreshold:
                             "limit": 10,
                             "usage": 8,
                         },
+                        "slurm_cluster_count_limit": {
+                            "limit": 10,
+                            "usage": 8,
+                        },
+                        "slurm_cluster_count_usage": {
+                            "limit": 10,
+                            "usage": 8,
+                        },
                         "snapshot_schedule_count_limit": {
                             "limit": 10,
                             "usage": 8,
@@ -1027,6 +1035,14 @@ class TestAsyncNotificationThreshold:
                             "usage": 8,
                         },
                         "shared_vm_count_usage": {
+                            "limit": 10,
+                            "usage": 8,
+                        },
+                        "slurm_cluster_count_limit": {
+                            "limit": 10,
+                            "usage": 8,
+                        },
+                        "slurm_cluster_count_usage": {
                             "limit": 10,
                             "usage": 8,
                         },

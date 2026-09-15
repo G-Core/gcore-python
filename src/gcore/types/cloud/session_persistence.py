@@ -9,14 +9,14 @@ __all__ = ["SessionPersistence"]
 
 
 class SessionPersistence(BaseModel):
-    type: LbSessionPersistenceType
-    """Session persistence type"""
-
     cookie_name: Optional[str] = None
-    """Should be set if app cookie or http cookie is used"""
+    """Should be set if app cookie or http cookie is used. Null otherwise."""
 
     persistence_granularity: Optional[str] = None
-    """Subnet mask if `source_ip` is used. For UDP ports only"""
+    """Subnet mask if `source_ip` is used. For UDP ports only, null otherwise."""
 
     persistence_timeout: Optional[int] = None
-    """Session persistence timeout. For UDP ports only"""
+    """Session persistence timeout. For UDP ports only, null otherwise."""
+
+    type: LbSessionPersistenceType
+    """Session persistence type"""

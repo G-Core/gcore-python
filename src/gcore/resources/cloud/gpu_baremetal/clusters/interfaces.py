@@ -157,9 +157,16 @@ class InterfacesResource(SyncAPIResource):
 
           interface_name: Interface name.
 
+          ip_family: Specify `ipv4`, `ipv6`, or `dual` to enable both. If omitted, the API selects
+              `ipv4` when the network has an IPv4 subnet, `ipv6` otherwise.
+
           port_group: Each group will be added to a separate trunk.
 
           security_groups: List of security group IDs.
+
+          type: Port will get an IP address in a subnet of the external network with the largest
+              count of free IPs. If the instance already has an IP address in a subnet of the
+              external network with the same IP family, the API tries to reuse that subnet.
 
           extra_headers: Send extra headers
 
@@ -263,9 +270,16 @@ class InterfacesResource(SyncAPIResource):
 
           interface_name: Interface name.
 
+          ip_family: Specify `ipv4`, `ipv6`, or `dual` to enable both. If omitted, the API selects
+              `ipv4` when the network has an IPv4 subnet, `ipv6` otherwise.
+
           port_group: Each group will be added to a separate trunk.
 
           security_groups: List of security group IDs.
+
+          type: Port will get an IP address in the subnet with the largest count of free IPs. If
+              the instance already has an IP address in a subnet of `network_id` with the same
+              IP family, the API tries to reuse that subnet.
 
           extra_headers: Send extra headers
 
@@ -586,9 +600,16 @@ class AsyncInterfacesResource(AsyncAPIResource):
 
           interface_name: Interface name.
 
+          ip_family: Specify `ipv4`, `ipv6`, or `dual` to enable both. If omitted, the API selects
+              `ipv4` when the network has an IPv4 subnet, `ipv6` otherwise.
+
           port_group: Each group will be added to a separate trunk.
 
           security_groups: List of security group IDs.
+
+          type: Port will get an IP address in a subnet of the external network with the largest
+              count of free IPs. If the instance already has an IP address in a subnet of the
+              external network with the same IP family, the API tries to reuse that subnet.
 
           extra_headers: Send extra headers
 
@@ -692,9 +713,16 @@ class AsyncInterfacesResource(AsyncAPIResource):
 
           interface_name: Interface name.
 
+          ip_family: Specify `ipv4`, `ipv6`, or `dual` to enable both. If omitted, the API selects
+              `ipv4` when the network has an IPv4 subnet, `ipv6` otherwise.
+
           port_group: Each group will be added to a separate trunk.
 
           security_groups: List of security group IDs.
+
+          type: Port will get an IP address in the subnet with the largest count of free IPs. If
+              the instance already has an IP address in a subnet of `network_id` with the same
+              IP family, the API tries to reuse that subnet.
 
           extra_headers: Send extra headers
 

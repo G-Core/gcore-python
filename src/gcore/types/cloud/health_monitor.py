@@ -32,6 +32,18 @@ class HealthMonitor(BaseModel):
     Can only be used together with `HTTP` or `HTTPS` health monitor type.
     """
 
+    expected_codes: Optional[str] = None
+    """Expected HTTP response codes.
+
+    Can be a single code, a comma-separated list of codes, or a single range of
+    codes. Can only be used together with `HTTP` or `HTTPS` health monitor type. For
+    example, 200, 200,202,401,403,404, or 200-204. If not specified, the default
+    is 200. Null for non-HTTP(S) health monitor types.
+    """
+
+    http_method: Optional[HTTPMethod] = None
+    """HTTP method. Null for non-HTTP(S) health monitor types."""
+
     http_version: Optional[Literal["1.0", "1.1"]] = None
     """HTTP version.
 
@@ -56,16 +68,5 @@ class HealthMonitor(BaseModel):
     type: LbHealthMonitorType
     """Health monitor type. Once health monitor is created, cannot be changed."""
 
-    expected_codes: Optional[str] = None
-    """Expected HTTP response codes.
-
-    Can be a single code or a range of codes. Can only be used together with `HTTP`
-    or `HTTPS` health monitor type. For example,
-    200,202,300-302,401,403,404,500-504. If not specified, the default is 200.
-    """
-
-    http_method: Optional[HTTPMethod] = None
-    """HTTP method"""
-
     url_path: Optional[str] = None
-    """URL Path. Defaults to '/'"""
+    """URL Path. Defaults to '/'. Null for non-HTTP(S) health monitor types."""

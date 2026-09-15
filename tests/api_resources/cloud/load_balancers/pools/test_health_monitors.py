@@ -9,7 +9,7 @@ import pytest
 
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
-from gcore.types.cloud import TaskIDList
+from gcore.types.cloud import TaskIDList, HealthMonitor
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -100,6 +100,71 @@ class TestHealthMonitors:
             )
 
     @parametrize
+    def test_method_update(self, client: Gcore) -> None:
+        health_monitor = client.cloud.load_balancers.pools.health_monitors.update(
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
+        )
+        assert_matches_type(TaskIDList, health_monitor, path=["response"])
+
+    @parametrize
+    def test_method_update_with_all_params(self, client: Gcore) -> None:
+        health_monitor = client.cloud.load_balancers.pools.health_monitors.update(
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
+            admin_state_up=True,
+            delay=10,
+            domain_name="example.com",
+            expected_codes="200,301,302",
+            http_method="CONNECT",
+            http_version="1.1",
+            max_retries=2,
+            max_retries_down=2,
+            api_timeout=5,
+            url_path="/",
+        )
+        assert_matches_type(TaskIDList, health_monitor, path=["response"])
+
+    @parametrize
+    def test_raw_response_update(self, client: Gcore) -> None:
+        response = client.cloud.load_balancers.pools.health_monitors.with_raw_response.update(
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        health_monitor = response.parse()
+        assert_matches_type(TaskIDList, health_monitor, path=["response"])
+
+    @parametrize
+    def test_streaming_response_update(self, client: Gcore) -> None:
+        with client.cloud.load_balancers.pools.health_monitors.with_streaming_response.update(
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            health_monitor = response.parse()
+            assert_matches_type(TaskIDList, health_monitor, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_update(self, client: Gcore) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `pool_id` but received ''"):
+            client.cloud.load_balancers.pools.health_monitors.with_raw_response.update(
+                pool_id="",
+                project_id=1,
+                region_id=1,
+            )
+
+    @parametrize
     def test_method_delete(self, client: Gcore) -> None:
         health_monitor = client.cloud.load_balancers.pools.health_monitors.delete(
             pool_id="00000000-0000-4000-8000-000000000000",
@@ -140,6 +205,52 @@ class TestHealthMonitors:
     def test_path_params_delete(self, client: Gcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pool_id` but received ''"):
             client.cloud.load_balancers.pools.health_monitors.with_raw_response.delete(
+                pool_id="",
+                project_id=1,
+                region_id=1,
+            )
+
+    @parametrize
+    def test_method_get(self, client: Gcore) -> None:
+        health_monitor = client.cloud.load_balancers.pools.health_monitors.get(
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
+        )
+        assert_matches_type(HealthMonitor, health_monitor, path=["response"])
+
+    @parametrize
+    def test_raw_response_get(self, client: Gcore) -> None:
+        response = client.cloud.load_balancers.pools.health_monitors.with_raw_response.get(
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        health_monitor = response.parse()
+        assert_matches_type(HealthMonitor, health_monitor, path=["response"])
+
+    @parametrize
+    def test_streaming_response_get(self, client: Gcore) -> None:
+        with client.cloud.load_balancers.pools.health_monitors.with_streaming_response.get(
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            health_monitor = response.parse()
+            assert_matches_type(HealthMonitor, health_monitor, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_get(self, client: Gcore) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `pool_id` but received ''"):
+            client.cloud.load_balancers.pools.health_monitors.with_raw_response.get(
                 pool_id="",
                 project_id=1,
                 region_id=1,
@@ -234,6 +345,71 @@ class TestAsyncHealthMonitors:
             )
 
     @parametrize
+    async def test_method_update(self, async_client: AsyncGcore) -> None:
+        health_monitor = await async_client.cloud.load_balancers.pools.health_monitors.update(
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
+        )
+        assert_matches_type(TaskIDList, health_monitor, path=["response"])
+
+    @parametrize
+    async def test_method_update_with_all_params(self, async_client: AsyncGcore) -> None:
+        health_monitor = await async_client.cloud.load_balancers.pools.health_monitors.update(
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
+            admin_state_up=True,
+            delay=10,
+            domain_name="example.com",
+            expected_codes="200,301,302",
+            http_method="CONNECT",
+            http_version="1.1",
+            max_retries=2,
+            max_retries_down=2,
+            api_timeout=5,
+            url_path="/",
+        )
+        assert_matches_type(TaskIDList, health_monitor, path=["response"])
+
+    @parametrize
+    async def test_raw_response_update(self, async_client: AsyncGcore) -> None:
+        response = await async_client.cloud.load_balancers.pools.health_monitors.with_raw_response.update(
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        health_monitor = await response.parse()
+        assert_matches_type(TaskIDList, health_monitor, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_update(self, async_client: AsyncGcore) -> None:
+        async with async_client.cloud.load_balancers.pools.health_monitors.with_streaming_response.update(
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            health_monitor = await response.parse()
+            assert_matches_type(TaskIDList, health_monitor, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_update(self, async_client: AsyncGcore) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `pool_id` but received ''"):
+            await async_client.cloud.load_balancers.pools.health_monitors.with_raw_response.update(
+                pool_id="",
+                project_id=1,
+                region_id=1,
+            )
+
+    @parametrize
     async def test_method_delete(self, async_client: AsyncGcore) -> None:
         health_monitor = await async_client.cloud.load_balancers.pools.health_monitors.delete(
             pool_id="00000000-0000-4000-8000-000000000000",
@@ -274,6 +450,52 @@ class TestAsyncHealthMonitors:
     async def test_path_params_delete(self, async_client: AsyncGcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pool_id` but received ''"):
             await async_client.cloud.load_balancers.pools.health_monitors.with_raw_response.delete(
+                pool_id="",
+                project_id=1,
+                region_id=1,
+            )
+
+    @parametrize
+    async def test_method_get(self, async_client: AsyncGcore) -> None:
+        health_monitor = await async_client.cloud.load_balancers.pools.health_monitors.get(
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
+        )
+        assert_matches_type(HealthMonitor, health_monitor, path=["response"])
+
+    @parametrize
+    async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
+        response = await async_client.cloud.load_balancers.pools.health_monitors.with_raw_response.get(
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        health_monitor = await response.parse()
+        assert_matches_type(HealthMonitor, health_monitor, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
+        async with async_client.cloud.load_balancers.pools.health_monitors.with_streaming_response.get(
+            pool_id="00000000-0000-4000-8000-000000000000",
+            project_id=1,
+            region_id=1,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            health_monitor = await response.parse()
+            assert_matches_type(HealthMonitor, health_monitor, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_get(self, async_client: AsyncGcore) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `pool_id` but received ''"):
+            await async_client.cloud.load_balancers.pools.health_monitors.with_raw_response.get(
                 pool_id="",
                 project_id=1,
                 region_id=1,

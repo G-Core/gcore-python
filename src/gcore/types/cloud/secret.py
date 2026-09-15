@@ -13,6 +13,40 @@ class Secret(BaseModel):
     id: str
     """Secret uuid"""
 
+    algorithm: Optional[str] = None
+    """Metadata provided by a user or system for informational purposes.
+
+    Null when not specified at secret creation.
+    """
+
+    bit_length: Optional[int] = None
+    """Metadata provided by a user or system for informational purposes.
+
+    Value must be greater than zero. Null when not specified at secret creation.
+    """
+
+    content_types: Optional[Dict[str, str]] = None
+    """Describes the content-types that can be used to retrieve the payload.
+
+    The content-type used with symmetric secrets is application/octet-stream. Null
+    until the secret has a payload.
+    """
+
+    created: datetime
+    """Datetime when the secret was created. The format is 2020-01-01T12:00:00+00:00"""
+
+    expiration: Optional[datetime] = None
+    """Datetime when the secret will expire.
+
+    The format is 2020-01-01T12:00:00+00:00. Null when no expiration was set.
+    """
+
+    mode: Optional[str] = None
+    """Metadata provided by a user or system for informational purposes.
+
+    Null when not specified at secret creation.
+    """
+
     name: str
     """Secret name"""
 
@@ -29,36 +63,3 @@ class Secret(BaseModel):
 
     status: str
     """Status"""
-
-    algorithm: Optional[str] = None
-    """Metadata provided by a user or system for informational purposes.
-
-    Defaults to None
-    """
-
-    bit_length: Optional[int] = None
-    """Metadata provided by a user or system for informational purposes.
-
-    Value must be greater than zero. Defaults to None
-    """
-
-    content_types: Optional[Dict[str, str]] = None
-    """Describes the content-types that can be used to retrieve the payload.
-
-    The content-type used with symmetric secrets is application/octet-stream
-    """
-
-    created: Optional[datetime] = None
-    """Datetime when the secret was created. The format is 2020-01-01T12:00:00+00:00"""
-
-    expiration: Optional[datetime] = None
-    """Datetime when the secret will expire.
-
-    The format is 2020-01-01T12:00:00+00:00. Defaults to None
-    """
-
-    mode: Optional[str] = None
-    """Metadata provided by a user or system for informational purposes.
-
-    Defaults to None
-    """

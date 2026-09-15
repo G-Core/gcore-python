@@ -42,6 +42,11 @@ class AttachInterfaceExternalRequestSerializer(TypedDict, total=False):
     """Interface name."""
 
     ip_family: Optional[InterfaceIPFamily]
+    """Specify `ipv4`, `ipv6`, or `dual` to enable both.
+
+    If omitted, the API selects `ipv4` when the network has an IPv4 subnet, `ipv6`
+    otherwise.
+    """
 
     port_group: int
     """Each group will be added to a separate trunk."""
@@ -50,6 +55,11 @@ class AttachInterfaceExternalRequestSerializer(TypedDict, total=False):
     """List of security group IDs."""
 
     type: Literal["external"]
+    """
+    Port will get an IP address in a subnet of the external network with the largest
+    count of free IPs. If the instance already has an IP address in a subnet of the
+    external network with the same IP family, the API tries to reuse that subnet.
+    """
 
 
 class AttachInterfaceExternalRequestSerializerDDOSProfileField(TypedDict, total=False):
@@ -152,6 +162,11 @@ class AttachInterfaceAnySubnetRequestSerializer(TypedDict, total=False):
     """Interface name."""
 
     ip_family: Optional[InterfaceIPFamily]
+    """Specify `ipv4`, `ipv6`, or `dual` to enable both.
+
+    If omitted, the API selects `ipv4` when the network has an IPv4 subnet, `ipv6`
+    otherwise.
+    """
 
     port_group: int
     """Each group will be added to a separate trunk."""
@@ -160,6 +175,11 @@ class AttachInterfaceAnySubnetRequestSerializer(TypedDict, total=False):
     """List of security group IDs."""
 
     type: Literal["any_subnet"]
+    """Port will get an IP address in the subnet with the largest count of free IPs.
+
+    If the instance already has an IP address in a subnet of `network_id` with the
+    same IP family, the API tries to reuse that subnet.
+    """
 
 
 class AttachInterfaceAnySubnetRequestSerializerDDOSProfileField(TypedDict, total=False):

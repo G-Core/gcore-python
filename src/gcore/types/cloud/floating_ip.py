@@ -18,18 +18,25 @@ class FloatingIP(BaseModel):
     """Datetime when the floating IP was created"""
 
     creator_task_id: Optional[str] = None
-    """Task that created this entity"""
+    """Task that created this entity.
+
+    Null when the floating IP wasn't created via a tracked task.
+    """
 
     fixed_ip_address: Optional[str] = None
-    """IP address of the port the floating IP is attached to"""
+    """IP address of the port the floating IP is attached to.
 
-    floating_ip_address: Optional[str] = None
+    Null when the floating IP is not attached to a port.
+    """
+
+    floating_ip_address: str
     """IP Address of the floating IP"""
 
     port_id: Optional[str] = None
     """Port ID the floating IP is attached to.
 
-    The `fixed_ip_address` is the IP address of the port.
+    The `fixed_ip_address` is the IP address of the port. Null when the floating IP
+    is not attached to a port.
     """
 
     project_id: int
@@ -42,9 +49,9 @@ class FloatingIP(BaseModel):
     """Region ID"""
 
     router_id: Optional[str] = None
-    """Router ID"""
+    """Router ID. Null when the floating IP is not attached to a port."""
 
-    status: Optional[FloatingIPStatus] = None
+    status: FloatingIPStatus
     """Floating IP status.
 
     DOWN - unassigned (available). ACTIVE - attached to a port (in use). ERROR -

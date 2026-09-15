@@ -12,4 +12,7 @@ class AllowedAddressPairs(BaseModel):
     """Subnet mask or IP address of the port specified in `allowed_address_pairs`"""
 
     mac_address: Optional[str] = None
-    """MAC address of the port specified in `allowed_address_pairs`"""
+    """MAC address of the port specified in `allowed_address_pairs`.
+
+    Null when the pair has no explicit MAC.
+    """

@@ -185,6 +185,9 @@ class RequestedLimitsRegionalLimit(TypedDict, total=False):
     shared_vm_count_limit: int
     """Basic VMs Count limit"""
 
+    slurm_cluster_count_limit: int
+    """Slurm cluster count limit for this region. 0 disables Slurm in this region."""
+
     snapshot_schedule_count_limit: int
     """Snapshot Schedules Count limit"""
 

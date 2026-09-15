@@ -54,7 +54,7 @@ class LoadBalancerListenerDetail(BaseModel):
     operating_status: LoadBalancerOperatingStatus
     """Listener operating status"""
 
-    pool_count: Optional[int] = None
+    pool_count: int
     """Number of pools (for UI)"""
 
     protocol: LbListenerProtocol

@@ -337,6 +337,12 @@ class RegionalQuota(BaseModel):
     shared_vm_count_usage: Optional[int] = None
     """Basic VMs Count usage"""
 
+    slurm_cluster_count_limit: Optional[int] = None
+    """Slurm cluster count limit for this region. 0 disables Slurm in this region."""
+
+    slurm_cluster_count_usage: Optional[int] = None
+    """Slurm cluster count usage"""
+
     snapshot_schedule_count_limit: Optional[int] = None
     """Snapshot Schedules Count limit"""
 

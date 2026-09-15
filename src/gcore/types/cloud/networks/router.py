@@ -7,25 +7,14 @@ from ..route import Route
 from ...._models import BaseModel
 from ..ip_assignment import IPAssignment
 
-__all__ = ["Router", "Interface", "ExternalGatewayInfo"]
-
-
-class Interface(BaseModel):
-    ip_assignments: List[IPAssignment]
-    """IP addresses assigned to this port"""
-
-    network_id: str
-    """ID of the network the port is attached to"""
-
-    port_id: str
-    """ID of virtual ethernet port object"""
-
-    mac_address: Optional[str] = None
-    """MAC address of the virtual port"""
+__all__ = ["Router", "ExternalGatewayInfo", "Interface"]
 
 
 class ExternalGatewayInfo(BaseModel):
-    """State of this router's external gateway."""
+    """State of this router's external gateway.
+
+    Null when the router has no external gateway.
+    """
 
     enable_snat: bool
     """Is SNAT enabled."""
@@ -37,6 +26,20 @@ class ExternalGatewayInfo(BaseModel):
     """Id of the external network."""
 
 
+class Interface(BaseModel):
+    ip_assignments: List[IPAssignment]
+    """IP addresses assigned to this port"""
+
+    mac_address: str
+    """MAC address of the virtual port"""
+
+    network_id: str
+    """ID of the network the port is attached to"""
+
+    port_id: str
+    """ID of virtual ethernet port object"""
+
+
 class Router(BaseModel):
     id: str
     """Router ID"""
@@ -44,8 +47,20 @@ class Router(BaseModel):
     created_at: datetime
     """Datetime when the router was created"""
 
+    creator_task_id: Optional[str] = None
+    """Task that created this entity.
+
+    Null when the router wasn't created via a tracked task.
+    """
+
     distributed: bool
     """Whether the router is distributed or centralized."""
+
+    external_gateway_info: Optional[ExternalGatewayInfo] = None
+    """State of this router's external gateway.
+
+    Null when the router has no external gateway.
+    """
 
     interfaces: List[Interface]
     """List of router interfaces."""
@@ -77,9 +92,3 @@ class Router(BaseModel):
 
     updated_at: datetime
     """Datetime when the router was last updated"""
-
-    creator_task_id: Optional[str] = None
-    """Task that created this entity"""
-
-    external_gateway_info: Optional[ExternalGatewayInfo] = None
-    """State of this router's external gateway."""

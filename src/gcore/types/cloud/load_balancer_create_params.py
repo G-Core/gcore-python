@@ -164,9 +164,10 @@ class ListenerPoolHealthmonitor(TypedDict, total=False):
     expected_codes: Optional[str]
     """Expected HTTP response codes.
 
-    Can be a single code or a range of codes. Can only be used together with `HTTP`
-    or `HTTPS` health monitor type. For example,
-    200,202,300-302,401,403,404,500-504. If not specified, the default is 200.
+    Can be a single code, a comma-separated list of codes, or a single range of
+    codes. Can only be used together with `HTTP` or `HTTPS` health monitor type. For
+    example, 200, 200,202,401,403,404, or 200-204. If not specified, the default
+    is 200.
     """
 
     http_method: Optional[HTTPMethod]

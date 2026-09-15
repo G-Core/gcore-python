@@ -15,6 +15,9 @@ class PoolStatus(BaseModel):
     id: str
     """UUID of the entity"""
 
+    health_monitor: Optional[HealthMonitorStatus] = None
+    """Health Monitor of the Pool. Null when the pool has no health monitor."""
+
     members: List[MemberStatus]
     """Members (servers) of the pool"""
 
@@ -26,6 +29,3 @@ class PoolStatus(BaseModel):
 
     provisioning_status: ProvisioningStatus
     """Provisioning status of the entity"""
-
-    health_monitor: Optional[HealthMonitorStatus] = None
-    """Health Monitor of the Pool"""

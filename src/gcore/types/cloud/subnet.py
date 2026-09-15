@@ -15,14 +15,38 @@ class Subnet(BaseModel):
     id: str
     """Subnet id."""
 
+    available_ips: Optional[int] = None
+    """Number of available ips in subnet. Null when this data isn't available."""
+
     cidr: str
     """CIDR"""
 
     created_at: datetime
     """Datetime when the subnet was created"""
 
+    creator_task_id: Optional[str] = None
+    """Task that created this entity.
+
+    Null when the subnet wasn't created via a tracked task.
+    """
+
+    dns_nameservers: List[str]
+    """List IP addresses of a DNS resolver reachable from the network"""
+
     enable_dhcp: bool
     """True if DHCP should be enabled"""
+
+    gateway_ip: Optional[str] = None
+    """Default GW IPv4 address, advertised in DHCP routes of this subnet.
+
+    If null, no gateway is advertised by this subnet.
+    """
+
+    has_router: bool
+    """Deprecated. Always returns `false`."""
+
+    host_routes: List[Route]
+    """List of custom static routes to advertise via DHCP."""
 
     ip_version: IPVersion
     """IP version"""
@@ -52,30 +76,6 @@ class Subnet(BaseModel):
     values.
     """
 
-    updated_at: datetime
-    """Datetime when the subnet was last updated"""
-
-    available_ips: Optional[int] = None
-    """Number of available ips in subnet"""
-
-    creator_task_id: Optional[str] = None
-    """Task that created this entity"""
-
-    dns_nameservers: Optional[List[str]] = None
-    """List IP addresses of a DNS resolver reachable from the network"""
-
-    gateway_ip: Optional[str] = None
-    """Default GW IPv4 address, advertised in DHCP routes of this subnet.
-
-    If null, no gateway is advertised by this subnet.
-    """
-
-    has_router: Optional[bool] = None
-    """Deprecated. Always returns `false`."""
-
-    host_routes: Optional[List[Route]] = None
-    """List of custom static routes to advertise via DHCP."""
-
     task_id: Optional[str] = None
     """The UUID of the active task that currently holds a lock on the resource.
 
@@ -84,4 +84,7 @@ class Subnet(BaseModel):
     """
 
     total_ips: Optional[int] = None
-    """Total number of ips in subnet"""
+    """Total number of ips in subnet. Null when this data isn't available."""
+
+    updated_at: datetime
+    """Datetime when the subnet was last updated"""

@@ -115,6 +115,8 @@ __all__ = [
     "LastMessageRegionalQuotaSfsSizeUsage",
     "LastMessageRegionalQuotaSharedVmCountLimit",
     "LastMessageRegionalQuotaSharedVmCountUsage",
+    "LastMessageRegionalQuotaSlurmClusterCountLimit",
+    "LastMessageRegionalQuotaSlurmClusterCountUsage",
     "LastMessageRegionalQuotaSnapshotScheduleCountLimit",
     "LastMessageRegionalQuotaSnapshotScheduleCountUsage",
     "LastMessageRegionalQuotaSubnetCountLimit",
@@ -1215,6 +1217,26 @@ class LastMessageRegionalQuotaSharedVmCountUsage(TypedDict, total=False):
     """Current amount of resource used"""
 
 
+class LastMessageRegionalQuotaSlurmClusterCountLimit(TypedDict, total=False):
+    """Slurm cluster count limit for this region. 0 disables Slurm in this region."""
+
+    limit: Required[int]
+    """Current quota limit"""
+
+    usage: Required[int]
+    """Current amount of resource used"""
+
+
+class LastMessageRegionalQuotaSlurmClusterCountUsage(TypedDict, total=False):
+    """Slurm cluster count usage"""
+
+    limit: Required[int]
+    """Current quota limit"""
+
+    usage: Required[int]
+    """Current amount of resource used"""
+
+
 class LastMessageRegionalQuotaSnapshotScheduleCountLimit(TypedDict, total=False):
     """Snapshot Schedules Count limit"""
 
@@ -1619,6 +1641,12 @@ class LastMessageRegionalQuota(TypedDict, total=False):
 
     shared_vm_count_usage: LastMessageRegionalQuotaSharedVmCountUsage
     """Basic VMs Count usage"""
+
+    slurm_cluster_count_limit: LastMessageRegionalQuotaSlurmClusterCountLimit
+    """Slurm cluster count limit for this region. 0 disables Slurm in this region."""
+
+    slurm_cluster_count_usage: LastMessageRegionalQuotaSlurmClusterCountUsage
+    """Slurm cluster count usage"""
 
     snapshot_schedule_count_limit: LastMessageRegionalQuotaSnapshotScheduleCountLimit
     """Snapshot Schedules Count limit"""

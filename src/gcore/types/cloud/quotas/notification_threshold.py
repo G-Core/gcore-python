@@ -112,6 +112,8 @@ __all__ = [
     "LastMessageRegionalQuotaSfsSizeUsage",
     "LastMessageRegionalQuotaSharedVmCountLimit",
     "LastMessageRegionalQuotaSharedVmCountUsage",
+    "LastMessageRegionalQuotaSlurmClusterCountLimit",
+    "LastMessageRegionalQuotaSlurmClusterCountUsage",
     "LastMessageRegionalQuotaSnapshotScheduleCountLimit",
     "LastMessageRegionalQuotaSnapshotScheduleCountUsage",
     "LastMessageRegionalQuotaSubnetCountLimit",
@@ -1205,6 +1207,26 @@ class LastMessageRegionalQuotaSharedVmCountUsage(BaseModel):
     """Current amount of resource used"""
 
 
+class LastMessageRegionalQuotaSlurmClusterCountLimit(BaseModel):
+    """Slurm cluster count limit for this region. 0 disables Slurm in this region."""
+
+    limit: int
+    """Current quota limit"""
+
+    usage: int
+    """Current amount of resource used"""
+
+
+class LastMessageRegionalQuotaSlurmClusterCountUsage(BaseModel):
+    """Slurm cluster count usage"""
+
+    limit: int
+    """Current quota limit"""
+
+    usage: int
+    """Current amount of resource used"""
+
+
 class LastMessageRegionalQuotaSnapshotScheduleCountLimit(BaseModel):
     """Snapshot Schedules Count limit"""
 
@@ -1609,6 +1631,12 @@ class LastMessageRegionalQuota(BaseModel):
 
     shared_vm_count_usage: Optional[LastMessageRegionalQuotaSharedVmCountUsage] = None
     """Basic VMs Count usage"""
+
+    slurm_cluster_count_limit: Optional[LastMessageRegionalQuotaSlurmClusterCountLimit] = None
+    """Slurm cluster count limit for this region. 0 disables Slurm in this region."""
+
+    slurm_cluster_count_usage: Optional[LastMessageRegionalQuotaSlurmClusterCountUsage] = None
+    """Slurm cluster count usage"""
 
     snapshot_schedule_count_limit: Optional[LastMessageRegionalQuotaSnapshotScheduleCountLimit] = None
     """Snapshot Schedules Count limit"""
