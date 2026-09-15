@@ -30,3 +30,11 @@ class ObjectStorageListParams(TypedDict, total=False):
 
     show_deleted: bool
     """Include deleted storages"""
+
+    type: Literal["standard", "fast"]
+    """Filter by performance tier.
+
+    "standard" returns Standard storages, "fast" returns Fast storages. Storages on
+    any other backend (Backblaze, Wasabi) report a "standard" type but are never
+    returned by this filter — omit the parameter to include them.
+    """

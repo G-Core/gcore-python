@@ -1,15 +1,20 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
+from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["SftpStorage"]
+__all__ = ["SftpStorageCreated"]
 
 
-class SftpStorage(BaseModel):
+class SftpStorageCreated(BaseModel):
+    """
+    SFTPStorageWithPasswordV4 SFTP storage as returned by create and update, which are the only
+    operations that can hand back a password. Identical to SFTPStorageItemV4 otherwise.
+    """
+
     id: int
     """Unique identifier for the storage instance"""
 
@@ -53,3 +58,10 @@ class SftpStorage(BaseModel):
 
     ssh_key_ids: List[int]
     """IDs of SSH keys associated with this SFTP storage"""
+
+    password: Optional[str] = None
+    """SFTP password.
+
+    Only present when the request generated or set one; never returned by GET or
+    list.
+    """

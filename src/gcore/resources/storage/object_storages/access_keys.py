@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ...._utils import path_template, maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -16,7 +16,7 @@ from ...._response import (
 )
 from ....pagination import SyncOffsetPage, AsyncOffsetPage
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.storage.object_storages import access_key_list_params
+from ....types.storage.object_storages import access_key_list_params, access_key_create_params
 from ....types.storage.object_storages.access_key import AccessKey
 from ....types.storage.object_storages.access_key_created import AccessKeyCreated
 
@@ -51,6 +51,7 @@ class AccessKeysResource(SyncAPIResource):
         self,
         storage_id: int,
         *,
+        read_only: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -61,9 +62,14 @@ class AccessKeysResource(SyncAPIResource):
         """Creates a new access key for an S3-compatible storage.
 
         Returns the new access
-        key and secret key. Maximum 2 access keys per storage.
+        key and secret key. Standard storages are limited to 10 access keys; Fast
+        storages are limited to 2 access keys.
 
         Args:
+          read_only: Request a key scoped to read-only data access. Only supported for Standard
+              storages; a Fast storage rejects true. Defaults to false (full read-write) when
+              omitted.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -74,6 +80,7 @@ class AccessKeysResource(SyncAPIResource):
         """
         return self._post(
             path_template("/storage/v4/object_storages/{storage_id}/access_keys", storage_id=storage_id),
+            body=maybe_transform({"read_only": read_only}, access_key_create_params.AccessKeyCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -236,6 +243,7 @@ class AsyncAccessKeysResource(AsyncAPIResource):
         self,
         storage_id: int,
         *,
+        read_only: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -246,9 +254,14 @@ class AsyncAccessKeysResource(AsyncAPIResource):
         """Creates a new access key for an S3-compatible storage.
 
         Returns the new access
-        key and secret key. Maximum 2 access keys per storage.
+        key and secret key. Standard storages are limited to 10 access keys; Fast
+        storages are limited to 2 access keys.
 
         Args:
+          read_only: Request a key scoped to read-only data access. Only supported for Standard
+              storages; a Fast storage rejects true. Defaults to false (full read-write) when
+              omitted.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -259,6 +272,7 @@ class AsyncAccessKeysResource(AsyncAPIResource):
         """
         return await self._post(
             path_template("/storage/v4/object_storages/{storage_id}/access_keys", storage_id=storage_id),
+            body=await async_maybe_transform({"read_only": read_only}, access_key_create_params.AccessKeyCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

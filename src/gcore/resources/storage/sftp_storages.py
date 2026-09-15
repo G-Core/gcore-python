@@ -21,6 +21,7 @@ from ...pagination import SyncOffsetPage, AsyncOffsetPage
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.storage import sftp_storage_list_params, sftp_storage_create_params, sftp_storage_update_params
 from ...types.storage.sftp_storage import SftpStorage
+from ...types.storage.sftp_storage_created import SftpStorageCreated
 
 __all__ = ["SftpStoragesResource", "AsyncSftpStoragesResource"]
 
@@ -58,8 +59,8 @@ class SftpStoragesResource(SyncAPIResource):
         expires: str | Omit = omit,
         has_custom_config_file: bool | Omit = omit,
         is_http_disabled: bool | Omit = omit,
+        password: str | Omit = omit,
         server_alias: str | Omit = omit,
-        sftp_password: str | Omit = omit,
         ssh_key_ids: Iterable[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -67,7 +68,7 @@ class SftpStoragesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SftpStorage:
+    ) -> SftpStorageCreated:
         """
         Creates a new SFTP storage instance in the specified location and returns the
         storage details including credentials.
@@ -78,8 +79,8 @@ class SftpStoragesResource(SyncAPIResource):
           name: User-defined name for the storage instance
 
           password_mode: Password handling mode for SFTP access: 'auto': generate a random password
-              (returned in the response) 'set': use the password provided in `sftp_password`
-              'none': no password (SSH-key-only access)
+              (returned in the response) 'set': use the password provided in password 'none':
+              no password (SSH-key-only access)
 
           expires: Duration when the storage should expire (e.g., "2 years 6 months"). Omit for no
               expiration.
@@ -88,10 +89,10 @@ class SftpStoragesResource(SyncAPIResource):
 
           is_http_disabled: Whether HTTP access should be disabled (HTTPS only)
 
-          server_alias: Custom domain alias for accessing the storage. Omit for no alias.
-
-          sftp_password: SFTP password (8-63 chars). Required when `password_mode` is 'set'. Must be
+          password: SFTP password (8-63 chars). Required when `password_mode` is 'set'. Must be
               omitted when `password_mode` is 'auto' or 'none'.
+
+          server_alias: Custom domain alias for accessing the storage. Omit for no alias.
 
           ssh_key_ids: SSH key IDs to associate with this storage at creation time. If omitted, no keys
               are linked.
@@ -114,8 +115,8 @@ class SftpStoragesResource(SyncAPIResource):
                     "expires": expires,
                     "has_custom_config_file": has_custom_config_file,
                     "is_http_disabled": is_http_disabled,
+                    "password": password,
                     "server_alias": server_alias,
-                    "sftp_password": sftp_password,
                     "ssh_key_ids": ssh_key_ids,
                 },
                 sftp_storage_create_params.SftpStorageCreateParams,
@@ -123,7 +124,7 @@ class SftpStoragesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SftpStorage,
+            cast_to=SftpStorageCreated,
         )
 
     def update(
@@ -133,7 +134,8 @@ class SftpStoragesResource(SyncAPIResource):
         expires: str | Omit = omit,
         has_custom_config_file: bool | Omit = omit,
         is_http_disabled: bool | Omit = omit,
-        password_mode: Literal["auto", "none"] | Omit = omit,
+        password: str | Omit = omit,
+        password_mode: Literal["auto", "set", "none"] | Omit = omit,
         server_alias: str | Omit = omit,
         ssh_key_ids: Iterable[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -142,11 +144,14 @@ class SftpStoragesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SftpStorage:
+    ) -> SftpStorageCreated:
         """
         Updates SFTP storage configuration and/or credentials including password and SSH
-        key management. Supports JSON merge patch semantics: "password": null deletes
-        the password, "ssh_key_ids": [] clears all keys.
+        key management. Supports JSON merge patch semantics: an absent field is left
+        unchanged. The password is changed through "password_mode": "auto" regenerates
+        it and returns it once, "set" uses the "password" field and returns it once,
+        "none" removes it. "password" is only read when `password_mode` is "set" and
+        must be omitted otherwise. "ssh_key_ids": [] clears all keys.
 
         Args:
           expires: Duration when the storage should expire (e.g., "2 years 6 months"). Empty string
@@ -156,9 +161,12 @@ class SftpStoragesResource(SyncAPIResource):
 
           is_http_disabled: Whether HTTP access should be disabled (HTTPS only)
 
+          password: SFTP password (8-63 chars). Only read when `password_mode` is 'set'; must be
+              omitted for any other `password_mode` (or when `password_mode` is absent).
+
           password_mode: Password handling mode. Omit to leave password unchanged. 'auto': regenerate
-              password (returned in response) 'none': remove password Note: 'set' is not
-              allowed in PATCH.
+              password (returned in response) 'set': use the password provided in password
+              (returned in response) 'none': remove password
 
           server_alias: Custom domain alias for accessing the storage. Empty string to remove.
 
@@ -180,6 +188,7 @@ class SftpStoragesResource(SyncAPIResource):
                     "expires": expires,
                     "has_custom_config_file": has_custom_config_file,
                     "is_http_disabled": is_http_disabled,
+                    "password": password,
                     "password_mode": password_mode,
                     "server_alias": server_alias,
                     "ssh_key_ids": ssh_key_ids,
@@ -189,7 +198,7 @@ class SftpStoragesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SftpStorage,
+            cast_to=SftpStorageCreated,
         )
 
     def list(
@@ -359,8 +368,8 @@ class AsyncSftpStoragesResource(AsyncAPIResource):
         expires: str | Omit = omit,
         has_custom_config_file: bool | Omit = omit,
         is_http_disabled: bool | Omit = omit,
+        password: str | Omit = omit,
         server_alias: str | Omit = omit,
-        sftp_password: str | Omit = omit,
         ssh_key_ids: Iterable[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -368,7 +377,7 @@ class AsyncSftpStoragesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SftpStorage:
+    ) -> SftpStorageCreated:
         """
         Creates a new SFTP storage instance in the specified location and returns the
         storage details including credentials.
@@ -379,8 +388,8 @@ class AsyncSftpStoragesResource(AsyncAPIResource):
           name: User-defined name for the storage instance
 
           password_mode: Password handling mode for SFTP access: 'auto': generate a random password
-              (returned in the response) 'set': use the password provided in `sftp_password`
-              'none': no password (SSH-key-only access)
+              (returned in the response) 'set': use the password provided in password 'none':
+              no password (SSH-key-only access)
 
           expires: Duration when the storage should expire (e.g., "2 years 6 months"). Omit for no
               expiration.
@@ -389,10 +398,10 @@ class AsyncSftpStoragesResource(AsyncAPIResource):
 
           is_http_disabled: Whether HTTP access should be disabled (HTTPS only)
 
-          server_alias: Custom domain alias for accessing the storage. Omit for no alias.
-
-          sftp_password: SFTP password (8-63 chars). Required when `password_mode` is 'set'. Must be
+          password: SFTP password (8-63 chars). Required when `password_mode` is 'set'. Must be
               omitted when `password_mode` is 'auto' or 'none'.
+
+          server_alias: Custom domain alias for accessing the storage. Omit for no alias.
 
           ssh_key_ids: SSH key IDs to associate with this storage at creation time. If omitted, no keys
               are linked.
@@ -415,8 +424,8 @@ class AsyncSftpStoragesResource(AsyncAPIResource):
                     "expires": expires,
                     "has_custom_config_file": has_custom_config_file,
                     "is_http_disabled": is_http_disabled,
+                    "password": password,
                     "server_alias": server_alias,
-                    "sftp_password": sftp_password,
                     "ssh_key_ids": ssh_key_ids,
                 },
                 sftp_storage_create_params.SftpStorageCreateParams,
@@ -424,7 +433,7 @@ class AsyncSftpStoragesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SftpStorage,
+            cast_to=SftpStorageCreated,
         )
 
     async def update(
@@ -434,7 +443,8 @@ class AsyncSftpStoragesResource(AsyncAPIResource):
         expires: str | Omit = omit,
         has_custom_config_file: bool | Omit = omit,
         is_http_disabled: bool | Omit = omit,
-        password_mode: Literal["auto", "none"] | Omit = omit,
+        password: str | Omit = omit,
+        password_mode: Literal["auto", "set", "none"] | Omit = omit,
         server_alias: str | Omit = omit,
         ssh_key_ids: Iterable[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -443,11 +453,14 @@ class AsyncSftpStoragesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SftpStorage:
+    ) -> SftpStorageCreated:
         """
         Updates SFTP storage configuration and/or credentials including password and SSH
-        key management. Supports JSON merge patch semantics: "password": null deletes
-        the password, "ssh_key_ids": [] clears all keys.
+        key management. Supports JSON merge patch semantics: an absent field is left
+        unchanged. The password is changed through "password_mode": "auto" regenerates
+        it and returns it once, "set" uses the "password" field and returns it once,
+        "none" removes it. "password" is only read when `password_mode` is "set" and
+        must be omitted otherwise. "ssh_key_ids": [] clears all keys.
 
         Args:
           expires: Duration when the storage should expire (e.g., "2 years 6 months"). Empty string
@@ -457,9 +470,12 @@ class AsyncSftpStoragesResource(AsyncAPIResource):
 
           is_http_disabled: Whether HTTP access should be disabled (HTTPS only)
 
+          password: SFTP password (8-63 chars). Only read when `password_mode` is 'set'; must be
+              omitted for any other `password_mode` (or when `password_mode` is absent).
+
           password_mode: Password handling mode. Omit to leave password unchanged. 'auto': regenerate
-              password (returned in response) 'none': remove password Note: 'set' is not
-              allowed in PATCH.
+              password (returned in response) 'set': use the password provided in password
+              (returned in response) 'none': remove password
 
           server_alias: Custom domain alias for accessing the storage. Empty string to remove.
 
@@ -481,6 +497,7 @@ class AsyncSftpStoragesResource(AsyncAPIResource):
                     "expires": expires,
                     "has_custom_config_file": has_custom_config_file,
                     "is_http_disabled": is_http_disabled,
+                    "password": password,
                     "password_mode": password_mode,
                     "server_alias": server_alias,
                     "ssh_key_ids": ssh_key_ids,
@@ -490,7 +507,7 @@ class AsyncSftpStoragesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SftpStorage,
+            cast_to=SftpStorageCreated,
         )
 
     def list(

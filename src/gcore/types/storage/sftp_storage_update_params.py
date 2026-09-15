@@ -21,11 +21,19 @@ class SftpStorageUpdateParams(TypedDict, total=False):
     is_http_disabled: bool
     """Whether HTTP access should be disabled (HTTPS only)"""
 
-    password_mode: Literal["auto", "none"]
+    password: str
+    """SFTP password (8-63 chars).
+
+    Only read when `password_mode` is 'set'; must be omitted for any other
+    `password_mode` (or when `password_mode` is absent).
+    """
+
+    password_mode: Literal["auto", "set", "none"]
     """Password handling mode.
 
     Omit to leave password unchanged. 'auto': regenerate password (returned in
-    response) 'none': remove password Note: 'set' is not allowed in PATCH.
+    response) 'set': use the password provided in password (returned in response)
+    'none': remove password
     """
 
     server_alias: str

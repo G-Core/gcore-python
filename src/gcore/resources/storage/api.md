@@ -38,7 +38,7 @@ from gcore.types.storage.object_storages import AccessKey, AccessKeyCreated
 
 Methods:
 
-- <code title="post /storage/v4/object_storages/{storage_id}/access_keys">client.storage.object_storages.access_keys.<a href="./src/gcore/resources/storage/object_storages/access_keys.py">create</a>(storage_id) -> <a href="./src/gcore/types/storage/object_storages/access_key_created.py">AccessKeyCreated</a></code>
+- <code title="post /storage/v4/object_storages/{storage_id}/access_keys">client.storage.object_storages.access_keys.<a href="./src/gcore/resources/storage/object_storages/access_keys.py">create</a>(storage_id, \*\*<a href="src/gcore/types/storage/object_storages/access_key_create_params.py">params</a>) -> <a href="./src/gcore/types/storage/object_storages/access_key_created.py">AccessKeyCreated</a></code>
 - <code title="get /storage/v4/object_storages/{storage_id}/access_keys">client.storage.object_storages.access_keys.<a href="./src/gcore/resources/storage/object_storages/access_keys.py">list</a>(storage_id, \*\*<a href="src/gcore/types/storage/object_storages/access_key_list_params.py">params</a>) -> <a href="./src/gcore/types/storage/object_storages/access_key.py">SyncOffsetPage[AccessKey]</a></code>
 - <code title="delete /storage/v4/object_storages/{storage_id}/access_keys/{access_key}">client.storage.object_storages.access_keys.<a href="./src/gcore/resources/storage/object_storages/access_keys.py">delete</a>(access_key, \*, storage_id) -> None</code>
 - <code title="get /storage/v4/object_storages/{storage_id}/access_keys/{access_key}">client.storage.object_storages.access_keys.<a href="./src/gcore/resources/storage/object_storages/access_keys.py">get</a>(access_key, \*, storage_id) -> <a href="./src/gcore/types/storage/object_storages/access_key.py">AccessKey</a></code>
@@ -64,13 +64,13 @@ Methods:
 Types:
 
 ```python
-from gcore.types.storage import SftpStorage
+from gcore.types.storage import SftpStorage, SftpStorageCreated
 ```
 
 Methods:
 
-- <code title="post /storage/v4/sftp_storages">client.storage.sftp_storages.<a href="./src/gcore/resources/storage/sftp_storages.py">create</a>(\*\*<a href="src/gcore/types/storage/sftp_storage_create_params.py">params</a>) -> <a href="./src/gcore/types/storage/sftp_storage.py">SftpStorage</a></code>
-- <code title="patch /storage/v4/sftp_storages/{storage_id}">client.storage.sftp_storages.<a href="./src/gcore/resources/storage/sftp_storages.py">update</a>(storage_id, \*\*<a href="src/gcore/types/storage/sftp_storage_update_params.py">params</a>) -> <a href="./src/gcore/types/storage/sftp_storage.py">SftpStorage</a></code>
+- <code title="post /storage/v4/sftp_storages">client.storage.sftp_storages.<a href="./src/gcore/resources/storage/sftp_storages.py">create</a>(\*\*<a href="src/gcore/types/storage/sftp_storage_create_params.py">params</a>) -> <a href="./src/gcore/types/storage/sftp_storage_created.py">SftpStorageCreated</a></code>
+- <code title="patch /storage/v4/sftp_storages/{storage_id}">client.storage.sftp_storages.<a href="./src/gcore/resources/storage/sftp_storages.py">update</a>(storage_id, \*\*<a href="src/gcore/types/storage/sftp_storage_update_params.py">params</a>) -> <a href="./src/gcore/types/storage/sftp_storage_created.py">SftpStorageCreated</a></code>
 - <code title="get /storage/v4/sftp_storages">client.storage.sftp_storages.<a href="./src/gcore/resources/storage/sftp_storages.py">list</a>(\*\*<a href="src/gcore/types/storage/sftp_storage_list_params.py">params</a>) -> <a href="./src/gcore/types/storage/sftp_storage.py">SyncOffsetPage[SftpStorage]</a></code>
 - <code title="delete /storage/v4/sftp_storages/{storage_id}">client.storage.sftp_storages.<a href="./src/gcore/resources/storage/sftp_storages.py">delete</a>(storage_id) -> None</code>
 - <code title="get /storage/v4/sftp_storages/{storage_id}">client.storage.sftp_storages.<a href="./src/gcore/resources/storage/sftp_storages.py">get</a>(storage_id) -> <a href="./src/gcore/types/storage/sftp_storage.py">SftpStorage</a></code>

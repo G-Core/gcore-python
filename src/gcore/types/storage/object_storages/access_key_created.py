@@ -17,6 +17,9 @@ class AccessKeyCreated(BaseModel):
     created_at: datetime
     """ISO 8601 timestamp when the access key was created"""
 
+    read_only: bool
+    """True for a key scoped to read-only data access."""
+
     secret_key: str
     """Secret key used as the password in S3 authentication.
 

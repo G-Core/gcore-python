@@ -134,6 +134,7 @@ class ObjectStoragesResource(SyncAPIResource):
         order_by: str | Omit = omit,
         provisioning_status: Literal["active", "creating", "updating", "deleting", "deleted"] | Omit = omit,
         show_deleted: bool | Omit = omit,
+        type: Literal["standard", "fast"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -159,6 +160,11 @@ class ObjectStoragesResource(SyncAPIResource):
           provisioning_status: Filter by provisioning status
 
           show_deleted: Include deleted storages
+
+          type: Filter by performance tier. "standard" returns Standard storages, "fast" returns
+              Fast storages. Storages on any other backend (Backblaze, Wasabi) report a
+              "standard" type but are never returned by this filter — omit the parameter to
+              include them.
 
           extra_headers: Send extra headers
 
@@ -186,6 +192,7 @@ class ObjectStoragesResource(SyncAPIResource):
                         "order_by": order_by,
                         "provisioning_status": provisioning_status,
                         "show_deleted": show_deleted,
+                        "type": type,
                     },
                     object_storage_list_params.ObjectStorageListParams,
                 ),
@@ -384,6 +391,7 @@ class AsyncObjectStoragesResource(AsyncAPIResource):
         order_by: str | Omit = omit,
         provisioning_status: Literal["active", "creating", "updating", "deleting", "deleted"] | Omit = omit,
         show_deleted: bool | Omit = omit,
+        type: Literal["standard", "fast"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -409,6 +417,11 @@ class AsyncObjectStoragesResource(AsyncAPIResource):
           provisioning_status: Filter by provisioning status
 
           show_deleted: Include deleted storages
+
+          type: Filter by performance tier. "standard" returns Standard storages, "fast" returns
+              Fast storages. Storages on any other backend (Backblaze, Wasabi) report a
+              "standard" type but are never returned by this filter — omit the parameter to
+              include them.
 
           extra_headers: Send extra headers
 
@@ -436,6 +449,7 @@ class AsyncObjectStoragesResource(AsyncAPIResource):
                         "order_by": order_by,
                         "provisioning_status": provisioning_status,
                         "show_deleted": show_deleted,
+                        "type": type,
                     },
                     object_storage_list_params.ObjectStorageListParams,
                 ),

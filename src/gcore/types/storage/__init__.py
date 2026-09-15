@@ -11,6 +11,7 @@ from .usage_series import UsageSeries as UsageSeries
 from .s3_storage_created import S3StorageCreated as S3StorageCreated
 from .ssh_key_list_params import SSHKeyListParams as SSHKeyListParams
 from .location_list_params import LocationListParams as LocationListParams
+from .sftp_storage_created import SftpStorageCreated as SftpStorageCreated
 from .ssh_key_create_params import SSHKeyCreateParams as SSHKeyCreateParams
 from .sftp_storage_list_params import SftpStorageListParams as SftpStorageListParams
 from .object_storage_list_params import ObjectStorageListParams as ObjectStorageListParams

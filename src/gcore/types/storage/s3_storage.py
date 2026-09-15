@@ -33,3 +33,8 @@ class S3Storage(BaseModel):
 
     provisioning_status: Literal["creating", "active", "updating", "deleting", "deleted"]
     """Lifecycle status of the storage. Use this to check readiness before operations."""
+
+    type: Literal["standard", "fast"]
+    """
+    Performance tier of the storage, determined by the backend it is provisioned on.
+    """

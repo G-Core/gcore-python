@@ -18,8 +18,8 @@ class SftpStorageCreateParams(TypedDict, total=False):
     password_mode: Required[Literal["auto", "set", "none"]]
     """
     Password handling mode for SFTP access: 'auto': generate a random password
-    (returned in the response) 'set': use the password provided in `sftp_password`
-    'none': no password (SSH-key-only access)
+    (returned in the response) 'set': use the password provided in password 'none':
+    no password (SSH-key-only access)
     """
 
     expires: str
@@ -34,15 +34,15 @@ class SftpStorageCreateParams(TypedDict, total=False):
     is_http_disabled: bool
     """Whether HTTP access should be disabled (HTTPS only)"""
 
-    server_alias: str
-    """Custom domain alias for accessing the storage. Omit for no alias."""
-
-    sftp_password: str
+    password: str
     """SFTP password (8-63 chars).
 
     Required when `password_mode` is 'set'. Must be omitted when `password_mode` is
     'auto' or 'none'.
     """
+
+    server_alias: str
+    """Custom domain alias for accessing the storage. Omit for no alias."""
 
     ssh_key_ids: Iterable[int]
     """SSH key IDs to associate with this storage at creation time.

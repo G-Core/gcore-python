@@ -9,3 +9,4 @@ from .bucket_list_params import BucketListParams as BucketListParams
 from .bucket_create_params import BucketCreateParams as BucketCreateParams
 from .bucket_update_params import BucketUpdateParams as BucketUpdateParams
 from .access_key_list_params import AccessKeyListParams as AccessKeyListParams
+from .access_key_create_params import AccessKeyCreateParams as AccessKeyCreateParams

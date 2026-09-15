@@ -16,3 +16,6 @@ class AccessKey(BaseModel):
 
     created_at: datetime
     """ISO 8601 timestamp when the access key was created"""
+
+    read_only: bool
+    """True for a key scoped to read-only data access."""

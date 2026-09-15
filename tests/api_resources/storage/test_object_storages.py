@@ -68,6 +68,7 @@ class TestObjectStorages:
             order_by="order_by",
             provisioning_status="active",
             show_deleted=True,
+            type="standard",
         )
         assert_matches_type(SyncOffsetPage[S3Storage], object_storage, path=["response"])
 
@@ -240,6 +241,7 @@ class TestAsyncObjectStorages:
             order_by="order_by",
             provisioning_status="active",
             show_deleted=True,
+            type="standard",
         )
         assert_matches_type(AsyncOffsetPage[S3Storage], object_storage, path=["response"])
 
