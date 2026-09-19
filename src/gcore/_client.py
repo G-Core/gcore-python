@@ -65,7 +65,7 @@ class Gcore(SyncAPIClient):
         cloud_project_id: int | None = None,
         cloud_region_id: int | None = None,
         polling_interval_seconds: int | None = 3,
-        polling_timeout_seconds: int | None = 7200,
+        polling_timeout_seconds: int | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -91,6 +91,7 @@ class Gcore(SyncAPIClient):
         - `api_key` from `GCORE_API_KEY`
         - `cloud_project_id` from `GCORE_CLOUD_PROJECT_ID`
         - `cloud_region_id` from `GCORE_CLOUD_REGION_ID`
+        - `polling_timeout_seconds` from `GCORE_POLLING_TIMEOUT_SECONDS`
         """
         if api_key is None:
             api_key = os.environ.get("GCORE_API_KEY")
@@ -113,7 +114,7 @@ class Gcore(SyncAPIClient):
         self.polling_interval_seconds = polling_interval_seconds
 
         if polling_timeout_seconds is None:
-            polling_timeout_seconds = 7200
+            polling_timeout_seconds = maybe_coerce_integer(os.environ.get("GCORE_POLLING_TIMEOUT_SECONDS")) or 7200
         self.polling_timeout_seconds = polling_timeout_seconds
 
         if base_url is None:
@@ -353,7 +354,7 @@ class AsyncGcore(AsyncAPIClient):
         cloud_project_id: int | None = None,
         cloud_region_id: int | None = None,
         polling_interval_seconds: int | None = 3,
-        polling_timeout_seconds: int | None = 7200,
+        polling_timeout_seconds: int | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -379,6 +380,7 @@ class AsyncGcore(AsyncAPIClient):
         - `api_key` from `GCORE_API_KEY`
         - `cloud_project_id` from `GCORE_CLOUD_PROJECT_ID`
         - `cloud_region_id` from `GCORE_CLOUD_REGION_ID`
+        - `polling_timeout_seconds` from `GCORE_POLLING_TIMEOUT_SECONDS`
         """
         if api_key is None:
             api_key = os.environ.get("GCORE_API_KEY")
@@ -401,7 +403,7 @@ class AsyncGcore(AsyncAPIClient):
         self.polling_interval_seconds = polling_interval_seconds
 
         if polling_timeout_seconds is None:
-            polling_timeout_seconds = 7200
+            polling_timeout_seconds = maybe_coerce_integer(os.environ.get("GCORE_POLLING_TIMEOUT_SECONDS")) or 7200
         self.polling_timeout_seconds = polling_timeout_seconds
 
         if base_url is None:
