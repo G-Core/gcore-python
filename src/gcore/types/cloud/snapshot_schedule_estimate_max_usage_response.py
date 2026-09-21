@@ -5,7 +5,7 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["LifecyclePolicyEstimateMaxUsageResponse", "MaxCost"]
+__all__ = ["SnapshotScheduleEstimateMaxUsageResponse", "MaxCost"]
 
 
 class MaxCost(BaseModel):
@@ -36,7 +36,7 @@ class MaxCost(BaseModel):
     """Tax rate applied to the subtotal, represented as a percentage"""
 
 
-class LifecyclePolicyEstimateMaxUsageResponse(BaseModel):
+class SnapshotScheduleEstimateMaxUsageResponse(BaseModel):
     max_cost: MaxCost
     """Total billed cost of all snapshots that can be created by the schedule.
 

@@ -224,14 +224,6 @@ from .volume_snapshots import (
     VolumeSnapshotsResourceWithStreamingResponse,
     AsyncVolumeSnapshotsResourceWithStreamingResponse,
 )
-from .lifecycle_policies import (
-    LifecyclePoliciesResource,
-    AsyncLifecyclePoliciesResource,
-    LifecyclePoliciesResourceWithRawResponse,
-    AsyncLifecyclePoliciesResourceWithRawResponse,
-    LifecyclePoliciesResourceWithStreamingResponse,
-    AsyncLifecyclePoliciesResourceWithStreamingResponse,
-)
 from .reserved_fixed_ips import (
     ReservedFixedIPsResource,
     AsyncReservedFixedIPsResource,
@@ -239,6 +231,14 @@ from .reserved_fixed_ips import (
     AsyncReservedFixedIPsResourceWithRawResponse,
     ReservedFixedIPsResourceWithStreamingResponse,
     AsyncReservedFixedIPsResourceWithStreamingResponse,
+)
+from .snapshot_schedules import (
+    SnapshotSchedulesResource,
+    AsyncSnapshotSchedulesResource,
+    SnapshotSchedulesResourceWithRawResponse,
+    AsyncSnapshotSchedulesResourceWithRawResponse,
+    SnapshotSchedulesResourceWithStreamingResponse,
+    AsyncSnapshotSchedulesResourceWithStreamingResponse,
 )
 from .billing_reservations import (
     BillingReservationsResource,
@@ -418,12 +418,12 @@ __all__ = [
     "AsyncDatabasesResourceWithRawResponse",
     "DatabasesResourceWithStreamingResponse",
     "AsyncDatabasesResourceWithStreamingResponse",
-    "LifecyclePoliciesResource",
-    "AsyncLifecyclePoliciesResource",
-    "LifecyclePoliciesResourceWithRawResponse",
-    "AsyncLifecyclePoliciesResourceWithRawResponse",
-    "LifecyclePoliciesResourceWithStreamingResponse",
-    "AsyncLifecyclePoliciesResourceWithStreamingResponse",
+    "SnapshotSchedulesResource",
+    "AsyncSnapshotSchedulesResource",
+    "SnapshotSchedulesResourceWithRawResponse",
+    "AsyncSnapshotSchedulesResourceWithRawResponse",
+    "SnapshotSchedulesResourceWithStreamingResponse",
+    "AsyncSnapshotSchedulesResourceWithStreamingResponse",
     "VolumeSnapshotsResource",
     "AsyncVolumeSnapshotsResource",
     "VolumeSnapshotsResourceWithRawResponse",

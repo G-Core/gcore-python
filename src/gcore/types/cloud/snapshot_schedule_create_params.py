@@ -8,7 +8,7 @@ from typing_extensions import Literal, Required, TypeAlias, TypedDict
 from ..._types import SequenceNotStr
 
 __all__ = [
-    "LifecyclePolicyCreateParams",
+    "SnapshotScheduleCreateParams",
     "Schedule",
     "ScheduleCreateCronScheduleSerializer",
     "ScheduleCreateCronScheduleSerializerRetentionTime",
@@ -17,7 +17,7 @@ __all__ = [
 ]
 
 
-class LifecyclePolicyCreateParams(TypedDict, total=False):
+class SnapshotScheduleCreateParams(TypedDict, total=False):
     project_id: int
     """Project ID"""
 

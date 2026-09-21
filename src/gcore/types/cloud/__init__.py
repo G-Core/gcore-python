@@ -158,45 +158,45 @@ from .volume_snapshot_create_params import VolumeSnapshotCreateParams as VolumeS
 from .volume_snapshot_update_params import VolumeSnapshotUpdateParams as VolumeSnapshotUpdateParams
 from .cost_report_aggregated_monthly import CostReportAggregatedMonthly as CostReportAggregatedMonthly
 from .inference_region_capacity_list import InferenceRegionCapacityList as InferenceRegionCapacityList
-from .lifecycle_policy_create_params import LifecyclePolicyCreateParams as LifecyclePolicyCreateParams
-from .lifecycle_policy_list_response import LifecyclePolicyListResponse as LifecyclePolicyListResponse
-from .lifecycle_policy_update_params import LifecyclePolicyUpdateParams as LifecyclePolicyUpdateParams
 from .load_balancer_operating_status import LoadBalancerOperatingStatus as LoadBalancerOperatingStatus
 from .billing_reservation_list_params import BillingReservationListParams as BillingReservationListParams
 from .cost_report_get_detailed_params import CostReportGetDetailedParams as CostReportGetDetailedParams
 from .reserved_fixed_ip_create_params import ReservedFixedIPCreateParams as ReservedFixedIPCreateParams
 from .reserved_fixed_ip_update_params import ReservedFixedIPUpdateParams as ReservedFixedIPUpdateParams
+from .snapshot_schedule_create_params import SnapshotScheduleCreateParams as SnapshotScheduleCreateParams
+from .snapshot_schedule_list_response import SnapshotScheduleListResponse as SnapshotScheduleListResponse
+from .snapshot_schedule_update_params import SnapshotScheduleUpdateParams as SnapshotScheduleUpdateParams
 from .volume_attach_to_instance_params import VolumeAttachToInstanceParams as VolumeAttachToInstanceParams
 from .cost_report_get_aggregated_params import CostReportGetAggregatedParams as CostReportGetAggregatedParams
 from .laas_index_retention_policy_param import LaasIndexRetentionPolicyParam as LaasIndexRetentionPolicyParam
 from .load_balancer_member_connectivity import LoadBalancerMemberConnectivity as LoadBalancerMemberConnectivity
 from .volume_detach_from_instance_params import VolumeDetachFromInstanceParams as VolumeDetachFromInstanceParams
-from .lifecycle_policy_add_volumes_params import LifecyclePolicyAddVolumesParams as LifecyclePolicyAddVolumesParams
 from .secret_upload_tls_certificate_params import SecretUploadTlsCertificateParams as SecretUploadTlsCertificateParams
+from .snapshot_schedule_add_volumes_params import SnapshotScheduleAddVolumesParams as SnapshotScheduleAddVolumesParams
 from .instance_assign_security_group_params import (
     InstanceAssignSecurityGroupParams as InstanceAssignSecurityGroupParams,
-)
-from .lifecycle_policy_add_schedules_params import (
-    LifecyclePolicyAddSchedulesParams as LifecyclePolicyAddSchedulesParams,
 )
 from .instance_add_to_placement_group_params import (
     InstanceAddToPlacementGroupParams as InstanceAddToPlacementGroupParams,
 )
-from .lifecycle_policy_remove_volumes_params import (
-    LifecyclePolicyRemoveVolumesParams as LifecyclePolicyRemoveVolumesParams,
+from .snapshot_schedule_add_schedules_params import (
+    SnapshotScheduleAddSchedulesParams as SnapshotScheduleAddSchedulesParams,
 )
 from .instance_unassign_security_group_params import (
     InstanceUnassignSecurityGroupParams as InstanceUnassignSecurityGroupParams,
 )
-from .lifecycle_policy_remove_schedules_params import (
-    LifecyclePolicyRemoveSchedulesParams as LifecyclePolicyRemoveSchedulesParams,
+from .snapshot_schedule_remove_volumes_params import (
+    SnapshotScheduleRemoveVolumesParams as SnapshotScheduleRemoveVolumesParams,
 )
 from .cost_report_get_aggregated_monthly_params import (
     CostReportGetAggregatedMonthlyParams as CostReportGetAggregatedMonthlyParams,
 )
-from .lifecycle_policy_estimate_max_usage_params import (
-    LifecyclePolicyEstimateMaxUsageParams as LifecyclePolicyEstimateMaxUsageParams,
+from .snapshot_schedule_remove_schedules_params import (
+    SnapshotScheduleRemoveSchedulesParams as SnapshotScheduleRemoveSchedulesParams,
 )
-from .lifecycle_policy_estimate_max_usage_response import (
-    LifecyclePolicyEstimateMaxUsageResponse as LifecyclePolicyEstimateMaxUsageResponse,
+from .snapshot_schedule_estimate_max_usage_params import (
+    SnapshotScheduleEstimateMaxUsageParams as SnapshotScheduleEstimateMaxUsageParams,
+)
+from .snapshot_schedule_estimate_max_usage_response import (
+    SnapshotScheduleEstimateMaxUsageResponse as SnapshotScheduleEstimateMaxUsageResponse,
 )

@@ -5,10 +5,8 @@ from __future__ import annotations
 from typing import Union, Iterable
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
-from ..._types import SequenceNotStr
-
 __all__ = [
-    "LifecyclePolicyEstimateMaxUsageParams",
+    "SnapshotScheduleAddSchedulesParams",
     "Schedule",
     "ScheduleCreateCronScheduleSerializer",
     "ScheduleCreateCronScheduleSerializerRetentionTime",
@@ -17,27 +15,15 @@ __all__ = [
 ]
 
 
-class LifecyclePolicyEstimateMaxUsageParams(TypedDict, total=False):
+class SnapshotScheduleAddSchedulesParams(TypedDict, total=False):
     project_id: int
     """Project ID"""
 
     region_id: int
     """Region ID"""
 
-    action: Required[Literal["volume_snapshot"]]
-    """Action that the policy will perform."""
-
-    name: Required[str]
-    """Name of the lifecycle policy."""
-
-    schedules: Iterable[Schedule]
+    schedules: Required[Iterable[Schedule]]
     """List of schedules associated with the policy."""
-
-    status: Literal["active", "paused"]
-    """Current status of the lifecycle policy."""
-
-    volume_ids: SequenceNotStr[str]
-    """List of volume IDs."""
 
 
 class ScheduleCreateCronScheduleSerializerRetentionTime(TypedDict, total=False):

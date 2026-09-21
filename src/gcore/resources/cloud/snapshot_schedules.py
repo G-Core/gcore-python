@@ -18,45 +18,45 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ...types.cloud import (
-    lifecycle_policy_create_params,
-    lifecycle_policy_update_params,
-    lifecycle_policy_add_volumes_params,
-    lifecycle_policy_add_schedules_params,
-    lifecycle_policy_remove_volumes_params,
-    lifecycle_policy_remove_schedules_params,
-    lifecycle_policy_estimate_max_usage_params,
+    snapshot_schedule_create_params,
+    snapshot_schedule_update_params,
+    snapshot_schedule_add_volumes_params,
+    snapshot_schedule_add_schedules_params,
+    snapshot_schedule_remove_volumes_params,
+    snapshot_schedule_remove_schedules_params,
+    snapshot_schedule_estimate_max_usage_params,
 )
 from ..._base_client import make_request_options
 from ...types.cloud.lifecycle_policy import LifecyclePolicy
-from ...types.cloud.lifecycle_policy_list_response import LifecyclePolicyListResponse
-from ...types.cloud.lifecycle_policy_estimate_max_usage_response import LifecyclePolicyEstimateMaxUsageResponse
+from ...types.cloud.snapshot_schedule_list_response import SnapshotScheduleListResponse
+from ...types.cloud.snapshot_schedule_estimate_max_usage_response import SnapshotScheduleEstimateMaxUsageResponse
 
-__all__ = ["LifecyclePoliciesResource", "AsyncLifecyclePoliciesResource"]
+__all__ = ["SnapshotSchedulesResource", "AsyncSnapshotSchedulesResource"]
 
 
-class LifecyclePoliciesResource(SyncAPIResource):
+class SnapshotSchedulesResource(SyncAPIResource):
     """
     Snapshot schedule policies describe when volume snapshots are taken and which volumes they cover. Volume membership is owned by the policy: attach and detach are policy-side operations, so a volume can join or leave a policy without being recreated.
     """
 
     @cached_property
-    def with_raw_response(self) -> LifecyclePoliciesResourceWithRawResponse:
+    def with_raw_response(self) -> SnapshotSchedulesResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/G-Core/gcore-python#accessing-raw-response-data-eg-headers
         """
-        return LifecyclePoliciesResourceWithRawResponse(self)
+        return SnapshotSchedulesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> LifecyclePoliciesResourceWithStreamingResponse:
+    def with_streaming_response(self) -> SnapshotSchedulesResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/G-Core/gcore-python#with_streaming_response
         """
-        return LifecyclePoliciesResourceWithStreamingResponse(self)
+        return SnapshotSchedulesResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -65,7 +65,7 @@ class LifecyclePoliciesResource(SyncAPIResource):
         region_id: int | None = None,
         action: Literal["volume_snapshot"],
         name: str,
-        schedules: Iterable[lifecycle_policy_create_params.Schedule] | Omit = omit,
+        schedules: Iterable[snapshot_schedule_create_params.Schedule] | Omit = omit,
         status: Literal["active", "paused"] | Omit = omit,
         volume_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -117,7 +117,7 @@ class LifecyclePoliciesResource(SyncAPIResource):
                     "status": status,
                     "volume_ids": volume_ids,
                 },
-                lifecycle_policy_create_params.LifecyclePolicyCreateParams,
+                snapshot_schedule_create_params.SnapshotScheduleCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -178,7 +178,7 @@ class LifecyclePoliciesResource(SyncAPIResource):
                     "name": name,
                     "status": status,
                 },
-                lifecycle_policy_update_params.LifecyclePolicyUpdateParams,
+                snapshot_schedule_update_params.SnapshotScheduleUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -197,7 +197,7 @@ class LifecyclePoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LifecyclePolicyListResponse:
+    ) -> SnapshotScheduleListResponse:
         """
         List all snapshot policies in the specified project and region.
 
@@ -225,7 +225,7 @@ class LifecyclePoliciesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=LifecyclePolicyListResponse,
+            cast_to=SnapshotScheduleListResponse,
         )
 
     def delete(
@@ -283,7 +283,7 @@ class LifecyclePoliciesResource(SyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        schedules: Iterable[lifecycle_policy_add_schedules_params.Schedule],
+        schedules: Iterable[snapshot_schedule_add_schedules_params.Schedule],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -323,7 +323,7 @@ class LifecyclePoliciesResource(SyncAPIResource):
                 policy_id=policy_id,
             ),
             body=maybe_transform(
-                {"schedules": schedules}, lifecycle_policy_add_schedules_params.LifecyclePolicyAddSchedulesParams
+                {"schedules": schedules}, snapshot_schedule_add_schedules_params.SnapshotScheduleAddSchedulesParams
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -377,7 +377,7 @@ class LifecyclePoliciesResource(SyncAPIResource):
                 policy_id=policy_id,
             ),
             body=maybe_transform(
-                {"volume_ids": volume_ids}, lifecycle_policy_add_volumes_params.LifecyclePolicyAddVolumesParams
+                {"volume_ids": volume_ids}, snapshot_schedule_add_volumes_params.SnapshotScheduleAddVolumesParams
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -392,7 +392,7 @@ class LifecyclePoliciesResource(SyncAPIResource):
         region_id: int | None = None,
         action: Literal["volume_snapshot"],
         name: str,
-        schedules: Iterable[lifecycle_policy_estimate_max_usage_params.Schedule] | Omit = omit,
+        schedules: Iterable[snapshot_schedule_estimate_max_usage_params.Schedule] | Omit = omit,
         status: Literal["active", "paused"] | Omit = omit,
         volume_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -401,7 +401,7 @@ class LifecyclePoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LifecyclePolicyEstimateMaxUsageResponse:
+    ) -> SnapshotScheduleEstimateMaxUsageResponse:
         """
         Calculate the maximum resource usage if all snapshots are created by the policy.
 
@@ -446,12 +446,12 @@ class LifecyclePoliciesResource(SyncAPIResource):
                     "status": status,
                     "volume_ids": volume_ids,
                 },
-                lifecycle_policy_estimate_max_usage_params.LifecyclePolicyEstimateMaxUsageParams,
+                snapshot_schedule_estimate_max_usage_params.SnapshotScheduleEstimateMaxUsageParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=LifecyclePolicyEstimateMaxUsageResponse,
+            cast_to=SnapshotScheduleEstimateMaxUsageResponse,
         )
 
     def get(
@@ -549,7 +549,7 @@ class LifecyclePoliciesResource(SyncAPIResource):
             ),
             body=maybe_transform(
                 {"schedule_ids": schedule_ids},
-                lifecycle_policy_remove_schedules_params.LifecyclePolicyRemoveSchedulesParams,
+                snapshot_schedule_remove_schedules_params.SnapshotScheduleRemoveSchedulesParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -603,7 +603,7 @@ class LifecyclePoliciesResource(SyncAPIResource):
                 policy_id=policy_id,
             ),
             body=maybe_transform(
-                {"volume_ids": volume_ids}, lifecycle_policy_remove_volumes_params.LifecyclePolicyRemoveVolumesParams
+                {"volume_ids": volume_ids}, snapshot_schedule_remove_volumes_params.SnapshotScheduleRemoveVolumesParams
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -612,29 +612,29 @@ class LifecyclePoliciesResource(SyncAPIResource):
         )
 
 
-class AsyncLifecyclePoliciesResource(AsyncAPIResource):
+class AsyncSnapshotSchedulesResource(AsyncAPIResource):
     """
     Snapshot schedule policies describe when volume snapshots are taken and which volumes they cover. Volume membership is owned by the policy: attach and detach are policy-side operations, so a volume can join or leave a policy without being recreated.
     """
 
     @cached_property
-    def with_raw_response(self) -> AsyncLifecyclePoliciesResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncSnapshotSchedulesResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/G-Core/gcore-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncLifecyclePoliciesResourceWithRawResponse(self)
+        return AsyncSnapshotSchedulesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncLifecyclePoliciesResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncSnapshotSchedulesResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/G-Core/gcore-python#with_streaming_response
         """
-        return AsyncLifecyclePoliciesResourceWithStreamingResponse(self)
+        return AsyncSnapshotSchedulesResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -643,7 +643,7 @@ class AsyncLifecyclePoliciesResource(AsyncAPIResource):
         region_id: int | None = None,
         action: Literal["volume_snapshot"],
         name: str,
-        schedules: Iterable[lifecycle_policy_create_params.Schedule] | Omit = omit,
+        schedules: Iterable[snapshot_schedule_create_params.Schedule] | Omit = omit,
         status: Literal["active", "paused"] | Omit = omit,
         volume_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -695,7 +695,7 @@ class AsyncLifecyclePoliciesResource(AsyncAPIResource):
                     "status": status,
                     "volume_ids": volume_ids,
                 },
-                lifecycle_policy_create_params.LifecyclePolicyCreateParams,
+                snapshot_schedule_create_params.SnapshotScheduleCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -756,7 +756,7 @@ class AsyncLifecyclePoliciesResource(AsyncAPIResource):
                     "name": name,
                     "status": status,
                 },
-                lifecycle_policy_update_params.LifecyclePolicyUpdateParams,
+                snapshot_schedule_update_params.SnapshotScheduleUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -775,7 +775,7 @@ class AsyncLifecyclePoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LifecyclePolicyListResponse:
+    ) -> SnapshotScheduleListResponse:
         """
         List all snapshot policies in the specified project and region.
 
@@ -803,7 +803,7 @@ class AsyncLifecyclePoliciesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=LifecyclePolicyListResponse,
+            cast_to=SnapshotScheduleListResponse,
         )
 
     async def delete(
@@ -861,7 +861,7 @@ class AsyncLifecyclePoliciesResource(AsyncAPIResource):
         *,
         project_id: int | None = None,
         region_id: int | None = None,
-        schedules: Iterable[lifecycle_policy_add_schedules_params.Schedule],
+        schedules: Iterable[snapshot_schedule_add_schedules_params.Schedule],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -901,7 +901,7 @@ class AsyncLifecyclePoliciesResource(AsyncAPIResource):
                 policy_id=policy_id,
             ),
             body=await async_maybe_transform(
-                {"schedules": schedules}, lifecycle_policy_add_schedules_params.LifecyclePolicyAddSchedulesParams
+                {"schedules": schedules}, snapshot_schedule_add_schedules_params.SnapshotScheduleAddSchedulesParams
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -955,7 +955,7 @@ class AsyncLifecyclePoliciesResource(AsyncAPIResource):
                 policy_id=policy_id,
             ),
             body=await async_maybe_transform(
-                {"volume_ids": volume_ids}, lifecycle_policy_add_volumes_params.LifecyclePolicyAddVolumesParams
+                {"volume_ids": volume_ids}, snapshot_schedule_add_volumes_params.SnapshotScheduleAddVolumesParams
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -970,7 +970,7 @@ class AsyncLifecyclePoliciesResource(AsyncAPIResource):
         region_id: int | None = None,
         action: Literal["volume_snapshot"],
         name: str,
-        schedules: Iterable[lifecycle_policy_estimate_max_usage_params.Schedule] | Omit = omit,
+        schedules: Iterable[snapshot_schedule_estimate_max_usage_params.Schedule] | Omit = omit,
         status: Literal["active", "paused"] | Omit = omit,
         volume_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -979,7 +979,7 @@ class AsyncLifecyclePoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LifecyclePolicyEstimateMaxUsageResponse:
+    ) -> SnapshotScheduleEstimateMaxUsageResponse:
         """
         Calculate the maximum resource usage if all snapshots are created by the policy.
 
@@ -1024,12 +1024,12 @@ class AsyncLifecyclePoliciesResource(AsyncAPIResource):
                     "status": status,
                     "volume_ids": volume_ids,
                 },
-                lifecycle_policy_estimate_max_usage_params.LifecyclePolicyEstimateMaxUsageParams,
+                snapshot_schedule_estimate_max_usage_params.SnapshotScheduleEstimateMaxUsageParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=LifecyclePolicyEstimateMaxUsageResponse,
+            cast_to=SnapshotScheduleEstimateMaxUsageResponse,
         )
 
     async def get(
@@ -1127,7 +1127,7 @@ class AsyncLifecyclePoliciesResource(AsyncAPIResource):
             ),
             body=await async_maybe_transform(
                 {"schedule_ids": schedule_ids},
-                lifecycle_policy_remove_schedules_params.LifecyclePolicyRemoveSchedulesParams,
+                snapshot_schedule_remove_schedules_params.SnapshotScheduleRemoveSchedulesParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -1181,7 +1181,7 @@ class AsyncLifecyclePoliciesResource(AsyncAPIResource):
                 policy_id=policy_id,
             ),
             body=await async_maybe_transform(
-                {"volume_ids": volume_ids}, lifecycle_policy_remove_volumes_params.LifecyclePolicyRemoveVolumesParams
+                {"volume_ids": volume_ids}, snapshot_schedule_remove_volumes_params.SnapshotScheduleRemoveVolumesParams
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -1190,145 +1190,145 @@ class AsyncLifecyclePoliciesResource(AsyncAPIResource):
         )
 
 
-class LifecyclePoliciesResourceWithRawResponse:
-    def __init__(self, lifecycle_policies: LifecyclePoliciesResource) -> None:
-        self._lifecycle_policies = lifecycle_policies
+class SnapshotSchedulesResourceWithRawResponse:
+    def __init__(self, snapshot_schedules: SnapshotSchedulesResource) -> None:
+        self._snapshot_schedules = snapshot_schedules
 
         self.create = to_raw_response_wrapper(
-            lifecycle_policies.create,
+            snapshot_schedules.create,
         )
         self.update = to_raw_response_wrapper(
-            lifecycle_policies.update,
+            snapshot_schedules.update,
         )
         self.list = to_raw_response_wrapper(
-            lifecycle_policies.list,
+            snapshot_schedules.list,
         )
         self.delete = to_raw_response_wrapper(
-            lifecycle_policies.delete,
+            snapshot_schedules.delete,
         )
         self.add_schedules = to_raw_response_wrapper(
-            lifecycle_policies.add_schedules,
+            snapshot_schedules.add_schedules,
         )
         self.add_volumes = to_raw_response_wrapper(
-            lifecycle_policies.add_volumes,
+            snapshot_schedules.add_volumes,
         )
         self.estimate_max_usage = to_raw_response_wrapper(
-            lifecycle_policies.estimate_max_usage,
+            snapshot_schedules.estimate_max_usage,
         )
         self.get = to_raw_response_wrapper(
-            lifecycle_policies.get,
+            snapshot_schedules.get,
         )
         self.remove_schedules = to_raw_response_wrapper(
-            lifecycle_policies.remove_schedules,
+            snapshot_schedules.remove_schedules,
         )
         self.remove_volumes = to_raw_response_wrapper(
-            lifecycle_policies.remove_volumes,
+            snapshot_schedules.remove_volumes,
         )
 
 
-class AsyncLifecyclePoliciesResourceWithRawResponse:
-    def __init__(self, lifecycle_policies: AsyncLifecyclePoliciesResource) -> None:
-        self._lifecycle_policies = lifecycle_policies
+class AsyncSnapshotSchedulesResourceWithRawResponse:
+    def __init__(self, snapshot_schedules: AsyncSnapshotSchedulesResource) -> None:
+        self._snapshot_schedules = snapshot_schedules
 
         self.create = async_to_raw_response_wrapper(
-            lifecycle_policies.create,
+            snapshot_schedules.create,
         )
         self.update = async_to_raw_response_wrapper(
-            lifecycle_policies.update,
+            snapshot_schedules.update,
         )
         self.list = async_to_raw_response_wrapper(
-            lifecycle_policies.list,
+            snapshot_schedules.list,
         )
         self.delete = async_to_raw_response_wrapper(
-            lifecycle_policies.delete,
+            snapshot_schedules.delete,
         )
         self.add_schedules = async_to_raw_response_wrapper(
-            lifecycle_policies.add_schedules,
+            snapshot_schedules.add_schedules,
         )
         self.add_volumes = async_to_raw_response_wrapper(
-            lifecycle_policies.add_volumes,
+            snapshot_schedules.add_volumes,
         )
         self.estimate_max_usage = async_to_raw_response_wrapper(
-            lifecycle_policies.estimate_max_usage,
+            snapshot_schedules.estimate_max_usage,
         )
         self.get = async_to_raw_response_wrapper(
-            lifecycle_policies.get,
+            snapshot_schedules.get,
         )
         self.remove_schedules = async_to_raw_response_wrapper(
-            lifecycle_policies.remove_schedules,
+            snapshot_schedules.remove_schedules,
         )
         self.remove_volumes = async_to_raw_response_wrapper(
-            lifecycle_policies.remove_volumes,
+            snapshot_schedules.remove_volumes,
         )
 
 
-class LifecyclePoliciesResourceWithStreamingResponse:
-    def __init__(self, lifecycle_policies: LifecyclePoliciesResource) -> None:
-        self._lifecycle_policies = lifecycle_policies
+class SnapshotSchedulesResourceWithStreamingResponse:
+    def __init__(self, snapshot_schedules: SnapshotSchedulesResource) -> None:
+        self._snapshot_schedules = snapshot_schedules
 
         self.create = to_streamed_response_wrapper(
-            lifecycle_policies.create,
+            snapshot_schedules.create,
         )
         self.update = to_streamed_response_wrapper(
-            lifecycle_policies.update,
+            snapshot_schedules.update,
         )
         self.list = to_streamed_response_wrapper(
-            lifecycle_policies.list,
+            snapshot_schedules.list,
         )
         self.delete = to_streamed_response_wrapper(
-            lifecycle_policies.delete,
+            snapshot_schedules.delete,
         )
         self.add_schedules = to_streamed_response_wrapper(
-            lifecycle_policies.add_schedules,
+            snapshot_schedules.add_schedules,
         )
         self.add_volumes = to_streamed_response_wrapper(
-            lifecycle_policies.add_volumes,
+            snapshot_schedules.add_volumes,
         )
         self.estimate_max_usage = to_streamed_response_wrapper(
-            lifecycle_policies.estimate_max_usage,
+            snapshot_schedules.estimate_max_usage,
         )
         self.get = to_streamed_response_wrapper(
-            lifecycle_policies.get,
+            snapshot_schedules.get,
         )
         self.remove_schedules = to_streamed_response_wrapper(
-            lifecycle_policies.remove_schedules,
+            snapshot_schedules.remove_schedules,
         )
         self.remove_volumes = to_streamed_response_wrapper(
-            lifecycle_policies.remove_volumes,
+            snapshot_schedules.remove_volumes,
         )
 
 
-class AsyncLifecyclePoliciesResourceWithStreamingResponse:
-    def __init__(self, lifecycle_policies: AsyncLifecyclePoliciesResource) -> None:
-        self._lifecycle_policies = lifecycle_policies
+class AsyncSnapshotSchedulesResourceWithStreamingResponse:
+    def __init__(self, snapshot_schedules: AsyncSnapshotSchedulesResource) -> None:
+        self._snapshot_schedules = snapshot_schedules
 
         self.create = async_to_streamed_response_wrapper(
-            lifecycle_policies.create,
+            snapshot_schedules.create,
         )
         self.update = async_to_streamed_response_wrapper(
-            lifecycle_policies.update,
+            snapshot_schedules.update,
         )
         self.list = async_to_streamed_response_wrapper(
-            lifecycle_policies.list,
+            snapshot_schedules.list,
         )
         self.delete = async_to_streamed_response_wrapper(
-            lifecycle_policies.delete,
+            snapshot_schedules.delete,
         )
         self.add_schedules = async_to_streamed_response_wrapper(
-            lifecycle_policies.add_schedules,
+            snapshot_schedules.add_schedules,
         )
         self.add_volumes = async_to_streamed_response_wrapper(
-            lifecycle_policies.add_volumes,
+            snapshot_schedules.add_volumes,
         )
         self.estimate_max_usage = async_to_streamed_response_wrapper(
-            lifecycle_policies.estimate_max_usage,
+            snapshot_schedules.estimate_max_usage,
         )
         self.get = async_to_streamed_response_wrapper(
-            lifecycle_policies.get,
+            snapshot_schedules.get,
         )
         self.remove_schedules = async_to_streamed_response_wrapper(
-            lifecycle_policies.remove_schedules,
+            snapshot_schedules.remove_schedules,
         )
         self.remove_volumes = async_to_streamed_response_wrapper(
-            lifecycle_policies.remove_volumes,
+            snapshot_schedules.remove_volumes,
         )

@@ -6,15 +6,15 @@ from typing_extensions import Required, TypedDict
 
 from ..._types import SequenceNotStr
 
-__all__ = ["LifecyclePolicyAddVolumesParams"]
+__all__ = ["SnapshotScheduleRemoveSchedulesParams"]
 
 
-class LifecyclePolicyAddVolumesParams(TypedDict, total=False):
+class SnapshotScheduleRemoveSchedulesParams(TypedDict, total=False):
     project_id: int
     """Project ID"""
 
     region_id: int
     """Region ID"""
 
-    volume_ids: Required[SequenceNotStr[str]]
-    """List of volume IDs."""
+    schedule_ids: Required[SequenceNotStr[str]]
+    """List of schedule IDs."""

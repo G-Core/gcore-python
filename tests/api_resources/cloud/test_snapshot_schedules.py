@@ -11,29 +11,29 @@ from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
 from gcore.types.cloud import (
     LifecyclePolicy,
-    LifecyclePolicyListResponse,
-    LifecyclePolicyEstimateMaxUsageResponse,
+    SnapshotScheduleListResponse,
+    SnapshotScheduleEstimateMaxUsageResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
-class TestLifecyclePolicies:
+class TestSnapshotSchedules:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
     def test_method_create(self, client: Gcore) -> None:
-        lifecycle_policy = client.cloud.lifecycle_policies.create(
+        snapshot_schedule = client.cloud.snapshot_schedules.create(
             project_id=1,
             region_id=1,
             action="volume_snapshot",
             name="schedule_1",
         )
-        assert_matches_type(LifecyclePolicy, lifecycle_policy, path=["response"])
+        assert_matches_type(LifecyclePolicy, snapshot_schedule, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Gcore) -> None:
-        lifecycle_policy = client.cloud.lifecycle_policies.create(
+        snapshot_schedule = client.cloud.snapshot_schedules.create(
             project_id=1,
             region_id=1,
             action="volume_snapshot",
@@ -61,11 +61,11 @@ class TestLifecyclePolicies:
             status="active",
             volume_ids=["3ed9e2ce-f906-47fb-ba32-c25a3f63df4f"],
         )
-        assert_matches_type(LifecyclePolicy, lifecycle_policy, path=["response"])
+        assert_matches_type(LifecyclePolicy, snapshot_schedule, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
-        response = client.cloud.lifecycle_policies.with_raw_response.create(
+        response = client.cloud.snapshot_schedules.with_raw_response.create(
             project_id=1,
             region_id=1,
             action="volume_snapshot",
@@ -74,12 +74,12 @@ class TestLifecyclePolicies:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        lifecycle_policy = response.parse()
-        assert_matches_type(LifecyclePolicy, lifecycle_policy, path=["response"])
+        snapshot_schedule = response.parse()
+        assert_matches_type(LifecyclePolicy, snapshot_schedule, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
-        with client.cloud.lifecycle_policies.with_streaming_response.create(
+        with client.cloud.snapshot_schedules.with_streaming_response.create(
             project_id=1,
             region_id=1,
             action="volume_snapshot",
@@ -88,34 +88,34 @@ class TestLifecyclePolicies:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            lifecycle_policy = response.parse()
-            assert_matches_type(LifecyclePolicy, lifecycle_policy, path=["response"])
+            snapshot_schedule = response.parse()
+            assert_matches_type(LifecyclePolicy, snapshot_schedule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_update(self, client: Gcore) -> None:
-        lifecycle_policy = client.cloud.lifecycle_policies.update(
+        snapshot_schedule = client.cloud.snapshot_schedules.update(
             policy_id=1,
             project_id=1,
             region_id=1,
         )
-        assert_matches_type(LifecyclePolicy, lifecycle_policy, path=["response"])
+        assert_matches_type(LifecyclePolicy, snapshot_schedule, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Gcore) -> None:
-        lifecycle_policy = client.cloud.lifecycle_policies.update(
+        snapshot_schedule = client.cloud.snapshot_schedules.update(
             policy_id=1,
             project_id=1,
             region_id=1,
             name="schedule_1",
             status="paused",
         )
-        assert_matches_type(LifecyclePolicy, lifecycle_policy, path=["response"])
+        assert_matches_type(LifecyclePolicy, snapshot_schedule, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Gcore) -> None:
-        response = client.cloud.lifecycle_policies.with_raw_response.update(
+        response = client.cloud.snapshot_schedules.with_raw_response.update(
             policy_id=1,
             project_id=1,
             region_id=1,
@@ -123,12 +123,12 @@ class TestLifecyclePolicies:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        lifecycle_policy = response.parse()
-        assert_matches_type(LifecyclePolicy, lifecycle_policy, path=["response"])
+        snapshot_schedule = response.parse()
+        assert_matches_type(LifecyclePolicy, snapshot_schedule, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Gcore) -> None:
-        with client.cloud.lifecycle_policies.with_streaming_response.update(
+        with client.cloud.snapshot_schedules.with_streaming_response.update(
             policy_id=1,
             project_id=1,
             region_id=1,
@@ -136,57 +136,57 @@ class TestLifecyclePolicies:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            lifecycle_policy = response.parse()
-            assert_matches_type(LifecyclePolicy, lifecycle_policy, path=["response"])
+            snapshot_schedule = response.parse()
+            assert_matches_type(LifecyclePolicy, snapshot_schedule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
-        lifecycle_policy = client.cloud.lifecycle_policies.list(
+        snapshot_schedule = client.cloud.snapshot_schedules.list(
             project_id=1,
             region_id=1,
         )
-        assert_matches_type(LifecyclePolicyListResponse, lifecycle_policy, path=["response"])
+        assert_matches_type(SnapshotScheduleListResponse, snapshot_schedule, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
-        response = client.cloud.lifecycle_policies.with_raw_response.list(
+        response = client.cloud.snapshot_schedules.with_raw_response.list(
             project_id=1,
             region_id=1,
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        lifecycle_policy = response.parse()
-        assert_matches_type(LifecyclePolicyListResponse, lifecycle_policy, path=["response"])
+        snapshot_schedule = response.parse()
+        assert_matches_type(SnapshotScheduleListResponse, snapshot_schedule, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
-        with client.cloud.lifecycle_policies.with_streaming_response.list(
+        with client.cloud.snapshot_schedules.with_streaming_response.list(
             project_id=1,
             region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            lifecycle_policy = response.parse()
-            assert_matches_type(LifecyclePolicyListResponse, lifecycle_policy, path=["response"])
+            snapshot_schedule = response.parse()
+            assert_matches_type(SnapshotScheduleListResponse, snapshot_schedule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_delete(self, client: Gcore) -> None:
-        lifecycle_policy = client.cloud.lifecycle_policies.delete(
+        snapshot_schedule = client.cloud.snapshot_schedules.delete(
             policy_id=1,
             project_id=1,
             region_id=1,
         )
-        assert lifecycle_policy is None
+        assert snapshot_schedule is None
 
     @parametrize
     def test_raw_response_delete(self, client: Gcore) -> None:
-        response = client.cloud.lifecycle_policies.with_raw_response.delete(
+        response = client.cloud.snapshot_schedules.with_raw_response.delete(
             policy_id=1,
             project_id=1,
             region_id=1,
@@ -194,12 +194,12 @@ class TestLifecyclePolicies:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        lifecycle_policy = response.parse()
-        assert lifecycle_policy is None
+        snapshot_schedule = response.parse()
+        assert snapshot_schedule is None
 
     @parametrize
     def test_streaming_response_delete(self, client: Gcore) -> None:
-        with client.cloud.lifecycle_policies.with_streaming_response.delete(
+        with client.cloud.snapshot_schedules.with_streaming_response.delete(
             policy_id=1,
             project_id=1,
             region_id=1,
@@ -207,24 +207,24 @@ class TestLifecyclePolicies:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            lifecycle_policy = response.parse()
-            assert lifecycle_policy is None
+            snapshot_schedule = response.parse()
+            assert snapshot_schedule is None
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_add_schedules(self, client: Gcore) -> None:
-        lifecycle_policy = client.cloud.lifecycle_policies.add_schedules(
+        snapshot_schedule = client.cloud.snapshot_schedules.add_schedules(
             policy_id=1,
             project_id=1,
             region_id=1,
             schedules=[{"type": "cron"}, {"type": "interval"}],
         )
-        assert_matches_type(LifecyclePolicy, lifecycle_policy, path=["response"])
+        assert_matches_type(LifecyclePolicy, snapshot_schedule, path=["response"])
 
     @parametrize
     def test_raw_response_add_schedules(self, client: Gcore) -> None:
-        response = client.cloud.lifecycle_policies.with_raw_response.add_schedules(
+        response = client.cloud.snapshot_schedules.with_raw_response.add_schedules(
             policy_id=1,
             project_id=1,
             region_id=1,
@@ -233,12 +233,12 @@ class TestLifecyclePolicies:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        lifecycle_policy = response.parse()
-        assert_matches_type(LifecyclePolicy, lifecycle_policy, path=["response"])
+        snapshot_schedule = response.parse()
+        assert_matches_type(LifecyclePolicy, snapshot_schedule, path=["response"])
 
     @parametrize
     def test_streaming_response_add_schedules(self, client: Gcore) -> None:
-        with client.cloud.lifecycle_policies.with_streaming_response.add_schedules(
+        with client.cloud.snapshot_schedules.with_streaming_response.add_schedules(
             policy_id=1,
             project_id=1,
             region_id=1,
@@ -247,24 +247,24 @@ class TestLifecyclePolicies:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            lifecycle_policy = response.parse()
-            assert_matches_type(LifecyclePolicy, lifecycle_policy, path=["response"])
+            snapshot_schedule = response.parse()
+            assert_matches_type(LifecyclePolicy, snapshot_schedule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_add_volumes(self, client: Gcore) -> None:
-        lifecycle_policy = client.cloud.lifecycle_policies.add_volumes(
+        snapshot_schedule = client.cloud.snapshot_schedules.add_volumes(
             policy_id=1,
             project_id=1,
             region_id=1,
             volume_ids=["1488e2ce-f906-47fb-ba32-c25a3f63df4f"],
         )
-        assert_matches_type(LifecyclePolicy, lifecycle_policy, path=["response"])
+        assert_matches_type(LifecyclePolicy, snapshot_schedule, path=["response"])
 
     @parametrize
     def test_raw_response_add_volumes(self, client: Gcore) -> None:
-        response = client.cloud.lifecycle_policies.with_raw_response.add_volumes(
+        response = client.cloud.snapshot_schedules.with_raw_response.add_volumes(
             policy_id=1,
             project_id=1,
             region_id=1,
@@ -273,12 +273,12 @@ class TestLifecyclePolicies:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        lifecycle_policy = response.parse()
-        assert_matches_type(LifecyclePolicy, lifecycle_policy, path=["response"])
+        snapshot_schedule = response.parse()
+        assert_matches_type(LifecyclePolicy, snapshot_schedule, path=["response"])
 
     @parametrize
     def test_streaming_response_add_volumes(self, client: Gcore) -> None:
-        with client.cloud.lifecycle_policies.with_streaming_response.add_volumes(
+        with client.cloud.snapshot_schedules.with_streaming_response.add_volumes(
             policy_id=1,
             project_id=1,
             region_id=1,
@@ -287,24 +287,24 @@ class TestLifecyclePolicies:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            lifecycle_policy = response.parse()
-            assert_matches_type(LifecyclePolicy, lifecycle_policy, path=["response"])
+            snapshot_schedule = response.parse()
+            assert_matches_type(LifecyclePolicy, snapshot_schedule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_estimate_max_usage(self, client: Gcore) -> None:
-        lifecycle_policy = client.cloud.lifecycle_policies.estimate_max_usage(
+        snapshot_schedule = client.cloud.snapshot_schedules.estimate_max_usage(
             project_id=1,
             region_id=1,
             action="volume_snapshot",
             name="schedule_1",
         )
-        assert_matches_type(LifecyclePolicyEstimateMaxUsageResponse, lifecycle_policy, path=["response"])
+        assert_matches_type(SnapshotScheduleEstimateMaxUsageResponse, snapshot_schedule, path=["response"])
 
     @parametrize
     def test_method_estimate_max_usage_with_all_params(self, client: Gcore) -> None:
-        lifecycle_policy = client.cloud.lifecycle_policies.estimate_max_usage(
+        snapshot_schedule = client.cloud.snapshot_schedules.estimate_max_usage(
             project_id=1,
             region_id=1,
             action="volume_snapshot",
@@ -332,11 +332,11 @@ class TestLifecyclePolicies:
             status="active",
             volume_ids=["3ed9e2ce-f906-47fb-ba32-c25a3f63df4f"],
         )
-        assert_matches_type(LifecyclePolicyEstimateMaxUsageResponse, lifecycle_policy, path=["response"])
+        assert_matches_type(SnapshotScheduleEstimateMaxUsageResponse, snapshot_schedule, path=["response"])
 
     @parametrize
     def test_raw_response_estimate_max_usage(self, client: Gcore) -> None:
-        response = client.cloud.lifecycle_policies.with_raw_response.estimate_max_usage(
+        response = client.cloud.snapshot_schedules.with_raw_response.estimate_max_usage(
             project_id=1,
             region_id=1,
             action="volume_snapshot",
@@ -345,12 +345,12 @@ class TestLifecyclePolicies:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        lifecycle_policy = response.parse()
-        assert_matches_type(LifecyclePolicyEstimateMaxUsageResponse, lifecycle_policy, path=["response"])
+        snapshot_schedule = response.parse()
+        assert_matches_type(SnapshotScheduleEstimateMaxUsageResponse, snapshot_schedule, path=["response"])
 
     @parametrize
     def test_streaming_response_estimate_max_usage(self, client: Gcore) -> None:
-        with client.cloud.lifecycle_policies.with_streaming_response.estimate_max_usage(
+        with client.cloud.snapshot_schedules.with_streaming_response.estimate_max_usage(
             project_id=1,
             region_id=1,
             action="volume_snapshot",
@@ -359,23 +359,23 @@ class TestLifecyclePolicies:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            lifecycle_policy = response.parse()
-            assert_matches_type(LifecyclePolicyEstimateMaxUsageResponse, lifecycle_policy, path=["response"])
+            snapshot_schedule = response.parse()
+            assert_matches_type(SnapshotScheduleEstimateMaxUsageResponse, snapshot_schedule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_get(self, client: Gcore) -> None:
-        lifecycle_policy = client.cloud.lifecycle_policies.get(
+        snapshot_schedule = client.cloud.snapshot_schedules.get(
             policy_id=1,
             project_id=1,
             region_id=1,
         )
-        assert_matches_type(LifecyclePolicy, lifecycle_policy, path=["response"])
+        assert_matches_type(LifecyclePolicy, snapshot_schedule, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Gcore) -> None:
-        response = client.cloud.lifecycle_policies.with_raw_response.get(
+        response = client.cloud.snapshot_schedules.with_raw_response.get(
             policy_id=1,
             project_id=1,
             region_id=1,
@@ -383,12 +383,12 @@ class TestLifecyclePolicies:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        lifecycle_policy = response.parse()
-        assert_matches_type(LifecyclePolicy, lifecycle_policy, path=["response"])
+        snapshot_schedule = response.parse()
+        assert_matches_type(LifecyclePolicy, snapshot_schedule, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Gcore) -> None:
-        with client.cloud.lifecycle_policies.with_streaming_response.get(
+        with client.cloud.snapshot_schedules.with_streaming_response.get(
             policy_id=1,
             project_id=1,
             region_id=1,
@@ -396,24 +396,24 @@ class TestLifecyclePolicies:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            lifecycle_policy = response.parse()
-            assert_matches_type(LifecyclePolicy, lifecycle_policy, path=["response"])
+            snapshot_schedule = response.parse()
+            assert_matches_type(LifecyclePolicy, snapshot_schedule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_remove_schedules(self, client: Gcore) -> None:
-        lifecycle_policy = client.cloud.lifecycle_policies.remove_schedules(
+        snapshot_schedule = client.cloud.snapshot_schedules.remove_schedules(
             policy_id=1,
             project_id=1,
             region_id=1,
             schedule_ids=["1488e2ce-f906-47fb-ba32-c25a3f63df4f"],
         )
-        assert_matches_type(LifecyclePolicy, lifecycle_policy, path=["response"])
+        assert_matches_type(LifecyclePolicy, snapshot_schedule, path=["response"])
 
     @parametrize
     def test_raw_response_remove_schedules(self, client: Gcore) -> None:
-        response = client.cloud.lifecycle_policies.with_raw_response.remove_schedules(
+        response = client.cloud.snapshot_schedules.with_raw_response.remove_schedules(
             policy_id=1,
             project_id=1,
             region_id=1,
@@ -422,12 +422,12 @@ class TestLifecyclePolicies:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        lifecycle_policy = response.parse()
-        assert_matches_type(LifecyclePolicy, lifecycle_policy, path=["response"])
+        snapshot_schedule = response.parse()
+        assert_matches_type(LifecyclePolicy, snapshot_schedule, path=["response"])
 
     @parametrize
     def test_streaming_response_remove_schedules(self, client: Gcore) -> None:
-        with client.cloud.lifecycle_policies.with_streaming_response.remove_schedules(
+        with client.cloud.snapshot_schedules.with_streaming_response.remove_schedules(
             policy_id=1,
             project_id=1,
             region_id=1,
@@ -436,24 +436,24 @@ class TestLifecyclePolicies:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            lifecycle_policy = response.parse()
-            assert_matches_type(LifecyclePolicy, lifecycle_policy, path=["response"])
+            snapshot_schedule = response.parse()
+            assert_matches_type(LifecyclePolicy, snapshot_schedule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_remove_volumes(self, client: Gcore) -> None:
-        lifecycle_policy = client.cloud.lifecycle_policies.remove_volumes(
+        snapshot_schedule = client.cloud.snapshot_schedules.remove_volumes(
             policy_id=1,
             project_id=1,
             region_id=1,
             volume_ids=["1488e2ce-f906-47fb-ba32-c25a3f63df4f"],
         )
-        assert_matches_type(LifecyclePolicy, lifecycle_policy, path=["response"])
+        assert_matches_type(LifecyclePolicy, snapshot_schedule, path=["response"])
 
     @parametrize
     def test_raw_response_remove_volumes(self, client: Gcore) -> None:
-        response = client.cloud.lifecycle_policies.with_raw_response.remove_volumes(
+        response = client.cloud.snapshot_schedules.with_raw_response.remove_volumes(
             policy_id=1,
             project_id=1,
             region_id=1,
@@ -462,12 +462,12 @@ class TestLifecyclePolicies:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        lifecycle_policy = response.parse()
-        assert_matches_type(LifecyclePolicy, lifecycle_policy, path=["response"])
+        snapshot_schedule = response.parse()
+        assert_matches_type(LifecyclePolicy, snapshot_schedule, path=["response"])
 
     @parametrize
     def test_streaming_response_remove_volumes(self, client: Gcore) -> None:
-        with client.cloud.lifecycle_policies.with_streaming_response.remove_volumes(
+        with client.cloud.snapshot_schedules.with_streaming_response.remove_volumes(
             policy_id=1,
             project_id=1,
             region_id=1,
@@ -476,30 +476,30 @@ class TestLifecyclePolicies:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            lifecycle_policy = response.parse()
-            assert_matches_type(LifecyclePolicy, lifecycle_policy, path=["response"])
+            snapshot_schedule = response.parse()
+            assert_matches_type(LifecyclePolicy, snapshot_schedule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
 
-class TestAsyncLifecyclePolicies:
+class TestAsyncSnapshotSchedules:
     parametrize = pytest.mark.parametrize(
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
     @parametrize
     async def test_method_create(self, async_client: AsyncGcore) -> None:
-        lifecycle_policy = await async_client.cloud.lifecycle_policies.create(
+        snapshot_schedule = await async_client.cloud.snapshot_schedules.create(
             project_id=1,
             region_id=1,
             action="volume_snapshot",
             name="schedule_1",
         )
-        assert_matches_type(LifecyclePolicy, lifecycle_policy, path=["response"])
+        assert_matches_type(LifecyclePolicy, snapshot_schedule, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
-        lifecycle_policy = await async_client.cloud.lifecycle_policies.create(
+        snapshot_schedule = await async_client.cloud.snapshot_schedules.create(
             project_id=1,
             region_id=1,
             action="volume_snapshot",
@@ -527,11 +527,11 @@ class TestAsyncLifecyclePolicies:
             status="active",
             volume_ids=["3ed9e2ce-f906-47fb-ba32-c25a3f63df4f"],
         )
-        assert_matches_type(LifecyclePolicy, lifecycle_policy, path=["response"])
+        assert_matches_type(LifecyclePolicy, snapshot_schedule, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.lifecycle_policies.with_raw_response.create(
+        response = await async_client.cloud.snapshot_schedules.with_raw_response.create(
             project_id=1,
             region_id=1,
             action="volume_snapshot",
@@ -540,12 +540,12 @@ class TestAsyncLifecyclePolicies:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        lifecycle_policy = await response.parse()
-        assert_matches_type(LifecyclePolicy, lifecycle_policy, path=["response"])
+        snapshot_schedule = await response.parse()
+        assert_matches_type(LifecyclePolicy, snapshot_schedule, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.lifecycle_policies.with_streaming_response.create(
+        async with async_client.cloud.snapshot_schedules.with_streaming_response.create(
             project_id=1,
             region_id=1,
             action="volume_snapshot",
@@ -554,34 +554,34 @@ class TestAsyncLifecyclePolicies:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            lifecycle_policy = await response.parse()
-            assert_matches_type(LifecyclePolicy, lifecycle_policy, path=["response"])
+            snapshot_schedule = await response.parse()
+            assert_matches_type(LifecyclePolicy, snapshot_schedule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_update(self, async_client: AsyncGcore) -> None:
-        lifecycle_policy = await async_client.cloud.lifecycle_policies.update(
+        snapshot_schedule = await async_client.cloud.snapshot_schedules.update(
             policy_id=1,
             project_id=1,
             region_id=1,
         )
-        assert_matches_type(LifecyclePolicy, lifecycle_policy, path=["response"])
+        assert_matches_type(LifecyclePolicy, snapshot_schedule, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncGcore) -> None:
-        lifecycle_policy = await async_client.cloud.lifecycle_policies.update(
+        snapshot_schedule = await async_client.cloud.snapshot_schedules.update(
             policy_id=1,
             project_id=1,
             region_id=1,
             name="schedule_1",
             status="paused",
         )
-        assert_matches_type(LifecyclePolicy, lifecycle_policy, path=["response"])
+        assert_matches_type(LifecyclePolicy, snapshot_schedule, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.lifecycle_policies.with_raw_response.update(
+        response = await async_client.cloud.snapshot_schedules.with_raw_response.update(
             policy_id=1,
             project_id=1,
             region_id=1,
@@ -589,12 +589,12 @@ class TestAsyncLifecyclePolicies:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        lifecycle_policy = await response.parse()
-        assert_matches_type(LifecyclePolicy, lifecycle_policy, path=["response"])
+        snapshot_schedule = await response.parse()
+        assert_matches_type(LifecyclePolicy, snapshot_schedule, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.lifecycle_policies.with_streaming_response.update(
+        async with async_client.cloud.snapshot_schedules.with_streaming_response.update(
             policy_id=1,
             project_id=1,
             region_id=1,
@@ -602,57 +602,57 @@ class TestAsyncLifecyclePolicies:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            lifecycle_policy = await response.parse()
-            assert_matches_type(LifecyclePolicy, lifecycle_policy, path=["response"])
+            snapshot_schedule = await response.parse()
+            assert_matches_type(LifecyclePolicy, snapshot_schedule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
-        lifecycle_policy = await async_client.cloud.lifecycle_policies.list(
+        snapshot_schedule = await async_client.cloud.snapshot_schedules.list(
             project_id=1,
             region_id=1,
         )
-        assert_matches_type(LifecyclePolicyListResponse, lifecycle_policy, path=["response"])
+        assert_matches_type(SnapshotScheduleListResponse, snapshot_schedule, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.lifecycle_policies.with_raw_response.list(
+        response = await async_client.cloud.snapshot_schedules.with_raw_response.list(
             project_id=1,
             region_id=1,
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        lifecycle_policy = await response.parse()
-        assert_matches_type(LifecyclePolicyListResponse, lifecycle_policy, path=["response"])
+        snapshot_schedule = await response.parse()
+        assert_matches_type(SnapshotScheduleListResponse, snapshot_schedule, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.lifecycle_policies.with_streaming_response.list(
+        async with async_client.cloud.snapshot_schedules.with_streaming_response.list(
             project_id=1,
             region_id=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            lifecycle_policy = await response.parse()
-            assert_matches_type(LifecyclePolicyListResponse, lifecycle_policy, path=["response"])
+            snapshot_schedule = await response.parse()
+            assert_matches_type(SnapshotScheduleListResponse, snapshot_schedule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncGcore) -> None:
-        lifecycle_policy = await async_client.cloud.lifecycle_policies.delete(
+        snapshot_schedule = await async_client.cloud.snapshot_schedules.delete(
             policy_id=1,
             project_id=1,
             region_id=1,
         )
-        assert lifecycle_policy is None
+        assert snapshot_schedule is None
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.lifecycle_policies.with_raw_response.delete(
+        response = await async_client.cloud.snapshot_schedules.with_raw_response.delete(
             policy_id=1,
             project_id=1,
             region_id=1,
@@ -660,12 +660,12 @@ class TestAsyncLifecyclePolicies:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        lifecycle_policy = await response.parse()
-        assert lifecycle_policy is None
+        snapshot_schedule = await response.parse()
+        assert snapshot_schedule is None
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.lifecycle_policies.with_streaming_response.delete(
+        async with async_client.cloud.snapshot_schedules.with_streaming_response.delete(
             policy_id=1,
             project_id=1,
             region_id=1,
@@ -673,24 +673,24 @@ class TestAsyncLifecyclePolicies:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            lifecycle_policy = await response.parse()
-            assert lifecycle_policy is None
+            snapshot_schedule = await response.parse()
+            assert snapshot_schedule is None
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_add_schedules(self, async_client: AsyncGcore) -> None:
-        lifecycle_policy = await async_client.cloud.lifecycle_policies.add_schedules(
+        snapshot_schedule = await async_client.cloud.snapshot_schedules.add_schedules(
             policy_id=1,
             project_id=1,
             region_id=1,
             schedules=[{"type": "cron"}, {"type": "interval"}],
         )
-        assert_matches_type(LifecyclePolicy, lifecycle_policy, path=["response"])
+        assert_matches_type(LifecyclePolicy, snapshot_schedule, path=["response"])
 
     @parametrize
     async def test_raw_response_add_schedules(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.lifecycle_policies.with_raw_response.add_schedules(
+        response = await async_client.cloud.snapshot_schedules.with_raw_response.add_schedules(
             policy_id=1,
             project_id=1,
             region_id=1,
@@ -699,12 +699,12 @@ class TestAsyncLifecyclePolicies:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        lifecycle_policy = await response.parse()
-        assert_matches_type(LifecyclePolicy, lifecycle_policy, path=["response"])
+        snapshot_schedule = await response.parse()
+        assert_matches_type(LifecyclePolicy, snapshot_schedule, path=["response"])
 
     @parametrize
     async def test_streaming_response_add_schedules(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.lifecycle_policies.with_streaming_response.add_schedules(
+        async with async_client.cloud.snapshot_schedules.with_streaming_response.add_schedules(
             policy_id=1,
             project_id=1,
             region_id=1,
@@ -713,24 +713,24 @@ class TestAsyncLifecyclePolicies:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            lifecycle_policy = await response.parse()
-            assert_matches_type(LifecyclePolicy, lifecycle_policy, path=["response"])
+            snapshot_schedule = await response.parse()
+            assert_matches_type(LifecyclePolicy, snapshot_schedule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_add_volumes(self, async_client: AsyncGcore) -> None:
-        lifecycle_policy = await async_client.cloud.lifecycle_policies.add_volumes(
+        snapshot_schedule = await async_client.cloud.snapshot_schedules.add_volumes(
             policy_id=1,
             project_id=1,
             region_id=1,
             volume_ids=["1488e2ce-f906-47fb-ba32-c25a3f63df4f"],
         )
-        assert_matches_type(LifecyclePolicy, lifecycle_policy, path=["response"])
+        assert_matches_type(LifecyclePolicy, snapshot_schedule, path=["response"])
 
     @parametrize
     async def test_raw_response_add_volumes(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.lifecycle_policies.with_raw_response.add_volumes(
+        response = await async_client.cloud.snapshot_schedules.with_raw_response.add_volumes(
             policy_id=1,
             project_id=1,
             region_id=1,
@@ -739,12 +739,12 @@ class TestAsyncLifecyclePolicies:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        lifecycle_policy = await response.parse()
-        assert_matches_type(LifecyclePolicy, lifecycle_policy, path=["response"])
+        snapshot_schedule = await response.parse()
+        assert_matches_type(LifecyclePolicy, snapshot_schedule, path=["response"])
 
     @parametrize
     async def test_streaming_response_add_volumes(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.lifecycle_policies.with_streaming_response.add_volumes(
+        async with async_client.cloud.snapshot_schedules.with_streaming_response.add_volumes(
             policy_id=1,
             project_id=1,
             region_id=1,
@@ -753,24 +753,24 @@ class TestAsyncLifecyclePolicies:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            lifecycle_policy = await response.parse()
-            assert_matches_type(LifecyclePolicy, lifecycle_policy, path=["response"])
+            snapshot_schedule = await response.parse()
+            assert_matches_type(LifecyclePolicy, snapshot_schedule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_estimate_max_usage(self, async_client: AsyncGcore) -> None:
-        lifecycle_policy = await async_client.cloud.lifecycle_policies.estimate_max_usage(
+        snapshot_schedule = await async_client.cloud.snapshot_schedules.estimate_max_usage(
             project_id=1,
             region_id=1,
             action="volume_snapshot",
             name="schedule_1",
         )
-        assert_matches_type(LifecyclePolicyEstimateMaxUsageResponse, lifecycle_policy, path=["response"])
+        assert_matches_type(SnapshotScheduleEstimateMaxUsageResponse, snapshot_schedule, path=["response"])
 
     @parametrize
     async def test_method_estimate_max_usage_with_all_params(self, async_client: AsyncGcore) -> None:
-        lifecycle_policy = await async_client.cloud.lifecycle_policies.estimate_max_usage(
+        snapshot_schedule = await async_client.cloud.snapshot_schedules.estimate_max_usage(
             project_id=1,
             region_id=1,
             action="volume_snapshot",
@@ -798,11 +798,11 @@ class TestAsyncLifecyclePolicies:
             status="active",
             volume_ids=["3ed9e2ce-f906-47fb-ba32-c25a3f63df4f"],
         )
-        assert_matches_type(LifecyclePolicyEstimateMaxUsageResponse, lifecycle_policy, path=["response"])
+        assert_matches_type(SnapshotScheduleEstimateMaxUsageResponse, snapshot_schedule, path=["response"])
 
     @parametrize
     async def test_raw_response_estimate_max_usage(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.lifecycle_policies.with_raw_response.estimate_max_usage(
+        response = await async_client.cloud.snapshot_schedules.with_raw_response.estimate_max_usage(
             project_id=1,
             region_id=1,
             action="volume_snapshot",
@@ -811,12 +811,12 @@ class TestAsyncLifecyclePolicies:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        lifecycle_policy = await response.parse()
-        assert_matches_type(LifecyclePolicyEstimateMaxUsageResponse, lifecycle_policy, path=["response"])
+        snapshot_schedule = await response.parse()
+        assert_matches_type(SnapshotScheduleEstimateMaxUsageResponse, snapshot_schedule, path=["response"])
 
     @parametrize
     async def test_streaming_response_estimate_max_usage(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.lifecycle_policies.with_streaming_response.estimate_max_usage(
+        async with async_client.cloud.snapshot_schedules.with_streaming_response.estimate_max_usage(
             project_id=1,
             region_id=1,
             action="volume_snapshot",
@@ -825,23 +825,23 @@ class TestAsyncLifecyclePolicies:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            lifecycle_policy = await response.parse()
-            assert_matches_type(LifecyclePolicyEstimateMaxUsageResponse, lifecycle_policy, path=["response"])
+            snapshot_schedule = await response.parse()
+            assert_matches_type(SnapshotScheduleEstimateMaxUsageResponse, snapshot_schedule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_get(self, async_client: AsyncGcore) -> None:
-        lifecycle_policy = await async_client.cloud.lifecycle_policies.get(
+        snapshot_schedule = await async_client.cloud.snapshot_schedules.get(
             policy_id=1,
             project_id=1,
             region_id=1,
         )
-        assert_matches_type(LifecyclePolicy, lifecycle_policy, path=["response"])
+        assert_matches_type(LifecyclePolicy, snapshot_schedule, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.lifecycle_policies.with_raw_response.get(
+        response = await async_client.cloud.snapshot_schedules.with_raw_response.get(
             policy_id=1,
             project_id=1,
             region_id=1,
@@ -849,12 +849,12 @@ class TestAsyncLifecyclePolicies:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        lifecycle_policy = await response.parse()
-        assert_matches_type(LifecyclePolicy, lifecycle_policy, path=["response"])
+        snapshot_schedule = await response.parse()
+        assert_matches_type(LifecyclePolicy, snapshot_schedule, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.lifecycle_policies.with_streaming_response.get(
+        async with async_client.cloud.snapshot_schedules.with_streaming_response.get(
             policy_id=1,
             project_id=1,
             region_id=1,
@@ -862,24 +862,24 @@ class TestAsyncLifecyclePolicies:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            lifecycle_policy = await response.parse()
-            assert_matches_type(LifecyclePolicy, lifecycle_policy, path=["response"])
+            snapshot_schedule = await response.parse()
+            assert_matches_type(LifecyclePolicy, snapshot_schedule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_remove_schedules(self, async_client: AsyncGcore) -> None:
-        lifecycle_policy = await async_client.cloud.lifecycle_policies.remove_schedules(
+        snapshot_schedule = await async_client.cloud.snapshot_schedules.remove_schedules(
             policy_id=1,
             project_id=1,
             region_id=1,
             schedule_ids=["1488e2ce-f906-47fb-ba32-c25a3f63df4f"],
         )
-        assert_matches_type(LifecyclePolicy, lifecycle_policy, path=["response"])
+        assert_matches_type(LifecyclePolicy, snapshot_schedule, path=["response"])
 
     @parametrize
     async def test_raw_response_remove_schedules(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.lifecycle_policies.with_raw_response.remove_schedules(
+        response = await async_client.cloud.snapshot_schedules.with_raw_response.remove_schedules(
             policy_id=1,
             project_id=1,
             region_id=1,
@@ -888,12 +888,12 @@ class TestAsyncLifecyclePolicies:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        lifecycle_policy = await response.parse()
-        assert_matches_type(LifecyclePolicy, lifecycle_policy, path=["response"])
+        snapshot_schedule = await response.parse()
+        assert_matches_type(LifecyclePolicy, snapshot_schedule, path=["response"])
 
     @parametrize
     async def test_streaming_response_remove_schedules(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.lifecycle_policies.with_streaming_response.remove_schedules(
+        async with async_client.cloud.snapshot_schedules.with_streaming_response.remove_schedules(
             policy_id=1,
             project_id=1,
             region_id=1,
@@ -902,24 +902,24 @@ class TestAsyncLifecyclePolicies:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            lifecycle_policy = await response.parse()
-            assert_matches_type(LifecyclePolicy, lifecycle_policy, path=["response"])
+            snapshot_schedule = await response.parse()
+            assert_matches_type(LifecyclePolicy, snapshot_schedule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_remove_volumes(self, async_client: AsyncGcore) -> None:
-        lifecycle_policy = await async_client.cloud.lifecycle_policies.remove_volumes(
+        snapshot_schedule = await async_client.cloud.snapshot_schedules.remove_volumes(
             policy_id=1,
             project_id=1,
             region_id=1,
             volume_ids=["1488e2ce-f906-47fb-ba32-c25a3f63df4f"],
         )
-        assert_matches_type(LifecyclePolicy, lifecycle_policy, path=["response"])
+        assert_matches_type(LifecyclePolicy, snapshot_schedule, path=["response"])
 
     @parametrize
     async def test_raw_response_remove_volumes(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.lifecycle_policies.with_raw_response.remove_volumes(
+        response = await async_client.cloud.snapshot_schedules.with_raw_response.remove_volumes(
             policy_id=1,
             project_id=1,
             region_id=1,
@@ -928,12 +928,12 @@ class TestAsyncLifecyclePolicies:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        lifecycle_policy = await response.parse()
-        assert_matches_type(LifecyclePolicy, lifecycle_policy, path=["response"])
+        snapshot_schedule = await response.parse()
+        assert_matches_type(LifecyclePolicy, snapshot_schedule, path=["response"])
 
     @parametrize
     async def test_streaming_response_remove_volumes(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.lifecycle_policies.with_streaming_response.remove_volumes(
+        async with async_client.cloud.snapshot_schedules.with_streaming_response.remove_volumes(
             policy_id=1,
             project_id=1,
             region_id=1,
@@ -942,7 +942,7 @@ class TestAsyncLifecyclePolicies:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            lifecycle_policy = await response.parse()
-            assert_matches_type(LifecyclePolicy, lifecycle_policy, path=["response"])
+            snapshot_schedule = await response.parse()
+            assert_matches_type(LifecyclePolicy, snapshot_schedule, path=["response"])
 
         assert cast(Any, response.is_closed) is True

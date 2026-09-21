@@ -6,10 +6,10 @@ from typing_extensions import Required, TypedDict
 
 from ..._types import SequenceNotStr
 
-__all__ = ["LifecyclePolicyRemoveVolumesParams"]
+__all__ = ["SnapshotScheduleRemoveVolumesParams"]
 
 
-class LifecyclePolicyRemoveVolumesParams(TypedDict, total=False):
+class SnapshotScheduleRemoveVolumesParams(TypedDict, total=False):
     project_id: int
     """Project ID"""
 

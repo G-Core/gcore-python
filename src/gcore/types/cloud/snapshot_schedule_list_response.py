@@ -5,10 +5,10 @@ from typing import List
 from ..._models import BaseModel
 from .lifecycle_policy import LifecyclePolicy
 
-__all__ = ["LifecyclePolicyListResponse"]
+__all__ = ["SnapshotScheduleListResponse"]
 
 
-class LifecyclePolicyListResponse(BaseModel):
+class SnapshotScheduleListResponse(BaseModel):
     count: int
     """Number of objects"""
 

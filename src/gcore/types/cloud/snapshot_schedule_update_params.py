@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Literal, TypedDict
 
-__all__ = ["LifecyclePolicyUpdateParams"]
+__all__ = ["SnapshotScheduleUpdateParams"]
 
 
-class LifecyclePolicyUpdateParams(TypedDict, total=False):
+class SnapshotScheduleUpdateParams(TypedDict, total=False):
     project_id: int
     """Project ID"""
 
