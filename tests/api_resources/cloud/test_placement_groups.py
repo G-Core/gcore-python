@@ -23,7 +23,7 @@ class TestPlacementGroups:
         placement_group = client.cloud.placement_groups.create(
             project_id=1,
             region_id=1,
-            name="my-server-group",
+            name="my-placement-group",
             policy="anti-affinity",
         )
         assert_matches_type(PlacementGroup, placement_group, path=["response"])
@@ -33,7 +33,7 @@ class TestPlacementGroups:
         response = client.cloud.placement_groups.with_raw_response.create(
             project_id=1,
             region_id=1,
-            name="my-server-group",
+            name="my-placement-group",
             policy="anti-affinity",
         )
 
@@ -47,7 +47,7 @@ class TestPlacementGroups:
         with client.cloud.placement_groups.with_streaming_response.create(
             project_id=1,
             region_id=1,
-            name="my-server-group",
+            name="my-placement-group",
             policy="anti-affinity",
         ) as response:
             assert not response.is_closed
@@ -205,7 +205,7 @@ class TestAsyncPlacementGroups:
         placement_group = await async_client.cloud.placement_groups.create(
             project_id=1,
             region_id=1,
-            name="my-server-group",
+            name="my-placement-group",
             policy="anti-affinity",
         )
         assert_matches_type(PlacementGroup, placement_group, path=["response"])
@@ -215,7 +215,7 @@ class TestAsyncPlacementGroups:
         response = await async_client.cloud.placement_groups.with_raw_response.create(
             project_id=1,
             region_id=1,
-            name="my-server-group",
+            name="my-placement-group",
             policy="anti-affinity",
         )
 
@@ -229,7 +229,7 @@ class TestAsyncPlacementGroups:
         async with async_client.cloud.placement_groups.with_streaming_response.create(
             project_id=1,
             region_id=1,
-            name="my-server-group",
+            name="my-placement-group",
             policy="anti-affinity",
         ) as response:
             assert not response.is_closed

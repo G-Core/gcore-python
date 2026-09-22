@@ -383,9 +383,9 @@ class DomainsResource(SyncAPIResource):
         """
         Retrieve all rule sets linked to a particular domain, each with its policies
         embedded. Deprecated. Will become unavailable after Sun, 13 Dec 2026. Use
-        [GET /v2/domains/{`domain_id`}/rule-sets](#operation/`list_policy_rule_sets_v2_domains__domain_id__rule_sets_get`)
+        [List domain policy rule sets (V2)](#operation/`list_policy_rule_sets_v2_domains__domain_id__rule_sets_get`)
         for the rule sets and
-        [GET /v2/domains/{`domain_id`}/policies](#operation/`list_domain_policies_v2_domains__domain_id__policies_get`)
+        [List domain policies (V2)](#operation/`list_domain_policies_v2_domains__domain_id__policies_get`)
         for their policies instead
 
         Args:
@@ -675,9 +675,9 @@ class AsyncDomainsResource(AsyncAPIResource):
         """
         Retrieve all rule sets linked to a particular domain, each with its policies
         embedded. Deprecated. Will become unavailable after Sun, 13 Dec 2026. Use
-        [GET /v2/domains/{`domain_id`}/rule-sets](#operation/`list_policy_rule_sets_v2_domains__domain_id__rule_sets_get`)
+        [List domain policy rule sets (V2)](#operation/`list_policy_rule_sets_v2_domains__domain_id__rule_sets_get`)
         for the rule sets and
-        [GET /v2/domains/{`domain_id`}/policies](#operation/`list_domain_policies_v2_domains__domain_id__policies_get`)
+        [List domain policies (V2)](#operation/`list_domain_policies_v2_domains__domain_id__policies_get`)
         for their policies instead
 
         Args:

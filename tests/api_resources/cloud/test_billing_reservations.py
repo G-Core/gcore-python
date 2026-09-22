@@ -20,24 +20,29 @@ class TestBillingReservations:
 
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
-        billing_reservation = client.cloud.billing_reservations.list()
-        assert_matches_type(BillingReservations, billing_reservation, path=["response"])
-
-    @parametrize
-    def test_method_list_with_all_params(self, client: Gcore) -> None:
         billing_reservation = client.cloud.billing_reservations.list(
-            metric_name="metric_name",
-            order_by="active_from.asc",
-            region_id=0,
-            show_inactive=True,
             time_from=parse_datetime("2025-01-01T00:00:00Z"),
             time_to=parse_datetime("2025-02-01T00:00:00Z"),
         )
         assert_matches_type(BillingReservations, billing_reservation, path=["response"])
 
     @parametrize
+    def test_method_list_with_all_params(self, client: Gcore) -> None:
+        billing_reservation = client.cloud.billing_reservations.list(
+            time_from=parse_datetime("2025-01-01T00:00:00Z"),
+            time_to=parse_datetime("2025-02-01T00:00:00Z"),
+            metric_name="metric_name",
+            order_by="active_from.asc",
+            region_id=0,
+        )
+        assert_matches_type(BillingReservations, billing_reservation, path=["response"])
+
+    @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
-        response = client.cloud.billing_reservations.with_raw_response.list()
+        response = client.cloud.billing_reservations.with_raw_response.list(
+            time_from=parse_datetime("2025-01-01T00:00:00Z"),
+            time_to=parse_datetime("2025-02-01T00:00:00Z"),
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -46,7 +51,10 @@ class TestBillingReservations:
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
-        with client.cloud.billing_reservations.with_streaming_response.list() as response:
+        with client.cloud.billing_reservations.with_streaming_response.list(
+            time_from=parse_datetime("2025-01-01T00:00:00Z"),
+            time_to=parse_datetime("2025-02-01T00:00:00Z"),
+        ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -63,24 +71,29 @@ class TestAsyncBillingReservations:
 
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
-        billing_reservation = await async_client.cloud.billing_reservations.list()
-        assert_matches_type(BillingReservations, billing_reservation, path=["response"])
-
-    @parametrize
-    async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
         billing_reservation = await async_client.cloud.billing_reservations.list(
-            metric_name="metric_name",
-            order_by="active_from.asc",
-            region_id=0,
-            show_inactive=True,
             time_from=parse_datetime("2025-01-01T00:00:00Z"),
             time_to=parse_datetime("2025-02-01T00:00:00Z"),
         )
         assert_matches_type(BillingReservations, billing_reservation, path=["response"])
 
     @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
+        billing_reservation = await async_client.cloud.billing_reservations.list(
+            time_from=parse_datetime("2025-01-01T00:00:00Z"),
+            time_to=parse_datetime("2025-02-01T00:00:00Z"),
+            metric_name="metric_name",
+            order_by="active_from.asc",
+            region_id=0,
+        )
+        assert_matches_type(BillingReservations, billing_reservation, path=["response"])
+
+    @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.billing_reservations.with_raw_response.list()
+        response = await async_client.cloud.billing_reservations.with_raw_response.list(
+            time_from=parse_datetime("2025-01-01T00:00:00Z"),
+            time_to=parse_datetime("2025-02-01T00:00:00Z"),
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -89,7 +102,10 @@ class TestAsyncBillingReservations:
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.billing_reservations.with_streaming_response.list() as response:
+        async with async_client.cloud.billing_reservations.with_streaming_response.list(
+            time_from=parse_datetime("2025-01-01T00:00:00Z"),
+            time_to=parse_datetime("2025-02-01T00:00:00Z"),
+        ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 

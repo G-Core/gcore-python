@@ -755,10 +755,10 @@ class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
-        """Add an instance to a server group.
+        """Add an instance to a placement group.
 
-        The instance must not already be in a server
-        group. Bare metal servers do not support server groups.
+        The instance must not already be in a
+        placement group. Bare metal servers do not support placement groups.
 
         Args:
           project_id: Project ID
@@ -767,7 +767,7 @@ class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
 
           instance_id: Instance ID
 
-          servergroup_id: Anti-affinity or affinity or soft-anti-affinity server group ID.
+          servergroup_id: Anti-affinity or affinity or soft-anti-affinity placement group ID.
 
           extra_headers: Send extra headers
 
@@ -1108,10 +1108,11 @@ class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
-        """Remove an instance from its current server group.
+        """Remove an instance from its current placement group.
 
         The instance must be in a
-        server group to be removed. Bare metal servers do not support server groups.
+        placement group to be removed. Bare metal servers do not support placement
+        groups.
 
         Args:
           project_id: Project ID
@@ -1949,10 +1950,10 @@ class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
-        """Add an instance to a server group.
+        """Add an instance to a placement group.
 
-        The instance must not already be in a server
-        group. Bare metal servers do not support server groups.
+        The instance must not already be in a
+        placement group. Bare metal servers do not support placement groups.
 
         Args:
           project_id: Project ID
@@ -1961,7 +1962,7 @@ class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource
 
           instance_id: Instance ID
 
-          servergroup_id: Anti-affinity or affinity or soft-anti-affinity server group ID.
+          servergroup_id: Anti-affinity or affinity or soft-anti-affinity placement group ID.
 
           extra_headers: Send extra headers
 
@@ -2302,10 +2303,11 @@ class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
-        """Remove an instance from its current server group.
+        """Remove an instance from its current placement group.
 
         The instance must be in a
-        server group to be removed. Bare metal servers do not support server groups.
+        placement group to be removed. Bare metal servers do not support placement
+        groups.
 
         Args:
           project_id: Project ID

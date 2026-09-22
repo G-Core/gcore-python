@@ -15,7 +15,7 @@ class PlacementGroupCreateParams(TypedDict, total=False):
     """Region ID"""
 
     name: Required[str]
-    """The name of the server group."""
+    """The name of the placement group."""
 
     policy: Required[Literal["affinity", "anti-affinity", "soft-anti-affinity"]]
-    """The server group policy."""
+    """The placement group policy."""

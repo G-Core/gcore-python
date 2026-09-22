@@ -71,9 +71,9 @@ class PlacementGroupsResource(SyncAPIResource):
 
           region_id: Region ID
 
-          name: The name of the server group.
+          name: The name of the placement group.
 
-          policy: The server group policy.
+          policy: The placement group policy.
 
           extra_headers: Send extra headers
 
@@ -185,7 +185,7 @@ class PlacementGroupsResource(SyncAPIResource):
 
           region_id: Region ID
 
-          group_id: The ID of the server group.
+          group_id: The ID of the placement group.
 
           extra_headers: Send extra headers
 
@@ -235,7 +235,7 @@ class PlacementGroupsResource(SyncAPIResource):
 
           region_id: Region ID
 
-          group_id: The ID of the server group.
+          group_id: The ID of the placement group.
 
           extra_headers: Send extra headers
 
@@ -311,9 +311,9 @@ class AsyncPlacementGroupsResource(AsyncAPIResource):
 
           region_id: Region ID
 
-          name: The name of the server group.
+          name: The name of the placement group.
 
-          policy: The server group policy.
+          policy: The placement group policy.
 
           extra_headers: Send extra headers
 
@@ -425,7 +425,7 @@ class AsyncPlacementGroupsResource(AsyncAPIResource):
 
           region_id: Region ID
 
-          group_id: The ID of the server group.
+          group_id: The ID of the placement group.
 
           extra_headers: Send extra headers
 
@@ -475,7 +475,7 @@ class AsyncPlacementGroupsResource(AsyncAPIResource):
 
           region_id: Region ID
 
-          group_id: The ID of the server group.
+          group_id: The ID of the placement group.
 
           extra_headers: Send extra headers
 

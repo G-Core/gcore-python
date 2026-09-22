@@ -128,7 +128,7 @@ class PoolsResource(PoolsResourceCustomMixin, SyncAPIResource):
 
           security_group_ids: Security group IDs applied to the cluster pool nodes
 
-          servergroup_policy: Server group policy: anti-affinity, soft-anti-affinity or affinity
+          servergroup_policy: Placement group policy: anti-affinity, soft-anti-affinity or affinity
 
           taints: Taints applied to the cluster pool
 
@@ -440,7 +440,7 @@ class PoolsResource(PoolsResourceCustomMixin, SyncAPIResource):
 
           node_count: Maximum node count
 
-          servergroup_policy: Server group policy: anti-affinity, soft-anti-affinity or affinity
+          servergroup_policy: Placement group policy: anti-affinity, soft-anti-affinity or affinity
 
           extra_headers: Send extra headers
 
@@ -682,7 +682,7 @@ class AsyncPoolsResource(AsyncPoolsResourceCustomMixin, AsyncAPIResource):
 
           security_group_ids: Security group IDs applied to the cluster pool nodes
 
-          servergroup_policy: Server group policy: anti-affinity, soft-anti-affinity or affinity
+          servergroup_policy: Placement group policy: anti-affinity, soft-anti-affinity or affinity
 
           taints: Taints applied to the cluster pool
 
@@ -994,7 +994,7 @@ class AsyncPoolsResource(AsyncPoolsResourceCustomMixin, AsyncAPIResource):
 
           node_count: Maximum node count
 
-          servergroup_policy: Server group policy: anti-affinity, soft-anti-affinity or affinity
+          servergroup_policy: Placement group policy: anti-affinity, soft-anti-affinity or affinity
 
           extra_headers: Send extra headers
 

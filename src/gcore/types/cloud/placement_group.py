@@ -17,13 +17,13 @@ class Instance(BaseModel):
 
 class PlacementGroup(BaseModel):
     instances: List[Instance]
-    """The list of instances in this server group."""
+    """The list of instances in this placement group."""
 
     name: str
-    """The name of the server group."""
+    """The name of the placement group."""
 
     policy: str
-    """The server group policy.
+    """The placement group policy.
 
     Options are: anti-affinity, affinity, or soft-anti-affinity.
     """
@@ -38,4 +38,4 @@ class PlacementGroup(BaseModel):
     """Region ID"""
 
     servergroup_id: str
-    """The ID of the server group."""
+    """The ID of the placement group."""

@@ -108,7 +108,7 @@ class CreatedResources(BaseModel):
     """IDs of created security groups"""
 
     servergroups: Optional[List[str]] = None
-    """IDs of created server groups"""
+    """IDs of created placement groups"""
 
     snapshots: Optional[List[str]] = None
     """IDs of created volume snapshots"""

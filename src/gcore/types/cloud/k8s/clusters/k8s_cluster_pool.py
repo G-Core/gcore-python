@@ -60,10 +60,10 @@ class K8SClusterPool(BaseModel):
     """Taints applied to the cluster pool"""
 
     servergroup_id: Optional[str] = None
-    """Server group ID"""
+    """Placement group ID"""
 
     servergroup_name: Optional[str] = None
-    """Server group name"""
+    """Placement group name"""
 
     servergroup_policy: Optional[str] = None
-    """Anti-affinity, affinity or soft-anti-affinity server group policy"""
+    """Anti-affinity, affinity or soft-anti-affinity placement group policy"""

@@ -304,7 +304,7 @@ class ClustersResource(ClustersResourceCustomMixin, SyncAPIResource):
         servers_count: cluster_list_params.ServersCount | Omit = omit,
         tag_key: cluster_list_params.TagKey | Omit = omit,
         tag_value: cluster_list_params.TagValue | Omit = omit,
-        tags: Dict[str, str] | Omit = omit,
+        tags: Dict[str, SequenceNotStr[str]] | Omit = omit,
         updated_at: cluster_list_params.UpdatedAt | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -349,7 +349,9 @@ class ClustersResource(ClustersResourceCustomMixin, SyncAPIResource):
           tag_value: Filter by tag value regardless of key, e.g. `tag_value[prefix]=prod`.
 
           tags: Filter by exact tag key-value pairs, e.g. `tags[env]=prod&tags[team]=core`.
-              Pairs are ANDed; values match case-insensitively.
+              Repeat a key to match any of several values for it, e.g.
+              `tags[env]=prod&tags[env]=dev`. Values for one key are ORed, different keys are
+              ANDed; values match case-insensitively.
 
           updated_at: Filter by last-change time (UTC), e.g. `updated_at[gte]=2026-06-01T00:00:00Z`.
 
@@ -1300,7 +1302,7 @@ class AsyncClustersResource(AsyncClustersResourceCustomMixin, AsyncAPIResource):
         servers_count: cluster_list_params.ServersCount | Omit = omit,
         tag_key: cluster_list_params.TagKey | Omit = omit,
         tag_value: cluster_list_params.TagValue | Omit = omit,
-        tags: Dict[str, str] | Omit = omit,
+        tags: Dict[str, SequenceNotStr[str]] | Omit = omit,
         updated_at: cluster_list_params.UpdatedAt | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1345,7 +1347,9 @@ class AsyncClustersResource(AsyncClustersResourceCustomMixin, AsyncAPIResource):
           tag_value: Filter by tag value regardless of key, e.g. `tag_value[prefix]=prod`.
 
           tags: Filter by exact tag key-value pairs, e.g. `tags[env]=prod&tags[team]=core`.
-              Pairs are ANDed; values match case-insensitively.
+              Repeat a key to match any of several values for it, e.g.
+              `tags[env]=prod&tags[env]=dev`. Values for one key are ORed, different keys are
+              ANDed; values match case-insensitively.
 
           updated_at: Filter by last-change time (UTC), e.g. `updated_at[gte]=2026-06-01T00:00:00Z`.
 

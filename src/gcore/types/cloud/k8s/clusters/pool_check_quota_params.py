@@ -40,4 +40,4 @@ class PoolCheckQuotaParams(TypedDict, total=False):
     """Maximum node count"""
 
     servergroup_policy: Optional[Literal["affinity", "anti-affinity", "soft-anti-affinity"]]
-    """Server group policy: anti-affinity, soft-anti-affinity or affinity"""
+    """Placement group policy: anti-affinity, soft-anti-affinity or affinity"""

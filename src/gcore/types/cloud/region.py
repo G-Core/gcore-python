@@ -46,7 +46,7 @@ class Region(BaseModel):
     """Endpoint type"""
 
     external_network_id: Optional[str] = None
-    """External network ID for Neutron"""
+    """External network ID"""
 
     file_share_types: Optional[List[Literal["ddn", "standard", "vast"]]] = None
     """List of available file share types"""
@@ -73,13 +73,13 @@ class Region(BaseModel):
     """Region has managed kubernetes capability"""
 
     has_kvm: bool
-    """Region has KVM virtualization capability"""
+    """Region supports virtual machine instances"""
 
     has_sfs: bool
     """Region has SFS capability"""
 
     keystone_id: int
-    """Foreign key to Keystone entity"""
+    """ID of the identity service record"""
 
     keystone_name: str
     """Technical region name"""

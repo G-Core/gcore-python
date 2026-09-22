@@ -182,7 +182,7 @@ class Pool(TypedDict, total=False):
     """Security group IDs applied to the cluster pool nodes"""
 
     servergroup_policy: Optional[Literal["affinity", "anti-affinity", "soft-anti-affinity"]]
-    """Server group policy: anti-affinity, soft-anti-affinity or affinity"""
+    """Placement group policy: anti-affinity, soft-anti-affinity or affinity"""
 
     taints: Optional[Dict[str, str]]
     """Taints applied to the cluster pool"""

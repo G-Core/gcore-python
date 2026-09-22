@@ -15,4 +15,4 @@ class InstanceAddToPlacementGroupParams(TypedDict, total=False):
     """Region ID"""
 
     servergroup_id: Required[str]
-    """Anti-affinity or affinity or soft-anti-affinity server group ID."""
+    """Anti-affinity or affinity or soft-anti-affinity placement group ID."""

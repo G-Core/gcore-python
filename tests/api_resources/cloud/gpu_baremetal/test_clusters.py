@@ -233,7 +233,7 @@ class TestClusters:
                 "prefix": ["string"],
                 "suffix": ["string"],
             },
-            tags={"env": "prod"},
+            tags={"env": ["prod"]},
             updated_at={
                 "gt": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "gte": parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -1114,7 +1114,7 @@ class TestAsyncClusters:
                 "prefix": ["string"],
                 "suffix": ["string"],
             },
-            tags={"env": "prod"},
+            tags={"env": ["prod"]},
             updated_at={
                 "gt": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "gte": parse_datetime("2019-12-27T18:11:19.117Z"),

@@ -153,9 +153,8 @@ class AnalyticsResource(SyncAPIResource):
         Retrieves autocomplete suggestions for specified filter parameter values
         observed within the current client account during the requested time range. Use
         the returned `value` in the filter parameters of an analytics data request
-        ([GET /v1/analytics/requests](/docs/api-reference/waap/analytics/get-request-log-data)
-        and
-        [GET /v1/analytics/traffic-filtered](/docs/api-reference/waap/analytics/get-filtered-traffic-data)).
+        ([Get security events (V2)](#operation/`get_events_v2_analytics_events_get`) and
+        [Get filtered traffic data](#operation/`get_traffic_filtered_v1_analytics_traffic_filtered_get`)).
         `count` reports how many times the value was observed in the requested range.
 
         Args:
@@ -274,7 +273,7 @@ class AnalyticsResource(SyncAPIResource):
 
         The log records every request
         passing through WAAP towards the origin server. Deprecated. Use
-        [GET /v2/analytics/events](/docs/api-reference/waap/analytics/get-security-events)
+        [Get security events (V2)](#operation/`get_events_v2_analytics_events_get`)
         instead.
 
         Args:
@@ -887,9 +886,8 @@ class AsyncAnalyticsResource(AsyncAPIResource):
         Retrieves autocomplete suggestions for specified filter parameter values
         observed within the current client account during the requested time range. Use
         the returned `value` in the filter parameters of an analytics data request
-        ([GET /v1/analytics/requests](/docs/api-reference/waap/analytics/get-request-log-data)
-        and
-        [GET /v1/analytics/traffic-filtered](/docs/api-reference/waap/analytics/get-filtered-traffic-data)).
+        ([Get security events (V2)](#operation/`get_events_v2_analytics_events_get`) and
+        [Get filtered traffic data](#operation/`get_traffic_filtered_v1_analytics_traffic_filtered_get`)).
         `count` reports how many times the value was observed in the requested range.
 
         Args:
@@ -1008,7 +1006,7 @@ class AsyncAnalyticsResource(AsyncAPIResource):
 
         The log records every request
         passing through WAAP towards the origin server. Deprecated. Use
-        [GET /v2/analytics/events](/docs/api-reference/waap/analytics/get-security-events)
+        [Get security events (V2)](#operation/`get_events_v2_analytics_events_get`)
         instead.
 
         Args:

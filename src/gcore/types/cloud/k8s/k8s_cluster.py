@@ -222,7 +222,7 @@ class K8SCluster(BaseModel):
     pools: List[K8SClusterPool]
     """pools"""
 
-    status: Literal["Deleting", "Provisioned", "Provisioning"]
+    status: Literal["Deleting", "Failed", "Pending", "Provisioned", "Provisioning", "Unknown"]
     """Status"""
 
     version: str

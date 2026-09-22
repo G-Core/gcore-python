@@ -55,11 +55,12 @@ class ClusterListParams(TypedDict, total=False):
     tag_value: TagValue
     """Filter by tag value regardless of key, e.g. `tag_value[prefix]=prod`."""
 
-    tags: Dict[str, str]
+    tags: Dict[str, SequenceNotStr[str]]
     """Filter by exact tag key-value pairs, e.g.
 
-    `tags[env]=prod&tags[team]=core`. Pairs are ANDed; values match
-    case-insensitively.
+    `tags[env]=prod&tags[team]=core`. Repeat a key to match any of several values
+    for it, e.g. `tags[env]=prod&tags[env]=dev`. Values for one key are ORed,
+    different keys are ANDed; values match case-insensitively.
     """
 
     updated_at: UpdatedAt
