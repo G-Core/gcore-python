@@ -14,7 +14,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Generate gcore-sdk-bot token
+        id: app-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.GCORE_SDK_BOT_CLIENT_ID }}
+          private-key: ${{ secrets.GCORE_SDK_BOT_PRIVATE_KEY }}
+          owner: G-Core
+          repositories: gcore-python
+          permission-contents: write
+          permission-pull-requests: write
+          permission-workflows: write
+
       - uses: googleapis/release-please-action@5c625bfb5d1ff62eadeeb3772007f7f66fdcf071 # v4.4.1
         id: release
         with:
-          token: ${{ secrets.RELEASE_PLEASE_TOKEN }}
+          token: ${{ steps.app-token.outputs.token }}
