@@ -1,5 +1,44 @@
 # Changelog
 
+## [0.57.0](https://github.com/G-Core/gcore-python/compare/v0.56.0...v0.57.0) (2026-09-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* **cloud:** rename to snapshot schedules
+* **storage:** rename sftp_password and drop it from terraform
+* **waap:** migrate compatible endpoints to v2
+* **cloud:** map the full LB pool member endpoint family
+* **cdn:** add logs uploader field conversions, policy fields v2, and tls_ciphers
+* **fastedge:** update fastedge OpenAPI spec
+
+### Features
+
+* **cdn:** add aliases_limit to account limits response ([12f2279](https://github.com/G-Core/gcore-python/commit/12f2279285ae1abc37649162a3ed84f83426a1ff))
+* **cdn:** add logs uploader field conversions, policy fields v2, and tls_ciphers ([2575be3](https://github.com/G-Core/gcore-python/commit/2575be32bfae7f8af3bcfe13192f2733c6e969e4))
+* **cdn:** add preset and applied preset terraform resource and data source ([b884982](https://github.com/G-Core/gcore-python/commit/b884982efd66a6eff5109d663d6919c56d54a170))
+* **client:** support polling timeout environment variable ([649fdeb](https://github.com/G-Core/gcore-python/commit/649fdeba2f793a3995e1079ade0998b39a899cc1))
+* **cloud:** generate the LB pool member methods for terraform and cli ([0ef437f](https://github.com/G-Core/gcore-python/commit/0ef437ffad4d5bdd974b1740d39d7e52ec72ebcf))
+* **cloud:** map the full LB pool member endpoint family ([d3f218d](https://github.com/G-Core/gcore-python/commit/d3f218d3d90b4573f85df13582adf41d7f035db3))
+* **cloud:** pool member polling helpers and example coverage ([c9e0891](https://github.com/G-Core/gcore-python/commit/c9e089199b355cb89d604dc5275bb5c74a5e8d41))
+* **dns:** add from/to time filters to rrset failover log ([e4546a7](https://github.com/G-Core/gcore-python/commit/e4546a703767b9634069bd6d08db0c18c474c500))
+* **storage:** rename sftp_password and drop it from terraform ([c4ed602](https://github.com/G-Core/gcore-python/commit/c4ed602b0bc1d4e91516108c76c6f07bea92de78))
+* **waap:** migrate compatible endpoints to v2 ([f8cd4ab](https://github.com/G-Core/gcore-python/commit/f8cd4ab9f35792d9054c1dab6d863f742c37667e))
+
+
+### Bug Fixes
+
+* **cloud:** rename to snapshot schedules ([8fe4084](https://github.com/G-Core/gcore-python/commit/8fe4084db95a7a603a4a328bcca2778c28e717ae))
+* **fastedge:** update fastedge OpenAPI spec ([9b9c5d6](https://github.com/G-Core/gcore-python/commit/9b9c5d6058a58c55502739b55e1c00a0fe4de487))
+
+
+### Chores
+
+* **cdn:** update cdn OpenAPI spec ([d69bab5](https://github.com/G-Core/gcore-python/commit/d69bab5483d5024e7d5d0a1bf40662b277340933))
+* **cloud:** update cloud OpenAPI spec ([7f208ba](https://github.com/G-Core/gcore-python/commit/7f208ba66ed4178f5f913479a52770982118b60c))
+* **cloud:** update cloud OpenAPI spec ([f6f1584](https://github.com/G-Core/gcore-python/commit/f6f15841c8cc6b8a12599a4b209b2b290a027574))
+* **cloud:** update cloud OpenAPI spec ([0f07bd6](https://github.com/G-Core/gcore-python/commit/0f07bd6411282dbd1e8b163ef8e6caf2b929c33d))
+
 ## [0.56.0](https://github.com/G-Core/gcore-python/compare/v0.55.0...v0.56.0) (2026-08-31)
 
 
