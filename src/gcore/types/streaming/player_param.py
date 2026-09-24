@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
 __all__ = ["PlayerParam"]
 
@@ -12,9 +12,6 @@ class PlayerParam(TypedDict, total=False):
 
     All parameters may be blank to inherit their values from default Streaming player.
     """
-
-    name: Required[str]
-    """Player name"""
 
     id: int
     """Player ID"""
@@ -84,6 +81,9 @@ class PlayerParam(TypedDict, total=False):
 
     Default is false
     """
+
+    name: str
+    """Player name"""
 
     save_options_to_cookies: bool
     """Enables/Disables saving volume and other options in cookies:

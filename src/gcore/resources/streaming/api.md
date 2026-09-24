@@ -42,7 +42,7 @@ from gcore.types.streaming import Broadcast, BroadcastSpectatorsCount
 
 Methods:
 
-- <code title="post /streaming/broadcasts">client.streaming.broadcasts.<a href="./src/gcore/resources/streaming/broadcasts.py">create</a>(\*\*<a href="src/gcore/types/streaming/broadcast_create_params.py">params</a>) -> None</code>
+- <code title="post /streaming/broadcasts">client.streaming.broadcasts.<a href="./src/gcore/resources/streaming/broadcasts.py">create</a>(\*\*<a href="src/gcore/types/streaming/broadcast_create_params.py">params</a>) -> <a href="./src/gcore/types/streaming/broadcast.py">Broadcast</a></code>
 - <code title="patch /streaming/broadcasts/{broadcast_id}">client.streaming.broadcasts.<a href="./src/gcore/resources/streaming/broadcasts.py">update</a>(broadcast_id, \*\*<a href="src/gcore/types/streaming/broadcast_update_params.py">params</a>) -> <a href="./src/gcore/types/streaming/broadcast.py">Broadcast</a></code>
 - <code title="get /streaming/broadcasts">client.streaming.broadcasts.<a href="./src/gcore/resources/streaming/broadcasts.py">list</a>(\*\*<a href="src/gcore/types/streaming/broadcast_list_params.py">params</a>) -> <a href="./src/gcore/types/streaming/broadcast.py">SyncPageStreaming[Broadcast]</a></code>
 - <code title="delete /streaming/broadcasts/{broadcast_id}">client.streaming.broadcasts.<a href="./src/gcore/resources/streaming/broadcasts.py">delete</a>(broadcast_id) -> None</code>
@@ -81,7 +81,7 @@ from gcore.types.streaming import Player
 
 Methods:
 
-- <code title="post /streaming/players">client.streaming.players.<a href="./src/gcore/resources/streaming/players.py">create</a>(\*\*<a href="src/gcore/types/streaming/player_create_params.py">params</a>) -> None</code>
+- <code title="post /streaming/players">client.streaming.players.<a href="./src/gcore/resources/streaming/players.py">create</a>(\*\*<a href="src/gcore/types/streaming/player_create_params.py">params</a>) -> <a href="./src/gcore/types/streaming/player.py">Player</a></code>
 - <code title="patch /streaming/players/{player_id}">client.streaming.players.<a href="./src/gcore/resources/streaming/players.py">update</a>(player_id, \*\*<a href="src/gcore/types/streaming/player_update_params.py">params</a>) -> <a href="./src/gcore/types/streaming/player.py">Player</a></code>
 - <code title="get /streaming/players">client.streaming.players.<a href="./src/gcore/resources/streaming/players.py">list</a>(\*\*<a href="src/gcore/types/streaming/player_list_params.py">params</a>) -> <a href="./src/gcore/types/streaming/player.py">SyncPageStreaming[Player]</a></code>
 - <code title="delete /streaming/players/{player_id}">client.streaming.players.<a href="./src/gcore/resources/streaming/players.py">delete</a>(player_id) -> None</code>
@@ -106,12 +106,12 @@ Methods:
 Types:
 
 ```python
-from gcore.types.streaming import Playlist, PlaylistCreated, PlaylistVideo
+from gcore.types.streaming import Playlist, PlaylistVideo
 ```
 
 Methods:
 
-- <code title="post /streaming/playlists">client.streaming.playlists.<a href="./src/gcore/resources/streaming/playlists/playlists.py">create</a>(\*\*<a href="src/gcore/types/streaming/playlist_create_params.py">params</a>) -> <a href="./src/gcore/types/streaming/playlist_created.py">PlaylistCreated</a></code>
+- <code title="post /streaming/playlists">client.streaming.playlists.<a href="./src/gcore/resources/streaming/playlists/playlists.py">create</a>(\*\*<a href="src/gcore/types/streaming/playlist_create_params.py">params</a>) -> <a href="./src/gcore/types/streaming/playlist.py">Playlist</a></code>
 - <code title="patch /streaming/playlists/{playlist_id}">client.streaming.playlists.<a href="./src/gcore/resources/streaming/playlists/playlists.py">update</a>(playlist_id, \*\*<a href="src/gcore/types/streaming/playlist_update_params.py">params</a>) -> <a href="./src/gcore/types/streaming/playlist.py">Playlist</a></code>
 - <code title="get /streaming/playlists">client.streaming.playlists.<a href="./src/gcore/resources/streaming/playlists/playlists.py">list</a>(\*\*<a href="src/gcore/types/streaming/playlist_list_params.py">params</a>) -> <a href="./src/gcore/types/streaming/playlist.py">SyncPageStreaming[Playlist]</a></code>
 - <code title="delete /streaming/playlists/{playlist_id}">client.streaming.playlists.<a href="./src/gcore/resources/streaming/playlists/playlists.py">delete</a>(playlist_id) -> None</code>
@@ -140,7 +140,6 @@ from gcore.types.streaming import (
     SubtitleBase,
     SubtitleBody,
     SubtitleUpdated,
-    VideoCreateResponse,
     VideoListResponse,
     VideoCreateMultipleResponse,
 )
@@ -148,7 +147,7 @@ from gcore.types.streaming import (
 
 Methods:
 
-- <code title="post /streaming/videos">client.streaming.videos.<a href="./src/gcore/resources/streaming/videos/videos.py">create</a>(\*\*<a href="src/gcore/types/streaming/video_create_params.py">params</a>) -> <a href="./src/gcore/types/streaming/video_create_response.py">VideoCreateResponse</a></code>
+- <code title="post /streaming/videos">client.streaming.videos.<a href="./src/gcore/resources/streaming/videos/videos.py">create</a>(\*\*<a href="src/gcore/types/streaming/video_create_params.py">params</a>) -> <a href="./src/gcore/types/streaming/video.py">Video</a></code>
 - <code title="patch /streaming/videos/{video_id}">client.streaming.videos.<a href="./src/gcore/resources/streaming/videos/videos.py">update</a>(video_id, \*\*<a href="src/gcore/types/streaming/video_update_params.py">params</a>) -> <a href="./src/gcore/types/streaming/video.py">Video</a></code>
 - <code title="get /streaming/videos">client.streaming.videos.<a href="./src/gcore/resources/streaming/videos/videos.py">list</a>(\*\*<a href="src/gcore/types/streaming/video_list_params.py">params</a>) -> <a href="./src/gcore/types/streaming/video_list_response.py">SyncPageStreaming[VideoListResponse]</a></code>
 - <code title="delete /streaming/videos/{video_id}">client.streaming.videos.<a href="./src/gcore/resources/streaming/videos/videos.py">delete</a>(video_id) -> None</code>
@@ -237,7 +236,7 @@ from gcore.types.streaming import Restream
 
 Methods:
 
-- <code title="post /streaming/restreams">client.streaming.restreams.<a href="./src/gcore/resources/streaming/restreams.py">create</a>(\*\*<a href="src/gcore/types/streaming/restream_create_params.py">params</a>) -> None</code>
+- <code title="post /streaming/restreams">client.streaming.restreams.<a href="./src/gcore/resources/streaming/restreams.py">create</a>(\*\*<a href="src/gcore/types/streaming/restream_create_params.py">params</a>) -> <a href="./src/gcore/types/streaming/restream.py">Restream</a></code>
 - <code title="patch /streaming/restreams/{restream_id}">client.streaming.restreams.<a href="./src/gcore/resources/streaming/restreams.py">update</a>(restream_id, \*\*<a href="src/gcore/types/streaming/restream_update_params.py">params</a>) -> <a href="./src/gcore/types/streaming/restream.py">Restream</a></code>
 - <code title="get /streaming/restreams">client.streaming.restreams.<a href="./src/gcore/resources/streaming/restreams.py">list</a>(\*\*<a href="src/gcore/types/streaming/restream_list_params.py">params</a>) -> <a href="./src/gcore/types/streaming/restream.py">SyncPageStreaming[Restream]</a></code>
 - <code title="delete /streaming/restreams/{restream_id}">client.streaming.restreams.<a href="./src/gcore/resources/streaming/restreams.py">delete</a>(restream_id) -> None</code>

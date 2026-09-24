@@ -286,7 +286,7 @@ class AITasksResource(SyncAPIResource):
         ```
         curl -L 'https://api.gcore.com/streaming/ai/tasks' \\
         -H 'Content-Type: application/json' \\
-        -H 'Authorization: APIKey 1234$abcd...' \\
+        -H 'Authorization: APIKey 1234_abcd...' \\
         -d '{
             "url": "https://demo-files.gvideo.io/apidocs/spritefright-blender-cut30sec.mp4"
         }'
@@ -1067,7 +1067,7 @@ class AITasksResource(SyncAPIResource):
         ```
         curl -L 'https://api.gcore.com/streaming/ai/tasks' \\
         -H 'Content-Type: application/json' \\
-        -H 'Authorization: APIKey 1234$abcd...' \\
+        -H 'Authorization: APIKey 1234_abcd...' \\
         -d '{
             "url": "https://demo-files.gvideo.io/apidocs/spritefright-blender-cut30sec.mp4"
         }'
@@ -1731,7 +1731,7 @@ class AITasksResource(SyncAPIResource):
         ```
         curl -L 'https://api.gcore.com/streaming/ai/tasks' \\
         -H 'Content-Type: application/json' \\
-        -H 'Authorization: APIKey 1234$abcd...' \\
+        -H 'Authorization: APIKey 1234_abcd...' \\
         -d '{
             "url": "https://demo-files.gvideo.io/apidocs/spritefright-blender-cut30sec.mp4"
         }'
@@ -2410,7 +2410,7 @@ class AITasksResource(SyncAPIResource):
         ```
         curl -L 'https://api.gcore.com/streaming/ai/tasks' \\
         -H 'Content-Type: application/json' \\
-        -H 'Authorization: APIKey 1234$abcd...' \\
+        -H 'Authorization: APIKey 1234_abcd...' \\
         -d '{
             "url": "https://demo-files.gvideo.io/apidocs/spritefright-blender-cut30sec.mp4"
         }'
@@ -3068,7 +3068,7 @@ class AITasksResource(SyncAPIResource):
         ```
         curl -L 'https://api.gcore.com/streaming/ai/tasks' \\
         -H 'Content-Type: application/json' \\
-        -H 'Authorization: APIKey 1234$abcd...' \\
+        -H 'Authorization: APIKey 1234_abcd...' \\
         -d '{
             "url": "https://demo-files.gvideo.io/apidocs/spritefright-blender-cut30sec.mp4"
         }'
@@ -4102,7 +4102,7 @@ class AsyncAITasksResource(AsyncAPIResource):
         ```
         curl -L 'https://api.gcore.com/streaming/ai/tasks' \\
         -H 'Content-Type: application/json' \\
-        -H 'Authorization: APIKey 1234$abcd...' \\
+        -H 'Authorization: APIKey 1234_abcd...' \\
         -d '{
             "url": "https://demo-files.gvideo.io/apidocs/spritefright-blender-cut30sec.mp4"
         }'
@@ -4883,7 +4883,7 @@ class AsyncAITasksResource(AsyncAPIResource):
         ```
         curl -L 'https://api.gcore.com/streaming/ai/tasks' \\
         -H 'Content-Type: application/json' \\
-        -H 'Authorization: APIKey 1234$abcd...' \\
+        -H 'Authorization: APIKey 1234_abcd...' \\
         -d '{
             "url": "https://demo-files.gvideo.io/apidocs/spritefright-blender-cut30sec.mp4"
         }'
@@ -5547,7 +5547,7 @@ class AsyncAITasksResource(AsyncAPIResource):
         ```
         curl -L 'https://api.gcore.com/streaming/ai/tasks' \\
         -H 'Content-Type: application/json' \\
-        -H 'Authorization: APIKey 1234$abcd...' \\
+        -H 'Authorization: APIKey 1234_abcd...' \\
         -d '{
             "url": "https://demo-files.gvideo.io/apidocs/spritefright-blender-cut30sec.mp4"
         }'
@@ -6226,7 +6226,7 @@ class AsyncAITasksResource(AsyncAPIResource):
         ```
         curl -L 'https://api.gcore.com/streaming/ai/tasks' \\
         -H 'Content-Type: application/json' \\
-        -H 'Authorization: APIKey 1234$abcd...' \\
+        -H 'Authorization: APIKey 1234_abcd...' \\
         -d '{
             "url": "https://demo-files.gvideo.io/apidocs/spritefright-blender-cut30sec.mp4"
         }'
@@ -6884,7 +6884,7 @@ class AsyncAITasksResource(AsyncAPIResource):
         ```
         curl -L 'https://api.gcore.com/streaming/ai/tasks' \\
         -H 'Content-Type: application/json' \\
-        -H 'Authorization: APIKey 1234$abcd...' \\
+        -H 'Authorization: APIKey 1234_abcd...' \\
         -d '{
             "url": "https://demo-files.gvideo.io/apidocs/spritefright-blender-cut30sec.mp4"
         }'

@@ -26,7 +26,6 @@ from .unique_viewers import UniqueViewers as UniqueViewers
 from .directory_video import DirectoryVideo as DirectoryVideo
 from .views_by_region import ViewsByRegion as ViewsByRegion
 from .directories_tree import DirectoriesTree as DirectoriesTree
-from .playlist_created import PlaylistCreated as PlaylistCreated
 from .views_by_browser import ViewsByBrowser as ViewsByBrowser
 from .views_by_country import ViewsByCountry as ViewsByCountry
 from .views_by_referer import ViewsByReferer as ViewsByReferer
@@ -51,7 +50,6 @@ from .stream_create_params import StreamCreateParams as StreamCreateParams
 from .stream_update_params import StreamUpdateParams as StreamUpdateParams
 from .ai_task_create_params import AITaskCreateParams as AITaskCreateParams
 from .broadcast_list_params import BroadcastListParams as BroadcastListParams
-from .video_create_response import VideoCreateResponse as VideoCreateResponse
 from .vod_statistics_series import VodStatisticsSeries as VodStatisticsSeries
 from .directory_get_response import DirectoryGetResponse as DirectoryGetResponse
 from .playlist_create_params import PlaylistCreateParams as PlaylistCreateParams

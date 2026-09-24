@@ -10,10 +10,7 @@ import pytest
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
 from gcore.pagination import SyncPageStreaming, AsyncPageStreaming
-from gcore.types.streaming import (
-    Playlist,
-    PlaylistCreated,
-)
+from gcore.types.streaming import Playlist
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,7 +21,7 @@ class TestPlaylists:
     @parametrize
     def test_method_create(self, client: Gcore) -> None:
         playlist = client.streaming.playlists.create()
-        assert_matches_type(PlaylistCreated, playlist, path=["response"])
+        assert_matches_type(Playlist, playlist, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Gcore) -> None:
@@ -44,7 +41,7 @@ class TestPlaylists:
             start_time="2024-07-01T11:00:00Z",
             video_ids=[17800, 17801],
         )
-        assert_matches_type(PlaylistCreated, playlist, path=["response"])
+        assert_matches_type(Playlist, playlist, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
@@ -53,7 +50,7 @@ class TestPlaylists:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         playlist = response.parse()
-        assert_matches_type(PlaylistCreated, playlist, path=["response"])
+        assert_matches_type(Playlist, playlist, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
@@ -62,7 +59,7 @@ class TestPlaylists:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             playlist = response.parse()
-            assert_matches_type(PlaylistCreated, playlist, path=["response"])
+            assert_matches_type(Playlist, playlist, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -221,7 +218,7 @@ class TestAsyncPlaylists:
     @parametrize
     async def test_method_create(self, async_client: AsyncGcore) -> None:
         playlist = await async_client.streaming.playlists.create()
-        assert_matches_type(PlaylistCreated, playlist, path=["response"])
+        assert_matches_type(Playlist, playlist, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -241,7 +238,7 @@ class TestAsyncPlaylists:
             start_time="2024-07-01T11:00:00Z",
             video_ids=[17800, 17801],
         )
-        assert_matches_type(PlaylistCreated, playlist, path=["response"])
+        assert_matches_type(Playlist, playlist, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
@@ -250,7 +247,7 @@ class TestAsyncPlaylists:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         playlist = await response.parse()
-        assert_matches_type(PlaylistCreated, playlist, path=["response"])
+        assert_matches_type(Playlist, playlist, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
@@ -259,7 +256,7 @@ class TestAsyncPlaylists:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             playlist = await response.parse()
-            assert_matches_type(PlaylistCreated, playlist, path=["response"])
+            assert_matches_type(Playlist, playlist, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

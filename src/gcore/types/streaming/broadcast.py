@@ -11,17 +11,35 @@ class Broadcast(BaseModel):
     name: str
     """Broadcast name"""
 
+    id: Optional[int] = None
+    """Broadcast ID"""
+
     ad_id: Optional[int] = None
     """ID of ad to be displayed in a live stream.
 
     If empty the default ad is show. If there is no default ad, no ad is shown
     """
 
+    client_id: Optional[int] = None
+    """Client ID"""
+
+    client_user_id: Optional[int] = None
+    """Custom field where you can specify user ID in your system"""
+
     custom_iframe_url: Optional[str] = None
     """Custom URL of iframe for video player to be shared via sharing button in player.
 
     Auto generated iframe URL is provided by default
     """
+
+    custom_messages: Optional[object] = None
+    """Custom status messages configuration for the broadcast, if configured"""
+
+    iframe_embed_code: Optional[str] = None
+    """Ready-to-use HTML `<iframe>` snippet embedding the broadcast player"""
+
+    iframe_url: Optional[str] = None
+    """URL to the broadcast player, can be embedded via iframe"""
 
     pending_message: Optional[str] = None
     """A custom message that is shown if broadcast status is set to pending.
@@ -34,6 +52,9 @@ class Broadcast(BaseModel):
 
     poster: Optional[str] = None
     """Uploaded poster file"""
+
+    poster_thumb: Optional[str] = None
+    """URL of the poster image thumbnail"""
 
     share_url: Optional[str] = None
     """

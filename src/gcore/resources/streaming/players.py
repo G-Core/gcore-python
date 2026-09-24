@@ -53,7 +53,7 @@ class PlayersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> Player:
         """Create player
 
         Args:
@@ -70,14 +70,13 @@ class PlayersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
             "/streaming/players",
             body=maybe_transform({"player": player}, player_create_params.PlayerCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=Player,
         )
 
     def update(
@@ -282,7 +281,7 @@ class AsyncPlayersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> Player:
         """Create player
 
         Args:
@@ -299,14 +298,13 @@ class AsyncPlayersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
             "/streaming/players",
             body=await async_maybe_transform({"player": player}, player_create_params.PlayerCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=Player,
         )
 
     async def update(

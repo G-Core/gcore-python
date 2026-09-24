@@ -37,7 +37,6 @@ from ....types.streaming import (
 from ....types.streaming.video import Video
 from ....types.streaming.create_video_param import CreateVideoParam
 from ....types.streaming.video_list_response import VideoListResponse
-from ....types.streaming.video_create_response import VideoCreateResponse
 from ....types.streaming.direct_upload_parameters import DirectUploadParameters
 from ....types.streaming.video_create_multiple_response import VideoCreateMultipleResponse
 
@@ -78,7 +77,7 @@ class VideosResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VideoCreateResponse:
+    ) -> Video:
         """
         Use this method to create a new video entity.
 
@@ -114,8 +113,7 @@ class VideosResource(SyncAPIResource):
 
         Read more:
 
-        - What is
-          ["AI Speech Recognition"](/api-reference/streaming/ai/create-ai-asr-task).
+        - What is ["AI Speech Recognition"](/api-reference/streaming/ai/create-ai-task).
         - If the option is enabled via
           `auto_transcribe_audio_language: auto|<language_code>`, then immediately after
           successful transcoding, an AI task will be automatically created for
@@ -164,7 +162,7 @@ class VideosResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=VideoCreateResponse,
+            cast_to=Video,
         )
 
     def update(
@@ -826,7 +824,7 @@ class AsyncVideosResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VideoCreateResponse:
+    ) -> Video:
         """
         Use this method to create a new video entity.
 
@@ -862,8 +860,7 @@ class AsyncVideosResource(AsyncAPIResource):
 
         Read more:
 
-        - What is
-          ["AI Speech Recognition"](/api-reference/streaming/ai/create-ai-asr-task).
+        - What is ["AI Speech Recognition"](/api-reference/streaming/ai/create-ai-task).
         - If the option is enabled via
           `auto_transcribe_audio_language: auto|<language_code>`, then immediately after
           successful transcoding, an AI task will be automatically created for
@@ -912,7 +909,7 @@ class AsyncVideosResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=VideoCreateResponse,
+            cast_to=Video,
         )
 
     async def update(

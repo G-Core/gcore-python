@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["StatisticGetViewsByOperatingSystemParams"]
 
@@ -13,3 +13,6 @@ class StatisticGetViewsByOperatingSystemParams(TypedDict, total=False):
 
     date_to: Required[str]
     """End of time frame. Datetime in ISO 8601 format."""
+
+    type: Literal["live", "vod", "playlist"]
+    """Filter statistics by content type."""

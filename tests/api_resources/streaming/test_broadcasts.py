@@ -24,7 +24,7 @@ class TestBroadcasts:
     @parametrize
     def test_method_create(self, client: Gcore) -> None:
         broadcast = client.streaming.broadcasts.create()
-        assert broadcast is None
+        assert_matches_type(Broadcast, broadcast, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Gcore) -> None:
@@ -42,7 +42,7 @@ class TestBroadcasts:
                 "stream_ids": [10],
             },
         )
-        assert broadcast is None
+        assert_matches_type(Broadcast, broadcast, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
@@ -51,7 +51,7 @@ class TestBroadcasts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         broadcast = response.parse()
-        assert broadcast is None
+        assert_matches_type(Broadcast, broadcast, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
@@ -60,7 +60,7 @@ class TestBroadcasts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             broadcast = response.parse()
-            assert broadcast is None
+            assert_matches_type(Broadcast, broadcast, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -248,7 +248,7 @@ class TestAsyncBroadcasts:
     @parametrize
     async def test_method_create(self, async_client: AsyncGcore) -> None:
         broadcast = await async_client.streaming.broadcasts.create()
-        assert broadcast is None
+        assert_matches_type(Broadcast, broadcast, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -266,7 +266,7 @@ class TestAsyncBroadcasts:
                 "stream_ids": [10],
             },
         )
-        assert broadcast is None
+        assert_matches_type(Broadcast, broadcast, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
@@ -275,7 +275,7 @@ class TestAsyncBroadcasts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         broadcast = await response.parse()
-        assert broadcast is None
+        assert_matches_type(Broadcast, broadcast, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
@@ -284,7 +284,7 @@ class TestAsyncBroadcasts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             broadcast = await response.parse()
-            assert broadcast is None
+            assert_matches_type(Broadcast, broadcast, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

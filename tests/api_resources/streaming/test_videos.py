@@ -13,7 +13,6 @@ from gcore.pagination import SyncPageStreaming, AsyncPageStreaming
 from gcore.types.streaming import (
     Video,
     VideoListResponse,
-    VideoCreateResponse,
     DirectUploadParameters,
     VideoCreateMultipleResponse,
 )
@@ -27,7 +26,7 @@ class TestVideos:
     @parametrize
     def test_method_create(self, client: Gcore) -> None:
         video = client.streaming.videos.create()
-        assert_matches_type(VideoCreateResponse, video, path=["response"])
+        assert_matches_type(Video, video, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Gcore) -> None:
@@ -55,7 +54,7 @@ class TestVideos:
                 "source_bitrate_limit": True,
             },
         )
-        assert_matches_type(VideoCreateResponse, video, path=["response"])
+        assert_matches_type(Video, video, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
@@ -64,7 +63,7 @@ class TestVideos:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         video = response.parse()
-        assert_matches_type(VideoCreateResponse, video, path=["response"])
+        assert_matches_type(Video, video, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
@@ -73,7 +72,7 @@ class TestVideos:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             video = response.parse()
-            assert_matches_type(VideoCreateResponse, video, path=["response"])
+            assert_matches_type(Video, video, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -379,7 +378,7 @@ class TestAsyncVideos:
     @parametrize
     async def test_method_create(self, async_client: AsyncGcore) -> None:
         video = await async_client.streaming.videos.create()
-        assert_matches_type(VideoCreateResponse, video, path=["response"])
+        assert_matches_type(Video, video, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -407,7 +406,7 @@ class TestAsyncVideos:
                 "source_bitrate_limit": True,
             },
         )
-        assert_matches_type(VideoCreateResponse, video, path=["response"])
+        assert_matches_type(Video, video, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
@@ -416,7 +415,7 @@ class TestAsyncVideos:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         video = await response.parse()
-        assert_matches_type(VideoCreateResponse, video, path=["response"])
+        assert_matches_type(Video, video, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
@@ -425,7 +424,7 @@ class TestAsyncVideos:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             video = await response.parse()
-            assert_matches_type(VideoCreateResponse, video, path=["response"])
+            assert_matches_type(Video, video, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

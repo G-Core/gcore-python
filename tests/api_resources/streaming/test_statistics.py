@@ -259,6 +259,15 @@ class TestStatistics:
         assert_matches_type(PopularVideos, statistic, path=["response"])
 
     @parametrize
+    def test_method_get_popular_videos_with_all_params(self, client: Gcore) -> None:
+        statistic = client.streaming.statistics.get_popular_videos(
+            date_from="date_from",
+            date_to="date_to",
+            type="live",
+        )
+        assert_matches_type(PopularVideos, statistic, path=["response"])
+
+    @parametrize
     def test_raw_response_get_popular_videos(self, client: Gcore) -> None:
         response = client.streaming.statistics.with_raw_response.get_popular_videos(
             date_from="date_from",
@@ -519,6 +528,15 @@ class TestStatistics:
         assert_matches_type(ViewsByBrowser, statistic, path=["response"])
 
     @parametrize
+    def test_method_get_views_by_browsers_with_all_params(self, client: Gcore) -> None:
+        statistic = client.streaming.statistics.get_views_by_browsers(
+            date_from="date_from",
+            date_to="date_to",
+            type="live",
+        )
+        assert_matches_type(ViewsByBrowser, statistic, path=["response"])
+
+    @parametrize
     def test_raw_response_get_views_by_browsers(self, client: Gcore) -> None:
         response = client.streaming.statistics.with_raw_response.get_views_by_browsers(
             date_from="date_from",
@@ -549,6 +567,15 @@ class TestStatistics:
         statistic = client.streaming.statistics.get_views_by_country(
             date_from="date_from",
             date_to="date_to",
+        )
+        assert_matches_type(ViewsByCountry, statistic, path=["response"])
+
+    @parametrize
+    def test_method_get_views_by_country_with_all_params(self, client: Gcore) -> None:
+        statistic = client.streaming.statistics.get_views_by_country(
+            date_from="date_from",
+            date_to="date_to",
+            type="live",
         )
         assert_matches_type(ViewsByCountry, statistic, path=["response"])
 
@@ -587,6 +614,15 @@ class TestStatistics:
         assert_matches_type(ViewsByHostname, statistic, path=["response"])
 
     @parametrize
+    def test_method_get_views_by_hostname_with_all_params(self, client: Gcore) -> None:
+        statistic = client.streaming.statistics.get_views_by_hostname(
+            date_from="date_from",
+            date_to="date_to",
+            type="live",
+        )
+        assert_matches_type(ViewsByHostname, statistic, path=["response"])
+
+    @parametrize
     def test_raw_response_get_views_by_hostname(self, client: Gcore) -> None:
         response = client.streaming.statistics.with_raw_response.get_views_by_hostname(
             date_from="date_from",
@@ -617,6 +653,15 @@ class TestStatistics:
         statistic = client.streaming.statistics.get_views_by_operating_system(
             date_from="date_from",
             date_to="date_to",
+        )
+        assert_matches_type(ViewsByOperatingSystem, statistic, path=["response"])
+
+    @parametrize
+    def test_method_get_views_by_operating_system_with_all_params(self, client: Gcore) -> None:
+        statistic = client.streaming.statistics.get_views_by_operating_system(
+            date_from="date_from",
+            date_to="date_to",
+            type="live",
         )
         assert_matches_type(ViewsByOperatingSystem, statistic, path=["response"])
 
@@ -655,6 +700,15 @@ class TestStatistics:
         assert_matches_type(ViewsByReferer, statistic, path=["response"])
 
     @parametrize
+    def test_method_get_views_by_referer_with_all_params(self, client: Gcore) -> None:
+        statistic = client.streaming.statistics.get_views_by_referer(
+            date_from="date_from",
+            date_to="date_to",
+            type="live",
+        )
+        assert_matches_type(ViewsByReferer, statistic, path=["response"])
+
+    @parametrize
     def test_raw_response_get_views_by_referer(self, client: Gcore) -> None:
         response = client.streaming.statistics.with_raw_response.get_views_by_referer(
             date_from="date_from",
@@ -685,6 +739,15 @@ class TestStatistics:
         statistic = client.streaming.statistics.get_views_by_region(
             date_from="date_from",
             date_to="date_to",
+        )
+        assert_matches_type(ViewsByRegion, statistic, path=["response"])
+
+    @parametrize
+    def test_method_get_views_by_region_with_all_params(self, client: Gcore) -> None:
+        statistic = client.streaming.statistics.get_views_by_region(
+            date_from="date_from",
+            date_to="date_to",
+            type="live",
         )
         assert_matches_type(ViewsByRegion, statistic, path=["response"])
 
@@ -1174,6 +1237,15 @@ class TestAsyncStatistics:
         assert_matches_type(PopularVideos, statistic, path=["response"])
 
     @parametrize
+    async def test_method_get_popular_videos_with_all_params(self, async_client: AsyncGcore) -> None:
+        statistic = await async_client.streaming.statistics.get_popular_videos(
+            date_from="date_from",
+            date_to="date_to",
+            type="live",
+        )
+        assert_matches_type(PopularVideos, statistic, path=["response"])
+
+    @parametrize
     async def test_raw_response_get_popular_videos(self, async_client: AsyncGcore) -> None:
         response = await async_client.streaming.statistics.with_raw_response.get_popular_videos(
             date_from="date_from",
@@ -1434,6 +1506,15 @@ class TestAsyncStatistics:
         assert_matches_type(ViewsByBrowser, statistic, path=["response"])
 
     @parametrize
+    async def test_method_get_views_by_browsers_with_all_params(self, async_client: AsyncGcore) -> None:
+        statistic = await async_client.streaming.statistics.get_views_by_browsers(
+            date_from="date_from",
+            date_to="date_to",
+            type="live",
+        )
+        assert_matches_type(ViewsByBrowser, statistic, path=["response"])
+
+    @parametrize
     async def test_raw_response_get_views_by_browsers(self, async_client: AsyncGcore) -> None:
         response = await async_client.streaming.statistics.with_raw_response.get_views_by_browsers(
             date_from="date_from",
@@ -1464,6 +1545,15 @@ class TestAsyncStatistics:
         statistic = await async_client.streaming.statistics.get_views_by_country(
             date_from="date_from",
             date_to="date_to",
+        )
+        assert_matches_type(ViewsByCountry, statistic, path=["response"])
+
+    @parametrize
+    async def test_method_get_views_by_country_with_all_params(self, async_client: AsyncGcore) -> None:
+        statistic = await async_client.streaming.statistics.get_views_by_country(
+            date_from="date_from",
+            date_to="date_to",
+            type="live",
         )
         assert_matches_type(ViewsByCountry, statistic, path=["response"])
 
@@ -1502,6 +1592,15 @@ class TestAsyncStatistics:
         assert_matches_type(ViewsByHostname, statistic, path=["response"])
 
     @parametrize
+    async def test_method_get_views_by_hostname_with_all_params(self, async_client: AsyncGcore) -> None:
+        statistic = await async_client.streaming.statistics.get_views_by_hostname(
+            date_from="date_from",
+            date_to="date_to",
+            type="live",
+        )
+        assert_matches_type(ViewsByHostname, statistic, path=["response"])
+
+    @parametrize
     async def test_raw_response_get_views_by_hostname(self, async_client: AsyncGcore) -> None:
         response = await async_client.streaming.statistics.with_raw_response.get_views_by_hostname(
             date_from="date_from",
@@ -1532,6 +1631,15 @@ class TestAsyncStatistics:
         statistic = await async_client.streaming.statistics.get_views_by_operating_system(
             date_from="date_from",
             date_to="date_to",
+        )
+        assert_matches_type(ViewsByOperatingSystem, statistic, path=["response"])
+
+    @parametrize
+    async def test_method_get_views_by_operating_system_with_all_params(self, async_client: AsyncGcore) -> None:
+        statistic = await async_client.streaming.statistics.get_views_by_operating_system(
+            date_from="date_from",
+            date_to="date_to",
+            type="live",
         )
         assert_matches_type(ViewsByOperatingSystem, statistic, path=["response"])
 
@@ -1570,6 +1678,15 @@ class TestAsyncStatistics:
         assert_matches_type(ViewsByReferer, statistic, path=["response"])
 
     @parametrize
+    async def test_method_get_views_by_referer_with_all_params(self, async_client: AsyncGcore) -> None:
+        statistic = await async_client.streaming.statistics.get_views_by_referer(
+            date_from="date_from",
+            date_to="date_to",
+            type="live",
+        )
+        assert_matches_type(ViewsByReferer, statistic, path=["response"])
+
+    @parametrize
     async def test_raw_response_get_views_by_referer(self, async_client: AsyncGcore) -> None:
         response = await async_client.streaming.statistics.with_raw_response.get_views_by_referer(
             date_from="date_from",
@@ -1600,6 +1717,15 @@ class TestAsyncStatistics:
         statistic = await async_client.streaming.statistics.get_views_by_region(
             date_from="date_from",
             date_to="date_to",
+        )
+        assert_matches_type(ViewsByRegion, statistic, path=["response"])
+
+    @parametrize
+    async def test_method_get_views_by_region_with_all_params(self, async_client: AsyncGcore) -> None:
+        statistic = await async_client.streaming.statistics.get_views_by_region(
+            date_from="date_from",
+            date_to="date_to",
+            type="live",
         )
         assert_matches_type(ViewsByRegion, statistic, path=["response"])
 

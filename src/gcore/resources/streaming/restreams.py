@@ -52,7 +52,7 @@ class RestreamsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> Restream:
         """
         Creates a new restream for a specified live stream.
 
@@ -114,14 +114,13 @@ class RestreamsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
             "/streaming/restreams",
             body=maybe_transform({"restream": restream}, restream_create_params.RestreamCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=Restream,
         )
 
     def update(
@@ -289,7 +288,7 @@ class AsyncRestreamsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> Restream:
         """
         Creates a new restream for a specified live stream.
 
@@ -351,14 +350,13 @@ class AsyncRestreamsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
             "/streaming/restreams",
             body=await async_maybe_transform({"restream": restream}, restream_create_params.RestreamCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=Restream,
         )
 
     async def update(

@@ -53,7 +53,7 @@ class BroadcastsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> Broadcast:
         """
         Broadcast entity is for setting up HTML video player, which serves to combine:
 
@@ -76,14 +76,13 @@ class BroadcastsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
             "/streaming/broadcasts",
             body=maybe_transform({"broadcast": broadcast}, broadcast_create_params.BroadcastCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=Broadcast,
         )
 
     def update(
@@ -285,7 +284,7 @@ class AsyncBroadcastsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> Broadcast:
         """
         Broadcast entity is for setting up HTML video player, which serves to combine:
 
@@ -308,14 +307,13 @@ class AsyncBroadcastsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
             "/streaming/broadcasts",
             body=await async_maybe_transform({"broadcast": broadcast}, broadcast_create_params.BroadcastCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=Broadcast,
         )
 
     async def update(

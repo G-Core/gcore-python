@@ -399,6 +399,7 @@ class StatisticsResource(SyncAPIResource):
         *,
         date_from: str,
         date_to: str,
+        type: Literal["live", "vod", "playlist"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -421,6 +422,8 @@ class StatisticsResource(SyncAPIResource):
 
           date_to: End of time frame. Datetime in ISO 8601 format.
 
+          type: Filter statistics by content type.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -440,6 +443,7 @@ class StatisticsResource(SyncAPIResource):
                     {
                         "date_from": date_from,
                         "date_to": date_to,
+                        "type": type,
                     },
                     statistic_get_popular_videos_params.StatisticGetPopularVideosParams,
                 ),
@@ -816,6 +820,7 @@ class StatisticsResource(SyncAPIResource):
         *,
         date_from: str,
         date_to: str,
+        type: Literal["live", "vod", "playlist"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -838,6 +843,8 @@ class StatisticsResource(SyncAPIResource):
 
           date_to: End of time frame. Datetime in ISO 8601 format.
 
+          type: Filter statistics by content type.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -857,6 +864,7 @@ class StatisticsResource(SyncAPIResource):
                     {
                         "date_from": date_from,
                         "date_to": date_to,
+                        "type": type,
                     },
                     statistic_get_views_by_browsers_params.StatisticGetViewsByBrowsersParams,
                 ),
@@ -869,6 +877,7 @@ class StatisticsResource(SyncAPIResource):
         *,
         date_from: str,
         date_to: str,
+        type: Literal["live", "vod", "playlist"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -890,6 +899,8 @@ class StatisticsResource(SyncAPIResource):
 
           date_to: End of time frame. Datetime in ISO 8601 format.
 
+          type: Filter statistics by content type.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -909,6 +920,7 @@ class StatisticsResource(SyncAPIResource):
                     {
                         "date_from": date_from,
                         "date_to": date_to,
+                        "type": type,
                     },
                     statistic_get_views_by_country_params.StatisticGetViewsByCountryParams,
                 ),
@@ -921,6 +933,7 @@ class StatisticsResource(SyncAPIResource):
         *,
         date_from: str,
         date_to: str,
+        type: Literal["live", "vod", "playlist"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -943,6 +956,8 @@ class StatisticsResource(SyncAPIResource):
 
           date_to: End of time frame. Datetime in ISO 8601 format.
 
+          type: Filter statistics by content type.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -962,6 +977,7 @@ class StatisticsResource(SyncAPIResource):
                     {
                         "date_from": date_from,
                         "date_to": date_to,
+                        "type": type,
                     },
                     statistic_get_views_by_hostname_params.StatisticGetViewsByHostnameParams,
                 ),
@@ -974,6 +990,7 @@ class StatisticsResource(SyncAPIResource):
         *,
         date_from: str,
         date_to: str,
+        type: Literal["live", "vod", "playlist"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -996,6 +1013,8 @@ class StatisticsResource(SyncAPIResource):
 
           date_to: End of time frame. Datetime in ISO 8601 format.
 
+          type: Filter statistics by content type.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1015,6 +1034,7 @@ class StatisticsResource(SyncAPIResource):
                     {
                         "date_from": date_from,
                         "date_to": date_to,
+                        "type": type,
                     },
                     statistic_get_views_by_operating_system_params.StatisticGetViewsByOperatingSystemParams,
                 ),
@@ -1027,6 +1047,7 @@ class StatisticsResource(SyncAPIResource):
         *,
         date_from: str,
         date_to: str,
+        type: Literal["live", "vod", "playlist"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1049,6 +1070,8 @@ class StatisticsResource(SyncAPIResource):
 
           date_to: End of time frame. Datetime in ISO 8601 format.
 
+          type: Filter statistics by content type.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1068,6 +1091,7 @@ class StatisticsResource(SyncAPIResource):
                     {
                         "date_from": date_from,
                         "date_to": date_to,
+                        "type": type,
                     },
                     statistic_get_views_by_referer_params.StatisticGetViewsByRefererParams,
                 ),
@@ -1080,6 +1104,7 @@ class StatisticsResource(SyncAPIResource):
         *,
         date_from: str,
         date_to: str,
+        type: Literal["live", "vod", "playlist"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1102,6 +1127,8 @@ class StatisticsResource(SyncAPIResource):
 
           date_to: End of time frame. Datetime in ISO 8601 format.
 
+          type: Filter statistics by content type.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1121,6 +1148,7 @@ class StatisticsResource(SyncAPIResource):
                     {
                         "date_from": date_from,
                         "date_to": date_to,
+                        "type": type,
                     },
                     statistic_get_views_by_region_params.StatisticGetViewsByRegionParams,
                 ),
@@ -1826,6 +1854,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
         *,
         date_from: str,
         date_to: str,
+        type: Literal["live", "vod", "playlist"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1848,6 +1877,8 @@ class AsyncStatisticsResource(AsyncAPIResource):
 
           date_to: End of time frame. Datetime in ISO 8601 format.
 
+          type: Filter statistics by content type.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1867,6 +1898,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
                     {
                         "date_from": date_from,
                         "date_to": date_to,
+                        "type": type,
                     },
                     statistic_get_popular_videos_params.StatisticGetPopularVideosParams,
                 ),
@@ -2243,6 +2275,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
         *,
         date_from: str,
         date_to: str,
+        type: Literal["live", "vod", "playlist"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2265,6 +2298,8 @@ class AsyncStatisticsResource(AsyncAPIResource):
 
           date_to: End of time frame. Datetime in ISO 8601 format.
 
+          type: Filter statistics by content type.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -2284,6 +2319,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
                     {
                         "date_from": date_from,
                         "date_to": date_to,
+                        "type": type,
                     },
                     statistic_get_views_by_browsers_params.StatisticGetViewsByBrowsersParams,
                 ),
@@ -2296,6 +2332,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
         *,
         date_from: str,
         date_to: str,
+        type: Literal["live", "vod", "playlist"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2317,6 +2354,8 @@ class AsyncStatisticsResource(AsyncAPIResource):
 
           date_to: End of time frame. Datetime in ISO 8601 format.
 
+          type: Filter statistics by content type.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -2336,6 +2375,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
                     {
                         "date_from": date_from,
                         "date_to": date_to,
+                        "type": type,
                     },
                     statistic_get_views_by_country_params.StatisticGetViewsByCountryParams,
                 ),
@@ -2348,6 +2388,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
         *,
         date_from: str,
         date_to: str,
+        type: Literal["live", "vod", "playlist"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2370,6 +2411,8 @@ class AsyncStatisticsResource(AsyncAPIResource):
 
           date_to: End of time frame. Datetime in ISO 8601 format.
 
+          type: Filter statistics by content type.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -2389,6 +2432,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
                     {
                         "date_from": date_from,
                         "date_to": date_to,
+                        "type": type,
                     },
                     statistic_get_views_by_hostname_params.StatisticGetViewsByHostnameParams,
                 ),
@@ -2401,6 +2445,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
         *,
         date_from: str,
         date_to: str,
+        type: Literal["live", "vod", "playlist"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2423,6 +2468,8 @@ class AsyncStatisticsResource(AsyncAPIResource):
 
           date_to: End of time frame. Datetime in ISO 8601 format.
 
+          type: Filter statistics by content type.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -2442,6 +2489,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
                     {
                         "date_from": date_from,
                         "date_to": date_to,
+                        "type": type,
                     },
                     statistic_get_views_by_operating_system_params.StatisticGetViewsByOperatingSystemParams,
                 ),
@@ -2454,6 +2502,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
         *,
         date_from: str,
         date_to: str,
+        type: Literal["live", "vod", "playlist"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2476,6 +2525,8 @@ class AsyncStatisticsResource(AsyncAPIResource):
 
           date_to: End of time frame. Datetime in ISO 8601 format.
 
+          type: Filter statistics by content type.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -2495,6 +2546,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
                     {
                         "date_from": date_from,
                         "date_to": date_to,
+                        "type": type,
                     },
                     statistic_get_views_by_referer_params.StatisticGetViewsByRefererParams,
                 ),
@@ -2507,6 +2559,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
         *,
         date_from: str,
         date_to: str,
+        type: Literal["live", "vod", "playlist"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2529,6 +2582,8 @@ class AsyncStatisticsResource(AsyncAPIResource):
 
           date_to: End of time frame. Datetime in ISO 8601 format.
 
+          type: Filter statistics by content type.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -2548,6 +2603,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
                     {
                         "date_from": date_from,
                         "date_to": date_to,
+                        "type": type,
                     },
                     statistic_get_views_by_region_params.StatisticGetViewsByRegionParams,
                 ),

@@ -9,6 +9,9 @@ __all__ = ["Playlist"]
 
 
 class Playlist(BaseModel):
+    id: Optional[int] = None
+    """Playlist ID"""
+
     active: Optional[bool] = None
     """Enables/Disables playlist. Has two possible values:
 
@@ -60,6 +63,9 @@ class Playlist(BaseModel):
     in any manner or form. It is strongly advised not to store them in your database
     or cache them on your end.
     """
+
+    iframe_embed_code: Optional[str] = None
+    """Ready-to-use HTML `<iframe>` snippet embedding the playlist player"""
 
     iframe_url: Optional[str] = None
     """A URL to a built-in HTML video player with the video inside.

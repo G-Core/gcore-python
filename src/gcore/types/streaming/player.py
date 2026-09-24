@@ -13,9 +13,6 @@ class Player(BaseModel):
     All parameters may be blank to inherit their values from default Streaming player.
     """
 
-    name: str
-    """Player name"""
-
     id: Optional[int] = None
     """Player ID"""
 
@@ -84,6 +81,9 @@ class Player(BaseModel):
 
     Default is false
     """
+
+    name: Optional[str] = None
+    """Player name"""
 
     save_options_to_cookies: Optional[bool] = None
     """Enables/Disables saving volume and other options in cookies:

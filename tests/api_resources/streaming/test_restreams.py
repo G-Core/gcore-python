@@ -21,7 +21,7 @@ class TestRestreams:
     @parametrize
     def test_method_create(self, client: Gcore) -> None:
         restream = client.streaming.restreams.create()
-        assert restream is None
+        assert_matches_type(Restream, restream, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Gcore) -> None:
@@ -31,11 +31,14 @@ class TestRestreams:
                 "client_user_id": 10,
                 "live": True,
                 "name": "first restream",
+                "no_audio": True,
+                "no_audio_mode": "silence",
+                "source": "original",
                 "stream_id": 20,
                 "uri": "rtmp://a.rtmp.youtube.com/live/k17a-13s8",
             },
         )
-        assert restream is None
+        assert_matches_type(Restream, restream, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
@@ -44,7 +47,7 @@ class TestRestreams:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         restream = response.parse()
-        assert restream is None
+        assert_matches_type(Restream, restream, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
@@ -53,7 +56,7 @@ class TestRestreams:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             restream = response.parse()
-            assert restream is None
+            assert_matches_type(Restream, restream, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -73,6 +76,9 @@ class TestRestreams:
                 "client_user_id": 10,
                 "live": True,
                 "name": "first restream",
+                "no_audio": True,
+                "no_audio_mode": "silence",
+                "source": "original",
                 "stream_id": 20,
                 "uri": "rtmp://a.rtmp.youtube.com/live/k17a-13s8",
             },
@@ -206,7 +212,7 @@ class TestAsyncRestreams:
     @parametrize
     async def test_method_create(self, async_client: AsyncGcore) -> None:
         restream = await async_client.streaming.restreams.create()
-        assert restream is None
+        assert_matches_type(Restream, restream, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -216,11 +222,14 @@ class TestAsyncRestreams:
                 "client_user_id": 10,
                 "live": True,
                 "name": "first restream",
+                "no_audio": True,
+                "no_audio_mode": "silence",
+                "source": "original",
                 "stream_id": 20,
                 "uri": "rtmp://a.rtmp.youtube.com/live/k17a-13s8",
             },
         )
-        assert restream is None
+        assert_matches_type(Restream, restream, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
@@ -229,7 +238,7 @@ class TestAsyncRestreams:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         restream = await response.parse()
-        assert restream is None
+        assert_matches_type(Restream, restream, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
@@ -238,7 +247,7 @@ class TestAsyncRestreams:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             restream = await response.parse()
-            assert restream is None
+            assert_matches_type(Restream, restream, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -258,6 +267,9 @@ class TestAsyncRestreams:
                 "client_user_id": 10,
                 "live": True,
                 "name": "first restream",
+                "no_audio": True,
+                "no_audio_mode": "silence",
+                "source": "original",
                 "stream_id": 20,
                 "uri": "rtmp://a.rtmp.youtube.com/live/k17a-13s8",
             },
