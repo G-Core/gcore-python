@@ -49,6 +49,12 @@ class ShareSettingsVastShareSettingsOutputSerializer(BaseModel):
       privileges.
     """
 
+    trash_access: bool
+    """
+    Shows whether clients within the share's access range can move files and folders
+    to the hidden `.vast_trash` folder for asynchronous deletion.
+    """
+
     type_name: Literal["vast"]
     """Vast file share type"""
 

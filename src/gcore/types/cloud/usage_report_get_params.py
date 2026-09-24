@@ -128,6 +128,7 @@ class UsageReportGetParams(TypedDict, total=False):
             "functions_traffic",
             "image",
             "inference",
+            "inference_public_models",
             "instance",
             "load_balancer",
             "log_index",

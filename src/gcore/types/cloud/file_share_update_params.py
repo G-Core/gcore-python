@@ -11,7 +11,7 @@ __all__ = [
     "FileShareUpdateParams",
     "ShareSettings",
     "ShareSettingsDdnFileShareSettingsInputSerializer",
-    "ShareSettingsVastFileShareSettingsInputSerializer",
+    "ShareSettingsUpdateVastFileShareSettingsSerializer",
 ]
 
 
@@ -62,7 +62,7 @@ class ShareSettingsDdnFileShareSettingsInputSerializer(TypedDict, total=False):
     """When set created file share will be owned by group with given UID"""
 
 
-class ShareSettingsVastFileShareSettingsInputSerializer(TypedDict, total=False):
+class ShareSettingsUpdateVastFileShareSettingsSerializer(TypedDict, total=False):
     allowed_characters: Literal["LCD", "NPL"]
     """Determines which characters are allowed in file names. Choose between:
 
@@ -70,30 +70,49 @@ class ShareSettingsVastFileShareSettingsInputSerializer(TypedDict, total=False):
       Cluster-supported protocols
     - Native Protocol Limit (NPL), imposes no limitation beyond that of the client
       protocol.
+
+    Omit this field to keep the current setting.
     """
 
     path_length: Literal["LCD", "NPL"]
     """Affects the maximum limit of file path component name length. Choose between:
 
     - Lowest Common Denominator (LCD), imposes the lowest common denominator file
-      length limit of all VAST Cluster-supported protocols. With this (default)
-      option, the limitation on the length of a single component of the path is 255
-      characters
+      length limit of all VAST Cluster-supported protocols. With this option, the
+      limitation on the length of a single component of the path is 255 characters
     - Native Protocol Limit (NPL), imposes no limitation beyond that of the client
       protocol.
+
+    Omit this field to keep the current setting.
     """
 
     root_squash: bool
     """Enables or disables root squash for NFS clients.
 
-    - If `true` (default), root squash is enabled: the root user is mapped to nobody
-      for all file and folder management operations on the export.
+    - If `true`, root squash is enabled: the root user is mapped to nobody for all
+      file and folder management operations on the export.
     - If `false`, root squash is disabled: the NFS client `root` user retains root
       privileges. Use this option if you trust the root user not to perform
       operations that will corrupt data.
+
+    Omit this field to keep the current setting.
+    """
+
+    trash_access: bool
+    """Enables or disables access to the hidden `.vast_trash` folder of the share.
+
+    - If `false`, the folder is not accessible.
+    - If `true`, clients within the share's access range can move files and folders
+      to `.vast_trash` for asynchronous deletion, which is much faster than deleting
+      large directory trees in place.
+
+    Requires `root_squash` to be disabled, because VAST ignores trash folder access
+    for hosts that are under root squash.
+
+    Omit this field to keep the current setting.
     """
 
 
 ShareSettings: TypeAlias = Union[
-    ShareSettingsDdnFileShareSettingsInputSerializer, ShareSettingsVastFileShareSettingsInputSerializer
+    ShareSettingsDdnFileShareSettingsInputSerializer, ShareSettingsUpdateVastFileShareSettingsSerializer
 ]
