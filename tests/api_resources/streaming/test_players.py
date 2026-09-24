@@ -27,6 +27,7 @@ class TestPlayers:
     def test_method_create_with_all_params(self, client: Gcore) -> None:
         player = client.streaming.players.create(
             player={
+                "name": "name",
                 "id": 0,
                 "autoplay": True,
                 "bg_color": "bg_color",
@@ -41,7 +42,6 @@ class TestPlayers:
                 "logo": "logo",
                 "logo_position": "logo_position",
                 "mute": True,
-                "name": "name",
                 "save_options_to_cookies": True,
                 "show_sharing": True,
                 "skin_is_url": "skin_is_url",
@@ -271,6 +271,7 @@ class TestAsyncPlayers:
     async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
         player = await async_client.streaming.players.create(
             player={
+                "name": "name",
                 "id": 0,
                 "autoplay": True,
                 "bg_color": "bg_color",
@@ -285,7 +286,6 @@ class TestAsyncPlayers:
                 "logo": "logo",
                 "logo_position": "logo_position",
                 "mute": True,
-                "name": "name",
                 "save_options_to_cookies": True,
                 "show_sharing": True,
                 "skin_is_url": "skin_is_url",

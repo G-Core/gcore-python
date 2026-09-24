@@ -76,7 +76,7 @@ Methods:
 Types:
 
 ```python
-from gcore.types.streaming import Player
+from gcore.types.streaming import CreatePlayer, Player
 ```
 
 Methods:

@@ -19,6 +19,7 @@ from ..._base_client import AsyncPaginator, make_request_options
 from ...types.streaming import Player, player_list_params, player_create_params, player_update_params
 from ...types.streaming.player import Player
 from ...types.streaming.player_param import PlayerParam
+from ...types.streaming.create_player_param import CreatePlayerParam
 
 __all__ = ["PlayersResource", "AsyncPlayersResource"]
 
@@ -46,7 +47,7 @@ class PlayersResource(SyncAPIResource):
     def create(
         self,
         *,
-        player: PlayerParam | Omit = omit,
+        player: CreatePlayerParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -274,7 +275,7 @@ class AsyncPlayersResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        player: PlayerParam | Omit = omit,
+        player: CreatePlayerParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

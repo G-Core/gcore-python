@@ -37,6 +37,7 @@ from .player_list_params import PlayerListParams as PlayerListParams
 from .stream_list_params import StreamListParams as StreamListParams
 from .unique_viewers_cdn import UniqueViewersCDN as UniqueViewersCDN
 from .ai_task_list_params import AITaskListParams as AITaskListParams
+from .create_player_param import CreatePlayerParam as CreatePlayerParam
 from .subtitle_base_param import SubtitleBaseParam as SubtitleBaseParam
 from .video_create_params import VideoCreateParams as VideoCreateParams
 from .video_list_response import VideoListResponse as VideoListResponse
