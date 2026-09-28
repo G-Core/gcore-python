@@ -24,6 +24,14 @@ from .logs import (
     LogsResourceWithStreamingResponse,
     AsyncLogsResourceWithStreamingResponse,
 )
+from .aliases import (
+    AliasesResource,
+    AsyncAliasesResource,
+    AliasesResourceWithRawResponse,
+    AsyncAliasesResourceWithRawResponse,
+    AliasesResourceWithStreamingResponse,
+    AsyncAliasesResourceWithStreamingResponse,
+)
 from .metrics import (
     MetricsResource,
     AsyncMetricsResource,
@@ -168,6 +176,12 @@ __all__ = [
     "AsyncPresetsResourceWithRawResponse",
     "PresetsResourceWithStreamingResponse",
     "AsyncPresetsResourceWithStreamingResponse",
+    "AliasesResource",
+    "AsyncAliasesResource",
+    "AliasesResourceWithRawResponse",
+    "AsyncAliasesResourceWithRawResponse",
+    "AliasesResourceWithStreamingResponse",
+    "AsyncAliasesResourceWithStreamingResponse",
     "CertificatesResource",
     "AsyncCertificatesResource",
     "CertificatesResourceWithRawResponse",

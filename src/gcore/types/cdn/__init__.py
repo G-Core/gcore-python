@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
+from .alias import Alias as Alias
 from .ssl_detail import SslDetail as SslDetail
 from .aws_regions import AwsRegions as AwsRegions
 from .cdn_account import CDNAccount as CDNAccount
 from .cdn_metrics import CDNMetrics as CDNMetrics
+from .alias_detail import AliasDetail as AliasDetail
 from .cdn_resource import CDNResource as CDNResource
 from .purge_status import PurgeStatus as PurgeStatus
 from .cdn_log_entry import CDNLogEntry as CDNLogEntry
@@ -19,6 +21,7 @@ from .alibaba_regions import AlibabaRegions as AlibabaRegions
 from .log_list_params import LogListParams as LogListParams
 from .ssl_detail_list import SslDetailList as SslDetailList
 from .network_capacity import NetworkCapacity as NetworkCapacity
+from .alias_list_params import AliasListParams as AliasListParams
 from .cdn_resource_list import CDNResourceList as CDNResourceList
 from .cdn_account_limits import CDNAccountLimits as CDNAccountLimits
 from .cdn_metrics_groups import CDNMetricsGroups as CDNMetricsGroups
@@ -30,6 +33,8 @@ from .rule_template_list import RuleTemplateList as RuleTemplateList
 from .shielding_location import ShieldingLocation as ShieldingLocation
 from .ssl_request_status import SslRequestStatus as SslRequestStatus
 from .usage_series_stats import UsageSeriesStats as UsageSeriesStats
+from .alias_create_params import AliasCreateParams as AliasCreateParams
+from .alias_update_params import AliasUpdateParams as AliasUpdateParams
 from .ca_certificate_list import CaCertificateList as CaCertificateList
 from .cdn_audit_log_entry import CDNAuditLogEntry as CDNAuditLogEntry
 from .log_download_params import LogDownloadParams as LogDownloadParams
@@ -38,10 +43,12 @@ from .ip_range_list_params import IPRangeListParams as IPRangeListParams
 from .resource_usage_stats import ResourceUsageStats as ResourceUsageStats
 from .audit_log_list_params import AuditLogListParams as AuditLogListParams
 from .logs_aggregated_stats import LogsAggregatedStats as LogsAggregatedStats
+from .alias_aggregated_stats import AliasAggregatedStats as AliasAggregatedStats
 from .cdn_available_features import CDNAvailableFeatures as CDNAvailableFeatures
 from .certificate_list_params import CertificateListParams as CertificateListParams
 from .shield_aggregated_stats import ShieldAggregatedStats as ShieldAggregatedStats
 from .shielding_location_list import ShieldingLocationList as ShieldingLocationList
+from .alias_certificate_status import AliasCertificateStatus as AliasCertificateStatus
 from .cdn_resource_list_params import CDNResourceListParams as CDNResourceListParams
 from .logs_uploader_validation import LogsUploaderValidation as LogsUploaderValidation
 from .origin_group_list_params import OriginGroupListParams as OriginGroupListParams
@@ -60,9 +67,13 @@ from .cdn_resource_replace_params import CDNResourceReplaceParams as CDNResource
 from .origin_group_replace_params import OriginGroupReplaceParams as OriginGroupReplaceParams
 from .rule_template_create_params import RuleTemplateCreateParams as RuleTemplateCreateParams
 from .rule_template_update_params import RuleTemplateUpdateParams as RuleTemplateUpdateParams
+from .alias_create_multiple_params import AliasCreateMultipleParams as AliasCreateMultipleParams
+from .alias_delete_multiple_params import AliasDeleteMultipleParams as AliasDeleteMultipleParams
 from .cdn_resource_prefetch_params import CDNResourcePrefetchParams as CDNResourcePrefetchParams
 from .rule_template_replace_params import RuleTemplateReplaceParams as RuleTemplateReplaceParams
 from .certificate_get_status_params import CertificateGetStatusParams as CertificateGetStatusParams
+from .alias_create_multiple_response import AliasCreateMultipleResponse as AliasCreateMultipleResponse
+from .alias_delete_multiple_response import AliasDeleteMultipleResponse as AliasDeleteMultipleResponse
 from .cdn_list_purge_statuses_params import CDNListPurgeStatusesParams as CDNListPurgeStatusesParams
 from .shielding_location_list_params import ShieldingLocationListParams as ShieldingLocationListParams
 from .cdn_list_alibaba_regions_params import CDNListAlibabaRegionsParams as CDNListAlibabaRegionsParams
@@ -82,6 +93,9 @@ from .statistic_get_logs_usage_aggregated_params import (
 )
 from .statistic_get_resource_usage_series_params import (
     StatisticGetResourceUsageSeriesParams as StatisticGetResourceUsageSeriesParams,
+)
+from .statistic_get_alias_usage_aggregated_params import (
+    StatisticGetAliasUsageAggregatedParams as StatisticGetAliasUsageAggregatedParams,
 )
 from .statistic_get_shield_usage_aggregated_params import (
     StatisticGetShieldUsageAggregatedParams as StatisticGetShieldUsageAggregatedParams,

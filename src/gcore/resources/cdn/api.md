@@ -154,6 +154,32 @@ Methods:
 - <code title="get /cdn/resources/{resource_id}/rules/{rule_id}/preset">client.cdn.presets.applied.<a href="./src/gcore/resources/cdn/presets/applied.py">get_rule_preset</a>(rule_id, \*, resource_id) -> <a href="./src/gcore/types/cdn/presets/applied_preset_fields.py">AppliedPresetFields</a></code>
 - <code title="delete /cdn/presets/{preset_id}/applied/{object_id}">client.cdn.presets.applied.<a href="./src/gcore/resources/cdn/presets/applied.py">unapply</a>(object_id, \*, preset_id) -> None</code>
 
+## Aliases
+
+Types:
+
+```python
+from gcore.types.cdn import (
+    Alias,
+    AliasCertificateStatus,
+    AliasDetail,
+    AliasCreateMultipleResponse,
+    AliasDeleteMultipleResponse,
+)
+```
+
+Methods:
+
+- <code title="post /cdn/aliases">client.cdn.aliases.<a href="./src/gcore/resources/cdn/aliases.py">create</a>(\*\*<a href="src/gcore/types/cdn/alias_create_params.py">params</a>) -> <a href="./src/gcore/types/cdn/alias.py">Alias</a></code>
+- <code title="patch /cdn/aliases/{alias_id}">client.cdn.aliases.<a href="./src/gcore/resources/cdn/aliases.py">update</a>(alias_id, \*\*<a href="src/gcore/types/cdn/alias_update_params.py">params</a>) -> <a href="./src/gcore/types/cdn/alias_detail.py">AliasDetail</a></code>
+- <code title="get /cdn/aliases">client.cdn.aliases.<a href="./src/gcore/resources/cdn/aliases.py">list</a>(\*\*<a href="src/gcore/types/cdn/alias_list_params.py">params</a>) -> <a href="./src/gcore/types/cdn/alias.py">SyncOffsetPage[Alias]</a></code>
+- <code title="delete /cdn/aliases/{alias_id}">client.cdn.aliases.<a href="./src/gcore/resources/cdn/aliases.py">delete</a>(alias_id) -> None</code>
+- <code title="post /cdn/aliases/add">client.cdn.aliases.<a href="./src/gcore/resources/cdn/aliases.py">create_multiple</a>(\*\*<a href="src/gcore/types/cdn/alias_create_multiple_params.py">params</a>) -> <a href="./src/gcore/types/cdn/alias_create_multiple_response.py">AliasCreateMultipleResponse</a></code>
+- <code title="post /cdn/aliases/remove">client.cdn.aliases.<a href="./src/gcore/resources/cdn/aliases.py">delete_multiple</a>(\*\*<a href="src/gcore/types/cdn/alias_delete_multiple_params.py">params</a>) -> <a href="./src/gcore/types/cdn/alias_delete_multiple_response.py">AliasDeleteMultipleResponse</a></code>
+- <code title="get /cdn/aliases/{alias_id}">client.cdn.aliases.<a href="./src/gcore/resources/cdn/aliases.py">get</a>(alias_id) -> <a href="./src/gcore/types/cdn/alias_detail.py">AliasDetail</a></code>
+- <code title="get /cdn/aliases/{alias_id}/status">client.cdn.aliases.<a href="./src/gcore/resources/cdn/aliases.py">get_certificate_status</a>(alias_id) -> <a href="./src/gcore/types/cdn/alias_certificate_status.py">AliasCertificateStatus</a></code>
+- <code title="post /cdn/aliases/{alias_id}/retry">client.cdn.aliases.<a href="./src/gcore/resources/cdn/aliases.py">retry_certificate</a>(alias_id) -> <a href="./src/gcore/types/cdn/alias_detail.py">AliasDetail</a></code>
+
 ## Certificates
 
 Types:
@@ -290,6 +316,7 @@ Types:
 
 ```python
 from gcore.types.cdn import (
+    AliasAggregatedStats,
     LogsAggregatedStats,
     ResourceAggregatedStats,
     ResourceUsageStats,
@@ -300,6 +327,7 @@ from gcore.types.cdn import (
 
 Methods:
 
+- <code title="get /cdn/statistics/aliases_usage/aggregated">client.cdn.statistics.<a href="./src/gcore/resources/cdn/statistics.py">get_alias_usage_aggregated</a>(\*\*<a href="src/gcore/types/cdn/statistic_get_alias_usage_aggregated_params.py">params</a>) -> <a href="./src/gcore/types/cdn/alias_aggregated_stats.py">AliasAggregatedStats</a></code>
 - <code title="get /cdn/statistics/raw_logs_usage/aggregated">client.cdn.statistics.<a href="./src/gcore/resources/cdn/statistics.py">get_logs_usage_aggregated</a>(\*\*<a href="src/gcore/types/cdn/statistic_get_logs_usage_aggregated_params.py">params</a>) -> <a href="./src/gcore/types/cdn/logs_aggregated_stats.py">LogsAggregatedStats</a></code>
 - <code title="get /cdn/statistics/raw_logs_usage/series">client.cdn.statistics.<a href="./src/gcore/resources/cdn/statistics.py">get_logs_usage_series</a>(\*\*<a href="src/gcore/types/cdn/statistic_get_logs_usage_series_params.py">params</a>) -> <a href="./src/gcore/types/cdn/usage_series_stats.py">UsageSeriesStats</a></code>
 - <code title="get /cdn/statistics/aggregate/stats">client.cdn.statistics.<a href="./src/gcore/resources/cdn/statistics.py">get_resource_usage_aggregated</a>(\*\*<a href="src/gcore/types/cdn/statistic_get_resource_usage_aggregated_params.py">params</a>) -> <a href="./src/gcore/types/cdn/resource_aggregated_stats.py">ResourceAggregatedStats</a></code>

@@ -20,6 +20,14 @@ from .logs import (
     LogsResourceWithStreamingResponse,
     AsyncLogsResourceWithStreamingResponse,
 )
+from .aliases import (
+    AliasesResource,
+    AsyncAliasesResource,
+    AliasesResourceWithRawResponse,
+    AsyncAliasesResourceWithRawResponse,
+    AliasesResourceWithStreamingResponse,
+    AsyncAliasesResourceWithStreamingResponse,
+)
 from .metrics import (
     MetricsResource,
     AsyncMetricsResource,
@@ -192,6 +200,13 @@ class CDNResource(SyncAPIResource):
         CDN presets are predefined sets of CDN resource or rule settings that can be applied to an object in a single request, letting you configure caching, delivery, and security options consistently.
         """
         return PresetsResource(self._client)
+
+    @cached_property
+    def aliases(self) -> AliasesResource:
+        """
+        CDN aliases are hostnames you own that are served with the settings of one of your CDN resources, each with its own SSL certificate.
+        """
+        return AliasesResource(self._client)
 
     @cached_property
     def certificates(self) -> CertificatesResource:
@@ -609,6 +624,13 @@ class AsyncCDNResource(AsyncAPIResource):
         CDN presets are predefined sets of CDN resource or rule settings that can be applied to an object in a single request, letting you configure caching, delivery, and security options consistently.
         """
         return AsyncPresetsResource(self._client)
+
+    @cached_property
+    def aliases(self) -> AsyncAliasesResource:
+        """
+        CDN aliases are hostnames you own that are served with the settings of one of your CDN resources, each with its own SSL certificate.
+        """
+        return AsyncAliasesResource(self._client)
 
     @cached_property
     def certificates(self) -> AsyncCertificatesResource:
@@ -1053,6 +1075,13 @@ class CDNResourceWithRawResponse:
         return PresetsResourceWithRawResponse(self._cdn.presets)
 
     @cached_property
+    def aliases(self) -> AliasesResourceWithRawResponse:
+        """
+        CDN aliases are hostnames you own that are served with the settings of one of your CDN resources, each with its own SSL certificate.
+        """
+        return AliasesResourceWithRawResponse(self._cdn.aliases)
+
+    @cached_property
     def certificates(self) -> CertificatesResourceWithRawResponse:
         """
         CDN SSL certificates enable HTTPS content delivery, supporting both uploaded certificates and automated Let's Encrypt provisioning.
@@ -1189,6 +1218,13 @@ class AsyncCDNResourceWithRawResponse:
         CDN presets are predefined sets of CDN resource or rule settings that can be applied to an object in a single request, letting you configure caching, delivery, and security options consistently.
         """
         return AsyncPresetsResourceWithRawResponse(self._cdn.presets)
+
+    @cached_property
+    def aliases(self) -> AsyncAliasesResourceWithRawResponse:
+        """
+        CDN aliases are hostnames you own that are served with the settings of one of your CDN resources, each with its own SSL certificate.
+        """
+        return AsyncAliasesResourceWithRawResponse(self._cdn.aliases)
 
     @cached_property
     def certificates(self) -> AsyncCertificatesResourceWithRawResponse:
@@ -1329,6 +1365,13 @@ class CDNResourceWithStreamingResponse:
         return PresetsResourceWithStreamingResponse(self._cdn.presets)
 
     @cached_property
+    def aliases(self) -> AliasesResourceWithStreamingResponse:
+        """
+        CDN aliases are hostnames you own that are served with the settings of one of your CDN resources, each with its own SSL certificate.
+        """
+        return AliasesResourceWithStreamingResponse(self._cdn.aliases)
+
+    @cached_property
     def certificates(self) -> CertificatesResourceWithStreamingResponse:
         """
         CDN SSL certificates enable HTTPS content delivery, supporting both uploaded certificates and automated Let's Encrypt provisioning.
@@ -1465,6 +1508,13 @@ class AsyncCDNResourceWithStreamingResponse:
         CDN presets are predefined sets of CDN resource or rule settings that can be applied to an object in a single request, letting you configure caching, delivery, and security options consistently.
         """
         return AsyncPresetsResourceWithStreamingResponse(self._cdn.presets)
+
+    @cached_property
+    def aliases(self) -> AsyncAliasesResourceWithStreamingResponse:
+        """
+        CDN aliases are hostnames you own that are served with the settings of one of your CDN resources, each with its own SSL certificate.
+        """
+        return AsyncAliasesResourceWithStreamingResponse(self._cdn.aliases)
 
     @cached_property
     def certificates(self) -> AsyncCertificatesResourceWithStreamingResponse:

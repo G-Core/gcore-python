@@ -19,6 +19,7 @@ from ...types.cdn import (
     statistic_get_shield_usage_series_params,
     statistic_get_logs_usage_aggregated_params,
     statistic_get_resource_usage_series_params,
+    statistic_get_alias_usage_aggregated_params,
     statistic_get_shield_usage_aggregated_params,
     statistic_get_resource_usage_aggregated_params,
 )
@@ -26,6 +27,7 @@ from ..._base_client import make_request_options
 from ...types.cdn.usage_series_stats import UsageSeriesStats
 from ...types.cdn.resource_usage_stats import ResourceUsageStats
 from ...types.cdn.logs_aggregated_stats import LogsAggregatedStats
+from ...types.cdn.alias_aggregated_stats import AliasAggregatedStats
 from ...types.cdn.shield_aggregated_stats import ShieldAggregatedStats
 from ...types.cdn.resource_aggregated_stats import ResourceAggregatedStats
 
@@ -57,6 +59,85 @@ class StatisticsResource(SyncAPIResource):
         For more information, see https://www.github.com/G-Core/gcore-python#with_streaming_response
         """
         return StatisticsResourceWithStreamingResponse(self)
+
+    def get_alias_usage_aggregated(
+        self,
+        *,
+        from_: str,
+        to: str,
+        flat: bool | Omit = omit,
+        group_by: str | Omit = omit,
+        resource: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AliasAggregatedStats:
+        """
+        Get the number of aliases in use.
+
+        Request URL parameters should be added as a query string after the endpoint.
+
+        The requested period is always expanded to whole calendar months, so a request
+        for part of a month returns the count for its entire containing month.
+
+        Args:
+          from_: Beginning of the requested time period (ISO 8601/RFC 3339 format, UTC.)
+
+          to: End of the requested time period (ISO 8601/RFC 3339 format, UTC.)
+
+          flat: The way the parameters are arranged in the response.
+
+              Possible values:
+
+              - **true** – Flat structure is used.
+              - **false** – Embedded structure is used (default.)
+
+          group_by: Output data grouping.
+
+              Possible value:
+
+              - **resource** - Data is grouped by CDN resources.
+
+          resource: CDN resources IDs by that statistics data is grouped.
+
+              To request multiple values, use:
+
+              - &resource=1&resource=2
+
+              If CDN resource ID is not specified, data related to all CDN resources is
+              returned.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            "/cdn/statistics/aliases_usage/aggregated",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "from_": from_,
+                        "to": to,
+                        "flat": flat,
+                        "group_by": group_by,
+                        "resource": resource,
+                    },
+                    statistic_get_alias_usage_aggregated_params.StatisticGetAliasUsageAggregatedParams,
+                ),
+            ),
+            cast_to=AliasAggregatedStats,
+        )
 
     def get_logs_usage_aggregated(
         self,
@@ -693,6 +774,85 @@ class AsyncStatisticsResource(AsyncAPIResource):
         """
         return AsyncStatisticsResourceWithStreamingResponse(self)
 
+    async def get_alias_usage_aggregated(
+        self,
+        *,
+        from_: str,
+        to: str,
+        flat: bool | Omit = omit,
+        group_by: str | Omit = omit,
+        resource: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AliasAggregatedStats:
+        """
+        Get the number of aliases in use.
+
+        Request URL parameters should be added as a query string after the endpoint.
+
+        The requested period is always expanded to whole calendar months, so a request
+        for part of a month returns the count for its entire containing month.
+
+        Args:
+          from_: Beginning of the requested time period (ISO 8601/RFC 3339 format, UTC.)
+
+          to: End of the requested time period (ISO 8601/RFC 3339 format, UTC.)
+
+          flat: The way the parameters are arranged in the response.
+
+              Possible values:
+
+              - **true** – Flat structure is used.
+              - **false** – Embedded structure is used (default.)
+
+          group_by: Output data grouping.
+
+              Possible value:
+
+              - **resource** - Data is grouped by CDN resources.
+
+          resource: CDN resources IDs by that statistics data is grouped.
+
+              To request multiple values, use:
+
+              - &resource=1&resource=2
+
+              If CDN resource ID is not specified, data related to all CDN resources is
+              returned.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
+            "/cdn/statistics/aliases_usage/aggregated",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "from_": from_,
+                        "to": to,
+                        "flat": flat,
+                        "group_by": group_by,
+                        "resource": resource,
+                    },
+                    statistic_get_alias_usage_aggregated_params.StatisticGetAliasUsageAggregatedParams,
+                ),
+            ),
+            cast_to=AliasAggregatedStats,
+        )
+
     async def get_logs_usage_aggregated(
         self,
         *,
@@ -1306,6 +1466,9 @@ class StatisticsResourceWithRawResponse:
     def __init__(self, statistics: StatisticsResource) -> None:
         self._statistics = statistics
 
+        self.get_alias_usage_aggregated = to_raw_response_wrapper(
+            statistics.get_alias_usage_aggregated,
+        )
         self.get_logs_usage_aggregated = to_raw_response_wrapper(
             statistics.get_logs_usage_aggregated,
         )
@@ -1330,6 +1493,9 @@ class AsyncStatisticsResourceWithRawResponse:
     def __init__(self, statistics: AsyncStatisticsResource) -> None:
         self._statistics = statistics
 
+        self.get_alias_usage_aggregated = async_to_raw_response_wrapper(
+            statistics.get_alias_usage_aggregated,
+        )
         self.get_logs_usage_aggregated = async_to_raw_response_wrapper(
             statistics.get_logs_usage_aggregated,
         )
@@ -1354,6 +1520,9 @@ class StatisticsResourceWithStreamingResponse:
     def __init__(self, statistics: StatisticsResource) -> None:
         self._statistics = statistics
 
+        self.get_alias_usage_aggregated = to_streamed_response_wrapper(
+            statistics.get_alias_usage_aggregated,
+        )
         self.get_logs_usage_aggregated = to_streamed_response_wrapper(
             statistics.get_logs_usage_aggregated,
         )
@@ -1378,6 +1547,9 @@ class AsyncStatisticsResourceWithStreamingResponse:
     def __init__(self, statistics: AsyncStatisticsResource) -> None:
         self._statistics = statistics
 
+        self.get_alias_usage_aggregated = async_to_streamed_response_wrapper(
+            statistics.get_alias_usage_aggregated,
+        )
         self.get_logs_usage_aggregated = async_to_streamed_response_wrapper(
             statistics.get_logs_usage_aggregated,
         )

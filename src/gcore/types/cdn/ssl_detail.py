@@ -41,12 +41,12 @@ class SslDetail(BaseModel):
     """
 
     has_related_resources: Optional[bool] = FieldInfo(alias="hasRelatedResources", default=None)
-    """Defines whether the SSL certificate is used by a CDN resource.
+    """Defines whether the SSL certificate is used by a CDN resource or an alias.
 
     Possible values:
 
-    - **true** - Certificate is used by a CDN resource.
-    - **false** - Certificate is not used by a CDN resource.
+    - **true** - Certificate is used by a CDN resource or an alias.
+    - **false** - Certificate is not used by a CDN resource or an alias.
     """
 
     name: Optional[str] = None
