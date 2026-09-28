@@ -305,7 +305,7 @@ class ServiceStatusesCDN(BaseModel):
     enabled: Optional[bool] = None
     """`true` - service is available in the Control Panel."""
 
-    status: Optional[Literal["new", "trial", "trialend", "active", "paused", "activating", "deleted"]] = None
+    status: Optional[Literal["new", "trial", "trialend", "active", "paused", "deleted"]] = None
     """Status of the service."""
 
 
@@ -313,7 +313,7 @@ class ServiceStatusesCloud(BaseModel):
     enabled: Optional[bool] = None
     """`true` - service is available in the Control Panel."""
 
-    status: Optional[Literal["new", "trial", "trialend", "active", "paused", "activating", "deleted"]] = None
+    status: Optional[Literal["new", "trial", "trialend", "active", "paused", "deleted"]] = None
     """Status of the service."""
 
 
@@ -321,7 +321,7 @@ class ServiceStatusesDDOS(BaseModel):
     enabled: Optional[bool] = None
     """`true` - service is available in the Control Panel."""
 
-    status: Optional[Literal["new", "trial", "trialend", "active", "paused", "activating", "deleted"]] = None
+    status: Optional[Literal["new", "trial", "trialend", "active", "paused", "deleted"]] = None
     """Status of the service."""
 
 
@@ -329,7 +329,7 @@ class ServiceStatusesDNS(BaseModel):
     enabled: Optional[bool] = None
     """`true` - service is available in the Control Panel."""
 
-    status: Optional[Literal["new", "trial", "trialend", "active", "paused", "activating", "deleted"]] = None
+    status: Optional[Literal["new", "trial", "trialend", "active", "paused", "deleted"]] = None
     """Status of the service."""
 
 
@@ -337,7 +337,7 @@ class ServiceStatusesStorage(BaseModel):
     enabled: Optional[bool] = None
     """`true` - service is available in the Control Panel."""
 
-    status: Optional[Literal["new", "trial", "trialend", "active", "paused", "activating", "deleted"]] = None
+    status: Optional[Literal["new", "trial", "trialend", "active", "paused", "deleted"]] = None
     """Status of the service."""
 
 
@@ -345,7 +345,7 @@ class ServiceStatusesStreaming(BaseModel):
     enabled: Optional[bool] = None
     """`true` - service is available in the Control Panel."""
 
-    status: Optional[Literal["new", "trial", "trialend", "active", "paused", "activating", "deleted"]] = None
+    status: Optional[Literal["new", "trial", "trialend", "active", "paused", "deleted"]] = None
     """Status of the service."""
 
 
