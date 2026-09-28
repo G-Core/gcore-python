@@ -43,6 +43,7 @@ from .ip_range_list_params import IPRangeListParams as IPRangeListParams
 from .resource_usage_stats import ResourceUsageStats as ResourceUsageStats
 from .audit_log_list_params import AuditLogListParams as AuditLogListParams
 from .logs_aggregated_stats import LogsAggregatedStats as LogsAggregatedStats
+from .ssl_certificate_usage import SslCertificateUsage as SslCertificateUsage
 from .alias_aggregated_stats import AliasAggregatedStats as AliasAggregatedStats
 from .cdn_available_features import CDNAvailableFeatures as CDNAvailableFeatures
 from .certificate_list_params import CertificateListParams as CertificateListParams

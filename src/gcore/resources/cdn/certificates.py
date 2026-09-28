@@ -26,6 +26,7 @@ from ...pagination import SyncOffsetPage, AsyncOffsetPage
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.cdn.ssl_detail import SslDetail
 from ...types.cdn.ssl_request_status import SslRequestStatus
+from ...types.cdn.ssl_certificate_usage import SslCertificateUsage
 
 __all__ = ["CertificatesResource", "AsyncCertificatesResource"]
 
@@ -385,6 +386,40 @@ class CertificatesResource(SyncAPIResource):
                 query=maybe_transform({"exclude": exclude}, certificate_get_status_params.CertificateGetStatusParams),
             ),
             cast_to=SslRequestStatus,
+        )
+
+    def get_usage(
+        self,
+        cert_id: int,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SslCertificateUsage:
+        """
+        Get list of CDN resources and aliases that are using this SSL certificate.
+
+        This endpoint is useful to check which resources and aliases depend on a
+        certificate before renewing, modifying, or deleting it.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            path_template("/cdn/sslData/{cert_id}/usage", cert_id=cert_id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=SslCertificateUsage,
         )
 
     def renew(
@@ -845,6 +880,40 @@ class AsyncCertificatesResource(AsyncAPIResource):
             cast_to=SslRequestStatus,
         )
 
+    async def get_usage(
+        self,
+        cert_id: int,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SslCertificateUsage:
+        """
+        Get list of CDN resources and aliases that are using this SSL certificate.
+
+        This endpoint is useful to check which resources and aliases depend on a
+        certificate before renewing, modifying, or deleting it.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
+            path_template("/cdn/sslData/{cert_id}/usage", cert_id=cert_id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=SslCertificateUsage,
+        )
+
     async def renew(
         self,
         cert_id: int,
@@ -966,6 +1035,9 @@ class CertificatesResourceWithRawResponse:
         self.get_status = to_raw_response_wrapper(
             certificates.get_status,
         )
+        self.get_usage = to_raw_response_wrapper(
+            certificates.get_usage,
+        )
         self.renew = to_raw_response_wrapper(
             certificates.renew,
         )
@@ -995,6 +1067,9 @@ class AsyncCertificatesResourceWithRawResponse:
         )
         self.get_status = async_to_raw_response_wrapper(
             certificates.get_status,
+        )
+        self.get_usage = async_to_raw_response_wrapper(
+            certificates.get_usage,
         )
         self.renew = async_to_raw_response_wrapper(
             certificates.renew,
@@ -1026,6 +1101,9 @@ class CertificatesResourceWithStreamingResponse:
         self.get_status = to_streamed_response_wrapper(
             certificates.get_status,
         )
+        self.get_usage = to_streamed_response_wrapper(
+            certificates.get_usage,
+        )
         self.renew = to_streamed_response_wrapper(
             certificates.renew,
         )
@@ -1055,6 +1133,9 @@ class AsyncCertificatesResourceWithStreamingResponse:
         )
         self.get_status = async_to_streamed_response_wrapper(
             certificates.get_status,
+        )
+        self.get_usage = async_to_streamed_response_wrapper(
+            certificates.get_usage,
         )
         self.renew = async_to_streamed_response_wrapper(
             certificates.renew,

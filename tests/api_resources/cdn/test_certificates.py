@@ -12,6 +12,7 @@ from tests.utils import assert_matches_type
 from gcore.types.cdn import (
     SslDetail,
     SslRequestStatus,
+    SslCertificateUsage,
 )
 from gcore.pagination import SyncOffsetPage, AsyncOffsetPage
 
@@ -271,6 +272,37 @@ class TestCertificates:
 
             certificate = response.parse()
             assert_matches_type(SslRequestStatus, certificate, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_get_usage(self, client: Gcore) -> None:
+        certificate = client.cdn.certificates.get_usage(
+            0,
+        )
+        assert_matches_type(SslCertificateUsage, certificate, path=["response"])
+
+    @parametrize
+    def test_raw_response_get_usage(self, client: Gcore) -> None:
+        response = client.cdn.certificates.with_raw_response.get_usage(
+            0,
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        certificate = response.parse()
+        assert_matches_type(SslCertificateUsage, certificate, path=["response"])
+
+    @parametrize
+    def test_streaming_response_get_usage(self, client: Gcore) -> None:
+        with client.cdn.certificates.with_streaming_response.get_usage(
+            0,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            certificate = response.parse()
+            assert_matches_type(SslCertificateUsage, certificate, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -612,6 +644,37 @@ class TestAsyncCertificates:
 
             certificate = await response.parse()
             assert_matches_type(SslRequestStatus, certificate, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_get_usage(self, async_client: AsyncGcore) -> None:
+        certificate = await async_client.cdn.certificates.get_usage(
+            0,
+        )
+        assert_matches_type(SslCertificateUsage, certificate, path=["response"])
+
+    @parametrize
+    async def test_raw_response_get_usage(self, async_client: AsyncGcore) -> None:
+        response = await async_client.cdn.certificates.with_raw_response.get_usage(
+            0,
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        certificate = await response.parse()
+        assert_matches_type(SslCertificateUsage, certificate, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_get_usage(self, async_client: AsyncGcore) -> None:
+        async with async_client.cdn.certificates.with_streaming_response.get_usage(
+            0,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            certificate = await response.parse()
+            assert_matches_type(SslCertificateUsage, certificate, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

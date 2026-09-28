@@ -185,7 +185,7 @@ Methods:
 Types:
 
 ```python
-from gcore.types.cdn import SslDetail, SslDetailList, SslRequestStatus
+from gcore.types.cdn import SslCertificateUsage, SslDetail, SslDetailList, SslRequestStatus
 ```
 
 Methods:
@@ -196,6 +196,7 @@ Methods:
 - <code title="post /cdn/sslData/{cert_id}/force-retry">client.cdn.certificates.<a href="./src/gcore/resources/cdn/certificates.py">force_retry</a>(cert_id) -> None</code>
 - <code title="get /cdn/sslData/{ssl_id}">client.cdn.certificates.<a href="./src/gcore/resources/cdn/certificates.py">get</a>(ssl_id) -> <a href="./src/gcore/types/cdn/ssl_detail.py">SslDetail</a></code>
 - <code title="get /cdn/sslData/{cert_id}/status">client.cdn.certificates.<a href="./src/gcore/resources/cdn/certificates.py">get_status</a>(cert_id, \*\*<a href="src/gcore/types/cdn/certificate_get_status_params.py">params</a>) -> <a href="./src/gcore/types/cdn/ssl_request_status.py">SslRequestStatus</a></code>
+- <code title="get /cdn/sslData/{cert_id}/usage">client.cdn.certificates.<a href="./src/gcore/resources/cdn/certificates.py">get_usage</a>(cert_id) -> <a href="./src/gcore/types/cdn/ssl_certificate_usage.py">SslCertificateUsage</a></code>
 - <code title="post /cdn/sslData/{cert_id}/renew">client.cdn.certificates.<a href="./src/gcore/resources/cdn/certificates.py">renew</a>(cert_id) -> None</code>
 - <code title="put /cdn/sslData/{ssl_id}">client.cdn.certificates.<a href="./src/gcore/resources/cdn/certificates.py">replace</a>(ssl_id, \*\*<a href="src/gcore/types/cdn/certificate_replace_params.py">params</a>) -> <a href="./src/gcore/types/cdn/ssl_detail.py">SslDetail</a></code>
 
