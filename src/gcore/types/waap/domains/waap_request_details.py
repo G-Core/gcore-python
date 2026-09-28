@@ -14,6 +14,7 @@ __all__ = [
     "PatternMatchedTag",
     "UserAgent",
     "Detector",
+    "PolicyOverride",
 ]
 
 
@@ -146,6 +147,26 @@ class Detector(BaseModel):
     """
 
 
+class PolicyOverride(BaseModel):
+    """An override that applied to a request, with its match metadata."""
+
+    id: int
+    """ID of the policy override applied to this request."""
+
+    matched: Dict[str, object]
+    """Match evidence keyed by target reference, such as 'ID861'.
+
+    For legacy records, evidence is retained only for the first matched target;
+    subsequent matched targets have empty objects.
+    """
+
+    t: Literal["waf_rule", "static_rule_template"]
+    """
+    Type of target affected by the override: 'waf_rule' for a detector or
+    'static_rule_template' for a rule.
+    """
+
+
 class WaapRequestDetails(BaseModel):
     """Request's details used when displaying a single request."""
 
@@ -251,3 +272,9 @@ class WaapRequestDetails(BaseModel):
 
     optional_action: Optional[Literal["captcha", "challenge", ""]] = None
     """An optional action that may be applied in addition to the primary decision."""
+
+    policy_override: Optional[List[PolicyOverride]] = None
+    """Applied overrides with id, t, and matched metadata keyed by target ID.
+
+    Does not replace the final decision.
+    """

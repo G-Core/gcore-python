@@ -1,11 +1,31 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import Dict, List, Optional
 from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["WaapRequestSummary"]
+__all__ = ["WaapRequestSummary", "PolicyOverride"]
+
+
+class PolicyOverride(BaseModel):
+    """An override that applied to a request, with its match metadata."""
+
+    id: int
+    """ID of the policy override applied to this request."""
+
+    matched: Dict[str, object]
+    """Match evidence keyed by target reference, such as 'ID861'.
+
+    For legacy records, evidence is retained only for the first matched target;
+    subsequent matched targets have empty objects.
+    """
+
+    t: Literal["waf_rule", "static_rule_template"]
+    """
+    Type of target affected by the override: 'waf_rule' for a detector or
+    'static_rule_template' for a rule.
+    """
 
 
 class WaapRequestSummary(BaseModel):
@@ -77,6 +97,12 @@ class WaapRequestSummary(BaseModel):
     """
     JA3 TLS client fingerprint as a 32-character lowercase hexadecimal MD5 hash, or
     an empty string when the record has no JA3 value.
+    """
+
+    policy_override: Optional[List[PolicyOverride]] = None
+    """Applied overrides with id, t, and matched metadata keyed by target ID.
+
+    Does not replace the final decision.
     """
 
     scheme: Optional[str] = None

@@ -243,6 +243,7 @@ class AnalyticsResource(SyncAPIResource):
         exclude_user_agent: SequenceNotStr[str] | Omit = omit,
         exclude_user_agent_clients: SequenceNotStr[str] | Omit = omit,
         exclude_user_agent_devices: SequenceNotStr[str] | Omit = omit,
+        has_policy_override: Optional[bool] | Omit = omit,
         http_methods: List[Literal["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT", "TRACE"]] | Omit = omit,
         ips: SequenceNotStr[str] | Omit = omit,
         ja3: SequenceNotStr[str] | Omit = omit,
@@ -302,16 +303,14 @@ class AnalyticsResource(SyncAPIResource):
           exclude_ips: Exclude traffic data by client IP.
 
           exclude_ja3: Exclude entries whose JA3 TLS client fingerprint matches any of the supplied
-              values. Each value must be exactly 32 hexadecimal characters (mixed case
-              allowed) and is case-folded to lowercase when the backend filter is built.
-              Supply multiple values to exclude any of them. Omit the parameter to apply no
-              JA3 exclusion.
+              values. Each value must be exactly 32 hexadecimal characters, mixed case
+              allowed, normalized to lowercase. Supply multiple values to exclude any of them.
+              Omit the parameter to apply no JA3 exclusion.
 
           exclude_ja4: Exclude entries whose JA4 TLS client fingerprint equals any of the supplied
               values. An item must match the JA4 form `<ja4_a>_<ja4_b>_<ja4_c>` (a
-              10-character prefix and two 12-character hexadecimal hashes, mixed case allowed)
-              and is case-folded to lowercase when the backend filter is built. Omit the
-              parameter to apply no JA4 exclusion.
+              10-character prefix and two 12-character hexadecimal hashes, mixed case allowed,
+              normalized to lowercase). Omit the parameter to apply no JA4 exclusion.
 
           exclude_optional_action: Exclude entries that match any of the given optional action values.
 
@@ -343,20 +342,22 @@ class AnalyticsResource(SyncAPIResource):
           exclude_user_agent_devices: Exclude entries whose parsed user agent device exactly equals any supplied
               value. Omit or provide an empty list to apply no user agent device exclusion.
 
+          has_policy_override: True selects requests with applied overrides; false excludes them. Omit to
+              include both.
+
           http_methods: Filter by HTTP methods
 
           ips: Filter traffic data by client IP.
 
           ja3: Filter by JA3 TLS client fingerprint. Each value must be exactly 32 hexadecimal
-              characters (mixed case allowed) and is case-folded to lowercase when the backend
-              filter is built. Supply multiple values to match any of them. Omit the parameter
-              to apply no JA3 filter.
+              characters, mixed case allowed, normalized to lowercase. Supply multiple values
+              to match any of them. Omit the parameter to apply no JA3 filter.
 
           ja4: Filter by JA4 TLS client fingerprint. When present, the value must match the JA4
               form `<ja4_a>_<ja4_b>_<ja4_c>` (a 10-character prefix and two 12-character
-              hexadecimal hashes, mixed case allowed) and is case-folded to lowercase when the
-              backend filter is built. Supply multiple values to match any of them. Omit the
-              parameter entirely to apply no JA4 filter.
+              hexadecimal hashes, mixed case allowed, normalized to lowercase). Supply
+              multiple values to match any of them. Omit the parameter entirely to apply no
+              JA4 filter.
 
           limit: Number of items to return
 
@@ -436,6 +437,7 @@ class AnalyticsResource(SyncAPIResource):
                         "exclude_user_agent": exclude_user_agent,
                         "exclude_user_agent_clients": exclude_user_agent_clients,
                         "exclude_user_agent_devices": exclude_user_agent_devices,
+                        "has_policy_override": has_policy_override,
                         "http_methods": http_methods,
                         "ips": ips,
                         "ja3": ja3,
@@ -616,16 +618,14 @@ class AnalyticsResource(SyncAPIResource):
           exclude_ips: Exclude traffic data by client IP.
 
           exclude_ja3: Exclude entries whose JA3 TLS client fingerprint matches any of the supplied
-              values. Each value must be exactly 32 hexadecimal characters (mixed case
-              allowed) and is case-folded to lowercase when the backend filter is built.
-              Supply multiple values to exclude any of them. Omit the parameter to apply no
-              JA3 exclusion.
+              values. Each value must be exactly 32 hexadecimal characters, mixed case
+              allowed, normalized to lowercase. Supply multiple values to exclude any of them.
+              Omit the parameter to apply no JA3 exclusion.
 
           exclude_ja4: Exclude entries whose JA4 TLS client fingerprint equals any of the supplied
               values. An item must match the JA4 form `<ja4_a>_<ja4_b>_<ja4_c>` (a
-              10-character prefix and two 12-character hexadecimal hashes, mixed case allowed)
-              and is case-folded to lowercase when the backend filter is built. Omit the
-              parameter to apply no JA4 exclusion.
+              10-character prefix and two 12-character hexadecimal hashes, mixed case allowed,
+              normalized to lowercase). Omit the parameter to apply no JA4 exclusion.
 
           exclude_optional_action: Exclude entries that match any of the given optional action values.
 
@@ -662,15 +662,14 @@ class AnalyticsResource(SyncAPIResource):
           ips: Filter traffic data by client IP.
 
           ja3: Filter by JA3 TLS client fingerprint. Each value must be exactly 32 hexadecimal
-              characters (mixed case allowed) and is case-folded to lowercase when the backend
-              filter is built. Supply multiple values to match any of them. Omit the parameter
-              to apply no JA3 filter.
+              characters, mixed case allowed, normalized to lowercase. Supply multiple values
+              to match any of them. Omit the parameter to apply no JA3 filter.
 
           ja4: Filter by JA4 TLS client fingerprint. When present, the value must match the JA4
               form `<ja4_a>_<ja4_b>_<ja4_c>` (a 10-character prefix and two 12-character
-              hexadecimal hashes, mixed case allowed) and is case-folded to lowercase when the
-              backend filter is built. Supply multiple values to match any of them. Omit the
-              parameter entirely to apply no JA4 filter.
+              hexadecimal hashes, mixed case allowed, normalized to lowercase). Supply
+              multiple values to match any of them. Omit the parameter entirely to apply no
+              JA4 filter.
 
           optional_action: Filter data by optional action.
 
@@ -976,6 +975,7 @@ class AsyncAnalyticsResource(AsyncAPIResource):
         exclude_user_agent: SequenceNotStr[str] | Omit = omit,
         exclude_user_agent_clients: SequenceNotStr[str] | Omit = omit,
         exclude_user_agent_devices: SequenceNotStr[str] | Omit = omit,
+        has_policy_override: Optional[bool] | Omit = omit,
         http_methods: List[Literal["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT", "TRACE"]] | Omit = omit,
         ips: SequenceNotStr[str] | Omit = omit,
         ja3: SequenceNotStr[str] | Omit = omit,
@@ -1035,16 +1035,14 @@ class AsyncAnalyticsResource(AsyncAPIResource):
           exclude_ips: Exclude traffic data by client IP.
 
           exclude_ja3: Exclude entries whose JA3 TLS client fingerprint matches any of the supplied
-              values. Each value must be exactly 32 hexadecimal characters (mixed case
-              allowed) and is case-folded to lowercase when the backend filter is built.
-              Supply multiple values to exclude any of them. Omit the parameter to apply no
-              JA3 exclusion.
+              values. Each value must be exactly 32 hexadecimal characters, mixed case
+              allowed, normalized to lowercase. Supply multiple values to exclude any of them.
+              Omit the parameter to apply no JA3 exclusion.
 
           exclude_ja4: Exclude entries whose JA4 TLS client fingerprint equals any of the supplied
               values. An item must match the JA4 form `<ja4_a>_<ja4_b>_<ja4_c>` (a
-              10-character prefix and two 12-character hexadecimal hashes, mixed case allowed)
-              and is case-folded to lowercase when the backend filter is built. Omit the
-              parameter to apply no JA4 exclusion.
+              10-character prefix and two 12-character hexadecimal hashes, mixed case allowed,
+              normalized to lowercase). Omit the parameter to apply no JA4 exclusion.
 
           exclude_optional_action: Exclude entries that match any of the given optional action values.
 
@@ -1076,20 +1074,22 @@ class AsyncAnalyticsResource(AsyncAPIResource):
           exclude_user_agent_devices: Exclude entries whose parsed user agent device exactly equals any supplied
               value. Omit or provide an empty list to apply no user agent device exclusion.
 
+          has_policy_override: True selects requests with applied overrides; false excludes them. Omit to
+              include both.
+
           http_methods: Filter by HTTP methods
 
           ips: Filter traffic data by client IP.
 
           ja3: Filter by JA3 TLS client fingerprint. Each value must be exactly 32 hexadecimal
-              characters (mixed case allowed) and is case-folded to lowercase when the backend
-              filter is built. Supply multiple values to match any of them. Omit the parameter
-              to apply no JA3 filter.
+              characters, mixed case allowed, normalized to lowercase. Supply multiple values
+              to match any of them. Omit the parameter to apply no JA3 filter.
 
           ja4: Filter by JA4 TLS client fingerprint. When present, the value must match the JA4
               form `<ja4_a>_<ja4_b>_<ja4_c>` (a 10-character prefix and two 12-character
-              hexadecimal hashes, mixed case allowed) and is case-folded to lowercase when the
-              backend filter is built. Supply multiple values to match any of them. Omit the
-              parameter entirely to apply no JA4 filter.
+              hexadecimal hashes, mixed case allowed, normalized to lowercase). Supply
+              multiple values to match any of them. Omit the parameter entirely to apply no
+              JA4 filter.
 
           limit: Number of items to return
 
@@ -1169,6 +1169,7 @@ class AsyncAnalyticsResource(AsyncAPIResource):
                         "exclude_user_agent": exclude_user_agent,
                         "exclude_user_agent_clients": exclude_user_agent_clients,
                         "exclude_user_agent_devices": exclude_user_agent_devices,
+                        "has_policy_override": has_policy_override,
                         "http_methods": http_methods,
                         "ips": ips,
                         "ja3": ja3,
@@ -1349,16 +1350,14 @@ class AsyncAnalyticsResource(AsyncAPIResource):
           exclude_ips: Exclude traffic data by client IP.
 
           exclude_ja3: Exclude entries whose JA3 TLS client fingerprint matches any of the supplied
-              values. Each value must be exactly 32 hexadecimal characters (mixed case
-              allowed) and is case-folded to lowercase when the backend filter is built.
-              Supply multiple values to exclude any of them. Omit the parameter to apply no
-              JA3 exclusion.
+              values. Each value must be exactly 32 hexadecimal characters, mixed case
+              allowed, normalized to lowercase. Supply multiple values to exclude any of them.
+              Omit the parameter to apply no JA3 exclusion.
 
           exclude_ja4: Exclude entries whose JA4 TLS client fingerprint equals any of the supplied
               values. An item must match the JA4 form `<ja4_a>_<ja4_b>_<ja4_c>` (a
-              10-character prefix and two 12-character hexadecimal hashes, mixed case allowed)
-              and is case-folded to lowercase when the backend filter is built. Omit the
-              parameter to apply no JA4 exclusion.
+              10-character prefix and two 12-character hexadecimal hashes, mixed case allowed,
+              normalized to lowercase). Omit the parameter to apply no JA4 exclusion.
 
           exclude_optional_action: Exclude entries that match any of the given optional action values.
 
@@ -1395,15 +1394,14 @@ class AsyncAnalyticsResource(AsyncAPIResource):
           ips: Filter traffic data by client IP.
 
           ja3: Filter by JA3 TLS client fingerprint. Each value must be exactly 32 hexadecimal
-              characters (mixed case allowed) and is case-folded to lowercase when the backend
-              filter is built. Supply multiple values to match any of them. Omit the parameter
-              to apply no JA3 filter.
+              characters, mixed case allowed, normalized to lowercase. Supply multiple values
+              to match any of them. Omit the parameter to apply no JA3 filter.
 
           ja4: Filter by JA4 TLS client fingerprint. When present, the value must match the JA4
               form `<ja4_a>_<ja4_b>_<ja4_c>` (a 10-character prefix and two 12-character
-              hexadecimal hashes, mixed case allowed) and is case-folded to lowercase when the
-              backend filter is built. Supply multiple values to match any of them. Omit the
-              parameter entirely to apply no JA4 filter.
+              hexadecimal hashes, mixed case allowed, normalized to lowercase). Supply
+              multiple values to match any of them. Omit the parameter entirely to apply no
+              JA4 filter.
 
           optional_action: Filter data by optional action.
 

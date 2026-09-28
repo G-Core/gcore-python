@@ -66,19 +66,17 @@ class AnalyticsGetTrafficFilteredParams(TypedDict, total=False):
     exclude_ja3: SequenceNotStr[str]
     """
     Exclude entries whose JA3 TLS client fingerprint matches any of the supplied
-    values. Each value must be exactly 32 hexadecimal characters (mixed case
-    allowed) and is case-folded to lowercase when the backend filter is built.
-    Supply multiple values to exclude any of them. Omit the parameter to apply no
-    JA3 exclusion.
+    values. Each value must be exactly 32 hexadecimal characters, mixed case
+    allowed, normalized to lowercase. Supply multiple values to exclude any of them.
+    Omit the parameter to apply no JA3 exclusion.
     """
 
     exclude_ja4: SequenceNotStr[str]
     """
     Exclude entries whose JA4 TLS client fingerprint equals any of the supplied
     values. An item must match the JA4 form `<ja4_a>_<ja4_b>_<ja4_c>` (a
-    10-character prefix and two 12-character hexadecimal hashes, mixed case allowed)
-    and is case-folded to lowercase when the backend filter is built. Omit the
-    parameter to apply no JA4 exclusion.
+    10-character prefix and two 12-character hexadecimal hashes, mixed case allowed,
+    normalized to lowercase). Omit the parameter to apply no JA4 exclusion.
     """
 
     exclude_optional_action: List[Literal["captcha", "challenge"]]
@@ -144,19 +142,18 @@ class AnalyticsGetTrafficFilteredParams(TypedDict, total=False):
     ja3: SequenceNotStr[str]
     """Filter by JA3 TLS client fingerprint.
 
-    Each value must be exactly 32 hexadecimal characters (mixed case allowed) and is
-    case-folded to lowercase when the backend filter is built. Supply multiple
-    values to match any of them. Omit the parameter to apply no JA3 filter.
+    Each value must be exactly 32 hexadecimal characters, mixed case allowed,
+    normalized to lowercase. Supply multiple values to match any of them. Omit the
+    parameter to apply no JA3 filter.
     """
 
     ja4: SequenceNotStr[str]
     """Filter by JA4 TLS client fingerprint.
 
     When present, the value must match the JA4 form `<ja4_a>_<ja4_b>_<ja4_c>` (a
-    10-character prefix and two 12-character hexadecimal hashes, mixed case allowed)
-    and is case-folded to lowercase when the backend filter is built. Supply
-    multiple values to match any of them. Omit the parameter entirely to apply no
-    JA4 filter.
+    10-character prefix and two 12-character hexadecimal hashes, mixed case allowed,
+    normalized to lowercase). Supply multiple values to match any of them. Omit the
+    parameter entirely to apply no JA4 filter.
     """
 
     optional_action: List[Literal["captcha", "challenge"]]
