@@ -39,7 +39,11 @@ jobs:
           set -euo pipefail
           git remote add production "https://x-access-token:${GH_TOKEN}@github.com/${PRODUCTION_REPO}.git"
           git fetch --no-tags production main
-          if git merge-base --is-ancestor production/main HEAD; then
+          # On a pull_request run HEAD is the PR merge ref, so resolve the
+          # trunk explicitly. Otherwise a PR carrying the back-sync commits
+          # would report itself in sync while main is still stale.
+          trunk=$(git rev-parse --verify refs/remotes/origin/main)
+          if git merge-base --is-ancestor production/main "$trunk"; then
             state=success; desc="main is in sync with production"
           else
             state=failure; desc="production is ahead — wait for the back-sync before merging"
@@ -47,8 +51,18 @@ jobs:
           echo "trunk-synced => $state ($desc)"
           shas=$(gh pr list --repo "$GITHUB_REPOSITORY" --base main --state open --json headRefOid --jq '.[].headRefOid')
           if [ -z "$shas" ]; then echo "no open PRs targeting main"; exit 0; fi
+          # Keep going when one PR fails so the rest still get a status.
+          posted=0
           for sha in $shas; do
-            gh api -X POST "repos/$GITHUB_REPOSITORY/statuses/$sha" \
-              -f state="$state" -f context="trunk-synced" -f description="$desc" >/dev/null
-            echo "posted trunk-synced=$state to $sha"
+            if gh api -X POST "repos/$GITHUB_REPOSITORY/statuses/$sha" \
+              -f state="$state" -f context="trunk-synced" -f description="$desc" >/dev/null; then
+              echo "posted trunk-synced=$state to $sha"
+              posted=$((posted + 1))
+            else
+              echo "::warning::failed to post trunk-synced to $sha"
+            fi
           done
+          if [ "$posted" -eq 0 ]; then
+            echo "::error::failed to post trunk-synced to every open PR"
+            exit 1
+          fi
