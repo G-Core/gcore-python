@@ -20,14 +20,16 @@ jobs:
       PRODUCTION_REPOSITORY: gcore-python
     steps:
       - name: Check out staging
-        uses: actions/checkout@v6
+        # v7 adds current checkout fixes while the full SHA keeps the runner dependency immutable.
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
           persist-credentials: false
 
       - name: Generate gcore-sdk-bot token
         id: app-token
-        uses: actions/create-github-app-token@v3
+        # v3.2.0 adds current token-action fixes; the full SHA makes the version immutable.
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
         with:
           client-id: ${{ vars.GCORE_SDK_BOT_CLIENT_ID }}
           private-key: ${{ secrets.GCORE_SDK_BOT_PRIVATE_KEY }}

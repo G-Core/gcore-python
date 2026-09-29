@@ -19,7 +19,8 @@ jobs:
     # Metadata-only commits land straight on `main` and change no code.
     if: github.event_name != 'push' || github.event.head_commit.message != 'codegen metadata'
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      # v7 adds current checkout fixes while the full SHA keeps the runner dependency immutable.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Install Rye
         run: |
@@ -45,7 +46,8 @@ jobs:
       id-token: write
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      # v7 adds current checkout fixes while the full SHA keeps the runner dependency immutable.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Install Rye
         run: |

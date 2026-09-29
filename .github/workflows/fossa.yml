@@ -13,10 +13,12 @@ jobs:
     if: github.actor != 'dependabot[bot]' && github.repository == 'G-Core/gcore-python'
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        # v7 adds current checkout fixes while the full SHA keeps the runner dependency immutable.
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Install FOSSA CLI
         run: |
-          curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/fossas/fossa-cli/master/install-latest.sh | bash
+          # Pin the installer source and CLI release for reproducible, reviewable FOSSA scans.
+          curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/fossas/fossa-cli/d7419a0c2ab909c9b48e8bc540033062e3d78761/install-latest.sh | bash -s -- v3.19.0
       - name: Set FOSSA API Key
         run: echo "FOSSA_API_KEY=${{ secrets.FOSSA_PUB_API_KEY }}" >> $GITHUB_ENV
       - name: Run FOSSA Analysis

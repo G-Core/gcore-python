@@ -30,7 +30,8 @@ jobs:
       PRODUCTION_REPO: G-Core/gcore-python
       GH_TOKEN: ${{ github.token }}
     steps:
-      - uses: actions/checkout@v6
+      # v7 adds current checkout fixes while the full SHA keeps the runner dependency immutable.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
           persist-credentials: false
