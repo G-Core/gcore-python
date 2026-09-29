@@ -4,7 +4,8 @@ from __future__ import annotations
 
 import httpx
 
-from ..._types import Body, Query, Headers, NotGiven, not_given
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -14,6 +15,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
+from ...types.security import profile_template_list_params
 from ...types.security.profile_template_list_response import ProfileTemplateListResponse
 
 __all__ = ["ProfileTemplatesResource", "AsyncProfileTemplatesResource"]
@@ -42,6 +44,7 @@ class ProfileTemplatesResource(SyncAPIResource):
     def list(
         self,
         *,
+        accepts_ip_address: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -53,11 +56,30 @@ class ProfileTemplatesResource(SyncAPIResource):
 
         Profile template is used as a template to create
         profile. Client receives only common and created for him profile templates.
+
+        Args:
+          accepts_ip_address: Keep only templates that require a protected `ip_address` per profile (true), or
+              only templates whose protected addresses are hardcoded (false). Omit to get
+              every template.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
             "/security/iaas/profile-templates",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {"accepts_ip_address": accepts_ip_address}, profile_template_list_params.ProfileTemplateListParams
+                ),
             ),
             cast_to=ProfileTemplateListResponse,
         )
@@ -86,6 +108,7 @@ class AsyncProfileTemplatesResource(AsyncAPIResource):
     async def list(
         self,
         *,
+        accepts_ip_address: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -97,11 +120,30 @@ class AsyncProfileTemplatesResource(AsyncAPIResource):
 
         Profile template is used as a template to create
         profile. Client receives only common and created for him profile templates.
+
+        Args:
+          accepts_ip_address: Keep only templates that require a protected `ip_address` per profile (true), or
+              only templates whose protected addresses are hardcoded (false). Omit to get
+              every template.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
             "/security/iaas/profile-templates",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"accepts_ip_address": accepts_ip_address}, profile_template_list_params.ProfileTemplateListParams
+                ),
             ),
             cast_to=ProfileTemplateListResponse,
         )

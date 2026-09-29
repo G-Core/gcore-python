@@ -23,6 +23,13 @@ class TestProfileTemplates:
         assert_matches_type(ProfileTemplateListResponse, profile_template, path=["response"])
 
     @parametrize
+    def test_method_list_with_all_params(self, client: Gcore) -> None:
+        profile_template = client.security.profile_templates.list(
+            accepts_ip_address=True,
+        )
+        assert_matches_type(ProfileTemplateListResponse, profile_template, path=["response"])
+
+    @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
         response = client.security.profile_templates.with_raw_response.list()
 
@@ -51,6 +58,13 @@ class TestAsyncProfileTemplates:
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
         profile_template = await async_client.security.profile_templates.list()
+        assert_matches_type(ProfileTemplateListResponse, profile_template, path=["response"])
+
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
+        profile_template = await async_client.security.profile_templates.list(
+            accepts_ip_address=True,
+        )
         assert_matches_type(ProfileTemplateListResponse, profile_template, path=["response"])
 
     @parametrize

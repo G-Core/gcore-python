@@ -36,8 +36,8 @@ class ClientProfileTemplate(BaseModel):
 
     version: str
 
+    allow_merge: Optional[bool] = None
+
     base_template: Optional[int] = None
 
     description: Optional[str] = None
-
-    template_sifter: Optional[str] = None

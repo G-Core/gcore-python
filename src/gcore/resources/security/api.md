@@ -36,7 +36,7 @@ from gcore.types.security import ClientProfileTemplate, ProfileTemplateListRespo
 
 Methods:
 
-- <code title="get /security/iaas/profile-templates">client.security.profile_templates.<a href="./src/gcore/resources/security/profile_templates.py">list</a>() -> <a href="./src/gcore/types/security/profile_template_list_response.py">ProfileTemplateListResponse</a></code>
+- <code title="get /security/iaas/profile-templates">client.security.profile_templates.<a href="./src/gcore/resources/security/profile_templates.py">list</a>(\*\*<a href="src/gcore/types/security/profile_template_list_params.py">params</a>) -> <a href="./src/gcore/types/security/profile_template_list_response.py">ProfileTemplateListResponse</a></code>
 
 ## Profiles
 

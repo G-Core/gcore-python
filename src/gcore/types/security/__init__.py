@@ -16,4 +16,5 @@ from .profile_recreate_params import ProfileRecreateParams as ProfileRecreatePar
 from .bgp_announce_list_params import BgpAnnounceListParams as BgpAnnounceListParams
 from .bgp_announce_list_response import BgpAnnounceListResponse as BgpAnnounceListResponse
 from .bgp_announce_toggle_params import BgpAnnounceToggleParams as BgpAnnounceToggleParams
+from .profile_template_list_params import ProfileTemplateListParams as ProfileTemplateListParams
 from .profile_template_list_response import ProfileTemplateListResponse as ProfileTemplateListResponse
