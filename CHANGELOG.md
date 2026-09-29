@@ -1,5 +1,41 @@
 # Changelog
 
+## [0.58.0](https://github.com/G-Core/gcore-python/compare/v0.57.0...v0.58.0) (2026-09-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* **security-iaas:** update profile template filtering and fields
+* remove eager package-level imports
+* **iam:** remove activating service status
+* **streaming:** require name when creating a player
+* **streaming:** update streaming OpenAPI spec
+
+### Features
+
+* **cdn:** add CDN alias endpoints and alias usage statistics ([3a48adb](https://github.com/G-Core/gcore-python/commit/3a48adbb3642b42f824ee1c4e89c944efe370023))
+* **cdn:** add certificate usage method ([3b3e630](https://github.com/G-Core/gcore-python/commit/3b3e6301bd043d4e5c6c6758df950121bc82929c))
+* **security-iaas:** update profile template filtering and fields ([5ddab8c](https://github.com/G-Core/gcore-python/commit/5ddab8c1c754207765c215c567e82a510e0f40e0))
+* **streaming:** update streaming OpenAPI spec ([36d3cbd](https://github.com/G-Core/gcore-python/commit/36d3cbd838a00e03e38efcece4513f184c093ef6))
+
+
+### Bug Fixes
+
+* **iam:** remove activating service status ([aaab7ba](https://github.com/G-Core/gcore-python/commit/aaab7bac781285ca966de0f9ffc178e091e00532))
+* **streaming:** require name when creating a player ([760af4f](https://github.com/G-Core/gcore-python/commit/760af4f26dafbd148d3b656c410cafea8af44863))
+
+
+### Performance Improvements
+
+* remove eager package-level imports ([331e849](https://github.com/G-Core/gcore-python/commit/331e8490e0d4ea618fd2d5e0a6d2c3547217dd8f))
+
+
+### Chores
+
+* **cloud:** update cloud OpenAPI spec ([f8d1c82](https://github.com/G-Core/gcore-python/commit/f8d1c826375abc2265478e6e61ac83208ef1e8c6))
+* **dns:** update dns OpenAPI spec ([217c254](https://github.com/G-Core/gcore-python/commit/217c254812004eea9e0632387b512eee6895ab04))
+* **waap:** update waap OpenAPI spec ([ad3b840](https://github.com/G-Core/gcore-python/commit/ad3b840a7f14f4ea889c1b2edc18be5e2660d7e7))
+
 ## [0.57.0](https://github.com/G-Core/gcore-python/compare/v0.56.0...v0.57.0) (2026-09-22)
 
 
