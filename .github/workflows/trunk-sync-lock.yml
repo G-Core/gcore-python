@@ -52,17 +52,27 @@ jobs:
           shas=$(gh pr list --repo "$GITHUB_REPOSITORY" --base main --state open --json headRefOid --jq '.[].headRefOid')
           if [ -z "$shas" ]; then echo "no open PRs targeting main"; exit 0; fi
           # Keep going when one PR fails so the rest still get a status.
-          posted=0
+          handled=0
           for sha in $shas; do
-            if gh api -X POST "repos/$GITHUB_REPOSITORY/statuses/$sha" \
-              -f state="$state" -f context="trunk-synced" -f description="$desc" >/dev/null; then
-              echo "posted trunk-synced=$state to $sha"
-              posted=$((posted + 1))
-            else
-              echo "::warning::failed to post trunk-synced to $sha"
+            if ! current=$(gh api --paginate "repos/$GITHUB_REPOSITORY/commits/$sha/status?per_page=100" \
+                --jq '.statuses[] | select(.context == "trunk-synced") | .state'); then
+              echo "::warning::failed to read trunk-synced status for $sha, skipping"
+              continue
             fi
+            if [ "$current" = "$state" ]; then
+              echo "trunk-synced already $state for $sha, skipping"
+              handled=$((handled + 1))
+              continue
+            fi
+            if ! gh api -X POST "repos/$GITHUB_REPOSITORY/statuses/$sha" \
+                -f state="$state" -f context="trunk-synced" -f description="$desc" >/dev/null; then
+              echo "::warning::failed to post trunk-synced=$state to $sha"
+              continue
+            fi
+            echo "posted trunk-synced=$state to $sha"
+            handled=$((handled + 1))
           done
-          if [ "$posted" -eq 0 ]; then
-            echo "::error::failed to post trunk-synced to every open PR"
+          if [ "$handled" -eq 0 ]; then
+            echo "::error::failed to check or post trunk-synced for every open PR"
             exit 1
           fi
