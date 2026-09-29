@@ -68,7 +68,7 @@ class RoleAssignmentsResource(SyncAPIResource):
         Assign a role to an existing user in the specified scope.
 
         Args:
-          role: User role
+          role: User role. The InternalNetworkOnlyUser value is deprecated. Use User instead.
 
           user_id: User ID
 
@@ -122,7 +122,7 @@ class RoleAssignmentsResource(SyncAPIResource):
         Args:
           assignment_id: Assignment ID
 
-          role: User role
+          role: User role. The InternalNetworkOnlyUser value is deprecated. Use User instead.
 
           user_id: User ID
 
@@ -283,7 +283,7 @@ class AsyncRoleAssignmentsResource(AsyncAPIResource):
         Assign a role to an existing user in the specified scope.
 
         Args:
-          role: User role
+          role: User role. The InternalNetworkOnlyUser value is deprecated. Use User instead.
 
           user_id: User ID
 
@@ -337,7 +337,7 @@ class AsyncRoleAssignmentsResource(AsyncAPIResource):
         Args:
           assignment_id: Assignment ID
 
-          role: User role
+          role: User role. The InternalNetworkOnlyUser value is deprecated. Use User instead.
 
           user_id: User ID
 
