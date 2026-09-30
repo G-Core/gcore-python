@@ -10,6 +10,9 @@ on:
     branches-ignore:
       - 'stl-preview-head/**'
       - 'stl-preview-base/**'
+  # stlc-config dispatches this for preview branches, which never get a pull
+  # request here, so a preview SHA still gets exactly one run
+  workflow_dispatch: {}
 
 jobs:
   lint:
