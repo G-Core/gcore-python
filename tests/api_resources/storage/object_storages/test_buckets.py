@@ -27,6 +27,17 @@ class TestBuckets:
         assert_matches_type(Bucket, bucket, path=["response"])
 
     @parametrize
+    def test_method_create_with_all_params(self, client: Gcore) -> None:
+        bucket = client.storage.object_storages.buckets.create(
+            storage_id=0,
+            name="my-new-bucket",
+            cors={"allowed_origins": ["https://example.com"]},
+            lifecycle={"expiration_days": 30},
+            policy={"is_public": True},
+        )
+        assert_matches_type(Bucket, bucket, path=["response"])
+
+    @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
         response = client.storage.object_storages.buckets.with_raw_response.create(
             storage_id=0,
@@ -240,6 +251,17 @@ class TestAsyncBuckets:
         bucket = await async_client.storage.object_storages.buckets.create(
             storage_id=0,
             name="my-new-bucket",
+        )
+        assert_matches_type(Bucket, bucket, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
+        bucket = await async_client.storage.object_storages.buckets.create(
+            storage_id=0,
+            name="my-new-bucket",
+            cors={"allowed_origins": ["https://example.com"]},
+            lifecycle={"expiration_days": 30},
+            policy={"is_public": True},
         )
         assert_matches_type(Bucket, bucket, path=["response"])
 

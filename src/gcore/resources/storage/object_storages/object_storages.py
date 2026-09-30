@@ -215,6 +215,10 @@ class ObjectStoragesResource(SyncAPIResource):
 
         This operation cannot be undone.
 
+        Returns 409 when CDN still uses the storage as an origin or a logs-uploader
+        target — unbind it in CDN first — or when that could not be verified, in which
+        case the deletion is not performed and the request can be retried.
+
         Args:
           extra_headers: Send extra headers
 
@@ -471,6 +475,10 @@ class AsyncObjectStoragesResource(AsyncAPIResource):
         """Deletes an S3-compatible storage instance.
 
         This operation cannot be undone.
+
+        Returns 409 when CDN still uses the storage as an origin or a logs-uploader
+        target — unbind it in CDN first — or when that could not be verified, in which
+        case the deletion is not performed and the request can be retried.
 
         Args:
           extra_headers: Send extra headers

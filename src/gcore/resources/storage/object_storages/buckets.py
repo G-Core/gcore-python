@@ -51,6 +51,9 @@ class BucketsResource(SyncAPIResource):
         storage_id: int,
         *,
         name: str,
+        cors: bucket_create_params.Cors | Omit = omit,
+        lifecycle: bucket_create_params.Lifecycle | Omit = omit,
+        policy: bucket_create_params.Policy | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -74,7 +77,15 @@ class BucketsResource(SyncAPIResource):
         """
         return self._post(
             path_template("/storage/v4/object_storages/{storage_id}/buckets", storage_id=storage_id),
-            body=maybe_transform({"name": name}, bucket_create_params.BucketCreateParams),
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "cors": cors,
+                    "lifecycle": lifecycle,
+                    "policy": policy,
+                },
+                bucket_create_params.BucketCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -200,6 +211,10 @@ class BucketsResource(SyncAPIResource):
         All objects in the bucket will
         be deleted.
 
+        Returns 409 when CDN still uses the bucket as an origin or a logs-uploader
+        target — unbind it in CDN first — or when that could not be verified, in which
+        case the bucket is left in place and the request can be retried.
+
         Args:
           extra_headers: Send extra headers
 
@@ -285,6 +300,9 @@ class AsyncBucketsResource(AsyncAPIResource):
         storage_id: int,
         *,
         name: str,
+        cors: bucket_create_params.Cors | Omit = omit,
+        lifecycle: bucket_create_params.Lifecycle | Omit = omit,
+        policy: bucket_create_params.Policy | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -308,7 +326,15 @@ class AsyncBucketsResource(AsyncAPIResource):
         """
         return await self._post(
             path_template("/storage/v4/object_storages/{storage_id}/buckets", storage_id=storage_id),
-            body=await async_maybe_transform({"name": name}, bucket_create_params.BucketCreateParams),
+            body=await async_maybe_transform(
+                {
+                    "name": name,
+                    "cors": cors,
+                    "lifecycle": lifecycle,
+                    "policy": policy,
+                },
+                bucket_create_params.BucketCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -433,6 +459,10 @@ class AsyncBucketsResource(AsyncAPIResource):
 
         All objects in the bucket will
         be deleted.
+
+        Returns 409 when CDN still uses the bucket as an origin or a logs-uploader
+        target — unbind it in CDN first — or when that could not be verified, in which
+        case the bucket is left in place and the request can be retried.
 
         Args:
           extra_headers: Send extra headers

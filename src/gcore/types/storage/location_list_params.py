@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing_extensions import Literal, TypedDict
 
 __all__ = ["LocationListParams"]
 
@@ -15,3 +15,9 @@ class LocationListParams(TypedDict, total=False):
     """Number of records to skip before beginning to return results"""
 
     order_by: str
+
+    type: Literal["standard", "fast", "sftp"]
+    """
+    Filter by location type: object storage performance tier (standard, fast) or
+    sftp
+    """

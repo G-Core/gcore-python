@@ -29,6 +29,7 @@ class TestLocations:
             limit=1,
             offset=0,
             order_by="order_by",
+            type="standard",
         )
         assert_matches_type(SyncOffsetPage[Location], location, path=["response"])
 
@@ -69,6 +70,7 @@ class TestAsyncLocations:
             limit=1,
             offset=0,
             order_by="order_by",
+            type="standard",
         )
         assert_matches_type(AsyncOffsetPage[Location], location, path=["response"])
 

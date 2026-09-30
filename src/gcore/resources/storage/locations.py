@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing_extensions import Literal
+
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
@@ -50,6 +52,7 @@ class LocationsResource(SyncAPIResource):
         limit: int | Omit = omit,
         offset: int | Omit = omit,
         order_by: str | Omit = omit,
+        type: Literal["standard", "fast", "sftp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -60,12 +63,17 @@ class LocationsResource(SyncAPIResource):
         """Returns storage locations where you can create new storages.
 
         Only locations
-        currently accepting new storage creation are returned.
+        currently accepting new storage creation are returned. Use the `type` query
+        parameter to restrict the result to a location type (object storage performance
+        tier or sftp).
 
         Args:
           limit: Max number of records in response
 
           offset: Number of records to skip before beginning to return results
+
+          type: Filter by location type: object storage performance tier (standard, fast) or
+              sftp
 
           extra_headers: Send extra headers
 
@@ -88,6 +96,7 @@ class LocationsResource(SyncAPIResource):
                         "limit": limit,
                         "offset": offset,
                         "order_by": order_by,
+                        "type": type,
                     },
                     location_list_params.LocationListParams,
                 ),
@@ -124,6 +133,7 @@ class AsyncLocationsResource(AsyncAPIResource):
         limit: int | Omit = omit,
         offset: int | Omit = omit,
         order_by: str | Omit = omit,
+        type: Literal["standard", "fast", "sftp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -134,12 +144,17 @@ class AsyncLocationsResource(AsyncAPIResource):
         """Returns storage locations where you can create new storages.
 
         Only locations
-        currently accepting new storage creation are returned.
+        currently accepting new storage creation are returned. Use the `type` query
+        parameter to restrict the result to a location type (object storage performance
+        tier or sftp).
 
         Args:
           limit: Max number of records in response
 
           offset: Number of records to skip before beginning to return results
+
+          type: Filter by location type: object storage performance tier (standard, fast) or
+              sftp
 
           extra_headers: Send extra headers
 
@@ -162,6 +177,7 @@ class AsyncLocationsResource(AsyncAPIResource):
                         "limit": limit,
                         "offset": offset,
                         "order_by": order_by,
+                        "type": type,
                     },
                     location_list_params.LocationListParams,
                 ),

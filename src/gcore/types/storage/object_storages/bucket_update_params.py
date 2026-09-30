@@ -39,5 +39,5 @@ class Policy(TypedDict, total=False):
     is_public: bool
     """
     Set to true to allow unauthenticated object downloads, false to require valid S3
-    credentials.
+    credentials. Omit to leave the current policy unchanged.
     """
