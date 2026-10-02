@@ -9,11 +9,28 @@ from ..._models import BaseModel
 
 __all__ = [
     "FileShare",
+    "Network",
     "ShareSettings",
     "ShareSettingsStandardShareSettingsOutputSerializer",
     "ShareSettingsDdnShareSettingsOutputSerializer",
     "ShareSettingsVastShareSettingsOutputSerializer",
 ]
+
+
+class Network(BaseModel):
+    """Network and subnet of the file share."""
+
+    network_id: str
+    """Network ID."""
+
+    network_name: str
+    """Network name."""
+
+    subnet_id: str
+    """ID of the subnet that the file share uses."""
+
+    subnet_name: str
+    """Subnet name."""
 
 
 class ShareSettingsStandardShareSettingsOutputSerializer(BaseModel):
@@ -85,11 +102,14 @@ class FileShare(BaseModel):
     name: str
     """File share name"""
 
+    network: Network
+    """Network and subnet of the file share."""
+
     network_id: str
-    """Network ID."""
+    """Deprecated. Use `network.network_id` instead. Network ID."""
 
     network_name: str
-    """Network name."""
+    """Deprecated. Use `network.network_name` instead. Network name."""
 
     project_id: int
     """Project ID"""
@@ -148,10 +168,10 @@ class FileShare(BaseModel):
     """File share status"""
 
     subnet_id: str
-    """Subnet ID."""
+    """Deprecated. Use `network.subnet_id` instead. Subnet ID."""
 
     subnet_name: str
-    """Subnet name."""
+    """Deprecated. Use `network.subnet_name` instead. Subnet name."""
 
     tags: List[Tag]
     """List of key-value tags associated with the resource.
