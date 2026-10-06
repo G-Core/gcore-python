@@ -3,12 +3,12 @@
 Types:
 
 ```python
-from gcore.types.waap import WaapGetAccountOverviewResponse
+from gcore.types.waap import WaapAccountOverview
 ```
 
 Methods:
 
-- <code title="get /waap/v1/clients/me">client.waap.<a href="./src/gcore/resources/waap/waap.py">get_account_overview</a>() -> <a href="./src/gcore/types/waap/waap_get_account_overview_response.py">WaapGetAccountOverviewResponse</a></code>
+- <code title="get /waap/v1/clients/me">client.waap.<a href="./src/gcore/resources/waap/waap.py">get_account_overview</a>() -> <a href="./src/gcore/types/waap/waap_account_overview.py">WaapAccountOverview</a></code>
 
 ## Statistics
 
@@ -29,8 +29,9 @@ Types:
 ```python
 from gcore.types.waap import (
     WaapCompactTrafficMetrics,
+    WaapEventSummary,
+    WaapFilterValueSuggestion,
     WaapSimpleEventStatistics,
-    AnalyticsGetFiltersResponse,
     AnalyticsGetTrafficResponse,
     AnalyticsGetTrafficFilteredResponse,
 )
@@ -39,7 +40,8 @@ from gcore.types.waap import (
 Methods:
 
 - <code title="get /waap/v1/analytics/stats/{dimension}">client.waap.analytics.<a href="./src/gcore/resources/waap/analytics.py">get_event_statistics</a>(dimension, \*\*<a href="src/gcore/types/waap/analytics_get_event_statistics_params.py">params</a>) -> <a href="./src/gcore/types/waap/waap_simple_event_statistics.py">WaapSimpleEventStatistics</a></code>
-- <code title="get /waap/v1/analytics/filters/{type}">client.waap.analytics.<a href="./src/gcore/resources/waap/analytics.py">get_filters</a>(type, \*\*<a href="src/gcore/types/waap/analytics_get_filters_params.py">params</a>) -> <a href="./src/gcore/types/waap/analytics_get_filters_response.py">SyncOffsetPage[AnalyticsGetFiltersResponse]</a></code>
+- <code title="get /waap/v2/analytics/events">client.waap.analytics.<a href="./src/gcore/resources/waap/analytics.py">get_events</a>(\*\*<a href="src/gcore/types/waap/analytics_get_events_params.py">params</a>) -> <a href="./src/gcore/types/waap/waap_event_summary.py">SyncCursorPageWaap[WaapEventSummary]</a></code>
+- <code title="get /waap/v1/analytics/filters/{type}">client.waap.analytics.<a href="./src/gcore/resources/waap/analytics.py">get_filters</a>(type, \*\*<a href="src/gcore/types/waap/analytics_get_filters_params.py">params</a>) -> <a href="./src/gcore/types/waap/waap_filter_value_suggestion.py">SyncOffsetPage[WaapFilterValueSuggestion]</a></code>
 - <code title="get /waap/v1/analytics/requests">client.waap.analytics.<a href="./src/gcore/resources/waap/analytics.py">get_requests</a>(\*\*<a href="src/gcore/types/waap/analytics_get_requests_params.py">params</a>) -> <a href="./src/gcore/types/waap/waap_request_summary.py">SyncOffsetPage[WaapRequestSummary]</a></code>
 - <code title="get /waap/v1/analytics/traffic">client.waap.analytics.<a href="./src/gcore/resources/waap/analytics.py">get_traffic</a>(\*\*<a href="src/gcore/types/waap/analytics_get_traffic_params.py">params</a>) -> <a href="./src/gcore/types/waap/analytics_get_traffic_response.py">AnalyticsGetTrafficResponse</a></code>
 - <code title="get /waap/v1/analytics/traffic-filtered">client.waap.analytics.<a href="./src/gcore/resources/waap/analytics.py">get_traffic_filtered</a>(\*\*<a href="src/gcore/types/waap/analytics_get_traffic_filtered_params.py">params</a>) -> <a href="./src/gcore/types/waap/analytics_get_traffic_filtered_response.py">AnalyticsGetTrafficFilteredResponse</a></code>
@@ -56,9 +58,10 @@ from gcore.types.waap import (
     WaapDomainSettingsModel,
     WaapRequestSummary,
     WaapRuleSet,
+    WaapRuleToggleResponse,
+    WaapRulesBulkDeleteResponse,
     WaapSummaryDomain,
     WaapTrafficMetrics,
-    DomainListRuleSetsResponse,
 )
 ```
 
@@ -68,19 +71,37 @@ Methods:
 - <code title="get /waap/v2/domains">client.waap.domains.<a href="./src/gcore/resources/waap/domains/domains.py">list</a>(\*\*<a href="src/gcore/types/waap/domain_list_params.py">params</a>) -> <a href="./src/gcore/types/waap/waap_summary_domain.py">SyncOffsetPage[WaapSummaryDomain]</a></code>
 - <code title="delete /waap/v2/domains/{domain_id}">client.waap.domains.<a href="./src/gcore/resources/waap/domains/domains.py">delete</a>(domain_id) -> None</code>
 - <code title="get /waap/v2/domains/{domain_id}">client.waap.domains.<a href="./src/gcore/resources/waap/domains/domains.py">get</a>(domain_id) -> <a href="./src/gcore/types/waap/waap_detailed_domain.py">WaapDetailedDomain</a></code>
-- <code title="get /waap/v1/domains/{domain_id}/rule-sets">client.waap.domains.<a href="./src/gcore/resources/waap/domains/domains.py">list_rule_sets</a>(domain_id) -> <a href="./src/gcore/types/waap/domain_list_rule_sets_response.py">DomainListRuleSetsResponse</a></code>
+- <code title="get /waap/v2/domains/{domain_id}/rule-sets">client.waap.domains.<a href="./src/gcore/resources/waap/domains/domains.py">list_rule_sets</a>(domain_id, \*\*<a href="src/gcore/types/waap/domain_list_rule_sets_params.py">params</a>) -> <a href="./src/gcore/types/waap/waap_rule_set.py">SyncOffsetPage[WaapRuleSet]</a></code>
 
 ### Policies
 
 Types:
 
 ```python
-from gcore.types.waap.domains import WaapDomainPolicySettings
+from gcore.types.waap.domains import WaapDomainPolicy, WaapDomainPolicySettings
 ```
 
 Methods:
 
+- <code title="get /waap/v2/domains/{domain_id}/policies">client.waap.domains.policies.<a href="./src/gcore/resources/waap/domains/policies.py">list</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/policy_list_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/waap_domain_policy.py">SyncOffsetPage[WaapDomainPolicy]</a></code>
 - <code title="patch /waap/v2/domains/{domain_id}/policies/{policy_id}">client.waap.domains.policies.<a href="./src/gcore/resources/waap/domains/policies.py">toggle</a>(policy_id, \*, domain_id, \*\*<a href="src/gcore/types/waap/domains/policy_toggle_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/waap_domain_policy_settings.py">WaapDomainPolicySettings</a></code>
+
+### PolicyOverrides
+
+Types:
+
+```python
+from gcore.types.waap.domains import WaapOwaspTopThreatsTarget, WaapPolicyOverride
+```
+
+Methods:
+
+- <code title="post /waap/v1/domains/{domain_id}/default-rule-overrides">client.waap.domains.policy_overrides.<a href="./src/gcore/resources/waap/domains/policy_overrides.py">create</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/policy_override_create_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/waap_policy_override.py">WaapPolicyOverride</a></code>
+- <code title="patch /waap/v1/domains/{domain_id}/default-rule-overrides/{policy_override_id}">client.waap.domains.policy_overrides.<a href="./src/gcore/resources/waap/domains/policy_overrides.py">update</a>(policy_override_id, \*, domain_id, \*\*<a href="src/gcore/types/waap/domains/policy_override_update_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/waap_policy_override.py">WaapPolicyOverride</a></code>
+- <code title="get /waap/v1/domains/{domain_id}/default-rule-overrides">client.waap.domains.policy_overrides.<a href="./src/gcore/resources/waap/domains/policy_overrides.py">list</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/policy_override_list_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/waap_policy_override.py">SyncOffsetPage[WaapPolicyOverride]</a></code>
+- <code title="delete /waap/v1/domains/{domain_id}/default-rule-overrides/{policy_override_id}">client.waap.domains.policy_overrides.<a href="./src/gcore/resources/waap/domains/policy_overrides.py">delete</a>(policy_override_id, \*, domain_id) -> None</code>
+- <code title="get /waap/v1/domains/{domain_id}/default-rule-overrides/{policy_override_id}">client.waap.domains.policy_overrides.<a href="./src/gcore/resources/waap/domains/policy_overrides.py">get</a>(policy_override_id, \*, domain_id) -> <a href="./src/gcore/types/waap/domains/waap_policy_override.py">WaapPolicyOverride</a></code>
+- <code title="get /waap/v1/domains/{domain_id}/policy-override-targets/owasp-top-threats">client.waap.domains.policy_overrides.<a href="./src/gcore/resources/waap/domains/policy_overrides.py">list_owasp_top_threats_targets</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/policy_override_list_owasp_top_threats_targets_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/waap_owasp_top_threats_target.py">SyncOffsetPage[WaapOwaspTopThreatsTarget]</a></code>
 
 ### Settings
 
@@ -215,11 +236,7 @@ Methods:
 Types:
 
 ```python
-from gcore.types.waap.domains import (
-    WaapCustomRule,
-    CustomRuleDeleteMultipleResponse,
-    CustomRuleToggleResponse,
-)
+from gcore.types.waap.domains import WaapCustomRule
 ```
 
 Methods:
@@ -228,20 +245,16 @@ Methods:
 - <code title="patch /waap/v2/domains/{domain_id}/custom-rules/{rule_id}">client.waap.domains.custom_rules.<a href="./src/gcore/resources/waap/domains/custom_rules.py">update</a>(rule_id, \*, domain_id, \*\*<a href="src/gcore/types/waap/domains/custom_rule_update_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/waap_custom_rule.py">WaapCustomRule</a></code>
 - <code title="get /waap/v1/domains/{domain_id}/custom-rules">client.waap.domains.custom_rules.<a href="./src/gcore/resources/waap/domains/custom_rules.py">list</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/custom_rule_list_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/waap_custom_rule.py">SyncOffsetPage[WaapCustomRule]</a></code>
 - <code title="delete /waap/v1/domains/{domain_id}/custom-rules/{rule_id}">client.waap.domains.custom_rules.<a href="./src/gcore/resources/waap/domains/custom_rules.py">delete</a>(rule_id, \*, domain_id) -> None</code>
-- <code title="post /waap/v2/domains/{domain_id}/custom-rules/bulk_delete">client.waap.domains.custom_rules.<a href="./src/gcore/resources/waap/domains/custom_rules.py">delete_multiple</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/custom_rule_delete_multiple_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/custom_rule_delete_multiple_response.py">CustomRuleDeleteMultipleResponse</a></code>
+- <code title="post /waap/v2/domains/{domain_id}/custom-rules/bulk_delete">client.waap.domains.custom_rules.<a href="./src/gcore/resources/waap/domains/custom_rules.py">delete_multiple</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/custom_rule_delete_multiple_params.py">params</a>) -> <a href="./src/gcore/types/waap/waap_rules_bulk_delete_response.py">WaapRulesBulkDeleteResponse</a></code>
 - <code title="get /waap/v1/domains/{domain_id}/custom-rules/{rule_id}">client.waap.domains.custom_rules.<a href="./src/gcore/resources/waap/domains/custom_rules.py">get</a>(rule_id, \*, domain_id) -> <a href="./src/gcore/types/waap/domains/waap_custom_rule.py">WaapCustomRule</a></code>
-- <code title="patch /waap/v2/domains/{domain_id}/custom-rules/{rule_id}/{action}">client.waap.domains.custom_rules.<a href="./src/gcore/resources/waap/domains/custom_rules.py">toggle</a>(action, \*, domain_id, rule_id) -> <a href="./src/gcore/types/waap/domains/custom_rule_toggle_response.py">CustomRuleToggleResponse</a></code>
+- <code title="patch /waap/v2/domains/{domain_id}/custom-rules/{rule_id}/{action}">client.waap.domains.custom_rules.<a href="./src/gcore/resources/waap/domains/custom_rules.py">toggle</a>(action, \*, domain_id, rule_id) -> <a href="./src/gcore/types/waap/waap_rule_toggle_response.py">WaapRuleToggleResponse</a></code>
 
 ### FirewallRules
 
 Types:
 
 ```python
-from gcore.types.waap.domains import (
-    WaapFirewallRule,
-    FirewallRuleDeleteMultipleResponse,
-    FirewallRuleToggleResponse,
-)
+from gcore.types.waap.domains import WaapFirewallRule
 ```
 
 Methods:
@@ -250,16 +263,16 @@ Methods:
 - <code title="patch /waap/v2/domains/{domain_id}/firewall-rules/{rule_id}">client.waap.domains.firewall_rules.<a href="./src/gcore/resources/waap/domains/firewall_rules.py">update</a>(rule_id, \*, domain_id, \*\*<a href="src/gcore/types/waap/domains/firewall_rule_update_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/waap_firewall_rule.py">WaapFirewallRule</a></code>
 - <code title="get /waap/v1/domains/{domain_id}/firewall-rules">client.waap.domains.firewall_rules.<a href="./src/gcore/resources/waap/domains/firewall_rules.py">list</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/firewall_rule_list_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/waap_firewall_rule.py">SyncOffsetPage[WaapFirewallRule]</a></code>
 - <code title="delete /waap/v1/domains/{domain_id}/firewall-rules/{rule_id}">client.waap.domains.firewall_rules.<a href="./src/gcore/resources/waap/domains/firewall_rules.py">delete</a>(rule_id, \*, domain_id) -> None</code>
-- <code title="post /waap/v2/domains/{domain_id}/firewall-rules/bulk_delete">client.waap.domains.firewall_rules.<a href="./src/gcore/resources/waap/domains/firewall_rules.py">delete_multiple</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/firewall_rule_delete_multiple_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/firewall_rule_delete_multiple_response.py">FirewallRuleDeleteMultipleResponse</a></code>
+- <code title="post /waap/v2/domains/{domain_id}/firewall-rules/bulk_delete">client.waap.domains.firewall_rules.<a href="./src/gcore/resources/waap/domains/firewall_rules.py">delete_multiple</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/firewall_rule_delete_multiple_params.py">params</a>) -> <a href="./src/gcore/types/waap/waap_rules_bulk_delete_response.py">WaapRulesBulkDeleteResponse</a></code>
 - <code title="get /waap/v1/domains/{domain_id}/firewall-rules/{rule_id}">client.waap.domains.firewall_rules.<a href="./src/gcore/resources/waap/domains/firewall_rules.py">get</a>(rule_id, \*, domain_id) -> <a href="./src/gcore/types/waap/domains/waap_firewall_rule.py">WaapFirewallRule</a></code>
-- <code title="patch /waap/v2/domains/{domain_id}/firewall-rules/{rule_id}/{action}">client.waap.domains.firewall_rules.<a href="./src/gcore/resources/waap/domains/firewall_rules.py">toggle</a>(action, \*, domain_id, rule_id) -> <a href="./src/gcore/types/waap/domains/firewall_rule_toggle_response.py">FirewallRuleToggleResponse</a></code>
+- <code title="patch /waap/v2/domains/{domain_id}/firewall-rules/{rule_id}/{action}">client.waap.domains.firewall_rules.<a href="./src/gcore/resources/waap/domains/firewall_rules.py">toggle</a>(action, \*, domain_id, rule_id) -> <a href="./src/gcore/types/waap/waap_rule_toggle_response.py">WaapRuleToggleResponse</a></code>
 
 ### AdvancedRules
 
 Types:
 
 ```python
-from gcore.types.waap.domains import WaapAdvancedRule, AdvancedRuleToggleResponse
+from gcore.types.waap.domains import WaapAdvancedRule
 ```
 
 Methods:
@@ -269,7 +282,7 @@ Methods:
 - <code title="get /waap/v1/domains/{domain_id}/advanced-rules">client.waap.domains.advanced_rules.<a href="./src/gcore/resources/waap/domains/advanced_rules.py">list</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/advanced_rule_list_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/waap_advanced_rule.py">SyncOffsetPage[WaapAdvancedRule]</a></code>
 - <code title="delete /waap/v1/domains/{domain_id}/advanced-rules/{rule_id}">client.waap.domains.advanced_rules.<a href="./src/gcore/resources/waap/domains/advanced_rules.py">delete</a>(rule_id, \*, domain_id) -> None</code>
 - <code title="get /waap/v1/domains/{domain_id}/advanced-rules/{rule_id}">client.waap.domains.advanced_rules.<a href="./src/gcore/resources/waap/domains/advanced_rules.py">get</a>(rule_id, \*, domain_id) -> <a href="./src/gcore/types/waap/domains/waap_advanced_rule.py">WaapAdvancedRule</a></code>
-- <code title="patch /waap/v2/domains/{domain_id}/advanced-rules/{rule_id}/{action}">client.waap.domains.advanced_rules.<a href="./src/gcore/resources/waap/domains/advanced_rules.py">toggle</a>(action, \*, domain_id, rule_id) -> <a href="./src/gcore/types/waap/domains/advanced_rule_toggle_response.py">AdvancedRuleToggleResponse</a></code>
+- <code title="patch /waap/v2/domains/{domain_id}/advanced-rules/{rule_id}/{action}">client.waap.domains.advanced_rules.<a href="./src/gcore/resources/waap/domains/advanced_rules.py">toggle</a>(action, \*, domain_id, rule_id) -> <a href="./src/gcore/types/waap/waap_rule_toggle_response.py">WaapRuleToggleResponse</a></code>
 
 ## CustomPageSets
 
@@ -287,6 +300,59 @@ Methods:
 - <code title="delete /waap/v1/custom-page-sets/{set_id}">client.waap.custom_page_sets.<a href="./src/gcore/resources/waap/custom_page_sets.py">delete</a>(set_id) -> None</code>
 - <code title="get /waap/v1/custom-page-sets/{set_id}">client.waap.custom_page_sets.<a href="./src/gcore/resources/waap/custom_page_sets.py">get</a>(set_id) -> <a href="./src/gcore/types/waap/waap_custom_page_set.py">WaapCustomPageSet</a></code>
 - <code title="post /waap/v1/preview-custom-page">client.waap.custom_page_sets.<a href="./src/gcore/resources/waap/custom_page_sets.py">preview</a>(\*\*<a href="src/gcore/types/waap/custom_page_set_preview_params.py">params</a>) -> <a href="./src/gcore/types/waap/waap_custom_page_preview.py">WaapCustomPagePreview</a></code>
+
+## FirewallRules
+
+Types:
+
+```python
+from gcore.types.waap import WaapAccountFirewallRule
+```
+
+Methods:
+
+- <code title="get /waap/v2/firewall-rules">client.waap.firewall_rules.<a href="./src/gcore/resources/waap/firewall_rules.py">list</a>(\*\*<a href="src/gcore/types/waap/firewall_rule_list_params.py">params</a>) -> <a href="./src/gcore/types/waap/waap_account_firewall_rule.py">SyncOffsetPage[WaapAccountFirewallRule]</a></code>
+
+## FilterTemplates
+
+Types:
+
+```python
+from gcore.types.waap import WaapFilterTemplate
+```
+
+Methods:
+
+- <code title="post /waap/v1/filter-templates">client.waap.filter_templates.<a href="./src/gcore/resources/waap/filter_templates.py">create</a>(\*\*<a href="src/gcore/types/waap/filter_template_create_params.py">params</a>) -> <a href="./src/gcore/types/waap/waap_filter_template.py">WaapFilterTemplate</a></code>
+- <code title="patch /waap/v1/filter-templates/{template_id}">client.waap.filter_templates.<a href="./src/gcore/resources/waap/filter_templates.py">update</a>(template_id, \*\*<a href="src/gcore/types/waap/filter_template_update_params.py">params</a>) -> <a href="./src/gcore/types/waap/waap_filter_template.py">WaapFilterTemplate</a></code>
+- <code title="get /waap/v1/filter-templates">client.waap.filter_templates.<a href="./src/gcore/resources/waap/filter_templates.py">list</a>(\*\*<a href="src/gcore/types/waap/filter_template_list_params.py">params</a>) -> <a href="./src/gcore/types/waap/waap_filter_template.py">SyncOffsetPage[WaapFilterTemplate]</a></code>
+- <code title="delete /waap/v1/filter-templates/{template_id}">client.waap.filter_templates.<a href="./src/gcore/resources/waap/filter_templates.py">delete</a>(template_id) -> None</code>
+- <code title="get /waap/v1/filter-templates/{template_id}">client.waap.filter_templates.<a href="./src/gcore/resources/waap/filter_templates.py">get</a>(template_id) -> <a href="./src/gcore/types/waap/waap_filter_template.py">WaapFilterTemplate</a></code>
+
+## Prebilling
+
+Types:
+
+```python
+from gcore.types.waap import WaapBillingReportItem
+```
+
+Methods:
+
+- <code title="get /waap/v1/prebilling/total/{metric}">client.waap.prebilling.<a href="./src/gcore/resources/waap/prebilling.py">get_total</a>(metric, \*\*<a href="src/gcore/types/waap/prebilling_get_total_params.py">params</a>) -> <a href="./src/gcore/types/waap/waap_billing_report_item.py">SyncOffsetPage[WaapBillingReportItem]</a></code>
+
+## IPReputation
+
+Types:
+
+```python
+from gcore.types.waap import WaapClearLocalTagsResponse, WaapLocalIPTagsRecord
+```
+
+Methods:
+
+- <code title="get /waap/v1/ip-reputation">client.waap.ip_reputation.<a href="./src/gcore/resources/waap/ip_reputation.py">list</a>(\*\*<a href="src/gcore/types/waap/ip_reputation_list_params.py">params</a>) -> <a href="./src/gcore/types/waap/waap_local_ip_tags_record.py">SyncOffsetPage[WaapLocalIPTagsRecord]</a></code>
+- <code title="post /waap/v2/ip-reputation/clear-local-tags">client.waap.ip_reputation.<a href="./src/gcore/resources/waap/ip_reputation.py">clear_local_tags</a>(\*\*<a href="src/gcore/types/waap/ip_reputation_clear_local_tags_params.py">params</a>) -> <a href="./src/gcore/types/waap/waap_clear_local_tags_response.py">WaapClearLocalTagsResponse</a></code>
 
 ## AdvancedRules
 
@@ -345,13 +411,23 @@ from gcore.types.waap import (
     WaapIPCountryAttack,
     WaapIPDDOSInfoModel,
     WaapIPInfo,
+    WaapIPInfoCountsV2,
     WaapRuleBlockedRequests,
     WaapTimeSeriesAttack,
+    WaapTopAttack,
+    WaapTopDomainDetail,
+    WaapTopPathDetail,
     WaapTopSession,
     WaapTopURL,
     WaapTopUserAgent,
+    WaapTopUserAgentDetail,
+    IPInfoGetAccountAttackTimeSeriesResponse,
+    IPInfoGetAccountTopUserAgentsResponse,
     IPInfoGetAttackTimeSeriesResponse,
     IPInfoGetBlockedRequestsResponse,
+    IPInfoGetTopAttacksResponse,
+    IPInfoGetTopDomainsResponse,
+    IPInfoGetTopPathsResponse,
     IPInfoGetTopURLsResponse,
     IPInfoGetTopUserAgentsResponse,
     IPInfoGetTopUserSessionsResponse,
@@ -361,10 +437,16 @@ from gcore.types.waap import (
 
 Methods:
 
+- <code title="get /waap/v2/ip-info/attack-time-series">client.waap.ip_info.<a href="./src/gcore/resources/waap/ip_info/ip_info.py">get_account_attack_time_series</a>(\*\*<a href="src/gcore/types/waap/ip_info_get_account_attack_time_series_params.py">params</a>) -> <a href="./src/gcore/types/waap/ip_info_get_account_attack_time_series_response.py">IPInfoGetAccountAttackTimeSeriesResponse</a></code>
+- <code title="get /waap/v2/ip-info/counts">client.waap.ip_info.<a href="./src/gcore/resources/waap/ip_info/ip_info.py">get_account_counts</a>(\*\*<a href="src/gcore/types/waap/ip_info_get_account_counts_params.py">params</a>) -> <a href="./src/gcore/types/waap/waap_ip_info_counts_v2.py">WaapIPInfoCountsV2</a></code>
+- <code title="get /waap/v2/ip-info/top-user-agents">client.waap.ip_info.<a href="./src/gcore/resources/waap/ip_info/ip_info.py">get_account_top_user_agents</a>(\*\*<a href="src/gcore/types/waap/ip_info_get_account_top_user_agents_params.py">params</a>) -> <a href="./src/gcore/types/waap/ip_info_get_account_top_user_agents_response.py">IPInfoGetAccountTopUserAgentsResponse</a></code>
 - <code title="get /waap/v1/ip-info/attack-time-series">client.waap.ip_info.<a href="./src/gcore/resources/waap/ip_info/ip_info.py">get_attack_time_series</a>(\*\*<a href="src/gcore/types/waap/ip_info_get_attack_time_series_params.py">params</a>) -> <a href="./src/gcore/types/waap/ip_info_get_attack_time_series_response.py">IPInfoGetAttackTimeSeriesResponse</a></code>
 - <code title="get /waap/v1/ip-info/blocked-requests">client.waap.ip_info.<a href="./src/gcore/resources/waap/ip_info/ip_info.py">get_blocked_requests</a>(\*\*<a href="src/gcore/types/waap/ip_info_get_blocked_requests_params.py">params</a>) -> <a href="./src/gcore/types/waap/ip_info_get_blocked_requests_response.py">IPInfoGetBlockedRequestsResponse</a></code>
 - <code title="get /waap/v1/ip-info/ddos">client.waap.ip_info.<a href="./src/gcore/resources/waap/ip_info/ip_info.py">get_ddos_attack_series</a>(\*\*<a href="src/gcore/types/waap/ip_info_get_ddos_attack_series_params.py">params</a>) -> <a href="./src/gcore/types/waap/waap_ip_ddos_info_model.py">WaapIPDDOSInfoModel</a></code>
 - <code title="get /waap/v1/ip-info/ip-info">client.waap.ip_info.<a href="./src/gcore/resources/waap/ip_info/ip_info.py">get_ip_info</a>(\*\*<a href="src/gcore/types/waap/ip_info_get_ip_info_params.py">params</a>) -> <a href="./src/gcore/types/waap/waap_ip_info.py">WaapIPInfo</a></code>
+- <code title="get /waap/v1/ip-info/top-attacks">client.waap.ip_info.<a href="./src/gcore/resources/waap/ip_info/ip_info.py">get_top_attacks</a>(\*\*<a href="src/gcore/types/waap/ip_info_get_top_attacks_params.py">params</a>) -> <a href="./src/gcore/types/waap/ip_info_get_top_attacks_response.py">IPInfoGetTopAttacksResponse</a></code>
+- <code title="get /waap/v1/ip-info/top-domains">client.waap.ip_info.<a href="./src/gcore/resources/waap/ip_info/ip_info.py">get_top_domains</a>(\*\*<a href="src/gcore/types/waap/ip_info_get_top_domains_params.py">params</a>) -> <a href="./src/gcore/types/waap/ip_info_get_top_domains_response.py">IPInfoGetTopDomainsResponse</a></code>
+- <code title="get /waap/v2/ip-info/top-paths">client.waap.ip_info.<a href="./src/gcore/resources/waap/ip_info/ip_info.py">get_top_paths</a>(\*\*<a href="src/gcore/types/waap/ip_info_get_top_paths_params.py">params</a>) -> <a href="./src/gcore/types/waap/ip_info_get_top_paths_response.py">IPInfoGetTopPathsResponse</a></code>
 - <code title="get /waap/v1/ip-info/top-urls">client.waap.ip_info.<a href="./src/gcore/resources/waap/ip_info/ip_info.py">get_top_urls</a>(\*\*<a href="src/gcore/types/waap/ip_info_get_top_urls_params.py">params</a>) -> <a href="./src/gcore/types/waap/ip_info_get_top_urls_response.py">IPInfoGetTopURLsResponse</a></code>
 - <code title="get /waap/v1/ip-info/top-user-agents">client.waap.ip_info.<a href="./src/gcore/resources/waap/ip_info/ip_info.py">get_top_user_agents</a>(\*\*<a href="src/gcore/types/waap/ip_info_get_top_user_agents_params.py">params</a>) -> <a href="./src/gcore/types/waap/ip_info_get_top_user_agents_response.py">IPInfoGetTopUserAgentsResponse</a></code>
 - <code title="get /waap/v1/ip-info/top-sessions">client.waap.ip_info.<a href="./src/gcore/resources/waap/ip_info/ip_info.py">get_top_user_sessions</a>(\*\*<a href="src/gcore/types/waap/ip_info_get_top_user_sessions_params.py">params</a>) -> <a href="./src/gcore/types/waap/ip_info_get_top_user_sessions_response.py">IPInfoGetTopUserSessionsResponse</a></code>

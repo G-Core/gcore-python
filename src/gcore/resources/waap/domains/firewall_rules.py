@@ -25,9 +25,9 @@ from ....types.waap.domains import (
     firewall_rule_update_params,
     firewall_rule_delete_multiple_params,
 )
+from ....types.waap.waap_rule_toggle_response import WaapRuleToggleResponse
 from ....types.waap.domains.waap_firewall_rule import WaapFirewallRule
-from ....types.waap.domains.firewall_rule_toggle_response import FirewallRuleToggleResponse
-from ....types.waap.domains.firewall_rule_delete_multiple_response import FirewallRuleDeleteMultipleResponse
+from ....types.waap.waap_rules_bulk_delete_response import WaapRulesBulkDeleteResponse
 
 __all__ = ["FirewallRulesResource", "AsyncFirewallRulesResource"]
 
@@ -299,7 +299,7 @@ class FirewallRulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FirewallRuleDeleteMultipleResponse:
+    ) -> WaapRulesBulkDeleteResponse:
         """
         Delete Multiple WAAP Firewall Rules
 
@@ -324,7 +324,7 @@ class FirewallRulesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FirewallRuleDeleteMultipleResponse,
+            cast_to=WaapRulesBulkDeleteResponse,
         )
 
     def get(
@@ -377,7 +377,7 @@ class FirewallRulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FirewallRuleToggleResponse:
+    ) -> WaapRuleToggleResponse:
         """
         Toggle Firewall Rule
 
@@ -408,7 +408,7 @@ class FirewallRulesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FirewallRuleToggleResponse,
+            cast_to=WaapRuleToggleResponse,
         )
 
 
@@ -679,7 +679,7 @@ class AsyncFirewallRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FirewallRuleDeleteMultipleResponse:
+    ) -> WaapRulesBulkDeleteResponse:
         """
         Delete Multiple WAAP Firewall Rules
 
@@ -704,7 +704,7 @@ class AsyncFirewallRulesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FirewallRuleDeleteMultipleResponse,
+            cast_to=WaapRulesBulkDeleteResponse,
         )
 
     async def get(
@@ -757,7 +757,7 @@ class AsyncFirewallRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FirewallRuleToggleResponse:
+    ) -> WaapRuleToggleResponse:
         """
         Toggle Firewall Rule
 
@@ -788,7 +788,7 @@ class AsyncFirewallRulesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FirewallRuleToggleResponse,
+            cast_to=WaapRuleToggleResponse,
         )
 
 

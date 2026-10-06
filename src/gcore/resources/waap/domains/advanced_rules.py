@@ -20,8 +20,8 @@ from ...._response import (
 from ....pagination import SyncOffsetPage, AsyncOffsetPage
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.waap.domains import advanced_rule_list_params, advanced_rule_create_params, advanced_rule_update_params
+from ....types.waap.waap_rule_toggle_response import WaapRuleToggleResponse
 from ....types.waap.domains.waap_advanced_rule import WaapAdvancedRule
-from ....types.waap.domains.advanced_rule_toggle_response import AdvancedRuleToggleResponse
 
 __all__ = ["AdvancedRulesResource", "AsyncAdvancedRulesResource"]
 
@@ -393,7 +393,7 @@ class AdvancedRulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AdvancedRuleToggleResponse:
+    ) -> WaapRuleToggleResponse:
         """
         Toggle Advanced Rule
 
@@ -424,7 +424,7 @@ class AdvancedRulesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AdvancedRuleToggleResponse,
+            cast_to=WaapRuleToggleResponse,
         )
 
 
@@ -795,7 +795,7 @@ class AsyncAdvancedRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AdvancedRuleToggleResponse:
+    ) -> WaapRuleToggleResponse:
         """
         Toggle Advanced Rule
 
@@ -826,7 +826,7 @@ class AsyncAdvancedRulesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AdvancedRuleToggleResponse,
+            cast_to=WaapRuleToggleResponse,
         )
 
 

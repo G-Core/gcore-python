@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import typing_extensions
 from typing import Iterable
 from typing_extensions import Literal
 
@@ -67,7 +66,7 @@ from .custom_rules import (
     AsyncCustomRulesResourceWithStreamingResponse,
 )
 from ....pagination import SyncOffsetPage, AsyncOffsetPage
-from ....types.waap import domain_list_params, domain_update_params
+from ....types.waap import domain_list_params, domain_update_params, domain_list_rule_sets_params
 from .advanced_rules import (
     AdvancedRulesResource,
     AsyncAdvancedRulesResource,
@@ -101,6 +100,15 @@ from .insight_silences import (
     InsightSilencesResourceWithStreamingResponse,
     AsyncInsightSilencesResourceWithStreamingResponse,
 )
+from .policy_overrides import (
+    PolicyOverridesResource,
+    AsyncPolicyOverridesResource,
+    PolicyOverridesResourceWithRawResponse,
+    AsyncPolicyOverridesResourceWithRawResponse,
+    PolicyOverridesResourceWithStreamingResponse,
+    AsyncPolicyOverridesResourceWithStreamingResponse,
+)
+from ....types.waap.waap_rule_set import WaapRuleSet
 from .api_discovery.api_discovery import (
     APIDiscoveryResource,
     AsyncAPIDiscoveryResource,
@@ -111,7 +119,6 @@ from .api_discovery.api_discovery import (
 )
 from ....types.waap.waap_summary_domain import WaapSummaryDomain
 from ....types.waap.waap_detailed_domain import WaapDetailedDomain
-from ....types.waap.domain_list_rule_sets_response import DomainListRuleSetsResponse
 
 __all__ = ["DomainsResource", "AsyncDomainsResource"]
 
@@ -124,6 +131,10 @@ class DomainsResource(SyncAPIResource):
     @cached_property
     def policies(self) -> PoliciesResource:
         return PoliciesResource(self._client)
+
+    @cached_property
+    def policy_overrides(self) -> PolicyOverridesResource:
+        return PolicyOverridesResource(self._client)
 
     @cached_property
     def settings(self) -> SettingsResource:
@@ -368,28 +379,28 @@ class DomainsResource(SyncAPIResource):
             cast_to=WaapDetailedDomain,
         )
 
-    @typing_extensions.deprecated("deprecated")
     def list_rule_sets(
         self,
         domain_id: int,
         *,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DomainListRuleSetsResponse:
+    ) -> SyncOffsetPage[WaapRuleSet]:
         """
-        Retrieve all rule sets linked to a particular domain, each with its policies
-        embedded. Deprecated. Will become unavailable after Sun, 13 Dec 2026. Use
-        [List domain policy rule sets (V2)](#operation/`list_policy_rule_sets_v2_domains__domain_id__rule_sets_get`)
-        for the rule sets and
-        [List domain policies (V2)](#operation/`list_domain_policies_v2_domains__domain_id__policies_get`)
-        for their policies instead
+        Retrieve a paginated list of policy rule sets linked to a particular domain
 
         Args:
           domain_id: The domain ID
+
+          limit: Number of items to return
+
+          offset: Number of items to skip
 
           extra_headers: Send extra headers
 
@@ -399,12 +410,23 @@ class DomainsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
-            path_template("/waap/v1/domains/{domain_id}/rule-sets", domain_id=domain_id),
+        return self._get_api_list(
+            path_template("/waap/v2/domains/{domain_id}/rule-sets", domain_id=domain_id),
+            page=SyncOffsetPage[WaapRuleSet],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    domain_list_rule_sets_params.DomainListRuleSetsParams,
+                ),
             ),
-            cast_to=DomainListRuleSetsResponse,
+            model=WaapRuleSet,
         )
 
 
@@ -416,6 +438,10 @@ class AsyncDomainsResource(AsyncAPIResource):
     @cached_property
     def policies(self) -> AsyncPoliciesResource:
         return AsyncPoliciesResource(self._client)
+
+    @cached_property
+    def policy_overrides(self) -> AsyncPolicyOverridesResource:
+        return AsyncPolicyOverridesResource(self._client)
 
     @cached_property
     def settings(self) -> AsyncSettingsResource:
@@ -660,28 +686,28 @@ class AsyncDomainsResource(AsyncAPIResource):
             cast_to=WaapDetailedDomain,
         )
 
-    @typing_extensions.deprecated("deprecated")
-    async def list_rule_sets(
+    def list_rule_sets(
         self,
         domain_id: int,
         *,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DomainListRuleSetsResponse:
+    ) -> AsyncPaginator[WaapRuleSet, AsyncOffsetPage[WaapRuleSet]]:
         """
-        Retrieve all rule sets linked to a particular domain, each with its policies
-        embedded. Deprecated. Will become unavailable after Sun, 13 Dec 2026. Use
-        [List domain policy rule sets (V2)](#operation/`list_policy_rule_sets_v2_domains__domain_id__rule_sets_get`)
-        for the rule sets and
-        [List domain policies (V2)](#operation/`list_domain_policies_v2_domains__domain_id__policies_get`)
-        for their policies instead
+        Retrieve a paginated list of policy rule sets linked to a particular domain
 
         Args:
           domain_id: The domain ID
+
+          limit: Number of items to return
+
+          offset: Number of items to skip
 
           extra_headers: Send extra headers
 
@@ -691,12 +717,23 @@ class AsyncDomainsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
-            path_template("/waap/v1/domains/{domain_id}/rule-sets", domain_id=domain_id),
+        return self._get_api_list(
+            path_template("/waap/v2/domains/{domain_id}/rule-sets", domain_id=domain_id),
+            page=AsyncOffsetPage[WaapRuleSet],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    domain_list_rule_sets_params.DomainListRuleSetsParams,
+                ),
             ),
-            cast_to=DomainListRuleSetsResponse,
+            model=WaapRuleSet,
         )
 
 
@@ -716,15 +753,17 @@ class DomainsResourceWithRawResponse:
         self.get = to_raw_response_wrapper(
             domains.get,
         )
-        self.list_rule_sets = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                domains.list_rule_sets,  # pyright: ignore[reportDeprecated],
-            )
+        self.list_rule_sets = to_raw_response_wrapper(
+            domains.list_rule_sets,
         )
 
     @cached_property
     def policies(self) -> PoliciesResourceWithRawResponse:
         return PoliciesResourceWithRawResponse(self._domains.policies)
+
+    @cached_property
+    def policy_overrides(self) -> PolicyOverridesResourceWithRawResponse:
+        return PolicyOverridesResourceWithRawResponse(self._domains.policy_overrides)
 
     @cached_property
     def settings(self) -> SettingsResourceWithRawResponse:
@@ -783,15 +822,17 @@ class AsyncDomainsResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             domains.get,
         )
-        self.list_rule_sets = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                domains.list_rule_sets,  # pyright: ignore[reportDeprecated],
-            )
+        self.list_rule_sets = async_to_raw_response_wrapper(
+            domains.list_rule_sets,
         )
 
     @cached_property
     def policies(self) -> AsyncPoliciesResourceWithRawResponse:
         return AsyncPoliciesResourceWithRawResponse(self._domains.policies)
+
+    @cached_property
+    def policy_overrides(self) -> AsyncPolicyOverridesResourceWithRawResponse:
+        return AsyncPolicyOverridesResourceWithRawResponse(self._domains.policy_overrides)
 
     @cached_property
     def settings(self) -> AsyncSettingsResourceWithRawResponse:
@@ -850,15 +891,17 @@ class DomainsResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             domains.get,
         )
-        self.list_rule_sets = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                domains.list_rule_sets,  # pyright: ignore[reportDeprecated],
-            )
+        self.list_rule_sets = to_streamed_response_wrapper(
+            domains.list_rule_sets,
         )
 
     @cached_property
     def policies(self) -> PoliciesResourceWithStreamingResponse:
         return PoliciesResourceWithStreamingResponse(self._domains.policies)
+
+    @cached_property
+    def policy_overrides(self) -> PolicyOverridesResourceWithStreamingResponse:
+        return PolicyOverridesResourceWithStreamingResponse(self._domains.policy_overrides)
 
     @cached_property
     def settings(self) -> SettingsResourceWithStreamingResponse:
@@ -917,15 +960,17 @@ class AsyncDomainsResourceWithStreamingResponse:
         self.get = async_to_streamed_response_wrapper(
             domains.get,
         )
-        self.list_rule_sets = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                domains.list_rule_sets,  # pyright: ignore[reportDeprecated],
-            )
+        self.list_rule_sets = async_to_streamed_response_wrapper(
+            domains.list_rule_sets,
         )
 
     @cached_property
     def policies(self) -> AsyncPoliciesResourceWithStreamingResponse:
         return AsyncPoliciesResourceWithStreamingResponse(self._domains.policies)
+
+    @cached_property
+    def policy_overrides(self) -> AsyncPolicyOverridesResourceWithStreamingResponse:
+        return AsyncPolicyOverridesResourceWithStreamingResponse(self._domains.policy_overrides)
 
     @cached_property
     def settings(self) -> AsyncSettingsResourceWithStreamingResponse:

@@ -18,8 +18,9 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncOffsetPage, AsyncOffsetPage
+from ...pagination import SyncOffsetPage, AsyncOffsetPage, SyncCursorPageWaap, AsyncCursorPageWaap
 from ...types.waap import (
+    analytics_get_events_params,
     analytics_get_filters_params,
     analytics_get_traffic_params,
     analytics_get_requests_params,
@@ -27,9 +28,10 @@ from ...types.waap import (
     analytics_get_traffic_filtered_params,
 )
 from ..._base_client import AsyncPaginator, make_request_options
+from ...types.waap.waap_event_summary import WaapEventSummary
 from ...types.waap.waap_request_summary import WaapRequestSummary
+from ...types.waap.waap_filter_value_suggestion import WaapFilterValueSuggestion
 from ...types.waap.waap_simple_event_statistics import WaapSimpleEventStatistics
-from ...types.waap.analytics_get_filters_response import AnalyticsGetFiltersResponse
 from ...types.waap.analytics_get_traffic_response import AnalyticsGetTrafficResponse
 from ...types.waap.analytics_get_traffic_filtered_response import AnalyticsGetTrafficFilteredResponse
 
@@ -131,6 +133,253 @@ class AnalyticsResource(SyncAPIResource):
             cast_to=WaapSimpleEventStatistics,
         )
 
+    def get_events(
+        self,
+        *,
+        start: str,
+        countries: SequenceNotStr[str] | Omit = omit,
+        decision: List[Literal["blocked", "monitored", "allowed", "passed"]] | Omit = omit,
+        domains: Iterable[int] | Omit = omit,
+        end: Optional[str] | Omit = omit,
+        exclude_countries: SequenceNotStr[str] | Omit = omit,
+        exclude_decision: List[Literal["blocked", "monitored", "allowed", "passed"]] | Omit = omit,
+        exclude_domains: Iterable[int] | Omit = omit,
+        exclude_http_methods: List[Literal["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT", "TRACE"]]
+        | Omit = omit,
+        exclude_ips: SequenceNotStr[str] | Omit = omit,
+        exclude_ja3: SequenceNotStr[str] | Omit = omit,
+        exclude_ja4: SequenceNotStr[str] | Omit = omit,
+        exclude_optional_action: List[Literal["captcha", "challenge"]] | Omit = omit,
+        exclude_organizations: SequenceNotStr[str] | Omit = omit,
+        exclude_path: SequenceNotStr[str] | Omit = omit,
+        exclude_reference_ids: SequenceNotStr[str] | Omit = omit,
+        exclude_request_ids: SequenceNotStr[str] | Omit = omit,
+        exclude_security_rule_names: SequenceNotStr[str] | Omit = omit,
+        exclude_session_ids: SequenceNotStr[str] | Omit = omit,
+        exclude_status_codes: Iterable[int] | Omit = omit,
+        exclude_tags: SequenceNotStr[str] | Omit = omit,
+        exclude_user_agent: SequenceNotStr[str] | Omit = omit,
+        exclude_user_agent_clients: SequenceNotStr[str] | Omit = omit,
+        exclude_user_agent_devices: SequenceNotStr[str] | Omit = omit,
+        has_policy_override: Optional[bool] | Omit = omit,
+        http_methods: List[Literal["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT", "TRACE"]] | Omit = omit,
+        ips: SequenceNotStr[str] | Omit = omit,
+        ja3: SequenceNotStr[str] | Omit = omit,
+        ja4: SequenceNotStr[str] | Omit = omit,
+        limit: int | Omit = omit,
+        next: Optional[str] | Omit = omit,
+        optional_action: List[Literal["captcha", "challenge"]] | Omit = omit,
+        order_by: Literal["request_time.asc", "request_time.desc"] | Omit = omit,
+        organizations: SequenceNotStr[str] | Omit = omit,
+        path: SequenceNotStr[str] | Omit = omit,
+        reference_ids: SequenceNotStr[str] | Omit = omit,
+        request_ids: SequenceNotStr[str] | Omit = omit,
+        security_rule_names: SequenceNotStr[str] | Omit = omit,
+        session_ids: SequenceNotStr[str] | Omit = omit,
+        status_codes: Iterable[int] | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        user_agent: SequenceNotStr[str] | Omit = omit,
+        user_agent_clients: SequenceNotStr[str] | Omit = omit,
+        user_agent_devices: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncCursorPageWaap[WaapEventSummary]:
+        """Retrieve security events over account's domains.
+
+        A security event is recorded
+        for every request passing through WAAP towards the origin server.
+
+        Args:
+          start: Filter data items starting from a specified date in ISO 8601 format
+
+          countries: Filter data by a country code of the originating IP address in ISO 3166-1
+              alpha-2 format.
+
+          decision: Filter data by decision.
+
+          domains: List of domain IDs. Empty list means all domains belonging to the current
+              account.
+
+          end: Filter data items up to a specified end date in ISO 8601 format. If not
+              provided, defaults to the current date and time.
+
+          exclude_countries: Exclude data by a country code of the originating IP address in ISO 3166-1
+              alpha-2 format.
+
+          exclude_decision: Exclude entries that match any of the given decisions.
+
+          exclude_domains: Exclude data by domain ID.
+
+          exclude_http_methods: Exclude entries with any of the given HTTP methods.
+
+          exclude_ips: Exclude traffic data by client IP.
+
+          exclude_ja3: Exclude entries whose JA3 TLS client fingerprint matches any of the supplied
+              values. Each value must be exactly 32 hexadecimal characters, mixed case
+              allowed, normalized to lowercase. Supply multiple values to exclude any of them.
+              Omit the parameter to apply no JA3 exclusion.
+
+          exclude_ja4: Exclude entries whose JA4 TLS client fingerprint equals any of the supplied
+              values. An item must match the JA4 form `<ja4_a>_<ja4_b>_<ja4_c>` (a
+              10-character prefix and two 12-character hexadecimal hashes, mixed case allowed,
+              normalized to lowercase). Omit the parameter to apply no JA4 exclusion.
+
+          exclude_optional_action: Exclude entries that match any of the given optional action values.
+
+          exclude_organizations: Exclude entries whose organization exactly equals any supplied value. Omit or
+              provide an empty list to apply no organization exclusion.
+
+          exclude_path: Exclude entries that match the given URL path pattern; '\\**' is wildcard.
+
+          exclude_reference_ids: Exclude data by reference IDs.
+
+          exclude_request_ids: Exclude data by request IDs.
+
+          exclude_security_rule_names: Exclude data by name of a security rule matched the request.
+
+          exclude_session_ids: Exclude data by session IDs.
+
+          exclude_status_codes: Exclude entries with any of the given HTTP response status codes.
+
+          exclude_tags: Exclude entries whose tag exactly equals any supplied value. Omit or provide an
+              empty list to apply no tag exclusion.
+
+          exclude_user_agent: Exclude entries whose user agent contains any of the supplied texts,
+              case-insensitive partial match. Omit or provide an empty list to apply no user
+              agent text exclusion.
+
+          exclude_user_agent_clients: Exclude entries whose parsed user agent client exactly equals any supplied
+              value. Omit or provide an empty list to apply no user agent client exclusion.
+
+          exclude_user_agent_devices: Exclude entries whose parsed user agent device exactly equals any supplied
+              value. Omit or provide an empty list to apply no user agent device exclusion.
+
+          has_policy_override: True selects events with applied overrides; false excludes them. Omit to include
+              both.
+
+          http_methods: Filter by HTTP methods
+
+          ips: Filter traffic data by client IP.
+
+          ja3: Filter by JA3 TLS client fingerprint. Each value must be exactly 32 hexadecimal
+              characters, mixed case allowed, normalized to lowercase. Supply multiple values
+              to match any of them. Omit the parameter to apply no JA3 filter.
+
+          ja4: Filter by JA4 TLS client fingerprint. When present, the value must match the JA4
+              form `<ja4_a>_<ja4_b>_<ja4_c>` (a 10-character prefix and two 12-character
+              hexadecimal hashes, mixed case allowed, normalized to lowercase). Supply
+              multiple values to match any of them. Omit the parameter entirely to apply no
+              JA4 filter.
+
+          limit: Number of items to return
+
+          next: Cursor value to fetch next page of events log.
+
+          optional_action: Filter data by optional action.
+
+          order_by: Result sorting order.
+
+          organizations: Include entries whose organization exactly equals any supplied value. Omit or
+              provide an empty list to apply no organization filter.
+
+          path: Filter by URL path. '\\**' is wildcard.
+
+          reference_ids: Filter data by reference IDs.
+
+          request_ids: Filter data by request IDs.
+
+          security_rule_names: Filter data by name of a security rule matched the request.
+
+          session_ids: Filter data by session IDs.
+
+          status_codes: Filter data by HTTP response status code.
+
+          tags: Include entries whose tag exactly equals any supplied value. Omit or provide an
+              empty list to apply no tag filter.
+
+          user_agent: Include entries whose user agent contains any of the supplied texts,
+              case-insensitive partial match. Omit or provide an empty list to apply no user
+              agent text filter.
+
+          user_agent_clients: Include entries whose parsed user agent client exactly equals any supplied
+              value. Omit or provide an empty list to apply no user agent client filter.
+
+          user_agent_devices: Include entries whose parsed user agent device exactly equals any supplied
+              value. Omit or provide an empty list to apply no user agent device filter.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get_api_list(
+            "/waap/v2/analytics/events",
+            page=SyncCursorPageWaap[WaapEventSummary],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "start": start,
+                        "countries": countries,
+                        "decision": decision,
+                        "domains": domains,
+                        "end": end,
+                        "exclude_countries": exclude_countries,
+                        "exclude_decision": exclude_decision,
+                        "exclude_domains": exclude_domains,
+                        "exclude_http_methods": exclude_http_methods,
+                        "exclude_ips": exclude_ips,
+                        "exclude_ja3": exclude_ja3,
+                        "exclude_ja4": exclude_ja4,
+                        "exclude_optional_action": exclude_optional_action,
+                        "exclude_organizations": exclude_organizations,
+                        "exclude_path": exclude_path,
+                        "exclude_reference_ids": exclude_reference_ids,
+                        "exclude_request_ids": exclude_request_ids,
+                        "exclude_security_rule_names": exclude_security_rule_names,
+                        "exclude_session_ids": exclude_session_ids,
+                        "exclude_status_codes": exclude_status_codes,
+                        "exclude_tags": exclude_tags,
+                        "exclude_user_agent": exclude_user_agent,
+                        "exclude_user_agent_clients": exclude_user_agent_clients,
+                        "exclude_user_agent_devices": exclude_user_agent_devices,
+                        "has_policy_override": has_policy_override,
+                        "http_methods": http_methods,
+                        "ips": ips,
+                        "ja3": ja3,
+                        "ja4": ja4,
+                        "limit": limit,
+                        "next": next,
+                        "optional_action": optional_action,
+                        "order_by": order_by,
+                        "organizations": organizations,
+                        "path": path,
+                        "reference_ids": reference_ids,
+                        "request_ids": request_ids,
+                        "security_rule_names": security_rule_names,
+                        "session_ids": session_ids,
+                        "status_codes": status_codes,
+                        "tags": tags,
+                        "user_agent": user_agent,
+                        "user_agent_clients": user_agent_clients,
+                        "user_agent_devices": user_agent_devices,
+                    },
+                    analytics_get_events_params.AnalyticsGetEventsParams,
+                ),
+            ),
+            model=WaapEventSummary,
+        )
+
     def get_filters(
         self,
         type: Literal["user-agent-clients", "user-agent-devices", "organizations"],
@@ -148,7 +397,7 @@ class AnalyticsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncOffsetPage[AnalyticsGetFiltersResponse]:
+    ) -> SyncOffsetPage[WaapFilterValueSuggestion]:
         """
         Retrieves autocomplete suggestions for specified filter parameter values
         observed within the current client account during the requested time range. Use
@@ -192,7 +441,7 @@ class AnalyticsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `type` but received {type!r}")
         return self._get_api_list(
             path_template("/waap/v1/analytics/filters/{type}", type=type),
-            page=SyncOffsetPage[AnalyticsGetFiltersResponse],
+            page=SyncOffsetPage[WaapFilterValueSuggestion],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -211,7 +460,7 @@ class AnalyticsResource(SyncAPIResource):
                     analytics_get_filters_params.AnalyticsGetFiltersParams,
                 ),
             ),
-            model=AnalyticsGetFiltersResponse,
+            model=WaapFilterValueSuggestion,
         )
 
     @typing_extensions.deprecated("deprecated")
@@ -863,6 +1112,253 @@ class AsyncAnalyticsResource(AsyncAPIResource):
             cast_to=WaapSimpleEventStatistics,
         )
 
+    def get_events(
+        self,
+        *,
+        start: str,
+        countries: SequenceNotStr[str] | Omit = omit,
+        decision: List[Literal["blocked", "monitored", "allowed", "passed"]] | Omit = omit,
+        domains: Iterable[int] | Omit = omit,
+        end: Optional[str] | Omit = omit,
+        exclude_countries: SequenceNotStr[str] | Omit = omit,
+        exclude_decision: List[Literal["blocked", "monitored", "allowed", "passed"]] | Omit = omit,
+        exclude_domains: Iterable[int] | Omit = omit,
+        exclude_http_methods: List[Literal["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT", "TRACE"]]
+        | Omit = omit,
+        exclude_ips: SequenceNotStr[str] | Omit = omit,
+        exclude_ja3: SequenceNotStr[str] | Omit = omit,
+        exclude_ja4: SequenceNotStr[str] | Omit = omit,
+        exclude_optional_action: List[Literal["captcha", "challenge"]] | Omit = omit,
+        exclude_organizations: SequenceNotStr[str] | Omit = omit,
+        exclude_path: SequenceNotStr[str] | Omit = omit,
+        exclude_reference_ids: SequenceNotStr[str] | Omit = omit,
+        exclude_request_ids: SequenceNotStr[str] | Omit = omit,
+        exclude_security_rule_names: SequenceNotStr[str] | Omit = omit,
+        exclude_session_ids: SequenceNotStr[str] | Omit = omit,
+        exclude_status_codes: Iterable[int] | Omit = omit,
+        exclude_tags: SequenceNotStr[str] | Omit = omit,
+        exclude_user_agent: SequenceNotStr[str] | Omit = omit,
+        exclude_user_agent_clients: SequenceNotStr[str] | Omit = omit,
+        exclude_user_agent_devices: SequenceNotStr[str] | Omit = omit,
+        has_policy_override: Optional[bool] | Omit = omit,
+        http_methods: List[Literal["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT", "TRACE"]] | Omit = omit,
+        ips: SequenceNotStr[str] | Omit = omit,
+        ja3: SequenceNotStr[str] | Omit = omit,
+        ja4: SequenceNotStr[str] | Omit = omit,
+        limit: int | Omit = omit,
+        next: Optional[str] | Omit = omit,
+        optional_action: List[Literal["captcha", "challenge"]] | Omit = omit,
+        order_by: Literal["request_time.asc", "request_time.desc"] | Omit = omit,
+        organizations: SequenceNotStr[str] | Omit = omit,
+        path: SequenceNotStr[str] | Omit = omit,
+        reference_ids: SequenceNotStr[str] | Omit = omit,
+        request_ids: SequenceNotStr[str] | Omit = omit,
+        security_rule_names: SequenceNotStr[str] | Omit = omit,
+        session_ids: SequenceNotStr[str] | Omit = omit,
+        status_codes: Iterable[int] | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        user_agent: SequenceNotStr[str] | Omit = omit,
+        user_agent_clients: SequenceNotStr[str] | Omit = omit,
+        user_agent_devices: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[WaapEventSummary, AsyncCursorPageWaap[WaapEventSummary]]:
+        """Retrieve security events over account's domains.
+
+        A security event is recorded
+        for every request passing through WAAP towards the origin server.
+
+        Args:
+          start: Filter data items starting from a specified date in ISO 8601 format
+
+          countries: Filter data by a country code of the originating IP address in ISO 3166-1
+              alpha-2 format.
+
+          decision: Filter data by decision.
+
+          domains: List of domain IDs. Empty list means all domains belonging to the current
+              account.
+
+          end: Filter data items up to a specified end date in ISO 8601 format. If not
+              provided, defaults to the current date and time.
+
+          exclude_countries: Exclude data by a country code of the originating IP address in ISO 3166-1
+              alpha-2 format.
+
+          exclude_decision: Exclude entries that match any of the given decisions.
+
+          exclude_domains: Exclude data by domain ID.
+
+          exclude_http_methods: Exclude entries with any of the given HTTP methods.
+
+          exclude_ips: Exclude traffic data by client IP.
+
+          exclude_ja3: Exclude entries whose JA3 TLS client fingerprint matches any of the supplied
+              values. Each value must be exactly 32 hexadecimal characters, mixed case
+              allowed, normalized to lowercase. Supply multiple values to exclude any of them.
+              Omit the parameter to apply no JA3 exclusion.
+
+          exclude_ja4: Exclude entries whose JA4 TLS client fingerprint equals any of the supplied
+              values. An item must match the JA4 form `<ja4_a>_<ja4_b>_<ja4_c>` (a
+              10-character prefix and two 12-character hexadecimal hashes, mixed case allowed,
+              normalized to lowercase). Omit the parameter to apply no JA4 exclusion.
+
+          exclude_optional_action: Exclude entries that match any of the given optional action values.
+
+          exclude_organizations: Exclude entries whose organization exactly equals any supplied value. Omit or
+              provide an empty list to apply no organization exclusion.
+
+          exclude_path: Exclude entries that match the given URL path pattern; '\\**' is wildcard.
+
+          exclude_reference_ids: Exclude data by reference IDs.
+
+          exclude_request_ids: Exclude data by request IDs.
+
+          exclude_security_rule_names: Exclude data by name of a security rule matched the request.
+
+          exclude_session_ids: Exclude data by session IDs.
+
+          exclude_status_codes: Exclude entries with any of the given HTTP response status codes.
+
+          exclude_tags: Exclude entries whose tag exactly equals any supplied value. Omit or provide an
+              empty list to apply no tag exclusion.
+
+          exclude_user_agent: Exclude entries whose user agent contains any of the supplied texts,
+              case-insensitive partial match. Omit or provide an empty list to apply no user
+              agent text exclusion.
+
+          exclude_user_agent_clients: Exclude entries whose parsed user agent client exactly equals any supplied
+              value. Omit or provide an empty list to apply no user agent client exclusion.
+
+          exclude_user_agent_devices: Exclude entries whose parsed user agent device exactly equals any supplied
+              value. Omit or provide an empty list to apply no user agent device exclusion.
+
+          has_policy_override: True selects events with applied overrides; false excludes them. Omit to include
+              both.
+
+          http_methods: Filter by HTTP methods
+
+          ips: Filter traffic data by client IP.
+
+          ja3: Filter by JA3 TLS client fingerprint. Each value must be exactly 32 hexadecimal
+              characters, mixed case allowed, normalized to lowercase. Supply multiple values
+              to match any of them. Omit the parameter to apply no JA3 filter.
+
+          ja4: Filter by JA4 TLS client fingerprint. When present, the value must match the JA4
+              form `<ja4_a>_<ja4_b>_<ja4_c>` (a 10-character prefix and two 12-character
+              hexadecimal hashes, mixed case allowed, normalized to lowercase). Supply
+              multiple values to match any of them. Omit the parameter entirely to apply no
+              JA4 filter.
+
+          limit: Number of items to return
+
+          next: Cursor value to fetch next page of events log.
+
+          optional_action: Filter data by optional action.
+
+          order_by: Result sorting order.
+
+          organizations: Include entries whose organization exactly equals any supplied value. Omit or
+              provide an empty list to apply no organization filter.
+
+          path: Filter by URL path. '\\**' is wildcard.
+
+          reference_ids: Filter data by reference IDs.
+
+          request_ids: Filter data by request IDs.
+
+          security_rule_names: Filter data by name of a security rule matched the request.
+
+          session_ids: Filter data by session IDs.
+
+          status_codes: Filter data by HTTP response status code.
+
+          tags: Include entries whose tag exactly equals any supplied value. Omit or provide an
+              empty list to apply no tag filter.
+
+          user_agent: Include entries whose user agent contains any of the supplied texts,
+              case-insensitive partial match. Omit or provide an empty list to apply no user
+              agent text filter.
+
+          user_agent_clients: Include entries whose parsed user agent client exactly equals any supplied
+              value. Omit or provide an empty list to apply no user agent client filter.
+
+          user_agent_devices: Include entries whose parsed user agent device exactly equals any supplied
+              value. Omit or provide an empty list to apply no user agent device filter.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get_api_list(
+            "/waap/v2/analytics/events",
+            page=AsyncCursorPageWaap[WaapEventSummary],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "start": start,
+                        "countries": countries,
+                        "decision": decision,
+                        "domains": domains,
+                        "end": end,
+                        "exclude_countries": exclude_countries,
+                        "exclude_decision": exclude_decision,
+                        "exclude_domains": exclude_domains,
+                        "exclude_http_methods": exclude_http_methods,
+                        "exclude_ips": exclude_ips,
+                        "exclude_ja3": exclude_ja3,
+                        "exclude_ja4": exclude_ja4,
+                        "exclude_optional_action": exclude_optional_action,
+                        "exclude_organizations": exclude_organizations,
+                        "exclude_path": exclude_path,
+                        "exclude_reference_ids": exclude_reference_ids,
+                        "exclude_request_ids": exclude_request_ids,
+                        "exclude_security_rule_names": exclude_security_rule_names,
+                        "exclude_session_ids": exclude_session_ids,
+                        "exclude_status_codes": exclude_status_codes,
+                        "exclude_tags": exclude_tags,
+                        "exclude_user_agent": exclude_user_agent,
+                        "exclude_user_agent_clients": exclude_user_agent_clients,
+                        "exclude_user_agent_devices": exclude_user_agent_devices,
+                        "has_policy_override": has_policy_override,
+                        "http_methods": http_methods,
+                        "ips": ips,
+                        "ja3": ja3,
+                        "ja4": ja4,
+                        "limit": limit,
+                        "next": next,
+                        "optional_action": optional_action,
+                        "order_by": order_by,
+                        "organizations": organizations,
+                        "path": path,
+                        "reference_ids": reference_ids,
+                        "request_ids": request_ids,
+                        "security_rule_names": security_rule_names,
+                        "session_ids": session_ids,
+                        "status_codes": status_codes,
+                        "tags": tags,
+                        "user_agent": user_agent,
+                        "user_agent_clients": user_agent_clients,
+                        "user_agent_devices": user_agent_devices,
+                    },
+                    analytics_get_events_params.AnalyticsGetEventsParams,
+                ),
+            ),
+            model=WaapEventSummary,
+        )
+
     def get_filters(
         self,
         type: Literal["user-agent-clients", "user-agent-devices", "organizations"],
@@ -880,7 +1376,7 @@ class AsyncAnalyticsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[AnalyticsGetFiltersResponse, AsyncOffsetPage[AnalyticsGetFiltersResponse]]:
+    ) -> AsyncPaginator[WaapFilterValueSuggestion, AsyncOffsetPage[WaapFilterValueSuggestion]]:
         """
         Retrieves autocomplete suggestions for specified filter parameter values
         observed within the current client account during the requested time range. Use
@@ -924,7 +1420,7 @@ class AsyncAnalyticsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `type` but received {type!r}")
         return self._get_api_list(
             path_template("/waap/v1/analytics/filters/{type}", type=type),
-            page=AsyncOffsetPage[AnalyticsGetFiltersResponse],
+            page=AsyncOffsetPage[WaapFilterValueSuggestion],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -943,7 +1439,7 @@ class AsyncAnalyticsResource(AsyncAPIResource):
                     analytics_get_filters_params.AnalyticsGetFiltersParams,
                 ),
             ),
-            model=AnalyticsGetFiltersResponse,
+            model=WaapFilterValueSuggestion,
         )
 
     @typing_extensions.deprecated("deprecated")
@@ -1507,6 +2003,9 @@ class AnalyticsResourceWithRawResponse:
         self.get_event_statistics = to_raw_response_wrapper(
             analytics.get_event_statistics,
         )
+        self.get_events = to_raw_response_wrapper(
+            analytics.get_events,
+        )
         self.get_filters = to_raw_response_wrapper(
             analytics.get_filters,
         )
@@ -1529,6 +2028,9 @@ class AsyncAnalyticsResourceWithRawResponse:
 
         self.get_event_statistics = async_to_raw_response_wrapper(
             analytics.get_event_statistics,
+        )
+        self.get_events = async_to_raw_response_wrapper(
+            analytics.get_events,
         )
         self.get_filters = async_to_raw_response_wrapper(
             analytics.get_filters,
@@ -1553,6 +2055,9 @@ class AnalyticsResourceWithStreamingResponse:
         self.get_event_statistics = to_streamed_response_wrapper(
             analytics.get_event_statistics,
         )
+        self.get_events = to_streamed_response_wrapper(
+            analytics.get_events,
+        )
         self.get_filters = to_streamed_response_wrapper(
             analytics.get_filters,
         )
@@ -1575,6 +2080,9 @@ class AsyncAnalyticsResourceWithStreamingResponse:
 
         self.get_event_statistics = async_to_streamed_response_wrapper(
             analytics.get_event_statistics,
+        )
+        self.get_events = async_to_streamed_response_wrapper(
+            analytics.get_events,
         )
         self.get_filters = async_to_streamed_response_wrapper(
             analytics.get_filters,

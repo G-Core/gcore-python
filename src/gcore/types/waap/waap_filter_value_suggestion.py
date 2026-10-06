@@ -2,10 +2,10 @@
 
 from ..._models import BaseModel
 
-__all__ = ["AnalyticsGetFiltersResponse"]
+__all__ = ["WaapFilterValueSuggestion"]
 
 
-class AnalyticsGetFiltersResponse(BaseModel):
+class WaapFilterValueSuggestion(BaseModel):
     """A supported analytics filter value with its observed occurrence count."""
 
     count: int

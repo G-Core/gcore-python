@@ -11,12 +11,10 @@ from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
 from gcore.pagination import SyncOffsetPage, AsyncOffsetPage
 from gcore.types.waap import (
+    WaapRuleSet,
     WaapSummaryDomain,
     WaapDetailedDomain,
-    DomainListRuleSetsResponse,
 )
-
-# pyright: reportDeprecated=false
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -159,36 +157,41 @@ class TestDomains:
 
     @parametrize
     def test_method_list_rule_sets(self, client: Gcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            domain = client.waap.domains.list_rule_sets(
-                1,
-            )
+        domain = client.waap.domains.list_rule_sets(
+            domain_id=1,
+        )
+        assert_matches_type(SyncOffsetPage[WaapRuleSet], domain, path=["response"])
 
-        assert_matches_type(DomainListRuleSetsResponse, domain, path=["response"])
+    @parametrize
+    def test_method_list_rule_sets_with_all_params(self, client: Gcore) -> None:
+        domain = client.waap.domains.list_rule_sets(
+            domain_id=1,
+            limit=0,
+            offset=0,
+        )
+        assert_matches_type(SyncOffsetPage[WaapRuleSet], domain, path=["response"])
 
     @parametrize
     def test_raw_response_list_rule_sets(self, client: Gcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            response = client.waap.domains.with_raw_response.list_rule_sets(
-                1,
-            )
+        response = client.waap.domains.with_raw_response.list_rule_sets(
+            domain_id=1,
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         domain = response.parse()
-        assert_matches_type(DomainListRuleSetsResponse, domain, path=["response"])
+        assert_matches_type(SyncOffsetPage[WaapRuleSet], domain, path=["response"])
 
     @parametrize
     def test_streaming_response_list_rule_sets(self, client: Gcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            with client.waap.domains.with_streaming_response.list_rule_sets(
-                1,
-            ) as response:
-                assert not response.is_closed
-                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with client.waap.domains.with_streaming_response.list_rule_sets(
+            domain_id=1,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-                domain = response.parse()
-                assert_matches_type(DomainListRuleSetsResponse, domain, path=["response"])
+            domain = response.parse()
+            assert_matches_type(SyncOffsetPage[WaapRuleSet], domain, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -333,35 +336,40 @@ class TestAsyncDomains:
 
     @parametrize
     async def test_method_list_rule_sets(self, async_client: AsyncGcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            domain = await async_client.waap.domains.list_rule_sets(
-                1,
-            )
+        domain = await async_client.waap.domains.list_rule_sets(
+            domain_id=1,
+        )
+        assert_matches_type(AsyncOffsetPage[WaapRuleSet], domain, path=["response"])
 
-        assert_matches_type(DomainListRuleSetsResponse, domain, path=["response"])
+    @parametrize
+    async def test_method_list_rule_sets_with_all_params(self, async_client: AsyncGcore) -> None:
+        domain = await async_client.waap.domains.list_rule_sets(
+            domain_id=1,
+            limit=0,
+            offset=0,
+        )
+        assert_matches_type(AsyncOffsetPage[WaapRuleSet], domain, path=["response"])
 
     @parametrize
     async def test_raw_response_list_rule_sets(self, async_client: AsyncGcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            response = await async_client.waap.domains.with_raw_response.list_rule_sets(
-                1,
-            )
+        response = await async_client.waap.domains.with_raw_response.list_rule_sets(
+            domain_id=1,
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         domain = await response.parse()
-        assert_matches_type(DomainListRuleSetsResponse, domain, path=["response"])
+        assert_matches_type(AsyncOffsetPage[WaapRuleSet], domain, path=["response"])
 
     @parametrize
     async def test_streaming_response_list_rule_sets(self, async_client: AsyncGcore) -> None:
-        with pytest.warns(DeprecationWarning):
-            async with async_client.waap.domains.with_streaming_response.list_rule_sets(
-                1,
-            ) as response:
-                assert not response.is_closed
-                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        async with async_client.waap.domains.with_streaming_response.list_rule_sets(
+            domain_id=1,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-                domain = await response.parse()
-                assert_matches_type(DomainListRuleSetsResponse, domain, path=["response"])
+            domain = await response.parse()
+            assert_matches_type(AsyncOffsetPage[WaapRuleSet], domain, path=["response"])
 
         assert cast(Any, response.is_closed) is True

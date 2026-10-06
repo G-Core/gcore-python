@@ -1,36 +1,10 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
-from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["WaapRuleSet", "Rule", "Tag"]
-
-
-class Rule(BaseModel):
-    """Represents a configurable WAAP security rule, also known as a policy."""
-
-    id: str
-    """Unique identifier for the security rule"""
-
-    action: Literal["Allow", "Block", "Captcha", "Gateway", "Handshake", "Monitor", "Composite"]
-    """Specifies the action taken by the WAAP upon rule activation"""
-
-    description: str
-    """Detailed description of the security rule"""
-
-    group: str
-    """The rule set group name to which the rule belongs"""
-
-    mode: bool
-    """Indicates if the security rule is active"""
-
-    name: str
-    """Name of the security rule"""
-
-    rule_set_id: int
-    """Identifier of the rule set to which the rule belongs"""
+__all__ = ["WaapRuleSet", "Tag"]
 
 
 class Tag(BaseModel):
@@ -47,7 +21,7 @@ class Tag(BaseModel):
 
 
 class WaapRuleSet(BaseModel):
-    """Represents a custom rule set with associated rules."""
+    """Represents a custom rule set."""
 
     id: int
     """Identifier of the rule set."""
@@ -60,9 +34,6 @@ class WaapRuleSet(BaseModel):
 
     name: str
     """Name of the rule set."""
-
-    rules: List[Rule]
-    """Collection of security rules associated with the rule set."""
 
     tags: List[Tag]
     """Collection of tags associated with the rule set."""

@@ -48,6 +48,14 @@ from .analytics import (
     AnalyticsResourceWithStreamingResponse,
     AsyncAnalyticsResourceWithStreamingResponse,
 )
+from .prebilling import (
+    PrebillingResource,
+    AsyncPrebillingResource,
+    PrebillingResourceWithRawResponse,
+    AsyncPrebillingResourceWithRawResponse,
+    PrebillingResourceWithStreamingResponse,
+    AsyncPrebillingResourceWithStreamingResponse,
+)
 from .statistics import (
     StatisticsResource,
     AsyncStatisticsResource,
@@ -55,6 +63,14 @@ from .statistics import (
     AsyncStatisticsResourceWithRawResponse,
     StatisticsResourceWithStreamingResponse,
     AsyncStatisticsResourceWithStreamingResponse,
+)
+from .ip_reputation import (
+    IPReputationResource,
+    AsyncIPReputationResource,
+    IPReputationResourceWithRawResponse,
+    AsyncIPReputationResourceWithRawResponse,
+    IPReputationResourceWithStreamingResponse,
+    AsyncIPReputationResourceWithStreamingResponse,
 )
 from .organizations import (
     OrganizationsResource,
@@ -72,6 +88,14 @@ from .advanced_rules import (
     AdvancedRulesResourceWithStreamingResponse,
     AsyncAdvancedRulesResourceWithStreamingResponse,
 )
+from .firewall_rules import (
+    FirewallRulesResource,
+    AsyncFirewallRulesResource,
+    FirewallRulesResourceWithRawResponse,
+    AsyncFirewallRulesResourceWithRawResponse,
+    FirewallRulesResourceWithStreamingResponse,
+    AsyncFirewallRulesResourceWithStreamingResponse,
+)
 from .custom_page_sets import (
     CustomPageSetsResource,
     AsyncCustomPageSetsResource,
@@ -79,6 +103,14 @@ from .custom_page_sets import (
     AsyncCustomPageSetsResourceWithRawResponse,
     CustomPageSetsResourceWithStreamingResponse,
     AsyncCustomPageSetsResourceWithStreamingResponse,
+)
+from .filter_templates import (
+    FilterTemplatesResource,
+    AsyncFilterTemplatesResource,
+    FilterTemplatesResourceWithRawResponse,
+    AsyncFilterTemplatesResourceWithRawResponse,
+    FilterTemplatesResourceWithStreamingResponse,
+    AsyncFilterTemplatesResourceWithStreamingResponse,
 )
 
 __all__ = [
@@ -106,6 +138,30 @@ __all__ = [
     "AsyncCustomPageSetsResourceWithRawResponse",
     "CustomPageSetsResourceWithStreamingResponse",
     "AsyncCustomPageSetsResourceWithStreamingResponse",
+    "FirewallRulesResource",
+    "AsyncFirewallRulesResource",
+    "FirewallRulesResourceWithRawResponse",
+    "AsyncFirewallRulesResourceWithRawResponse",
+    "FirewallRulesResourceWithStreamingResponse",
+    "AsyncFirewallRulesResourceWithStreamingResponse",
+    "FilterTemplatesResource",
+    "AsyncFilterTemplatesResource",
+    "FilterTemplatesResourceWithRawResponse",
+    "AsyncFilterTemplatesResourceWithRawResponse",
+    "FilterTemplatesResourceWithStreamingResponse",
+    "AsyncFilterTemplatesResourceWithStreamingResponse",
+    "PrebillingResource",
+    "AsyncPrebillingResource",
+    "PrebillingResourceWithRawResponse",
+    "AsyncPrebillingResourceWithRawResponse",
+    "PrebillingResourceWithStreamingResponse",
+    "AsyncPrebillingResourceWithStreamingResponse",
+    "IPReputationResource",
+    "AsyncIPReputationResource",
+    "IPReputationResourceWithRawResponse",
+    "AsyncIPReputationResourceWithRawResponse",
+    "IPReputationResourceWithStreamingResponse",
+    "AsyncIPReputationResourceWithStreamingResponse",
     "AdvancedRulesResource",
     "AsyncAdvancedRulesResource",
     "AdvancedRulesResourceWithRawResponse",

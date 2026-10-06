@@ -3,8 +3,8 @@
 from typing import List
 from typing_extensions import TypeAlias
 
-from .waap_rule_set import WaapRuleSet
+from .waap_top_attack import WaapTopAttack
 
-__all__ = ["DomainListRuleSetsResponse"]
+__all__ = ["IPInfoGetTopAttacksResponse"]
 
-DomainListRuleSetsResponse: TypeAlias = List[WaapRuleSet]
+IPInfoGetTopAttacksResponse: TypeAlias = List[WaapTopAttack]

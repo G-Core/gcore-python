@@ -2,11 +2,11 @@
 
 from typing import List, Optional
 
-from ...._models import BaseModel
+from ..._models import BaseModel
 
-__all__ = ["FirewallRuleDeleteMultipleResponse"]
+__all__ = ["WaapRulesBulkDeleteResponse"]
 
 
-class FirewallRuleDeleteMultipleResponse(BaseModel):
+class WaapRulesBulkDeleteResponse(BaseModel):
     deleted_ids: Optional[List[int]] = None
     """Rules IDs deleted by the operation"""

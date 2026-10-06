@@ -96,6 +96,14 @@ from .insight_silences import (
     InsightSilencesResourceWithStreamingResponse,
     AsyncInsightSilencesResourceWithStreamingResponse,
 )
+from .policy_overrides import (
+    PolicyOverridesResource,
+    AsyncPolicyOverridesResource,
+    PolicyOverridesResourceWithRawResponse,
+    AsyncPolicyOverridesResourceWithRawResponse,
+    PolicyOverridesResourceWithStreamingResponse,
+    AsyncPolicyOverridesResourceWithStreamingResponse,
+)
 
 __all__ = [
     "PoliciesResource",
@@ -104,6 +112,12 @@ __all__ = [
     "AsyncPoliciesResourceWithRawResponse",
     "PoliciesResourceWithStreamingResponse",
     "AsyncPoliciesResourceWithStreamingResponse",
+    "PolicyOverridesResource",
+    "AsyncPolicyOverridesResource",
+    "PolicyOverridesResourceWithRawResponse",
+    "AsyncPolicyOverridesResourceWithRawResponse",
+    "PolicyOverridesResourceWithStreamingResponse",
+    "AsyncPolicyOverridesResourceWithStreamingResponse",
     "SettingsResource",
     "AsyncSettingsResource",
     "SettingsResourceWithRawResponse",

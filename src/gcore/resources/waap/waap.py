@@ -30,6 +30,14 @@ from .analytics import (
     AnalyticsResourceWithStreamingResponse,
     AsyncAnalyticsResourceWithStreamingResponse,
 )
+from .prebilling import (
+    PrebillingResource,
+    AsyncPrebillingResource,
+    PrebillingResourceWithRawResponse,
+    AsyncPrebillingResourceWithRawResponse,
+    PrebillingResourceWithStreamingResponse,
+    AsyncPrebillingResourceWithStreamingResponse,
+)
 from .statistics import (
     StatisticsResource,
     AsyncStatisticsResource,
@@ -44,6 +52,14 @@ from ..._response import (
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
+)
+from .ip_reputation import (
+    IPReputationResource,
+    AsyncIPReputationResource,
+    IPReputationResourceWithRawResponse,
+    AsyncIPReputationResourceWithRawResponse,
+    IPReputationResourceWithStreamingResponse,
+    AsyncIPReputationResourceWithStreamingResponse,
 )
 from .organizations import (
     OrganizationsResource,
@@ -61,6 +77,14 @@ from .advanced_rules import (
     AsyncAdvancedRulesResourceWithRawResponse,
     AdvancedRulesResourceWithStreamingResponse,
     AsyncAdvancedRulesResourceWithStreamingResponse,
+)
+from .firewall_rules import (
+    FirewallRulesResource,
+    AsyncFirewallRulesResource,
+    FirewallRulesResourceWithRawResponse,
+    AsyncFirewallRulesResourceWithRawResponse,
+    FirewallRulesResourceWithStreamingResponse,
+    AsyncFirewallRulesResourceWithStreamingResponse,
 )
 from .domains.domains import (
     DomainsResource,
@@ -86,7 +110,15 @@ from .custom_page_sets import (
     CustomPageSetsResourceWithStreamingResponse,
     AsyncCustomPageSetsResourceWithStreamingResponse,
 )
-from ...types.waap.waap_get_account_overview_response import WaapGetAccountOverviewResponse
+from .filter_templates import (
+    FilterTemplatesResource,
+    AsyncFilterTemplatesResource,
+    FilterTemplatesResourceWithRawResponse,
+    AsyncFilterTemplatesResourceWithRawResponse,
+    FilterTemplatesResourceWithStreamingResponse,
+    AsyncFilterTemplatesResourceWithStreamingResponse,
+)
+from ...types.waap.waap_account_overview import WaapAccountOverview
 
 __all__ = ["WaapResource", "AsyncWaapResource"]
 
@@ -110,6 +142,22 @@ class WaapResource(SyncAPIResource):
     @cached_property
     def custom_page_sets(self) -> CustomPageSetsResource:
         return CustomPageSetsResource(self._client)
+
+    @cached_property
+    def firewall_rules(self) -> FirewallRulesResource:
+        return FirewallRulesResource(self._client)
+
+    @cached_property
+    def filter_templates(self) -> FilterTemplatesResource:
+        return FilterTemplatesResource(self._client)
+
+    @cached_property
+    def prebilling(self) -> PrebillingResource:
+        return PrebillingResource(self._client)
+
+    @cached_property
+    def ip_reputation(self) -> IPReputationResource:
+        return IPReputationResource(self._client)
 
     @cached_property
     def advanced_rules(self) -> AdvancedRulesResource:
@@ -159,14 +207,14 @@ class WaapResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> WaapGetAccountOverviewResponse:
+    ) -> WaapAccountOverview:
         """Get information about WAAP service for the client"""
         return self._get(
             "/waap/v1/clients/me",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=WaapGetAccountOverviewResponse,
+            cast_to=WaapAccountOverview,
         )
 
 
@@ -189,6 +237,22 @@ class AsyncWaapResource(AsyncAPIResource):
     @cached_property
     def custom_page_sets(self) -> AsyncCustomPageSetsResource:
         return AsyncCustomPageSetsResource(self._client)
+
+    @cached_property
+    def firewall_rules(self) -> AsyncFirewallRulesResource:
+        return AsyncFirewallRulesResource(self._client)
+
+    @cached_property
+    def filter_templates(self) -> AsyncFilterTemplatesResource:
+        return AsyncFilterTemplatesResource(self._client)
+
+    @cached_property
+    def prebilling(self) -> AsyncPrebillingResource:
+        return AsyncPrebillingResource(self._client)
+
+    @cached_property
+    def ip_reputation(self) -> AsyncIPReputationResource:
+        return AsyncIPReputationResource(self._client)
 
     @cached_property
     def advanced_rules(self) -> AsyncAdvancedRulesResource:
@@ -238,14 +302,14 @@ class AsyncWaapResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> WaapGetAccountOverviewResponse:
+    ) -> WaapAccountOverview:
         """Get information about WAAP service for the client"""
         return await self._get(
             "/waap/v1/clients/me",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=WaapGetAccountOverviewResponse,
+            cast_to=WaapAccountOverview,
         )
 
 
@@ -275,6 +339,22 @@ class WaapResourceWithRawResponse:
     @cached_property
     def custom_page_sets(self) -> CustomPageSetsResourceWithRawResponse:
         return CustomPageSetsResourceWithRawResponse(self._waap.custom_page_sets)
+
+    @cached_property
+    def firewall_rules(self) -> FirewallRulesResourceWithRawResponse:
+        return FirewallRulesResourceWithRawResponse(self._waap.firewall_rules)
+
+    @cached_property
+    def filter_templates(self) -> FilterTemplatesResourceWithRawResponse:
+        return FilterTemplatesResourceWithRawResponse(self._waap.filter_templates)
+
+    @cached_property
+    def prebilling(self) -> PrebillingResourceWithRawResponse:
+        return PrebillingResourceWithRawResponse(self._waap.prebilling)
+
+    @cached_property
+    def ip_reputation(self) -> IPReputationResourceWithRawResponse:
+        return IPReputationResourceWithRawResponse(self._waap.ip_reputation)
 
     @cached_property
     def advanced_rules(self) -> AdvancedRulesResourceWithRawResponse:
@@ -325,6 +405,22 @@ class AsyncWaapResourceWithRawResponse:
         return AsyncCustomPageSetsResourceWithRawResponse(self._waap.custom_page_sets)
 
     @cached_property
+    def firewall_rules(self) -> AsyncFirewallRulesResourceWithRawResponse:
+        return AsyncFirewallRulesResourceWithRawResponse(self._waap.firewall_rules)
+
+    @cached_property
+    def filter_templates(self) -> AsyncFilterTemplatesResourceWithRawResponse:
+        return AsyncFilterTemplatesResourceWithRawResponse(self._waap.filter_templates)
+
+    @cached_property
+    def prebilling(self) -> AsyncPrebillingResourceWithRawResponse:
+        return AsyncPrebillingResourceWithRawResponse(self._waap.prebilling)
+
+    @cached_property
+    def ip_reputation(self) -> AsyncIPReputationResourceWithRawResponse:
+        return AsyncIPReputationResourceWithRawResponse(self._waap.ip_reputation)
+
+    @cached_property
     def advanced_rules(self) -> AsyncAdvancedRulesResourceWithRawResponse:
         return AsyncAdvancedRulesResourceWithRawResponse(self._waap.advanced_rules)
 
@@ -373,6 +469,22 @@ class WaapResourceWithStreamingResponse:
         return CustomPageSetsResourceWithStreamingResponse(self._waap.custom_page_sets)
 
     @cached_property
+    def firewall_rules(self) -> FirewallRulesResourceWithStreamingResponse:
+        return FirewallRulesResourceWithStreamingResponse(self._waap.firewall_rules)
+
+    @cached_property
+    def filter_templates(self) -> FilterTemplatesResourceWithStreamingResponse:
+        return FilterTemplatesResourceWithStreamingResponse(self._waap.filter_templates)
+
+    @cached_property
+    def prebilling(self) -> PrebillingResourceWithStreamingResponse:
+        return PrebillingResourceWithStreamingResponse(self._waap.prebilling)
+
+    @cached_property
+    def ip_reputation(self) -> IPReputationResourceWithStreamingResponse:
+        return IPReputationResourceWithStreamingResponse(self._waap.ip_reputation)
+
+    @cached_property
     def advanced_rules(self) -> AdvancedRulesResourceWithStreamingResponse:
         return AdvancedRulesResourceWithStreamingResponse(self._waap.advanced_rules)
 
@@ -419,6 +531,22 @@ class AsyncWaapResourceWithStreamingResponse:
     @cached_property
     def custom_page_sets(self) -> AsyncCustomPageSetsResourceWithStreamingResponse:
         return AsyncCustomPageSetsResourceWithStreamingResponse(self._waap.custom_page_sets)
+
+    @cached_property
+    def firewall_rules(self) -> AsyncFirewallRulesResourceWithStreamingResponse:
+        return AsyncFirewallRulesResourceWithStreamingResponse(self._waap.firewall_rules)
+
+    @cached_property
+    def filter_templates(self) -> AsyncFilterTemplatesResourceWithStreamingResponse:
+        return AsyncFilterTemplatesResourceWithStreamingResponse(self._waap.filter_templates)
+
+    @cached_property
+    def prebilling(self) -> AsyncPrebillingResourceWithStreamingResponse:
+        return AsyncPrebillingResourceWithStreamingResponse(self._waap.prebilling)
+
+    @cached_property
+    def ip_reputation(self) -> AsyncIPReputationResourceWithStreamingResponse:
+        return AsyncIPReputationResourceWithStreamingResponse(self._waap.ip_reputation)
 
     @cached_property
     def advanced_rules(self) -> AsyncAdvancedRulesResourceWithStreamingResponse:

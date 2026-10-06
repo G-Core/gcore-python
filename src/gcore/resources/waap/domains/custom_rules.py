@@ -26,8 +26,8 @@ from ....types.waap.domains import (
     custom_rule_delete_multiple_params,
 )
 from ....types.waap.domains.waap_custom_rule import WaapCustomRule
-from ....types.waap.domains.custom_rule_toggle_response import CustomRuleToggleResponse
-from ....types.waap.domains.custom_rule_delete_multiple_response import CustomRuleDeleteMultipleResponse
+from ....types.waap.waap_rule_toggle_response import WaapRuleToggleResponse
+from ....types.waap.waap_rules_bulk_delete_response import WaapRulesBulkDeleteResponse
 
 __all__ = ["CustomRulesResource", "AsyncCustomRulesResource"]
 
@@ -298,7 +298,7 @@ class CustomRulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CustomRuleDeleteMultipleResponse:
+    ) -> WaapRulesBulkDeleteResponse:
         """
         Delete Multiple Custom WAAP Rules
 
@@ -323,7 +323,7 @@ class CustomRulesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CustomRuleDeleteMultipleResponse,
+            cast_to=WaapRulesBulkDeleteResponse,
         )
 
     def get(
@@ -374,7 +374,7 @@ class CustomRulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CustomRuleToggleResponse:
+    ) -> WaapRuleToggleResponse:
         """
         Toggle Custom Rule
 
@@ -405,7 +405,7 @@ class CustomRulesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CustomRuleToggleResponse,
+            cast_to=WaapRuleToggleResponse,
         )
 
 
@@ -675,7 +675,7 @@ class AsyncCustomRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CustomRuleDeleteMultipleResponse:
+    ) -> WaapRulesBulkDeleteResponse:
         """
         Delete Multiple Custom WAAP Rules
 
@@ -700,7 +700,7 @@ class AsyncCustomRulesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CustomRuleDeleteMultipleResponse,
+            cast_to=WaapRulesBulkDeleteResponse,
         )
 
     async def get(
@@ -751,7 +751,7 @@ class AsyncCustomRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CustomRuleToggleResponse:
+    ) -> WaapRuleToggleResponse:
         """
         Toggle Custom Rule
 
@@ -782,7 +782,7 @@ class AsyncCustomRulesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CustomRuleToggleResponse,
+            cast_to=WaapRuleToggleResponse,
         )
 
 

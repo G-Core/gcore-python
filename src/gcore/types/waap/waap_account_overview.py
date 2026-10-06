@@ -4,7 +4,7 @@ from typing import Dict, List, Optional
 
 from ..._models import BaseModel
 
-__all__ = ["WaapGetAccountOverviewResponse", "Quotas", "Service"]
+__all__ = ["WaapAccountOverview", "Quotas", "Service"]
 
 
 class Quotas(BaseModel):
@@ -22,7 +22,7 @@ class Service(BaseModel):
     """Whether the service is enabled"""
 
 
-class WaapGetAccountOverviewResponse(BaseModel):
+class WaapAccountOverview(BaseModel):
     """Represents the WAAP service information for a client"""
 
     id: Optional[int] = None

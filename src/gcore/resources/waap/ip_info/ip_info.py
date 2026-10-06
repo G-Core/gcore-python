@@ -12,7 +12,7 @@ from .metrics import (
     MetricsResourceWithStreamingResponse,
     AsyncMetricsResourceWithStreamingResponse,
 )
-from ...._types import Body, Query, Headers, NotGiven, not_given
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -25,22 +25,34 @@ from ...._response import (
 from ....types.waap import (
     ip_info_get_ip_info_params,
     ip_info_get_top_urls_params,
+    ip_info_get_top_paths_params,
+    ip_info_get_top_attacks_params,
+    ip_info_get_top_domains_params,
+    ip_info_get_account_counts_params,
     ip_info_get_top_user_agents_params,
     ip_info_get_blocked_requests_params,
     ip_info_get_top_user_sessions_params,
     ip_info_get_attack_time_series_params,
     ip_info_get_ddos_attack_series_params,
     ip_info_list_attacked_countries_params,
+    ip_info_get_account_top_user_agents_params,
+    ip_info_get_account_attack_time_series_params,
 )
 from ...._base_client import make_request_options
 from ....types.waap.waap_ip_info import WaapIPInfo
+from ....types.waap.waap_ip_info_counts_v2 import WaapIPInfoCountsV2
 from ....types.waap.waap_ip_ddos_info_model import WaapIPDDOSInfoModel
 from ....types.waap.ip_info_get_top_urls_response import IPInfoGetTopURLsResponse
+from ....types.waap.ip_info_get_top_paths_response import IPInfoGetTopPathsResponse
+from ....types.waap.ip_info_get_top_attacks_response import IPInfoGetTopAttacksResponse
+from ....types.waap.ip_info_get_top_domains_response import IPInfoGetTopDomainsResponse
 from ....types.waap.ip_info_get_top_user_agents_response import IPInfoGetTopUserAgentsResponse
 from ....types.waap.ip_info_get_blocked_requests_response import IPInfoGetBlockedRequestsResponse
 from ....types.waap.ip_info_get_top_user_sessions_response import IPInfoGetTopUserSessionsResponse
 from ....types.waap.ip_info_get_attack_time_series_response import IPInfoGetAttackTimeSeriesResponse
 from ....types.waap.ip_info_list_attacked_countries_response import IPInfoListAttackedCountriesResponse
+from ....types.waap.ip_info_get_account_top_user_agents_response import IPInfoGetAccountTopUserAgentsResponse
+from ....types.waap.ip_info_get_account_attack_time_series_response import IPInfoGetAccountAttackTimeSeriesResponse
 
 __all__ = ["IPInfoResource", "AsyncIPInfoResource"]
 
@@ -68,6 +80,131 @@ class IPInfoResource(SyncAPIResource):
         For more information, see https://www.github.com/G-Core/gcore-python#with_streaming_response
         """
         return IPInfoResourceWithStreamingResponse(self)
+
+    def get_account_attack_time_series(
+        self,
+        *,
+        ip: str,
+        days: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> IPInfoGetAccountAttackTimeSeriesResponse:
+        """
+        Retrieve a time-series of attacks originating from a specified IP address,
+        scoped to the authenticated account's domains
+
+        Args:
+          ip: The IP address to check
+
+          days: Number of days to look back for attack data
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            "/waap/v2/ip-info/attack-time-series",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "ip": ip,
+                        "days": days,
+                    },
+                    ip_info_get_account_attack_time_series_params.IPInfoGetAccountAttackTimeSeriesParams,
+                ),
+            ),
+            cast_to=IPInfoGetAccountAttackTimeSeriesResponse,
+        )
+
+    def get_account_counts(
+        self,
+        *,
+        ip: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> WaapIPInfoCountsV2:
+        """
+        Retrieve comprehensive metrics for an IP address including distinct counts of
+        attack types, domains, paths, and user agents across all account domains
+
+        Args:
+          ip: The IP address to check
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            "/waap/v2/ip-info/counts",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"ip": ip}, ip_info_get_account_counts_params.IPInfoGetAccountCountsParams),
+            ),
+            cast_to=WaapIPInfoCountsV2,
+        )
+
+    def get_account_top_user_agents(
+        self,
+        *,
+        ip: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> IPInfoGetAccountTopUserAgentsResponse:
+        """
+        Retrieve up to 10 top user agents associated with an IP across all account
+        domains.
+
+        Args:
+          ip: The IP address to check
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            "/waap/v2/ip-info/top-user-agents",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {"ip": ip}, ip_info_get_account_top_user_agents_params.IPInfoGetAccountTopUserAgentsParams
+                ),
+            ),
+            cast_to=IPInfoGetAccountTopUserAgentsResponse,
+        )
 
     def get_attack_time_series(
         self,
@@ -238,6 +375,120 @@ class IPInfoResource(SyncAPIResource):
                 query=maybe_transform({"ip": ip}, ip_info_get_ip_info_params.IPInfoGetIPInfoParams),
             ),
             cast_to=WaapIPInfo,
+        )
+
+    def get_top_attacks(
+        self,
+        *,
+        ip: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> IPInfoGetTopAttacksResponse:
+        """
+        Returns top attack types with associated domains, paths, and counts across all
+        account domains
+
+        Args:
+          ip: The IP address to check
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            "/waap/v1/ip-info/top-attacks",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"ip": ip}, ip_info_get_top_attacks_params.IPInfoGetTopAttacksParams),
+            ),
+            cast_to=IPInfoGetTopAttacksResponse,
+        )
+
+    def get_top_domains(
+        self,
+        *,
+        ip: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> IPInfoGetTopDomainsResponse:
+        """
+        Retrieve top attacked domains for an IP address, scoped to the authenticated
+        account's domains
+
+        Args:
+          ip: The IP address to check
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            "/waap/v1/ip-info/top-domains",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"ip": ip}, ip_info_get_top_domains_params.IPInfoGetTopDomainsParams),
+            ),
+            cast_to=IPInfoGetTopDomainsResponse,
+        )
+
+    def get_top_paths(
+        self,
+        *,
+        ip: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> IPInfoGetTopPathsResponse:
+        """
+        Retrieve top attacked paths for an IP address, scoped to the authenticated
+        account's domains
+
+        Args:
+          ip: The IP address to check
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            "/waap/v2/ip-info/top-paths",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"ip": ip}, ip_info_get_top_paths_params.IPInfoGetTopPathsParams),
+            ),
+            cast_to=IPInfoGetTopPathsResponse,
         )
 
     def get_top_urls(
@@ -453,6 +704,133 @@ class AsyncIPInfoResource(AsyncAPIResource):
         """
         return AsyncIPInfoResourceWithStreamingResponse(self)
 
+    async def get_account_attack_time_series(
+        self,
+        *,
+        ip: str,
+        days: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> IPInfoGetAccountAttackTimeSeriesResponse:
+        """
+        Retrieve a time-series of attacks originating from a specified IP address,
+        scoped to the authenticated account's domains
+
+        Args:
+          ip: The IP address to check
+
+          days: Number of days to look back for attack data
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
+            "/waap/v2/ip-info/attack-time-series",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "ip": ip,
+                        "days": days,
+                    },
+                    ip_info_get_account_attack_time_series_params.IPInfoGetAccountAttackTimeSeriesParams,
+                ),
+            ),
+            cast_to=IPInfoGetAccountAttackTimeSeriesResponse,
+        )
+
+    async def get_account_counts(
+        self,
+        *,
+        ip: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> WaapIPInfoCountsV2:
+        """
+        Retrieve comprehensive metrics for an IP address including distinct counts of
+        attack types, domains, paths, and user agents across all account domains
+
+        Args:
+          ip: The IP address to check
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
+            "/waap/v2/ip-info/counts",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"ip": ip}, ip_info_get_account_counts_params.IPInfoGetAccountCountsParams
+                ),
+            ),
+            cast_to=WaapIPInfoCountsV2,
+        )
+
+    async def get_account_top_user_agents(
+        self,
+        *,
+        ip: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> IPInfoGetAccountTopUserAgentsResponse:
+        """
+        Retrieve up to 10 top user agents associated with an IP across all account
+        domains.
+
+        Args:
+          ip: The IP address to check
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
+            "/waap/v2/ip-info/top-user-agents",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"ip": ip}, ip_info_get_account_top_user_agents_params.IPInfoGetAccountTopUserAgentsParams
+                ),
+            ),
+            cast_to=IPInfoGetAccountTopUserAgentsResponse,
+        )
+
     async def get_attack_time_series(
         self,
         *,
@@ -622,6 +1000,120 @@ class AsyncIPInfoResource(AsyncAPIResource):
                 query=await async_maybe_transform({"ip": ip}, ip_info_get_ip_info_params.IPInfoGetIPInfoParams),
             ),
             cast_to=WaapIPInfo,
+        )
+
+    async def get_top_attacks(
+        self,
+        *,
+        ip: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> IPInfoGetTopAttacksResponse:
+        """
+        Returns top attack types with associated domains, paths, and counts across all
+        account domains
+
+        Args:
+          ip: The IP address to check
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
+            "/waap/v1/ip-info/top-attacks",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform({"ip": ip}, ip_info_get_top_attacks_params.IPInfoGetTopAttacksParams),
+            ),
+            cast_to=IPInfoGetTopAttacksResponse,
+        )
+
+    async def get_top_domains(
+        self,
+        *,
+        ip: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> IPInfoGetTopDomainsResponse:
+        """
+        Retrieve top attacked domains for an IP address, scoped to the authenticated
+        account's domains
+
+        Args:
+          ip: The IP address to check
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
+            "/waap/v1/ip-info/top-domains",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform({"ip": ip}, ip_info_get_top_domains_params.IPInfoGetTopDomainsParams),
+            ),
+            cast_to=IPInfoGetTopDomainsResponse,
+        )
+
+    async def get_top_paths(
+        self,
+        *,
+        ip: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> IPInfoGetTopPathsResponse:
+        """
+        Retrieve top attacked paths for an IP address, scoped to the authenticated
+        account's domains
+
+        Args:
+          ip: The IP address to check
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
+            "/waap/v2/ip-info/top-paths",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform({"ip": ip}, ip_info_get_top_paths_params.IPInfoGetTopPathsParams),
+            ),
+            cast_to=IPInfoGetTopPathsResponse,
         )
 
     async def get_top_urls(
@@ -817,6 +1309,15 @@ class IPInfoResourceWithRawResponse:
     def __init__(self, ip_info: IPInfoResource) -> None:
         self._ip_info = ip_info
 
+        self.get_account_attack_time_series = to_raw_response_wrapper(
+            ip_info.get_account_attack_time_series,
+        )
+        self.get_account_counts = to_raw_response_wrapper(
+            ip_info.get_account_counts,
+        )
+        self.get_account_top_user_agents = to_raw_response_wrapper(
+            ip_info.get_account_top_user_agents,
+        )
         self.get_attack_time_series = to_raw_response_wrapper(
             ip_info.get_attack_time_series,
         )
@@ -828,6 +1329,15 @@ class IPInfoResourceWithRawResponse:
         )
         self.get_ip_info = to_raw_response_wrapper(
             ip_info.get_ip_info,
+        )
+        self.get_top_attacks = to_raw_response_wrapper(
+            ip_info.get_top_attacks,
+        )
+        self.get_top_domains = to_raw_response_wrapper(
+            ip_info.get_top_domains,
+        )
+        self.get_top_paths = to_raw_response_wrapper(
+            ip_info.get_top_paths,
         )
         self.get_top_urls = to_raw_response_wrapper(
             ip_info.get_top_urls,
@@ -851,6 +1361,15 @@ class AsyncIPInfoResourceWithRawResponse:
     def __init__(self, ip_info: AsyncIPInfoResource) -> None:
         self._ip_info = ip_info
 
+        self.get_account_attack_time_series = async_to_raw_response_wrapper(
+            ip_info.get_account_attack_time_series,
+        )
+        self.get_account_counts = async_to_raw_response_wrapper(
+            ip_info.get_account_counts,
+        )
+        self.get_account_top_user_agents = async_to_raw_response_wrapper(
+            ip_info.get_account_top_user_agents,
+        )
         self.get_attack_time_series = async_to_raw_response_wrapper(
             ip_info.get_attack_time_series,
         )
@@ -862,6 +1381,15 @@ class AsyncIPInfoResourceWithRawResponse:
         )
         self.get_ip_info = async_to_raw_response_wrapper(
             ip_info.get_ip_info,
+        )
+        self.get_top_attacks = async_to_raw_response_wrapper(
+            ip_info.get_top_attacks,
+        )
+        self.get_top_domains = async_to_raw_response_wrapper(
+            ip_info.get_top_domains,
+        )
+        self.get_top_paths = async_to_raw_response_wrapper(
+            ip_info.get_top_paths,
         )
         self.get_top_urls = async_to_raw_response_wrapper(
             ip_info.get_top_urls,
@@ -885,6 +1413,15 @@ class IPInfoResourceWithStreamingResponse:
     def __init__(self, ip_info: IPInfoResource) -> None:
         self._ip_info = ip_info
 
+        self.get_account_attack_time_series = to_streamed_response_wrapper(
+            ip_info.get_account_attack_time_series,
+        )
+        self.get_account_counts = to_streamed_response_wrapper(
+            ip_info.get_account_counts,
+        )
+        self.get_account_top_user_agents = to_streamed_response_wrapper(
+            ip_info.get_account_top_user_agents,
+        )
         self.get_attack_time_series = to_streamed_response_wrapper(
             ip_info.get_attack_time_series,
         )
@@ -896,6 +1433,15 @@ class IPInfoResourceWithStreamingResponse:
         )
         self.get_ip_info = to_streamed_response_wrapper(
             ip_info.get_ip_info,
+        )
+        self.get_top_attacks = to_streamed_response_wrapper(
+            ip_info.get_top_attacks,
+        )
+        self.get_top_domains = to_streamed_response_wrapper(
+            ip_info.get_top_domains,
+        )
+        self.get_top_paths = to_streamed_response_wrapper(
+            ip_info.get_top_paths,
         )
         self.get_top_urls = to_streamed_response_wrapper(
             ip_info.get_top_urls,
@@ -919,6 +1465,15 @@ class AsyncIPInfoResourceWithStreamingResponse:
     def __init__(self, ip_info: AsyncIPInfoResource) -> None:
         self._ip_info = ip_info
 
+        self.get_account_attack_time_series = async_to_streamed_response_wrapper(
+            ip_info.get_account_attack_time_series,
+        )
+        self.get_account_counts = async_to_streamed_response_wrapper(
+            ip_info.get_account_counts,
+        )
+        self.get_account_top_user_agents = async_to_streamed_response_wrapper(
+            ip_info.get_account_top_user_agents,
+        )
         self.get_attack_time_series = async_to_streamed_response_wrapper(
             ip_info.get_attack_time_series,
         )
@@ -930,6 +1485,15 @@ class AsyncIPInfoResourceWithStreamingResponse:
         )
         self.get_ip_info = async_to_streamed_response_wrapper(
             ip_info.get_ip_info,
+        )
+        self.get_top_attacks = async_to_streamed_response_wrapper(
+            ip_info.get_top_attacks,
+        )
+        self.get_top_domains = async_to_streamed_response_wrapper(
+            ip_info.get_top_domains,
+        )
+        self.get_top_paths = async_to_streamed_response_wrapper(
+            ip_info.get_top_paths,
         )
         self.get_top_urls = async_to_streamed_response_wrapper(
             ip_info.get_top_urls,

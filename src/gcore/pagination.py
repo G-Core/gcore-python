@@ -10,6 +10,8 @@ from ._models import BaseModel
 from ._base_client import BasePage, PageInfo, BaseSyncPage, BaseAsyncPage
 
 __all__ = [
+    "SyncCursorPageWaap",
+    "AsyncCursorPageWaap",
     "SyncOffsetPage",
     "AsyncOffsetPage",
     "SyncOffsetPageFastedgeApps",
@@ -42,6 +44,46 @@ __all__ = [
 _BaseModelT = TypeVar("_BaseModelT", bound=BaseModel)
 
 _T = TypeVar("_T")
+
+
+class SyncCursorPageWaap(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
+    results: List[_T]
+    next: Optional[str] = None
+
+    @override
+    def _get_page_items(self) -> List[_T]:
+        results = self.results
+        if not results:
+            return []
+        return results
+
+    @override
+    def next_page_info(self) -> Optional[PageInfo]:
+        next = self.next
+        if not next:
+            return None
+
+        return PageInfo(params={"next": next})
+
+
+class AsyncCursorPageWaap(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
+    results: List[_T]
+    next: Optional[str] = None
+
+    @override
+    def _get_page_items(self) -> List[_T]:
+        results = self.results
+        if not results:
+            return []
+        return results
+
+    @override
+    def next_page_info(self) -> Optional[PageInfo]:
+        next = self.next
+        if not next:
+            return None
+
+        return PageInfo(params={"next": next})
 
 
 class SyncOffsetPage(BaseSyncPage[_T], BasePage[_T], Generic[_T]):

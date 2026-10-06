@@ -10,10 +10,9 @@ import pytest
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
 from gcore.pagination import SyncOffsetPage, AsyncOffsetPage
+from gcore.types.waap import WaapRuleToggleResponse, WaapRulesBulkDeleteResponse
 from gcore.types.waap.domains import (
     WaapFirewallRule,
-    FirewallRuleToggleResponse,
-    FirewallRuleDeleteMultipleResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -245,7 +244,7 @@ class TestFirewallRules:
             domain_id=1,
             rule_ids=[0],
         )
-        assert_matches_type(FirewallRuleDeleteMultipleResponse, firewall_rule, path=["response"])
+        assert_matches_type(WaapRulesBulkDeleteResponse, firewall_rule, path=["response"])
 
     @parametrize
     def test_raw_response_delete_multiple(self, client: Gcore) -> None:
@@ -257,7 +256,7 @@ class TestFirewallRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         firewall_rule = response.parse()
-        assert_matches_type(FirewallRuleDeleteMultipleResponse, firewall_rule, path=["response"])
+        assert_matches_type(WaapRulesBulkDeleteResponse, firewall_rule, path=["response"])
 
     @parametrize
     def test_streaming_response_delete_multiple(self, client: Gcore) -> None:
@@ -269,7 +268,7 @@ class TestFirewallRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             firewall_rule = response.parse()
-            assert_matches_type(FirewallRuleDeleteMultipleResponse, firewall_rule, path=["response"])
+            assert_matches_type(WaapRulesBulkDeleteResponse, firewall_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -314,7 +313,7 @@ class TestFirewallRules:
             domain_id=1,
             rule_id=0,
         )
-        assert_matches_type(FirewallRuleToggleResponse, firewall_rule, path=["response"])
+        assert_matches_type(WaapRuleToggleResponse, firewall_rule, path=["response"])
 
     @parametrize
     def test_raw_response_toggle(self, client: Gcore) -> None:
@@ -327,7 +326,7 @@ class TestFirewallRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         firewall_rule = response.parse()
-        assert_matches_type(FirewallRuleToggleResponse, firewall_rule, path=["response"])
+        assert_matches_type(WaapRuleToggleResponse, firewall_rule, path=["response"])
 
     @parametrize
     def test_streaming_response_toggle(self, client: Gcore) -> None:
@@ -340,7 +339,7 @@ class TestFirewallRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             firewall_rule = response.parse()
-            assert_matches_type(FirewallRuleToggleResponse, firewall_rule, path=["response"])
+            assert_matches_type(WaapRuleToggleResponse, firewall_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -573,7 +572,7 @@ class TestAsyncFirewallRules:
             domain_id=1,
             rule_ids=[0],
         )
-        assert_matches_type(FirewallRuleDeleteMultipleResponse, firewall_rule, path=["response"])
+        assert_matches_type(WaapRulesBulkDeleteResponse, firewall_rule, path=["response"])
 
     @parametrize
     async def test_raw_response_delete_multiple(self, async_client: AsyncGcore) -> None:
@@ -585,7 +584,7 @@ class TestAsyncFirewallRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         firewall_rule = await response.parse()
-        assert_matches_type(FirewallRuleDeleteMultipleResponse, firewall_rule, path=["response"])
+        assert_matches_type(WaapRulesBulkDeleteResponse, firewall_rule, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete_multiple(self, async_client: AsyncGcore) -> None:
@@ -597,7 +596,7 @@ class TestAsyncFirewallRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             firewall_rule = await response.parse()
-            assert_matches_type(FirewallRuleDeleteMultipleResponse, firewall_rule, path=["response"])
+            assert_matches_type(WaapRulesBulkDeleteResponse, firewall_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -642,7 +641,7 @@ class TestAsyncFirewallRules:
             domain_id=1,
             rule_id=0,
         )
-        assert_matches_type(FirewallRuleToggleResponse, firewall_rule, path=["response"])
+        assert_matches_type(WaapRuleToggleResponse, firewall_rule, path=["response"])
 
     @parametrize
     async def test_raw_response_toggle(self, async_client: AsyncGcore) -> None:
@@ -655,7 +654,7 @@ class TestAsyncFirewallRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         firewall_rule = await response.parse()
-        assert_matches_type(FirewallRuleToggleResponse, firewall_rule, path=["response"])
+        assert_matches_type(WaapRuleToggleResponse, firewall_rule, path=["response"])
 
     @parametrize
     async def test_streaming_response_toggle(self, async_client: AsyncGcore) -> None:
@@ -668,6 +667,6 @@ class TestAsyncFirewallRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             firewall_rule = await response.parse()
-            assert_matches_type(FirewallRuleToggleResponse, firewall_rule, path=["response"])
+            assert_matches_type(WaapRuleToggleResponse, firewall_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
