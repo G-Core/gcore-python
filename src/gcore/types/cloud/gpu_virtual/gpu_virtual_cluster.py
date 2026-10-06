@@ -49,6 +49,13 @@ class ServersSettingsInterfaceExternalInterfaceOutputSerializer(BaseModel):
     name: Optional[str] = None
     """Interface name"""
 
+    port_security_enabled: Optional[bool] = None
+    """Shows the port security state of this interface.
+
+    A `null` value means port security is on, with the default security group
+    attached. A `true` or `false` value shows the state set at creation.
+    """
+
     security_groups: List[ServersSettingsInterfaceExternalInterfaceOutputSerializerSecurityGroup]
     """Resolved security groups applied to this interface."""
 
@@ -78,6 +85,13 @@ class ServersSettingsInterfaceSubnetInterfaceOutputSerializer(BaseModel):
 
     network_id: str
     """Network ID the subnet belongs to. Port will be plugged in this network"""
+
+    port_security_enabled: Optional[bool] = None
+    """Shows the port security state of this interface.
+
+    A `null` value means port security is on, with the default security group
+    attached. A `true` or `false` value shows the state set at creation.
+    """
 
     security_groups: List[ServersSettingsInterfaceSubnetInterfaceOutputSerializerSecurityGroup]
     """Resolved security groups applied to this interface."""
@@ -117,6 +131,13 @@ class ServersSettingsInterfaceAnySubnetInterfaceOutputSerializer(BaseModel):
 
     network_id: str
     """Network ID the subnet belongs to. Port will be plugged in this network"""
+
+    port_security_enabled: Optional[bool] = None
+    """Shows the port security state of this interface.
+
+    A `null` value means port security is on, with the default security group
+    attached. A `true` or `false` value shows the state set at creation.
+    """
 
     security_groups: List[ServersSettingsInterfaceAnySubnetInterfaceOutputSerializerSecurityGroup]
     """Resolved security groups applied to this interface."""
@@ -191,6 +212,13 @@ class ServersSettings(BaseModel):
 
     user_data: Optional[str] = None
     """Optional custom user data"""
+
+    username: Optional[str] = None
+    """Shows the username that `credentials.username` set at creation.
+
+    The value is `null` when the cluster uses only `credentials.ssh_key_name`, or
+    has no credentials.
+    """
 
     volumes: List[ServersSettingsVolume]
     """List of volumes"""

@@ -71,7 +71,7 @@ class TaskListParams(TypedDict, total=False):
     'create_k8s_cluster_v2', 'create_l7policy', 'create_l7rule',
     'create_lblistener', 'create_lbmember', 'create_lbpool',
     'create_lbpool_health_monitor', 'create_loadbalancer', 'create_network',
-    'create_reserved_fixed_ip', 'create_router', 'create_secret',
+    'create_port', 'create_reserved_fixed_ip', 'create_router', 'create_secret',
     'create_security_group', 'create_security_group_rule', 'create_servergroup',
     'create_sfs', 'create_slurm_cluster', 'create_slurm_node_set',
     'create_snapshot', 'create_subnet', 'create_vm', 'create_volume',
