@@ -33,6 +33,13 @@ class ZoneListParams(TypedDict, total=False):
 
     iam_reseller_id: Iterable[int]
 
+    is_secondary: bool
+    """
+    Filter by AXFR secondary zone marker (meta.`is_secondary`). true returns only
+    secondary zones, false returns only zones without that marker (primary zones
+    have no `is_secondary` key at all), omitted returns all zones.
+    """
+
     limit: int
     """Max number of records in response"""
 

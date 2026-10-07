@@ -184,6 +184,7 @@ class ZonesResource(SyncAPIResource):
         exact_match: bool | Omit = omit,
         healthcheck: bool | Omit = omit,
         iam_reseller_id: Iterable[int] | Omit = omit,
+        is_secondary: bool | Omit = omit,
         limit: int | Omit = omit,
         name: SequenceNotStr[str] | Omit = omit,
         offset: int | Omit = omit,
@@ -213,6 +214,10 @@ class ZonesResource(SyncAPIResource):
           dynamic: Zones with dynamic RRsets
 
           healthcheck: Zones with RRsets that have healthchecks
+
+          is_secondary: Filter by AXFR secondary zone marker (meta.`is_secondary`). true returns only
+              secondary zones, false returns only zones without that marker (primary zones
+              have no `is_secondary` key at all), omitted returns all zones.
 
           limit: Max number of records in response
 
@@ -250,6 +255,7 @@ class ZonesResource(SyncAPIResource):
                         "exact_match": exact_match,
                         "healthcheck": healthcheck,
                         "iam_reseller_id": iam_reseller_id,
+                        "is_secondary": is_secondary,
                         "limit": limit,
                         "name": name,
                         "offset": offset,
@@ -829,6 +835,7 @@ class AsyncZonesResource(AsyncAPIResource):
         exact_match: bool | Omit = omit,
         healthcheck: bool | Omit = omit,
         iam_reseller_id: Iterable[int] | Omit = omit,
+        is_secondary: bool | Omit = omit,
         limit: int | Omit = omit,
         name: SequenceNotStr[str] | Omit = omit,
         offset: int | Omit = omit,
@@ -858,6 +865,10 @@ class AsyncZonesResource(AsyncAPIResource):
           dynamic: Zones with dynamic RRsets
 
           healthcheck: Zones with RRsets that have healthchecks
+
+          is_secondary: Filter by AXFR secondary zone marker (meta.`is_secondary`). true returns only
+              secondary zones, false returns only zones without that marker (primary zones
+              have no `is_secondary` key at all), omitted returns all zones.
 
           limit: Max number of records in response
 
@@ -895,6 +906,7 @@ class AsyncZonesResource(AsyncAPIResource):
                         "exact_match": exact_match,
                         "healthcheck": healthcheck,
                         "iam_reseller_id": iam_reseller_id,
+                        "is_secondary": is_secondary,
                         "limit": limit,
                         "name": name,
                         "offset": offset,
