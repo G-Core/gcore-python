@@ -20,10 +20,16 @@ class LoadBalancerMetrics(BaseModel):
     """RAM utilization, %. Null when no data point is available."""
 
     network_bps_egress: Optional[float] = FieldInfo(alias="network_Bps_egress", default=None)
-    """Network out, bytes per second. Null when no data point is available."""
+    """
+    Network out, bits per second (the 'Bps' in the field name is historical; the
+    value is bits, not bytes). Null when no data point is available.
+    """
 
     network_bps_ingress: Optional[float] = FieldInfo(alias="network_Bps_ingress", default=None)
-    """Network in, bytes per second. Null when no data point is available."""
+    """
+    Network in, bits per second (the 'Bps' in the field name is historical; the
+    value is bits, not bytes). Null when no data point is available.
+    """
 
     network_pps_egress: Optional[float] = None
     """Network out, packets per second. Null when no data point is available."""

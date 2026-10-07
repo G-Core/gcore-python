@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Dict, List, Optional
 from typing_extensions import Literal, overload
 
 import httpx
@@ -294,6 +294,7 @@ class ClustersResource(ClustersResourceCustomMixin, SyncAPIResource):
         flavor: cluster_list_params.Flavor | Omit = omit,
         ids: SequenceNotStr[str] | Omit = omit,
         limit: int | Omit = omit,
+        managed_by: List[Literal["k8s", "user"]] | Omit = omit,
         name: cluster_list_params.Name | Omit = omit,
         offset: int | Omit = omit,
         servers_count: cluster_list_params.ServersCount | Omit = omit,
@@ -324,6 +325,9 @@ class ClustersResource(ClustersResourceCustomMixin, SyncAPIResource):
           ids: Return only clusters with these IDs, e.g. `ids=<id1>&ids=<id2>`.
 
           limit: Limit of items on a single page
+
+          managed_by: Filter by who manages the cluster: `user` (default) or `k8s` (Managed
+              Kubernetes). Pass both to include all, e.g. `managed_by=user&managed_by=k8s`.
 
           name: Filter by name (case-insensitive), e.g. `name[contains]=gpu`,
               `name[prefix]=prod-`.
@@ -372,6 +376,7 @@ class ClustersResource(ClustersResourceCustomMixin, SyncAPIResource):
                         "flavor": flavor,
                         "ids": ids,
                         "limit": limit,
+                        "managed_by": managed_by,
                         "name": name,
                         "offset": offset,
                         "servers_count": servers_count,
@@ -985,6 +990,7 @@ class AsyncClustersResource(AsyncClustersResourceCustomMixin, AsyncAPIResource):
         flavor: cluster_list_params.Flavor | Omit = omit,
         ids: SequenceNotStr[str] | Omit = omit,
         limit: int | Omit = omit,
+        managed_by: List[Literal["k8s", "user"]] | Omit = omit,
         name: cluster_list_params.Name | Omit = omit,
         offset: int | Omit = omit,
         servers_count: cluster_list_params.ServersCount | Omit = omit,
@@ -1015,6 +1021,9 @@ class AsyncClustersResource(AsyncClustersResourceCustomMixin, AsyncAPIResource):
           ids: Return only clusters with these IDs, e.g. `ids=<id1>&ids=<id2>`.
 
           limit: Limit of items on a single page
+
+          managed_by: Filter by who manages the cluster: `user` (default) or `k8s` (Managed
+              Kubernetes). Pass both to include all, e.g. `managed_by=user&managed_by=k8s`.
 
           name: Filter by name (case-insensitive), e.g. `name[contains]=gpu`,
               `name[prefix]=prod-`.
@@ -1063,6 +1072,7 @@ class AsyncClustersResource(AsyncClustersResourceCustomMixin, AsyncAPIResource):
                         "flavor": flavor,
                         "ids": ids,
                         "limit": limit,
+                        "managed_by": managed_by,
                         "name": name,
                         "offset": offset,
                         "servers_count": servers_count,

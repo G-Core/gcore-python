@@ -24,7 +24,7 @@ class RoleAssignment(BaseModel):
     project_id: Optional[int] = None
     """Project ID"""
 
-    role: Literal["ClientAdministrator", "InternalNetworkOnlyUser", "Observer", "ProjectAdministrator", "User"]
+    role: Literal["ClientAdministrator", "Observer", "ProjectAdministrator", "User"]
     """User role"""
 
     updated_at: Optional[datetime] = None

@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union
+from typing import Dict, List, Union
 from datetime import datetime
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Literal, Annotated, TypedDict
 
 from ...._types import SequenceNotStr
 from ...._utils import PropertyInfo
@@ -33,6 +33,12 @@ class ClusterListParams(TypedDict, total=False):
 
     limit: int
     """Limit of items on a single page"""
+
+    managed_by: List[Literal["k8s", "user"]]
+    """
+    Filter by who manages the cluster: `user` (default) or `k8s` (Managed
+    Kubernetes). Pass both to include all, e.g. `managed_by=user&managed_by=k8s`.
+    """
 
     name: Name
     """Filter by name (case-insensitive), e.g.

@@ -44,10 +44,16 @@ class Metrics(BaseModel):
     """RAM utilization, %"""
 
     network_bps_egress: Optional[float] = FieldInfo(alias="network_Bps_egress", default=None)
-    """Network out, bytes per second"""
+    """
+    Network out, bits per second (the 'Bps' in the field name is historical; the
+    value is bits, not bytes)
+    """
 
     network_bps_ingress: Optional[float] = FieldInfo(alias="network_Bps_ingress", default=None)
-    """Network in, bytes per second"""
+    """
+    Network in, bits per second (the 'Bps' in the field name is historical; the
+    value is bits, not bytes)
+    """
 
     network_pps_egress: Optional[float] = None
     """Network out, packets per second"""

@@ -53,7 +53,7 @@ class RoleAssignmentsResource(SyncAPIResource):
     def create(
         self,
         *,
-        role: Literal["ClientAdministrator", "InternalNetworkOnlyUser", "Observer", "ProjectAdministrator", "User"],
+        role: Literal["ClientAdministrator", "Observer", "ProjectAdministrator", "User"],
         user_id: int,
         client_id: Optional[int] | Omit = omit,
         project_id: Optional[int] | Omit = omit,
@@ -68,7 +68,7 @@ class RoleAssignmentsResource(SyncAPIResource):
         Assign a role to an existing user in the specified scope.
 
         Args:
-          role: User role. The InternalNetworkOnlyUser value is deprecated. Use User instead.
+          role: User role
 
           user_id: User ID
 
@@ -105,7 +105,7 @@ class RoleAssignmentsResource(SyncAPIResource):
         self,
         assignment_id: int,
         *,
-        role: Literal["ClientAdministrator", "InternalNetworkOnlyUser", "Observer", "ProjectAdministrator", "User"],
+        role: Literal["ClientAdministrator", "Observer", "ProjectAdministrator", "User"],
         user_id: int,
         client_id: Optional[int] | Omit = omit,
         project_id: Optional[int] | Omit = omit,
@@ -122,7 +122,7 @@ class RoleAssignmentsResource(SyncAPIResource):
         Args:
           assignment_id: Assignment ID
 
-          role: User role. The InternalNetworkOnlyUser value is deprecated. Use User instead.
+          role: User role
 
           user_id: User ID
 
@@ -268,7 +268,7 @@ class AsyncRoleAssignmentsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        role: Literal["ClientAdministrator", "InternalNetworkOnlyUser", "Observer", "ProjectAdministrator", "User"],
+        role: Literal["ClientAdministrator", "Observer", "ProjectAdministrator", "User"],
         user_id: int,
         client_id: Optional[int] | Omit = omit,
         project_id: Optional[int] | Omit = omit,
@@ -283,7 +283,7 @@ class AsyncRoleAssignmentsResource(AsyncAPIResource):
         Assign a role to an existing user in the specified scope.
 
         Args:
-          role: User role. The InternalNetworkOnlyUser value is deprecated. Use User instead.
+          role: User role
 
           user_id: User ID
 
@@ -320,7 +320,7 @@ class AsyncRoleAssignmentsResource(AsyncAPIResource):
         self,
         assignment_id: int,
         *,
-        role: Literal["ClientAdministrator", "InternalNetworkOnlyUser", "Observer", "ProjectAdministrator", "User"],
+        role: Literal["ClientAdministrator", "Observer", "ProjectAdministrator", "User"],
         user_id: int,
         client_id: Optional[int] | Omit = omit,
         project_id: Optional[int] | Omit = omit,
@@ -337,7 +337,7 @@ class AsyncRoleAssignmentsResource(AsyncAPIResource):
         Args:
           assignment_id: Assignment ID
 
-          role: User role. The InternalNetworkOnlyUser value is deprecated. Use User instead.
+          role: User role
 
           user_id: User ID
 

@@ -9,10 +9,8 @@ __all__ = ["RoleAssignmentCreateParams"]
 
 
 class RoleAssignmentCreateParams(TypedDict, total=False):
-    role: Required[
-        Literal["ClientAdministrator", "InternalNetworkOnlyUser", "Observer", "ProjectAdministrator", "User"]
-    ]
-    """User role. The InternalNetworkOnlyUser value is deprecated. Use User instead."""
+    role: Required[Literal["ClientAdministrator", "Observer", "ProjectAdministrator", "User"]]
+    """User role"""
 
     user_id: Required[int]
     """User ID"""

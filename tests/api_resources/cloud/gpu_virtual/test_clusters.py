@@ -253,6 +253,7 @@ class TestClusters:
             },
             ids=["1aaaab48-10d0-46d9-80cc-85209284ceb4"],
             limit=10,
+            managed_by=["user"],
             name={
                 "contains": ["string"],
                 "exact": ["string"],
@@ -912,6 +913,7 @@ class TestAsyncClusters:
             },
             ids=["1aaaab48-10d0-46d9-80cc-85209284ceb4"],
             limit=10,
+            managed_by=["user"],
             name={
                 "contains": ["string"],
                 "exact": ["string"],

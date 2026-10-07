@@ -239,6 +239,9 @@ class GPUVirtualCluster(BaseModel):
     True if any server in the cluster has pending (not yet applied) settings changes
     """
 
+    managed_by: Literal["k8s", "user"]
+    """User type managing the resource"""
+
     name: str
     """Cluster name"""
 
