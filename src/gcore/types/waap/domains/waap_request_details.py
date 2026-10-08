@@ -53,6 +53,9 @@ class Network(BaseModel):
     organization: NetworkOrganization
     """Organization details"""
 
+    asn: Optional[str] = None
+    """Autonomous System Number, or an empty string when unknown"""
+
 
 class PatternMatchedTag(BaseModel):
     """Pattern matched tag details"""

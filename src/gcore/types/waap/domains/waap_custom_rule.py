@@ -11,6 +11,7 @@ __all__ = [
     "ActionBlock",
     "ActionTag",
     "Condition",
+    "ConditionAsn",
     "ConditionContentType",
     "ConditionCountry",
     "ConditionFileExtension",
@@ -84,6 +85,18 @@ class Action(BaseModel):
 
     tag: Optional[ActionTag] = None
     """WAAP tag action gets a list of tags to tag the request scope with"""
+
+
+class ConditionAsn(BaseModel):
+    """
+    Match the ASN (Autonomous System Number) the request originated from, as determined by a WHOIS lookup of the requesting IP
+    """
+
+    asns: List[int]
+    """A list of Autonomous System Numbers (ASNs) to match against"""
+
+    negation: Optional[bool] = None
+    """Whether or not to apply a boolean NOT operation to the rule's condition"""
 
 
 class ConditionContentType(BaseModel):
@@ -366,6 +379,12 @@ class Condition(BaseModel):
     The full set of custom rule condition types, including ResponseHeader/ResponseHeaderExists
     conditions that may exist on rules already stored in Lime but cannot be created or updated
     through the API.
+    """
+
+    asn: Optional[ConditionAsn] = None
+    """
+    Match the ASN (Autonomous System Number) the request originated from, as
+    determined by a WHOIS lookup of the requesting IP
     """
 
     content_type: Optional[ConditionContentType] = None

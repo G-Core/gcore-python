@@ -49,6 +49,10 @@ class TestCustomRules:
             },
             conditions=[
                 {
+                    "asn": {
+                        "asns": [1],
+                        "negation": True,
+                    },
                     "content_type": {
                         "content_type": ["application/xml"],
                         "negation": True,
@@ -196,6 +200,10 @@ class TestCustomRules:
             },
             conditions=[
                 {
+                    "asn": {
+                        "asns": [1],
+                        "negation": True,
+                    },
                     "content_type": {
                         "content_type": ["application/xml"],
                         "negation": True,
@@ -529,6 +537,10 @@ class TestAsyncCustomRules:
             },
             conditions=[
                 {
+                    "asn": {
+                        "asns": [1],
+                        "negation": True,
+                    },
                     "content_type": {
                         "content_type": ["application/xml"],
                         "negation": True,
@@ -676,6 +688,10 @@ class TestAsyncCustomRules:
             },
             conditions=[
                 {
+                    "asn": {
+                        "asns": [1],
+                        "negation": True,
+                    },
                     "content_type": {
                         "content_type": ["application/xml"],
                         "negation": True,

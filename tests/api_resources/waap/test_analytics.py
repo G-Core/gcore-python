@@ -85,10 +85,12 @@ class TestAnalytics:
     def test_method_get_events_with_all_params(self, client: Gcore) -> None:
         analytics = client.waap.analytics.get_events(
             start="2024-04-13T00:00:00+01:00",
+            asns=[15169, 13335],
             countries=["DE", "MY"],
             decision=["allowed", "blocked"],
             domains=[1, 2, 3],
             end="2024-04-14T12:00:00Z",
+            exclude_asns=[15169, 13335],
             exclude_countries=["DE", "MY"],
             exclude_decision=["allowed", "blocked"],
             exclude_domains=[0],
@@ -217,10 +219,12 @@ class TestAnalytics:
         with pytest.warns(DeprecationWarning):
             analytics = client.waap.analytics.get_requests(
                 start="2024-04-13T00:00:00+01:00",
+                asns=[15169, 13335],
                 countries=["DE", "MY"],
                 decision=["allowed", "blocked"],
                 domains=[1, 2, 3],
                 end="2024-04-14T12:00:00Z",
+                exclude_asns=[15169, 13335],
                 exclude_countries=["DE", "MY"],
                 exclude_decision=["allowed", "blocked"],
                 exclude_domains=[0],
@@ -348,11 +352,13 @@ class TestAnalytics:
         analytics = client.waap.analytics.get_traffic_filtered(
             resolution="daily",
             start="2024-04-13T00:00:00+01:00",
+            asns=[15169, 13335],
             bucket_size=60,
             countries=["DE", "MY"],
             decision=["allowed", "blocked"],
             domains=[1, 2, 3],
             end="2024-04-14T12:00:00Z",
+            exclude_asns=[15169, 13335],
             exclude_countries=["DE", "MY"],
             exclude_decision=["allowed", "blocked"],
             exclude_domains=[0],
@@ -481,10 +487,12 @@ class TestAsyncAnalytics:
     async def test_method_get_events_with_all_params(self, async_client: AsyncGcore) -> None:
         analytics = await async_client.waap.analytics.get_events(
             start="2024-04-13T00:00:00+01:00",
+            asns=[15169, 13335],
             countries=["DE", "MY"],
             decision=["allowed", "blocked"],
             domains=[1, 2, 3],
             end="2024-04-14T12:00:00Z",
+            exclude_asns=[15169, 13335],
             exclude_countries=["DE", "MY"],
             exclude_decision=["allowed", "blocked"],
             exclude_domains=[0],
@@ -613,10 +621,12 @@ class TestAsyncAnalytics:
         with pytest.warns(DeprecationWarning):
             analytics = await async_client.waap.analytics.get_requests(
                 start="2024-04-13T00:00:00+01:00",
+                asns=[15169, 13335],
                 countries=["DE", "MY"],
                 decision=["allowed", "blocked"],
                 domains=[1, 2, 3],
                 end="2024-04-14T12:00:00Z",
+                exclude_asns=[15169, 13335],
                 exclude_countries=["DE", "MY"],
                 exclude_decision=["allowed", "blocked"],
                 exclude_domains=[0],
@@ -744,11 +754,13 @@ class TestAsyncAnalytics:
         analytics = await async_client.waap.analytics.get_traffic_filtered(
             resolution="daily",
             start="2024-04-13T00:00:00+01:00",
+            asns=[15169, 13335],
             bucket_size=60,
             countries=["DE", "MY"],
             decision=["allowed", "blocked"],
             domains=[1, 2, 3],
             end="2024-04-14T12:00:00Z",
+            exclude_asns=[15169, 13335],
             exclude_countries=["DE", "MY"],
             exclude_decision=["allowed", "blocked"],
             exclude_domains=[0],

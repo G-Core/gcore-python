@@ -13,6 +13,7 @@ __all__ = [
     "ActionBlock",
     "ActionTag",
     "Condition",
+    "ConditionAsn",
     "ConditionContentType",
     "ConditionCountry",
     "ConditionFileExtension",
@@ -108,6 +109,18 @@ class Action(TypedDict, total=False):
 
     tag: ActionTag
     """WAAP tag action gets a list of tags to tag the request scope with"""
+
+
+class ConditionAsn(TypedDict, total=False):
+    """
+    Match the ASN (Autonomous System Number) the request originated from, as determined by a WHOIS lookup of the requesting IP
+    """
+
+    asns: Required[Iterable[int]]
+    """A list of Autonomous System Numbers (ASNs) to match against"""
+
+    negation: bool
+    """Whether or not to apply a boolean NOT operation to the rule's condition"""
 
 
 class ConditionContentType(TypedDict, total=False):
@@ -362,6 +375,12 @@ class Condition(TypedDict, total=False):
     Used for creating and updating custom rules. Does not include the ResponseHeader/
     ResponseHeaderExists condition types, which are only readable on existing rules
     (see CustomRuleConditionResponse).
+    """
+
+    asn: ConditionAsn
+    """
+    Match the ASN (Autonomous System Number) the request originated from, as
+    determined by a WHOIS lookup of the requesting IP
     """
 
     content_type: ConditionContentType

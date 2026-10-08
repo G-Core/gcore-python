@@ -14,6 +14,12 @@ class AnalyticsGetRequestsParams(TypedDict, total=False):
     start: Required[str]
     """Filter data items starting from a specified date in ISO 8601 format"""
 
+    asns: Iterable[int]
+    """Filter data by the ASN (Autonomous System Number) of the originating IP address.
+
+    Not supported by `/v1/analytics/requests`.
+    """
+
     countries: SequenceNotStr[str]
     """
     Filter data by a country code of the originating IP address in ISO 3166-1
@@ -33,6 +39,13 @@ class AnalyticsGetRequestsParams(TypedDict, total=False):
     """Filter data items up to a specified end date in ISO 8601 format.
 
     If not provided, defaults to the current date and time.
+    """
+
+    exclude_asns: Iterable[int]
+    """Exclude data by the ASN (Autonomous System Number) of the originating IP
+    address.
+
+    Not supported by `/v1/analytics/requests`.
     """
 
     exclude_countries: SequenceNotStr[str]

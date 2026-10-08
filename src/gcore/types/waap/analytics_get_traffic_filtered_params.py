@@ -17,6 +17,12 @@ class AnalyticsGetTrafficFilteredParams(TypedDict, total=False):
     start: Required[str]
     """Filter data items starting from a specified date in ISO 8601 format"""
 
+    asns: Iterable[int]
+    """Filter data by the ASN (Autonomous System Number) of the originating IP address.
+
+    Not supported by `/v1/analytics/requests`.
+    """
+
     bucket_size: Optional[Literal[60, 300, 600, 900, 1800, 3600, 7200, 10800, 21600, 43200, 86400]]
     """Optional explicit aggregation bucket width in seconds.
 
@@ -43,6 +49,13 @@ class AnalyticsGetTrafficFilteredParams(TypedDict, total=False):
     """Filter data items up to a specified end date in ISO 8601 format.
 
     If not provided, defaults to the current date and time.
+    """
+
+    exclude_asns: Iterable[int]
+    """Exclude data by the ASN (Autonomous System Number) of the originating IP
+    address.
+
+    Not supported by `/v1/analytics/requests`.
     """
 
     exclude_countries: SequenceNotStr[str]

@@ -223,7 +223,7 @@ class TargetSnapshot(BaseModel):
     """The attack category the target detected, if `target_type` is rule"""
 
     category: Optional[str] = None
-    """The target's detection category, if `target_type` is detector"""
+    """The target's rule category (policy or template), if `target_type` is rule"""
 
 
 class Target(BaseModel):

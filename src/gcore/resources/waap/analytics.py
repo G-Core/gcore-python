@@ -137,10 +137,12 @@ class AnalyticsResource(SyncAPIResource):
         self,
         *,
         start: str,
+        asns: Iterable[int] | Omit = omit,
         countries: SequenceNotStr[str] | Omit = omit,
         decision: List[Literal["blocked", "monitored", "allowed", "passed"]] | Omit = omit,
         domains: Iterable[int] | Omit = omit,
         end: Optional[str] | Omit = omit,
+        exclude_asns: Iterable[int] | Omit = omit,
         exclude_countries: SequenceNotStr[str] | Omit = omit,
         exclude_decision: List[Literal["blocked", "monitored", "allowed", "passed"]] | Omit = omit,
         exclude_domains: Iterable[int] | Omit = omit,
@@ -196,6 +198,9 @@ class AnalyticsResource(SyncAPIResource):
         Args:
           start: Filter data items starting from a specified date in ISO 8601 format
 
+          asns: Filter data by the ASN (Autonomous System Number) of the originating IP address.
+              Not supported by `/v1/analytics/requests`.
+
           countries: Filter data by a country code of the originating IP address in ISO 3166-1
               alpha-2 format.
 
@@ -206,6 +211,9 @@ class AnalyticsResource(SyncAPIResource):
 
           end: Filter data items up to a specified end date in ISO 8601 format. If not
               provided, defaults to the current date and time.
+
+          exclude_asns: Exclude data by the ASN (Autonomous System Number) of the originating IP
+              address. Not supported by `/v1/analytics/requests`.
 
           exclude_countries: Exclude data by a country code of the originating IP address in ISO 3166-1
               alpha-2 format.
@@ -330,10 +338,12 @@ class AnalyticsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "start": start,
+                        "asns": asns,
                         "countries": countries,
                         "decision": decision,
                         "domains": domains,
                         "end": end,
+                        "exclude_asns": exclude_asns,
                         "exclude_countries": exclude_countries,
                         "exclude_decision": exclude_decision,
                         "exclude_domains": exclude_domains,
@@ -468,10 +478,12 @@ class AnalyticsResource(SyncAPIResource):
         self,
         *,
         start: str,
+        asns: Iterable[int] | Omit = omit,
         countries: SequenceNotStr[str] | Omit = omit,
         decision: List[Literal["blocked", "monitored", "allowed", "passed"]] | Omit = omit,
         domains: Iterable[int] | Omit = omit,
         end: Optional[str] | Omit = omit,
+        exclude_asns: Iterable[int] | Omit = omit,
         exclude_countries: SequenceNotStr[str] | Omit = omit,
         exclude_decision: List[Literal["blocked", "monitored", "allowed", "passed"]] | Omit = omit,
         exclude_domains: Iterable[int] | Omit = omit,
@@ -529,6 +541,9 @@ class AnalyticsResource(SyncAPIResource):
         Args:
           start: Filter data items starting from a specified date in ISO 8601 format
 
+          asns: Filter data by the ASN (Autonomous System Number) of the originating IP address.
+              Not supported by `/v1/analytics/requests`.
+
           countries: Filter data by a country code of the originating IP address in ISO 3166-1
               alpha-2 format.
 
@@ -539,6 +554,9 @@ class AnalyticsResource(SyncAPIResource):
 
           end: Filter data items up to a specified end date in ISO 8601 format. If not
               provided, defaults to the current date and time.
+
+          exclude_asns: Exclude data by the ASN (Autonomous System Number) of the originating IP
+              address. Not supported by `/v1/analytics/requests`.
 
           exclude_countries: Exclude data by a country code of the originating IP address in ISO 3166-1
               alpha-2 format.
@@ -663,10 +681,12 @@ class AnalyticsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "start": start,
+                        "asns": asns,
                         "countries": countries,
                         "decision": decision,
                         "domains": domains,
                         "end": end,
+                        "exclude_asns": exclude_asns,
                         "exclude_countries": exclude_countries,
                         "exclude_decision": exclude_decision,
                         "exclude_domains": exclude_domains,
@@ -782,11 +802,13 @@ class AnalyticsResource(SyncAPIResource):
         *,
         resolution: Literal["daily", "hourly", "minutely"],
         start: str,
+        asns: Iterable[int] | Omit = omit,
         bucket_size: Optional[Literal[60, 300, 600, 900, 1800, 3600, 7200, 10800, 21600, 43200, 86400]] | Omit = omit,
         countries: SequenceNotStr[str] | Omit = omit,
         decision: List[Literal["blocked", "monitored", "allowed", "passed"]] | Omit = omit,
         domains: Iterable[int] | Omit = omit,
         end: Optional[str] | Omit = omit,
+        exclude_asns: Iterable[int] | Omit = omit,
         exclude_countries: SequenceNotStr[str] | Omit = omit,
         exclude_decision: List[Literal["blocked", "monitored", "allowed", "passed"]] | Omit = omit,
         exclude_domains: Iterable[int] | Omit = omit,
@@ -841,6 +863,9 @@ class AnalyticsResource(SyncAPIResource):
 
           start: Filter data items starting from a specified date in ISO 8601 format
 
+          asns: Filter data by the ASN (Autonomous System Number) of the originating IP address.
+              Not supported by `/v1/analytics/requests`.
+
           bucket_size: Optional explicit aggregation bucket width in seconds. When supplied,
               `bucket_size` supersedes `resolution` for aggregation granularity.
 
@@ -854,6 +879,9 @@ class AnalyticsResource(SyncAPIResource):
 
           end: Filter data items up to a specified end date in ISO 8601 format. If not
               provided, defaults to the current date and time.
+
+          exclude_asns: Exclude data by the ASN (Autonomous System Number) of the originating IP
+              address. Not supported by `/v1/analytics/requests`.
 
           exclude_countries: Exclude data by a country code of the originating IP address in ISO 3166-1
               alpha-2 format.
@@ -969,11 +997,13 @@ class AnalyticsResource(SyncAPIResource):
                     {
                         "resolution": resolution,
                         "start": start,
+                        "asns": asns,
                         "bucket_size": bucket_size,
                         "countries": countries,
                         "decision": decision,
                         "domains": domains,
                         "end": end,
+                        "exclude_asns": exclude_asns,
                         "exclude_countries": exclude_countries,
                         "exclude_decision": exclude_decision,
                         "exclude_domains": exclude_domains,
@@ -1116,10 +1146,12 @@ class AsyncAnalyticsResource(AsyncAPIResource):
         self,
         *,
         start: str,
+        asns: Iterable[int] | Omit = omit,
         countries: SequenceNotStr[str] | Omit = omit,
         decision: List[Literal["blocked", "monitored", "allowed", "passed"]] | Omit = omit,
         domains: Iterable[int] | Omit = omit,
         end: Optional[str] | Omit = omit,
+        exclude_asns: Iterable[int] | Omit = omit,
         exclude_countries: SequenceNotStr[str] | Omit = omit,
         exclude_decision: List[Literal["blocked", "monitored", "allowed", "passed"]] | Omit = omit,
         exclude_domains: Iterable[int] | Omit = omit,
@@ -1175,6 +1207,9 @@ class AsyncAnalyticsResource(AsyncAPIResource):
         Args:
           start: Filter data items starting from a specified date in ISO 8601 format
 
+          asns: Filter data by the ASN (Autonomous System Number) of the originating IP address.
+              Not supported by `/v1/analytics/requests`.
+
           countries: Filter data by a country code of the originating IP address in ISO 3166-1
               alpha-2 format.
 
@@ -1185,6 +1220,9 @@ class AsyncAnalyticsResource(AsyncAPIResource):
 
           end: Filter data items up to a specified end date in ISO 8601 format. If not
               provided, defaults to the current date and time.
+
+          exclude_asns: Exclude data by the ASN (Autonomous System Number) of the originating IP
+              address. Not supported by `/v1/analytics/requests`.
 
           exclude_countries: Exclude data by a country code of the originating IP address in ISO 3166-1
               alpha-2 format.
@@ -1309,10 +1347,12 @@ class AsyncAnalyticsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "start": start,
+                        "asns": asns,
                         "countries": countries,
                         "decision": decision,
                         "domains": domains,
                         "end": end,
+                        "exclude_asns": exclude_asns,
                         "exclude_countries": exclude_countries,
                         "exclude_decision": exclude_decision,
                         "exclude_domains": exclude_domains,
@@ -1447,10 +1487,12 @@ class AsyncAnalyticsResource(AsyncAPIResource):
         self,
         *,
         start: str,
+        asns: Iterable[int] | Omit = omit,
         countries: SequenceNotStr[str] | Omit = omit,
         decision: List[Literal["blocked", "monitored", "allowed", "passed"]] | Omit = omit,
         domains: Iterable[int] | Omit = omit,
         end: Optional[str] | Omit = omit,
+        exclude_asns: Iterable[int] | Omit = omit,
         exclude_countries: SequenceNotStr[str] | Omit = omit,
         exclude_decision: List[Literal["blocked", "monitored", "allowed", "passed"]] | Omit = omit,
         exclude_domains: Iterable[int] | Omit = omit,
@@ -1508,6 +1550,9 @@ class AsyncAnalyticsResource(AsyncAPIResource):
         Args:
           start: Filter data items starting from a specified date in ISO 8601 format
 
+          asns: Filter data by the ASN (Autonomous System Number) of the originating IP address.
+              Not supported by `/v1/analytics/requests`.
+
           countries: Filter data by a country code of the originating IP address in ISO 3166-1
               alpha-2 format.
 
@@ -1518,6 +1563,9 @@ class AsyncAnalyticsResource(AsyncAPIResource):
 
           end: Filter data items up to a specified end date in ISO 8601 format. If not
               provided, defaults to the current date and time.
+
+          exclude_asns: Exclude data by the ASN (Autonomous System Number) of the originating IP
+              address. Not supported by `/v1/analytics/requests`.
 
           exclude_countries: Exclude data by a country code of the originating IP address in ISO 3166-1
               alpha-2 format.
@@ -1642,10 +1690,12 @@ class AsyncAnalyticsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "start": start,
+                        "asns": asns,
                         "countries": countries,
                         "decision": decision,
                         "domains": domains,
                         "end": end,
+                        "exclude_asns": exclude_asns,
                         "exclude_countries": exclude_countries,
                         "exclude_decision": exclude_decision,
                         "exclude_domains": exclude_domains,
@@ -1761,11 +1811,13 @@ class AsyncAnalyticsResource(AsyncAPIResource):
         *,
         resolution: Literal["daily", "hourly", "minutely"],
         start: str,
+        asns: Iterable[int] | Omit = omit,
         bucket_size: Optional[Literal[60, 300, 600, 900, 1800, 3600, 7200, 10800, 21600, 43200, 86400]] | Omit = omit,
         countries: SequenceNotStr[str] | Omit = omit,
         decision: List[Literal["blocked", "monitored", "allowed", "passed"]] | Omit = omit,
         domains: Iterable[int] | Omit = omit,
         end: Optional[str] | Omit = omit,
+        exclude_asns: Iterable[int] | Omit = omit,
         exclude_countries: SequenceNotStr[str] | Omit = omit,
         exclude_decision: List[Literal["blocked", "monitored", "allowed", "passed"]] | Omit = omit,
         exclude_domains: Iterable[int] | Omit = omit,
@@ -1820,6 +1872,9 @@ class AsyncAnalyticsResource(AsyncAPIResource):
 
           start: Filter data items starting from a specified date in ISO 8601 format
 
+          asns: Filter data by the ASN (Autonomous System Number) of the originating IP address.
+              Not supported by `/v1/analytics/requests`.
+
           bucket_size: Optional explicit aggregation bucket width in seconds. When supplied,
               `bucket_size` supersedes `resolution` for aggregation granularity.
 
@@ -1833,6 +1888,9 @@ class AsyncAnalyticsResource(AsyncAPIResource):
 
           end: Filter data items up to a specified end date in ISO 8601 format. If not
               provided, defaults to the current date and time.
+
+          exclude_asns: Exclude data by the ASN (Autonomous System Number) of the originating IP
+              address. Not supported by `/v1/analytics/requests`.
 
           exclude_countries: Exclude data by a country code of the originating IP address in ISO 3166-1
               alpha-2 format.
@@ -1948,11 +2006,13 @@ class AsyncAnalyticsResource(AsyncAPIResource):
                     {
                         "resolution": resolution,
                         "start": start,
+                        "asns": asns,
                         "bucket_size": bucket_size,
                         "countries": countries,
                         "decision": decision,
                         "domains": domains,
                         "end": end,
+                        "exclude_asns": exclude_asns,
                         "exclude_countries": exclude_countries,
                         "exclude_decision": exclude_decision,
                         "exclude_domains": exclude_domains,
