@@ -130,6 +130,10 @@ class DomainsResource(SyncAPIResource):
 
     @cached_property
     def policies(self) -> PoliciesResource:
+        """WAAP security policies are the built-in protection rules of a domain.
+
+        Each policy can be turned on or off.
+        """
         return PoliciesResource(self._client)
 
     @cached_property
@@ -437,6 +441,10 @@ class AsyncDomainsResource(AsyncAPIResource):
 
     @cached_property
     def policies(self) -> AsyncPoliciesResource:
+        """WAAP security policies are the built-in protection rules of a domain.
+
+        Each policy can be turned on or off.
+        """
         return AsyncPoliciesResource(self._client)
 
     @cached_property
@@ -759,6 +767,10 @@ class DomainsResourceWithRawResponse:
 
     @cached_property
     def policies(self) -> PoliciesResourceWithRawResponse:
+        """WAAP security policies are the built-in protection rules of a domain.
+
+        Each policy can be turned on or off.
+        """
         return PoliciesResourceWithRawResponse(self._domains.policies)
 
     @cached_property
@@ -828,6 +840,10 @@ class AsyncDomainsResourceWithRawResponse:
 
     @cached_property
     def policies(self) -> AsyncPoliciesResourceWithRawResponse:
+        """WAAP security policies are the built-in protection rules of a domain.
+
+        Each policy can be turned on or off.
+        """
         return AsyncPoliciesResourceWithRawResponse(self._domains.policies)
 
     @cached_property
@@ -897,6 +913,10 @@ class DomainsResourceWithStreamingResponse:
 
     @cached_property
     def policies(self) -> PoliciesResourceWithStreamingResponse:
+        """WAAP security policies are the built-in protection rules of a domain.
+
+        Each policy can be turned on or off.
+        """
         return PoliciesResourceWithStreamingResponse(self._domains.policies)
 
     @cached_property
@@ -966,6 +986,10 @@ class AsyncDomainsResourceWithStreamingResponse:
 
     @cached_property
     def policies(self) -> AsyncPoliciesResourceWithStreamingResponse:
+        """WAAP security policies are the built-in protection rules of a domain.
+
+        Each policy can be turned on or off.
+        """
         return AsyncPoliciesResourceWithStreamingResponse(self._domains.policies)
 
     @cached_property

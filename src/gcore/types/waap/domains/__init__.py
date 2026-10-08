@@ -14,7 +14,7 @@ from .waap_firewall_rule import WaapFirewallRule as WaapFirewallRule
 from .api_path_group_list import APIPathGroupList as APIPathGroupList
 from .insight_list_params import InsightListParams as InsightListParams
 from .api_path_list_params import APIPathListParams as APIPathListParams
-from .policy_toggle_params import PolicyToggleParams as PolicyToggleParams
+from .policy_update_params import PolicyUpdateParams as PolicyUpdateParams
 from .waap_insight_silence import WaapInsightSilence as WaapInsightSilence
 from .waap_policy_override import WaapPolicyOverride as WaapPolicyOverride
 from .waap_request_details import WaapRequestDetails as WaapRequestDetails

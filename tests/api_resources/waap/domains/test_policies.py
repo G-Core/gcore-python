@@ -22,6 +22,52 @@ class TestPolicies:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
+    def test_method_update(self, client: Gcore) -> None:
+        policy = client.waap.domains.policies.update(
+            policy_id="policy_id",
+            domain_id=1,
+            mode=True,
+        )
+        assert_matches_type(WaapDomainPolicySettings, policy, path=["response"])
+
+    @parametrize
+    def test_raw_response_update(self, client: Gcore) -> None:
+        response = client.waap.domains.policies.with_raw_response.update(
+            policy_id="policy_id",
+            domain_id=1,
+            mode=True,
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        policy = response.parse()
+        assert_matches_type(WaapDomainPolicySettings, policy, path=["response"])
+
+    @parametrize
+    def test_streaming_response_update(self, client: Gcore) -> None:
+        with client.waap.domains.policies.with_streaming_response.update(
+            policy_id="policy_id",
+            domain_id=1,
+            mode=True,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            policy = response.parse()
+            assert_matches_type(WaapDomainPolicySettings, policy, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_update(self, client: Gcore) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `policy_id` but received ''"):
+            client.waap.domains.policies.with_raw_response.update(
+                policy_id="",
+                domain_id=1,
+                mode=True,
+            )
+
+    @parametrize
     def test_method_list(self, client: Gcore) -> None:
         policy = client.waap.domains.policies.list(
             domain_id=1,
@@ -62,9 +108,15 @@ class TestPolicies:
 
         assert cast(Any, response.is_closed) is True
 
+
+class TestAsyncPolicies:
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
+
     @parametrize
-    def test_method_toggle(self, client: Gcore) -> None:
-        policy = client.waap.domains.policies.toggle(
+    async def test_method_update(self, async_client: AsyncGcore) -> None:
+        policy = await async_client.waap.domains.policies.update(
             policy_id="policy_id",
             domain_id=1,
             mode=True,
@@ -72,8 +124,8 @@ class TestPolicies:
         assert_matches_type(WaapDomainPolicySettings, policy, path=["response"])
 
     @parametrize
-    def test_raw_response_toggle(self, client: Gcore) -> None:
-        response = client.waap.domains.policies.with_raw_response.toggle(
+    async def test_raw_response_update(self, async_client: AsyncGcore) -> None:
+        response = await async_client.waap.domains.policies.with_raw_response.update(
             policy_id="policy_id",
             domain_id=1,
             mode=True,
@@ -81,12 +133,12 @@ class TestPolicies:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        policy = response.parse()
+        policy = await response.parse()
         assert_matches_type(WaapDomainPolicySettings, policy, path=["response"])
 
     @parametrize
-    def test_streaming_response_toggle(self, client: Gcore) -> None:
-        with client.waap.domains.policies.with_streaming_response.toggle(
+    async def test_streaming_response_update(self, async_client: AsyncGcore) -> None:
+        async with async_client.waap.domains.policies.with_streaming_response.update(
             policy_id="policy_id",
             domain_id=1,
             mode=True,
@@ -94,25 +146,19 @@ class TestPolicies:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            policy = response.parse()
+            policy = await response.parse()
             assert_matches_type(WaapDomainPolicySettings, policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_path_params_toggle(self, client: Gcore) -> None:
+    async def test_path_params_update(self, async_client: AsyncGcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `policy_id` but received ''"):
-            client.waap.domains.policies.with_raw_response.toggle(
+            await async_client.waap.domains.policies.with_raw_response.update(
                 policy_id="",
                 domain_id=1,
                 mode=True,
             )
-
-
-class TestAsyncPolicies:
-    parametrize = pytest.mark.parametrize(
-        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
-    )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
@@ -154,49 +200,3 @@ class TestAsyncPolicies:
             assert_matches_type(AsyncOffsetPage[WaapDomainPolicy], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    async def test_method_toggle(self, async_client: AsyncGcore) -> None:
-        policy = await async_client.waap.domains.policies.toggle(
-            policy_id="policy_id",
-            domain_id=1,
-            mode=True,
-        )
-        assert_matches_type(WaapDomainPolicySettings, policy, path=["response"])
-
-    @parametrize
-    async def test_raw_response_toggle(self, async_client: AsyncGcore) -> None:
-        response = await async_client.waap.domains.policies.with_raw_response.toggle(
-            policy_id="policy_id",
-            domain_id=1,
-            mode=True,
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        policy = await response.parse()
-        assert_matches_type(WaapDomainPolicySettings, policy, path=["response"])
-
-    @parametrize
-    async def test_streaming_response_toggle(self, async_client: AsyncGcore) -> None:
-        async with async_client.waap.domains.policies.with_streaming_response.toggle(
-            policy_id="policy_id",
-            domain_id=1,
-            mode=True,
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            policy = await response.parse()
-            assert_matches_type(WaapDomainPolicySettings, policy, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    async def test_path_params_toggle(self, async_client: AsyncGcore) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `policy_id` but received ''"):
-            await async_client.waap.domains.policies.with_raw_response.toggle(
-                policy_id="",
-                domain_id=1,
-                mode=True,
-            )
