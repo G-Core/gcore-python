@@ -8,14 +8,14 @@ from typing import TYPE_CHECKING, Any, Iterable, cast
 
 import httpx
 
-from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....types.cloud.networks import (
+from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from .....types.cloud.networks import (
     router_update_params,
 )
-from ....types.cloud.networks.router import Router
+from .....types.cloud.networks.router import Router
 
 if TYPE_CHECKING:
-    from ...._client import Gcore, AsyncGcore
+    from ....._client import Gcore, AsyncGcore
 
 
 class RoutersResourceCustomMixin:

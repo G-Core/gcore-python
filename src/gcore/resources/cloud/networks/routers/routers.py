@@ -6,28 +6,36 @@ from typing import Iterable, Optional
 
 import httpx
 
-from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import path_template, maybe_transform, async_maybe_transform
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
+from .metrics import (
+    MetricsResource,
+    AsyncMetricsResource,
+    MetricsResourceWithRawResponse,
+    AsyncMetricsResourceWithRawResponse,
+    MetricsResourceWithStreamingResponse,
+    AsyncMetricsResourceWithStreamingResponse,
+)
+from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ....._utils import path_template, maybe_transform, async_maybe_transform
+from ....._compat import cached_property
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from ....._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....pagination import SyncOffsetPage, AsyncOffsetPage
+from .....pagination import SyncOffsetPage, AsyncOffsetPage
 from .routers_custom import RoutersResourceCustomMixin, AsyncRoutersResourceCustomMixin
-from ...._base_client import AsyncPaginator, make_request_options
-from ....types.cloud.networks import (
+from ....._base_client import AsyncPaginator, make_request_options
+from .....types.cloud.networks import (
     router_list_params,
     router_create_params,
     router_update_params,
     router_attach_subnet_params,
     router_detach_subnet_params,
 )
-from ....types.cloud.task_id_list import TaskIDList
-from ....types.cloud.networks.router import Router
+from .....types.cloud.task_id_list import TaskIDList
+from .....types.cloud.networks.router import Router
 
 __all__ = ["RoutersResource", "AsyncRoutersResource"]
 
@@ -36,6 +44,10 @@ class RoutersResource(RoutersResourceCustomMixin, SyncAPIResource):
     """
     Routers interconnect subnets and manage network routing, including external gateway connectivity and static routes.
     """
+
+    @cached_property
+    def metrics(self) -> MetricsResource:
+        return MetricsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> RoutersResourceWithRawResponse:
@@ -476,6 +488,10 @@ class AsyncRoutersResource(AsyncRoutersResourceCustomMixin, AsyncAPIResource):
     """
     Routers interconnect subnets and manage network routing, including external gateway connectivity and static routes.
     """
+
+    @cached_property
+    def metrics(self) -> AsyncMetricsResource:
+        return AsyncMetricsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncRoutersResourceWithRawResponse:
@@ -943,6 +959,10 @@ class RoutersResourceWithRawResponse:
             routers.get,
         )
 
+    @cached_property
+    def metrics(self) -> MetricsResourceWithRawResponse:
+        return MetricsResourceWithRawResponse(self._routers.metrics)
+
 
 class AsyncRoutersResourceWithRawResponse:
     def __init__(self, routers: AsyncRoutersResource) -> None:
@@ -972,6 +992,10 @@ class AsyncRoutersResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             routers.get,
         )
+
+    @cached_property
+    def metrics(self) -> AsyncMetricsResourceWithRawResponse:
+        return AsyncMetricsResourceWithRawResponse(self._routers.metrics)
 
 
 class RoutersResourceWithStreamingResponse:
@@ -1003,6 +1027,10 @@ class RoutersResourceWithStreamingResponse:
             routers.get,
         )
 
+    @cached_property
+    def metrics(self) -> MetricsResourceWithStreamingResponse:
+        return MetricsResourceWithStreamingResponse(self._routers.metrics)
+
 
 class AsyncRoutersResourceWithStreamingResponse:
     def __init__(self, routers: AsyncRoutersResource) -> None:
@@ -1032,3 +1060,7 @@ class AsyncRoutersResourceWithStreamingResponse:
         self.get = async_to_streamed_response_wrapper(
             routers.get,
         )
+
+    @cached_property
+    def metrics(self) -> AsyncMetricsResourceWithStreamingResponse:
+        return AsyncMetricsResourceWithStreamingResponse(self._routers.metrics)

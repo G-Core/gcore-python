@@ -7,14 +7,6 @@ from typing_extensions import Literal
 
 import httpx
 
-from .routers import (
-    RoutersResource,
-    AsyncRoutersResource,
-    RoutersResourceWithRawResponse,
-    AsyncRoutersResourceWithRawResponse,
-    RoutersResourceWithStreamingResponse,
-    AsyncRoutersResourceWithStreamingResponse,
-)
 from .subnets import (
     SubnetsResource,
     AsyncSubnetsResource,
@@ -37,6 +29,14 @@ from ....pagination import SyncOffsetPage, AsyncOffsetPage
 from ....types.cloud import network_list_params, network_create_params, network_update_params
 from ...._base_client import AsyncPaginator, make_request_options
 from .networks_custom import NetworksResourceCustomMixin, AsyncNetworksResourceCustomMixin
+from .routers.routers import (
+    RoutersResource,
+    AsyncRoutersResource,
+    RoutersResourceWithRawResponse,
+    AsyncRoutersResourceWithRawResponse,
+    RoutersResourceWithStreamingResponse,
+    AsyncRoutersResourceWithStreamingResponse,
+)
 from ....types.cloud.network import Network
 from ....types.cloud.task_id_list import TaskIDList
 from ....types.cloud.tag_update_map_param import TagUpdateMapParam
