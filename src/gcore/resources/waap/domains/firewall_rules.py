@@ -33,6 +33,10 @@ __all__ = ["FirewallRulesResource", "AsyncFirewallRulesResource"]
 
 
 class FirewallRulesResource(SyncAPIResource):
+    """
+    WAAP firewall rules allow or block requests to a domain based on the client IP address or IP range.
+    """
+
     @cached_property
     def with_raw_response(self) -> FirewallRulesResourceWithRawResponse:
         """
@@ -413,6 +417,10 @@ class FirewallRulesResource(SyncAPIResource):
 
 
 class AsyncFirewallRulesResource(AsyncAPIResource):
+    """
+    WAAP firewall rules allow or block requests to a domain based on the client IP address or IP range.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncFirewallRulesResourceWithRawResponse:
         """

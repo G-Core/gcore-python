@@ -174,6 +174,9 @@ class DomainsResource(SyncAPIResource):
 
     @cached_property
     def firewall_rules(self) -> FirewallRulesResource:
+        """
+        WAAP firewall rules allow or block requests to a domain based on the client IP address or IP range.
+        """
         return FirewallRulesResource(self._client)
 
     @cached_property
@@ -485,6 +488,9 @@ class AsyncDomainsResource(AsyncAPIResource):
 
     @cached_property
     def firewall_rules(self) -> AsyncFirewallRulesResource:
+        """
+        WAAP firewall rules allow or block requests to a domain based on the client IP address or IP range.
+        """
         return AsyncFirewallRulesResource(self._client)
 
     @cached_property
@@ -811,6 +817,9 @@ class DomainsResourceWithRawResponse:
 
     @cached_property
     def firewall_rules(self) -> FirewallRulesResourceWithRawResponse:
+        """
+        WAAP firewall rules allow or block requests to a domain based on the client IP address or IP range.
+        """
         return FirewallRulesResourceWithRawResponse(self._domains.firewall_rules)
 
     @cached_property
@@ -884,6 +893,9 @@ class AsyncDomainsResourceWithRawResponse:
 
     @cached_property
     def firewall_rules(self) -> AsyncFirewallRulesResourceWithRawResponse:
+        """
+        WAAP firewall rules allow or block requests to a domain based on the client IP address or IP range.
+        """
         return AsyncFirewallRulesResourceWithRawResponse(self._domains.firewall_rules)
 
     @cached_property
@@ -957,6 +969,9 @@ class DomainsResourceWithStreamingResponse:
 
     @cached_property
     def firewall_rules(self) -> FirewallRulesResourceWithStreamingResponse:
+        """
+        WAAP firewall rules allow or block requests to a domain based on the client IP address or IP range.
+        """
         return FirewallRulesResourceWithStreamingResponse(self._domains.firewall_rules)
 
     @cached_property
@@ -1030,6 +1045,9 @@ class AsyncDomainsResourceWithStreamingResponse:
 
     @cached_property
     def firewall_rules(self) -> AsyncFirewallRulesResourceWithStreamingResponse:
+        """
+        WAAP firewall rules allow or block requests to a domain based on the client IP address or IP range.
+        """
         return AsyncFirewallRulesResourceWithStreamingResponse(self._domains.firewall_rules)
 
     @cached_property
