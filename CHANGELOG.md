@@ -1,5 +1,44 @@
 # Changelog
 
+## [0.59.0](https://github.com/G-Core/gcore-python/compare/v0.58.0...v0.59.0) (2026-10-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* **cdn:** drop create-only origin from gcore_cdn_resource
+* **terraform:** load balancer private VIP only via vip_port_id
+* **waap:** add terraform resource for WAAP domain policies
+* **cloud:** update cloud OpenAPI spec
+* **waap:** map new WAAP endpoints and move rule sets to v2
+
+### Features
+
+* **cloud:** add network object to file share ([30f01d8](https://github.com/G-Core/gcore-python/commit/30f01d8f6d9d8e04b98a1b483f33e8892c825b16))
+* **cloud:** update cloud OpenAPI spec ([2c45932](https://github.com/G-Core/gcore-python/commit/2c4593228f8c35b5eae9bebf63a2da0c13910cfa))
+* **dns:** add secondary-zone filter ([1931a9a](https://github.com/G-Core/gcore-python/commit/1931a9a9172d2335d0cad480c630d40f2102e966))
+* **storage:** add location type filter and bucket create config ([b0f845e](https://github.com/G-Core/gcore-python/commit/b0f845e93a097b3846e7f74c854a08b2f65bdd61))
+* **terraform:** load balancer private VIP only via vip_port_id ([bbda172](https://github.com/G-Core/gcore-python/commit/bbda17292cf11a80b8c700efb7f00beeddcfa921))
+* **waap:** add ASN filters to analytics and ASN condition to custom rules ([81b184d](https://github.com/G-Core/gcore-python/commit/81b184d242dfe5183bc7f38efd4a2efa2dcff357))
+* **waap:** add gcore_waap_domain_advanced_rule terraform resource and data source ([934f848](https://github.com/G-Core/gcore-python/commit/934f848fbc7d4d19a713efbaa45b4a05730e9f4a))
+* **waap:** add terraform resource for WAAP domain firewall rules ([afff79d](https://github.com/G-Core/gcore-python/commit/afff79deef2abc9ae5ec0780f9b17d93bc288414))
+* **waap:** add terraform resource for WAAP domain policies ([2d766e4](https://github.com/G-Core/gcore-python/commit/2d766e40ea198cc8c5a5d0a8a64b3337a8a7fd0e))
+* **waap:** map new WAAP endpoints and move rule sets to v2 ([9a57971](https://github.com/G-Core/gcore-python/commit/9a579710e621583ed5328161092dc9c9e6ba6702))
+
+
+### Bug Fixes
+
+* **cdn:** drop create-only origin from gcore_cdn_resource ([8032ea7](https://github.com/G-Core/gcore-python/commit/8032ea7c0945f6a9bb56332e07b97bdd5392de45))
+* **cloud:** allow omitted port IP addresses and null tags ([f3e6f8e](https://github.com/G-Core/gcore-python/commit/f3e6f8e5ff21b4944bc6059bced950fdb2697cf5))
+* **storage:** make bucket create policy computed_optional in Terraform ([c75f015](https://github.com/G-Core/gcore-python/commit/c75f015fcc9ea6bdd08849e0b0aef4bb5b7e5c9b))
+* **storage:** treat bucket CORS allowed_origins as a set ([975af8e](https://github.com/G-Core/gcore-python/commit/975af8ed7ad24b1501bdb09807922642b81476b8))
+
+
+### Chores
+
+* **cloud:** update cloud OpenAPI spec ([cd371ba](https://github.com/G-Core/gcore-python/commit/cd371ba327467a73275748ddad7104af5fb70301))
+* **cloud:** update cloud OpenAPI spec ([27dacb7](https://github.com/G-Core/gcore-python/commit/27dacb748184999edbb192f37486815bfce75d92))
+* remove release please token usage ([9edb8b3](https://github.com/G-Core/gcore-python/commit/9edb8b3ff2a0e8e7c5db784337125e26bad67055))
+
 ## [0.58.0](https://github.com/G-Core/gcore-python/compare/v0.57.0...v0.58.0) (2026-09-29)
 
 
