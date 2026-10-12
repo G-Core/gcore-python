@@ -27,6 +27,10 @@ __all__ = ["AdvancedRulesResource", "AsyncAdvancedRulesResource"]
 
 
 class AdvancedRulesResource(SyncAPIResource):
+    """
+    Advanced rules are CEL-expression WAAP rules that allow, block, challenge, monitor or tag requests to a domain.
+    """
+
     @cached_property
     def with_raw_response(self) -> AdvancedRulesResourceWithRawResponse:
         """
@@ -429,6 +433,10 @@ class AdvancedRulesResource(SyncAPIResource):
 
 
 class AsyncAdvancedRulesResource(AsyncAPIResource):
+    """
+    Advanced rules are CEL-expression WAAP rules that allow, block, challenge, monitor or tag requests to a domain.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncAdvancedRulesResourceWithRawResponse:
         """

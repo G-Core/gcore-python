@@ -181,6 +181,9 @@ class DomainsResource(SyncAPIResource):
 
     @cached_property
     def advanced_rules(self) -> AdvancedRulesResource:
+        """
+        Advanced rules are CEL-expression WAAP rules that allow, block, challenge, monitor or tag requests to a domain.
+        """
         return AdvancedRulesResource(self._client)
 
     @cached_property
@@ -495,6 +498,9 @@ class AsyncDomainsResource(AsyncAPIResource):
 
     @cached_property
     def advanced_rules(self) -> AsyncAdvancedRulesResource:
+        """
+        Advanced rules are CEL-expression WAAP rules that allow, block, challenge, monitor or tag requests to a domain.
+        """
         return AsyncAdvancedRulesResource(self._client)
 
     @cached_property
@@ -824,6 +830,9 @@ class DomainsResourceWithRawResponse:
 
     @cached_property
     def advanced_rules(self) -> AdvancedRulesResourceWithRawResponse:
+        """
+        Advanced rules are CEL-expression WAAP rules that allow, block, challenge, monitor or tag requests to a domain.
+        """
         return AdvancedRulesResourceWithRawResponse(self._domains.advanced_rules)
 
 
@@ -900,6 +909,9 @@ class AsyncDomainsResourceWithRawResponse:
 
     @cached_property
     def advanced_rules(self) -> AsyncAdvancedRulesResourceWithRawResponse:
+        """
+        Advanced rules are CEL-expression WAAP rules that allow, block, challenge, monitor or tag requests to a domain.
+        """
         return AsyncAdvancedRulesResourceWithRawResponse(self._domains.advanced_rules)
 
 
@@ -976,6 +988,9 @@ class DomainsResourceWithStreamingResponse:
 
     @cached_property
     def advanced_rules(self) -> AdvancedRulesResourceWithStreamingResponse:
+        """
+        Advanced rules are CEL-expression WAAP rules that allow, block, challenge, monitor or tag requests to a domain.
+        """
         return AdvancedRulesResourceWithStreamingResponse(self._domains.advanced_rules)
 
 
@@ -1052,4 +1067,7 @@ class AsyncDomainsResourceWithStreamingResponse:
 
     @cached_property
     def advanced_rules(self) -> AsyncAdvancedRulesResourceWithStreamingResponse:
+        """
+        Advanced rules are CEL-expression WAAP rules that allow, block, challenge, monitor or tag requests to a domain.
+        """
         return AsyncAdvancedRulesResourceWithStreamingResponse(self._domains.advanced_rules)
