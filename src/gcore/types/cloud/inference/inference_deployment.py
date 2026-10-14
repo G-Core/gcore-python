@@ -266,7 +266,7 @@ class InferenceDeployment(BaseModel):
     project_id: int
     """Project ID. If not provided, your default project ID will be used."""
 
-    status: Literal["ACTIVE", "DELETING", "DEPLOYING", "DISABLED", "PARTIALLYDEPLOYED", "PENDING"]
+    status: Literal["ACTIVE", "DELETING", "DEPLOYING", "DISABLED", "FAILED", "PARTIALLYDEPLOYED", "PENDING"]
     """Inference instance status.
 
     Value can be one of the following:
@@ -281,6 +281,9 @@ class InferenceDeployment(BaseModel):
     - `DISABLED` - The instance is disabled and not accepting any requests.
     - `PENDING` - The instance is running but scaled to zero. It will be
       automatically scaled up when a request is made.
+    - `FAILED` - The instance has a persistent failure. A short error does not cause
+      this status. The `error_message` field of the respective container object in
+      the `containers` collection explains the failure reason.
     - `DELETING` - The instance is being deleted.
     """
 
