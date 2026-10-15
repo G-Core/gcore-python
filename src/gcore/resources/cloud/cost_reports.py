@@ -20,12 +20,12 @@ from ..._response import (
 )
 from ...types.cloud import (
     cost_report_get_detailed_params,
-    cost_report_get_aggregated_params,
+    cost_report_get_breakdown_params,
     cost_report_get_aggregated_monthly_params,
 )
 from ..._base_client import make_request_options
 from ...types.cloud.cost_report_detailed import CostReportDetailed
-from ...types.cloud.cost_report_aggregated import CostReportAggregated
+from ...types.cloud.cost_report_breakdown import CostReportBreakdown
 from ...types.cloud.cost_report_aggregated_monthly import CostReportAggregatedMonthly
 
 __all__ = ["CostReportsResource", "AsyncCostReportsResource"]
@@ -50,127 +50,6 @@ class CostReportsResource(SyncAPIResource):
         For more information, see https://www.github.com/G-Core/gcore-python#with_streaming_response
         """
         return CostReportsResourceWithStreamingResponse(self)
-
-    def get_aggregated(
-        self,
-        *,
-        time_from: Union[str, datetime],
-        time_to: Union[str, datetime],
-        enable_last_day: bool | Omit = omit,
-        projects: Iterable[int] | Omit = omit,
-        regions: Iterable[int] | Omit = omit,
-        response_format: Literal["csv_totals", "json"] | Omit = omit,
-        rounding: bool | Omit = omit,
-        schema_filter: cost_report_get_aggregated_params.SchemaFilter | Omit = omit,
-        tags: cost_report_get_aggregated_params.Tags | Omit = omit,
-        types: List[
-            Literal[
-                "ai_cluster",
-                "ai_virtual_cluster",
-                "backup",
-                "baremetal",
-                "basic_vm",
-                "containers",
-                "dbaas_postgresql_connection_pooler",
-                "dbaas_postgresql_cpu",
-                "dbaas_postgresql_memory",
-                "dbaas_postgresql_public_network",
-                "dbaas_postgresql_volume",
-                "egress_traffic",
-                "external_ip",
-                "file_share",
-                "floatingip",
-                "functions",
-                "functions_calls",
-                "functions_traffic",
-                "image",
-                "inference",
-                "inference_public_models",
-                "instance",
-                "load_balancer",
-                "log_index",
-                "snapshot",
-                "volume",
-            ]
-        ]
-        | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CostReportAggregated:
-        """Get cost report totals (aggregated costs) for a given period.
-
-        Requested period
-        should not exceed 31 days.
-
-        Note: This report assumes there are no active commit features in the billing
-        plan. If there are active commit features (pre-paid resources) in your plan, use
-        /v1/`reservation_cost_report`/totals, as the results from this report will not
-        be accurate.
-
-        Data from the past hour may not reflect the full set of statistics. For the most
-        complete and accurate results, we recommend accessing the data at least one hour
-        after the relevant time period. Updates are generally available within a 24-hour
-        window, though timing can vary. Scheduled maintenance or other exceptions may
-        occasionally cause delays beyond 24 hours.
-
-        Args:
-          time_from: The start date of the report period (ISO 8601). The report starts from the
-              beginning of this day in UTC.
-
-          time_to: The end date of the report period (ISO 8601). The report ends just before the
-              beginning of this day in UTC.
-
-          enable_last_day: Expenses for the last specified day are taken into account. As the default,
-              False.
-
-          projects: List of project IDs
-
-          regions: List of region IDs.
-
-          response_format: Format of the response (csv or json).
-
-          rounding: Round cost values to 5 decimal places. When false, returns full precision.
-
-          schema_filter: Extended filter for field filtering.
-
-          tags: Filter by tags
-
-          types: List of resource types to be filtered in the report.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._post(
-            "/cloud/v1/cost_report/totals",
-            body=maybe_transform(
-                {
-                    "time_from": time_from,
-                    "time_to": time_to,
-                    "enable_last_day": enable_last_day,
-                    "projects": projects,
-                    "regions": regions,
-                    "response_format": response_format,
-                    "rounding": rounding,
-                    "schema_filter": schema_filter,
-                    "tags": tags,
-                    "types": types,
-                },
-                cost_report_get_aggregated_params.CostReportGetAggregatedParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=CostReportAggregated,
-        )
 
     def get_aggregated_monthly(
         self,
@@ -282,6 +161,129 @@ class CostReportsResource(SyncAPIResource):
             cast_to=CostReportAggregatedMonthly,
         )
 
+    def get_breakdown(
+        self,
+        *,
+        time_from: Union[str, datetime],
+        time_to: Union[str, datetime],
+        enable_last_day: bool | Omit = omit,
+        group_by: Literal["flavor", "project", "region", "type"] | Omit = omit,
+        project_ids: Iterable[int] | Omit = omit,
+        region_ids: Iterable[int] | Omit = omit,
+        response_format: Literal["csv_records", "json"] | Omit = omit,
+        tags: cost_report_get_breakdown_params.Tags | Omit = omit,
+        types: List[
+            Literal[
+                "ai_cluster",
+                "ai_virtual_cluster",
+                "backup",
+                "baremetal",
+                "basic_vm",
+                "containers",
+                "dbaas_postgresql_connection_pooler",
+                "dbaas_postgresql_cpu",
+                "dbaas_postgresql_memory",
+                "dbaas_postgresql_public_network",
+                "dbaas_postgresql_volume",
+                "egress_traffic",
+                "external_ip",
+                "file_share",
+                "floatingip",
+                "functions",
+                "functions_calls",
+                "functions_traffic",
+                "image",
+                "inference",
+                "inference_public_models",
+                "instance",
+                "load_balancer",
+                "log_index",
+                "snapshot",
+                "volume",
+            ]
+        ]
+        | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> CostReportBreakdown:
+        """
+        Get daily costs for a given period, summed down to one dimension: region
+        (default), project, resource type or flavor. Requested period should not exceed
+        31 days. Costs and usages are returned at full precision.
+
+        The response can have more than one row for one day and one `group_by` value
+        (for example, one region on one day). Usage with a different unit (`usage.unit`,
+        for example `minutes` or `bytes`) is in a different row. Usage without a price
+        (`error` is not null) is also in a different row.
+
+        Note: This report assumes there are no active commit features in the billing
+        plan. If there are active commit features (pre-paid resources) in your plan, use
+        /v1/`reservation_cost_report`/totals, as the results from this report will not
+        be accurate.
+
+        Data from the past hour may not reflect the full set of statistics. For the most
+        complete and accurate results, we recommend accessing the data at least one hour
+        after the relevant time period. Updates are generally available within a 24-hour
+        window, though timing can vary. Scheduled maintenance or other exceptions may
+        occasionally cause delays beyond 24 hours.
+
+        Args:
+          time_from: The start date of the report period (ISO 8601). The report starts from the
+              beginning of this day in UTC.
+
+          time_to: The end date of the report period (ISO 8601). The report ends just before the
+              beginning of this day in UTC.
+
+          enable_last_day: Expenses for the last specified day are taken into account. As the default,
+              False.
+
+          group_by: Dimension the daily rows are summed down to. Only one grouping per request.
+
+          project_ids: List of project IDs. Omit for all accessible projects.
+
+          region_ids: List of region IDs. Omit for all regions and global usage; an empty list is
+              rejected. Use 0 for global usage that has no region.
+
+          response_format: Format of the response: json (default) or `csv_records`.
+
+          tags: Filter by tags
+
+          types: List of resource types. Omit for all types.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            "/cloud/v2/cost_report/breakdown",
+            body=maybe_transform(
+                {
+                    "time_from": time_from,
+                    "time_to": time_to,
+                    "enable_last_day": enable_last_day,
+                    "group_by": group_by,
+                    "project_ids": project_ids,
+                    "region_ids": region_ids,
+                    "response_format": response_format,
+                    "tags": tags,
+                    "types": types,
+                },
+                cost_report_get_breakdown_params.CostReportGetBreakdownParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=CostReportBreakdown,
+        )
+
     def get_detailed(
         self,
         *,
@@ -292,29 +294,27 @@ class CostReportsResource(SyncAPIResource):
         offset: int | Omit = omit,
         order_by: List[
             Literal[
-                "billing_value.asc",
-                "billing_value.desc",
+                "cost.asc",
+                "cost.desc",
                 "first_seen.asc",
                 "first_seen.desc",
-                "last_name.asc",
-                "last_name.desc",
+                "flavor.asc",
+                "flavor.desc",
                 "last_seen.asc",
                 "last_seen.desc",
-                "project.asc",
-                "project.desc",
-                "region.asc",
-                "region.desc",
-                "type.asc",
-                "type.desc",
+                "project_id.asc",
+                "project_id.desc",
+                "resource_name.asc",
+                "resource_name.desc",
+                "usage.asc",
+                "usage.desc",
             ]
         ]
         | Omit = omit,
-        projects: Iterable[int] | Omit = omit,
-        regions: Iterable[int] | Omit = omit,
+        project_ids: Iterable[int] | Omit = omit,
+        region_ids: Iterable[int] | Omit = omit,
         response_format: Literal["csv_records", "json"] | Omit = omit,
-        rounding: bool | Omit = omit,
-        schema_filter: cost_report_get_detailed_params.SchemaFilter | Omit = omit,
-        sorting: Iterable[cost_report_get_detailed_params.Sorting] | Omit = omit,
+        search: str | Omit = omit,
         tags: cost_report_get_detailed_params.Tags | Omit = omit,
         types: List[
             Literal[
@@ -354,10 +354,10 @@ class CostReportsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CostReportDetailed:
-        """Get a detailed cost report for a given period and specific resources.
-
-        Requested
-        period should not exceed 31 days.
+        """
+        Get a detailed cost report for a given period and specific resources, sorted by
+        cost by default. Requested period should not exceed 31 days. Costs and usages
+        are always returned at full precision.
 
         Note: This report assumes there are no active commit features in the billing
         plan. If there are active commit features (pre-paid resources) in your plan, use
@@ -380,28 +380,27 @@ class CostReportsResource(SyncAPIResource):
           enable_last_day: Expenses for the last specified day are taken into account. As the default,
               False.
 
-          limit: The response resources limit. Defaults to 10.
+          limit: The response resources limit. Defaults to 10. Maximum 1000 for the json format,
+              10000 for the `csv_records` format.
 
           offset: The response resources offset.
 
           order_by: List of sorting criteria in 'field.direction' format.
 
-          projects: List of project IDs
+          project_ids: List of project IDs. Omit for all accessible projects; an empty list is
+              rejected.
 
-          regions: List of region IDs.
+          region_ids: List of region IDs. Omit for all regions and global usage; an empty list is
+              rejected. Use 0 for global usage that has no region.
 
-          response_format: Format of the response (csv or json).
+          response_format: Format of the response: json (default) or `csv_records`.
 
-          rounding: Round cost values to 5 decimal places. When false, returns full precision.
-
-          schema_filter: Extended filter for field filtering.
-
-          sorting: (DEPRECATED Use 'order_by' instead) List of sorting filters (JSON objects)
-              fields: project. directions: asc, desc.
+          search: Partial, case-insensitive search over region names, project names, resource
+              names, flavors and tags.
 
           tags: Filter by tags
 
-          types: List of resource types to be filtered in the report.
+          types: List of resource types. Omit for all types; an empty list is rejected.
 
           extra_headers: Send extra headers
 
@@ -412,7 +411,7 @@ class CostReportsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/cloud/v1/cost_report/resources",
+            "/cloud/v2/cost_report/resources",
             body=maybe_transform(
                 {
                     "time_from": time_from,
@@ -421,12 +420,10 @@ class CostReportsResource(SyncAPIResource):
                     "limit": limit,
                     "offset": offset,
                     "order_by": order_by,
-                    "projects": projects,
-                    "regions": regions,
+                    "project_ids": project_ids,
+                    "region_ids": region_ids,
                     "response_format": response_format,
-                    "rounding": rounding,
-                    "schema_filter": schema_filter,
-                    "sorting": sorting,
+                    "search": search,
                     "tags": tags,
                     "types": types,
                 },
@@ -458,127 +455,6 @@ class AsyncCostReportsResource(AsyncAPIResource):
         For more information, see https://www.github.com/G-Core/gcore-python#with_streaming_response
         """
         return AsyncCostReportsResourceWithStreamingResponse(self)
-
-    async def get_aggregated(
-        self,
-        *,
-        time_from: Union[str, datetime],
-        time_to: Union[str, datetime],
-        enable_last_day: bool | Omit = omit,
-        projects: Iterable[int] | Omit = omit,
-        regions: Iterable[int] | Omit = omit,
-        response_format: Literal["csv_totals", "json"] | Omit = omit,
-        rounding: bool | Omit = omit,
-        schema_filter: cost_report_get_aggregated_params.SchemaFilter | Omit = omit,
-        tags: cost_report_get_aggregated_params.Tags | Omit = omit,
-        types: List[
-            Literal[
-                "ai_cluster",
-                "ai_virtual_cluster",
-                "backup",
-                "baremetal",
-                "basic_vm",
-                "containers",
-                "dbaas_postgresql_connection_pooler",
-                "dbaas_postgresql_cpu",
-                "dbaas_postgresql_memory",
-                "dbaas_postgresql_public_network",
-                "dbaas_postgresql_volume",
-                "egress_traffic",
-                "external_ip",
-                "file_share",
-                "floatingip",
-                "functions",
-                "functions_calls",
-                "functions_traffic",
-                "image",
-                "inference",
-                "inference_public_models",
-                "instance",
-                "load_balancer",
-                "log_index",
-                "snapshot",
-                "volume",
-            ]
-        ]
-        | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CostReportAggregated:
-        """Get cost report totals (aggregated costs) for a given period.
-
-        Requested period
-        should not exceed 31 days.
-
-        Note: This report assumes there are no active commit features in the billing
-        plan. If there are active commit features (pre-paid resources) in your plan, use
-        /v1/`reservation_cost_report`/totals, as the results from this report will not
-        be accurate.
-
-        Data from the past hour may not reflect the full set of statistics. For the most
-        complete and accurate results, we recommend accessing the data at least one hour
-        after the relevant time period. Updates are generally available within a 24-hour
-        window, though timing can vary. Scheduled maintenance or other exceptions may
-        occasionally cause delays beyond 24 hours.
-
-        Args:
-          time_from: The start date of the report period (ISO 8601). The report starts from the
-              beginning of this day in UTC.
-
-          time_to: The end date of the report period (ISO 8601). The report ends just before the
-              beginning of this day in UTC.
-
-          enable_last_day: Expenses for the last specified day are taken into account. As the default,
-              False.
-
-          projects: List of project IDs
-
-          regions: List of region IDs.
-
-          response_format: Format of the response (csv or json).
-
-          rounding: Round cost values to 5 decimal places. When false, returns full precision.
-
-          schema_filter: Extended filter for field filtering.
-
-          tags: Filter by tags
-
-          types: List of resource types to be filtered in the report.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._post(
-            "/cloud/v1/cost_report/totals",
-            body=await async_maybe_transform(
-                {
-                    "time_from": time_from,
-                    "time_to": time_to,
-                    "enable_last_day": enable_last_day,
-                    "projects": projects,
-                    "regions": regions,
-                    "response_format": response_format,
-                    "rounding": rounding,
-                    "schema_filter": schema_filter,
-                    "tags": tags,
-                    "types": types,
-                },
-                cost_report_get_aggregated_params.CostReportGetAggregatedParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=CostReportAggregated,
-        )
 
     async def get_aggregated_monthly(
         self,
@@ -690,6 +566,129 @@ class AsyncCostReportsResource(AsyncAPIResource):
             cast_to=CostReportAggregatedMonthly,
         )
 
+    async def get_breakdown(
+        self,
+        *,
+        time_from: Union[str, datetime],
+        time_to: Union[str, datetime],
+        enable_last_day: bool | Omit = omit,
+        group_by: Literal["flavor", "project", "region", "type"] | Omit = omit,
+        project_ids: Iterable[int] | Omit = omit,
+        region_ids: Iterable[int] | Omit = omit,
+        response_format: Literal["csv_records", "json"] | Omit = omit,
+        tags: cost_report_get_breakdown_params.Tags | Omit = omit,
+        types: List[
+            Literal[
+                "ai_cluster",
+                "ai_virtual_cluster",
+                "backup",
+                "baremetal",
+                "basic_vm",
+                "containers",
+                "dbaas_postgresql_connection_pooler",
+                "dbaas_postgresql_cpu",
+                "dbaas_postgresql_memory",
+                "dbaas_postgresql_public_network",
+                "dbaas_postgresql_volume",
+                "egress_traffic",
+                "external_ip",
+                "file_share",
+                "floatingip",
+                "functions",
+                "functions_calls",
+                "functions_traffic",
+                "image",
+                "inference",
+                "inference_public_models",
+                "instance",
+                "load_balancer",
+                "log_index",
+                "snapshot",
+                "volume",
+            ]
+        ]
+        | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> CostReportBreakdown:
+        """
+        Get daily costs for a given period, summed down to one dimension: region
+        (default), project, resource type or flavor. Requested period should not exceed
+        31 days. Costs and usages are returned at full precision.
+
+        The response can have more than one row for one day and one `group_by` value
+        (for example, one region on one day). Usage with a different unit (`usage.unit`,
+        for example `minutes` or `bytes`) is in a different row. Usage without a price
+        (`error` is not null) is also in a different row.
+
+        Note: This report assumes there are no active commit features in the billing
+        plan. If there are active commit features (pre-paid resources) in your plan, use
+        /v1/`reservation_cost_report`/totals, as the results from this report will not
+        be accurate.
+
+        Data from the past hour may not reflect the full set of statistics. For the most
+        complete and accurate results, we recommend accessing the data at least one hour
+        after the relevant time period. Updates are generally available within a 24-hour
+        window, though timing can vary. Scheduled maintenance or other exceptions may
+        occasionally cause delays beyond 24 hours.
+
+        Args:
+          time_from: The start date of the report period (ISO 8601). The report starts from the
+              beginning of this day in UTC.
+
+          time_to: The end date of the report period (ISO 8601). The report ends just before the
+              beginning of this day in UTC.
+
+          enable_last_day: Expenses for the last specified day are taken into account. As the default,
+              False.
+
+          group_by: Dimension the daily rows are summed down to. Only one grouping per request.
+
+          project_ids: List of project IDs. Omit for all accessible projects.
+
+          region_ids: List of region IDs. Omit for all regions and global usage; an empty list is
+              rejected. Use 0 for global usage that has no region.
+
+          response_format: Format of the response: json (default) or `csv_records`.
+
+          tags: Filter by tags
+
+          types: List of resource types. Omit for all types.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            "/cloud/v2/cost_report/breakdown",
+            body=await async_maybe_transform(
+                {
+                    "time_from": time_from,
+                    "time_to": time_to,
+                    "enable_last_day": enable_last_day,
+                    "group_by": group_by,
+                    "project_ids": project_ids,
+                    "region_ids": region_ids,
+                    "response_format": response_format,
+                    "tags": tags,
+                    "types": types,
+                },
+                cost_report_get_breakdown_params.CostReportGetBreakdownParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=CostReportBreakdown,
+        )
+
     async def get_detailed(
         self,
         *,
@@ -700,29 +699,27 @@ class AsyncCostReportsResource(AsyncAPIResource):
         offset: int | Omit = omit,
         order_by: List[
             Literal[
-                "billing_value.asc",
-                "billing_value.desc",
+                "cost.asc",
+                "cost.desc",
                 "first_seen.asc",
                 "first_seen.desc",
-                "last_name.asc",
-                "last_name.desc",
+                "flavor.asc",
+                "flavor.desc",
                 "last_seen.asc",
                 "last_seen.desc",
-                "project.asc",
-                "project.desc",
-                "region.asc",
-                "region.desc",
-                "type.asc",
-                "type.desc",
+                "project_id.asc",
+                "project_id.desc",
+                "resource_name.asc",
+                "resource_name.desc",
+                "usage.asc",
+                "usage.desc",
             ]
         ]
         | Omit = omit,
-        projects: Iterable[int] | Omit = omit,
-        regions: Iterable[int] | Omit = omit,
+        project_ids: Iterable[int] | Omit = omit,
+        region_ids: Iterable[int] | Omit = omit,
         response_format: Literal["csv_records", "json"] | Omit = omit,
-        rounding: bool | Omit = omit,
-        schema_filter: cost_report_get_detailed_params.SchemaFilter | Omit = omit,
-        sorting: Iterable[cost_report_get_detailed_params.Sorting] | Omit = omit,
+        search: str | Omit = omit,
         tags: cost_report_get_detailed_params.Tags | Omit = omit,
         types: List[
             Literal[
@@ -762,10 +759,10 @@ class AsyncCostReportsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CostReportDetailed:
-        """Get a detailed cost report for a given period and specific resources.
-
-        Requested
-        period should not exceed 31 days.
+        """
+        Get a detailed cost report for a given period and specific resources, sorted by
+        cost by default. Requested period should not exceed 31 days. Costs and usages
+        are always returned at full precision.
 
         Note: This report assumes there are no active commit features in the billing
         plan. If there are active commit features (pre-paid resources) in your plan, use
@@ -788,28 +785,27 @@ class AsyncCostReportsResource(AsyncAPIResource):
           enable_last_day: Expenses for the last specified day are taken into account. As the default,
               False.
 
-          limit: The response resources limit. Defaults to 10.
+          limit: The response resources limit. Defaults to 10. Maximum 1000 for the json format,
+              10000 for the `csv_records` format.
 
           offset: The response resources offset.
 
           order_by: List of sorting criteria in 'field.direction' format.
 
-          projects: List of project IDs
+          project_ids: List of project IDs. Omit for all accessible projects; an empty list is
+              rejected.
 
-          regions: List of region IDs.
+          region_ids: List of region IDs. Omit for all regions and global usage; an empty list is
+              rejected. Use 0 for global usage that has no region.
 
-          response_format: Format of the response (csv or json).
+          response_format: Format of the response: json (default) or `csv_records`.
 
-          rounding: Round cost values to 5 decimal places. When false, returns full precision.
-
-          schema_filter: Extended filter for field filtering.
-
-          sorting: (DEPRECATED Use 'order_by' instead) List of sorting filters (JSON objects)
-              fields: project. directions: asc, desc.
+          search: Partial, case-insensitive search over region names, project names, resource
+              names, flavors and tags.
 
           tags: Filter by tags
 
-          types: List of resource types to be filtered in the report.
+          types: List of resource types. Omit for all types; an empty list is rejected.
 
           extra_headers: Send extra headers
 
@@ -820,7 +816,7 @@ class AsyncCostReportsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/cloud/v1/cost_report/resources",
+            "/cloud/v2/cost_report/resources",
             body=await async_maybe_transform(
                 {
                     "time_from": time_from,
@@ -829,12 +825,10 @@ class AsyncCostReportsResource(AsyncAPIResource):
                     "limit": limit,
                     "offset": offset,
                     "order_by": order_by,
-                    "projects": projects,
-                    "regions": regions,
+                    "project_ids": project_ids,
+                    "region_ids": region_ids,
                     "response_format": response_format,
-                    "rounding": rounding,
-                    "schema_filter": schema_filter,
-                    "sorting": sorting,
+                    "search": search,
                     "tags": tags,
                     "types": types,
                 },
@@ -851,11 +845,11 @@ class CostReportsResourceWithRawResponse:
     def __init__(self, cost_reports: CostReportsResource) -> None:
         self._cost_reports = cost_reports
 
-        self.get_aggregated = to_raw_response_wrapper(
-            cost_reports.get_aggregated,
-        )
         self.get_aggregated_monthly = to_raw_response_wrapper(
             cost_reports.get_aggregated_monthly,
+        )
+        self.get_breakdown = to_raw_response_wrapper(
+            cost_reports.get_breakdown,
         )
         self.get_detailed = to_raw_response_wrapper(
             cost_reports.get_detailed,
@@ -866,11 +860,11 @@ class AsyncCostReportsResourceWithRawResponse:
     def __init__(self, cost_reports: AsyncCostReportsResource) -> None:
         self._cost_reports = cost_reports
 
-        self.get_aggregated = async_to_raw_response_wrapper(
-            cost_reports.get_aggregated,
-        )
         self.get_aggregated_monthly = async_to_raw_response_wrapper(
             cost_reports.get_aggregated_monthly,
+        )
+        self.get_breakdown = async_to_raw_response_wrapper(
+            cost_reports.get_breakdown,
         )
         self.get_detailed = async_to_raw_response_wrapper(
             cost_reports.get_detailed,
@@ -881,11 +875,11 @@ class CostReportsResourceWithStreamingResponse:
     def __init__(self, cost_reports: CostReportsResource) -> None:
         self._cost_reports = cost_reports
 
-        self.get_aggregated = to_streamed_response_wrapper(
-            cost_reports.get_aggregated,
-        )
         self.get_aggregated_monthly = to_streamed_response_wrapper(
             cost_reports.get_aggregated_monthly,
+        )
+        self.get_breakdown = to_streamed_response_wrapper(
+            cost_reports.get_breakdown,
         )
         self.get_detailed = to_streamed_response_wrapper(
             cost_reports.get_detailed,
@@ -896,11 +890,11 @@ class AsyncCostReportsResourceWithStreamingResponse:
     def __init__(self, cost_reports: AsyncCostReportsResource) -> None:
         self._cost_reports = cost_reports
 
-        self.get_aggregated = async_to_streamed_response_wrapper(
-            cost_reports.get_aggregated,
-        )
         self.get_aggregated_monthly = async_to_streamed_response_wrapper(
             cost_reports.get_aggregated_monthly,
+        )
+        self.get_breakdown = async_to_streamed_response_wrapper(
+            cost_reports.get_breakdown,
         )
         self.get_detailed = async_to_streamed_response_wrapper(
             cost_reports.get_detailed,

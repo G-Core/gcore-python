@@ -4,43 +4,11 @@ from __future__ import annotations
 
 from typing import List, Union, Iterable
 from datetime import datetime
-from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
-from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 
-__all__ = [
-    "CostReportGetDetailedParams",
-    "SchemaFilter",
-    "SchemaFilterSchemaFilterSnapshotSerializer",
-    "SchemaFilterSchemaFilterInstanceSerializer",
-    "SchemaFilterSchemaFilterAIClusterSerializer",
-    "SchemaFilterSchemaFilterAIVirtualClusterSerializer",
-    "SchemaFilterSchemaFilterBasicVmSerializer",
-    "SchemaFilterSchemaFilterBaremetalSerializer",
-    "SchemaFilterSchemaFilterVolumeSerializer",
-    "SchemaFilterSchemaFilterFileShareSerializer",
-    "SchemaFilterSchemaFilterImageSerializer",
-    "SchemaFilterSchemaFilterFloatingIPSerializer",
-    "SchemaFilterSchemaFilterEgressTrafficSerializer",
-    "SchemaFilterSchemaFilterLoadBalancerSerializer",
-    "SchemaFilterSchemaFilterExternalIPSerializer",
-    "SchemaFilterSchemaFilterBackupSerializer",
-    "SchemaFilterSchemaFilterLogIndexSerializer",
-    "SchemaFilterSchemaFilterFunctionsSerializer",
-    "SchemaFilterSchemaFilterFunctionsCallsSerializer",
-    "SchemaFilterSchemaFilterFunctionsTrafficSerializer",
-    "SchemaFilterSchemaFilterContainersSerializer",
-    "SchemaFilterSchemaFilterInferenceSerializer",
-    "SchemaFilterSchemaFilterDbaasPostgreSQLVolumeSerializer",
-    "SchemaFilterSchemaFilterDbaasPostgreSQLPublicNetworkSerializer",
-    "SchemaFilterSchemaFilterDbaasPostgreSqlcpuSerializer",
-    "SchemaFilterSchemaFilterDbaasPostgreSQLMemorySerializer",
-    "SchemaFilterSchemaFilterDbaasPostgreSQLPoolerSerializer",
-    "Sorting",
-    "Tags",
-    "TagsCondition",
-]
+__all__ = ["CostReportGetDetailedParams", "Tags", "TagsCondition"]
 
 
 class CostReportGetDetailedParams(TypedDict, total=False):
@@ -63,50 +31,55 @@ class CostReportGetDetailedParams(TypedDict, total=False):
     """
 
     limit: int
-    """The response resources limit. Defaults to 10."""
+    """The response resources limit.
+
+    Defaults to 10. Maximum 1000 for the json format, 10000 for the `csv_records`
+    format.
+    """
 
     offset: int
     """The response resources offset."""
 
     order_by: List[
         Literal[
-            "billing_value.asc",
-            "billing_value.desc",
+            "cost.asc",
+            "cost.desc",
             "first_seen.asc",
             "first_seen.desc",
-            "last_name.asc",
-            "last_name.desc",
+            "flavor.asc",
+            "flavor.desc",
             "last_seen.asc",
             "last_seen.desc",
-            "project.asc",
-            "project.desc",
-            "region.asc",
-            "region.desc",
-            "type.asc",
-            "type.desc",
+            "project_id.asc",
+            "project_id.desc",
+            "resource_name.asc",
+            "resource_name.desc",
+            "usage.asc",
+            "usage.desc",
         ]
     ]
     """List of sorting criteria in 'field.direction' format."""
 
-    projects: Iterable[int]
-    """List of project IDs"""
+    project_ids: Iterable[int]
+    """List of project IDs.
 
-    regions: Iterable[int]
-    """List of region IDs."""
+    Omit for all accessible projects; an empty list is rejected.
+    """
+
+    region_ids: Iterable[int]
+    """List of region IDs.
+
+    Omit for all regions and global usage; an empty list is rejected. Use 0 for
+    global usage that has no region.
+    """
 
     response_format: Literal["csv_records", "json"]
-    """Format of the response (csv or json)."""
+    """Format of the response: json (default) or `csv_records`."""
 
-    rounding: bool
-    """Round cost values to 5 decimal places. When false, returns full precision."""
-
-    schema_filter: SchemaFilter
-    """Extended filter for field filtering."""
-
-    sorting: Iterable[Sorting]
+    search: str
     """
-    (DEPRECATED Use 'order_by' instead) List of sorting filters (JSON objects)
-    fields: project. directions: asc, desc.
+    Partial, case-insensitive search over region names, project names, resource
+    names, flavors and tags.
     """
 
     tags: Tags
@@ -142,302 +115,7 @@ class CostReportGetDetailedParams(TypedDict, total=False):
             "volume",
         ]
     ]
-    """List of resource types to be filtered in the report."""
-
-
-class SchemaFilterSchemaFilterSnapshotSerializer(TypedDict, total=False):
-    field: Required[Literal["last_name", "last_size", "source_volume_uuid", "type", "uuid", "volume_type"]]
-    """Field name to filter by"""
-
-    type: Required[Literal["snapshot"]]
-
-    values: Required[SequenceNotStr[str]]
-    """List of field values to filter"""
-
-
-class SchemaFilterSchemaFilterInstanceSerializer(TypedDict, total=False):
-    field: Required[Literal["flavor", "last_name", "type", "uuid"]]
-    """Field name to filter by"""
-
-    type: Required[Literal["instance"]]
-
-    values: Required[SequenceNotStr[str]]
-    """List of field values to filter"""
-
-
-class SchemaFilterSchemaFilterAIClusterSerializer(TypedDict, total=False):
-    field: Required[Literal["flavor", "last_name", "type", "uuid"]]
-    """Field name to filter by"""
-
-    type: Required[Literal["ai_cluster"]]
-
-    values: Required[SequenceNotStr[str]]
-    """List of field values to filter"""
-
-
-class SchemaFilterSchemaFilterAIVirtualClusterSerializer(TypedDict, total=False):
-    field: Required[Literal["flavor", "last_name", "type", "uuid"]]
-    """Field name to filter by"""
-
-    type: Required[Literal["ai_virtual_cluster"]]
-
-    values: Required[SequenceNotStr[str]]
-    """List of field values to filter"""
-
-
-class SchemaFilterSchemaFilterBasicVmSerializer(TypedDict, total=False):
-    field: Required[Literal["flavor", "last_name", "type", "uuid"]]
-    """Field name to filter by"""
-
-    type: Required[Literal["basic_vm"]]
-
-    values: Required[SequenceNotStr[str]]
-    """List of field values to filter"""
-
-
-class SchemaFilterSchemaFilterBaremetalSerializer(TypedDict, total=False):
-    field: Required[Literal["flavor", "last_name", "type", "uuid"]]
-    """Field name to filter by"""
-
-    type: Required[Literal["baremetal"]]
-
-    values: Required[SequenceNotStr[str]]
-    """List of field values to filter"""
-
-
-class SchemaFilterSchemaFilterVolumeSerializer(TypedDict, total=False):
-    field: Required[Literal["attached_to_vm", "last_name", "last_size", "type", "uuid", "volume_type"]]
-    """Field name to filter by"""
-
-    type: Required[Literal["volume"]]
-
-    values: Required[SequenceNotStr[str]]
-    """List of field values to filter"""
-
-
-class SchemaFilterSchemaFilterFileShareSerializer(TypedDict, total=False):
-    field: Required[Literal["file_share_type", "last_name", "last_size", "type", "uuid"]]
-    """Field name to filter by"""
-
-    type: Required[Literal["file_share"]]
-
-    values: Required[SequenceNotStr[str]]
-    """List of field values to filter"""
-
-
-class SchemaFilterSchemaFilterImageSerializer(TypedDict, total=False):
-    field: Required[Literal["last_name", "last_size", "type", "uuid"]]
-    """Field name to filter by"""
-
-    type: Required[Literal["image"]]
-
-    values: Required[SequenceNotStr[str]]
-    """List of field values to filter"""
-
-
-class SchemaFilterSchemaFilterFloatingIPSerializer(TypedDict, total=False):
-    field: Required[Literal["ip_address", "last_name", "type", "uuid"]]
-    """Field name to filter by"""
-
-    type: Required[Literal["floatingip"]]
-
-    values: Required[SequenceNotStr[str]]
-    """List of field values to filter"""
-
-
-class SchemaFilterSchemaFilterEgressTrafficSerializer(TypedDict, total=False):
-    field: Required[Literal["instance_name", "instance_type", "port_id", "type", "vm_id"]]
-    """Field name to filter by"""
-
-    type: Required[Literal["egress_traffic"]]
-
-    values: Required[SequenceNotStr[str]]
-    """List of field values to filter"""
-
-
-class SchemaFilterSchemaFilterLoadBalancerSerializer(TypedDict, total=False):
-    field: Required[Literal["flavor", "last_name", "type", "uuid"]]
-    """Field name to filter by"""
-
-    type: Required[Literal["load_balancer"]]
-
-    values: Required[SequenceNotStr[str]]
-    """List of field values to filter"""
-
-
-class SchemaFilterSchemaFilterExternalIPSerializer(TypedDict, total=False):
-    field: Required[Literal["attached_to_vm", "ip_address", "network_id", "port_id", "subnet_id", "type"]]
-    """Field name to filter by"""
-
-    type: Required[Literal["external_ip"]]
-
-    values: Required[SequenceNotStr[str]]
-    """List of field values to filter"""
-
-
-class SchemaFilterSchemaFilterBackupSerializer(TypedDict, total=False):
-    field: Required[Literal["last_name", "last_size", "schedule_id", "source_volume_uuid", "type", "uuid"]]
-    """Field name to filter by"""
-
-    type: Required[Literal["backup"]]
-
-    values: Required[SequenceNotStr[str]]
-    """List of field values to filter"""
-
-
-class SchemaFilterSchemaFilterLogIndexSerializer(TypedDict, total=False):
-    field: Required[Literal["last_name", "last_size", "type", "uuid"]]
-    """Field name to filter by"""
-
-    type: Required[Literal["log_index"]]
-
-    values: Required[SequenceNotStr[str]]
-    """List of field values to filter"""
-
-
-class SchemaFilterSchemaFilterFunctionsSerializer(TypedDict, total=False):
-    field: Required[Literal["last_name", "type", "uuid"]]
-    """Field name to filter by"""
-
-    type: Required[Literal["functions"]]
-
-    values: Required[SequenceNotStr[str]]
-    """List of field values to filter"""
-
-
-class SchemaFilterSchemaFilterFunctionsCallsSerializer(TypedDict, total=False):
-    field: Required[Literal["last_name", "type", "uuid"]]
-    """Field name to filter by"""
-
-    type: Required[Literal["functions_calls"]]
-
-    values: Required[SequenceNotStr[str]]
-    """List of field values to filter"""
-
-
-class SchemaFilterSchemaFilterFunctionsTrafficSerializer(TypedDict, total=False):
-    field: Required[Literal["last_name", "type", "uuid"]]
-    """Field name to filter by"""
-
-    type: Required[Literal["functions_traffic"]]
-
-    values: Required[SequenceNotStr[str]]
-    """List of field values to filter"""
-
-
-class SchemaFilterSchemaFilterContainersSerializer(TypedDict, total=False):
-    field: Required[Literal["last_name", "type", "uuid"]]
-    """Field name to filter by"""
-
-    type: Required[Literal["containers"]]
-
-    values: Required[SequenceNotStr[str]]
-    """List of field values to filter"""
-
-
-class SchemaFilterSchemaFilterInferenceSerializer(TypedDict, total=False):
-    field: Required[Literal["flavor", "last_name", "type", "uuid"]]
-    """Field name to filter by"""
-
-    type: Required[Literal["inference"]]
-
-    values: Required[SequenceNotStr[str]]
-    """List of field values to filter"""
-
-
-class SchemaFilterSchemaFilterDbaasPostgreSQLVolumeSerializer(TypedDict, total=False):
-    field: Required[Literal["last_name", "type", "uuid", "volume_type"]]
-    """Field name to filter by"""
-
-    type: Required[Literal["dbaas_postgresql_volume"]]
-
-    values: Required[SequenceNotStr[str]]
-    """List of field values to filter"""
-
-
-class SchemaFilterSchemaFilterDbaasPostgreSQLPublicNetworkSerializer(TypedDict, total=False):
-    field: Required[Literal["last_name", "type", "uuid"]]
-    """Field name to filter by"""
-
-    type: Required[Literal["dbaas_postgresql_public_network"]]
-
-    values: Required[SequenceNotStr[str]]
-    """List of field values to filter"""
-
-
-class SchemaFilterSchemaFilterDbaasPostgreSqlcpuSerializer(TypedDict, total=False):
-    field: Required[Literal["last_name", "type", "uuid"]]
-    """Field name to filter by"""
-
-    type: Required[Literal["dbaas_postgresql_cpu"]]
-
-    values: Required[SequenceNotStr[str]]
-    """List of field values to filter"""
-
-
-class SchemaFilterSchemaFilterDbaasPostgreSQLMemorySerializer(TypedDict, total=False):
-    field: Required[Literal["last_name", "type", "uuid"]]
-    """Field name to filter by"""
-
-    type: Required[Literal["dbaas_postgresql_memory"]]
-
-    values: Required[SequenceNotStr[str]]
-    """List of field values to filter"""
-
-
-class SchemaFilterSchemaFilterDbaasPostgreSQLPoolerSerializer(TypedDict, total=False):
-    field: Required[Literal["last_name", "type", "uuid"]]
-    """Field name to filter by"""
-
-    type: Required[Literal["dbaas_postgresql_connection_pooler"]]
-
-    values: Required[SequenceNotStr[str]]
-    """List of field values to filter"""
-
-
-SchemaFilter: TypeAlias = Union[
-    SchemaFilterSchemaFilterSnapshotSerializer,
-    SchemaFilterSchemaFilterInstanceSerializer,
-    SchemaFilterSchemaFilterAIClusterSerializer,
-    SchemaFilterSchemaFilterAIVirtualClusterSerializer,
-    SchemaFilterSchemaFilterBasicVmSerializer,
-    SchemaFilterSchemaFilterBaremetalSerializer,
-    SchemaFilterSchemaFilterVolumeSerializer,
-    SchemaFilterSchemaFilterFileShareSerializer,
-    SchemaFilterSchemaFilterImageSerializer,
-    SchemaFilterSchemaFilterFloatingIPSerializer,
-    SchemaFilterSchemaFilterEgressTrafficSerializer,
-    SchemaFilterSchemaFilterLoadBalancerSerializer,
-    SchemaFilterSchemaFilterExternalIPSerializer,
-    SchemaFilterSchemaFilterBackupSerializer,
-    SchemaFilterSchemaFilterLogIndexSerializer,
-    SchemaFilterSchemaFilterFunctionsSerializer,
-    SchemaFilterSchemaFilterFunctionsCallsSerializer,
-    SchemaFilterSchemaFilterFunctionsTrafficSerializer,
-    SchemaFilterSchemaFilterContainersSerializer,
-    SchemaFilterSchemaFilterInferenceSerializer,
-    SchemaFilterSchemaFilterDbaasPostgreSQLVolumeSerializer,
-    SchemaFilterSchemaFilterDbaasPostgreSQLPublicNetworkSerializer,
-    SchemaFilterSchemaFilterDbaasPostgreSqlcpuSerializer,
-    SchemaFilterSchemaFilterDbaasPostgreSQLMemorySerializer,
-    SchemaFilterSchemaFilterDbaasPostgreSQLPoolerSerializer,
-]
-
-
-class Sorting(TypedDict, total=False):
-    billing_value: Literal["asc", "desc"]
-
-    first_seen: Literal["asc", "desc"]
-
-    last_name: Literal["asc", "desc"]
-
-    last_seen: Literal["asc", "desc"]
-
-    project: Literal["asc", "desc"]
-
-    region: Literal["asc", "desc"]
-
-    type: Literal["asc", "desc"]
+    """List of resource types. Omit for all types; an empty list is rejected."""
 
 
 class TagsCondition(TypedDict, total=False):

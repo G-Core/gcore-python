@@ -87,6 +87,7 @@ from .volume_resize_params import VolumeResizeParams as VolumeResizeParams
 from .volume_update_params import VolumeUpdateParams as VolumeUpdateParams
 from .allowed_address_pairs import AllowedAddressPairs as AllowedAddressPairs
 from .audit_log_list_params import AuditLogListParams as AuditLogListParams
+from .cost_report_breakdown import CostReportBreakdown as CostReportBreakdown
 from .ddos_profile_template import DDOSProfileTemplate as DDOSProfileTemplate
 from .health_monitor_status import HealthMonitorStatus as HealthMonitorStatus
 from .load_balancer_l7_rule import LoadBalancerL7Rule as LoadBalancerL7Rule
@@ -97,7 +98,6 @@ from .project_create_params import ProjectCreateParams as ProjectCreateParams
 from .project_update_params import ProjectUpdateParams as ProjectUpdateParams
 from .ssh_key_create_params import SSHKeyCreateParams as SSHKeyCreateParams
 from .ssh_key_update_params import SSHKeyUpdateParams as SSHKeyUpdateParams
-from .cost_report_aggregated import CostReportAggregated as CostReportAggregated
 from .file_share_list_params import FileShareListParams as FileShareListParams
 from .instance_action_params import InstanceActionParams as InstanceActionParams
 from .instance_create_params import InstanceCreateParams as InstanceCreateParams
@@ -166,8 +166,8 @@ from .reserved_fixed_ip_update_params import ReservedFixedIPUpdateParams as Rese
 from .snapshot_schedule_create_params import SnapshotScheduleCreateParams as SnapshotScheduleCreateParams
 from .snapshot_schedule_list_response import SnapshotScheduleListResponse as SnapshotScheduleListResponse
 from .snapshot_schedule_update_params import SnapshotScheduleUpdateParams as SnapshotScheduleUpdateParams
+from .cost_report_get_breakdown_params import CostReportGetBreakdownParams as CostReportGetBreakdownParams
 from .volume_attach_to_instance_params import VolumeAttachToInstanceParams as VolumeAttachToInstanceParams
-from .cost_report_get_aggregated_params import CostReportGetAggregatedParams as CostReportGetAggregatedParams
 from .laas_index_retention_policy_param import LaasIndexRetentionPolicyParam as LaasIndexRetentionPolicyParam
 from .load_balancer_member_connectivity import LoadBalancerMemberConnectivity as LoadBalancerMemberConnectivity
 from .volume_detach_from_instance_params import VolumeDetachFromInstanceParams as VolumeDetachFromInstanceParams

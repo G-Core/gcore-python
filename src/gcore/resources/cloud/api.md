@@ -1135,14 +1135,14 @@ Methods:
 Types:
 
 ```python
-from gcore.types.cloud import CostReportAggregated, CostReportAggregatedMonthly, CostReportDetailed
+from gcore.types.cloud import CostReportAggregatedMonthly, CostReportBreakdown, CostReportDetailed
 ```
 
 Methods:
 
-- <code title="post /cloud/v1/cost_report/totals">client.cloud.cost_reports.<a href="./src/gcore/resources/cloud/cost_reports.py">get_aggregated</a>(\*\*<a href="src/gcore/types/cloud/cost_report_get_aggregated_params.py">params</a>) -> <a href="./src/gcore/types/cloud/cost_report_aggregated.py">CostReportAggregated</a></code>
 - <code title="post /cloud/v1/reservation_cost_report/totals">client.cloud.cost_reports.<a href="./src/gcore/resources/cloud/cost_reports.py">get_aggregated_monthly</a>(\*\*<a href="src/gcore/types/cloud/cost_report_get_aggregated_monthly_params.py">params</a>) -> <a href="./src/gcore/types/cloud/cost_report_aggregated_monthly.py">CostReportAggregatedMonthly</a></code>
-- <code title="post /cloud/v1/cost_report/resources">client.cloud.cost_reports.<a href="./src/gcore/resources/cloud/cost_reports.py">get_detailed</a>(\*\*<a href="src/gcore/types/cloud/cost_report_get_detailed_params.py">params</a>) -> <a href="./src/gcore/types/cloud/cost_report_detailed.py">CostReportDetailed</a></code>
+- <code title="post /cloud/v2/cost_report/breakdown">client.cloud.cost_reports.<a href="./src/gcore/resources/cloud/cost_reports.py">get_breakdown</a>(\*\*<a href="src/gcore/types/cloud/cost_report_get_breakdown_params.py">params</a>) -> <a href="./src/gcore/types/cloud/cost_report_breakdown.py">CostReportBreakdown</a></code>
+- <code title="post /cloud/v2/cost_report/resources">client.cloud.cost_reports.<a href="./src/gcore/resources/cloud/cost_reports.py">get_detailed</a>(\*\*<a href="src/gcore/types/cloud/cost_report_get_detailed_params.py">params</a>) -> <a href="./src/gcore/types/cloud/cost_report_detailed.py">CostReportDetailed</a></code>
 
 ## UsageReports
 
