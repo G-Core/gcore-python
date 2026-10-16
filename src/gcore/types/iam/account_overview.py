@@ -477,7 +477,7 @@ class AccountOverview(BaseModel):
     """
 
     name: Optional[str] = None
-    """Name of a user who registered the requested account."""
+    """Client (company) name. Kept equal to `companyName`, which it replaces."""
 
     paid_features: PaidFeatures = FieldInfo(alias="paidFeatures")
     """
