@@ -218,7 +218,7 @@ class DomainsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapDetailedDomain:
         """
-        Set Domain Status
+        Update domain
 
         Args:
           domain_id: The domain ID
@@ -403,7 +403,10 @@ class DomainsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[WaapRuleSet]:
         """
-        Retrieve a paginated list of policy rule sets linked to a particular domain
+        Retrieve a paginated list of policy rule sets available for a particular domain.
+        Use
+        [List domain policies](#operation/`list_domain_policies_v2_domains__domain_id__policies_get`)
+        to fetch the policies.
 
         Args:
           domain_id: The domain ID
@@ -535,7 +538,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapDetailedDomain:
         """
-        Set Domain Status
+        Update domain
 
         Args:
           domain_id: The domain ID
@@ -720,7 +723,10 @@ class AsyncDomainsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[WaapRuleSet, AsyncOffsetPage[WaapRuleSet]]:
         """
-        Retrieve a paginated list of policy rule sets linked to a particular domain
+        Retrieve a paginated list of policy rule sets available for a particular domain.
+        Use
+        [List domain policies](#operation/`list_domain_policies_v2_domains__domain_id__policies_get`)
+        to fetch the policies.
 
         Args:
           domain_id: The domain ID

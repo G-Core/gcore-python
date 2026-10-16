@@ -85,6 +85,7 @@ Methods:
 
 - <code title="patch /waap/v2/domains/{domain_id}/policies/{policy_id}">client.waap.domains.policies.<a href="./src/gcore/resources/waap/domains/policies.py">update</a>(policy_id, \*, domain_id, \*\*<a href="src/gcore/types/waap/domains/policy_update_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/waap_domain_policy_settings.py">WaapDomainPolicySettings</a></code>
 - <code title="get /waap/v2/domains/{domain_id}/policies">client.waap.domains.policies.<a href="./src/gcore/resources/waap/domains/policies.py">list</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/policy_list_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/waap_domain_policy.py">SyncOffsetPage[WaapDomainPolicy]</a></code>
+- <code title="get /waap/v2/domains/{domain_id}/policies/{policy_id}">client.waap.domains.policies.<a href="./src/gcore/resources/waap/domains/policies.py">get</a>(policy_id, \*, domain_id) -> <a href="./src/gcore/types/waap/domains/waap_domain_policy_settings.py">WaapDomainPolicySettings</a></code>
 
 ### PolicyOverrides
 
