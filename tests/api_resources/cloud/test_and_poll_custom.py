@@ -747,7 +747,9 @@ _LB_SUPPORTED_PARAM_IDS = [c[0] for c in _LB_SUPPORTED_PARAM_CASES]
 
 
 def _assert_param_sent(case_id: str, router: respx.Router, param: str, where: str, expected: object) -> None:
-    action = next(call.request for call in router.calls if call.request.method != "GET")
+    # respx leaves `calls` untyped.
+    calls: Any = router.calls
+    action: httpx.Request = next(call.request for call in calls if call.request.method != "GET")
     if where == "body":
         body = json.loads(action.content)
         assert param in body, f"{case_id} did not send `{param}` in the request body"
