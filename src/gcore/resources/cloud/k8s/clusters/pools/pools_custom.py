@@ -9,7 +9,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ......_types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ......_types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ......types.cloud.k8s.clusters.k8s_cluster_pool import K8SClusterPool
 
 if TYPE_CHECKING:
@@ -43,6 +43,7 @@ class PoolsResourceCustomMixin:
         kubelet_config: Optional[Dict[str, str]] | Omit = omit,
         labels: Optional[Dict[str, str]] | Omit = omit,
         max_node_count: Optional[int] | Omit = omit,
+        security_group_ids: SequenceNotStr[str] | Omit = omit,
         servergroup_policy: Optional[Literal["affinity", "anti-affinity", "soft-anti-affinity"]] | Omit = omit,
         taints: Optional[Dict[str, str]] | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
@@ -72,6 +73,7 @@ class PoolsResourceCustomMixin:
             kubelet_config=kubelet_config,
             labels=labels,
             max_node_count=max_node_count,
+            security_group_ids=security_group_ids,
             servergroup_policy=servergroup_policy,
             taints=taints,
             extra_headers=extra_headers,
@@ -230,6 +232,7 @@ class AsyncPoolsResourceCustomMixin:
         kubelet_config: Optional[Dict[str, str]] | Omit = omit,
         labels: Optional[Dict[str, str]] | Omit = omit,
         max_node_count: Optional[int] | Omit = omit,
+        security_group_ids: SequenceNotStr[str] | Omit = omit,
         servergroup_policy: Optional[Literal["affinity", "anti-affinity", "soft-anti-affinity"]] | Omit = omit,
         taints: Optional[Dict[str, str]] | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
@@ -259,6 +262,7 @@ class AsyncPoolsResourceCustomMixin:
             kubelet_config=kubelet_config,
             labels=labels,
             max_node_count=max_node_count,
+            security_group_ids=security_group_ids,
             servergroup_policy=servergroup_policy,
             taints=taints,
             extra_headers=extra_headers,

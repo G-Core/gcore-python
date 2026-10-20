@@ -6,7 +6,9 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Dict, Iterable, Optional, cast
 
-from ...._types import Body, Omit, Query, Headers, omit
+import httpx
+
+from ...._types import NOT_GIVEN, Body, Omit, Query, Headers, NotGiven, omit
 from ....types.cloud.baremetal import (
     server_create_params,
 )
@@ -45,6 +47,7 @@ class ServersResourceCustomMixin:
         username: str | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
         polling_timeout_seconds: int | Omit = omit,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -73,6 +76,7 @@ class ServersResourceCustomMixin:
             extra_headers=extra_headers,
             extra_query=extra_query,
             extra_body=extra_body,
+            timeout=timeout,
         )
         if not response.tasks or len(response.tasks) != 1:
             raise ValueError("Expected exactly one task to be created")
@@ -92,6 +96,7 @@ class ServersResourceCustomMixin:
             extra_headers=extra_headers,
             extra_query=extra_query,
             extra_body=extra_body,
+            timeout=timeout,
         )
         if len(servers.results) != 1:
             raise ValueError(f"Server {server_id} not found")
@@ -107,6 +112,7 @@ class ServersResourceCustomMixin:
         user_data: str | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
         polling_timeout_seconds: int | Omit = omit,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -125,6 +131,7 @@ class ServersResourceCustomMixin:
             extra_headers=extra_headers,
             extra_query=extra_query,
             extra_body=extra_body,
+            timeout=timeout,
         )
         if not response.tasks:
             raise ValueError("Expected at least one task to be created")
@@ -141,6 +148,7 @@ class ServersResourceCustomMixin:
             extra_headers=extra_headers,
             extra_query=extra_query,
             extra_body=extra_body,
+            timeout=timeout,
         )
         if len(servers.results) != 1:
             raise ValueError(f"Server {server_id} not found")
@@ -176,6 +184,7 @@ class AsyncServersResourceCustomMixin:
         username: str | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
         polling_timeout_seconds: int | Omit = omit,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -204,6 +213,7 @@ class AsyncServersResourceCustomMixin:
             extra_headers=extra_headers,
             extra_query=extra_query,
             extra_body=extra_body,
+            timeout=timeout,
         )
         if not response.tasks or len(response.tasks) != 1:
             raise ValueError("Expected exactly one task to be created")
@@ -223,6 +233,7 @@ class AsyncServersResourceCustomMixin:
             extra_headers=extra_headers,
             extra_query=extra_query,
             extra_body=extra_body,
+            timeout=timeout,
         )
         if len(servers.results) != 1:
             raise ValueError(f"Server {server_id} not found")
@@ -238,6 +249,7 @@ class AsyncServersResourceCustomMixin:
         user_data: str | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
         polling_timeout_seconds: int | Omit = omit,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -256,6 +268,7 @@ class AsyncServersResourceCustomMixin:
             extra_headers=extra_headers,
             extra_query=extra_query,
             extra_body=extra_body,
+            timeout=timeout,
         )
         if not response.tasks:
             raise ValueError("Expected at least one task to be created")
@@ -272,6 +285,7 @@ class AsyncServersResourceCustomMixin:
             extra_headers=extra_headers,
             extra_query=extra_query,
             extra_body=extra_body,
+            timeout=timeout,
         )
         if len(servers.results) != 1:
             raise ValueError(f"Server {server_id} not found")

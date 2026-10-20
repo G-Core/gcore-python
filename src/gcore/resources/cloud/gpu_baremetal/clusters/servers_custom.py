@@ -73,6 +73,7 @@ class ServersResourceCustomMixin:
         project_id: int | None = None,
         region_id: int | None = None,
         cluster_id: str,
+        keep_ip_addresses: bool | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
         polling_timeout_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -90,6 +91,7 @@ class ServersResourceCustomMixin:
             project_id=project_id,
             region_id=region_id,
             cluster_id=cluster_id,
+            keep_ip_addresses=keep_ip_addresses,
             extra_headers=extra_headers,
             extra_query=extra_query,
             extra_body=extra_body,
@@ -288,6 +290,7 @@ class AsyncServersResourceCustomMixin:
         project_id: int | None = None,
         region_id: int | None = None,
         cluster_id: str,
+        keep_ip_addresses: bool | Omit = omit,
         polling_interval_seconds: int | Omit = omit,
         polling_timeout_seconds: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -305,6 +308,7 @@ class AsyncServersResourceCustomMixin:
             project_id=project_id,
             region_id=region_id,
             cluster_id=cluster_id,
+            keep_ip_addresses=keep_ip_addresses,
             extra_headers=extra_headers,
             extra_query=extra_query,
             extra_body=extra_body,
