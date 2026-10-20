@@ -7,6 +7,7 @@
 # `scripts/test`) without needing the Prism/Steady mock server.
 from __future__ import annotations
 
+import json
 from typing import Any, Callable
 
 import httpx
@@ -682,3 +683,113 @@ def test_tasks_poll_error() -> None:
         router.route(url__regex=r".+").mock(return_value=httpx.Response(200, json=errored))
         with pytest.raises(ValueError, match="boom"):
             client.cloud.tasks.poll(task_id="task-1")
+
+
+# Parameters that the generated load-balancer methods accept but that the hand-written
+# *_and_poll helpers dropped, so callers could not reach them through the convenience
+# methods. Each case passes the parameter and asserts that it reaches the API request.
+# (case_id, invoke, param, where it has to show up, expected value)
+_LB_SUPPORTED_PARAM_CASES: list[tuple[str, Callable[[Any], Any], str, str, object]] = [
+    (
+        "cloud.load_balancers.listeners.create_and_poll",
+        lambda c: c.cloud.load_balancers.listeners.create_and_poll(
+            project_id=1,
+            region_id=1,
+            load_balancer_id="lb-1",
+            name="listener-1",
+            protocol="HTTP",
+            protocol_port=80,
+            default_pool_id="pool-1",
+        ),
+        "default_pool_id",
+        "body",
+        "pool-1",
+    ),
+    (
+        "cloud.load_balancers.listeners.update_and_poll",
+        lambda c: c.cloud.load_balancers.listeners.update_and_poll(
+            "listener-1",
+            project_id=1,
+            region_id=1,
+            admin_state_up=False,
+        ),
+        "admin_state_up",
+        "body",
+        False,
+    ),
+    (
+        "cloud.load_balancers.listeners.delete_and_poll",
+        lambda c: c.cloud.load_balancers.listeners.delete_and_poll(
+            "listener-1",
+            project_id=1,
+            region_id=1,
+            delete_default_pool=True,
+        ),
+        "delete_default_pool",
+        "query",
+        "true",
+    ),
+    (
+        "cloud.load_balancers.pools.update_and_poll",
+        lambda c: c.cloud.load_balancers.pools.update_and_poll(
+            "pool-1",
+            project_id=1,
+            region_id=1,
+            admin_state_up=False,
+        ),
+        "admin_state_up",
+        "body",
+        False,
+    ),
+]
+
+_LB_SUPPORTED_PARAM_IDS = [c[0] for c in _LB_SUPPORTED_PARAM_CASES]
+
+
+def _assert_param_sent(case_id: str, router: respx.Router, param: str, where: str, expected: object) -> None:
+    action = next(call.request for call in router.calls if call.request.method != "GET")
+    if where == "body":
+        body = json.loads(action.content)
+        assert param in body, f"{case_id} did not send `{param}` in the request body"
+        assert body[param] == expected
+    else:
+        assert param in action.url.params, f"{case_id} did not send `{param}` in the query string"
+        assert action.url.params[param] == expected
+
+
+@pytest.mark.parametrize(
+    ("case_id", "invoke", "param", "where", "expected"),
+    _LB_SUPPORTED_PARAM_CASES,
+    ids=_LB_SUPPORTED_PARAM_IDS,
+)
+def test_and_poll_forwards_supported_params(
+    case_id: str,
+    invoke: Callable[[Any], Any],
+    param: str,
+    where: str,
+    expected: object,
+) -> None:
+    client = Gcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_handler)
+        invoke(client)  # must not raise
+        _assert_param_sent(case_id, router, param, where, expected)
+
+
+@pytest.mark.parametrize(
+    ("case_id", "invoke", "param", "where", "expected"),
+    _LB_SUPPORTED_PARAM_CASES,
+    ids=_LB_SUPPORTED_PARAM_IDS,
+)
+async def test_and_poll_forwards_supported_params_async(
+    case_id: str,
+    invoke: Callable[[Any], Any],
+    param: str,
+    where: str,
+    expected: object,
+) -> None:
+    client = AsyncGcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_handler)
+        await invoke(client)  # must not raise
+        _assert_param_sent(case_id, router, param, where, expected)
