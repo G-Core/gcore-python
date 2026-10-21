@@ -23,14 +23,14 @@ class TestCDNResources:
     @parametrize
     def test_method_create(self, client: Gcore) -> None:
         cdn_resource = client.cdn.cdn_resources.create(
-            cname="cdn.site.com",
+            cname="cdn.example.com",
         )
         assert_matches_type(CDNResource, cdn_resource, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Gcore) -> None:
         cdn_resource = client.cdn.cdn_resources.create(
-            cname="cdn.site.com",
+            cname="cdn.example.com",
             active=True,
             description="My resource",
             name="Resource for images",
@@ -66,7 +66,7 @@ class TestCDNResources:
                 },
                 "cors": {
                     "enabled": True,
-                    "value": ["domain.com", "domain2.com"],
+                    "value": ["example.com", "example.org"],
                     "always": True,
                 },
                 "country_acl": {
@@ -158,7 +158,7 @@ class TestCDNResources:
                 },
                 "host_header": {
                     "enabled": True,
-                    "value": "host.com",
+                    "value": "example.com",
                 },
                 "http3_enabled": {
                     "enabled": True,
@@ -181,7 +181,7 @@ class TestCDNResources:
                 },
                 "ip_address_acl": {
                     "enabled": True,
-                    "excepted_values": ["192.168.1.100/32"],
+                    "excepted_values": ["192.0.2.20/32"],
                     "policy_type": "deny",
                 },
                 "limit_bandwidth": {
@@ -235,7 +235,7 @@ class TestCDNResources:
                 },
                 "referrer_acl": {
                     "enabled": True,
-                    "excepted_values": ["example.com", "*.example.net"],
+                    "excepted_values": ["example.com", "*.example.org"],
                     "policy_type": "deny",
                 },
                 "response_headers_hiding_policy": {
@@ -341,7 +341,7 @@ class TestCDNResources:
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
         response = client.cdn.cdn_resources.with_raw_response.create(
-            cname="cdn.site.com",
+            cname="cdn.example.com",
         )
 
         assert response.is_closed is True
@@ -352,7 +352,7 @@ class TestCDNResources:
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
         with client.cdn.cdn_resources.with_streaming_response.create(
-            cname="cdn.site.com",
+            cname="cdn.example.com",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -410,7 +410,7 @@ class TestCDNResources:
                 },
                 "cors": {
                     "enabled": True,
-                    "value": ["domain.com", "domain2.com"],
+                    "value": ["example.com", "example.org"],
                     "always": True,
                 },
                 "country_acl": {
@@ -502,7 +502,7 @@ class TestCDNResources:
                 },
                 "host_header": {
                     "enabled": True,
-                    "value": "host.com",
+                    "value": "example.com",
                 },
                 "http3_enabled": {
                     "enabled": True,
@@ -525,7 +525,7 @@ class TestCDNResources:
                 },
                 "ip_address_acl": {
                     "enabled": True,
-                    "excepted_values": ["192.168.1.100/32"],
+                    "excepted_values": ["192.0.2.20/32"],
                     "policy_type": "deny",
                 },
                 "limit_bandwidth": {
@@ -579,7 +579,7 @@ class TestCDNResources:
                 },
                 "referrer_acl": {
                     "enabled": True,
-                    "excepted_values": ["example.com", "*.example.net"],
+                    "excepted_values": ["example.com", "*.example.org"],
                     "policy_type": "deny",
                 },
                 "response_headers_hiding_policy": {
@@ -742,6 +742,7 @@ class TestCDNResources:
             suspend=True,
             suspended=True,
             vp_enabled=True,
+            waap_domain_id_isnull=True,
         )
         assert_matches_type(SyncOffsetPage[CDNResource], cdn_resource, path=["response"])
 
@@ -1059,7 +1060,7 @@ class TestCDNResources:
                 },
                 "cors": {
                     "enabled": True,
-                    "value": ["domain.com", "domain2.com"],
+                    "value": ["example.com", "example.org"],
                     "always": True,
                 },
                 "country_acl": {
@@ -1151,7 +1152,7 @@ class TestCDNResources:
                 },
                 "host_header": {
                     "enabled": True,
-                    "value": "host.com",
+                    "value": "example.com",
                 },
                 "http3_enabled": {
                     "enabled": True,
@@ -1174,7 +1175,7 @@ class TestCDNResources:
                 },
                 "ip_address_acl": {
                     "enabled": True,
-                    "excepted_values": ["192.168.1.100/32"],
+                    "excepted_values": ["192.0.2.20/32"],
                     "policy_type": "deny",
                 },
                 "limit_bandwidth": {
@@ -1228,7 +1229,7 @@ class TestCDNResources:
                 },
                 "referrer_acl": {
                     "enabled": True,
-                    "excepted_values": ["example.com", "*.example.net"],
+                    "excepted_values": ["example.com", "*.example.org"],
                     "policy_type": "deny",
                 },
                 "response_headers_hiding_policy": {
@@ -1363,14 +1364,14 @@ class TestAsyncCDNResources:
     @parametrize
     async def test_method_create(self, async_client: AsyncGcore) -> None:
         cdn_resource = await async_client.cdn.cdn_resources.create(
-            cname="cdn.site.com",
+            cname="cdn.example.com",
         )
         assert_matches_type(CDNResource, cdn_resource, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
         cdn_resource = await async_client.cdn.cdn_resources.create(
-            cname="cdn.site.com",
+            cname="cdn.example.com",
             active=True,
             description="My resource",
             name="Resource for images",
@@ -1406,7 +1407,7 @@ class TestAsyncCDNResources:
                 },
                 "cors": {
                     "enabled": True,
-                    "value": ["domain.com", "domain2.com"],
+                    "value": ["example.com", "example.org"],
                     "always": True,
                 },
                 "country_acl": {
@@ -1498,7 +1499,7 @@ class TestAsyncCDNResources:
                 },
                 "host_header": {
                     "enabled": True,
-                    "value": "host.com",
+                    "value": "example.com",
                 },
                 "http3_enabled": {
                     "enabled": True,
@@ -1521,7 +1522,7 @@ class TestAsyncCDNResources:
                 },
                 "ip_address_acl": {
                     "enabled": True,
-                    "excepted_values": ["192.168.1.100/32"],
+                    "excepted_values": ["192.0.2.20/32"],
                     "policy_type": "deny",
                 },
                 "limit_bandwidth": {
@@ -1575,7 +1576,7 @@ class TestAsyncCDNResources:
                 },
                 "referrer_acl": {
                     "enabled": True,
-                    "excepted_values": ["example.com", "*.example.net"],
+                    "excepted_values": ["example.com", "*.example.org"],
                     "policy_type": "deny",
                 },
                 "response_headers_hiding_policy": {
@@ -1681,7 +1682,7 @@ class TestAsyncCDNResources:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
         response = await async_client.cdn.cdn_resources.with_raw_response.create(
-            cname="cdn.site.com",
+            cname="cdn.example.com",
         )
 
         assert response.is_closed is True
@@ -1692,7 +1693,7 @@ class TestAsyncCDNResources:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
         async with async_client.cdn.cdn_resources.with_streaming_response.create(
-            cname="cdn.site.com",
+            cname="cdn.example.com",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1750,7 +1751,7 @@ class TestAsyncCDNResources:
                 },
                 "cors": {
                     "enabled": True,
-                    "value": ["domain.com", "domain2.com"],
+                    "value": ["example.com", "example.org"],
                     "always": True,
                 },
                 "country_acl": {
@@ -1842,7 +1843,7 @@ class TestAsyncCDNResources:
                 },
                 "host_header": {
                     "enabled": True,
-                    "value": "host.com",
+                    "value": "example.com",
                 },
                 "http3_enabled": {
                     "enabled": True,
@@ -1865,7 +1866,7 @@ class TestAsyncCDNResources:
                 },
                 "ip_address_acl": {
                     "enabled": True,
-                    "excepted_values": ["192.168.1.100/32"],
+                    "excepted_values": ["192.0.2.20/32"],
                     "policy_type": "deny",
                 },
                 "limit_bandwidth": {
@@ -1919,7 +1920,7 @@ class TestAsyncCDNResources:
                 },
                 "referrer_acl": {
                     "enabled": True,
-                    "excepted_values": ["example.com", "*.example.net"],
+                    "excepted_values": ["example.com", "*.example.org"],
                     "policy_type": "deny",
                 },
                 "response_headers_hiding_policy": {
@@ -2082,6 +2083,7 @@ class TestAsyncCDNResources:
             suspend=True,
             suspended=True,
             vp_enabled=True,
+            waap_domain_id_isnull=True,
         )
         assert_matches_type(AsyncOffsetPage[CDNResource], cdn_resource, path=["response"])
 
@@ -2399,7 +2401,7 @@ class TestAsyncCDNResources:
                 },
                 "cors": {
                     "enabled": True,
-                    "value": ["domain.com", "domain2.com"],
+                    "value": ["example.com", "example.org"],
                     "always": True,
                 },
                 "country_acl": {
@@ -2491,7 +2493,7 @@ class TestAsyncCDNResources:
                 },
                 "host_header": {
                     "enabled": True,
-                    "value": "host.com",
+                    "value": "example.com",
                 },
                 "http3_enabled": {
                     "enabled": True,
@@ -2514,7 +2516,7 @@ class TestAsyncCDNResources:
                 },
                 "ip_address_acl": {
                     "enabled": True,
-                    "excepted_values": ["192.168.1.100/32"],
+                    "excepted_values": ["192.0.2.20/32"],
                     "policy_type": "deny",
                 },
                 "limit_bandwidth": {
@@ -2568,7 +2570,7 @@ class TestAsyncCDNResources:
                 },
                 "referrer_acl": {
                     "enabled": True,
-                    "excepted_values": ["example.com", "*.example.net"],
+                    "excepted_values": ["example.com", "*.example.org"],
                     "policy_type": "deny",
                 },
                 "response_headers_hiding_policy": {

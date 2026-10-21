@@ -7,41 +7,50 @@ from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 __all__ = [
     "TargetCreateParams",
-    "Config",
-    "ConfigS3GcoreConfig",
-    "ConfigBaseS3Config",
-    "ConfigS3OssConfig",
-    "ConfigS3OtherConfig",
-    "ConfigS3V1Config",
-    "ConfigFtpConfig",
-    "ConfigSftpConfig",
-    "ConfigHTTPConfig",
-    "ConfigHTTPConfigUpload",
-    "ConfigHTTPConfigUploadResponseAction",
-    "ConfigHTTPConfigAppend",
-    "ConfigHTTPConfigAppendResponseAction",
-    "ConfigHTTPConfigAuth",
-    "ConfigHTTPConfigAuthConfig",
-    "ConfigHTTPConfigRetry",
-    "ConfigHTTPConfigRetryResponseAction",
-    "ConfigAzureBlobConfig",
-    "ConfigAzureBlobConfigAuth",
-    "ConfigAzureBlobConfigAuthConfig",
-    "ConfigAzureBlobConfigAuthConfigAccountKey",
-    "ConfigAzureBlobConfigAuthConfigToken",
-    "ConfigSlsConfig",
-    "ConfigSlsConfigAuth",
-    "ConfigSlsConfigAuthConfig",
+    "CreateLogsUploaderTargetS3Gcore",
+    "CreateLogsUploaderTargetS3GcoreConfig",
+    "CreateLogsUploaderTargetS3GcoreConfigS3GcoreConfig",
+    "CreateLogsUploaderTargetS3GcoreConfigS3GcoreBoundConfig",
+    "CreateLogsUploaderTargetS3Amazon",
+    "CreateLogsUploaderTargetS3AmazonConfig",
+    "CreateLogsUploaderTargetS3Oss",
+    "CreateLogsUploaderTargetS3OssConfig",
+    "CreateLogsUploaderTargetS3Other",
+    "CreateLogsUploaderTargetS3OtherConfig",
+    "CreateLogsUploaderTargetS3V1",
+    "CreateLogsUploaderTargetS3V1Config",
+    "CreateLogsUploaderTargetFtp",
+    "CreateLogsUploaderTargetFtpConfig",
+    "CreateLogsUploaderTargetSftp",
+    "CreateLogsUploaderTargetSftpConfig",
+    "CreateLogsUploaderTargetHTTP",
+    "CreateLogsUploaderTargetHTTPConfig",
+    "CreateLogsUploaderTargetHTTPConfigUpload",
+    "CreateLogsUploaderTargetHTTPConfigUploadResponseAction",
+    "CreateLogsUploaderTargetHTTPConfigAppend",
+    "CreateLogsUploaderTargetHTTPConfigAppendResponseAction",
+    "CreateLogsUploaderTargetHTTPConfigAuth",
+    "CreateLogsUploaderTargetHTTPConfigAuthConfig",
+    "CreateLogsUploaderTargetHTTPConfigRetry",
+    "CreateLogsUploaderTargetHTTPConfigRetryResponseAction",
+    "CreateLogsUploaderTargetAzureBlob",
+    "CreateLogsUploaderTargetAzureBlobConfig",
+    "CreateLogsUploaderTargetAzureBlobConfigAuth",
+    "CreateLogsUploaderTargetAzureBlobConfigAuthConfig",
+    "CreateLogsUploaderTargetAzureBlobConfigAuthConfigAccountKey",
+    "CreateLogsUploaderTargetAzureBlobConfigAuthConfigToken",
+    "CreateLogsUploaderTargetSls",
+    "CreateLogsUploaderTargetSlsConfig",
+    "CreateLogsUploaderTargetSlsConfigAuth",
+    "CreateLogsUploaderTargetSlsConfigAuthConfig",
 ]
 
 
-class TargetCreateParams(TypedDict, total=False):
-    config: Required[Config]
-    """Config for specific storage type."""
+class CreateLogsUploaderTargetS3Gcore(TypedDict, total=False):
+    config: Required[CreateLogsUploaderTargetS3GcoreConfig]
+    """Config for the `s3_gcore` storage type."""
 
-    storage_type: Required[
-        Literal["s3_gcore", "s3_amazon", "s3_oss", "s3_other", "s3_v1", "ftp", "sftp", "http", "azure_blob", "sls"]
-    ]
+    storage_type: Required[Literal["s3_gcore"]]
     """Type of storage for logs."""
 
     description: str
@@ -51,7 +60,7 @@ class TargetCreateParams(TypedDict, total=False):
     """Name of the target."""
 
 
-class ConfigS3GcoreConfig(TypedDict, total=False):
+class CreateLogsUploaderTargetS3GcoreConfigS3GcoreConfig(TypedDict, total=False):
     access_key_id: str
 
     bucket_name: str
@@ -59,6 +68,11 @@ class ConfigS3GcoreConfig(TypedDict, total=False):
     directory: Optional[str]
 
     endpoint: str
+    """S3 storage endpoint URL.
+
+    Must be a public address: private and reserved IP addresses, `localhost`, and
+    hostnames that resolve to them are rejected.
+    """
 
     region: str
 
@@ -67,7 +81,44 @@ class ConfigS3GcoreConfig(TypedDict, total=False):
     use_path_style: bool
 
 
-class ConfigBaseS3Config(TypedDict, total=False):
+class CreateLogsUploaderTargetS3GcoreConfigS3GcoreBoundConfig(TypedDict, total=False):
+    """Deliver logs to a bucket in your Gcore Object Storage.
+
+    Select the storage and bucket, and the
+    CDN configures the connection for you.
+    """
+
+    bucket_name: Required[str]
+    """Name of a bucket in the selected storage."""
+
+    storage_id: Required[int]
+    """ID of your Gcore Object Storage.
+
+    The storage must be active and of the Standard type.
+    """
+
+    directory: Optional[str]
+
+
+CreateLogsUploaderTargetS3GcoreConfig: TypeAlias = Union[
+    CreateLogsUploaderTargetS3GcoreConfigS3GcoreConfig, CreateLogsUploaderTargetS3GcoreConfigS3GcoreBoundConfig
+]
+
+
+class CreateLogsUploaderTargetS3Amazon(TypedDict, total=False):
+    config: Required[CreateLogsUploaderTargetS3AmazonConfig]
+
+    storage_type: Required[Literal["s3_amazon"]]
+    """Type of storage for logs."""
+
+    description: str
+    """Description of the target."""
+
+    name: str
+    """Name of the target."""
+
+
+class CreateLogsUploaderTargetS3AmazonConfig(TypedDict, total=False):
     access_key_id: Required[str]
 
     bucket_name: Required[str]
@@ -79,21 +130,52 @@ class ConfigBaseS3Config(TypedDict, total=False):
     directory: Optional[str]
 
 
-class ConfigS3OssConfig(TypedDict, total=False):
-    access_key_id: str
+class CreateLogsUploaderTargetS3Oss(TypedDict, total=False):
+    config: Required[CreateLogsUploaderTargetS3OssConfig]
 
-    bucket_name: str
+    storage_type: Required[Literal["s3_oss"]]
+    """Type of storage for logs."""
+
+    description: str
+    """Description of the target."""
+
+    name: str
+    """Name of the target."""
+
+
+class CreateLogsUploaderTargetS3OssConfig(TypedDict, total=False):
+    access_key_id: Required[str]
+
+    bucket_name: Required[str]
+
+    secret_access_key: Required[str]
 
     directory: Optional[str]
 
     endpoint: Optional[str]
+    """S3 storage endpoint URL.
+
+    Must be a public address: private and reserved IP addresses, `localhost`, and
+    hostnames that resolve to them are rejected.
+    """
 
     region: Optional[str]
 
-    secret_access_key: str
+
+class CreateLogsUploaderTargetS3Other(TypedDict, total=False):
+    config: Required[CreateLogsUploaderTargetS3OtherConfig]
+
+    storage_type: Required[Literal["s3_other"]]
+    """Type of storage for logs."""
+
+    description: str
+    """Description of the target."""
+
+    name: str
+    """Name of the target."""
 
 
-class ConfigS3OtherConfig(TypedDict, total=False):
+class CreateLogsUploaderTargetS3OtherConfig(TypedDict, total=False):
     access_key_id: str
 
     bucket_name: str
@@ -101,6 +183,11 @@ class ConfigS3OtherConfig(TypedDict, total=False):
     directory: Optional[str]
 
     endpoint: str
+    """S3 storage endpoint URL.
+
+    Must be a public address: private and reserved IP addresses, `localhost`, and
+    hostnames that resolve to them are rejected.
+    """
 
     region: str
 
@@ -109,7 +196,20 @@ class ConfigS3OtherConfig(TypedDict, total=False):
     use_path_style: bool
 
 
-class ConfigS3V1Config(TypedDict, total=False):
+class CreateLogsUploaderTargetS3V1(TypedDict, total=False):
+    config: Required[CreateLogsUploaderTargetS3V1Config]
+
+    storage_type: Required[Literal["s3_v1"]]
+    """Type of storage for logs."""
+
+    description: str
+    """Description of the target."""
+
+    name: str
+    """Name of the target."""
+
+
+class CreateLogsUploaderTargetS3V1Config(TypedDict, total=False):
     access_key_id: str
 
     bucket_name: str
@@ -117,6 +217,11 @@ class ConfigS3V1Config(TypedDict, total=False):
     directory: Optional[str]
 
     endpoint: str
+    """S3 storage endpoint URL.
+
+    Must be a public address: private and reserved IP addresses, `localhost`, and
+    hostnames that resolve to them are rejected.
+    """
 
     region: str
 
@@ -125,7 +230,20 @@ class ConfigS3V1Config(TypedDict, total=False):
     use_path_style: bool
 
 
-class ConfigFtpConfig(TypedDict, total=False):
+class CreateLogsUploaderTargetFtp(TypedDict, total=False):
+    config: Required[CreateLogsUploaderTargetFtpConfig]
+
+    storage_type: Required[Literal["ftp"]]
+    """Type of storage for logs."""
+
+    description: str
+    """Description of the target."""
+
+    name: str
+    """Name of the target."""
+
+
+class CreateLogsUploaderTargetFtpConfig(TypedDict, total=False):
     directory: Optional[str]
 
     hostname: str
@@ -137,7 +255,20 @@ class ConfigFtpConfig(TypedDict, total=False):
     user: str
 
 
-class ConfigSftpConfig(TypedDict, total=False):
+class CreateLogsUploaderTargetSftp(TypedDict, total=False):
+    config: Required[CreateLogsUploaderTargetSftpConfig]
+
+    storage_type: Required[Literal["sftp"]]
+    """Type of storage for logs."""
+
+    description: str
+    """Description of the target."""
+
+    name: str
+    """Name of the target."""
+
+
+class CreateLogsUploaderTargetSftpConfig(TypedDict, total=False):
     directory: Optional[str]
 
     hostname: str
@@ -153,7 +284,20 @@ class ConfigSftpConfig(TypedDict, total=False):
     user: str
 
 
-class ConfigHTTPConfigUploadResponseAction(TypedDict, total=False):
+class CreateLogsUploaderTargetHTTP(TypedDict, total=False):
+    config: Required[CreateLogsUploaderTargetHTTPConfig]
+
+    storage_type: Required[Literal["http"]]
+    """Type of storage for logs."""
+
+    description: str
+    """Description of the target."""
+
+    name: str
+    """Name of the target."""
+
+
+class CreateLogsUploaderTargetHTTPConfigUploadResponseAction(TypedDict, total=False):
     action: Required[Literal["drop", "retry", "append"]]
 
     description: str
@@ -163,21 +307,21 @@ class ConfigHTTPConfigUploadResponseAction(TypedDict, total=False):
     match_status_code: int
 
 
-class ConfigHTTPConfigUpload(TypedDict, total=False):
+class CreateLogsUploaderTargetHTTPConfigUpload(TypedDict, total=False):
     url: Required[str]
 
     headers: Dict[str, str]
 
     method: Literal["POST", "PUT"]
 
-    response_actions: Iterable[ConfigHTTPConfigUploadResponseAction]
+    response_actions: Iterable[CreateLogsUploaderTargetHTTPConfigUploadResponseAction]
 
     timeout_seconds: int
 
     use_compression: bool
 
 
-class ConfigHTTPConfigAppendResponseAction(TypedDict, total=False):
+class CreateLogsUploaderTargetHTTPConfigAppendResponseAction(TypedDict, total=False):
     action: Required[Literal["drop", "retry", "append"]]
 
     description: str
@@ -187,33 +331,33 @@ class ConfigHTTPConfigAppendResponseAction(TypedDict, total=False):
     match_status_code: int
 
 
-class ConfigHTTPConfigAppend(TypedDict, total=False):
+class CreateLogsUploaderTargetHTTPConfigAppend(TypedDict, total=False):
     url: Required[str]
 
     headers: Dict[str, str]
 
     method: Literal["POST", "PUT"]
 
-    response_actions: Iterable[ConfigHTTPConfigAppendResponseAction]
+    response_actions: Iterable[CreateLogsUploaderTargetHTTPConfigAppendResponseAction]
 
     timeout_seconds: int
 
     use_compression: bool
 
 
-class ConfigHTTPConfigAuthConfig(TypedDict, total=False):
+class CreateLogsUploaderTargetHTTPConfigAuthConfig(TypedDict, total=False):
     token: Required[str]
 
     header_name: Required[str]
 
 
-class ConfigHTTPConfigAuth(TypedDict, total=False):
-    config: Required[ConfigHTTPConfigAuthConfig]
+class CreateLogsUploaderTargetHTTPConfigAuth(TypedDict, total=False):
+    config: Required[CreateLogsUploaderTargetHTTPConfigAuthConfig]
 
     type: Required[Literal["token"]]
 
 
-class ConfigHTTPConfigRetryResponseAction(TypedDict, total=False):
+class CreateLogsUploaderTargetHTTPConfigRetryResponseAction(TypedDict, total=False):
     action: Required[Literal["drop", "retry", "append"]]
 
     description: str
@@ -223,60 +367,73 @@ class ConfigHTTPConfigRetryResponseAction(TypedDict, total=False):
     match_status_code: int
 
 
-class ConfigHTTPConfigRetry(TypedDict, total=False):
+class CreateLogsUploaderTargetHTTPConfigRetry(TypedDict, total=False):
     url: Required[str]
 
     headers: Dict[str, str]
 
     method: Literal["POST", "PUT"]
 
-    response_actions: Iterable[ConfigHTTPConfigRetryResponseAction]
+    response_actions: Iterable[CreateLogsUploaderTargetHTTPConfigRetryResponseAction]
 
     timeout_seconds: int
 
     use_compression: bool
 
 
-class ConfigHTTPConfig(TypedDict, total=False):
-    upload: Required[ConfigHTTPConfigUpload]
+class CreateLogsUploaderTargetHTTPConfig(TypedDict, total=False):
+    upload: Required[CreateLogsUploaderTargetHTTPConfigUpload]
 
-    append: ConfigHTTPConfigAppend
+    append: CreateLogsUploaderTargetHTTPConfigAppend
 
-    auth: ConfigHTTPConfigAuth
+    auth: CreateLogsUploaderTargetHTTPConfigAuth
 
     content_type: Literal["json", "text"]
 
-    retry: ConfigHTTPConfigRetry
+    retry: CreateLogsUploaderTargetHTTPConfigRetry
 
 
-class ConfigAzureBlobConfigAuthConfigAccountKey(TypedDict, total=False):
+class CreateLogsUploaderTargetAzureBlob(TypedDict, total=False):
+    config: Required[CreateLogsUploaderTargetAzureBlobConfig]
+
+    storage_type: Required[Literal["azure_blob"]]
+    """Type of storage for logs."""
+
+    description: str
+    """Description of the target."""
+
+    name: str
+    """Name of the target."""
+
+
+class CreateLogsUploaderTargetAzureBlobConfigAuthConfigAccountKey(TypedDict, total=False):
     account_key: Required[str]
     """Azure Blob Storage account key."""
 
 
-class ConfigAzureBlobConfigAuthConfigToken(TypedDict, total=False):
+class CreateLogsUploaderTargetAzureBlobConfigAuthConfigToken(TypedDict, total=False):
     token: Required[str]
     """Azure Blob Storage SAS token."""
 
 
-ConfigAzureBlobConfigAuthConfig: TypeAlias = Union[
-    ConfigAzureBlobConfigAuthConfigAccountKey, ConfigAzureBlobConfigAuthConfigToken
+CreateLogsUploaderTargetAzureBlobConfigAuthConfig: TypeAlias = Union[
+    CreateLogsUploaderTargetAzureBlobConfigAuthConfigAccountKey, CreateLogsUploaderTargetAzureBlobConfigAuthConfigToken
 ]
 
 
-class ConfigAzureBlobConfigAuth(TypedDict, total=False):
-    config: Required[ConfigAzureBlobConfigAuthConfig]
+class CreateLogsUploaderTargetAzureBlobConfigAuth(TypedDict, total=False):
+    config: Required[CreateLogsUploaderTargetAzureBlobConfigAuthConfig]
     """Authentication credentials."""
 
     type: Required[Literal["shared_key", "sas_token"]]
     """Authentication type."""
 
 
-class ConfigAzureBlobConfig(TypedDict, total=False):
+class CreateLogsUploaderTargetAzureBlobConfig(TypedDict, total=False):
     account_name: str
     """Azure Blob Storage account name."""
 
-    auth: ConfigAzureBlobConfigAuth
+    auth: CreateLogsUploaderTargetAzureBlobConfigAuth
 
     container_name: str
     """Azure Blob Storage container name."""
@@ -288,7 +445,20 @@ class ConfigAzureBlobConfig(TypedDict, total=False):
     """Custom Azure Blob Storage endpoint URL."""
 
 
-class ConfigSlsConfigAuthConfig(TypedDict, total=False):
+class CreateLogsUploaderTargetSls(TypedDict, total=False):
+    config: Required[CreateLogsUploaderTargetSlsConfig]
+
+    storage_type: Required[Literal["sls"]]
+    """Type of storage for logs."""
+
+    description: str
+    """Description of the target."""
+
+    name: str
+    """Name of the target."""
+
+
+class CreateLogsUploaderTargetSlsConfigAuthConfig(TypedDict, total=False):
     """Authentication credentials."""
 
     access_key_id: Required[str]
@@ -298,16 +468,16 @@ class ConfigSlsConfigAuthConfig(TypedDict, total=False):
     """Alibaba secret access key."""
 
 
-class ConfigSlsConfigAuth(TypedDict, total=False):
-    config: Required[ConfigSlsConfigAuthConfig]
+class CreateLogsUploaderTargetSlsConfigAuth(TypedDict, total=False):
+    config: Required[CreateLogsUploaderTargetSlsConfigAuthConfig]
     """Authentication credentials."""
 
     type: Required[Literal["ak_sk"]]
     """Authentication type."""
 
 
-class ConfigSlsConfig(TypedDict, total=False):
-    auth: ConfigSlsConfigAuth
+class CreateLogsUploaderTargetSlsConfig(TypedDict, total=False):
+    auth: CreateLogsUploaderTargetSlsConfigAuth
 
     endpoint: Optional[str]
     """SLS endpoint.
@@ -331,15 +501,15 @@ class ConfigSlsConfig(TypedDict, total=False):
     """Optional SLS topic (0-128 characters)."""
 
 
-Config: TypeAlias = Union[
-    ConfigS3GcoreConfig,
-    ConfigBaseS3Config,
-    ConfigS3OssConfig,
-    ConfigS3OtherConfig,
-    ConfigS3V1Config,
-    ConfigFtpConfig,
-    ConfigSftpConfig,
-    ConfigHTTPConfig,
-    ConfigAzureBlobConfig,
-    ConfigSlsConfig,
+TargetCreateParams: TypeAlias = Union[
+    CreateLogsUploaderTargetS3Gcore,
+    CreateLogsUploaderTargetS3Amazon,
+    CreateLogsUploaderTargetS3Oss,
+    CreateLogsUploaderTargetS3Other,
+    CreateLogsUploaderTargetS3V1,
+    CreateLogsUploaderTargetFtp,
+    CreateLogsUploaderTargetSftp,
+    CreateLogsUploaderTargetHTTP,
+    CreateLogsUploaderTargetAzureBlob,
+    CreateLogsUploaderTargetSls,
 ]

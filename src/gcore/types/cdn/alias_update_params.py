@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing_extensions import Literal, TypedDict
 
 __all__ = ["AliasUpdateParams"]
 
@@ -13,8 +13,9 @@ class AliasUpdateParams(TypedDict, total=False):
 
     Possible values:
 
-    - **true** – The alias is enabled and is served once its certificate is ready.
-    - **false** – The alias is paused and is not served.
+    - `true` – The alias is enabled.
+    - `false` – The alias is paused and is not served. Certificate issuance stops,
+      though an attempt already being processed completes.
     """
 
     automated: bool
@@ -25,10 +26,27 @@ class AliasUpdateParams(TypedDict, total=False):
 
     Possible values:
 
-    - **true** – Switch to a Let's Encrypt certificate. `ssl_id` must be omitted.
-      The current certificate keeps being served until the new one is issued.
-    - **false** – Switch to your own certificate. `ssl_id` is required and is served
+    - `true` – Switch to a Let's Encrypt certificate. `ssl_id` must be omitted. The
+      current certificate keeps being served until the new one is issued.
+    - `false` – Switch to your own certificate. `ssl_id` is required and is served
       immediately.
+    """
+
+    challenge_type: Literal["dns_01", "http_01"]
+    """
+    Domain validation method used to issue the Let's Encrypt certificate for the
+    alias.
+
+    Possible values:
+
+    - `dns_01` – Validation via a CNAME record for
+      `_acme-challenge.<alias hostname>`, shown in
+      `ssl_provisioning.acme_delegation`.
+    - `http_01` – Validation via an HTTP request to the alias hostname. The alias
+      hostname must point to your CDN CNAME, shown in
+      `ssl_provisioning.http_validation`. The request is served with the settings of
+      the alias's CDN resource, so they must not block or redirect
+      `/.well-known/acme-challenge/`.
     """
 
     ssl_id: int
@@ -37,6 +55,6 @@ class AliasUpdateParams(TypedDict, total=False):
 
     The certificate must cover the alias hostname; a Let's Encrypt certificate
     issued for one of your CDN resources cannot be used. Available for an alias with
-    `automated` set to **false**, and together with `automated` set to **false** to
+    `automated` set to `false`, and together with `automated` set to `false` to
     switch to your own certificate.
     """

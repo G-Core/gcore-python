@@ -24,7 +24,7 @@ class TestOriginGroups:
     def test_method_create_overload_1(self, client: Gcore) -> None:
         origin_group = client.cdn.origin_groups.create(
             name="YourOriginGroup",
-            sources=[{"source": "yourwebsite.com"}],
+            sources=[{"source": "origin.example.com"}],
         )
         assert_matches_type(OriginGroups, origin_group, path=["response"])
 
@@ -34,7 +34,7 @@ class TestOriginGroups:
             name="YourOriginGroup",
             sources=[
                 {
-                    "source": "yourwebsite.com",
+                    "source": "origin.example.com",
                     "backup": False,
                     "enabled": True,
                     "host_header_override": None,
@@ -50,7 +50,7 @@ class TestOriginGroups:
     def test_raw_response_create_overload_1(self, client: Gcore) -> None:
         response = client.cdn.origin_groups.with_raw_response.create(
             name="YourOriginGroup",
-            sources=[{"source": "yourwebsite.com"}],
+            sources=[{"source": "origin.example.com"}],
         )
 
         assert response.is_closed is True
@@ -62,7 +62,7 @@ class TestOriginGroups:
     def test_streaming_response_create_overload_1(self, client: Gcore) -> None:
         with client.cdn.origin_groups.with_streaming_response.create(
             name="YourOriginGroup",
-            sources=[{"source": "yourwebsite.com"}],
+            sources=[{"source": "origin.example.com"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -77,7 +77,7 @@ class TestOriginGroups:
         origin_group = client.cdn.origin_groups.create(
             auth={
                 "s3_access_key_id": "EXAMPLEFODNN7EXAMPLE",
-                "s3_bucket_name": "bucket_name",
+                "s3_bucket_name": "example-bucket",
                 "s3_secret_access_key": "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
                 "s3_type": "amazon",
             },
@@ -91,7 +91,7 @@ class TestOriginGroups:
         origin_group = client.cdn.origin_groups.create(
             auth={
                 "s3_access_key_id": "EXAMPLEFODNN7EXAMPLE",
-                "s3_bucket_name": "bucket_name",
+                "s3_bucket_name": "example-bucket",
                 "s3_secret_access_key": "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
                 "s3_type": "amazon",
                 "s3_region": "us-east-2",
@@ -109,7 +109,7 @@ class TestOriginGroups:
         response = client.cdn.origin_groups.with_raw_response.create(
             auth={
                 "s3_access_key_id": "EXAMPLEFODNN7EXAMPLE",
-                "s3_bucket_name": "bucket_name",
+                "s3_bucket_name": "example-bucket",
                 "s3_secret_access_key": "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
                 "s3_type": "amazon",
             },
@@ -127,7 +127,7 @@ class TestOriginGroups:
         with client.cdn.origin_groups.with_streaming_response.create(
             auth={
                 "s3_access_key_id": "EXAMPLEFODNN7EXAMPLE",
-                "s3_bucket_name": "bucket_name",
+                "s3_bucket_name": "example-bucket",
                 "s3_secret_access_key": "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
                 "s3_type": "amazon",
             },
@@ -160,7 +160,7 @@ class TestOriginGroups:
             proxy_next_upstream=["error", "timeout", "invalid_header", "http_500", "http_502", "http_503", "http_504"],
             sources=[
                 {
-                    "source": "yourdomain.com",
+                    "source": "origin.example.org",
                     "backup": False,
                     "enabled": True,
                     "host_header_override": None,
@@ -209,7 +209,7 @@ class TestOriginGroups:
             origin_group_id=0,
             auth={
                 "s3_access_key_id": "EXAMPLEFODNN7EXAMPLE",
-                "s3_bucket_name": "bucket_name",
+                "s3_bucket_name": "example-bucket",
                 "s3_secret_access_key": "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
                 "s3_type": "amazon",
                 "s3_region": "us-east-2",
@@ -354,7 +354,7 @@ class TestOriginGroups:
         origin_group = client.cdn.origin_groups.replace(
             origin_group_id=0,
             name="YourOriginGroup",
-            sources=[{"source": "yourdomain.com"}],
+            sources=[{"source": "origin.example.org"}],
             use_next=True,
         )
         assert_matches_type(OriginGroups, origin_group, path=["response"])
@@ -366,7 +366,7 @@ class TestOriginGroups:
             name="YourOriginGroup",
             sources=[
                 {
-                    "source": "yourdomain.com",
+                    "source": "origin.example.org",
                     "backup": False,
                     "enabled": True,
                     "host_header_override": None,
@@ -384,7 +384,7 @@ class TestOriginGroups:
         response = client.cdn.origin_groups.with_raw_response.replace(
             origin_group_id=0,
             name="YourOriginGroup",
-            sources=[{"source": "yourdomain.com"}],
+            sources=[{"source": "origin.example.org"}],
             use_next=True,
         )
 
@@ -398,7 +398,7 @@ class TestOriginGroups:
         with client.cdn.origin_groups.with_streaming_response.replace(
             origin_group_id=0,
             name="YourOriginGroup",
-            sources=[{"source": "yourdomain.com"}],
+            sources=[{"source": "origin.example.org"}],
             use_next=True,
         ) as response:
             assert not response.is_closed
@@ -415,7 +415,7 @@ class TestOriginGroups:
             origin_group_id=0,
             auth={
                 "s3_access_key_id": "EXAMPLEFODNN7EXAMPLE",
-                "s3_bucket_name": "bucket_name",
+                "s3_bucket_name": "example-bucket",
                 "s3_secret_access_key": "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
                 "s3_type": "amazon",
             },
@@ -431,7 +431,7 @@ class TestOriginGroups:
             origin_group_id=0,
             auth={
                 "s3_access_key_id": "EXAMPLEFODNN7EXAMPLE",
-                "s3_bucket_name": "bucket_name",
+                "s3_bucket_name": "example-bucket",
                 "s3_secret_access_key": "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
                 "s3_type": "amazon",
                 "s3_region": "us-east-2",
@@ -451,7 +451,7 @@ class TestOriginGroups:
             origin_group_id=0,
             auth={
                 "s3_access_key_id": "EXAMPLEFODNN7EXAMPLE",
-                "s3_bucket_name": "bucket_name",
+                "s3_bucket_name": "example-bucket",
                 "s3_secret_access_key": "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
                 "s3_type": "amazon",
             },
@@ -471,7 +471,7 @@ class TestOriginGroups:
             origin_group_id=0,
             auth={
                 "s3_access_key_id": "EXAMPLEFODNN7EXAMPLE",
-                "s3_bucket_name": "bucket_name",
+                "s3_bucket_name": "example-bucket",
                 "s3_secret_access_key": "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
                 "s3_type": "amazon",
             },
@@ -497,7 +497,7 @@ class TestAsyncOriginGroups:
     async def test_method_create_overload_1(self, async_client: AsyncGcore) -> None:
         origin_group = await async_client.cdn.origin_groups.create(
             name="YourOriginGroup",
-            sources=[{"source": "yourwebsite.com"}],
+            sources=[{"source": "origin.example.com"}],
         )
         assert_matches_type(OriginGroups, origin_group, path=["response"])
 
@@ -507,7 +507,7 @@ class TestAsyncOriginGroups:
             name="YourOriginGroup",
             sources=[
                 {
-                    "source": "yourwebsite.com",
+                    "source": "origin.example.com",
                     "backup": False,
                     "enabled": True,
                     "host_header_override": None,
@@ -523,7 +523,7 @@ class TestAsyncOriginGroups:
     async def test_raw_response_create_overload_1(self, async_client: AsyncGcore) -> None:
         response = await async_client.cdn.origin_groups.with_raw_response.create(
             name="YourOriginGroup",
-            sources=[{"source": "yourwebsite.com"}],
+            sources=[{"source": "origin.example.com"}],
         )
 
         assert response.is_closed is True
@@ -535,7 +535,7 @@ class TestAsyncOriginGroups:
     async def test_streaming_response_create_overload_1(self, async_client: AsyncGcore) -> None:
         async with async_client.cdn.origin_groups.with_streaming_response.create(
             name="YourOriginGroup",
-            sources=[{"source": "yourwebsite.com"}],
+            sources=[{"source": "origin.example.com"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -550,7 +550,7 @@ class TestAsyncOriginGroups:
         origin_group = await async_client.cdn.origin_groups.create(
             auth={
                 "s3_access_key_id": "EXAMPLEFODNN7EXAMPLE",
-                "s3_bucket_name": "bucket_name",
+                "s3_bucket_name": "example-bucket",
                 "s3_secret_access_key": "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
                 "s3_type": "amazon",
             },
@@ -564,7 +564,7 @@ class TestAsyncOriginGroups:
         origin_group = await async_client.cdn.origin_groups.create(
             auth={
                 "s3_access_key_id": "EXAMPLEFODNN7EXAMPLE",
-                "s3_bucket_name": "bucket_name",
+                "s3_bucket_name": "example-bucket",
                 "s3_secret_access_key": "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
                 "s3_type": "amazon",
                 "s3_region": "us-east-2",
@@ -582,7 +582,7 @@ class TestAsyncOriginGroups:
         response = await async_client.cdn.origin_groups.with_raw_response.create(
             auth={
                 "s3_access_key_id": "EXAMPLEFODNN7EXAMPLE",
-                "s3_bucket_name": "bucket_name",
+                "s3_bucket_name": "example-bucket",
                 "s3_secret_access_key": "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
                 "s3_type": "amazon",
             },
@@ -600,7 +600,7 @@ class TestAsyncOriginGroups:
         async with async_client.cdn.origin_groups.with_streaming_response.create(
             auth={
                 "s3_access_key_id": "EXAMPLEFODNN7EXAMPLE",
-                "s3_bucket_name": "bucket_name",
+                "s3_bucket_name": "example-bucket",
                 "s3_secret_access_key": "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
                 "s3_type": "amazon",
             },
@@ -633,7 +633,7 @@ class TestAsyncOriginGroups:
             proxy_next_upstream=["error", "timeout", "invalid_header", "http_500", "http_502", "http_503", "http_504"],
             sources=[
                 {
-                    "source": "yourdomain.com",
+                    "source": "origin.example.org",
                     "backup": False,
                     "enabled": True,
                     "host_header_override": None,
@@ -682,7 +682,7 @@ class TestAsyncOriginGroups:
             origin_group_id=0,
             auth={
                 "s3_access_key_id": "EXAMPLEFODNN7EXAMPLE",
-                "s3_bucket_name": "bucket_name",
+                "s3_bucket_name": "example-bucket",
                 "s3_secret_access_key": "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
                 "s3_type": "amazon",
                 "s3_region": "us-east-2",
@@ -827,7 +827,7 @@ class TestAsyncOriginGroups:
         origin_group = await async_client.cdn.origin_groups.replace(
             origin_group_id=0,
             name="YourOriginGroup",
-            sources=[{"source": "yourdomain.com"}],
+            sources=[{"source": "origin.example.org"}],
             use_next=True,
         )
         assert_matches_type(OriginGroups, origin_group, path=["response"])
@@ -839,7 +839,7 @@ class TestAsyncOriginGroups:
             name="YourOriginGroup",
             sources=[
                 {
-                    "source": "yourdomain.com",
+                    "source": "origin.example.org",
                     "backup": False,
                     "enabled": True,
                     "host_header_override": None,
@@ -857,7 +857,7 @@ class TestAsyncOriginGroups:
         response = await async_client.cdn.origin_groups.with_raw_response.replace(
             origin_group_id=0,
             name="YourOriginGroup",
-            sources=[{"source": "yourdomain.com"}],
+            sources=[{"source": "origin.example.org"}],
             use_next=True,
         )
 
@@ -871,7 +871,7 @@ class TestAsyncOriginGroups:
         async with async_client.cdn.origin_groups.with_streaming_response.replace(
             origin_group_id=0,
             name="YourOriginGroup",
-            sources=[{"source": "yourdomain.com"}],
+            sources=[{"source": "origin.example.org"}],
             use_next=True,
         ) as response:
             assert not response.is_closed
@@ -888,7 +888,7 @@ class TestAsyncOriginGroups:
             origin_group_id=0,
             auth={
                 "s3_access_key_id": "EXAMPLEFODNN7EXAMPLE",
-                "s3_bucket_name": "bucket_name",
+                "s3_bucket_name": "example-bucket",
                 "s3_secret_access_key": "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
                 "s3_type": "amazon",
             },
@@ -904,7 +904,7 @@ class TestAsyncOriginGroups:
             origin_group_id=0,
             auth={
                 "s3_access_key_id": "EXAMPLEFODNN7EXAMPLE",
-                "s3_bucket_name": "bucket_name",
+                "s3_bucket_name": "example-bucket",
                 "s3_secret_access_key": "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
                 "s3_type": "amazon",
                 "s3_region": "us-east-2",
@@ -924,7 +924,7 @@ class TestAsyncOriginGroups:
             origin_group_id=0,
             auth={
                 "s3_access_key_id": "EXAMPLEFODNN7EXAMPLE",
-                "s3_bucket_name": "bucket_name",
+                "s3_bucket_name": "example-bucket",
                 "s3_secret_access_key": "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
                 "s3_type": "amazon",
             },
@@ -944,7 +944,7 @@ class TestAsyncOriginGroups:
             origin_group_id=0,
             auth={
                 "s3_access_key_id": "EXAMPLEFODNN7EXAMPLE",
-                "s3_bucket_name": "bucket_name",
+                "s3_bucket_name": "example-bucket",
                 "s3_secret_access_key": "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
                 "s3_type": "amazon",
             },

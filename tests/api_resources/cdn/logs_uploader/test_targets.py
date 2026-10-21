@@ -22,7 +22,7 @@ class TestTargets:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    def test_method_create(self, client: Gcore) -> None:
+    def test_method_create_overload_1(self, client: Gcore) -> None:
         target = client.cdn.logs_uploader.targets.create(
             config={},
             storage_type="s3_gcore",
@@ -30,7 +30,7 @@ class TestTargets:
         assert_matches_type(LogsUploaderTarget, target, path=["response"])
 
     @parametrize
-    def test_method_create_with_all_params(self, client: Gcore) -> None:
+    def test_method_create_with_all_params_overload_1(self, client: Gcore) -> None:
         target = client.cdn.logs_uploader.targets.create(
             config={
                 "access_key_id": "access_key_id",
@@ -48,7 +48,7 @@ class TestTargets:
         assert_matches_type(LogsUploaderTarget, target, path=["response"])
 
     @parametrize
-    def test_raw_response_create(self, client: Gcore) -> None:
+    def test_raw_response_create_overload_1(self, client: Gcore) -> None:
         response = client.cdn.logs_uploader.targets.with_raw_response.create(
             config={},
             storage_type="s3_gcore",
@@ -60,10 +60,552 @@ class TestTargets:
         assert_matches_type(LogsUploaderTarget, target, path=["response"])
 
     @parametrize
-    def test_streaming_response_create(self, client: Gcore) -> None:
+    def test_streaming_response_create_overload_1(self, client: Gcore) -> None:
         with client.cdn.logs_uploader.targets.with_streaming_response.create(
             config={},
             storage_type="s3_gcore",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            target = response.parse()
+            assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_create_overload_2(self, client: Gcore) -> None:
+        target = client.cdn.logs_uploader.targets.create(
+            config={
+                "access_key_id": "access_key_id",
+                "bucket_name": "bucket_name",
+                "region": "region",
+                "secret_access_key": "secret_access_key",
+            },
+            storage_type="s3_amazon",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params_overload_2(self, client: Gcore) -> None:
+        target = client.cdn.logs_uploader.targets.create(
+            config={
+                "access_key_id": "access_key_id",
+                "bucket_name": "bucket_name",
+                "region": "region",
+                "secret_access_key": "secret_access_key",
+                "directory": "directory",
+            },
+            storage_type="s3_amazon",
+            description="description",
+            name="name",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_raw_response_create_overload_2(self, client: Gcore) -> None:
+        response = client.cdn.logs_uploader.targets.with_raw_response.create(
+            config={
+                "access_key_id": "access_key_id",
+                "bucket_name": "bucket_name",
+                "region": "region",
+                "secret_access_key": "secret_access_key",
+            },
+            storage_type="s3_amazon",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        target = response.parse()
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create_overload_2(self, client: Gcore) -> None:
+        with client.cdn.logs_uploader.targets.with_streaming_response.create(
+            config={
+                "access_key_id": "access_key_id",
+                "bucket_name": "bucket_name",
+                "region": "region",
+                "secret_access_key": "secret_access_key",
+            },
+            storage_type="s3_amazon",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            target = response.parse()
+            assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_create_overload_3(self, client: Gcore) -> None:
+        target = client.cdn.logs_uploader.targets.create(
+            config={
+                "access_key_id": "access_key_id",
+                "bucket_name": "bucket_name",
+                "secret_access_key": "secret_access_key",
+            },
+            storage_type="s3_oss",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params_overload_3(self, client: Gcore) -> None:
+        target = client.cdn.logs_uploader.targets.create(
+            config={
+                "access_key_id": "access_key_id",
+                "bucket_name": "bucket_name",
+                "secret_access_key": "secret_access_key",
+                "directory": "directory",
+                "endpoint": "endpoint",
+                "region": "region",
+            },
+            storage_type="s3_oss",
+            description="description",
+            name="name",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_raw_response_create_overload_3(self, client: Gcore) -> None:
+        response = client.cdn.logs_uploader.targets.with_raw_response.create(
+            config={
+                "access_key_id": "access_key_id",
+                "bucket_name": "bucket_name",
+                "secret_access_key": "secret_access_key",
+            },
+            storage_type="s3_oss",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        target = response.parse()
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create_overload_3(self, client: Gcore) -> None:
+        with client.cdn.logs_uploader.targets.with_streaming_response.create(
+            config={
+                "access_key_id": "access_key_id",
+                "bucket_name": "bucket_name",
+                "secret_access_key": "secret_access_key",
+            },
+            storage_type="s3_oss",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            target = response.parse()
+            assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_create_overload_4(self, client: Gcore) -> None:
+        target = client.cdn.logs_uploader.targets.create(
+            config={},
+            storage_type="s3_other",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params_overload_4(self, client: Gcore) -> None:
+        target = client.cdn.logs_uploader.targets.create(
+            config={
+                "access_key_id": "access_key_id",
+                "bucket_name": "bucket_name",
+                "directory": "directory",
+                "endpoint": "endpoint",
+                "region": "region",
+                "secret_access_key": "secret_access_key",
+                "use_path_style": True,
+            },
+            storage_type="s3_other",
+            description="description",
+            name="name",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_raw_response_create_overload_4(self, client: Gcore) -> None:
+        response = client.cdn.logs_uploader.targets.with_raw_response.create(
+            config={},
+            storage_type="s3_other",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        target = response.parse()
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create_overload_4(self, client: Gcore) -> None:
+        with client.cdn.logs_uploader.targets.with_streaming_response.create(
+            config={},
+            storage_type="s3_other",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            target = response.parse()
+            assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_create_overload_5(self, client: Gcore) -> None:
+        target = client.cdn.logs_uploader.targets.create(
+            config={},
+            storage_type="s3_v1",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params_overload_5(self, client: Gcore) -> None:
+        target = client.cdn.logs_uploader.targets.create(
+            config={
+                "access_key_id": "access_key_id",
+                "bucket_name": "bucket_name",
+                "directory": "directory",
+                "endpoint": "endpoint",
+                "region": "region",
+                "secret_access_key": "secret_access_key",
+                "use_path_style": True,
+            },
+            storage_type="s3_v1",
+            description="description",
+            name="name",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_raw_response_create_overload_5(self, client: Gcore) -> None:
+        response = client.cdn.logs_uploader.targets.with_raw_response.create(
+            config={},
+            storage_type="s3_v1",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        target = response.parse()
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create_overload_5(self, client: Gcore) -> None:
+        with client.cdn.logs_uploader.targets.with_streaming_response.create(
+            config={},
+            storage_type="s3_v1",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            target = response.parse()
+            assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_create_overload_6(self, client: Gcore) -> None:
+        target = client.cdn.logs_uploader.targets.create(
+            config={},
+            storage_type="ftp",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params_overload_6(self, client: Gcore) -> None:
+        target = client.cdn.logs_uploader.targets.create(
+            config={
+                "directory": "directory",
+                "hostname": "hostname",
+                "password": "password",
+                "timeout_seconds": 0,
+                "user": "user",
+            },
+            storage_type="ftp",
+            description="description",
+            name="name",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_raw_response_create_overload_6(self, client: Gcore) -> None:
+        response = client.cdn.logs_uploader.targets.with_raw_response.create(
+            config={},
+            storage_type="ftp",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        target = response.parse()
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create_overload_6(self, client: Gcore) -> None:
+        with client.cdn.logs_uploader.targets.with_streaming_response.create(
+            config={},
+            storage_type="ftp",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            target = response.parse()
+            assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_create_overload_7(self, client: Gcore) -> None:
+        target = client.cdn.logs_uploader.targets.create(
+            config={},
+            storage_type="sftp",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params_overload_7(self, client: Gcore) -> None:
+        target = client.cdn.logs_uploader.targets.create(
+            config={
+                "directory": "directory",
+                "hostname": "hostname",
+                "key_passphrase": "key_passphrase",
+                "password": "password",
+                "private_key": "private_key",
+                "timeout_seconds": 0,
+                "user": "user",
+            },
+            storage_type="sftp",
+            description="description",
+            name="name",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_raw_response_create_overload_7(self, client: Gcore) -> None:
+        response = client.cdn.logs_uploader.targets.with_raw_response.create(
+            config={},
+            storage_type="sftp",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        target = response.parse()
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create_overload_7(self, client: Gcore) -> None:
+        with client.cdn.logs_uploader.targets.with_streaming_response.create(
+            config={},
+            storage_type="sftp",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            target = response.parse()
+            assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_create_overload_8(self, client: Gcore) -> None:
+        target = client.cdn.logs_uploader.targets.create(
+            config={"upload": {"url": "url"}},
+            storage_type="http",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params_overload_8(self, client: Gcore) -> None:
+        target = client.cdn.logs_uploader.targets.create(
+            config={
+                "upload": {
+                    "url": "url",
+                    "headers": {"foo": "string"},
+                    "method": "POST",
+                    "response_actions": [
+                        {
+                            "action": "drop",
+                            "description": "description",
+                            "match_payload": "match_payload",
+                            "match_status_code": 0,
+                        }
+                    ],
+                    "timeout_seconds": 0,
+                    "use_compression": True,
+                },
+                "append": {
+                    "url": "url",
+                    "headers": {"foo": "string"},
+                    "method": "POST",
+                    "response_actions": [
+                        {
+                            "action": "drop",
+                            "description": "description",
+                            "match_payload": "match_payload",
+                            "match_status_code": 0,
+                        }
+                    ],
+                    "timeout_seconds": 0,
+                    "use_compression": True,
+                },
+                "auth": {
+                    "config": {
+                        "token": "token",
+                        "header_name": "header_name",
+                    },
+                    "type": "token",
+                },
+                "content_type": "json",
+                "retry": {
+                    "url": "url",
+                    "headers": {"foo": "string"},
+                    "method": "POST",
+                    "response_actions": [
+                        {
+                            "action": "drop",
+                            "description": "description",
+                            "match_payload": "match_payload",
+                            "match_status_code": 0,
+                        }
+                    ],
+                    "timeout_seconds": 0,
+                    "use_compression": True,
+                },
+            },
+            storage_type="http",
+            description="description",
+            name="name",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_raw_response_create_overload_8(self, client: Gcore) -> None:
+        response = client.cdn.logs_uploader.targets.with_raw_response.create(
+            config={"upload": {"url": "url"}},
+            storage_type="http",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        target = response.parse()
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create_overload_8(self, client: Gcore) -> None:
+        with client.cdn.logs_uploader.targets.with_streaming_response.create(
+            config={"upload": {"url": "url"}},
+            storage_type="http",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            target = response.parse()
+            assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_create_overload_9(self, client: Gcore) -> None:
+        target = client.cdn.logs_uploader.targets.create(
+            config={},
+            storage_type="azure_blob",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params_overload_9(self, client: Gcore) -> None:
+        target = client.cdn.logs_uploader.targets.create(
+            config={
+                "account_name": "account_name",
+                "auth": {
+                    "config": {"account_key": "account_key"},
+                    "type": "shared_key",
+                },
+                "container_name": "container_name",
+                "directory": "directory",
+                "endpoint": "endpoint",
+            },
+            storage_type="azure_blob",
+            description="description",
+            name="name",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_raw_response_create_overload_9(self, client: Gcore) -> None:
+        response = client.cdn.logs_uploader.targets.with_raw_response.create(
+            config={},
+            storage_type="azure_blob",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        target = response.parse()
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create_overload_9(self, client: Gcore) -> None:
+        with client.cdn.logs_uploader.targets.with_streaming_response.create(
+            config={},
+            storage_type="azure_blob",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            target = response.parse()
+            assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_create_overload_10(self, client: Gcore) -> None:
+        target = client.cdn.logs_uploader.targets.create(
+            config={},
+            storage_type="sls",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params_overload_10(self, client: Gcore) -> None:
+        target = client.cdn.logs_uploader.targets.create(
+            config={
+                "auth": {
+                    "config": {
+                        "access_key_id": "access_key_id",
+                        "secret_access_key": "secret_access_key",
+                    },
+                    "type": "ak_sk",
+                },
+                "endpoint": "endpoint",
+                "log_store": "log_store",
+                "project": "project",
+                "region": "region",
+                "topic": "topic",
+            },
+            storage_type="sls",
+            description="description",
+            name="name",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_raw_response_create_overload_10(self, client: Gcore) -> None:
+        response = client.cdn.logs_uploader.targets.with_raw_response.create(
+            config={},
+            storage_type="sls",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        target = response.parse()
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create_overload_10(self, client: Gcore) -> None:
+        with client.cdn.logs_uploader.targets.with_streaming_response.create(
+            config={},
+            storage_type="sls",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -225,7 +767,7 @@ class TestTargets:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_method_replace(self, client: Gcore) -> None:
+    def test_method_replace_overload_1(self, client: Gcore) -> None:
         target = client.cdn.logs_uploader.targets.replace(
             id=0,
             config={},
@@ -234,7 +776,7 @@ class TestTargets:
         assert_matches_type(LogsUploaderTarget, target, path=["response"])
 
     @parametrize
-    def test_method_replace_with_all_params(self, client: Gcore) -> None:
+    def test_method_replace_with_all_params_overload_1(self, client: Gcore) -> None:
         target = client.cdn.logs_uploader.targets.replace(
             id=0,
             config={
@@ -253,7 +795,7 @@ class TestTargets:
         assert_matches_type(LogsUploaderTarget, target, path=["response"])
 
     @parametrize
-    def test_raw_response_replace(self, client: Gcore) -> None:
+    def test_raw_response_replace_overload_1(self, client: Gcore) -> None:
         response = client.cdn.logs_uploader.targets.with_raw_response.replace(
             id=0,
             config={},
@@ -266,11 +808,589 @@ class TestTargets:
         assert_matches_type(LogsUploaderTarget, target, path=["response"])
 
     @parametrize
-    def test_streaming_response_replace(self, client: Gcore) -> None:
+    def test_streaming_response_replace_overload_1(self, client: Gcore) -> None:
         with client.cdn.logs_uploader.targets.with_streaming_response.replace(
             id=0,
             config={},
             storage_type="s3_gcore",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            target = response.parse()
+            assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_replace_overload_2(self, client: Gcore) -> None:
+        target = client.cdn.logs_uploader.targets.replace(
+            id=0,
+            config={
+                "access_key_id": "access_key_id",
+                "bucket_name": "bucket_name",
+                "region": "region",
+                "secret_access_key": "secret_access_key",
+            },
+            storage_type="s3_amazon",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_method_replace_with_all_params_overload_2(self, client: Gcore) -> None:
+        target = client.cdn.logs_uploader.targets.replace(
+            id=0,
+            config={
+                "access_key_id": "access_key_id",
+                "bucket_name": "bucket_name",
+                "region": "region",
+                "secret_access_key": "secret_access_key",
+                "directory": "directory",
+            },
+            storage_type="s3_amazon",
+            description="description",
+            name="name",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_raw_response_replace_overload_2(self, client: Gcore) -> None:
+        response = client.cdn.logs_uploader.targets.with_raw_response.replace(
+            id=0,
+            config={
+                "access_key_id": "access_key_id",
+                "bucket_name": "bucket_name",
+                "region": "region",
+                "secret_access_key": "secret_access_key",
+            },
+            storage_type="s3_amazon",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        target = response.parse()
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_streaming_response_replace_overload_2(self, client: Gcore) -> None:
+        with client.cdn.logs_uploader.targets.with_streaming_response.replace(
+            id=0,
+            config={
+                "access_key_id": "access_key_id",
+                "bucket_name": "bucket_name",
+                "region": "region",
+                "secret_access_key": "secret_access_key",
+            },
+            storage_type="s3_amazon",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            target = response.parse()
+            assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_replace_overload_3(self, client: Gcore) -> None:
+        target = client.cdn.logs_uploader.targets.replace(
+            id=0,
+            config={
+                "access_key_id": "access_key_id",
+                "bucket_name": "bucket_name",
+                "secret_access_key": "secret_access_key",
+            },
+            storage_type="s3_oss",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_method_replace_with_all_params_overload_3(self, client: Gcore) -> None:
+        target = client.cdn.logs_uploader.targets.replace(
+            id=0,
+            config={
+                "access_key_id": "access_key_id",
+                "bucket_name": "bucket_name",
+                "secret_access_key": "secret_access_key",
+                "directory": "directory",
+                "endpoint": "endpoint",
+                "region": "region",
+            },
+            storage_type="s3_oss",
+            description="description",
+            name="name",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_raw_response_replace_overload_3(self, client: Gcore) -> None:
+        response = client.cdn.logs_uploader.targets.with_raw_response.replace(
+            id=0,
+            config={
+                "access_key_id": "access_key_id",
+                "bucket_name": "bucket_name",
+                "secret_access_key": "secret_access_key",
+            },
+            storage_type="s3_oss",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        target = response.parse()
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_streaming_response_replace_overload_3(self, client: Gcore) -> None:
+        with client.cdn.logs_uploader.targets.with_streaming_response.replace(
+            id=0,
+            config={
+                "access_key_id": "access_key_id",
+                "bucket_name": "bucket_name",
+                "secret_access_key": "secret_access_key",
+            },
+            storage_type="s3_oss",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            target = response.parse()
+            assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_replace_overload_4(self, client: Gcore) -> None:
+        target = client.cdn.logs_uploader.targets.replace(
+            id=0,
+            config={},
+            storage_type="s3_other",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_method_replace_with_all_params_overload_4(self, client: Gcore) -> None:
+        target = client.cdn.logs_uploader.targets.replace(
+            id=0,
+            config={
+                "access_key_id": "access_key_id",
+                "bucket_name": "bucket_name",
+                "directory": "directory",
+                "endpoint": "endpoint",
+                "region": "region",
+                "secret_access_key": "secret_access_key",
+                "use_path_style": True,
+            },
+            storage_type="s3_other",
+            description="description",
+            name="name",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_raw_response_replace_overload_4(self, client: Gcore) -> None:
+        response = client.cdn.logs_uploader.targets.with_raw_response.replace(
+            id=0,
+            config={},
+            storage_type="s3_other",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        target = response.parse()
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_streaming_response_replace_overload_4(self, client: Gcore) -> None:
+        with client.cdn.logs_uploader.targets.with_streaming_response.replace(
+            id=0,
+            config={},
+            storage_type="s3_other",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            target = response.parse()
+            assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_replace_overload_5(self, client: Gcore) -> None:
+        target = client.cdn.logs_uploader.targets.replace(
+            id=0,
+            config={},
+            storage_type="s3_v1",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_method_replace_with_all_params_overload_5(self, client: Gcore) -> None:
+        target = client.cdn.logs_uploader.targets.replace(
+            id=0,
+            config={
+                "access_key_id": "access_key_id",
+                "bucket_name": "bucket_name",
+                "directory": "directory",
+                "endpoint": "endpoint",
+                "region": "region",
+                "secret_access_key": "secret_access_key",
+                "use_path_style": True,
+            },
+            storage_type="s3_v1",
+            description="description",
+            name="name",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_raw_response_replace_overload_5(self, client: Gcore) -> None:
+        response = client.cdn.logs_uploader.targets.with_raw_response.replace(
+            id=0,
+            config={},
+            storage_type="s3_v1",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        target = response.parse()
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_streaming_response_replace_overload_5(self, client: Gcore) -> None:
+        with client.cdn.logs_uploader.targets.with_streaming_response.replace(
+            id=0,
+            config={},
+            storage_type="s3_v1",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            target = response.parse()
+            assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_replace_overload_6(self, client: Gcore) -> None:
+        target = client.cdn.logs_uploader.targets.replace(
+            id=0,
+            config={},
+            storage_type="ftp",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_method_replace_with_all_params_overload_6(self, client: Gcore) -> None:
+        target = client.cdn.logs_uploader.targets.replace(
+            id=0,
+            config={
+                "directory": "directory",
+                "hostname": "hostname",
+                "password": "password",
+                "timeout_seconds": 0,
+                "user": "user",
+            },
+            storage_type="ftp",
+            description="description",
+            name="name",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_raw_response_replace_overload_6(self, client: Gcore) -> None:
+        response = client.cdn.logs_uploader.targets.with_raw_response.replace(
+            id=0,
+            config={},
+            storage_type="ftp",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        target = response.parse()
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_streaming_response_replace_overload_6(self, client: Gcore) -> None:
+        with client.cdn.logs_uploader.targets.with_streaming_response.replace(
+            id=0,
+            config={},
+            storage_type="ftp",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            target = response.parse()
+            assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_replace_overload_7(self, client: Gcore) -> None:
+        target = client.cdn.logs_uploader.targets.replace(
+            id=0,
+            config={},
+            storage_type="sftp",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_method_replace_with_all_params_overload_7(self, client: Gcore) -> None:
+        target = client.cdn.logs_uploader.targets.replace(
+            id=0,
+            config={
+                "directory": "directory",
+                "hostname": "hostname",
+                "key_passphrase": "key_passphrase",
+                "password": "password",
+                "private_key": "private_key",
+                "timeout_seconds": 0,
+                "user": "user",
+            },
+            storage_type="sftp",
+            description="description",
+            name="name",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_raw_response_replace_overload_7(self, client: Gcore) -> None:
+        response = client.cdn.logs_uploader.targets.with_raw_response.replace(
+            id=0,
+            config={},
+            storage_type="sftp",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        target = response.parse()
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_streaming_response_replace_overload_7(self, client: Gcore) -> None:
+        with client.cdn.logs_uploader.targets.with_streaming_response.replace(
+            id=0,
+            config={},
+            storage_type="sftp",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            target = response.parse()
+            assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_replace_overload_8(self, client: Gcore) -> None:
+        target = client.cdn.logs_uploader.targets.replace(
+            id=0,
+            config={"upload": {"url": "url"}},
+            storage_type="http",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_method_replace_with_all_params_overload_8(self, client: Gcore) -> None:
+        target = client.cdn.logs_uploader.targets.replace(
+            id=0,
+            config={
+                "upload": {
+                    "url": "url",
+                    "headers": {"foo": "string"},
+                    "method": "POST",
+                    "response_actions": [
+                        {
+                            "action": "drop",
+                            "description": "description",
+                            "match_payload": "match_payload",
+                            "match_status_code": 0,
+                        }
+                    ],
+                    "timeout_seconds": 0,
+                    "use_compression": True,
+                },
+                "append": {
+                    "url": "url",
+                    "headers": {"foo": "string"},
+                    "method": "POST",
+                    "response_actions": [
+                        {
+                            "action": "drop",
+                            "description": "description",
+                            "match_payload": "match_payload",
+                            "match_status_code": 0,
+                        }
+                    ],
+                    "timeout_seconds": 0,
+                    "use_compression": True,
+                },
+                "auth": {
+                    "config": {
+                        "token": "token",
+                        "header_name": "header_name",
+                    },
+                    "type": "token",
+                },
+                "content_type": "json",
+                "retry": {
+                    "url": "url",
+                    "headers": {"foo": "string"},
+                    "method": "POST",
+                    "response_actions": [
+                        {
+                            "action": "drop",
+                            "description": "description",
+                            "match_payload": "match_payload",
+                            "match_status_code": 0,
+                        }
+                    ],
+                    "timeout_seconds": 0,
+                    "use_compression": True,
+                },
+            },
+            storage_type="http",
+            description="description",
+            name="name",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_raw_response_replace_overload_8(self, client: Gcore) -> None:
+        response = client.cdn.logs_uploader.targets.with_raw_response.replace(
+            id=0,
+            config={"upload": {"url": "url"}},
+            storage_type="http",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        target = response.parse()
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_streaming_response_replace_overload_8(self, client: Gcore) -> None:
+        with client.cdn.logs_uploader.targets.with_streaming_response.replace(
+            id=0,
+            config={"upload": {"url": "url"}},
+            storage_type="http",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            target = response.parse()
+            assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_replace_overload_9(self, client: Gcore) -> None:
+        target = client.cdn.logs_uploader.targets.replace(
+            id=0,
+            config={},
+            storage_type="azure_blob",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_method_replace_with_all_params_overload_9(self, client: Gcore) -> None:
+        target = client.cdn.logs_uploader.targets.replace(
+            id=0,
+            config={
+                "account_name": "account_name",
+                "auth": {
+                    "config": {"account_key": "account_key"},
+                    "type": "shared_key",
+                },
+                "container_name": "container_name",
+                "directory": "directory",
+                "endpoint": "endpoint",
+            },
+            storage_type="azure_blob",
+            description="description",
+            name="name",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_raw_response_replace_overload_9(self, client: Gcore) -> None:
+        response = client.cdn.logs_uploader.targets.with_raw_response.replace(
+            id=0,
+            config={},
+            storage_type="azure_blob",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        target = response.parse()
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_streaming_response_replace_overload_9(self, client: Gcore) -> None:
+        with client.cdn.logs_uploader.targets.with_streaming_response.replace(
+            id=0,
+            config={},
+            storage_type="azure_blob",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            target = response.parse()
+            assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_replace_overload_10(self, client: Gcore) -> None:
+        target = client.cdn.logs_uploader.targets.replace(
+            id=0,
+            config={},
+            storage_type="sls",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_method_replace_with_all_params_overload_10(self, client: Gcore) -> None:
+        target = client.cdn.logs_uploader.targets.replace(
+            id=0,
+            config={
+                "auth": {
+                    "config": {
+                        "access_key_id": "access_key_id",
+                        "secret_access_key": "secret_access_key",
+                    },
+                    "type": "ak_sk",
+                },
+                "endpoint": "endpoint",
+                "log_store": "log_store",
+                "project": "project",
+                "region": "region",
+                "topic": "topic",
+            },
+            storage_type="sls",
+            description="description",
+            name="name",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_raw_response_replace_overload_10(self, client: Gcore) -> None:
+        response = client.cdn.logs_uploader.targets.with_raw_response.replace(
+            id=0,
+            config={},
+            storage_type="sls",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        target = response.parse()
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    def test_streaming_response_replace_overload_10(self, client: Gcore) -> None:
+        with client.cdn.logs_uploader.targets.with_streaming_response.replace(
+            id=0,
+            config={},
+            storage_type="sls",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -318,7 +1438,7 @@ class TestAsyncTargets:
     )
 
     @parametrize
-    async def test_method_create(self, async_client: AsyncGcore) -> None:
+    async def test_method_create_overload_1(self, async_client: AsyncGcore) -> None:
         target = await async_client.cdn.logs_uploader.targets.create(
             config={},
             storage_type="s3_gcore",
@@ -326,7 +1446,7 @@ class TestAsyncTargets:
         assert_matches_type(LogsUploaderTarget, target, path=["response"])
 
     @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
+    async def test_method_create_with_all_params_overload_1(self, async_client: AsyncGcore) -> None:
         target = await async_client.cdn.logs_uploader.targets.create(
             config={
                 "access_key_id": "access_key_id",
@@ -344,7 +1464,7 @@ class TestAsyncTargets:
         assert_matches_type(LogsUploaderTarget, target, path=["response"])
 
     @parametrize
-    async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
+    async def test_raw_response_create_overload_1(self, async_client: AsyncGcore) -> None:
         response = await async_client.cdn.logs_uploader.targets.with_raw_response.create(
             config={},
             storage_type="s3_gcore",
@@ -356,10 +1476,552 @@ class TestAsyncTargets:
         assert_matches_type(LogsUploaderTarget, target, path=["response"])
 
     @parametrize
-    async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
+    async def test_streaming_response_create_overload_1(self, async_client: AsyncGcore) -> None:
         async with async_client.cdn.logs_uploader.targets.with_streaming_response.create(
             config={},
             storage_type="s3_gcore",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            target = await response.parse()
+            assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_create_overload_2(self, async_client: AsyncGcore) -> None:
+        target = await async_client.cdn.logs_uploader.targets.create(
+            config={
+                "access_key_id": "access_key_id",
+                "bucket_name": "bucket_name",
+                "region": "region",
+                "secret_access_key": "secret_access_key",
+            },
+            storage_type="s3_amazon",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params_overload_2(self, async_client: AsyncGcore) -> None:
+        target = await async_client.cdn.logs_uploader.targets.create(
+            config={
+                "access_key_id": "access_key_id",
+                "bucket_name": "bucket_name",
+                "region": "region",
+                "secret_access_key": "secret_access_key",
+                "directory": "directory",
+            },
+            storage_type="s3_amazon",
+            description="description",
+            name="name",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create_overload_2(self, async_client: AsyncGcore) -> None:
+        response = await async_client.cdn.logs_uploader.targets.with_raw_response.create(
+            config={
+                "access_key_id": "access_key_id",
+                "bucket_name": "bucket_name",
+                "region": "region",
+                "secret_access_key": "secret_access_key",
+            },
+            storage_type="s3_amazon",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        target = await response.parse()
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create_overload_2(self, async_client: AsyncGcore) -> None:
+        async with async_client.cdn.logs_uploader.targets.with_streaming_response.create(
+            config={
+                "access_key_id": "access_key_id",
+                "bucket_name": "bucket_name",
+                "region": "region",
+                "secret_access_key": "secret_access_key",
+            },
+            storage_type="s3_amazon",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            target = await response.parse()
+            assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_create_overload_3(self, async_client: AsyncGcore) -> None:
+        target = await async_client.cdn.logs_uploader.targets.create(
+            config={
+                "access_key_id": "access_key_id",
+                "bucket_name": "bucket_name",
+                "secret_access_key": "secret_access_key",
+            },
+            storage_type="s3_oss",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params_overload_3(self, async_client: AsyncGcore) -> None:
+        target = await async_client.cdn.logs_uploader.targets.create(
+            config={
+                "access_key_id": "access_key_id",
+                "bucket_name": "bucket_name",
+                "secret_access_key": "secret_access_key",
+                "directory": "directory",
+                "endpoint": "endpoint",
+                "region": "region",
+            },
+            storage_type="s3_oss",
+            description="description",
+            name="name",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create_overload_3(self, async_client: AsyncGcore) -> None:
+        response = await async_client.cdn.logs_uploader.targets.with_raw_response.create(
+            config={
+                "access_key_id": "access_key_id",
+                "bucket_name": "bucket_name",
+                "secret_access_key": "secret_access_key",
+            },
+            storage_type="s3_oss",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        target = await response.parse()
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create_overload_3(self, async_client: AsyncGcore) -> None:
+        async with async_client.cdn.logs_uploader.targets.with_streaming_response.create(
+            config={
+                "access_key_id": "access_key_id",
+                "bucket_name": "bucket_name",
+                "secret_access_key": "secret_access_key",
+            },
+            storage_type="s3_oss",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            target = await response.parse()
+            assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_create_overload_4(self, async_client: AsyncGcore) -> None:
+        target = await async_client.cdn.logs_uploader.targets.create(
+            config={},
+            storage_type="s3_other",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params_overload_4(self, async_client: AsyncGcore) -> None:
+        target = await async_client.cdn.logs_uploader.targets.create(
+            config={
+                "access_key_id": "access_key_id",
+                "bucket_name": "bucket_name",
+                "directory": "directory",
+                "endpoint": "endpoint",
+                "region": "region",
+                "secret_access_key": "secret_access_key",
+                "use_path_style": True,
+            },
+            storage_type="s3_other",
+            description="description",
+            name="name",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create_overload_4(self, async_client: AsyncGcore) -> None:
+        response = await async_client.cdn.logs_uploader.targets.with_raw_response.create(
+            config={},
+            storage_type="s3_other",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        target = await response.parse()
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create_overload_4(self, async_client: AsyncGcore) -> None:
+        async with async_client.cdn.logs_uploader.targets.with_streaming_response.create(
+            config={},
+            storage_type="s3_other",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            target = await response.parse()
+            assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_create_overload_5(self, async_client: AsyncGcore) -> None:
+        target = await async_client.cdn.logs_uploader.targets.create(
+            config={},
+            storage_type="s3_v1",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params_overload_5(self, async_client: AsyncGcore) -> None:
+        target = await async_client.cdn.logs_uploader.targets.create(
+            config={
+                "access_key_id": "access_key_id",
+                "bucket_name": "bucket_name",
+                "directory": "directory",
+                "endpoint": "endpoint",
+                "region": "region",
+                "secret_access_key": "secret_access_key",
+                "use_path_style": True,
+            },
+            storage_type="s3_v1",
+            description="description",
+            name="name",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create_overload_5(self, async_client: AsyncGcore) -> None:
+        response = await async_client.cdn.logs_uploader.targets.with_raw_response.create(
+            config={},
+            storage_type="s3_v1",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        target = await response.parse()
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create_overload_5(self, async_client: AsyncGcore) -> None:
+        async with async_client.cdn.logs_uploader.targets.with_streaming_response.create(
+            config={},
+            storage_type="s3_v1",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            target = await response.parse()
+            assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_create_overload_6(self, async_client: AsyncGcore) -> None:
+        target = await async_client.cdn.logs_uploader.targets.create(
+            config={},
+            storage_type="ftp",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params_overload_6(self, async_client: AsyncGcore) -> None:
+        target = await async_client.cdn.logs_uploader.targets.create(
+            config={
+                "directory": "directory",
+                "hostname": "hostname",
+                "password": "password",
+                "timeout_seconds": 0,
+                "user": "user",
+            },
+            storage_type="ftp",
+            description="description",
+            name="name",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create_overload_6(self, async_client: AsyncGcore) -> None:
+        response = await async_client.cdn.logs_uploader.targets.with_raw_response.create(
+            config={},
+            storage_type="ftp",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        target = await response.parse()
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create_overload_6(self, async_client: AsyncGcore) -> None:
+        async with async_client.cdn.logs_uploader.targets.with_streaming_response.create(
+            config={},
+            storage_type="ftp",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            target = await response.parse()
+            assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_create_overload_7(self, async_client: AsyncGcore) -> None:
+        target = await async_client.cdn.logs_uploader.targets.create(
+            config={},
+            storage_type="sftp",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params_overload_7(self, async_client: AsyncGcore) -> None:
+        target = await async_client.cdn.logs_uploader.targets.create(
+            config={
+                "directory": "directory",
+                "hostname": "hostname",
+                "key_passphrase": "key_passphrase",
+                "password": "password",
+                "private_key": "private_key",
+                "timeout_seconds": 0,
+                "user": "user",
+            },
+            storage_type="sftp",
+            description="description",
+            name="name",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create_overload_7(self, async_client: AsyncGcore) -> None:
+        response = await async_client.cdn.logs_uploader.targets.with_raw_response.create(
+            config={},
+            storage_type="sftp",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        target = await response.parse()
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create_overload_7(self, async_client: AsyncGcore) -> None:
+        async with async_client.cdn.logs_uploader.targets.with_streaming_response.create(
+            config={},
+            storage_type="sftp",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            target = await response.parse()
+            assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_create_overload_8(self, async_client: AsyncGcore) -> None:
+        target = await async_client.cdn.logs_uploader.targets.create(
+            config={"upload": {"url": "url"}},
+            storage_type="http",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params_overload_8(self, async_client: AsyncGcore) -> None:
+        target = await async_client.cdn.logs_uploader.targets.create(
+            config={
+                "upload": {
+                    "url": "url",
+                    "headers": {"foo": "string"},
+                    "method": "POST",
+                    "response_actions": [
+                        {
+                            "action": "drop",
+                            "description": "description",
+                            "match_payload": "match_payload",
+                            "match_status_code": 0,
+                        }
+                    ],
+                    "timeout_seconds": 0,
+                    "use_compression": True,
+                },
+                "append": {
+                    "url": "url",
+                    "headers": {"foo": "string"},
+                    "method": "POST",
+                    "response_actions": [
+                        {
+                            "action": "drop",
+                            "description": "description",
+                            "match_payload": "match_payload",
+                            "match_status_code": 0,
+                        }
+                    ],
+                    "timeout_seconds": 0,
+                    "use_compression": True,
+                },
+                "auth": {
+                    "config": {
+                        "token": "token",
+                        "header_name": "header_name",
+                    },
+                    "type": "token",
+                },
+                "content_type": "json",
+                "retry": {
+                    "url": "url",
+                    "headers": {"foo": "string"},
+                    "method": "POST",
+                    "response_actions": [
+                        {
+                            "action": "drop",
+                            "description": "description",
+                            "match_payload": "match_payload",
+                            "match_status_code": 0,
+                        }
+                    ],
+                    "timeout_seconds": 0,
+                    "use_compression": True,
+                },
+            },
+            storage_type="http",
+            description="description",
+            name="name",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create_overload_8(self, async_client: AsyncGcore) -> None:
+        response = await async_client.cdn.logs_uploader.targets.with_raw_response.create(
+            config={"upload": {"url": "url"}},
+            storage_type="http",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        target = await response.parse()
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create_overload_8(self, async_client: AsyncGcore) -> None:
+        async with async_client.cdn.logs_uploader.targets.with_streaming_response.create(
+            config={"upload": {"url": "url"}},
+            storage_type="http",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            target = await response.parse()
+            assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_create_overload_9(self, async_client: AsyncGcore) -> None:
+        target = await async_client.cdn.logs_uploader.targets.create(
+            config={},
+            storage_type="azure_blob",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params_overload_9(self, async_client: AsyncGcore) -> None:
+        target = await async_client.cdn.logs_uploader.targets.create(
+            config={
+                "account_name": "account_name",
+                "auth": {
+                    "config": {"account_key": "account_key"},
+                    "type": "shared_key",
+                },
+                "container_name": "container_name",
+                "directory": "directory",
+                "endpoint": "endpoint",
+            },
+            storage_type="azure_blob",
+            description="description",
+            name="name",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create_overload_9(self, async_client: AsyncGcore) -> None:
+        response = await async_client.cdn.logs_uploader.targets.with_raw_response.create(
+            config={},
+            storage_type="azure_blob",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        target = await response.parse()
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create_overload_9(self, async_client: AsyncGcore) -> None:
+        async with async_client.cdn.logs_uploader.targets.with_streaming_response.create(
+            config={},
+            storage_type="azure_blob",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            target = await response.parse()
+            assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_create_overload_10(self, async_client: AsyncGcore) -> None:
+        target = await async_client.cdn.logs_uploader.targets.create(
+            config={},
+            storage_type="sls",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params_overload_10(self, async_client: AsyncGcore) -> None:
+        target = await async_client.cdn.logs_uploader.targets.create(
+            config={
+                "auth": {
+                    "config": {
+                        "access_key_id": "access_key_id",
+                        "secret_access_key": "secret_access_key",
+                    },
+                    "type": "ak_sk",
+                },
+                "endpoint": "endpoint",
+                "log_store": "log_store",
+                "project": "project",
+                "region": "region",
+                "topic": "topic",
+            },
+            storage_type="sls",
+            description="description",
+            name="name",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create_overload_10(self, async_client: AsyncGcore) -> None:
+        response = await async_client.cdn.logs_uploader.targets.with_raw_response.create(
+            config={},
+            storage_type="sls",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        target = await response.parse()
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create_overload_10(self, async_client: AsyncGcore) -> None:
+        async with async_client.cdn.logs_uploader.targets.with_streaming_response.create(
+            config={},
+            storage_type="sls",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -521,7 +2183,7 @@ class TestAsyncTargets:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_method_replace(self, async_client: AsyncGcore) -> None:
+    async def test_method_replace_overload_1(self, async_client: AsyncGcore) -> None:
         target = await async_client.cdn.logs_uploader.targets.replace(
             id=0,
             config={},
@@ -530,7 +2192,7 @@ class TestAsyncTargets:
         assert_matches_type(LogsUploaderTarget, target, path=["response"])
 
     @parametrize
-    async def test_method_replace_with_all_params(self, async_client: AsyncGcore) -> None:
+    async def test_method_replace_with_all_params_overload_1(self, async_client: AsyncGcore) -> None:
         target = await async_client.cdn.logs_uploader.targets.replace(
             id=0,
             config={
@@ -549,7 +2211,7 @@ class TestAsyncTargets:
         assert_matches_type(LogsUploaderTarget, target, path=["response"])
 
     @parametrize
-    async def test_raw_response_replace(self, async_client: AsyncGcore) -> None:
+    async def test_raw_response_replace_overload_1(self, async_client: AsyncGcore) -> None:
         response = await async_client.cdn.logs_uploader.targets.with_raw_response.replace(
             id=0,
             config={},
@@ -562,11 +2224,589 @@ class TestAsyncTargets:
         assert_matches_type(LogsUploaderTarget, target, path=["response"])
 
     @parametrize
-    async def test_streaming_response_replace(self, async_client: AsyncGcore) -> None:
+    async def test_streaming_response_replace_overload_1(self, async_client: AsyncGcore) -> None:
         async with async_client.cdn.logs_uploader.targets.with_streaming_response.replace(
             id=0,
             config={},
             storage_type="s3_gcore",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            target = await response.parse()
+            assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_replace_overload_2(self, async_client: AsyncGcore) -> None:
+        target = await async_client.cdn.logs_uploader.targets.replace(
+            id=0,
+            config={
+                "access_key_id": "access_key_id",
+                "bucket_name": "bucket_name",
+                "region": "region",
+                "secret_access_key": "secret_access_key",
+            },
+            storage_type="s3_amazon",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_method_replace_with_all_params_overload_2(self, async_client: AsyncGcore) -> None:
+        target = await async_client.cdn.logs_uploader.targets.replace(
+            id=0,
+            config={
+                "access_key_id": "access_key_id",
+                "bucket_name": "bucket_name",
+                "region": "region",
+                "secret_access_key": "secret_access_key",
+                "directory": "directory",
+            },
+            storage_type="s3_amazon",
+            description="description",
+            name="name",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_raw_response_replace_overload_2(self, async_client: AsyncGcore) -> None:
+        response = await async_client.cdn.logs_uploader.targets.with_raw_response.replace(
+            id=0,
+            config={
+                "access_key_id": "access_key_id",
+                "bucket_name": "bucket_name",
+                "region": "region",
+                "secret_access_key": "secret_access_key",
+            },
+            storage_type="s3_amazon",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        target = await response.parse()
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_replace_overload_2(self, async_client: AsyncGcore) -> None:
+        async with async_client.cdn.logs_uploader.targets.with_streaming_response.replace(
+            id=0,
+            config={
+                "access_key_id": "access_key_id",
+                "bucket_name": "bucket_name",
+                "region": "region",
+                "secret_access_key": "secret_access_key",
+            },
+            storage_type="s3_amazon",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            target = await response.parse()
+            assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_replace_overload_3(self, async_client: AsyncGcore) -> None:
+        target = await async_client.cdn.logs_uploader.targets.replace(
+            id=0,
+            config={
+                "access_key_id": "access_key_id",
+                "bucket_name": "bucket_name",
+                "secret_access_key": "secret_access_key",
+            },
+            storage_type="s3_oss",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_method_replace_with_all_params_overload_3(self, async_client: AsyncGcore) -> None:
+        target = await async_client.cdn.logs_uploader.targets.replace(
+            id=0,
+            config={
+                "access_key_id": "access_key_id",
+                "bucket_name": "bucket_name",
+                "secret_access_key": "secret_access_key",
+                "directory": "directory",
+                "endpoint": "endpoint",
+                "region": "region",
+            },
+            storage_type="s3_oss",
+            description="description",
+            name="name",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_raw_response_replace_overload_3(self, async_client: AsyncGcore) -> None:
+        response = await async_client.cdn.logs_uploader.targets.with_raw_response.replace(
+            id=0,
+            config={
+                "access_key_id": "access_key_id",
+                "bucket_name": "bucket_name",
+                "secret_access_key": "secret_access_key",
+            },
+            storage_type="s3_oss",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        target = await response.parse()
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_replace_overload_3(self, async_client: AsyncGcore) -> None:
+        async with async_client.cdn.logs_uploader.targets.with_streaming_response.replace(
+            id=0,
+            config={
+                "access_key_id": "access_key_id",
+                "bucket_name": "bucket_name",
+                "secret_access_key": "secret_access_key",
+            },
+            storage_type="s3_oss",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            target = await response.parse()
+            assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_replace_overload_4(self, async_client: AsyncGcore) -> None:
+        target = await async_client.cdn.logs_uploader.targets.replace(
+            id=0,
+            config={},
+            storage_type="s3_other",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_method_replace_with_all_params_overload_4(self, async_client: AsyncGcore) -> None:
+        target = await async_client.cdn.logs_uploader.targets.replace(
+            id=0,
+            config={
+                "access_key_id": "access_key_id",
+                "bucket_name": "bucket_name",
+                "directory": "directory",
+                "endpoint": "endpoint",
+                "region": "region",
+                "secret_access_key": "secret_access_key",
+                "use_path_style": True,
+            },
+            storage_type="s3_other",
+            description="description",
+            name="name",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_raw_response_replace_overload_4(self, async_client: AsyncGcore) -> None:
+        response = await async_client.cdn.logs_uploader.targets.with_raw_response.replace(
+            id=0,
+            config={},
+            storage_type="s3_other",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        target = await response.parse()
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_replace_overload_4(self, async_client: AsyncGcore) -> None:
+        async with async_client.cdn.logs_uploader.targets.with_streaming_response.replace(
+            id=0,
+            config={},
+            storage_type="s3_other",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            target = await response.parse()
+            assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_replace_overload_5(self, async_client: AsyncGcore) -> None:
+        target = await async_client.cdn.logs_uploader.targets.replace(
+            id=0,
+            config={},
+            storage_type="s3_v1",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_method_replace_with_all_params_overload_5(self, async_client: AsyncGcore) -> None:
+        target = await async_client.cdn.logs_uploader.targets.replace(
+            id=0,
+            config={
+                "access_key_id": "access_key_id",
+                "bucket_name": "bucket_name",
+                "directory": "directory",
+                "endpoint": "endpoint",
+                "region": "region",
+                "secret_access_key": "secret_access_key",
+                "use_path_style": True,
+            },
+            storage_type="s3_v1",
+            description="description",
+            name="name",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_raw_response_replace_overload_5(self, async_client: AsyncGcore) -> None:
+        response = await async_client.cdn.logs_uploader.targets.with_raw_response.replace(
+            id=0,
+            config={},
+            storage_type="s3_v1",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        target = await response.parse()
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_replace_overload_5(self, async_client: AsyncGcore) -> None:
+        async with async_client.cdn.logs_uploader.targets.with_streaming_response.replace(
+            id=0,
+            config={},
+            storage_type="s3_v1",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            target = await response.parse()
+            assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_replace_overload_6(self, async_client: AsyncGcore) -> None:
+        target = await async_client.cdn.logs_uploader.targets.replace(
+            id=0,
+            config={},
+            storage_type="ftp",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_method_replace_with_all_params_overload_6(self, async_client: AsyncGcore) -> None:
+        target = await async_client.cdn.logs_uploader.targets.replace(
+            id=0,
+            config={
+                "directory": "directory",
+                "hostname": "hostname",
+                "password": "password",
+                "timeout_seconds": 0,
+                "user": "user",
+            },
+            storage_type="ftp",
+            description="description",
+            name="name",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_raw_response_replace_overload_6(self, async_client: AsyncGcore) -> None:
+        response = await async_client.cdn.logs_uploader.targets.with_raw_response.replace(
+            id=0,
+            config={},
+            storage_type="ftp",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        target = await response.parse()
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_replace_overload_6(self, async_client: AsyncGcore) -> None:
+        async with async_client.cdn.logs_uploader.targets.with_streaming_response.replace(
+            id=0,
+            config={},
+            storage_type="ftp",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            target = await response.parse()
+            assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_replace_overload_7(self, async_client: AsyncGcore) -> None:
+        target = await async_client.cdn.logs_uploader.targets.replace(
+            id=0,
+            config={},
+            storage_type="sftp",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_method_replace_with_all_params_overload_7(self, async_client: AsyncGcore) -> None:
+        target = await async_client.cdn.logs_uploader.targets.replace(
+            id=0,
+            config={
+                "directory": "directory",
+                "hostname": "hostname",
+                "key_passphrase": "key_passphrase",
+                "password": "password",
+                "private_key": "private_key",
+                "timeout_seconds": 0,
+                "user": "user",
+            },
+            storage_type="sftp",
+            description="description",
+            name="name",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_raw_response_replace_overload_7(self, async_client: AsyncGcore) -> None:
+        response = await async_client.cdn.logs_uploader.targets.with_raw_response.replace(
+            id=0,
+            config={},
+            storage_type="sftp",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        target = await response.parse()
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_replace_overload_7(self, async_client: AsyncGcore) -> None:
+        async with async_client.cdn.logs_uploader.targets.with_streaming_response.replace(
+            id=0,
+            config={},
+            storage_type="sftp",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            target = await response.parse()
+            assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_replace_overload_8(self, async_client: AsyncGcore) -> None:
+        target = await async_client.cdn.logs_uploader.targets.replace(
+            id=0,
+            config={"upload": {"url": "url"}},
+            storage_type="http",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_method_replace_with_all_params_overload_8(self, async_client: AsyncGcore) -> None:
+        target = await async_client.cdn.logs_uploader.targets.replace(
+            id=0,
+            config={
+                "upload": {
+                    "url": "url",
+                    "headers": {"foo": "string"},
+                    "method": "POST",
+                    "response_actions": [
+                        {
+                            "action": "drop",
+                            "description": "description",
+                            "match_payload": "match_payload",
+                            "match_status_code": 0,
+                        }
+                    ],
+                    "timeout_seconds": 0,
+                    "use_compression": True,
+                },
+                "append": {
+                    "url": "url",
+                    "headers": {"foo": "string"},
+                    "method": "POST",
+                    "response_actions": [
+                        {
+                            "action": "drop",
+                            "description": "description",
+                            "match_payload": "match_payload",
+                            "match_status_code": 0,
+                        }
+                    ],
+                    "timeout_seconds": 0,
+                    "use_compression": True,
+                },
+                "auth": {
+                    "config": {
+                        "token": "token",
+                        "header_name": "header_name",
+                    },
+                    "type": "token",
+                },
+                "content_type": "json",
+                "retry": {
+                    "url": "url",
+                    "headers": {"foo": "string"},
+                    "method": "POST",
+                    "response_actions": [
+                        {
+                            "action": "drop",
+                            "description": "description",
+                            "match_payload": "match_payload",
+                            "match_status_code": 0,
+                        }
+                    ],
+                    "timeout_seconds": 0,
+                    "use_compression": True,
+                },
+            },
+            storage_type="http",
+            description="description",
+            name="name",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_raw_response_replace_overload_8(self, async_client: AsyncGcore) -> None:
+        response = await async_client.cdn.logs_uploader.targets.with_raw_response.replace(
+            id=0,
+            config={"upload": {"url": "url"}},
+            storage_type="http",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        target = await response.parse()
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_replace_overload_8(self, async_client: AsyncGcore) -> None:
+        async with async_client.cdn.logs_uploader.targets.with_streaming_response.replace(
+            id=0,
+            config={"upload": {"url": "url"}},
+            storage_type="http",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            target = await response.parse()
+            assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_replace_overload_9(self, async_client: AsyncGcore) -> None:
+        target = await async_client.cdn.logs_uploader.targets.replace(
+            id=0,
+            config={},
+            storage_type="azure_blob",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_method_replace_with_all_params_overload_9(self, async_client: AsyncGcore) -> None:
+        target = await async_client.cdn.logs_uploader.targets.replace(
+            id=0,
+            config={
+                "account_name": "account_name",
+                "auth": {
+                    "config": {"account_key": "account_key"},
+                    "type": "shared_key",
+                },
+                "container_name": "container_name",
+                "directory": "directory",
+                "endpoint": "endpoint",
+            },
+            storage_type="azure_blob",
+            description="description",
+            name="name",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_raw_response_replace_overload_9(self, async_client: AsyncGcore) -> None:
+        response = await async_client.cdn.logs_uploader.targets.with_raw_response.replace(
+            id=0,
+            config={},
+            storage_type="azure_blob",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        target = await response.parse()
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_replace_overload_9(self, async_client: AsyncGcore) -> None:
+        async with async_client.cdn.logs_uploader.targets.with_streaming_response.replace(
+            id=0,
+            config={},
+            storage_type="azure_blob",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            target = await response.parse()
+            assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_replace_overload_10(self, async_client: AsyncGcore) -> None:
+        target = await async_client.cdn.logs_uploader.targets.replace(
+            id=0,
+            config={},
+            storage_type="sls",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_method_replace_with_all_params_overload_10(self, async_client: AsyncGcore) -> None:
+        target = await async_client.cdn.logs_uploader.targets.replace(
+            id=0,
+            config={
+                "auth": {
+                    "config": {
+                        "access_key_id": "access_key_id",
+                        "secret_access_key": "secret_access_key",
+                    },
+                    "type": "ak_sk",
+                },
+                "endpoint": "endpoint",
+                "log_store": "log_store",
+                "project": "project",
+                "region": "region",
+                "topic": "topic",
+            },
+            storage_type="sls",
+            description="description",
+            name="name",
+        )
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_raw_response_replace_overload_10(self, async_client: AsyncGcore) -> None:
+        response = await async_client.cdn.logs_uploader.targets.with_raw_response.replace(
+            id=0,
+            config={},
+            storage_type="sls",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        target = await response.parse()
+        assert_matches_type(LogsUploaderTarget, target, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_replace_overload_10(self, async_client: AsyncGcore) -> None:
+        async with async_client.cdn.logs_uploader.targets.with_streaming_response.replace(
+            id=0,
+            config={},
+            storage_type="sls",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

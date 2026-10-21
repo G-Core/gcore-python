@@ -7,41 +7,50 @@ from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 __all__ = [
     "TargetReplaceParams",
-    "Config",
-    "ConfigS3GcoreConfig",
-    "ConfigBaseS3Config",
-    "ConfigS3OssConfig",
-    "ConfigS3OtherConfig",
-    "ConfigS3V1Config",
-    "ConfigFtpConfig",
-    "ConfigSftpConfig",
-    "ConfigHTTPConfig",
-    "ConfigHTTPConfigUpload",
-    "ConfigHTTPConfigUploadResponseAction",
-    "ConfigHTTPConfigAppend",
-    "ConfigHTTPConfigAppendResponseAction",
-    "ConfigHTTPConfigAuth",
-    "ConfigHTTPConfigAuthConfig",
-    "ConfigHTTPConfigRetry",
-    "ConfigHTTPConfigRetryResponseAction",
-    "ConfigAzureBlobConfig",
-    "ConfigAzureBlobConfigAuth",
-    "ConfigAzureBlobConfigAuthConfig",
-    "ConfigAzureBlobConfigAuthConfigAccountKey",
-    "ConfigAzureBlobConfigAuthConfigToken",
-    "ConfigSlsConfig",
-    "ConfigSlsConfigAuth",
-    "ConfigSlsConfigAuthConfig",
+    "PutLogsUploaderTargetS3Gcore",
+    "PutLogsUploaderTargetS3GcoreConfig",
+    "PutLogsUploaderTargetS3GcoreConfigS3GcoreConfig",
+    "PutLogsUploaderTargetS3GcoreConfigS3GcoreBoundConfigPut",
+    "PutLogsUploaderTargetS3Amazon",
+    "PutLogsUploaderTargetS3AmazonConfig",
+    "PutLogsUploaderTargetS3Oss",
+    "PutLogsUploaderTargetS3OssConfig",
+    "PutLogsUploaderTargetS3Other",
+    "PutLogsUploaderTargetS3OtherConfig",
+    "PutLogsUploaderTargetS3V1",
+    "PutLogsUploaderTargetS3V1Config",
+    "PutLogsUploaderTargetFtp",
+    "PutLogsUploaderTargetFtpConfig",
+    "PutLogsUploaderTargetSftp",
+    "PutLogsUploaderTargetSftpConfig",
+    "PutLogsUploaderTargetHTTP",
+    "PutLogsUploaderTargetHTTPConfig",
+    "PutLogsUploaderTargetHTTPConfigUpload",
+    "PutLogsUploaderTargetHTTPConfigUploadResponseAction",
+    "PutLogsUploaderTargetHTTPConfigAppend",
+    "PutLogsUploaderTargetHTTPConfigAppendResponseAction",
+    "PutLogsUploaderTargetHTTPConfigAuth",
+    "PutLogsUploaderTargetHTTPConfigAuthConfig",
+    "PutLogsUploaderTargetHTTPConfigRetry",
+    "PutLogsUploaderTargetHTTPConfigRetryResponseAction",
+    "PutLogsUploaderTargetAzureBlob",
+    "PutLogsUploaderTargetAzureBlobConfig",
+    "PutLogsUploaderTargetAzureBlobConfigAuth",
+    "PutLogsUploaderTargetAzureBlobConfigAuthConfig",
+    "PutLogsUploaderTargetAzureBlobConfigAuthConfigAccountKey",
+    "PutLogsUploaderTargetAzureBlobConfigAuthConfigToken",
+    "PutLogsUploaderTargetSls",
+    "PutLogsUploaderTargetSlsConfig",
+    "PutLogsUploaderTargetSlsConfigAuth",
+    "PutLogsUploaderTargetSlsConfigAuthConfig",
 ]
 
 
-class TargetReplaceParams(TypedDict, total=False):
-    config: Required[Config]
-    """Config for specific storage type."""
+class PutLogsUploaderTargetS3Gcore(TypedDict, total=False):
+    config: Required[PutLogsUploaderTargetS3GcoreConfig]
+    """Config for the `s3_gcore` storage type."""
 
-    storage_type: Required[
-        Literal["s3_gcore", "s3_amazon", "s3_oss", "s3_other", "s3_v1", "ftp", "sftp", "http", "azure_blob", "sls"]
-    ]
+    storage_type: Required[Literal["s3_gcore"]]
     """Type of storage for logs."""
 
     description: str
@@ -51,7 +60,7 @@ class TargetReplaceParams(TypedDict, total=False):
     """Name of the target."""
 
 
-class ConfigS3GcoreConfig(TypedDict, total=False):
+class PutLogsUploaderTargetS3GcoreConfigS3GcoreConfig(TypedDict, total=False):
     access_key_id: str
 
     bucket_name: str
@@ -59,6 +68,11 @@ class ConfigS3GcoreConfig(TypedDict, total=False):
     directory: Optional[str]
 
     endpoint: str
+    """S3 storage endpoint URL.
+
+    Must be a public address: private and reserved IP addresses, `localhost`, and
+    hostnames that resolve to them are rejected.
+    """
 
     region: str
 
@@ -67,7 +81,44 @@ class ConfigS3GcoreConfig(TypedDict, total=False):
     use_path_style: bool
 
 
-class ConfigBaseS3Config(TypedDict, total=False):
+class PutLogsUploaderTargetS3GcoreConfigS3GcoreBoundConfigPut(TypedDict, total=False):
+    """`storage_id` keeps its current value when omitted.
+
+    To bind a target that is not bound yet, or
+    one that uses another storage type, send both `storage_id` and `bucket_name`.
+    """
+
+    bucket_name: Required[str]
+    """Name of a bucket in the selected storage."""
+
+    directory: Optional[str]
+
+    storage_id: int
+    """ID of your Gcore Object Storage.
+
+    The storage must be active and of the Standard type.
+    """
+
+
+PutLogsUploaderTargetS3GcoreConfig: TypeAlias = Union[
+    PutLogsUploaderTargetS3GcoreConfigS3GcoreConfig, PutLogsUploaderTargetS3GcoreConfigS3GcoreBoundConfigPut
+]
+
+
+class PutLogsUploaderTargetS3Amazon(TypedDict, total=False):
+    config: Required[PutLogsUploaderTargetS3AmazonConfig]
+
+    storage_type: Required[Literal["s3_amazon"]]
+    """Type of storage for logs."""
+
+    description: str
+    """Description of the target."""
+
+    name: str
+    """Name of the target."""
+
+
+class PutLogsUploaderTargetS3AmazonConfig(TypedDict, total=False):
     access_key_id: Required[str]
 
     bucket_name: Required[str]
@@ -79,21 +130,52 @@ class ConfigBaseS3Config(TypedDict, total=False):
     directory: Optional[str]
 
 
-class ConfigS3OssConfig(TypedDict, total=False):
-    access_key_id: str
+class PutLogsUploaderTargetS3Oss(TypedDict, total=False):
+    config: Required[PutLogsUploaderTargetS3OssConfig]
 
-    bucket_name: str
+    storage_type: Required[Literal["s3_oss"]]
+    """Type of storage for logs."""
+
+    description: str
+    """Description of the target."""
+
+    name: str
+    """Name of the target."""
+
+
+class PutLogsUploaderTargetS3OssConfig(TypedDict, total=False):
+    access_key_id: Required[str]
+
+    bucket_name: Required[str]
+
+    secret_access_key: Required[str]
 
     directory: Optional[str]
 
     endpoint: Optional[str]
+    """S3 storage endpoint URL.
+
+    Must be a public address: private and reserved IP addresses, `localhost`, and
+    hostnames that resolve to them are rejected.
+    """
 
     region: Optional[str]
 
-    secret_access_key: str
+
+class PutLogsUploaderTargetS3Other(TypedDict, total=False):
+    config: Required[PutLogsUploaderTargetS3OtherConfig]
+
+    storage_type: Required[Literal["s3_other"]]
+    """Type of storage for logs."""
+
+    description: str
+    """Description of the target."""
+
+    name: str
+    """Name of the target."""
 
 
-class ConfigS3OtherConfig(TypedDict, total=False):
+class PutLogsUploaderTargetS3OtherConfig(TypedDict, total=False):
     access_key_id: str
 
     bucket_name: str
@@ -101,6 +183,11 @@ class ConfigS3OtherConfig(TypedDict, total=False):
     directory: Optional[str]
 
     endpoint: str
+    """S3 storage endpoint URL.
+
+    Must be a public address: private and reserved IP addresses, `localhost`, and
+    hostnames that resolve to them are rejected.
+    """
 
     region: str
 
@@ -109,7 +196,20 @@ class ConfigS3OtherConfig(TypedDict, total=False):
     use_path_style: bool
 
 
-class ConfigS3V1Config(TypedDict, total=False):
+class PutLogsUploaderTargetS3V1(TypedDict, total=False):
+    config: Required[PutLogsUploaderTargetS3V1Config]
+
+    storage_type: Required[Literal["s3_v1"]]
+    """Type of storage for logs."""
+
+    description: str
+    """Description of the target."""
+
+    name: str
+    """Name of the target."""
+
+
+class PutLogsUploaderTargetS3V1Config(TypedDict, total=False):
     access_key_id: str
 
     bucket_name: str
@@ -117,6 +217,11 @@ class ConfigS3V1Config(TypedDict, total=False):
     directory: Optional[str]
 
     endpoint: str
+    """S3 storage endpoint URL.
+
+    Must be a public address: private and reserved IP addresses, `localhost`, and
+    hostnames that resolve to them are rejected.
+    """
 
     region: str
 
@@ -125,7 +230,20 @@ class ConfigS3V1Config(TypedDict, total=False):
     use_path_style: bool
 
 
-class ConfigFtpConfig(TypedDict, total=False):
+class PutLogsUploaderTargetFtp(TypedDict, total=False):
+    config: Required[PutLogsUploaderTargetFtpConfig]
+
+    storage_type: Required[Literal["ftp"]]
+    """Type of storage for logs."""
+
+    description: str
+    """Description of the target."""
+
+    name: str
+    """Name of the target."""
+
+
+class PutLogsUploaderTargetFtpConfig(TypedDict, total=False):
     directory: Optional[str]
 
     hostname: str
@@ -137,7 +255,20 @@ class ConfigFtpConfig(TypedDict, total=False):
     user: str
 
 
-class ConfigSftpConfig(TypedDict, total=False):
+class PutLogsUploaderTargetSftp(TypedDict, total=False):
+    config: Required[PutLogsUploaderTargetSftpConfig]
+
+    storage_type: Required[Literal["sftp"]]
+    """Type of storage for logs."""
+
+    description: str
+    """Description of the target."""
+
+    name: str
+    """Name of the target."""
+
+
+class PutLogsUploaderTargetSftpConfig(TypedDict, total=False):
     directory: Optional[str]
 
     hostname: str
@@ -153,7 +284,20 @@ class ConfigSftpConfig(TypedDict, total=False):
     user: str
 
 
-class ConfigHTTPConfigUploadResponseAction(TypedDict, total=False):
+class PutLogsUploaderTargetHTTP(TypedDict, total=False):
+    config: Required[PutLogsUploaderTargetHTTPConfig]
+
+    storage_type: Required[Literal["http"]]
+    """Type of storage for logs."""
+
+    description: str
+    """Description of the target."""
+
+    name: str
+    """Name of the target."""
+
+
+class PutLogsUploaderTargetHTTPConfigUploadResponseAction(TypedDict, total=False):
     action: Required[Literal["drop", "retry", "append"]]
 
     description: str
@@ -163,21 +307,21 @@ class ConfigHTTPConfigUploadResponseAction(TypedDict, total=False):
     match_status_code: int
 
 
-class ConfigHTTPConfigUpload(TypedDict, total=False):
+class PutLogsUploaderTargetHTTPConfigUpload(TypedDict, total=False):
     url: Required[str]
 
     headers: Dict[str, str]
 
     method: Literal["POST", "PUT"]
 
-    response_actions: Iterable[ConfigHTTPConfigUploadResponseAction]
+    response_actions: Iterable[PutLogsUploaderTargetHTTPConfigUploadResponseAction]
 
     timeout_seconds: int
 
     use_compression: bool
 
 
-class ConfigHTTPConfigAppendResponseAction(TypedDict, total=False):
+class PutLogsUploaderTargetHTTPConfigAppendResponseAction(TypedDict, total=False):
     action: Required[Literal["drop", "retry", "append"]]
 
     description: str
@@ -187,33 +331,33 @@ class ConfigHTTPConfigAppendResponseAction(TypedDict, total=False):
     match_status_code: int
 
 
-class ConfigHTTPConfigAppend(TypedDict, total=False):
+class PutLogsUploaderTargetHTTPConfigAppend(TypedDict, total=False):
     url: Required[str]
 
     headers: Dict[str, str]
 
     method: Literal["POST", "PUT"]
 
-    response_actions: Iterable[ConfigHTTPConfigAppendResponseAction]
+    response_actions: Iterable[PutLogsUploaderTargetHTTPConfigAppendResponseAction]
 
     timeout_seconds: int
 
     use_compression: bool
 
 
-class ConfigHTTPConfigAuthConfig(TypedDict, total=False):
+class PutLogsUploaderTargetHTTPConfigAuthConfig(TypedDict, total=False):
     token: Required[str]
 
     header_name: Required[str]
 
 
-class ConfigHTTPConfigAuth(TypedDict, total=False):
-    config: Required[ConfigHTTPConfigAuthConfig]
+class PutLogsUploaderTargetHTTPConfigAuth(TypedDict, total=False):
+    config: Required[PutLogsUploaderTargetHTTPConfigAuthConfig]
 
     type: Required[Literal["token"]]
 
 
-class ConfigHTTPConfigRetryResponseAction(TypedDict, total=False):
+class PutLogsUploaderTargetHTTPConfigRetryResponseAction(TypedDict, total=False):
     action: Required[Literal["drop", "retry", "append"]]
 
     description: str
@@ -223,60 +367,73 @@ class ConfigHTTPConfigRetryResponseAction(TypedDict, total=False):
     match_status_code: int
 
 
-class ConfigHTTPConfigRetry(TypedDict, total=False):
+class PutLogsUploaderTargetHTTPConfigRetry(TypedDict, total=False):
     url: Required[str]
 
     headers: Dict[str, str]
 
     method: Literal["POST", "PUT"]
 
-    response_actions: Iterable[ConfigHTTPConfigRetryResponseAction]
+    response_actions: Iterable[PutLogsUploaderTargetHTTPConfigRetryResponseAction]
 
     timeout_seconds: int
 
     use_compression: bool
 
 
-class ConfigHTTPConfig(TypedDict, total=False):
-    upload: Required[ConfigHTTPConfigUpload]
+class PutLogsUploaderTargetHTTPConfig(TypedDict, total=False):
+    upload: Required[PutLogsUploaderTargetHTTPConfigUpload]
 
-    append: ConfigHTTPConfigAppend
+    append: PutLogsUploaderTargetHTTPConfigAppend
 
-    auth: ConfigHTTPConfigAuth
+    auth: PutLogsUploaderTargetHTTPConfigAuth
 
     content_type: Literal["json", "text"]
 
-    retry: ConfigHTTPConfigRetry
+    retry: PutLogsUploaderTargetHTTPConfigRetry
 
 
-class ConfigAzureBlobConfigAuthConfigAccountKey(TypedDict, total=False):
+class PutLogsUploaderTargetAzureBlob(TypedDict, total=False):
+    config: Required[PutLogsUploaderTargetAzureBlobConfig]
+
+    storage_type: Required[Literal["azure_blob"]]
+    """Type of storage for logs."""
+
+    description: str
+    """Description of the target."""
+
+    name: str
+    """Name of the target."""
+
+
+class PutLogsUploaderTargetAzureBlobConfigAuthConfigAccountKey(TypedDict, total=False):
     account_key: Required[str]
     """Azure Blob Storage account key."""
 
 
-class ConfigAzureBlobConfigAuthConfigToken(TypedDict, total=False):
+class PutLogsUploaderTargetAzureBlobConfigAuthConfigToken(TypedDict, total=False):
     token: Required[str]
     """Azure Blob Storage SAS token."""
 
 
-ConfigAzureBlobConfigAuthConfig: TypeAlias = Union[
-    ConfigAzureBlobConfigAuthConfigAccountKey, ConfigAzureBlobConfigAuthConfigToken
+PutLogsUploaderTargetAzureBlobConfigAuthConfig: TypeAlias = Union[
+    PutLogsUploaderTargetAzureBlobConfigAuthConfigAccountKey, PutLogsUploaderTargetAzureBlobConfigAuthConfigToken
 ]
 
 
-class ConfigAzureBlobConfigAuth(TypedDict, total=False):
-    config: Required[ConfigAzureBlobConfigAuthConfig]
+class PutLogsUploaderTargetAzureBlobConfigAuth(TypedDict, total=False):
+    config: Required[PutLogsUploaderTargetAzureBlobConfigAuthConfig]
     """Authentication credentials."""
 
     type: Required[Literal["shared_key", "sas_token"]]
     """Authentication type."""
 
 
-class ConfigAzureBlobConfig(TypedDict, total=False):
+class PutLogsUploaderTargetAzureBlobConfig(TypedDict, total=False):
     account_name: str
     """Azure Blob Storage account name."""
 
-    auth: ConfigAzureBlobConfigAuth
+    auth: PutLogsUploaderTargetAzureBlobConfigAuth
 
     container_name: str
     """Azure Blob Storage container name."""
@@ -288,7 +445,20 @@ class ConfigAzureBlobConfig(TypedDict, total=False):
     """Custom Azure Blob Storage endpoint URL."""
 
 
-class ConfigSlsConfigAuthConfig(TypedDict, total=False):
+class PutLogsUploaderTargetSls(TypedDict, total=False):
+    config: Required[PutLogsUploaderTargetSlsConfig]
+
+    storage_type: Required[Literal["sls"]]
+    """Type of storage for logs."""
+
+    description: str
+    """Description of the target."""
+
+    name: str
+    """Name of the target."""
+
+
+class PutLogsUploaderTargetSlsConfigAuthConfig(TypedDict, total=False):
     """Authentication credentials."""
 
     access_key_id: Required[str]
@@ -298,16 +468,16 @@ class ConfigSlsConfigAuthConfig(TypedDict, total=False):
     """Alibaba secret access key."""
 
 
-class ConfigSlsConfigAuth(TypedDict, total=False):
-    config: Required[ConfigSlsConfigAuthConfig]
+class PutLogsUploaderTargetSlsConfigAuth(TypedDict, total=False):
+    config: Required[PutLogsUploaderTargetSlsConfigAuthConfig]
     """Authentication credentials."""
 
     type: Required[Literal["ak_sk"]]
     """Authentication type."""
 
 
-class ConfigSlsConfig(TypedDict, total=False):
-    auth: ConfigSlsConfigAuth
+class PutLogsUploaderTargetSlsConfig(TypedDict, total=False):
+    auth: PutLogsUploaderTargetSlsConfigAuth
 
     endpoint: Optional[str]
     """SLS endpoint.
@@ -331,15 +501,15 @@ class ConfigSlsConfig(TypedDict, total=False):
     """Optional SLS topic (0-128 characters)."""
 
 
-Config: TypeAlias = Union[
-    ConfigS3GcoreConfig,
-    ConfigBaseS3Config,
-    ConfigS3OssConfig,
-    ConfigS3OtherConfig,
-    ConfigS3V1Config,
-    ConfigFtpConfig,
-    ConfigSftpConfig,
-    ConfigHTTPConfig,
-    ConfigAzureBlobConfig,
-    ConfigSlsConfig,
+TargetReplaceParams: TypeAlias = Union[
+    PutLogsUploaderTargetS3Gcore,
+    PutLogsUploaderTargetS3Amazon,
+    PutLogsUploaderTargetS3Oss,
+    PutLogsUploaderTargetS3Other,
+    PutLogsUploaderTargetS3V1,
+    PutLogsUploaderTargetFtp,
+    PutLogsUploaderTargetSftp,
+    PutLogsUploaderTargetHTTP,
+    PutLogsUploaderTargetAzureBlob,
+    PutLogsUploaderTargetSls,
 ]

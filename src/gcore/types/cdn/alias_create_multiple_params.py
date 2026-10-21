@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Iterable, Optional
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["AliasCreateMultipleParams", "Item"]
 
@@ -23,8 +23,25 @@ class Item(TypedDict, total=False):
     automated: bool
     """How the alias certificate is managed.
 
-    Defaults to **true** when `ssl_id` is omitted and to **false** when `ssl_id` is
+    Defaults to `true` when `ssl_id` is omitted and to `false` when `ssl_id` is
     passed.
+    """
+
+    challenge_type: Literal["dns_01", "http_01"]
+    """
+    Domain validation method used to issue the Let's Encrypt certificate for the
+    alias.
+
+    Possible values:
+
+    - `dns_01` – Validation via a CNAME record for
+      `_acme-challenge.<alias hostname>`, shown in
+      `ssl_provisioning.acme_delegation`.
+    - `http_01` – Validation via an HTTP request to the alias hostname. The alias
+      hostname must point to your CDN CNAME, shown in
+      `ssl_provisioning.http_validation`. The request is served with the settings of
+      the alias's CDN resource, so they must not block or redirect
+      `/.well-known/acme-challenge/`.
     """
 
     ssl_id: Optional[int]

@@ -192,7 +192,7 @@ class OptionsCors(BaseModel):
     - **Adds "$http_origin" as the Access-Control-Allow-Origin header value if the
       origin matches one of the listed domains** - Content will be uploaded only for
       requests from the domains specified in the field.
-      `"value": ["domain.com", "second.dom.com"]`
+      `"value": ["example.com", "example.org"]`
     - **Adds "$http_origin" as the Access-Control-Allow-Origin header value** -
       Content will be uploaded for requests from any domain, and the domain from
       which the request was sent will be added to the "Access-Control-Allow-Origin"
@@ -784,8 +784,8 @@ class OptionsIPAddressACL(BaseModel):
 
     Examples:
 
-    - `192.168.3.2/32`
-    - `2a03:d000:2980:7::8/128`
+    - `192.0.2.10/32`
+    - `2001:db8::8/128`
     """
 
     policy_type: Literal["allow", "deny"]
@@ -1900,6 +1900,9 @@ class CDNResourceRule(BaseModel):
       protocols.
     - **null** - `originProtocol` setting is inherited from the CDN resource
       settings.
+
+    If an enabled origin among the origins this rule pulls from is bound to a Gcore
+    Object Storage (`s3_type` is `gcore`), HTTPS is used regardless of this setting.
     """
 
     preset_applied: Optional[bool] = None

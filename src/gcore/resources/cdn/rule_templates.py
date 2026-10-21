@@ -110,6 +110,9 @@ class RuleTemplatesResource(SyncAPIResource):
               - **null** - `originProtocol` setting is inherited from the CDN resource
                 settings.
 
+              If an enabled origin among the origins this rule pulls from is bound to a Gcore
+              Object Storage (`s3_type` is `gcore`), HTTPS is used regardless of this setting.
+
           weight: Rule execution order: from lowest (1) to highest.
 
               If requested URI matches multiple rules, the one higher in the order of the
@@ -182,6 +185,9 @@ class RuleTemplatesResource(SyncAPIResource):
                 protocols.
               - **null** - `originProtocol` setting is inherited from the CDN resource
                 settings.
+
+              If an enabled origin among the origins this rule pulls from is bound to a Gcore
+              Object Storage (`s3_type` is `gcore`), HTTPS is used regardless of this setting.
 
           rule: Path to the file or folder for which the rule will be applied.
 
@@ -398,6 +404,9 @@ class RuleTemplatesResource(SyncAPIResource):
               - **null** - `originProtocol` setting is inherited from the CDN resource
                 settings.
 
+              If an enabled origin among the origins this rule pulls from is bound to a Gcore
+              Object Storage (`s3_type` is `gcore`), HTTPS is used regardless of this setting.
+
           weight: Rule execution order: from lowest (1) to highest.
 
               If requested URI matches multiple rules, the one higher in the order of the
@@ -511,6 +520,9 @@ class AsyncRuleTemplatesResource(AsyncAPIResource):
               - **null** - `originProtocol` setting is inherited from the CDN resource
                 settings.
 
+              If an enabled origin among the origins this rule pulls from is bound to a Gcore
+              Object Storage (`s3_type` is `gcore`), HTTPS is used regardless of this setting.
+
           weight: Rule execution order: from lowest (1) to highest.
 
               If requested URI matches multiple rules, the one higher in the order of the
@@ -583,6 +595,9 @@ class AsyncRuleTemplatesResource(AsyncAPIResource):
                 protocols.
               - **null** - `originProtocol` setting is inherited from the CDN resource
                 settings.
+
+              If an enabled origin among the origins this rule pulls from is bound to a Gcore
+              Object Storage (`s3_type` is `gcore`), HTTPS is used regardless of this setting.
 
           rule: Path to the file or folder for which the rule will be applied.
 
@@ -798,6 +813,9 @@ class AsyncRuleTemplatesResource(AsyncAPIResource):
                 protocols.
               - **null** - `originProtocol` setting is inherited from the CDN resource
                 settings.
+
+              If an enabled origin among the origins this rule pulls from is bound to a Gcore
+              Object Storage (`s3_type` is `gcore`), HTTPS is used regardless of this setting.
 
           weight: Rule execution order: from lowest (1) to highest.
 

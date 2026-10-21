@@ -27,7 +27,7 @@ class TestAliases:
     @parametrize
     def test_method_create(self, client: Gcore) -> None:
         alias = client.cdn.aliases.create(
-            cname="shop.customer.com",
+            cname="shop.example.com",
             resource_id=4567,
         )
         assert_matches_type(Alias, alias, path=["response"])
@@ -35,10 +35,11 @@ class TestAliases:
     @parametrize
     def test_method_create_with_all_params(self, client: Gcore) -> None:
         alias = client.cdn.aliases.create(
-            cname="shop.customer.com",
+            cname="shop.example.com",
             resource_id=4567,
             active=True,
             automated=True,
+            challenge_type="http_01",
             ssl_id=890,
         )
         assert_matches_type(Alias, alias, path=["response"])
@@ -46,7 +47,7 @@ class TestAliases:
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
         response = client.cdn.aliases.with_raw_response.create(
-            cname="shop.customer.com",
+            cname="shop.example.com",
             resource_id=4567,
         )
 
@@ -58,7 +59,7 @@ class TestAliases:
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
         with client.cdn.aliases.with_streaming_response.create(
-            cname="shop.customer.com",
+            cname="shop.example.com",
             resource_id=4567,
         ) as response:
             assert not response.is_closed
@@ -82,6 +83,7 @@ class TestAliases:
             alias_id=0,
             active=False,
             automated=True,
+            challenge_type="http_01",
             ssl_id=891,
         )
         assert_matches_type(AliasDetail, alias, path=["response"])
@@ -192,7 +194,7 @@ class TestAliases:
     @parametrize
     def test_method_create_multiple(self, client: Gcore) -> None:
         alias = client.cdn.aliases.create_multiple(
-            items=[{"cname": "shop.customer.com"}],
+            items=[{"cname": "shop.example.com"}],
             resource_id=4567,
         )
         assert_matches_type(AliasCreateMultipleResponse, alias, path=["response"])
@@ -200,7 +202,7 @@ class TestAliases:
     @parametrize
     def test_raw_response_create_multiple(self, client: Gcore) -> None:
         response = client.cdn.aliases.with_raw_response.create_multiple(
-            items=[{"cname": "shop.customer.com"}],
+            items=[{"cname": "shop.example.com"}],
             resource_id=4567,
         )
 
@@ -212,7 +214,7 @@ class TestAliases:
     @parametrize
     def test_streaming_response_create_multiple(self, client: Gcore) -> None:
         with client.cdn.aliases.with_streaming_response.create_multiple(
-            items=[{"cname": "shop.customer.com"}],
+            items=[{"cname": "shop.example.com"}],
             resource_id=4567,
         ) as response:
             assert not response.is_closed
@@ -231,7 +233,7 @@ class TestAliases:
     @parametrize
     def test_method_delete_multiple_with_all_params(self, client: Gcore) -> None:
         alias = client.cdn.aliases.delete_multiple(
-            cnames=["a.customer.com", "b.customer.com"],
+            cnames=["shop.example.com", "www.example.com"],
             ids=[1, 2, 3],
         )
         assert_matches_type(AliasDeleteMultipleResponse, alias, path=["response"])
@@ -358,7 +360,7 @@ class TestAsyncAliases:
     @parametrize
     async def test_method_create(self, async_client: AsyncGcore) -> None:
         alias = await async_client.cdn.aliases.create(
-            cname="shop.customer.com",
+            cname="shop.example.com",
             resource_id=4567,
         )
         assert_matches_type(Alias, alias, path=["response"])
@@ -366,10 +368,11 @@ class TestAsyncAliases:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
         alias = await async_client.cdn.aliases.create(
-            cname="shop.customer.com",
+            cname="shop.example.com",
             resource_id=4567,
             active=True,
             automated=True,
+            challenge_type="http_01",
             ssl_id=890,
         )
         assert_matches_type(Alias, alias, path=["response"])
@@ -377,7 +380,7 @@ class TestAsyncAliases:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
         response = await async_client.cdn.aliases.with_raw_response.create(
-            cname="shop.customer.com",
+            cname="shop.example.com",
             resource_id=4567,
         )
 
@@ -389,7 +392,7 @@ class TestAsyncAliases:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
         async with async_client.cdn.aliases.with_streaming_response.create(
-            cname="shop.customer.com",
+            cname="shop.example.com",
             resource_id=4567,
         ) as response:
             assert not response.is_closed
@@ -413,6 +416,7 @@ class TestAsyncAliases:
             alias_id=0,
             active=False,
             automated=True,
+            challenge_type="http_01",
             ssl_id=891,
         )
         assert_matches_type(AliasDetail, alias, path=["response"])
@@ -523,7 +527,7 @@ class TestAsyncAliases:
     @parametrize
     async def test_method_create_multiple(self, async_client: AsyncGcore) -> None:
         alias = await async_client.cdn.aliases.create_multiple(
-            items=[{"cname": "shop.customer.com"}],
+            items=[{"cname": "shop.example.com"}],
             resource_id=4567,
         )
         assert_matches_type(AliasCreateMultipleResponse, alias, path=["response"])
@@ -531,7 +535,7 @@ class TestAsyncAliases:
     @parametrize
     async def test_raw_response_create_multiple(self, async_client: AsyncGcore) -> None:
         response = await async_client.cdn.aliases.with_raw_response.create_multiple(
-            items=[{"cname": "shop.customer.com"}],
+            items=[{"cname": "shop.example.com"}],
             resource_id=4567,
         )
 
@@ -543,7 +547,7 @@ class TestAsyncAliases:
     @parametrize
     async def test_streaming_response_create_multiple(self, async_client: AsyncGcore) -> None:
         async with async_client.cdn.aliases.with_streaming_response.create_multiple(
-            items=[{"cname": "shop.customer.com"}],
+            items=[{"cname": "shop.example.com"}],
             resource_id=4567,
         ) as response:
             assert not response.is_closed
@@ -562,7 +566,7 @@ class TestAsyncAliases:
     @parametrize
     async def test_method_delete_multiple_with_all_params(self, async_client: AsyncGcore) -> None:
         alias = await async_client.cdn.aliases.delete_multiple(
-            cnames=["a.customer.com", "b.customer.com"],
+            cnames=["shop.example.com", "www.example.com"],
             ids=[1, 2, 3],
         )
         assert_matches_type(AliasDeleteMultipleResponse, alias, path=["response"])

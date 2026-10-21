@@ -52,41 +52,53 @@ class NoneAuthSourceHostSourceResponse(BaseModel):
 
     When set, the CDN sends this value as the Host header when requesting content
     from this origin instead of the default.
+
+    Not accepted for an origin bound to a Gcore Object Storage (`s3_type` is
+    `gcore`): any non-null value is rejected, and the field is returned as `null`
+    for such origins.
     """
 
 
 class NoneAuthSourceS3SourceResponseConfig(BaseModel):
-    """S3 storage configuration. Required when `origin_type` is `s3`."""
+    """S3 storage configuration. Required when `origin_type` is `s3`.
 
-    s3_access_key_id: str
-    """Access key ID for the S3 account. Masked as `SECRET_VALUE` in responses.
-
-    Restrictions:
-
-    - Latin letters (A-Z, a-z), numbers (0-9), colon, dash, and underscore.
-    - From 4 to 255 characters.
+    To use your Gcore Object Storage as the origin, set `s3_type` to `gcore` and send only
+    `storage_id` and `s3_bucket_name`. The CDN configures the connection for you, and the
+    response returns only `s3_type`, `storage_id`, `s3_bucket_name` and `s3_auth_type`. For
+    such an origin:
+    - The CDN pulls content over HTTPS, regardless of the resource's `originProtocol`.
+    - The CDN has read-only access to the bucket.
+    - The CDN manages the Host header sent to the storage, so `host_header_override` is not
+      accepted and is returned as `null`.
     """
 
     s3_bucket_name: str
-    """S3 bucket name."""
+    """S3 bucket name.
 
-    s3_secret_access_key: str
-    """Secret access key for the S3 account. Masked as `SECRET_VALUE` in responses.
-
-    Restrictions:
-
-    - Latin letters (A-Z, a-z), numbers (0-9), pluses, slashes, dashes, colons and
-      underscores.
-    - From 16 to 255 characters.
+    If `s3_type` is `gcore`, the bucket must exist in the selected storage.
     """
 
-    s3_type: Literal["amazon", "other"]
+    s3_type: Literal["amazon", "other", "gcore"]
     """Storage type compatible with S3.
 
     Possible values:
 
     - **amazon** - AWS S3 storage.
     - **other** - Other (not AWS) S3 compatible storage.
+    - **gcore** - Your Gcore Object Storage. Select the storage and bucket, and the
+      CDN configures the connection.
+    """
+
+    s3_access_key_id: Optional[str] = None
+    """Access key ID for the S3 account. Masked as `SECRET_VALUE` in responses.
+
+    The parameter is required if `s3_type` is `amazon` or `other`. Not allowed if
+    `s3_type` is `gcore`: the CDN fills it and does not return it.
+
+    Restrictions:
+
+    - Latin letters (A-Z, a-z), numbers (0-9), colon, dash, and underscore.
+    - From 4 to 255 characters.
     """
 
     s3_auth_type: Optional[str] = None
@@ -95,13 +107,38 @@ class NoneAuthSourceS3SourceResponseConfig(BaseModel):
     s3_region: Optional[str] = None
     """S3 storage region.
 
-    The parameter is required if `s3_type` is `amazon`.
+    The parameter is required if `s3_type` is `amazon`. Not allowed if `s3_type` is
+    `gcore`: the CDN fills it and does not return it.
+    """
+
+    s3_secret_access_key: Optional[str] = None
+    """Secret access key for the S3 account. Masked as `SECRET_VALUE` in responses.
+
+    The parameter is required if `s3_type` is `amazon` or `other`. Not allowed if
+    `s3_type` is `gcore`: the CDN fills it and does not return it.
+
+    Restrictions:
+
+    - Latin letters (A-Z, a-z), numbers (0-9), pluses, slashes, dashes, colons and
+      underscores.
+    - From 16 to 255 characters.
     """
 
     s3_storage_hostname: Optional[str] = None
     """S3 storage hostname.
 
-    The parameter is required if `s3_type` is `other`.
+    The parameter is required if `s3_type` is `other`. Not allowed if `s3_type` is
+    `gcore`: the CDN fills it and does not return it.
+
+    Must be a public address: private and reserved IP addresses, `localhost`, and
+    hostnames that resolve to them are rejected.
+    """
+
+    storage_id: Optional[int] = None
+    """ID of your Gcore Object Storage.
+
+    The parameter is required if `s3_type` is `gcore`, and not allowed otherwise.
+    The storage must be active and of the Standard type.
     """
 
 
@@ -109,7 +146,19 @@ class NoneAuthSourceS3SourceResponse(BaseModel):
     """An S3 origin source."""
 
     config: NoneAuthSourceS3SourceResponseConfig
-    """S3 storage configuration. Required when `origin_type` is `s3`."""
+    """S3 storage configuration. Required when `origin_type` is `s3`.
+
+    To use your Gcore Object Storage as the origin, set `s3_type` to `gcore` and
+    send only `storage_id` and `s3_bucket_name`. The CDN configures the connection
+    for you, and the response returns only `s3_type`, `storage_id`, `s3_bucket_name`
+    and `s3_auth_type`. For such an origin:
+
+    - The CDN pulls content over HTTPS, regardless of the resource's
+      `originProtocol`.
+    - The CDN has read-only access to the bucket.
+    - The CDN manages the Host header sent to the storage, so `host_header_override`
+      is not accepted and is returned as `null`.
+    """
 
     origin_type: Literal["host", "s3", "fastedge"]
     """Origin type. Present in responses for S3 and FastEdge sources.
@@ -149,6 +198,10 @@ class NoneAuthSourceS3SourceResponse(BaseModel):
 
     When set, the CDN sends this value as the Host header when requesting content
     from this origin instead of the default.
+
+    Not accepted for an origin bound to a Gcore Object Storage (`s3_type` is
+    `gcore`): any non-null value is rejected, and the field is returned as `null`
+    for such origins.
     """
 
 
@@ -159,8 +212,8 @@ class NoneAuthSourceFastedgeSourceResponseConfig(BaseModel):
     """
     ID of the FastEdge application served as origin (string, matching the existing
     fastedge option's convention). The CDN dispatches requests to the local FastEdge
-    runtime on the edge node using this identifier. The application must belong to
-    the requesting client, be enabled, and have `wasi-http` API type.
+    runtime on the edge node using this identifier. The application must be in your
+    account, be enabled, and have `wasi-http` API type.
     """
 
 
@@ -208,6 +261,10 @@ class NoneAuthSourceFastedgeSourceResponse(BaseModel):
 
     When set, the CDN sends this value as the Host header when requesting content
     from this origin instead of the default.
+
+    Not accepted for an origin bound to a Gcore Object Storage (`s3_type` is
+    `gcore`): any non-null value is rejected, and the field is returned as `null`
+    for such origins.
     """
 
 
@@ -233,8 +290,8 @@ class NoneAuth(BaseModel):
     Each entry can be a host origin or an S3 origin.
 
     Host origins have a `source` field with the hostname or IP. S3 origins have
-    `origin_type: s3` and a `config` object with S3 credentials. Both types can be
-    mixed in the same origin group.
+    `origin_type: s3` and a `config` object with S3 credentials or a Gcore Object
+    Storage binding. Both types can be mixed in the same origin group.
     """
 
     auth_type: Optional[str] = None
@@ -346,6 +403,9 @@ class AwsSignatureV4Auth(BaseModel):
     """S3 storage hostname.
 
     The parameter is required, if "s3_type": other.
+
+    Must be a public address: private and reserved IP addresses, `localhost`, and
+    hostnames that resolve to them are rejected.
     """
 
 

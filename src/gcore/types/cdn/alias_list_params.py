@@ -16,8 +16,8 @@ class AliasListParams(TypedDict, total=False):
 
     Possible values:
 
-    - **true** – Certificate is issued and renewed automatically.
-    - **false** – Certificate was added by a user.
+    - `true` – A Let's Encrypt certificate is issued and renewed automatically.
+    - `false` – The certificate was added by you.
     """
 
     cname: str
@@ -54,7 +54,17 @@ class AliasListParams(TypedDict, total=False):
     """SSL certificate ID. Only aliases linked to this certificate are returned."""
 
     ssl_status: Optional[Literal["pending", "issued", "failed"]]
-    """Certificate outcome."""
+    """Outcome of the certificate we manage for the alias.
+
+    Possible values:
+
+    - `pending` – A certificate attempt is in progress, or was stopped by pausing
+      the alias and starts again after it is resumed.
+    - `issued` – The latest attempt succeeded.
+    - `failed` – The latest attempt ended without a certificate.
+    - `null` – No certificate is managed for the alias: the alias uses a certificate
+      you provided, or is automated and has never opened an attempt.
+    """
 
     ssl_status_in: Annotated[str, PropertyInfo(alias="ssl_status__in")]
     """Comma-separated list of certificate outcomes."""
@@ -71,8 +81,17 @@ class AliasListParams(TypedDict, total=False):
     (ISO 8601/RFC 3339 format, UTC).
     """
 
-    status: Literal["pending", "active", "ssl_issuing", "ssl_error", "inactive"]
-    """Alias status."""
+    status: Literal["inactive", "pending", "http_only", "active"]
+    """Alias status.
+
+    Possible values:
+
+    - `inactive` – The alias or its CDN resource is disabled; the alias is not
+      served.
+    - `pending` – The alias configuration has not reached the CDN yet.
+    - `http_only` – The alias is served over HTTP only.
+    - `active` – The alias is served over HTTP and HTTPS.
+    """
 
     status_in: Annotated[str, PropertyInfo(alias="status__in")]
     """Comma-separated list of alias statuses."""

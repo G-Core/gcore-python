@@ -20,27 +20,24 @@ class Created(BaseModel):
 
     Possible values:
 
-    - **pending** – A certificate attempt is in progress.
-    - **issued** – The latest attempt succeeded.
-    - **failed** – The latest attempt ended without a certificate.
-    - **null** – No certificate is managed for the alias: the alias uses a
-      certificate you provided, or is automated and has never opened an attempt.
+    - `pending` – A certificate attempt is in progress, or was stopped by pausing
+      the alias and starts again after it is resumed.
+    - `issued` – The latest attempt succeeded.
+    - `failed` – The latest attempt ended without a certificate.
+    - `null` – No certificate is managed for the alias: the alias uses a certificate
+      you provided, or is automated and has never opened an attempt.
     """
 
-    status: Optional[Literal["pending", "active", "ssl_issuing", "ssl_error", "inactive"]] = None
+    status: Optional[Literal["inactive", "pending", "http_only", "active"]] = None
     """Alias status.
 
     Possible values:
 
-    - **pending** – The certificate has not been issued yet; the alias is not
+    - `inactive` – The alias or its CDN resource is disabled; the alias is not
       served.
-    - **active** – The alias is served with its certificate.
-    - **`ssl_issuing`** – A new certificate is being issued; the current one keeps
-      being served.
-    - **`ssl_error`** – Certificate issuance failed; a previously issued certificate
-      keeps being served.
-    - **inactive** – The alias or its CDN resource is disabled; the alias is not
-      served.
+    - `pending` – The alias configuration has not reached the CDN yet.
+    - `http_only` – The alias is served over HTTP only.
+    - `active` – The alias is served over HTTP and HTTPS.
     """
 
 
@@ -56,27 +53,24 @@ class Exist(BaseModel):
 
     Possible values:
 
-    - **pending** – A certificate attempt is in progress.
-    - **issued** – The latest attempt succeeded.
-    - **failed** – The latest attempt ended without a certificate.
-    - **null** – No certificate is managed for the alias: the alias uses a
-      certificate you provided, or is automated and has never opened an attempt.
+    - `pending` – A certificate attempt is in progress, or was stopped by pausing
+      the alias and starts again after it is resumed.
+    - `issued` – The latest attempt succeeded.
+    - `failed` – The latest attempt ended without a certificate.
+    - `null` – No certificate is managed for the alias: the alias uses a certificate
+      you provided, or is automated and has never opened an attempt.
     """
 
-    status: Optional[Literal["pending", "active", "ssl_issuing", "ssl_error", "inactive"]] = None
+    status: Optional[Literal["inactive", "pending", "http_only", "active"]] = None
     """Alias status.
 
     Possible values:
 
-    - **pending** – The certificate has not been issued yet; the alias is not
+    - `inactive` – The alias or its CDN resource is disabled; the alias is not
       served.
-    - **active** – The alias is served with its certificate.
-    - **`ssl_issuing`** – A new certificate is being issued; the current one keeps
-      being served.
-    - **`ssl_error`** – Certificate issuance failed; a previously issued certificate
-      keeps being served.
-    - **inactive** – The alias or its CDN resource is disabled; the alias is not
-      served.
+    - `pending` – The alias configuration has not reached the CDN yet.
+    - `http_only` – The alias is served over HTTP only.
+    - `active` – The alias is served over HTTP and HTTPS.
     """
 
 

@@ -172,3 +172,14 @@ class CDNResourceListParams(TypedDict, total=False):
     - **true** - CDN resource is used for Streaming platform.
     - **false** - CDN resource is not used for Streaming platform.
     """
+
+    waap_domain_id_isnull: Annotated[bool, PropertyInfo(alias="waap_domain_id__isnull")]
+    """Filters CDN resources by whether they are linked to a WAAP domain.
+
+    A CDN resource stays linked when WAAP is turned off on it.
+
+    Possible values:
+
+    - **true** - CDN resource is not linked to a WAAP domain.
+    - **false** - CDN resource is linked to a WAAP domain.
+    """

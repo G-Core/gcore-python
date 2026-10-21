@@ -15,20 +15,16 @@ class Alias(BaseModel):
     cname: str
     """Alias hostname."""
 
-    status: Literal["pending", "active", "ssl_issuing", "ssl_error", "inactive"]
+    status: Literal["inactive", "pending", "http_only", "active"]
     """Alias status.
 
     Possible values:
 
-    - **pending** – The certificate has not been issued yet; the alias is not
+    - `inactive` – The alias or its CDN resource is disabled; the alias is not
       served.
-    - **active** – The alias is served with its certificate.
-    - **`ssl_issuing`** – A new certificate is being issued; the current one keeps
-      being served.
-    - **`ssl_error`** – Certificate issuance failed; a previously issued certificate
-      keeps being served.
-    - **inactive** – The alias or its CDN resource is disabled; the alias is not
-      served.
+    - `pending` – The alias configuration has not reached the CDN yet.
+    - `http_only` – The alias is served over HTTP only.
+    - `active` – The alias is served over HTTP and HTTPS.
     """
 
 

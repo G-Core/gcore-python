@@ -66,7 +66,7 @@ class TestRuleTemplates:
                 },
                 "cors": {
                     "enabled": True,
-                    "value": ["domain.com", "domain2.com"],
+                    "value": ["example.com", "example.org"],
                     "always": True,
                 },
                 "country_acl": {
@@ -154,7 +154,7 @@ class TestRuleTemplates:
                 },
                 "host_header": {
                     "enabled": True,
-                    "value": "host.com",
+                    "value": "example.com",
                 },
                 "ignore_cookie": {
                     "enabled": True,
@@ -173,7 +173,7 @@ class TestRuleTemplates:
                 },
                 "ip_address_acl": {
                     "enabled": True,
-                    "excepted_values": ["192.168.1.100/32"],
+                    "excepted_values": ["192.0.2.20/32"],
                     "policy_type": "deny",
                 },
                 "limit_bandwidth": {
@@ -223,7 +223,7 @@ class TestRuleTemplates:
                 },
                 "referrer_acl": {
                     "enabled": True,
-                    "excepted_values": ["example.com", "*.example.net"],
+                    "excepted_values": ["example.com", "*.example.org"],
                     "policy_type": "deny",
                 },
                 "response_headers_hiding_policy": {
@@ -372,7 +372,7 @@ class TestRuleTemplates:
                 },
                 "cors": {
                     "enabled": True,
-                    "value": ["domain.com", "domain2.com"],
+                    "value": ["example.com", "example.org"],
                     "always": True,
                 },
                 "country_acl": {
@@ -460,7 +460,7 @@ class TestRuleTemplates:
                 },
                 "host_header": {
                     "enabled": True,
-                    "value": "host.com",
+                    "value": "example.com",
                 },
                 "ignore_cookie": {
                     "enabled": True,
@@ -479,7 +479,7 @@ class TestRuleTemplates:
                 },
                 "ip_address_acl": {
                     "enabled": True,
-                    "excepted_values": ["192.168.1.100/32"],
+                    "excepted_values": ["192.0.2.20/32"],
                     "policy_type": "deny",
                 },
                 "limit_bandwidth": {
@@ -529,7 +529,7 @@ class TestRuleTemplates:
                 },
                 "referrer_acl": {
                     "enabled": True,
-                    "excepted_values": ["example.com", "*.example.net"],
+                    "excepted_values": ["example.com", "*.example.org"],
                     "policy_type": "deny",
                 },
                 "response_headers_hiding_policy": {
@@ -781,7 +781,7 @@ class TestRuleTemplates:
                 },
                 "cors": {
                     "enabled": True,
-                    "value": ["domain.com", "domain2.com"],
+                    "value": ["example.com", "example.org"],
                     "always": True,
                 },
                 "country_acl": {
@@ -869,7 +869,7 @@ class TestRuleTemplates:
                 },
                 "host_header": {
                     "enabled": True,
-                    "value": "host.com",
+                    "value": "example.com",
                 },
                 "ignore_cookie": {
                     "enabled": True,
@@ -888,7 +888,7 @@ class TestRuleTemplates:
                 },
                 "ip_address_acl": {
                     "enabled": True,
-                    "excepted_values": ["192.168.1.100/32"],
+                    "excepted_values": ["192.0.2.20/32"],
                     "policy_type": "deny",
                 },
                 "limit_bandwidth": {
@@ -938,7 +938,7 @@ class TestRuleTemplates:
                 },
                 "referrer_acl": {
                     "enabled": True,
-                    "excepted_values": ["example.com", "*.example.net"],
+                    "excepted_values": ["example.com", "*.example.org"],
                     "policy_type": "deny",
                 },
                 "response_headers_hiding_policy": {
@@ -1097,7 +1097,7 @@ class TestAsyncRuleTemplates:
                 },
                 "cors": {
                     "enabled": True,
-                    "value": ["domain.com", "domain2.com"],
+                    "value": ["example.com", "example.org"],
                     "always": True,
                 },
                 "country_acl": {
@@ -1185,7 +1185,7 @@ class TestAsyncRuleTemplates:
                 },
                 "host_header": {
                     "enabled": True,
-                    "value": "host.com",
+                    "value": "example.com",
                 },
                 "ignore_cookie": {
                     "enabled": True,
@@ -1204,7 +1204,7 @@ class TestAsyncRuleTemplates:
                 },
                 "ip_address_acl": {
                     "enabled": True,
-                    "excepted_values": ["192.168.1.100/32"],
+                    "excepted_values": ["192.0.2.20/32"],
                     "policy_type": "deny",
                 },
                 "limit_bandwidth": {
@@ -1254,7 +1254,7 @@ class TestAsyncRuleTemplates:
                 },
                 "referrer_acl": {
                     "enabled": True,
-                    "excepted_values": ["example.com", "*.example.net"],
+                    "excepted_values": ["example.com", "*.example.org"],
                     "policy_type": "deny",
                 },
                 "response_headers_hiding_policy": {
@@ -1403,7 +1403,7 @@ class TestAsyncRuleTemplates:
                 },
                 "cors": {
                     "enabled": True,
-                    "value": ["domain.com", "domain2.com"],
+                    "value": ["example.com", "example.org"],
                     "always": True,
                 },
                 "country_acl": {
@@ -1491,7 +1491,7 @@ class TestAsyncRuleTemplates:
                 },
                 "host_header": {
                     "enabled": True,
-                    "value": "host.com",
+                    "value": "example.com",
                 },
                 "ignore_cookie": {
                     "enabled": True,
@@ -1510,7 +1510,7 @@ class TestAsyncRuleTemplates:
                 },
                 "ip_address_acl": {
                     "enabled": True,
-                    "excepted_values": ["192.168.1.100/32"],
+                    "excepted_values": ["192.0.2.20/32"],
                     "policy_type": "deny",
                 },
                 "limit_bandwidth": {
@@ -1560,7 +1560,7 @@ class TestAsyncRuleTemplates:
                 },
                 "referrer_acl": {
                     "enabled": True,
-                    "excepted_values": ["example.com", "*.example.net"],
+                    "excepted_values": ["example.com", "*.example.org"],
                     "policy_type": "deny",
                 },
                 "response_headers_hiding_policy": {
@@ -1812,7 +1812,7 @@ class TestAsyncRuleTemplates:
                 },
                 "cors": {
                     "enabled": True,
-                    "value": ["domain.com", "domain2.com"],
+                    "value": ["example.com", "example.org"],
                     "always": True,
                 },
                 "country_acl": {
@@ -1900,7 +1900,7 @@ class TestAsyncRuleTemplates:
                 },
                 "host_header": {
                     "enabled": True,
-                    "value": "host.com",
+                    "value": "example.com",
                 },
                 "ignore_cookie": {
                     "enabled": True,
@@ -1919,7 +1919,7 @@ class TestAsyncRuleTemplates:
                 },
                 "ip_address_acl": {
                     "enabled": True,
-                    "excepted_values": ["192.168.1.100/32"],
+                    "excepted_values": ["192.0.2.20/32"],
                     "policy_type": "deny",
                 },
                 "limit_bandwidth": {
@@ -1969,7 +1969,7 @@ class TestAsyncRuleTemplates:
                 },
                 "referrer_acl": {
                     "enabled": True,
-                    "excepted_values": ["example.com", "*.example.net"],
+                    "excepted_values": ["example.com", "*.example.org"],
                     "policy_type": "deny",
                 },
                 "response_headers_hiding_policy": {

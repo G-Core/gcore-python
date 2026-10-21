@@ -66,6 +66,7 @@ class AliasesResource(SyncAPIResource):
         resource_id: int,
         active: bool | Omit = omit,
         automated: bool | Omit = omit,
+        challenge_type: Literal["dns_01", "http_01"] | Omit = omit,
         ssl_id: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -79,34 +80,47 @@ class AliasesResource(SyncAPIResource):
         your CDN resources and with its own SSL certificate.
 
         By default, a Let's Encrypt certificate is issued for the alias automatically.
-        Until the certificate is issued the alias stays in the `pending` status.
+        Choose how its domain is validated with `challenge_type`.
 
         To use your own certificate instead, pass its ID in `ssl_id`. The certificate
         must cover the alias hostname; a Let's Encrypt certificate issued for one of
-        your CDN resources cannot be used. Such an alias becomes `active` immediately.
+        your CDN resources cannot be used.
 
         The hostname must be unique across all CDN resources, additional CNAMEs and
         aliases.
 
-        If Let's Encrypt validation for the hostname requires a delegation record, it is
-        reported as `ssl_provisioning` when you get the alias.
+        The DNS record the hostname needs for Let's Encrypt domain validation is
+        returned in `ssl_provisioning` of the alias details.
 
         Args:
           cname: Alias hostname. Wildcard hostnames are not supported.
 
           resource_id: ID of the CDN resource whose settings the alias is served with.
 
-          active: Whether the alias is enabled. Defaults to **true**. The alias is served once its
-              certificate is ready.
+          active: Whether the alias is enabled. Defaults to `true`.
 
-          automated: How the alias certificate is managed. Defaults to **true** when `ssl_id` is
-              omitted and to **false** when `ssl_id` is passed.
+          automated: How the alias certificate is managed. Defaults to `true` when `ssl_id` is
+              omitted and to `false` when `ssl_id` is passed.
 
               Possible values:
 
-              - **true** – A Let's Encrypt certificate is issued and renewed automatically.
+              - `true` – A Let's Encrypt certificate is issued and renewed automatically.
                 `ssl_id` must be omitted.
-              - **false** – Your own certificate is served. `ssl_id` is required.
+              - `false` – Your own certificate referenced by `ssl_id`, if any, is served.
+
+          challenge_type: Domain validation method used to issue the Let's Encrypt certificate for the
+              alias.
+
+              Possible values:
+
+              - `dns_01` – Validation via a CNAME record for
+                `_acme-challenge.<alias hostname>`, shown in
+                `ssl_provisioning.acme_delegation`.
+              - `http_01` – Validation via an HTTP request to the alias hostname. The alias
+                hostname must point to your CDN CNAME, shown in
+                `ssl_provisioning.http_validation`. The request is served with the settings of
+                the alias's CDN resource, so they must not block or redirect
+                `/.well-known/acme-challenge/`.
 
           ssl_id: ID of your own SSL certificate to serve for the alias. The certificate must
               cover the alias hostname. A Let's Encrypt certificate issued for one of your CDN
@@ -130,6 +144,7 @@ class AliasesResource(SyncAPIResource):
                     "resource_id": resource_id,
                     "active": active,
                     "automated": automated,
+                    "challenge_type": challenge_type,
                     "ssl_id": ssl_id,
                 },
                 alias_create_params.AliasCreateParams,
@@ -146,6 +161,7 @@ class AliasesResource(SyncAPIResource):
         *,
         active: bool | Omit = omit,
         automated: bool | Omit = omit,
+        challenge_type: Literal["dns_01", "http_01"] | Omit = omit,
         ssl_id: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -159,10 +175,12 @@ class AliasesResource(SyncAPIResource):
         The hostname and the CDN resource of an alias cannot be
         changed; delete the alias and create a new one instead.
 
-        Set `active` to **false** to stop serving the alias; set it back to **true** to
-        resume. Resuming an alias that has no valid certificate starts a new issuance
-        attempt, which is rate-limited, so it cannot be combined with `automated` in one
-        request.
+        Set `active` to `false` to stop serving the alias; certificate issuance stops,
+        though an attempt already being processed completes. Set it back to `true` to
+        resume. Resuming an alias without a valid Let's Encrypt certificate starts a new
+        issuance attempt, which is rate-limited, so it cannot be combined with
+        `automated` in one request. A renewal stopped by the pause is started again by
+        the scheduled renewal after the alias is resumed.
 
         For an alias with your own certificate, pass a new certificate ID in `ssl_id` to
         replace it. The new certificate must cover the alias hostname.
@@ -171,17 +189,25 @@ class AliasesResource(SyncAPIResource):
         certificate takes effect at once and the Let's Encrypt certificate issued for
         the alias is removed. Switching to a Let's Encrypt certificate starts an
         issuance attempt while your certificate keeps being served, and the alias starts
-        serving the new certificate once it is issued; if the attempt fails, `status`
-        becomes **`ssl_error`** and your certificate keeps being served. The certificate
-        mode cannot be changed while the alias is paused — resume it first.
+        serving the new certificate once it is issued; if the attempt fails,
+        `ssl_status` becomes `failed` and your certificate keeps being served. The
+        certificate mode cannot be changed while the alias is paused — resume it first.
+
+        Pass `challenge_type` to change how the Let's Encrypt certificate's domain is
+        validated. It cannot be changed while the alias is paused, or together with
+        `active`. While no valid certificate is served, the change cancels the running
+        issuance attempt and starts a new one; this is rate-limited like resuming, and
+        is refused while that attempt is being processed. Otherwise the new method is
+        used from the next attempt.
 
         Args:
           active: Whether the alias is enabled.
 
               Possible values:
 
-              - **true** – The alias is enabled and is served once its certificate is ready.
-              - **false** – The alias is paused and is not served.
+              - `true` – The alias is enabled.
+              - `false` – The alias is paused and is not served. Certificate issuance stops,
+                though an attempt already being processed completes.
 
           automated: How the alias certificate is managed. Change it to switch the alias between a
               Let's Encrypt certificate and your own. Cannot be changed while the alias is
@@ -189,15 +215,29 @@ class AliasesResource(SyncAPIResource):
 
               Possible values:
 
-              - **true** – Switch to a Let's Encrypt certificate. `ssl_id` must be omitted.
-                The current certificate keeps being served until the new one is issued.
-              - **false** – Switch to your own certificate. `ssl_id` is required and is served
+              - `true` – Switch to a Let's Encrypt certificate. `ssl_id` must be omitted. The
+                current certificate keeps being served until the new one is issued.
+              - `false` – Switch to your own certificate. `ssl_id` is required and is served
                 immediately.
+
+          challenge_type: Domain validation method used to issue the Let's Encrypt certificate for the
+              alias.
+
+              Possible values:
+
+              - `dns_01` – Validation via a CNAME record for
+                `_acme-challenge.<alias hostname>`, shown in
+                `ssl_provisioning.acme_delegation`.
+              - `http_01` – Validation via an HTTP request to the alias hostname. The alias
+                hostname must point to your CDN CNAME, shown in
+                `ssl_provisioning.http_validation`. The request is served with the settings of
+                the alias's CDN resource, so they must not block or redirect
+                `/.well-known/acme-challenge/`.
 
           ssl_id: ID of your own SSL certificate to serve for the alias instead of the current
               one. The certificate must cover the alias hostname; a Let's Encrypt certificate
               issued for one of your CDN resources cannot be used. Available for an alias with
-              `automated` set to **false**, and together with `automated` set to **false** to
+              `automated` set to `false`, and together with `automated` set to `false` to
               switch to your own certificate.
 
           extra_headers: Send extra headers
@@ -214,6 +254,7 @@ class AliasesResource(SyncAPIResource):
                 {
                     "active": active,
                     "automated": automated,
+                    "challenge_type": challenge_type,
                     "ssl_id": ssl_id,
                 },
                 alias_update_params.AliasUpdateParams,
@@ -242,7 +283,7 @@ class AliasesResource(SyncAPIResource):
         ssl_status_in: str | Omit = omit,
         ssl_validity_not_after_gte: str | Omit = omit,
         ssl_validity_not_after_lte: str | Omit = omit,
-        status: Literal["pending", "active", "ssl_issuing", "ssl_error", "inactive"] | Omit = omit,
+        status: Literal["inactive", "pending", "http_only", "active"] | Omit = omit,
         status_in: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -261,8 +302,8 @@ class AliasesResource(SyncAPIResource):
 
               Possible values:
 
-              - **true** – Certificate is issued and renewed automatically.
-              - **false** – Certificate was added by a user.
+              - `true` – A Let's Encrypt certificate is issued and renewed automatically.
+              - `false` – The certificate was added by you.
 
           cname: Hostname substring, case-insensitive.
 
@@ -286,7 +327,16 @@ class AliasesResource(SyncAPIResource):
 
           ssl_id: SSL certificate ID. Only aliases linked to this certificate are returned.
 
-          ssl_status: Certificate outcome.
+          ssl_status: Outcome of the certificate we manage for the alias.
+
+              Possible values:
+
+              - `pending` – A certificate attempt is in progress, or was stopped by pausing
+                the alias and starts again after it is resumed.
+              - `issued` – The latest attempt succeeded.
+              - `failed` – The latest attempt ended without a certificate.
+              - `null` – No certificate is managed for the alias: the alias uses a certificate
+                you provided, or is automated and has never opened an attempt.
 
           ssl_status_in: Comma-separated list of certificate outcomes.
 
@@ -297,6 +347,14 @@ class AliasesResource(SyncAPIResource):
               (ISO 8601/RFC 3339 format, UTC).
 
           status: Alias status.
+
+              Possible values:
+
+              - `inactive` – The alias or its CDN resource is disabled; the alias is not
+                served.
+              - `pending` – The alias configuration has not reached the CDN yet.
+              - `http_only` – The alias is served over HTTP only.
+              - `active` – The alias is served over HTTP and HTTPS.
 
           status_in: Comma-separated list of alias statuses.
 
@@ -517,9 +575,9 @@ class AliasesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AliasCertificateStatus:
         """
-        Get details about the latest Let's Encrypt certificate issuing attempt for an
-        alias, including the CNAME records to create for domain validation. Returns
-        attempts in all statuses.
+        Get details about the latest Let's Encrypt certificate issuance attempt for an
+        alias, including the CNAME records to create for domain validation and the state
+        of each domain validation challenge. Returns attempts in all statuses.
 
         While the alias is switching to a Let's Encrypt certificate, the attempt for the
         new certificate is returned.
@@ -554,8 +612,7 @@ class AliasesResource(SyncAPIResource):
     ) -> AliasDetail:
         """
         Start a new Let's Encrypt certificate issuance attempt for an alias that has
-        none running. Use it after an attempt has failed and `status` is
-        **`ssl_error`**.
+        none running. Use it after an attempt has failed and `ssl_status` is `failed`.
 
         The number of attempts you can start per hour is limited.
 
@@ -608,6 +665,7 @@ class AsyncAliasesResource(AsyncAPIResource):
         resource_id: int,
         active: bool | Omit = omit,
         automated: bool | Omit = omit,
+        challenge_type: Literal["dns_01", "http_01"] | Omit = omit,
         ssl_id: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -621,34 +679,47 @@ class AsyncAliasesResource(AsyncAPIResource):
         your CDN resources and with its own SSL certificate.
 
         By default, a Let's Encrypt certificate is issued for the alias automatically.
-        Until the certificate is issued the alias stays in the `pending` status.
+        Choose how its domain is validated with `challenge_type`.
 
         To use your own certificate instead, pass its ID in `ssl_id`. The certificate
         must cover the alias hostname; a Let's Encrypt certificate issued for one of
-        your CDN resources cannot be used. Such an alias becomes `active` immediately.
+        your CDN resources cannot be used.
 
         The hostname must be unique across all CDN resources, additional CNAMEs and
         aliases.
 
-        If Let's Encrypt validation for the hostname requires a delegation record, it is
-        reported as `ssl_provisioning` when you get the alias.
+        The DNS record the hostname needs for Let's Encrypt domain validation is
+        returned in `ssl_provisioning` of the alias details.
 
         Args:
           cname: Alias hostname. Wildcard hostnames are not supported.
 
           resource_id: ID of the CDN resource whose settings the alias is served with.
 
-          active: Whether the alias is enabled. Defaults to **true**. The alias is served once its
-              certificate is ready.
+          active: Whether the alias is enabled. Defaults to `true`.
 
-          automated: How the alias certificate is managed. Defaults to **true** when `ssl_id` is
-              omitted and to **false** when `ssl_id` is passed.
+          automated: How the alias certificate is managed. Defaults to `true` when `ssl_id` is
+              omitted and to `false` when `ssl_id` is passed.
 
               Possible values:
 
-              - **true** – A Let's Encrypt certificate is issued and renewed automatically.
+              - `true` – A Let's Encrypt certificate is issued and renewed automatically.
                 `ssl_id` must be omitted.
-              - **false** – Your own certificate is served. `ssl_id` is required.
+              - `false` – Your own certificate referenced by `ssl_id`, if any, is served.
+
+          challenge_type: Domain validation method used to issue the Let's Encrypt certificate for the
+              alias.
+
+              Possible values:
+
+              - `dns_01` – Validation via a CNAME record for
+                `_acme-challenge.<alias hostname>`, shown in
+                `ssl_provisioning.acme_delegation`.
+              - `http_01` – Validation via an HTTP request to the alias hostname. The alias
+                hostname must point to your CDN CNAME, shown in
+                `ssl_provisioning.http_validation`. The request is served with the settings of
+                the alias's CDN resource, so they must not block or redirect
+                `/.well-known/acme-challenge/`.
 
           ssl_id: ID of your own SSL certificate to serve for the alias. The certificate must
               cover the alias hostname. A Let's Encrypt certificate issued for one of your CDN
@@ -672,6 +743,7 @@ class AsyncAliasesResource(AsyncAPIResource):
                     "resource_id": resource_id,
                     "active": active,
                     "automated": automated,
+                    "challenge_type": challenge_type,
                     "ssl_id": ssl_id,
                 },
                 alias_create_params.AliasCreateParams,
@@ -688,6 +760,7 @@ class AsyncAliasesResource(AsyncAPIResource):
         *,
         active: bool | Omit = omit,
         automated: bool | Omit = omit,
+        challenge_type: Literal["dns_01", "http_01"] | Omit = omit,
         ssl_id: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -701,10 +774,12 @@ class AsyncAliasesResource(AsyncAPIResource):
         The hostname and the CDN resource of an alias cannot be
         changed; delete the alias and create a new one instead.
 
-        Set `active` to **false** to stop serving the alias; set it back to **true** to
-        resume. Resuming an alias that has no valid certificate starts a new issuance
-        attempt, which is rate-limited, so it cannot be combined with `automated` in one
-        request.
+        Set `active` to `false` to stop serving the alias; certificate issuance stops,
+        though an attempt already being processed completes. Set it back to `true` to
+        resume. Resuming an alias without a valid Let's Encrypt certificate starts a new
+        issuance attempt, which is rate-limited, so it cannot be combined with
+        `automated` in one request. A renewal stopped by the pause is started again by
+        the scheduled renewal after the alias is resumed.
 
         For an alias with your own certificate, pass a new certificate ID in `ssl_id` to
         replace it. The new certificate must cover the alias hostname.
@@ -713,17 +788,25 @@ class AsyncAliasesResource(AsyncAPIResource):
         certificate takes effect at once and the Let's Encrypt certificate issued for
         the alias is removed. Switching to a Let's Encrypt certificate starts an
         issuance attempt while your certificate keeps being served, and the alias starts
-        serving the new certificate once it is issued; if the attempt fails, `status`
-        becomes **`ssl_error`** and your certificate keeps being served. The certificate
-        mode cannot be changed while the alias is paused — resume it first.
+        serving the new certificate once it is issued; if the attempt fails,
+        `ssl_status` becomes `failed` and your certificate keeps being served. The
+        certificate mode cannot be changed while the alias is paused — resume it first.
+
+        Pass `challenge_type` to change how the Let's Encrypt certificate's domain is
+        validated. It cannot be changed while the alias is paused, or together with
+        `active`. While no valid certificate is served, the change cancels the running
+        issuance attempt and starts a new one; this is rate-limited like resuming, and
+        is refused while that attempt is being processed. Otherwise the new method is
+        used from the next attempt.
 
         Args:
           active: Whether the alias is enabled.
 
               Possible values:
 
-              - **true** – The alias is enabled and is served once its certificate is ready.
-              - **false** – The alias is paused and is not served.
+              - `true` – The alias is enabled.
+              - `false` – The alias is paused and is not served. Certificate issuance stops,
+                though an attempt already being processed completes.
 
           automated: How the alias certificate is managed. Change it to switch the alias between a
               Let's Encrypt certificate and your own. Cannot be changed while the alias is
@@ -731,15 +814,29 @@ class AsyncAliasesResource(AsyncAPIResource):
 
               Possible values:
 
-              - **true** – Switch to a Let's Encrypt certificate. `ssl_id` must be omitted.
-                The current certificate keeps being served until the new one is issued.
-              - **false** – Switch to your own certificate. `ssl_id` is required and is served
+              - `true` – Switch to a Let's Encrypt certificate. `ssl_id` must be omitted. The
+                current certificate keeps being served until the new one is issued.
+              - `false` – Switch to your own certificate. `ssl_id` is required and is served
                 immediately.
+
+          challenge_type: Domain validation method used to issue the Let's Encrypt certificate for the
+              alias.
+
+              Possible values:
+
+              - `dns_01` – Validation via a CNAME record for
+                `_acme-challenge.<alias hostname>`, shown in
+                `ssl_provisioning.acme_delegation`.
+              - `http_01` – Validation via an HTTP request to the alias hostname. The alias
+                hostname must point to your CDN CNAME, shown in
+                `ssl_provisioning.http_validation`. The request is served with the settings of
+                the alias's CDN resource, so they must not block or redirect
+                `/.well-known/acme-challenge/`.
 
           ssl_id: ID of your own SSL certificate to serve for the alias instead of the current
               one. The certificate must cover the alias hostname; a Let's Encrypt certificate
               issued for one of your CDN resources cannot be used. Available for an alias with
-              `automated` set to **false**, and together with `automated` set to **false** to
+              `automated` set to `false`, and together with `automated` set to `false` to
               switch to your own certificate.
 
           extra_headers: Send extra headers
@@ -756,6 +853,7 @@ class AsyncAliasesResource(AsyncAPIResource):
                 {
                     "active": active,
                     "automated": automated,
+                    "challenge_type": challenge_type,
                     "ssl_id": ssl_id,
                 },
                 alias_update_params.AliasUpdateParams,
@@ -784,7 +882,7 @@ class AsyncAliasesResource(AsyncAPIResource):
         ssl_status_in: str | Omit = omit,
         ssl_validity_not_after_gte: str | Omit = omit,
         ssl_validity_not_after_lte: str | Omit = omit,
-        status: Literal["pending", "active", "ssl_issuing", "ssl_error", "inactive"] | Omit = omit,
+        status: Literal["inactive", "pending", "http_only", "active"] | Omit = omit,
         status_in: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -803,8 +901,8 @@ class AsyncAliasesResource(AsyncAPIResource):
 
               Possible values:
 
-              - **true** – Certificate is issued and renewed automatically.
-              - **false** – Certificate was added by a user.
+              - `true` – A Let's Encrypt certificate is issued and renewed automatically.
+              - `false` – The certificate was added by you.
 
           cname: Hostname substring, case-insensitive.
 
@@ -828,7 +926,16 @@ class AsyncAliasesResource(AsyncAPIResource):
 
           ssl_id: SSL certificate ID. Only aliases linked to this certificate are returned.
 
-          ssl_status: Certificate outcome.
+          ssl_status: Outcome of the certificate we manage for the alias.
+
+              Possible values:
+
+              - `pending` – A certificate attempt is in progress, or was stopped by pausing
+                the alias and starts again after it is resumed.
+              - `issued` – The latest attempt succeeded.
+              - `failed` – The latest attempt ended without a certificate.
+              - `null` – No certificate is managed for the alias: the alias uses a certificate
+                you provided, or is automated and has never opened an attempt.
 
           ssl_status_in: Comma-separated list of certificate outcomes.
 
@@ -839,6 +946,14 @@ class AsyncAliasesResource(AsyncAPIResource):
               (ISO 8601/RFC 3339 format, UTC).
 
           status: Alias status.
+
+              Possible values:
+
+              - `inactive` – The alias or its CDN resource is disabled; the alias is not
+                served.
+              - `pending` – The alias configuration has not reached the CDN yet.
+              - `http_only` – The alias is served over HTTP only.
+              - `active` – The alias is served over HTTP and HTTPS.
 
           status_in: Comma-separated list of alias statuses.
 
@@ -1059,9 +1174,9 @@ class AsyncAliasesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AliasCertificateStatus:
         """
-        Get details about the latest Let's Encrypt certificate issuing attempt for an
-        alias, including the CNAME records to create for domain validation. Returns
-        attempts in all statuses.
+        Get details about the latest Let's Encrypt certificate issuance attempt for an
+        alias, including the CNAME records to create for domain validation and the state
+        of each domain validation challenge. Returns attempts in all statuses.
 
         While the alias is switching to a Let's Encrypt certificate, the attempt for the
         new certificate is returned.
@@ -1096,8 +1211,7 @@ class AsyncAliasesResource(AsyncAPIResource):
     ) -> AliasDetail:
         """
         Start a new Let's Encrypt certificate issuance attempt for an alias that has
-        none running. Use it after an attempt has failed and `status` is
-        **`ssl_error`**.
+        none running. Use it after an attempt has failed and `ssl_status` is `failed`.
 
         The number of attempts you can start per hour is limited.
 

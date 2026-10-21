@@ -9,6 +9,7 @@ __all__ = [
     "TargetUpdateParams",
     "Config",
     "ConfigS3GcoreConfig",
+    "ConfigS3GcoreBoundConfigPatch",
     "ConfigBaseS3Config",
     "ConfigS3OssConfig",
     "ConfigS3OtherConfig",
@@ -59,12 +60,37 @@ class ConfigS3GcoreConfig(TypedDict, total=False):
     directory: Optional[str]
 
     endpoint: str
+    """S3 storage endpoint URL.
+
+    Must be a public address: private and reserved IP addresses, `localhost`, and
+    hostnames that resolve to them are rejected.
+    """
 
     region: str
 
     secret_access_key: str
 
     use_path_style: bool
+
+
+class ConfigS3GcoreBoundConfigPatch(TypedDict, total=False):
+    """Bind a target to your Gcore Object Storage, or change its bucket or storage.
+
+    To bind a target
+    that is not bound yet, send both `storage_id` and `bucket_name`, and set `storage_type` to
+    `s3_gcore` if the target uses another storage type.
+    """
+
+    bucket_name: str
+    """Name of a bucket in the selected storage."""
+
+    directory: Optional[str]
+
+    storage_id: int
+    """ID of your Gcore Object Storage.
+
+    The storage must be active and of the Standard type.
+    """
 
 
 class ConfigBaseS3Config(TypedDict, total=False):
@@ -80,17 +106,22 @@ class ConfigBaseS3Config(TypedDict, total=False):
 
 
 class ConfigS3OssConfig(TypedDict, total=False):
-    access_key_id: str
+    access_key_id: Required[str]
 
-    bucket_name: str
+    bucket_name: Required[str]
+
+    secret_access_key: Required[str]
 
     directory: Optional[str]
 
     endpoint: Optional[str]
+    """S3 storage endpoint URL.
+
+    Must be a public address: private and reserved IP addresses, `localhost`, and
+    hostnames that resolve to them are rejected.
+    """
 
     region: Optional[str]
-
-    secret_access_key: str
 
 
 class ConfigS3OtherConfig(TypedDict, total=False):
@@ -101,6 +132,11 @@ class ConfigS3OtherConfig(TypedDict, total=False):
     directory: Optional[str]
 
     endpoint: str
+    """S3 storage endpoint URL.
+
+    Must be a public address: private and reserved IP addresses, `localhost`, and
+    hostnames that resolve to them are rejected.
+    """
 
     region: str
 
@@ -117,6 +153,11 @@ class ConfigS3V1Config(TypedDict, total=False):
     directory: Optional[str]
 
     endpoint: str
+    """S3 storage endpoint URL.
+
+    Must be a public address: private and reserved IP addresses, `localhost`, and
+    hostnames that resolve to them are rejected.
+    """
 
     region: str
 
@@ -333,6 +374,7 @@ class ConfigSlsConfig(TypedDict, total=False):
 
 Config: TypeAlias = Union[
     ConfigS3GcoreConfig,
+    ConfigS3GcoreBoundConfigPatch,
     ConfigBaseS3Config,
     ConfigS3OssConfig,
     ConfigS3OtherConfig,

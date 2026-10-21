@@ -152,6 +152,10 @@ class CDNResourcesResource(SyncAPIResource):
 
               If protocol is not specified, HTTP is used to connect to an origin server.
 
+              If an enabled origin in the resource's origin group is bound to a Gcore Object
+              Storage (`s3_type` is `gcore`), the CDN connects to every origin in that group
+              over HTTPS regardless of this setting.
+
           primary_resource: ID of the main CDN resource which has a shared caching zone with a reserve CDN
               resource.
 
@@ -283,6 +287,10 @@ class CDNResourcesResource(SyncAPIResource):
 
               If protocol is not specified, HTTP is used to connect to an origin server.
 
+              If an enabled origin in the resource's origin group is bound to a Gcore Object
+              Storage (`s3_type` is `gcore`), the CDN connects to every origin in that group
+              over HTTPS regardless of this setting.
+
           proxy_ssl_ca: ID of the trusted CA certificate used to verify an origin.
 
               It can be used only with `"proxy_ssl_enabled": true`.
@@ -377,6 +385,7 @@ class CDNResourcesResource(SyncAPIResource):
         suspend: bool | Omit = omit,
         suspended: bool | Omit = omit,
         vp_enabled: bool | Omit = omit,
+        waap_domain_id_isnull: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -504,6 +513,14 @@ class CDNResourcesResource(SyncAPIResource):
               - **true** - CDN resource is used for Streaming platform.
               - **false** - CDN resource is not used for Streaming platform.
 
+          waap_domain_id_isnull: Filters CDN resources by whether they are linked to a WAAP domain. A CDN
+              resource stays linked when WAAP is turned off on it.
+
+              Possible values:
+
+              - **true** - CDN resource is not linked to a WAAP domain.
+              - **false** - CDN resource is linked to a WAAP domain.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -548,6 +565,7 @@ class CDNResourcesResource(SyncAPIResource):
                         "suspend": suspend,
                         "suspended": suspended,
                         "vp_enabled": vp_enabled,
+                        "waap_domain_id_isnull": waap_domain_id_isnull,
                     },
                     cdn_resource_list_params.CDNResourceListParams,
                 ),
@@ -946,6 +964,10 @@ class CDNResourcesResource(SyncAPIResource):
 
               If protocol is not specified, HTTP is used to connect to an origin server.
 
+              If an enabled origin in the resource's origin group is bound to a Gcore Object
+              Storage (`s3_type` is `gcore`), the CDN connects to every origin in that group
+              over HTTPS regardless of this setting.
+
           proxy_ssl_ca: ID of the trusted CA certificate used to verify an origin.
 
               It can be used only with `"proxy_ssl_enabled": true`.
@@ -1116,6 +1138,10 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
 
               If protocol is not specified, HTTP is used to connect to an origin server.
 
+              If an enabled origin in the resource's origin group is bound to a Gcore Object
+              Storage (`s3_type` is `gcore`), the CDN connects to every origin in that group
+              over HTTPS regardless of this setting.
+
           primary_resource: ID of the main CDN resource which has a shared caching zone with a reserve CDN
               resource.
 
@@ -1247,6 +1273,10 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
 
               If protocol is not specified, HTTP is used to connect to an origin server.
 
+              If an enabled origin in the resource's origin group is bound to a Gcore Object
+              Storage (`s3_type` is `gcore`), the CDN connects to every origin in that group
+              over HTTPS regardless of this setting.
+
           proxy_ssl_ca: ID of the trusted CA certificate used to verify an origin.
 
               It can be used only with `"proxy_ssl_enabled": true`.
@@ -1341,6 +1371,7 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
         suspend: bool | Omit = omit,
         suspended: bool | Omit = omit,
         vp_enabled: bool | Omit = omit,
+        waap_domain_id_isnull: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1468,6 +1499,14 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
               - **true** - CDN resource is used for Streaming platform.
               - **false** - CDN resource is not used for Streaming platform.
 
+          waap_domain_id_isnull: Filters CDN resources by whether they are linked to a WAAP domain. A CDN
+              resource stays linked when WAAP is turned off on it.
+
+              Possible values:
+
+              - **true** - CDN resource is not linked to a WAAP domain.
+              - **false** - CDN resource is linked to a WAAP domain.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1512,6 +1551,7 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
                         "suspend": suspend,
                         "suspended": suspended,
                         "vp_enabled": vp_enabled,
+                        "waap_domain_id_isnull": waap_domain_id_isnull,
                     },
                     cdn_resource_list_params.CDNResourceListParams,
                 ),
@@ -1909,6 +1949,10 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
                 origin source should be available for the CDN both through HTTP and HTTPS).
 
               If protocol is not specified, HTTP is used to connect to an origin server.
+
+              If an enabled origin in the resource's origin group is bound to a Gcore Object
+              Storage (`s3_type` is `gcore`), the CDN connects to every origin in that group
+              over HTTPS regardless of this setting.
 
           proxy_ssl_ca: ID of the trusted CA certificate used to verify an origin.
 
