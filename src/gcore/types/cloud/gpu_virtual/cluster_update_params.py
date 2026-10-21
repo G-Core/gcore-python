@@ -88,7 +88,10 @@ class ServersSettingsVolumeNewVolumeInputSerializer(TypedDict, total=False):
     """Flag indicating whether the volume is deleted on instance termination"""
 
     tags: Dict[str, str]
-    """Tags associated with the volume"""
+    """Tags associated with the volume.
+
+    Tag keys and values cannot contain characters from U+0080 to U+00FF.
+    """
 
 
 class ServersSettingsVolumeImageVolumeInputSerializer(TypedDict, total=False):
@@ -113,7 +116,10 @@ class ServersSettingsVolumeImageVolumeInputSerializer(TypedDict, total=False):
     """Flag indicating whether the volume is deleted on instance termination"""
 
     tags: Dict[str, str]
-    """Tags associated with the volume"""
+    """Tags associated with the volume.
+
+    Tag keys and values cannot contain characters from U+0080 to U+00FF.
+    """
 
 
 ServersSettingsVolume: TypeAlias = Union[

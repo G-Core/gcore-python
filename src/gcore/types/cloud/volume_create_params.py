@@ -52,9 +52,10 @@ class CreateVolumeFromImageSerializer(TypedDict, total=False):
 
     A tag is a key-value pair that can be associated with a resource, enabling
     efficient filtering and grouping for better organization and management. Both
-    tag keys and values have a maximum length of 255 characters. Some tags are
-    read-only and cannot be modified by the user. Tags are also integrated with cost
-    reports, allowing cost data to be filtered based on tag keys or values.
+    tag keys and values have a maximum length of 255 characters. Tag keys and values
+    cannot contain characters from U+0080 to U+00FF. Some tags are read-only and
+    cannot be modified by the user. Tags are also integrated with cost reports,
+    allowing cost data to be filtered based on tag keys or values.
     """
 
     type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
@@ -107,9 +108,10 @@ class CreateVolumeFromSnapshotSerializer(TypedDict, total=False):
 
     A tag is a key-value pair that can be associated with a resource, enabling
     efficient filtering and grouping for better organization and management. Both
-    tag keys and values have a maximum length of 255 characters. Some tags are
-    read-only and cannot be modified by the user. Tags are also integrated with cost
-    reports, allowing cost data to be filtered based on tag keys or values.
+    tag keys and values have a maximum length of 255 characters. Tag keys and values
+    cannot contain characters from U+0080 to U+00FF. Some tags are read-only and
+    cannot be modified by the user. Tags are also integrated with cost reports,
+    allowing cost data to be filtered based on tag keys or values.
     """
 
     type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]
@@ -156,9 +158,10 @@ class CreateNewVolumeSerializer(TypedDict, total=False):
 
     A tag is a key-value pair that can be associated with a resource, enabling
     efficient filtering and grouping for better organization and management. Both
-    tag keys and values have a maximum length of 255 characters. Some tags are
-    read-only and cannot be modified by the user. Tags are also integrated with cost
-    reports, allowing cost data to be filtered based on tag keys or values.
+    tag keys and values have a maximum length of 255 characters. Tag keys and values
+    cannot contain characters from U+0080 to U+00FF. Some tags are read-only and
+    cannot be modified by the user. Tags are also integrated with cost reports,
+    allowing cost data to be filtered based on tag keys or values.
     """
 
     type_name: Literal["cold", "ssd_hiiops", "ssd_local", "ssd_lowlatency", "standard", "ultra"]

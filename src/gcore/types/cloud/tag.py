@@ -17,7 +17,7 @@ class Tag(BaseModel):
     """Tag key.
 
     Maximum 255 characters. Cannot contain spaces, tabs, newlines, empty string or
-    '=' character.
+    '=' character. Cannot contain characters from U+0080 to U+00FF.
     """
 
     read_only: bool
@@ -27,5 +27,5 @@ class Tag(BaseModel):
     """Tag value.
 
     Maximum 255 characters. Cannot contain spaces, tabs, newlines, empty string or
-    '=' character.
+    '=' character. Cannot contain characters from U+0080 to U+00FF.
     """
