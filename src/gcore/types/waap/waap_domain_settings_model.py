@@ -8,7 +8,7 @@ __all__ = ["WaapDomainSettingsModel"]
 
 
 class WaapDomainSettingsModel(BaseModel):
-    """Settings for a domain."""
+    """Domain settings, accessible for clients."""
 
     api: WaapDomainAPISettings
     """API settings of a domain"""

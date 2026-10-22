@@ -18,11 +18,12 @@ class ActionBlock(BaseModel):
 
     Can be specified in seconds or by using a numeral followed by 's', 'm', 'h', or
     'd' to represent time format (seconds, minutes, hours, or days). Empty time
-    intervals are not allowed.
+    intervals are not allowed. If not specified, the action is applied only to the
+    request that triggers the rule.
     """
 
     status_code: Optional[Literal[403, 405, 418, 429]] = None
-    """A custom HTTP status code that the WAAP returns if a rule blocks a request"""
+    """An HTTP status code that the WAAP returns if a rule blocks a request."""
 
 
 class ActionTag(BaseModel):
@@ -89,7 +90,7 @@ class WaapAdvancedRule(BaseModel):
     """
 
     description: Optional[str] = None
-    """The description assigned to the rule"""
+    """A human-readable description."""
 
     phase: Optional[Literal["access", "header_filter", "body_filter"]] = None
     """The WAAP request/response phase for applying the rule. Default is "access".

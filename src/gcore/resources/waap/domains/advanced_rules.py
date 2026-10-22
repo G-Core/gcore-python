@@ -68,7 +68,7 @@ class AdvancedRulesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapAdvancedRule:
         """
-        Create an advanced rule
+        Create advanced rule
 
         Args:
           domain_id: The domain ID
@@ -87,7 +87,7 @@ class AdvancedRulesResource(SyncAPIResource):
               More info can be found here:
               https://gcore.com/docs/waap/waap-rules/advanced-rules
 
-          description: The description assigned to the rule
+          description: A human-readable description.
 
           phase: The WAAP request/response phase for applying the rule. Default is "access".
 
@@ -132,12 +132,12 @@ class AdvancedRulesResource(SyncAPIResource):
         rule_id: int,
         *,
         domain_id: int,
-        action: Optional[advanced_rule_update_params.Action] | Omit = omit,
-        description: Optional[str] | Omit = omit,
-        enabled: Optional[bool] | Omit = omit,
-        name: Optional[str] | Omit = omit,
-        phase: Optional[Literal["access", "header_filter", "body_filter"]] | Omit = omit,
-        source: Optional[str] | Omit = omit,
+        action: advanced_rule_update_params.Action | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        name: str | Omit = omit,
+        phase: Literal["access", "header_filter", "body_filter"] | Omit = omit,
+        source: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -153,9 +153,10 @@ class AdvancedRulesResource(SyncAPIResource):
 
           rule_id: The advanced rule ID
 
-          action: The action that a WAAP rule takes when triggered.
+          action: The action that the rule takes when triggered
 
-          description: The description assigned to the rule
+          description: A human-readable description. When set to empty string, erases any value set
+              earlier.
 
           enabled: Whether or not the rule is enabled
 
@@ -321,7 +322,7 @@ class AdvancedRulesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete an advanced rule
+        Delete advanced rule
 
         Args:
           domain_id: The domain ID
@@ -399,7 +400,7 @@ class AdvancedRulesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapRuleToggleResponse:
         """
-        Toggle Advanced Rule
+        Toggle advanced rule
 
         Args:
           domain_id: The domain ID
@@ -474,7 +475,7 @@ class AsyncAdvancedRulesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapAdvancedRule:
         """
-        Create an advanced rule
+        Create advanced rule
 
         Args:
           domain_id: The domain ID
@@ -493,7 +494,7 @@ class AsyncAdvancedRulesResource(AsyncAPIResource):
               More info can be found here:
               https://gcore.com/docs/waap/waap-rules/advanced-rules
 
-          description: The description assigned to the rule
+          description: A human-readable description.
 
           phase: The WAAP request/response phase for applying the rule. Default is "access".
 
@@ -538,12 +539,12 @@ class AsyncAdvancedRulesResource(AsyncAPIResource):
         rule_id: int,
         *,
         domain_id: int,
-        action: Optional[advanced_rule_update_params.Action] | Omit = omit,
-        description: Optional[str] | Omit = omit,
-        enabled: Optional[bool] | Omit = omit,
-        name: Optional[str] | Omit = omit,
-        phase: Optional[Literal["access", "header_filter", "body_filter"]] | Omit = omit,
-        source: Optional[str] | Omit = omit,
+        action: advanced_rule_update_params.Action | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        name: str | Omit = omit,
+        phase: Literal["access", "header_filter", "body_filter"] | Omit = omit,
+        source: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -559,9 +560,10 @@ class AsyncAdvancedRulesResource(AsyncAPIResource):
 
           rule_id: The advanced rule ID
 
-          action: The action that a WAAP rule takes when triggered.
+          action: The action that the rule takes when triggered
 
-          description: The description assigned to the rule
+          description: A human-readable description. When set to empty string, erases any value set
+              earlier.
 
           enabled: Whether or not the rule is enabled
 
@@ -727,7 +729,7 @@ class AsyncAdvancedRulesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete an advanced rule
+        Delete advanced rule
 
         Args:
           domain_id: The domain ID
@@ -805,7 +807,7 @@ class AsyncAdvancedRulesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapRuleToggleResponse:
         """
-        Toggle Advanced Rule
+        Toggle advanced rule
 
         Args:
           domain_id: The domain ID

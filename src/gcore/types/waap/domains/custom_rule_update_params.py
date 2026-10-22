@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Iterable, Optional
+from typing import Dict, List, Iterable
 from typing_extensions import Literal, Required, TypedDict
 
 from ...._types import SequenceNotStr
@@ -39,23 +39,26 @@ class CustomRuleUpdateParams(TypedDict, total=False):
     domain_id: Required[int]
     """The domain ID"""
 
-    action: Optional[Action]
-    """The action that a WAAP rule takes when triggered."""
+    action: Action
+    """The action that the rule takes when triggered"""
 
-    conditions: Optional[Iterable[Condition]]
+    conditions: Iterable[Condition]
     """The conditions required for the WAAP engine to trigger the rule.
 
     Rules may have between 1 and 5 conditions. All conditions must pass for the rule
     to trigger
     """
 
-    description: Optional[str]
-    """The description assigned to the rule"""
+    description: str
+    """A human-readable description.
 
-    enabled: Optional[bool]
+    When set to empty string, erases any value set earlier.
+    """
+
+    enabled: bool
     """Whether or not the rule is enabled"""
 
-    name: Optional[str]
+    name: str
     """The name assigned to the rule"""
 
 
@@ -69,11 +72,12 @@ class ActionBlock(TypedDict, total=False):
 
     Can be specified in seconds or by using a numeral followed by 's', 'm', 'h', or
     'd' to represent time format (seconds, minutes, hours, or days). Empty time
-    intervals are not allowed.
+    intervals are not allowed. If not specified, the action is applied only to the
+    request that triggers the rule.
     """
 
     status_code: Literal[403, 405, 418, 429]
-    """A custom HTTP status code that the WAAP returns if a rule blocks a request"""
+    """An HTTP status code that the WAAP returns if a rule blocks a request."""
 
 
 class ActionTag(TypedDict, total=False):
@@ -84,7 +88,7 @@ class ActionTag(TypedDict, total=False):
 
 
 class Action(TypedDict, total=False):
-    """The action that a WAAP rule takes when triggered."""
+    """The action that the rule takes when triggered"""
 
     allow: Dict[str, object]
     """The WAAP allows the request"""

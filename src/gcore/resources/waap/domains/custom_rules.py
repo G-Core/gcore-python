@@ -69,7 +69,7 @@ class CustomRulesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapCustomRule:
         """
-        Create a custom rule
+        Create custom rule
 
         Args:
           domain_id: The domain ID
@@ -84,7 +84,7 @@ class CustomRulesResource(SyncAPIResource):
 
           name: The name assigned to the rule
 
-          description: The description assigned to the rule
+          description: A human-readable description.
 
           extra_headers: Send extra headers
 
@@ -117,11 +117,11 @@ class CustomRulesResource(SyncAPIResource):
         rule_id: int,
         *,
         domain_id: int,
-        action: Optional[custom_rule_update_params.Action] | Omit = omit,
-        conditions: Optional[Iterable[custom_rule_update_params.Condition]] | Omit = omit,
-        description: Optional[str] | Omit = omit,
-        enabled: Optional[bool] | Omit = omit,
-        name: Optional[str] | Omit = omit,
+        action: custom_rule_update_params.Action | Omit = omit,
+        conditions: Iterable[custom_rule_update_params.Condition] | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -137,12 +137,13 @@ class CustomRulesResource(SyncAPIResource):
 
           rule_id: The custom rule ID
 
-          action: The action that a WAAP rule takes when triggered.
+          action: The action that the rule takes when triggered
 
           conditions: The conditions required for the WAAP engine to trigger the rule. Rules may have
               between 1 and 5 conditions. All conditions must pass for the rule to trigger
 
-          description: The description assigned to the rule
+          description: A human-readable description. When set to empty string, erases any value set
+              earlier.
 
           enabled: Whether or not the rule is enabled
 
@@ -263,7 +264,7 @@ class CustomRulesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete a custom rule
+        Delete custom rule
 
         Args:
           domain_id: The domain ID
@@ -300,7 +301,7 @@ class CustomRulesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapRulesBulkDeleteResponse:
         """
-        Delete Multiple Custom WAAP Rules
+        Delete multiple custom WAAP rules
 
         Args:
           domain_id: The domain ID
@@ -376,7 +377,7 @@ class CustomRulesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapRuleToggleResponse:
         """
-        Toggle Custom Rule
+        Toggle custom rule
 
         Args:
           domain_id: The domain ID
@@ -446,7 +447,7 @@ class AsyncCustomRulesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapCustomRule:
         """
-        Create a custom rule
+        Create custom rule
 
         Args:
           domain_id: The domain ID
@@ -461,7 +462,7 @@ class AsyncCustomRulesResource(AsyncAPIResource):
 
           name: The name assigned to the rule
 
-          description: The description assigned to the rule
+          description: A human-readable description.
 
           extra_headers: Send extra headers
 
@@ -494,11 +495,11 @@ class AsyncCustomRulesResource(AsyncAPIResource):
         rule_id: int,
         *,
         domain_id: int,
-        action: Optional[custom_rule_update_params.Action] | Omit = omit,
-        conditions: Optional[Iterable[custom_rule_update_params.Condition]] | Omit = omit,
-        description: Optional[str] | Omit = omit,
-        enabled: Optional[bool] | Omit = omit,
-        name: Optional[str] | Omit = omit,
+        action: custom_rule_update_params.Action | Omit = omit,
+        conditions: Iterable[custom_rule_update_params.Condition] | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -514,12 +515,13 @@ class AsyncCustomRulesResource(AsyncAPIResource):
 
           rule_id: The custom rule ID
 
-          action: The action that a WAAP rule takes when triggered.
+          action: The action that the rule takes when triggered
 
           conditions: The conditions required for the WAAP engine to trigger the rule. Rules may have
               between 1 and 5 conditions. All conditions must pass for the rule to trigger
 
-          description: The description assigned to the rule
+          description: A human-readable description. When set to empty string, erases any value set
+              earlier.
 
           enabled: Whether or not the rule is enabled
 
@@ -640,7 +642,7 @@ class AsyncCustomRulesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete a custom rule
+        Delete custom rule
 
         Args:
           domain_id: The domain ID
@@ -677,7 +679,7 @@ class AsyncCustomRulesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapRulesBulkDeleteResponse:
         """
-        Delete Multiple Custom WAAP Rules
+        Delete multiple custom WAAP rules
 
         Args:
           domain_id: The domain ID
@@ -753,7 +755,7 @@ class AsyncCustomRulesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapRuleToggleResponse:
         """
-        Toggle Custom Rule
+        Toggle custom rule
 
         Args:
           domain_id: The domain ID

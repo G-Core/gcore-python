@@ -73,7 +73,7 @@ class FirewallRulesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapFirewallRule:
         """
-        Create a firewall rule
+        Create firewall rule
 
         Args:
           domain_id: The domain ID
@@ -86,7 +86,7 @@ class FirewallRulesResource(SyncAPIResource):
 
           name: The name assigned to the rule
 
-          description: The description assigned to the rule
+          description: A human-readable description.
 
           extra_headers: Send extra headers
 
@@ -119,11 +119,11 @@ class FirewallRulesResource(SyncAPIResource):
         rule_id: int,
         *,
         domain_id: int,
-        action: Optional[firewall_rule_update_params.Action] | Omit = omit,
-        conditions: Optional[Iterable[firewall_rule_update_params.Condition]] | Omit = omit,
-        description: Optional[str] | Omit = omit,
-        enabled: Optional[bool] | Omit = omit,
-        name: Optional[str] | Omit = omit,
+        action: firewall_rule_update_params.Action | Omit = omit,
+        conditions: Iterable[firewall_rule_update_params.Condition] | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -139,11 +139,12 @@ class FirewallRulesResource(SyncAPIResource):
 
           rule_id: The firewall rule ID
 
-          action: The action that a firewall rule takes when triggered
+          action: The action that the rule takes when triggered
 
           conditions: The condition required for the WAAP engine to trigger the rule.
 
-          description: The description assigned to the rule
+          description: A human-readable description. When set to empty string, erases any value set
+              earlier.
 
           enabled: Whether or not the rule is enabled
 
@@ -266,7 +267,7 @@ class FirewallRulesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete a firewall rule
+        Delete firewall rule
 
         Args:
           domain_id: The domain ID
@@ -305,7 +306,7 @@ class FirewallRulesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapRulesBulkDeleteResponse:
         """
-        Delete Multiple WAAP Firewall Rules
+        Delete multiple WAAP firewall rules
 
         Args:
           domain_id: The domain ID
@@ -383,7 +384,7 @@ class FirewallRulesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapRuleToggleResponse:
         """
-        Toggle Firewall Rule
+        Toggle firewall rule
 
         Args:
           domain_id: The domain ID
@@ -457,7 +458,7 @@ class AsyncFirewallRulesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapFirewallRule:
         """
-        Create a firewall rule
+        Create firewall rule
 
         Args:
           domain_id: The domain ID
@@ -470,7 +471,7 @@ class AsyncFirewallRulesResource(AsyncAPIResource):
 
           name: The name assigned to the rule
 
-          description: The description assigned to the rule
+          description: A human-readable description.
 
           extra_headers: Send extra headers
 
@@ -503,11 +504,11 @@ class AsyncFirewallRulesResource(AsyncAPIResource):
         rule_id: int,
         *,
         domain_id: int,
-        action: Optional[firewall_rule_update_params.Action] | Omit = omit,
-        conditions: Optional[Iterable[firewall_rule_update_params.Condition]] | Omit = omit,
-        description: Optional[str] | Omit = omit,
-        enabled: Optional[bool] | Omit = omit,
-        name: Optional[str] | Omit = omit,
+        action: firewall_rule_update_params.Action | Omit = omit,
+        conditions: Iterable[firewall_rule_update_params.Condition] | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -523,11 +524,12 @@ class AsyncFirewallRulesResource(AsyncAPIResource):
 
           rule_id: The firewall rule ID
 
-          action: The action that a firewall rule takes when triggered
+          action: The action that the rule takes when triggered
 
           conditions: The condition required for the WAAP engine to trigger the rule.
 
-          description: The description assigned to the rule
+          description: A human-readable description. When set to empty string, erases any value set
+              earlier.
 
           enabled: Whether or not the rule is enabled
 
@@ -650,7 +652,7 @@ class AsyncFirewallRulesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete a firewall rule
+        Delete firewall rule
 
         Args:
           domain_id: The domain ID
@@ -689,7 +691,7 @@ class AsyncFirewallRulesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapRulesBulkDeleteResponse:
         """
-        Delete Multiple WAAP Firewall Rules
+        Delete multiple WAAP firewall rules
 
         Args:
           domain_id: The domain ID
@@ -767,7 +769,7 @@ class AsyncFirewallRulesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaapRuleToggleResponse:
         """
-        Toggle Firewall Rule
+        Toggle firewall rule
 
         Args:
           domain_id: The domain ID

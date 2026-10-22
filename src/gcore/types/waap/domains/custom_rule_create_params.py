@@ -56,7 +56,7 @@ class CustomRuleCreateParams(TypedDict, total=False):
     """The name assigned to the rule"""
 
     description: str
-    """The description assigned to the rule"""
+    """A human-readable description."""
 
 
 class ActionBlock(TypedDict, total=False):
@@ -69,11 +69,12 @@ class ActionBlock(TypedDict, total=False):
 
     Can be specified in seconds or by using a numeral followed by 's', 'm', 'h', or
     'd' to represent time format (seconds, minutes, hours, or days). Empty time
-    intervals are not allowed.
+    intervals are not allowed. If not specified, the action is applied only to the
+    request that triggers the rule.
     """
 
     status_code: Literal[403, 405, 418, 429]
-    """A custom HTTP status code that the WAAP returns if a rule blocks a request"""
+    """An HTTP status code that the WAAP returns if a rule blocks a request."""
 
 
 class ActionTag(TypedDict, total=False):
