@@ -170,6 +170,9 @@ class DomainsResource(SyncAPIResource):
 
     @cached_property
     def custom_rules(self) -> CustomRulesResource:
+        """
+        WAAP custom rules allow, block, challenge, monitor or tag requests to a domain when all of their conditions match.
+        """
         return CustomRulesResource(self._client)
 
     @cached_property
@@ -490,6 +493,9 @@ class AsyncDomainsResource(AsyncAPIResource):
 
     @cached_property
     def custom_rules(self) -> AsyncCustomRulesResource:
+        """
+        WAAP custom rules allow, block, challenge, monitor or tag requests to a domain when all of their conditions match.
+        """
         return AsyncCustomRulesResource(self._client)
 
     @cached_property
@@ -825,6 +831,9 @@ class DomainsResourceWithRawResponse:
 
     @cached_property
     def custom_rules(self) -> CustomRulesResourceWithRawResponse:
+        """
+        WAAP custom rules allow, block, challenge, monitor or tag requests to a domain when all of their conditions match.
+        """
         return CustomRulesResourceWithRawResponse(self._domains.custom_rules)
 
     @cached_property
@@ -904,6 +913,9 @@ class AsyncDomainsResourceWithRawResponse:
 
     @cached_property
     def custom_rules(self) -> AsyncCustomRulesResourceWithRawResponse:
+        """
+        WAAP custom rules allow, block, challenge, monitor or tag requests to a domain when all of their conditions match.
+        """
         return AsyncCustomRulesResourceWithRawResponse(self._domains.custom_rules)
 
     @cached_property
@@ -983,6 +995,9 @@ class DomainsResourceWithStreamingResponse:
 
     @cached_property
     def custom_rules(self) -> CustomRulesResourceWithStreamingResponse:
+        """
+        WAAP custom rules allow, block, challenge, monitor or tag requests to a domain when all of their conditions match.
+        """
         return CustomRulesResourceWithStreamingResponse(self._domains.custom_rules)
 
     @cached_property
@@ -1062,6 +1077,9 @@ class AsyncDomainsResourceWithStreamingResponse:
 
     @cached_property
     def custom_rules(self) -> AsyncCustomRulesResourceWithStreamingResponse:
+        """
+        WAAP custom rules allow, block, challenge, monitor or tag requests to a domain when all of their conditions match.
+        """
         return AsyncCustomRulesResourceWithStreamingResponse(self._domains.custom_rules)
 
     @cached_property

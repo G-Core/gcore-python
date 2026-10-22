@@ -33,6 +33,10 @@ __all__ = ["CustomRulesResource", "AsyncCustomRulesResource"]
 
 
 class CustomRulesResource(SyncAPIResource):
+    """
+    WAAP custom rules allow, block, challenge, monitor or tag requests to a domain when all of their conditions match.
+    """
+
     @cached_property
     def with_raw_response(self) -> CustomRulesResourceWithRawResponse:
         """
@@ -411,6 +415,10 @@ class CustomRulesResource(SyncAPIResource):
 
 
 class AsyncCustomRulesResource(AsyncAPIResource):
+    """
+    WAAP custom rules allow, block, challenge, monitor or tag requests to a domain when all of their conditions match.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncCustomRulesResourceWithRawResponse:
         """
