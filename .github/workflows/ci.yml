@@ -65,3 +65,29 @@ jobs:
 
       - name: Run build
         run: rye build
+
+  # The generator only emits this job when the spec has a hosted URL, which stlc
+  # does not set. scripts/mock serves the embedded spec, so the job runs without one.
+  test:
+    timeout-minutes: 10
+    name: test
+    runs-on: ubuntu-latest
+    # Metadata-only commits land straight on `main` and change no code.
+    if: github.event_name != 'push' || github.event.head_commit.message != 'codegen metadata'
+    steps:
+      # v7 adds current checkout fixes while the full SHA keeps the runner dependency immutable.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Install Rye
+        run: |
+          curl -sSf https://rye.astral.sh/get | bash
+          echo "$HOME/.rye/shims" >> $GITHUB_PATH
+        env:
+          RYE_VERSION: '0.44.0'
+          RYE_INSTALL_OPTION: '--yes'
+
+      - name: Bootstrap
+        run: ./scripts/bootstrap
+
+      - name: Run tests
+        run: ./scripts/test
