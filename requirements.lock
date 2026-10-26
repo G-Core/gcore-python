@@ -26,7 +26,7 @@ async-timeout==5.0.1
     # via aiohttp
 attrs==25.4.0
     # via aiohttp
-certifi==2026.1.4
+certifi==2026.10.23
     # via httpcore
     # via httpx
 distro==1.9.0
