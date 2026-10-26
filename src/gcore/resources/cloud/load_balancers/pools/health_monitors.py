@@ -29,6 +29,10 @@ __all__ = ["HealthMonitorsResource", "AsyncHealthMonitorsResource"]
 
 
 class HealthMonitorsResource(SyncAPIResource):
+    """
+    Pool health monitors probe backend members to decide whether they can receive traffic. A pool has at most one health monitor.
+    """
+
     @cached_property
     def with_raw_response(self) -> HealthMonitorsResourceWithRawResponse:
         """
@@ -401,6 +405,10 @@ class HealthMonitorsResource(SyncAPIResource):
 
 
 class AsyncHealthMonitorsResource(AsyncAPIResource):
+    """
+    Pool health monitors probe backend members to decide whether they can receive traffic. A pool has at most one health monitor.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncHealthMonitorsResourceWithRawResponse:
         """

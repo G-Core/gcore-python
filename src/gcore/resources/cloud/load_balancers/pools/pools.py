@@ -53,6 +53,9 @@ class PoolsResource(PoolsResourceCustomMixin, SyncAPIResource):
 
     @cached_property
     def health_monitors(self) -> HealthMonitorsResource:
+        """
+        Pool health monitors probe backend members to decide whether they can receive traffic. A pool has at most one health monitor.
+        """
         return HealthMonitorsResource(self._client)
 
     @cached_property
@@ -496,6 +499,9 @@ class AsyncPoolsResource(AsyncPoolsResourceCustomMixin, AsyncAPIResource):
 
     @cached_property
     def health_monitors(self) -> AsyncHealthMonitorsResource:
+        """
+        Pool health monitors probe backend members to decide whether they can receive traffic. A pool has at most one health monitor.
+        """
         return AsyncHealthMonitorsResource(self._client)
 
     @cached_property
@@ -963,6 +969,9 @@ class PoolsResourceWithRawResponse:
 
     @cached_property
     def health_monitors(self) -> HealthMonitorsResourceWithRawResponse:
+        """
+        Pool health monitors probe backend members to decide whether they can receive traffic. A pool has at most one health monitor.
+        """
         return HealthMonitorsResourceWithRawResponse(self._pools.health_monitors)
 
     @cached_property
@@ -1004,6 +1013,9 @@ class AsyncPoolsResourceWithRawResponse:
 
     @cached_property
     def health_monitors(self) -> AsyncHealthMonitorsResourceWithRawResponse:
+        """
+        Pool health monitors probe backend members to decide whether they can receive traffic. A pool has at most one health monitor.
+        """
         return AsyncHealthMonitorsResourceWithRawResponse(self._pools.health_monitors)
 
     @cached_property
@@ -1045,6 +1057,9 @@ class PoolsResourceWithStreamingResponse:
 
     @cached_property
     def health_monitors(self) -> HealthMonitorsResourceWithStreamingResponse:
+        """
+        Pool health monitors probe backend members to decide whether they can receive traffic. A pool has at most one health monitor.
+        """
         return HealthMonitorsResourceWithStreamingResponse(self._pools.health_monitors)
 
     @cached_property
@@ -1086,6 +1101,9 @@ class AsyncPoolsResourceWithStreamingResponse:
 
     @cached_property
     def health_monitors(self) -> AsyncHealthMonitorsResourceWithStreamingResponse:
+        """
+        Pool health monitors probe backend members to decide whether they can receive traffic. A pool has at most one health monitor.
+        """
         return AsyncHealthMonitorsResourceWithStreamingResponse(self._pools.health_monitors)
 
     @cached_property
