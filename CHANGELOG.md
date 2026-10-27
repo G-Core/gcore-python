@@ -1,5 +1,41 @@
 # Changelog
 
+## [0.60.0](https://github.com/G-Core/gcore-python/compare/v0.59.0...v0.60.0) (2026-10-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* **cdn:** update cdn OpenAPI spec
+* **cloud:** migrate cost reports to v2 endpoints
+* **streaming:** remove read-only fields from playlist params
+
+### Features
+
+* **cdn:** update cdn OpenAPI spec ([fa1a611](https://github.com/G-Core/gcore-python/commit/fa1a611be4504488bc6d50ad3ed7a5d3b34c1a58))
+* **cloud:** add FAILED inference instance status, deprecate include_prices on flavor lists ([93bce78](https://github.com/G-Core/gcore-python/commit/93bce78e889e64888d9aa80085dffc553b11c6f5))
+* **cloud:** generate terraform resource and data source for load balancer pool health monitors ([3e9dc85](https://github.com/G-Core/gcore-python/commit/3e9dc856b39f07c83141c643905c56b8131ddc18))
+* **cloud:** migrate cost reports to v2 endpoints ([a5e3019](https://github.com/G-Core/gcore-python/commit/a5e3019d2db50d5d5dc56b8a90344a871d0bbd4c))
+* **waap:** add gcore_waap_domain_custom_rule terraform resource ([c5dd825](https://github.com/G-Core/gcore-python/commit/c5dd8258ae98de9a15e5625a4f4d35c18e2a29cf))
+* **waap:** add get method for domain policies ([4934f47](https://github.com/G-Core/gcore-python/commit/4934f47d4feed9d56cbed27dd22e90fb1888fd99))
+
+
+### Bug Fixes
+
+* **cloud:** forward missing parameters in *_and_poll helpers ([aba1f86](https://github.com/G-Core/gcore-python/commit/aba1f8613560fc55ab52f3f347a4565e35a23a34))
+* **cloud:** update cloud OpenAPI spec ([4c5f625](https://github.com/G-Core/gcore-python/commit/4c5f625bce33390834b9d90d17962c2607ad89ed))
+* **load_balancers:** forward admin_state_up, default_pool_id and delete_default_pool in *_and_poll helpers ([80b99a1](https://github.com/G-Core/gcore-python/commit/80b99a1f6b274ea9f6f8ba45ee32eec4dda38075)), closes [#67](https://github.com/G-Core/gcore-python/issues/67)
+* **streaming:** remove read-only fields from playlist params ([9909325](https://github.com/G-Core/gcore-python/commit/99093252988d13d2f577545eba26402e6ad24785))
+* **waap:** disallow null in rule update params ([82e9a14](https://github.com/G-Core/gcore-python/commit/82e9a148f82eb8f9d88f507936a5179fb08e5ef2))
+
+
+### Chores
+
+* **cloud:** update cloud OpenAPI spec ([eb25b36](https://github.com/G-Core/gcore-python/commit/eb25b367c3e9fb3d44e365c78010f65b50ac564e))
+* **iam:** update iam OpenAPI spec ([2f22fdb](https://github.com/G-Core/gcore-python/commit/2f22fdbe40311e18de0a051fcb3b021d23e66123))
+* reseal custom code from G-Core/gcore-python-staging@384779da27b7e292f2f4544dfbd48c6be3754d36 ([0652d53](https://github.com/G-Core/gcore-python/commit/0652d53fe28aed6946076ef8c268a9d482912263))
+* **waap:** update waap OpenAPI spec ([c2852a0](https://github.com/G-Core/gcore-python/commit/c2852a01b9649dc74b0d6bb586e354667a930111))
+* **waap:** update waap OpenAPI spec ([58be931](https://github.com/G-Core/gcore-python/commit/58be931137a8971b925b8199e7f5a3eb5e08d902))
+
 ## [0.59.0](https://github.com/G-Core/gcore-python/compare/v0.58.0...v0.59.0) (2026-10-12)
 
 
