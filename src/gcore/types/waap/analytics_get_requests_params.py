@@ -207,6 +207,32 @@ class AnalyticsGetRequestsParams(TypedDict, total=False):
     Omit or provide an empty list to apply no tag filter.
     """
 
+    traffic_types: List[
+        Literal[
+            "policy_allowed",
+            "policy_blocked",
+            "custom_rule_allowed",
+            "custom_blocked",
+            "legit_requests",
+            "sanctioned",
+            "dynamic",
+            "api",
+            "static",
+            "ajax",
+            "redirects",
+            "monitor",
+            "err_40x",
+            "err_50x",
+            "passed_to_origin",
+            "timeout",
+            "other",
+            "ddos",
+            "legit",
+            "monitored",
+        ]
+    ]
+    """Include entries that have any of the given traffic types."""
+
     user_agent: SequenceNotStr[str]
     """
     Include entries whose user agent contains any of the supplied texts,

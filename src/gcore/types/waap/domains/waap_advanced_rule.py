@@ -62,7 +62,7 @@ class Action(BaseModel):
 
 
 class WaapAdvancedRule(BaseModel):
-    """An advanced WAAP rule applied to a domain"""
+    """Full advanced rule representation"""
 
     id: int
     """The unique identifier for the rule"""
@@ -72,6 +72,9 @@ class WaapAdvancedRule(BaseModel):
 
     Only one action can be set per rule.
     """
+
+    description: str
+    """A description assigned to the rule."""
 
     enabled: bool
     """Whether or not the rule is enabled"""
@@ -88,9 +91,6 @@ class WaapAdvancedRule(BaseModel):
     More info can be found here:
     https://gcore.com/docs/waap/waap-rules/advanced-rules
     """
-
-    description: Optional[str] = None
-    """A human-readable description."""
 
     phase: Optional[Literal["access", "header_filter", "body_filter"]] = None
     """The WAAP request/response phase for applying the rule. Default is "access".

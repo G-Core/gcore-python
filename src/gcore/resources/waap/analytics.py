@@ -180,6 +180,31 @@ class AnalyticsResource(SyncAPIResource):
         session_ids: SequenceNotStr[str] | Omit = omit,
         status_codes: Iterable[int] | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
+        traffic_types: List[
+            Literal[
+                "policy_allowed",
+                "policy_blocked",
+                "custom_rule_allowed",
+                "custom_blocked",
+                "legit_requests",
+                "sanctioned",
+                "dynamic",
+                "api",
+                "static",
+                "ajax",
+                "redirects",
+                "monitor",
+                "err_40x",
+                "err_50x",
+                "passed_to_origin",
+                "timeout",
+                "other",
+                "ddos",
+                "legit",
+                "monitored",
+            ]
+        ]
+        | Omit = omit,
         user_agent: SequenceNotStr[str] | Omit = omit,
         user_agent_clients: SequenceNotStr[str] | Omit = omit,
         user_agent_devices: SequenceNotStr[str] | Omit = omit,
@@ -309,6 +334,8 @@ class AnalyticsResource(SyncAPIResource):
           tags: Include entries whose tag exactly equals any supplied value. Omit or provide an
               empty list to apply no tag filter.
 
+          traffic_types: Include entries that have any of the given traffic types.
+
           user_agent: Include entries whose user agent contains any of the supplied texts,
               case-insensitive partial match. Omit or provide an empty list to apply no user
               agent text filter.
@@ -380,6 +407,7 @@ class AnalyticsResource(SyncAPIResource):
                         "session_ids": session_ids,
                         "status_codes": status_codes,
                         "tags": tags,
+                        "traffic_types": traffic_types,
                         "user_agent": user_agent,
                         "user_agent_clients": user_agent_clients,
                         "user_agent_devices": user_agent_devices,
@@ -521,6 +549,31 @@ class AnalyticsResource(SyncAPIResource):
         session_ids: SequenceNotStr[str] | Omit = omit,
         status_codes: Iterable[int] | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
+        traffic_types: List[
+            Literal[
+                "policy_allowed",
+                "policy_blocked",
+                "custom_rule_allowed",
+                "custom_blocked",
+                "legit_requests",
+                "sanctioned",
+                "dynamic",
+                "api",
+                "static",
+                "ajax",
+                "redirects",
+                "monitor",
+                "err_40x",
+                "err_50x",
+                "passed_to_origin",
+                "timeout",
+                "other",
+                "ddos",
+                "legit",
+                "monitored",
+            ]
+        ]
+        | Omit = omit,
         user_agent: SequenceNotStr[str] | Omit = omit,
         user_agent_clients: SequenceNotStr[str] | Omit = omit,
         user_agent_devices: SequenceNotStr[str] | Omit = omit,
@@ -652,6 +705,8 @@ class AnalyticsResource(SyncAPIResource):
           tags: Include entries whose tag exactly equals any supplied value. Omit or provide an
               empty list to apply no tag filter.
 
+          traffic_types: Include entries that have any of the given traffic types.
+
           user_agent: Include entries whose user agent contains any of the supplied texts,
               case-insensitive partial match. Omit or provide an empty list to apply no user
               agent text filter.
@@ -723,6 +778,7 @@ class AnalyticsResource(SyncAPIResource):
                         "session_ids": session_ids,
                         "status_codes": status_codes,
                         "tags": tags,
+                        "traffic_types": traffic_types,
                         "user_agent": user_agent,
                         "user_agent_clients": user_agent_clients,
                         "user_agent_devices": user_agent_devices,
@@ -842,6 +898,31 @@ class AnalyticsResource(SyncAPIResource):
         session_ids: SequenceNotStr[str] | Omit = omit,
         status_codes: Iterable[int] | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
+        traffic_types: List[
+            Literal[
+                "policy_allowed",
+                "policy_blocked",
+                "custom_rule_allowed",
+                "custom_blocked",
+                "legit_requests",
+                "sanctioned",
+                "dynamic",
+                "api",
+                "static",
+                "ajax",
+                "redirects",
+                "monitor",
+                "err_40x",
+                "err_50x",
+                "passed_to_origin",
+                "timeout",
+                "other",
+                "ddos",
+                "legit",
+                "monitored",
+            ]
+        ]
+        | Omit = omit,
         user_agent: SequenceNotStr[str] | Omit = omit,
         user_agent_clients: SequenceNotStr[str] | Omit = omit,
         user_agent_devices: SequenceNotStr[str] | Omit = omit,
@@ -968,6 +1049,8 @@ class AnalyticsResource(SyncAPIResource):
           tags: Include entries whose tag exactly equals any supplied value. Omit or provide an
               empty list to apply no tag filter.
 
+          traffic_types: Include entries that have any of the given traffic types.
+
           user_agent: Include entries whose user agent contains any of the supplied texts,
               case-insensitive partial match. Omit or provide an empty list to apply no user
               agent text filter.
@@ -1036,6 +1119,7 @@ class AnalyticsResource(SyncAPIResource):
                         "session_ids": session_ids,
                         "status_codes": status_codes,
                         "tags": tags,
+                        "traffic_types": traffic_types,
                         "user_agent": user_agent,
                         "user_agent_clients": user_agent_clients,
                         "user_agent_devices": user_agent_devices,
@@ -1189,6 +1273,31 @@ class AsyncAnalyticsResource(AsyncAPIResource):
         session_ids: SequenceNotStr[str] | Omit = omit,
         status_codes: Iterable[int] | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
+        traffic_types: List[
+            Literal[
+                "policy_allowed",
+                "policy_blocked",
+                "custom_rule_allowed",
+                "custom_blocked",
+                "legit_requests",
+                "sanctioned",
+                "dynamic",
+                "api",
+                "static",
+                "ajax",
+                "redirects",
+                "monitor",
+                "err_40x",
+                "err_50x",
+                "passed_to_origin",
+                "timeout",
+                "other",
+                "ddos",
+                "legit",
+                "monitored",
+            ]
+        ]
+        | Omit = omit,
         user_agent: SequenceNotStr[str] | Omit = omit,
         user_agent_clients: SequenceNotStr[str] | Omit = omit,
         user_agent_devices: SequenceNotStr[str] | Omit = omit,
@@ -1318,6 +1427,8 @@ class AsyncAnalyticsResource(AsyncAPIResource):
           tags: Include entries whose tag exactly equals any supplied value. Omit or provide an
               empty list to apply no tag filter.
 
+          traffic_types: Include entries that have any of the given traffic types.
+
           user_agent: Include entries whose user agent contains any of the supplied texts,
               case-insensitive partial match. Omit or provide an empty list to apply no user
               agent text filter.
@@ -1389,6 +1500,7 @@ class AsyncAnalyticsResource(AsyncAPIResource):
                         "session_ids": session_ids,
                         "status_codes": status_codes,
                         "tags": tags,
+                        "traffic_types": traffic_types,
                         "user_agent": user_agent,
                         "user_agent_clients": user_agent_clients,
                         "user_agent_devices": user_agent_devices,
@@ -1530,6 +1642,31 @@ class AsyncAnalyticsResource(AsyncAPIResource):
         session_ids: SequenceNotStr[str] | Omit = omit,
         status_codes: Iterable[int] | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
+        traffic_types: List[
+            Literal[
+                "policy_allowed",
+                "policy_blocked",
+                "custom_rule_allowed",
+                "custom_blocked",
+                "legit_requests",
+                "sanctioned",
+                "dynamic",
+                "api",
+                "static",
+                "ajax",
+                "redirects",
+                "monitor",
+                "err_40x",
+                "err_50x",
+                "passed_to_origin",
+                "timeout",
+                "other",
+                "ddos",
+                "legit",
+                "monitored",
+            ]
+        ]
+        | Omit = omit,
         user_agent: SequenceNotStr[str] | Omit = omit,
         user_agent_clients: SequenceNotStr[str] | Omit = omit,
         user_agent_devices: SequenceNotStr[str] | Omit = omit,
@@ -1661,6 +1798,8 @@ class AsyncAnalyticsResource(AsyncAPIResource):
           tags: Include entries whose tag exactly equals any supplied value. Omit or provide an
               empty list to apply no tag filter.
 
+          traffic_types: Include entries that have any of the given traffic types.
+
           user_agent: Include entries whose user agent contains any of the supplied texts,
               case-insensitive partial match. Omit or provide an empty list to apply no user
               agent text filter.
@@ -1732,6 +1871,7 @@ class AsyncAnalyticsResource(AsyncAPIResource):
                         "session_ids": session_ids,
                         "status_codes": status_codes,
                         "tags": tags,
+                        "traffic_types": traffic_types,
                         "user_agent": user_agent,
                         "user_agent_clients": user_agent_clients,
                         "user_agent_devices": user_agent_devices,
@@ -1851,6 +1991,31 @@ class AsyncAnalyticsResource(AsyncAPIResource):
         session_ids: SequenceNotStr[str] | Omit = omit,
         status_codes: Iterable[int] | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
+        traffic_types: List[
+            Literal[
+                "policy_allowed",
+                "policy_blocked",
+                "custom_rule_allowed",
+                "custom_blocked",
+                "legit_requests",
+                "sanctioned",
+                "dynamic",
+                "api",
+                "static",
+                "ajax",
+                "redirects",
+                "monitor",
+                "err_40x",
+                "err_50x",
+                "passed_to_origin",
+                "timeout",
+                "other",
+                "ddos",
+                "legit",
+                "monitored",
+            ]
+        ]
+        | Omit = omit,
         user_agent: SequenceNotStr[str] | Omit = omit,
         user_agent_clients: SequenceNotStr[str] | Omit = omit,
         user_agent_devices: SequenceNotStr[str] | Omit = omit,
@@ -1977,6 +2142,8 @@ class AsyncAnalyticsResource(AsyncAPIResource):
           tags: Include entries whose tag exactly equals any supplied value. Omit or provide an
               empty list to apply no tag filter.
 
+          traffic_types: Include entries that have any of the given traffic types.
+
           user_agent: Include entries whose user agent contains any of the supplied texts,
               case-insensitive partial match. Omit or provide an empty list to apply no user
               agent text filter.
@@ -2045,6 +2212,7 @@ class AsyncAnalyticsResource(AsyncAPIResource):
                         "session_ids": session_ids,
                         "status_codes": status_codes,
                         "tags": tags,
+                        "traffic_types": traffic_types,
                         "user_agent": user_agent,
                         "user_agent_clients": user_agent_clients,
                         "user_agent_devices": user_agent_devices,

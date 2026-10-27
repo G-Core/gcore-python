@@ -456,7 +456,7 @@ class Condition(BaseModel):
 
 
 class WaapCustomRule(BaseModel):
-    """An WAAP rule applied to a domain"""
+    """Full custom rule representation"""
 
     id: int
     """The unique identifier for the rule"""
@@ -474,11 +474,11 @@ class WaapCustomRule(BaseModel):
     to trigger
     """
 
+    description: str
+    """A description assigned to the rule."""
+
     enabled: bool
     """Whether or not the rule is enabled"""
 
     name: str
     """The name assigned to the rule"""
-
-    description: Optional[str] = None
-    """A human-readable description."""

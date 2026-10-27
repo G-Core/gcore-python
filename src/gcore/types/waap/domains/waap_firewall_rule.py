@@ -75,8 +75,10 @@ class Condition(BaseModel):
 
 
 class WaapFirewallRule(BaseModel):
+    """Full firewall rule representation"""
+
     id: int
-    """The unique identifier of the rule"""
+    """The unique identifier for the rule"""
 
     action: Action
     """The action that the rule takes when triggered"""
@@ -84,11 +86,11 @@ class WaapFirewallRule(BaseModel):
     conditions: List[Condition]
     """The condition required for the WAAP engine to trigger the rule."""
 
+    description: str
+    """A description assigned to the rule."""
+
     enabled: bool
     """Whether or not the rule is enabled"""
 
     name: str
     """The name assigned to the rule"""
-
-    description: Optional[str] = None
-    """A human-readable description."""

@@ -88,13 +88,16 @@ class WaapAccountFirewallRule(BaseModel):
     """Firewall rule response for account-level queries with domain information"""
 
     id: int
-    """The unique identifier of the rule"""
+    """The unique identifier for the rule"""
 
     action: Action
     """The action that the rule takes when triggered"""
 
     conditions: List[Condition]
     """The condition required for the WAAP engine to trigger the rule."""
+
+    description: str
+    """A description assigned to the rule."""
 
     domain: Domain
     """The domain this firewall rule belongs to"""
@@ -104,6 +107,3 @@ class WaapAccountFirewallRule(BaseModel):
 
     name: str
     """The name assigned to the rule"""
-
-    description: Optional[str] = None
-    """A human-readable description."""
