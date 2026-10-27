@@ -17,6 +17,21 @@ jobs:
       # v7 adds current checkout fixes while the full SHA keeps the runner dependency immutable.
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
+      - name: Install verified uv before Rye bootstrap (eMudhra trust store fix)
+        # make Rye use the fixed trust store while installing its own environment
+        run: |
+          set -euo pipefail
+          url="https://github.com/astral-sh/uv/releases/download/${UV_VERSION}/uv-x86_64-unknown-linux-gnu.tar.gz"
+          curl --proto '=https' --tlsv1.2 -fsSL -o /tmp/uv.tar.gz "$url"
+          echo "${UV_SHA256}  /tmp/uv.tar.gz" | sha256sum -c -
+          mkdir -p "$HOME/.rye/uv/0.6.3" /tmp/uv-extract
+          tar -xzf /tmp/uv.tar.gz -C /tmp/uv-extract --strip-components=1
+          install -m 0755 /tmp/uv-extract/uv "$HOME/.rye/uv/0.6.3/uv"
+          "$HOME/.rye/uv/0.6.3/uv" --version
+        env:
+          UV_VERSION: '0.13.5'
+          UV_SHA256: 'f68d291c75783122dad58ab77def0e13f3233f358731db5d6d7e8715603b928f'
+
       - name: Install Rye
         run: |
           curl -sSf https://rye.astral.sh/get | bash
@@ -24,24 +39,17 @@ jobs:
         env:
           RYE_VERSION: '0.44.0'
           RYE_INSTALL_OPTION: '--yes'
+
       - name: Replace Rye's bundled uv (eMudhra trust store fix)
-        # Rye 0.44.0 bundles uv 0.6.3, which trusts the removed
-        # emSign ECC Root CA - G3. Rye reuses $HOME/.rye/uv/<version>/uv.
         run: |
           set -euo pipefail
-          UV_VERSION=0.13.5
-          UV_SHA256=f68d291c75783122dad58ab77def0e13f3233f358731db5d6d7e8715603b928f
-          curl -sSfL -o /tmp/uv.tar.gz "https://github.com/astral-sh/uv/releases/download/${UV_VERSION}/uv-x86_64-unknown-linux-gnu.tar.gz"
-          echo "${UV_SHA256}  /tmp/uv.tar.gz" | sha256sum -c -
-          tar -xzf /tmp/uv.tar.gz -C /tmp
-          found=0
-          for bin in "$HOME"/.rye/uv/*/uv; do
-            [ -f "$bin" ] || continue
-            install -m 0755 /tmp/uv-x86_64-unknown-linux-gnu/uv "$bin"
+          shopt -s nullglob
+          bundled_uvs=("$HOME"/.rye/uv/*/uv)
+          [ "${#bundled_uvs[@]}" -gt 0 ] || { echo "No Rye-bundled uv found"; exit 1; }
+          for bin in "${bundled_uvs[@]}"; do
+            install -m 0755 /tmp/uv-extract/uv "$bin"
             "$bin" --version
-            found=1
           done
-          [ "$found" = 1 ] || { echo "No Rye-bundled uv found"; exit 1; }
 
       - name: Upgrade Rye's publishing CA bundle
         run: |
