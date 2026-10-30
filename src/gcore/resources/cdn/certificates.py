@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import overload
+from typing import Union
+from datetime import datetime
+from typing_extensions import Literal, overload
 
 import httpx
 
@@ -62,6 +64,7 @@ class CertificatesResource(SyncAPIResource):
         name: str,
         ssl_certificate: str,
         ssl_private_key: str,
+        automated: Literal[False] | Omit = omit,
         validate_root_ca: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -69,7 +72,7 @@ class CertificatesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> SslDetail:
         """
         Add an SSL certificate for content delivery over HTTPS protocol.
 
@@ -91,6 +94,8 @@ class CertificatesResource(SyncAPIResource):
               All chain of the SSL certificate should be added.
 
           ssl_private_key: Private key of the SSL certificate.
+
+          automated: Must be **false** or omitted for a certificate you upload.
 
           validate_root_ca: Defines whether to check the SSL certificate for a signature from a trusted
               certificate authority.
@@ -116,7 +121,7 @@ class CertificatesResource(SyncAPIResource):
     def create(
         self,
         *,
-        automated: bool,
+        automated: Literal[True],
         name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -124,7 +129,7 @@ class CertificatesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> SslDetail:
         """
         Add an SSL certificate for content delivery over HTTPS protocol.
 
@@ -158,16 +163,15 @@ class CertificatesResource(SyncAPIResource):
         name: str,
         ssl_certificate: str | Omit = omit,
         ssl_private_key: str | Omit = omit,
+        automated: Literal[False] | Literal[True] | Omit = omit,
         validate_root_ca: bool | Omit = omit,
-        automated: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+    ) -> SslDetail:
         return self._post(
             "/cdn/sslData",
             body=maybe_transform(
@@ -175,15 +179,15 @@ class CertificatesResource(SyncAPIResource):
                     "name": name,
                     "ssl_certificate": ssl_certificate,
                     "ssl_private_key": ssl_private_key,
-                    "validate_root_ca": validate_root_ca,
                     "automated": automated,
+                    "validate_root_ca": validate_root_ca,
                 },
                 certificate_create_params.CertificateCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=SslDetail,
         )
 
     def list(
@@ -193,7 +197,7 @@ class CertificatesResource(SyncAPIResource):
         limit: int | Omit = 1000,  # CDN API only envelopes when limit>=1; default so list() always paginates
         offset: int | Omit = omit,
         resource_id: int | Omit = omit,
-        validity_not_after_lte: str | Omit = omit,
+        validity_not_after_lte: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -463,6 +467,7 @@ class CertificatesResource(SyncAPIResource):
         name: str,
         ssl_certificate: str,
         ssl_private_key: str,
+        automated: Literal[False] | Omit = omit,
         validate_root_ca: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -484,6 +489,8 @@ class CertificatesResource(SyncAPIResource):
               All chain of the SSL certificate should be added.
 
           ssl_private_key: Private key of the SSL certificate.
+
+          automated: Must be **false** or omitted for a certificate you upload.
 
           validate_root_ca: Defines whether to check the SSL certificate for a signature from a trusted
               certificate authority.
@@ -510,6 +517,7 @@ class CertificatesResource(SyncAPIResource):
                     "name": name,
                     "ssl_certificate": ssl_certificate,
                     "ssl_private_key": ssl_private_key,
+                    "automated": automated,
                     "validate_root_ca": validate_root_ca,
                 },
                 certificate_replace_params.CertificateReplaceParams,
@@ -552,6 +560,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
         name: str,
         ssl_certificate: str,
         ssl_private_key: str,
+        automated: Literal[False] | Omit = omit,
         validate_root_ca: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -559,7 +568,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> SslDetail:
         """
         Add an SSL certificate for content delivery over HTTPS protocol.
 
@@ -581,6 +590,8 @@ class AsyncCertificatesResource(AsyncAPIResource):
               All chain of the SSL certificate should be added.
 
           ssl_private_key: Private key of the SSL certificate.
+
+          automated: Must be **false** or omitted for a certificate you upload.
 
           validate_root_ca: Defines whether to check the SSL certificate for a signature from a trusted
               certificate authority.
@@ -606,7 +617,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        automated: bool,
+        automated: Literal[True],
         name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -614,7 +625,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> SslDetail:
         """
         Add an SSL certificate for content delivery over HTTPS protocol.
 
@@ -648,16 +659,15 @@ class AsyncCertificatesResource(AsyncAPIResource):
         name: str,
         ssl_certificate: str | Omit = omit,
         ssl_private_key: str | Omit = omit,
+        automated: Literal[False] | Literal[True] | Omit = omit,
         validate_root_ca: bool | Omit = omit,
-        automated: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+    ) -> SslDetail:
         return await self._post(
             "/cdn/sslData",
             body=await async_maybe_transform(
@@ -665,15 +675,15 @@ class AsyncCertificatesResource(AsyncAPIResource):
                     "name": name,
                     "ssl_certificate": ssl_certificate,
                     "ssl_private_key": ssl_private_key,
-                    "validate_root_ca": validate_root_ca,
                     "automated": automated,
+                    "validate_root_ca": validate_root_ca,
                 },
                 certificate_create_params.CertificateCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=SslDetail,
         )
 
     def list(
@@ -683,7 +693,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
         limit: int | Omit = 1000,  # CDN API only envelopes when limit>=1; default so list() always paginates
         offset: int | Omit = omit,
         resource_id: int | Omit = omit,
-        validity_not_after_lte: str | Omit = omit,
+        validity_not_after_lte: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -955,6 +965,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
         name: str,
         ssl_certificate: str,
         ssl_private_key: str,
+        automated: Literal[False] | Omit = omit,
         validate_root_ca: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -976,6 +987,8 @@ class AsyncCertificatesResource(AsyncAPIResource):
               All chain of the SSL certificate should be added.
 
           ssl_private_key: Private key of the SSL certificate.
+
+          automated: Must be **false** or omitted for a certificate you upload.
 
           validate_root_ca: Defines whether to check the SSL certificate for a signature from a trusted
               certificate authority.
@@ -1002,6 +1015,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
                     "name": name,
                     "ssl_certificate": ssl_certificate,
                     "ssl_private_key": ssl_private_key,
+                    "automated": automated,
                     "validate_root_ca": validate_root_ca,
                 },
                 certificate_replace_params.CertificateReplaceParams,

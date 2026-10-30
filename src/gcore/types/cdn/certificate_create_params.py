@@ -3,14 +3,14 @@
 from __future__ import annotations
 
 from typing import Union
-from typing_extensions import Required, Annotated, TypeAlias, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from ..._utils import PropertyInfo
 
-__all__ = ["CertificateCreateParams", "CreateSSlPayload", "LetSEncryptCertificate"]
+__all__ = ["CertificateCreateParams", "CreateSslPayload", "CreateLetsEncryptSslPayload"]
 
 
-class CreateSSlPayload(TypedDict, total=False):
+class CreateSslPayload(TypedDict, total=False):
     name: Required[str]
     """SSL certificate name.
 
@@ -26,6 +26,9 @@ class CreateSSlPayload(TypedDict, total=False):
     ssl_private_key: Required[Annotated[str, PropertyInfo(alias="sslPrivateKey")]]
     """Private key of the SSL certificate."""
 
+    automated: Literal[False]
+    """Must be **false** or omitted for a certificate you upload."""
+
     validate_root_ca: bool
     """
     Defines whether to check the SSL certificate for a signature from a trusted
@@ -40,12 +43,12 @@ class CreateSSlPayload(TypedDict, total=False):
     """
 
 
-class LetSEncryptCertificate(TypedDict, total=False):
-    automated: Required[bool]
+class CreateLetsEncryptSslPayload(TypedDict, total=False):
+    automated: Required[Literal[True]]
     """Must be **true** to issue certificate automatically."""
 
     name: Required[str]
     """SSL certificate name. It must be unique."""
 
 
-CertificateCreateParams: TypeAlias = Union[CreateSSlPayload, LetSEncryptCertificate]
+CertificateCreateParams: TypeAlias = Union[CreateSslPayload, CreateLetsEncryptSslPayload]

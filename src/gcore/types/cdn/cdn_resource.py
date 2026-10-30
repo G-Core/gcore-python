@@ -984,8 +984,7 @@ class OptionsProxyReadTimeout(BaseModel):
     The time limit for receiving a partial response from the origin.
     If no response is received within this time, the connection will be closed.
 
-    **Note:**
-    When used with a WebSocket connection, this option supports values only in the range 1–20 seconds (instead of the usual 1–30 seconds).
+    When the option is not set, the timeout is 30 seconds.
     """
 
     enabled: bool
@@ -1000,7 +999,7 @@ class OptionsProxyReadTimeout(BaseModel):
     value: str
     """Timeout value in seconds.
 
-    Supported range: **1s - 30s**.
+    Supported range: **1s - 120s**.
     """
 
 
@@ -1928,8 +1927,7 @@ class Options(BaseModel):
     The time limit for receiving a partial response from the origin. If no response
     is received within this time, the connection will be closed.
 
-    **Note:** When used with a WebSocket connection, this option supports values
-    only in the range 1–20 seconds (instead of the usual 1–30 seconds).
+    When the option is not set, the timeout is 30 seconds.
     """
 
     query_params_blacklist: Optional[OptionsQueryParamsBlacklist] = None

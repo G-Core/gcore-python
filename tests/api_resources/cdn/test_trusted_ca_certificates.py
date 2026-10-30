@@ -9,6 +9,7 @@ import pytest
 
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
+from gcore._utils import parse_datetime
 from gcore.types.cdn import (
     CaCertificate,
 )
@@ -24,7 +25,7 @@ class TestTrustedCaCertificates:
     def test_method_create(self, client: Gcore) -> None:
         trusted_ca_certificate = client.cdn.trusted_ca_certificates.create(
             name="Example CA cert",
-            ssl_certificate="-----BEGIN CERTIFICATE-----\nMIIC0zCCAbugAwIBAgICA+gwDQYJKoZIhvcNAQELBQAwFjEUMBIGA1UEAwwLZXhh\nbXBsZS5jb20wHhcNMjAwNjI2MTIwMzUzWhcNMjEwNjI2MTIwMzUzWjAWMRQwEgYD\nVQQDDAtleGFtcGxlLmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEB\nAN4nnSfTsMEnfPgL7rkbImxZAQoND+bpPoX8q16iXZz3fFfqdRk+uEIpU3Brleeg\np0zrrT2eI3+c2h/PRod0Fam4TO6EcfwuboUFzV3j6yw6aWdfBjWZsWBR/FoqWLYq\nb3UejN7yiTYNSiIy3zVpi9pnFM8N8qT+VGBrRDGef2v9JCzhsSSU7wAYM5HKZTp+\nWHojjiyB2hOYqft7A2WlTEDmHFa5UcPHMRZKATUYI1T2TRVqLlSiE2mJ3dFRXGM2\nZAS33J0NVUjkx3w8RmJ7DNflEFJt/6IXdfaokVgfza7LFarrQFQP/YURXEeJT7jm\nDvKpZ/a8wu3ve6N4ykC+CBsCAwEAAaMrMCkwDwYDVR0TBAgwBgEB/wIBADAWBgNV\nHREEDzANggtleGFtcGxlLmNvbTANBgkqhkiG9w0BAQsFAAOCAQEAovxY5lm89Eod\nL8CH3dZzIH7nv8MXtwgpv2vth4PDq2btLS8xrqm2SsA/cV+DsbDjh5CxQLoDX+8V\ng8NtY+ipOE0hdJAUo7UVlsxuAY4frkmLL1/RwpjZg+Z2NAxpR7xGWgoMn7CH481w\nAOBypAuCxcfcyyAOttdS+YMRJnpL6z8/C3W0LGkNOs26Qhu1/U8lfz1f9F4XummD\nu2SCmJsAd1PrL1shsyh4HtmFjuY698aTjYUDUleAnx7ytrGlZuLOIeoQi7tcsLJJ\nTPMbxTLgGN2HEkdJerFRBNViuWvqioEyYlzZ3MshOCR2wsL4wrXrCF0Y3cNOYcIh\nZ8z+wUAP2g==\n-----END CERTIFICATE-----\n",
+            ssl_certificate="-----BEGIN CERTIFICATE-----\nMIIBbTCCARKgAwIBAgIULDeBmErpf2HbicPq8M/WK6fUZxEwCgYIKoZIzj0EAwIw\nKjETMBEGA1UECgwKRXhhbXBsZSBDQTETMBEGA1UEAwwKRXhhbXBsZSBDQTAeFw0y\nNjAxMDEwMDAwMDBaFw0zNjAxMDEwMDAwMDBaMCoxEzARBgNVBAoMCkV4YW1wbGUg\nQ0ExEzARBgNVBAMMCkV4YW1wbGUgQ0EwWTATBgcqhkjOPQIBBggqhkjOPQMBBwNC\nAATdtaj2FA1AUBTNxVPfCeuuJWY6D1SQTtCNT3vbakavfJu+QISYQcc0Tbtudl5s\nv6mQPTiVlKOzi5NSWYn9F8YwoxYwFDASBgNVHRMBAf8ECDAGAQH/AgEAMAoGCCqG\nSM49BAMCA0kAMEYCIQD4GWDCyoYDx48b49W/R6ox5K2Dx37otAqQCSeB96moHAIh\nAKAUFyIRFL4HQ1Y3jEELs8TvC2554gcPQKitr0S0wM1g\n-----END CERTIFICATE-----\n",
         )
         assert_matches_type(CaCertificate, trusted_ca_certificate, path=["response"])
 
@@ -32,7 +33,7 @@ class TestTrustedCaCertificates:
     def test_raw_response_create(self, client: Gcore) -> None:
         response = client.cdn.trusted_ca_certificates.with_raw_response.create(
             name="Example CA cert",
-            ssl_certificate="-----BEGIN CERTIFICATE-----\nMIIC0zCCAbugAwIBAgICA+gwDQYJKoZIhvcNAQELBQAwFjEUMBIGA1UEAwwLZXhh\nbXBsZS5jb20wHhcNMjAwNjI2MTIwMzUzWhcNMjEwNjI2MTIwMzUzWjAWMRQwEgYD\nVQQDDAtleGFtcGxlLmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEB\nAN4nnSfTsMEnfPgL7rkbImxZAQoND+bpPoX8q16iXZz3fFfqdRk+uEIpU3Brleeg\np0zrrT2eI3+c2h/PRod0Fam4TO6EcfwuboUFzV3j6yw6aWdfBjWZsWBR/FoqWLYq\nb3UejN7yiTYNSiIy3zVpi9pnFM8N8qT+VGBrRDGef2v9JCzhsSSU7wAYM5HKZTp+\nWHojjiyB2hOYqft7A2WlTEDmHFa5UcPHMRZKATUYI1T2TRVqLlSiE2mJ3dFRXGM2\nZAS33J0NVUjkx3w8RmJ7DNflEFJt/6IXdfaokVgfza7LFarrQFQP/YURXEeJT7jm\nDvKpZ/a8wu3ve6N4ykC+CBsCAwEAAaMrMCkwDwYDVR0TBAgwBgEB/wIBADAWBgNV\nHREEDzANggtleGFtcGxlLmNvbTANBgkqhkiG9w0BAQsFAAOCAQEAovxY5lm89Eod\nL8CH3dZzIH7nv8MXtwgpv2vth4PDq2btLS8xrqm2SsA/cV+DsbDjh5CxQLoDX+8V\ng8NtY+ipOE0hdJAUo7UVlsxuAY4frkmLL1/RwpjZg+Z2NAxpR7xGWgoMn7CH481w\nAOBypAuCxcfcyyAOttdS+YMRJnpL6z8/C3W0LGkNOs26Qhu1/U8lfz1f9F4XummD\nu2SCmJsAd1PrL1shsyh4HtmFjuY698aTjYUDUleAnx7ytrGlZuLOIeoQi7tcsLJJ\nTPMbxTLgGN2HEkdJerFRBNViuWvqioEyYlzZ3MshOCR2wsL4wrXrCF0Y3cNOYcIh\nZ8z+wUAP2g==\n-----END CERTIFICATE-----\n",
+            ssl_certificate="-----BEGIN CERTIFICATE-----\nMIIBbTCCARKgAwIBAgIULDeBmErpf2HbicPq8M/WK6fUZxEwCgYIKoZIzj0EAwIw\nKjETMBEGA1UECgwKRXhhbXBsZSBDQTETMBEGA1UEAwwKRXhhbXBsZSBDQTAeFw0y\nNjAxMDEwMDAwMDBaFw0zNjAxMDEwMDAwMDBaMCoxEzARBgNVBAoMCkV4YW1wbGUg\nQ0ExEzARBgNVBAMMCkV4YW1wbGUgQ0EwWTATBgcqhkjOPQIBBggqhkjOPQMBBwNC\nAATdtaj2FA1AUBTNxVPfCeuuJWY6D1SQTtCNT3vbakavfJu+QISYQcc0Tbtudl5s\nv6mQPTiVlKOzi5NSWYn9F8YwoxYwFDASBgNVHRMBAf8ECDAGAQH/AgEAMAoGCCqG\nSM49BAMCA0kAMEYCIQD4GWDCyoYDx48b49W/R6ox5K2Dx37otAqQCSeB96moHAIh\nAKAUFyIRFL4HQ1Y3jEELs8TvC2554gcPQKitr0S0wM1g\n-----END CERTIFICATE-----\n",
         )
 
         assert response.is_closed is True
@@ -44,7 +45,7 @@ class TestTrustedCaCertificates:
     def test_streaming_response_create(self, client: Gcore) -> None:
         with client.cdn.trusted_ca_certificates.with_streaming_response.create(
             name="Example CA cert",
-            ssl_certificate="-----BEGIN CERTIFICATE-----\nMIIC0zCCAbugAwIBAgICA+gwDQYJKoZIhvcNAQELBQAwFjEUMBIGA1UEAwwLZXhh\nbXBsZS5jb20wHhcNMjAwNjI2MTIwMzUzWhcNMjEwNjI2MTIwMzUzWjAWMRQwEgYD\nVQQDDAtleGFtcGxlLmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEB\nAN4nnSfTsMEnfPgL7rkbImxZAQoND+bpPoX8q16iXZz3fFfqdRk+uEIpU3Brleeg\np0zrrT2eI3+c2h/PRod0Fam4TO6EcfwuboUFzV3j6yw6aWdfBjWZsWBR/FoqWLYq\nb3UejN7yiTYNSiIy3zVpi9pnFM8N8qT+VGBrRDGef2v9JCzhsSSU7wAYM5HKZTp+\nWHojjiyB2hOYqft7A2WlTEDmHFa5UcPHMRZKATUYI1T2TRVqLlSiE2mJ3dFRXGM2\nZAS33J0NVUjkx3w8RmJ7DNflEFJt/6IXdfaokVgfza7LFarrQFQP/YURXEeJT7jm\nDvKpZ/a8wu3ve6N4ykC+CBsCAwEAAaMrMCkwDwYDVR0TBAgwBgEB/wIBADAWBgNV\nHREEDzANggtleGFtcGxlLmNvbTANBgkqhkiG9w0BAQsFAAOCAQEAovxY5lm89Eod\nL8CH3dZzIH7nv8MXtwgpv2vth4PDq2btLS8xrqm2SsA/cV+DsbDjh5CxQLoDX+8V\ng8NtY+ipOE0hdJAUo7UVlsxuAY4frkmLL1/RwpjZg+Z2NAxpR7xGWgoMn7CH481w\nAOBypAuCxcfcyyAOttdS+YMRJnpL6z8/C3W0LGkNOs26Qhu1/U8lfz1f9F4XummD\nu2SCmJsAd1PrL1shsyh4HtmFjuY698aTjYUDUleAnx7ytrGlZuLOIeoQi7tcsLJJ\nTPMbxTLgGN2HEkdJerFRBNViuWvqioEyYlzZ3MshOCR2wsL4wrXrCF0Y3cNOYcIh\nZ8z+wUAP2g==\n-----END CERTIFICATE-----\n",
+            ssl_certificate="-----BEGIN CERTIFICATE-----\nMIIBbTCCARKgAwIBAgIULDeBmErpf2HbicPq8M/WK6fUZxEwCgYIKoZIzj0EAwIw\nKjETMBEGA1UECgwKRXhhbXBsZSBDQTETMBEGA1UEAwwKRXhhbXBsZSBDQTAeFw0y\nNjAxMDEwMDAwMDBaFw0zNjAxMDEwMDAwMDBaMCoxEzARBgNVBAoMCkV4YW1wbGUg\nQ0ExEzARBgNVBAMMCkV4YW1wbGUgQ0EwWTATBgcqhkjOPQIBBggqhkjOPQMBBwNC\nAATdtaj2FA1AUBTNxVPfCeuuJWY6D1SQTtCNT3vbakavfJu+QISYQcc0Tbtudl5s\nv6mQPTiVlKOzi5NSWYn9F8YwoxYwFDASBgNVHRMBAf8ECDAGAQH/AgEAMAoGCCqG\nSM49BAMCA0kAMEYCIQD4GWDCyoYDx48b49W/R6ox5K2Dx37otAqQCSeB96moHAIh\nAKAUFyIRFL4HQ1Y3jEELs8TvC2554gcPQKitr0S0wM1g\n-----END CERTIFICATE-----\n",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -68,7 +69,7 @@ class TestTrustedCaCertificates:
             limit=1,
             offset=0,
             resource_id=0,
-            validity_not_after_lte="validity_not_after_lte",
+            validity_not_after_lte=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
         assert_matches_type(SyncOffsetPage[CaCertificate], trusted_ca_certificate, path=["response"])
 
@@ -200,7 +201,7 @@ class TestAsyncTrustedCaCertificates:
     async def test_method_create(self, async_client: AsyncGcore) -> None:
         trusted_ca_certificate = await async_client.cdn.trusted_ca_certificates.create(
             name="Example CA cert",
-            ssl_certificate="-----BEGIN CERTIFICATE-----\nMIIC0zCCAbugAwIBAgICA+gwDQYJKoZIhvcNAQELBQAwFjEUMBIGA1UEAwwLZXhh\nbXBsZS5jb20wHhcNMjAwNjI2MTIwMzUzWhcNMjEwNjI2MTIwMzUzWjAWMRQwEgYD\nVQQDDAtleGFtcGxlLmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEB\nAN4nnSfTsMEnfPgL7rkbImxZAQoND+bpPoX8q16iXZz3fFfqdRk+uEIpU3Brleeg\np0zrrT2eI3+c2h/PRod0Fam4TO6EcfwuboUFzV3j6yw6aWdfBjWZsWBR/FoqWLYq\nb3UejN7yiTYNSiIy3zVpi9pnFM8N8qT+VGBrRDGef2v9JCzhsSSU7wAYM5HKZTp+\nWHojjiyB2hOYqft7A2WlTEDmHFa5UcPHMRZKATUYI1T2TRVqLlSiE2mJ3dFRXGM2\nZAS33J0NVUjkx3w8RmJ7DNflEFJt/6IXdfaokVgfza7LFarrQFQP/YURXEeJT7jm\nDvKpZ/a8wu3ve6N4ykC+CBsCAwEAAaMrMCkwDwYDVR0TBAgwBgEB/wIBADAWBgNV\nHREEDzANggtleGFtcGxlLmNvbTANBgkqhkiG9w0BAQsFAAOCAQEAovxY5lm89Eod\nL8CH3dZzIH7nv8MXtwgpv2vth4PDq2btLS8xrqm2SsA/cV+DsbDjh5CxQLoDX+8V\ng8NtY+ipOE0hdJAUo7UVlsxuAY4frkmLL1/RwpjZg+Z2NAxpR7xGWgoMn7CH481w\nAOBypAuCxcfcyyAOttdS+YMRJnpL6z8/C3W0LGkNOs26Qhu1/U8lfz1f9F4XummD\nu2SCmJsAd1PrL1shsyh4HtmFjuY698aTjYUDUleAnx7ytrGlZuLOIeoQi7tcsLJJ\nTPMbxTLgGN2HEkdJerFRBNViuWvqioEyYlzZ3MshOCR2wsL4wrXrCF0Y3cNOYcIh\nZ8z+wUAP2g==\n-----END CERTIFICATE-----\n",
+            ssl_certificate="-----BEGIN CERTIFICATE-----\nMIIBbTCCARKgAwIBAgIULDeBmErpf2HbicPq8M/WK6fUZxEwCgYIKoZIzj0EAwIw\nKjETMBEGA1UECgwKRXhhbXBsZSBDQTETMBEGA1UEAwwKRXhhbXBsZSBDQTAeFw0y\nNjAxMDEwMDAwMDBaFw0zNjAxMDEwMDAwMDBaMCoxEzARBgNVBAoMCkV4YW1wbGUg\nQ0ExEzARBgNVBAMMCkV4YW1wbGUgQ0EwWTATBgcqhkjOPQIBBggqhkjOPQMBBwNC\nAATdtaj2FA1AUBTNxVPfCeuuJWY6D1SQTtCNT3vbakavfJu+QISYQcc0Tbtudl5s\nv6mQPTiVlKOzi5NSWYn9F8YwoxYwFDASBgNVHRMBAf8ECDAGAQH/AgEAMAoGCCqG\nSM49BAMCA0kAMEYCIQD4GWDCyoYDx48b49W/R6ox5K2Dx37otAqQCSeB96moHAIh\nAKAUFyIRFL4HQ1Y3jEELs8TvC2554gcPQKitr0S0wM1g\n-----END CERTIFICATE-----\n",
         )
         assert_matches_type(CaCertificate, trusted_ca_certificate, path=["response"])
 
@@ -208,7 +209,7 @@ class TestAsyncTrustedCaCertificates:
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
         response = await async_client.cdn.trusted_ca_certificates.with_raw_response.create(
             name="Example CA cert",
-            ssl_certificate="-----BEGIN CERTIFICATE-----\nMIIC0zCCAbugAwIBAgICA+gwDQYJKoZIhvcNAQELBQAwFjEUMBIGA1UEAwwLZXhh\nbXBsZS5jb20wHhcNMjAwNjI2MTIwMzUzWhcNMjEwNjI2MTIwMzUzWjAWMRQwEgYD\nVQQDDAtleGFtcGxlLmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEB\nAN4nnSfTsMEnfPgL7rkbImxZAQoND+bpPoX8q16iXZz3fFfqdRk+uEIpU3Brleeg\np0zrrT2eI3+c2h/PRod0Fam4TO6EcfwuboUFzV3j6yw6aWdfBjWZsWBR/FoqWLYq\nb3UejN7yiTYNSiIy3zVpi9pnFM8N8qT+VGBrRDGef2v9JCzhsSSU7wAYM5HKZTp+\nWHojjiyB2hOYqft7A2WlTEDmHFa5UcPHMRZKATUYI1T2TRVqLlSiE2mJ3dFRXGM2\nZAS33J0NVUjkx3w8RmJ7DNflEFJt/6IXdfaokVgfza7LFarrQFQP/YURXEeJT7jm\nDvKpZ/a8wu3ve6N4ykC+CBsCAwEAAaMrMCkwDwYDVR0TBAgwBgEB/wIBADAWBgNV\nHREEDzANggtleGFtcGxlLmNvbTANBgkqhkiG9w0BAQsFAAOCAQEAovxY5lm89Eod\nL8CH3dZzIH7nv8MXtwgpv2vth4PDq2btLS8xrqm2SsA/cV+DsbDjh5CxQLoDX+8V\ng8NtY+ipOE0hdJAUo7UVlsxuAY4frkmLL1/RwpjZg+Z2NAxpR7xGWgoMn7CH481w\nAOBypAuCxcfcyyAOttdS+YMRJnpL6z8/C3W0LGkNOs26Qhu1/U8lfz1f9F4XummD\nu2SCmJsAd1PrL1shsyh4HtmFjuY698aTjYUDUleAnx7ytrGlZuLOIeoQi7tcsLJJ\nTPMbxTLgGN2HEkdJerFRBNViuWvqioEyYlzZ3MshOCR2wsL4wrXrCF0Y3cNOYcIh\nZ8z+wUAP2g==\n-----END CERTIFICATE-----\n",
+            ssl_certificate="-----BEGIN CERTIFICATE-----\nMIIBbTCCARKgAwIBAgIULDeBmErpf2HbicPq8M/WK6fUZxEwCgYIKoZIzj0EAwIw\nKjETMBEGA1UECgwKRXhhbXBsZSBDQTETMBEGA1UEAwwKRXhhbXBsZSBDQTAeFw0y\nNjAxMDEwMDAwMDBaFw0zNjAxMDEwMDAwMDBaMCoxEzARBgNVBAoMCkV4YW1wbGUg\nQ0ExEzARBgNVBAMMCkV4YW1wbGUgQ0EwWTATBgcqhkjOPQIBBggqhkjOPQMBBwNC\nAATdtaj2FA1AUBTNxVPfCeuuJWY6D1SQTtCNT3vbakavfJu+QISYQcc0Tbtudl5s\nv6mQPTiVlKOzi5NSWYn9F8YwoxYwFDASBgNVHRMBAf8ECDAGAQH/AgEAMAoGCCqG\nSM49BAMCA0kAMEYCIQD4GWDCyoYDx48b49W/R6ox5K2Dx37otAqQCSeB96moHAIh\nAKAUFyIRFL4HQ1Y3jEELs8TvC2554gcPQKitr0S0wM1g\n-----END CERTIFICATE-----\n",
         )
 
         assert response.is_closed is True
@@ -220,7 +221,7 @@ class TestAsyncTrustedCaCertificates:
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
         async with async_client.cdn.trusted_ca_certificates.with_streaming_response.create(
             name="Example CA cert",
-            ssl_certificate="-----BEGIN CERTIFICATE-----\nMIIC0zCCAbugAwIBAgICA+gwDQYJKoZIhvcNAQELBQAwFjEUMBIGA1UEAwwLZXhh\nbXBsZS5jb20wHhcNMjAwNjI2MTIwMzUzWhcNMjEwNjI2MTIwMzUzWjAWMRQwEgYD\nVQQDDAtleGFtcGxlLmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEB\nAN4nnSfTsMEnfPgL7rkbImxZAQoND+bpPoX8q16iXZz3fFfqdRk+uEIpU3Brleeg\np0zrrT2eI3+c2h/PRod0Fam4TO6EcfwuboUFzV3j6yw6aWdfBjWZsWBR/FoqWLYq\nb3UejN7yiTYNSiIy3zVpi9pnFM8N8qT+VGBrRDGef2v9JCzhsSSU7wAYM5HKZTp+\nWHojjiyB2hOYqft7A2WlTEDmHFa5UcPHMRZKATUYI1T2TRVqLlSiE2mJ3dFRXGM2\nZAS33J0NVUjkx3w8RmJ7DNflEFJt/6IXdfaokVgfza7LFarrQFQP/YURXEeJT7jm\nDvKpZ/a8wu3ve6N4ykC+CBsCAwEAAaMrMCkwDwYDVR0TBAgwBgEB/wIBADAWBgNV\nHREEDzANggtleGFtcGxlLmNvbTANBgkqhkiG9w0BAQsFAAOCAQEAovxY5lm89Eod\nL8CH3dZzIH7nv8MXtwgpv2vth4PDq2btLS8xrqm2SsA/cV+DsbDjh5CxQLoDX+8V\ng8NtY+ipOE0hdJAUo7UVlsxuAY4frkmLL1/RwpjZg+Z2NAxpR7xGWgoMn7CH481w\nAOBypAuCxcfcyyAOttdS+YMRJnpL6z8/C3W0LGkNOs26Qhu1/U8lfz1f9F4XummD\nu2SCmJsAd1PrL1shsyh4HtmFjuY698aTjYUDUleAnx7ytrGlZuLOIeoQi7tcsLJJ\nTPMbxTLgGN2HEkdJerFRBNViuWvqioEyYlzZ3MshOCR2wsL4wrXrCF0Y3cNOYcIh\nZ8z+wUAP2g==\n-----END CERTIFICATE-----\n",
+            ssl_certificate="-----BEGIN CERTIFICATE-----\nMIIBbTCCARKgAwIBAgIULDeBmErpf2HbicPq8M/WK6fUZxEwCgYIKoZIzj0EAwIw\nKjETMBEGA1UECgwKRXhhbXBsZSBDQTETMBEGA1UEAwwKRXhhbXBsZSBDQTAeFw0y\nNjAxMDEwMDAwMDBaFw0zNjAxMDEwMDAwMDBaMCoxEzARBgNVBAoMCkV4YW1wbGUg\nQ0ExEzARBgNVBAMMCkV4YW1wbGUgQ0EwWTATBgcqhkjOPQIBBggqhkjOPQMBBwNC\nAATdtaj2FA1AUBTNxVPfCeuuJWY6D1SQTtCNT3vbakavfJu+QISYQcc0Tbtudl5s\nv6mQPTiVlKOzi5NSWYn9F8YwoxYwFDASBgNVHRMBAf8ECDAGAQH/AgEAMAoGCCqG\nSM49BAMCA0kAMEYCIQD4GWDCyoYDx48b49W/R6ox5K2Dx37otAqQCSeB96moHAIh\nAKAUFyIRFL4HQ1Y3jEELs8TvC2554gcPQKitr0S0wM1g\n-----END CERTIFICATE-----\n",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -244,7 +245,7 @@ class TestAsyncTrustedCaCertificates:
             limit=1,
             offset=0,
             resource_id=0,
-            validity_not_after_lte="validity_not_after_lte",
+            validity_not_after_lte=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
         assert_matches_type(AsyncOffsetPage[CaCertificate], trusted_ca_certificate, path=["response"])
 

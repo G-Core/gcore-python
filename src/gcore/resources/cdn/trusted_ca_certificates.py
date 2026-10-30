@@ -2,6 +2,9 @@
 
 from __future__ import annotations
 
+from typing import Union
+from datetime import datetime
+
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
@@ -107,7 +110,7 @@ class TrustedCaCertificatesResource(SyncAPIResource):
         limit: int | Omit = 1000,  # CDN API only envelopes when limit>=1; default so list() always paginates
         offset: int | Omit = omit,
         resource_id: int | Omit = omit,
-        validity_not_after_lte: str | Omit = omit,
+        validity_not_after_lte: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -351,7 +354,7 @@ class AsyncTrustedCaCertificatesResource(AsyncAPIResource):
         limit: int | Omit = 1000,  # CDN API only envelopes when limit>=1; default so list() always paginates
         offset: int | Omit = omit,
         resource_id: int | Omit = omit,
-        validity_not_after_lte: str | Omit = omit,
+        validity_not_after_lte: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

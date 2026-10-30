@@ -2,7 +2,11 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing import Union
+from datetime import datetime
+from typing_extensions import Annotated, TypedDict
+
+from ..._utils import PropertyInfo
 
 __all__ = ["TrustedCaCertificateListParams"]
 
@@ -26,7 +30,7 @@ class TrustedCaCertificateListParams(TypedDict, total=False):
     resource_id: int
     """CDN resource ID for which the certificates are requested."""
 
-    validity_not_after_lte: str
+    validity_not_after_lte: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """
     Date and time when the certificate become untrusted (ISO 8601/RFC 3339 format,
     UTC.)

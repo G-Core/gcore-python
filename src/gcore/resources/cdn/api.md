@@ -190,7 +190,7 @@ from gcore.types.cdn import SslCertificateUsage, SslDetail, SslDetailList, SslRe
 
 Methods:
 
-- <code title="post /cdn/sslData">client.cdn.certificates.<a href="./src/gcore/resources/cdn/certificates.py">create</a>(\*\*<a href="src/gcore/types/cdn/certificate_create_params.py">params</a>) -> None</code>
+- <code title="post /cdn/sslData">client.cdn.certificates.<a href="./src/gcore/resources/cdn/certificates.py">create</a>(\*\*<a href="src/gcore/types/cdn/certificate_create_params.py">params</a>) -> <a href="./src/gcore/types/cdn/ssl_detail.py">SslDetail</a></code>
 - <code title="get /cdn/sslData">client.cdn.certificates.<a href="./src/gcore/resources/cdn/certificates.py">list</a>(\*\*<a href="src/gcore/types/cdn/certificate_list_params.py">params</a>) -> <a href="./src/gcore/types/cdn/ssl_detail.py">SyncOffsetPage[SslDetail]</a></code>
 - <code title="delete /cdn/sslData/{ssl_id}">client.cdn.certificates.<a href="./src/gcore/resources/cdn/certificates.py">delete</a>(ssl_id) -> None</code>
 - <code title="post /cdn/sslData/{cert_id}/force-retry">client.cdn.certificates.<a href="./src/gcore/resources/cdn/certificates.py">force_retry</a>(cert_id) -> None</code>

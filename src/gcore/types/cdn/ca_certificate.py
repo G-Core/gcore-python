@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Optional
+from datetime import datetime
 
 from pydantic import Field as FieldInfo
 
@@ -23,7 +24,7 @@ class CaCertificate(BaseModel):
     """Domain name that the CA certificate secures."""
 
     deleted: Optional[bool] = None
-    """Defines whether the certificate has been deleted. Parameter is **deprecated**.
+    """Defines whether the certificate has been deleted.
 
     Possible values:
 
@@ -46,8 +47,8 @@ class CaCertificate(BaseModel):
     ssl_certificate_chain: Optional[str] = FieldInfo(alias="sslCertificateChain", default=None)
     """Parameter is **deprecated**."""
 
-    validity_not_after: Optional[str] = None
+    validity_not_after: Optional[datetime] = None
     """Date when the CA certificate become untrusted (ISO 8601/RFC 3339 format, UTC.)"""
 
-    validity_not_before: Optional[str] = None
+    validity_not_before: Optional[datetime] = None
     """Date when the CA certificate become valid (ISO 8601/RFC 3339 format, UTC.)"""

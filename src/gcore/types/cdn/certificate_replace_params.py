@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, Annotated, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
@@ -24,6 +24,9 @@ class CertificateReplaceParams(TypedDict, total=False):
 
     ssl_private_key: Required[Annotated[str, PropertyInfo(alias="sslPrivateKey")]]
     """Private key of the SSL certificate."""
+
+    automated: Literal[False]
+    """Must be **false** or omitted for a certificate you upload."""
 
     validate_root_ca: bool
     """

@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Optional
+from datetime import datetime
 
 from pydantic import Field as FieldInfo
 
@@ -19,7 +20,7 @@ class SslDetail(BaseModel):
     Possible values:
 
     - **true** - Certificate was issued automatically.
-    - **false** - Certificate was added by a use.
+    - **false** - Certificate was added by a user.
     """
 
     cert_issuer: Optional[str] = None
@@ -32,7 +33,7 @@ class SslDetail(BaseModel):
     """Domain name that the SSL certificate secures."""
 
     deleted: Optional[bool] = None
-    """Defines whether the certificate has been deleted. Parameter is **deprecated**.
+    """Defines whether the certificate has been deleted.
 
     Possible values:
 
@@ -55,8 +56,8 @@ class SslDetail(BaseModel):
     ssl_certificate_chain: Optional[str] = FieldInfo(alias="sslCertificateChain", default=None)
     """Parameter is **deprecated**."""
 
-    validity_not_after: Optional[str] = None
+    validity_not_after: Optional[datetime] = None
     """Date when certificate become untrusted (ISO 8601/RFC 3339 format, UTC.)"""
 
-    validity_not_before: Optional[str] = None
+    validity_not_before: Optional[datetime] = None
     """Date when certificate become valid (ISO 8601/RFC 3339 format, UTC.)"""
