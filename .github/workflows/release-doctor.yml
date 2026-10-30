@@ -19,4 +19,6 @@ jobs:
         run: |
           bash ./bin/check-release-environment
         env:
+          GCORE_SDK_BOT_CLIENT_ID: ${{ vars.GCORE_SDK_BOT_CLIENT_ID }}
+          GCORE_SDK_BOT_PRIVATE_KEY: ${{ secrets.GCORE_SDK_BOT_PRIVATE_KEY }}
           PYPI_TOKEN: ${{ secrets.GCORE_PYPI_TOKEN || secrets.PYPI_TOKEN }}

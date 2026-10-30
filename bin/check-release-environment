@@ -2,6 +2,14 @@
 
 errors=()
 
+if [ -z "${GCORE_SDK_BOT_CLIENT_ID}" ]; then
+  errors+=("The GCORE_SDK_BOT_CLIENT_ID variable has not been set. Add it as a repository or organization variable.")
+fi
+
+if [ -z "${GCORE_SDK_BOT_PRIVATE_KEY}" ]; then
+  errors+=("The GCORE_SDK_BOT_PRIVATE_KEY secret has not been set. Add it as a repository or organization secret.")
+fi
+
 if [ -z "${PYPI_TOKEN}" ]; then
   errors+=("The PYPI_TOKEN secret has not been set. Please set it in either this repository's secrets or your organization secrets.")
 fi
