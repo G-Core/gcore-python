@@ -9,14 +9,14 @@ from typing_extensions import Literal, overload
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Omit, Query, Headers, NotGiven, omit
-from ..._utils import required_args
-from ...types.cloud.volume import Volume
-from ...types.cloud.task_id_list import TaskIDList
-from ...types.cloud.tag_update_map_param import TagUpdateMapParam
+from ...._types import NOT_GIVEN, Body, Omit, Query, Headers, NotGiven, omit
+from ...._utils import required_args
+from ....types.cloud.volume import Volume
+from ....types.cloud.task_id_list import TaskIDList
+from ....types.cloud.tag_update_map_param import TagUpdateMapParam
 
 if TYPE_CHECKING:
-    from ..._client import Gcore, AsyncGcore
+    from ...._client import Gcore, AsyncGcore
 
 
 class VolumesResourceCustomMixin:

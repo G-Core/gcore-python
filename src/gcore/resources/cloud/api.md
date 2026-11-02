@@ -418,16 +418,28 @@ from gcore.types.cloud import Volume
 
 Methods:
 
-- <code title="post /cloud/v1/volumes/{project_id}/{region_id}">client.cloud.volumes.<a href="./src/gcore/resources/cloud/volumes.py">create</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/volume_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
-- <code title="patch /cloud/v1/volumes/{project_id}/{region_id}/{volume_id}">client.cloud.volumes.<a href="./src/gcore/resources/cloud/volumes.py">update</a>(volume_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/volume_update_params.py">params</a>) -> <a href="./src/gcore/types/cloud/volume.py">Volume</a></code>
-- <code title="get /cloud/v1/volumes/{project_id}/{region_id}">client.cloud.volumes.<a href="./src/gcore/resources/cloud/volumes.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/volume_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/volume.py">SyncOffsetPage[Volume]</a></code>
-- <code title="delete /cloud/v1/volumes/{project_id}/{region_id}/{volume_id}">client.cloud.volumes.<a href="./src/gcore/resources/cloud/volumes.py">delete</a>(volume_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/volume_delete_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
-- <code title="post /cloud/v2/volumes/{project_id}/{region_id}/{volume_id}/attach">client.cloud.volumes.<a href="./src/gcore/resources/cloud/volumes.py">attach_to_instance</a>(volume_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/volume_attach_to_instance_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
-- <code title="post /cloud/v1/volumes/{project_id}/{region_id}/{volume_id}/retype">client.cloud.volumes.<a href="./src/gcore/resources/cloud/volumes.py">change_type</a>(volume_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/volume_change_type_params.py">params</a>) -> <a href="./src/gcore/types/cloud/volume.py">Volume</a></code>
-- <code title="post /cloud/v2/volumes/{project_id}/{region_id}/{volume_id}/detach">client.cloud.volumes.<a href="./src/gcore/resources/cloud/volumes.py">detach_from_instance</a>(volume_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/volume_detach_from_instance_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
-- <code title="get /cloud/v1/volumes/{project_id}/{region_id}/{volume_id}">client.cloud.volumes.<a href="./src/gcore/resources/cloud/volumes.py">get</a>(volume_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/volume.py">Volume</a></code>
-- <code title="post /cloud/v1/volumes/{project_id}/{region_id}/{volume_id}/extend">client.cloud.volumes.<a href="./src/gcore/resources/cloud/volumes.py">resize</a>(volume_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/volume_resize_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
-- <code title="post /cloud/v1/volumes/{project_id}/{region_id}/{volume_id}/revert">client.cloud.volumes.<a href="./src/gcore/resources/cloud/volumes.py">revert_to_last_snapshot</a>(volume_id, \*, project_id, region_id) -> None</code>
+- <code title="post /cloud/v1/volumes/{project_id}/{region_id}">client.cloud.volumes.<a href="./src/gcore/resources/cloud/volumes/volumes.py">create</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/volume_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="patch /cloud/v1/volumes/{project_id}/{region_id}/{volume_id}">client.cloud.volumes.<a href="./src/gcore/resources/cloud/volumes/volumes.py">update</a>(volume_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/volume_update_params.py">params</a>) -> <a href="./src/gcore/types/cloud/volume.py">Volume</a></code>
+- <code title="get /cloud/v1/volumes/{project_id}/{region_id}">client.cloud.volumes.<a href="./src/gcore/resources/cloud/volumes/volumes.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/volume_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/volume.py">SyncOffsetPage[Volume]</a></code>
+- <code title="delete /cloud/v1/volumes/{project_id}/{region_id}/{volume_id}">client.cloud.volumes.<a href="./src/gcore/resources/cloud/volumes/volumes.py">delete</a>(volume_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/volume_delete_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="post /cloud/v2/volumes/{project_id}/{region_id}/{volume_id}/attach">client.cloud.volumes.<a href="./src/gcore/resources/cloud/volumes/volumes.py">attach_to_instance</a>(volume_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/volume_attach_to_instance_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="post /cloud/v1/volumes/{project_id}/{region_id}/{volume_id}/retype">client.cloud.volumes.<a href="./src/gcore/resources/cloud/volumes/volumes.py">change_type</a>(volume_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/volume_change_type_params.py">params</a>) -> <a href="./src/gcore/types/cloud/volume.py">Volume</a></code>
+- <code title="post /cloud/v2/volumes/{project_id}/{region_id}/{volume_id}/detach">client.cloud.volumes.<a href="./src/gcore/resources/cloud/volumes/volumes.py">detach_from_instance</a>(volume_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/volume_detach_from_instance_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="get /cloud/v1/volumes/{project_id}/{region_id}/{volume_id}">client.cloud.volumes.<a href="./src/gcore/resources/cloud/volumes/volumes.py">get</a>(volume_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/volume.py">Volume</a></code>
+- <code title="post /cloud/v1/volumes/{project_id}/{region_id}/{volume_id}/extend">client.cloud.volumes.<a href="./src/gcore/resources/cloud/volumes/volumes.py">resize</a>(volume_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/volume_resize_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="post /cloud/v1/volumes/{project_id}/{region_id}/{volume_id}/revert">client.cloud.volumes.<a href="./src/gcore/resources/cloud/volumes/volumes.py">revert_to_last_snapshot</a>(volume_id, \*, project_id, region_id) -> None</code>
+
+### Types
+
+Types:
+
+```python
+from gcore.types.cloud.volumes import VolumeType, VolumeTypeList
+```
+
+Methods:
+
+- <code title="get /cloud/v1/volumes/types">client.cloud.volumes.types.<a href="./src/gcore/resources/cloud/volumes/types.py">list</a>(\*\*<a href="src/gcore/types/cloud/volumes/type_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/volumes/volume_type_list.py">VolumeTypeList</a></code>
 
 ## FloatingIPs
 

@@ -7,18 +7,26 @@ from typing_extensions import Literal, overload
 
 import httpx
 
-from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import path_template, required_args, maybe_transform, async_maybe_transform
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
+from .types import (
+    TypesResource,
+    AsyncTypesResource,
+    TypesResourceWithRawResponse,
+    AsyncTypesResourceWithRawResponse,
+    TypesResourceWithStreamingResponse,
+    AsyncTypesResourceWithStreamingResponse,
+)
+from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
+from ...._utils import path_template, required_args, maybe_transform, async_maybe_transform
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncOffsetPage, AsyncOffsetPage
-from ...types.cloud import (
+from ....pagination import SyncOffsetPage, AsyncOffsetPage
+from ....types.cloud import (
     volume_list_params,
     volume_create_params,
     volume_delete_params,
@@ -28,11 +36,11 @@ from ...types.cloud import (
     volume_attach_to_instance_params,
     volume_detach_from_instance_params,
 )
-from ..._base_client import AsyncPaginator, make_request_options
 from .volumes_custom import VolumesResourceCustomMixin, AsyncVolumesResourceCustomMixin
-from ...types.cloud.volume import Volume
-from ...types.cloud.task_id_list import TaskIDList
-from ...types.cloud.tag_update_map_param import TagUpdateMapParam
+from ...._base_client import AsyncPaginator, make_request_options
+from ....types.cloud.volume import Volume
+from ....types.cloud.task_id_list import TaskIDList
+from ....types.cloud.tag_update_map_param import TagUpdateMapParam
 
 __all__ = ["VolumesResource", "AsyncVolumesResource"]
 
@@ -41,6 +49,13 @@ class VolumesResource(VolumesResourceCustomMixin, SyncAPIResource):
     """
     Volumes are block storage devices that can be attached to instances as boot or data disks, with support for resizing and type changes.
     """
+
+    @cached_property
+    def types(self) -> TypesResource:
+        """
+        Volume types describe the operations each type supports and its QoS profile, optionally limited to one region.
+        """
+        return TypesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> VolumesResourceWithRawResponse:
@@ -898,6 +913,13 @@ class AsyncVolumesResource(AsyncVolumesResourceCustomMixin, AsyncAPIResource):
     """
     Volumes are block storage devices that can be attached to instances as boot or data disks, with support for resizing and type changes.
     """
+
+    @cached_property
+    def types(self) -> AsyncTypesResource:
+        """
+        Volume types describe the operations each type supports and its QoS profile, optionally limited to one region.
+        """
+        return AsyncTypesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncVolumesResourceWithRawResponse:
@@ -1803,6 +1825,13 @@ class VolumesResourceWithRawResponse:
             volumes.resize_and_poll,
         )
 
+    @cached_property
+    def types(self) -> TypesResourceWithRawResponse:
+        """
+        Volume types describe the operations each type supports and its QoS profile, optionally limited to one region.
+        """
+        return TypesResourceWithRawResponse(self._volumes.types)
+
 
 class AsyncVolumesResourceWithRawResponse:
     def __init__(self, volumes: AsyncVolumesResource) -> None:
@@ -1853,6 +1882,13 @@ class AsyncVolumesResourceWithRawResponse:
         self.resize_and_poll = async_to_raw_response_wrapper(
             volumes.resize_and_poll,
         )
+
+    @cached_property
+    def types(self) -> AsyncTypesResourceWithRawResponse:
+        """
+        Volume types describe the operations each type supports and its QoS profile, optionally limited to one region.
+        """
+        return AsyncTypesResourceWithRawResponse(self._volumes.types)
 
 
 class VolumesResourceWithStreamingResponse:
@@ -1905,6 +1941,13 @@ class VolumesResourceWithStreamingResponse:
             volumes.resize_and_poll,
         )
 
+    @cached_property
+    def types(self) -> TypesResourceWithStreamingResponse:
+        """
+        Volume types describe the operations each type supports and its QoS profile, optionally limited to one region.
+        """
+        return TypesResourceWithStreamingResponse(self._volumes.types)
+
 
 class AsyncVolumesResourceWithStreamingResponse:
     def __init__(self, volumes: AsyncVolumesResource) -> None:
@@ -1955,3 +1998,10 @@ class AsyncVolumesResourceWithStreamingResponse:
         self.resize_and_poll = async_to_streamed_response_wrapper(
             volumes.resize_and_poll,
         )
+
+    @cached_property
+    def types(self) -> AsyncTypesResourceWithStreamingResponse:
+        """
+        Volume types describe the operations each type supports and its QoS profile, optionally limited to one region.
+        """
+        return AsyncTypesResourceWithStreamingResponse(self._volumes.types)

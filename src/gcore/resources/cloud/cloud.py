@@ -34,14 +34,6 @@ from .secrets import (
     SecretsResourceWithStreamingResponse,
     AsyncSecretsResourceWithStreamingResponse,
 )
-from .volumes import (
-    VolumesResource,
-    AsyncVolumesResource,
-    VolumesResourceWithRawResponse,
-    AsyncVolumesResourceWithRawResponse,
-    VolumesResourceWithStreamingResponse,
-    AsyncVolumesResourceWithStreamingResponse,
-)
 from .projects import (
     ProjectsResource,
     AsyncProjectsResource,
@@ -115,6 +107,14 @@ from .usage_reports import (
     AsyncUsageReportsResourceWithRawResponse,
     UsageReportsResourceWithStreamingResponse,
     AsyncUsageReportsResourceWithStreamingResponse,
+)
+from .volumes.volumes import (
+    VolumesResource,
+    AsyncVolumesResource,
+    VolumesResourceWithRawResponse,
+    AsyncVolumesResourceWithRawResponse,
+    VolumesResourceWithStreamingResponse,
+    AsyncVolumesResourceWithStreamingResponse,
 )
 from .placement_groups import (
     PlacementGroupsResource,
