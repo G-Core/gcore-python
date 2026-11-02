@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import typing_extensions
 from typing import Union
 from datetime import datetime
 from typing_extensions import Literal
@@ -27,6 +26,7 @@ from .....types.cloud.task_id_list import TaskIDList
 from .....types.cloud.gpu_baremetal.clusters import (
     server_list_params,
     server_delete_params,
+    server_rebuild_params,
     server_replace_params,
     server_get_console_params,
     server_apply_settings_params,
@@ -467,7 +467,6 @@ class ServersResource(ServersResourceCustomMixin, SyncAPIResource):
             cast_to=GPUBaremetalClusterServerV1,
         )
 
-    @typing_extensions.deprecated("deprecated")
     def rebuild(
         self,
         server_id: str,
@@ -475,6 +474,9 @@ class ServersResource(ServersResourceCustomMixin, SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         cluster_id: str,
+        image_id: str | Omit = omit,
+        ssh_key_name: str | Omit = omit,
+        user_data: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -483,16 +485,13 @@ class ServersResource(ServersResourceCustomMixin, SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
-        Use
-        `POST /v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/servers/{server_id}/apply_settings`
-        instead.
+        Rebuild a single server in a bare metal GPU cluster with a chosen image, user
+        data, and SSH key. Any parameter that is omitted falls back to the cluster's
+        current settings.
 
-        Perform a rebuild operation on a bare metal GPU cluster server. During the
-        rebuild process, the server receive a new image, SSH key, and user data.
-        Important: Before triggering a rebuild, the cluster must have updated server
-        settings to apply. These cluster settings must be patched using the following
-        endpoint: PATCH
-        '/v3/gpu/baremetal/{`project_id`}/{`region_id`}/clusters/{`cluster_id`}'
+        The server is marked with pending changes (`has_pending_changes=true`) until the
+        cluster settings are reapplied via
+        `POST /v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/apply_settings`.
 
         Args:
           project_id: Project ID
@@ -502,6 +501,14 @@ class ServersResource(ServersResourceCustomMixin, SyncAPIResource):
           cluster_id: Cluster unique identifier
 
           server_id: Server unique identifier
+
+          image_id: New or existing image to rebuild the node with. Omit to keep the cluster's
+              current image.
+
+          ssh_key_name: New or existing SSH keypair name. Omit to keep the cluster's current SSH key.
+
+          user_data: New or existing user data (Base64-encoded). Omit to keep the cluster's current
+              user data.
 
           extra_headers: Send extra headers
 
@@ -521,11 +528,19 @@ class ServersResource(ServersResourceCustomMixin, SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `server_id` but received {server_id!r}")
         return self._post(
             path_template(
-                "/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/servers/{server_id}/rebuild",
+                "/cloud/v4/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/servers/{server_id}/rebuild",
                 project_id=project_id,
                 region_id=region_id,
                 cluster_id=cluster_id,
                 server_id=server_id,
+            ),
+            body=maybe_transform(
+                {
+                    "image_id": image_id,
+                    "ssh_key_name": ssh_key_name,
+                    "user_data": user_data,
+                },
+                server_rebuild_params.ServerRebuildParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -1034,7 +1049,6 @@ class AsyncServersResource(AsyncServersResourceCustomMixin, AsyncAPIResource):
             cast_to=GPUBaremetalClusterServerV1,
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def rebuild(
         self,
         server_id: str,
@@ -1042,6 +1056,9 @@ class AsyncServersResource(AsyncServersResourceCustomMixin, AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         cluster_id: str,
+        image_id: str | Omit = omit,
+        ssh_key_name: str | Omit = omit,
+        user_data: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1050,16 +1067,13 @@ class AsyncServersResource(AsyncServersResourceCustomMixin, AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
-        Use
-        `POST /v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/servers/{server_id}/apply_settings`
-        instead.
+        Rebuild a single server in a bare metal GPU cluster with a chosen image, user
+        data, and SSH key. Any parameter that is omitted falls back to the cluster's
+        current settings.
 
-        Perform a rebuild operation on a bare metal GPU cluster server. During the
-        rebuild process, the server receive a new image, SSH key, and user data.
-        Important: Before triggering a rebuild, the cluster must have updated server
-        settings to apply. These cluster settings must be patched using the following
-        endpoint: PATCH
-        '/v3/gpu/baremetal/{`project_id`}/{`region_id`}/clusters/{`cluster_id`}'
+        The server is marked with pending changes (`has_pending_changes=true`) until the
+        cluster settings are reapplied via
+        `POST /v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/apply_settings`.
 
         Args:
           project_id: Project ID
@@ -1069,6 +1083,14 @@ class AsyncServersResource(AsyncServersResourceCustomMixin, AsyncAPIResource):
           cluster_id: Cluster unique identifier
 
           server_id: Server unique identifier
+
+          image_id: New or existing image to rebuild the node with. Omit to keep the cluster's
+              current image.
+
+          ssh_key_name: New or existing SSH keypair name. Omit to keep the cluster's current SSH key.
+
+          user_data: New or existing user data (Base64-encoded). Omit to keep the cluster's current
+              user data.
 
           extra_headers: Send extra headers
 
@@ -1088,11 +1110,19 @@ class AsyncServersResource(AsyncServersResourceCustomMixin, AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `server_id` but received {server_id!r}")
         return await self._post(
             path_template(
-                "/cloud/v3/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/servers/{server_id}/rebuild",
+                "/cloud/v4/gpu/baremetal/{project_id}/{region_id}/clusters/{cluster_id}/servers/{server_id}/rebuild",
                 project_id=project_id,
                 region_id=region_id,
                 cluster_id=cluster_id,
                 server_id=server_id,
+            ),
+            body=await async_maybe_transform(
+                {
+                    "image_id": image_id,
+                    "ssh_key_name": ssh_key_name,
+                    "user_data": user_data,
+                },
+                server_rebuild_params.ServerRebuildParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -1191,10 +1221,8 @@ class ServersResourceWithRawResponse:
         self.reboot = to_raw_response_wrapper(
             servers.reboot,
         )
-        self.rebuild = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                servers.rebuild,  # pyright: ignore[reportDeprecated],
-            )
+        self.rebuild = to_raw_response_wrapper(
+            servers.rebuild,
         )
         self.replace = to_raw_response_wrapper(
             servers.replace,
@@ -1235,10 +1263,8 @@ class AsyncServersResourceWithRawResponse:
         self.reboot = async_to_raw_response_wrapper(
             servers.reboot,
         )
-        self.rebuild = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                servers.rebuild,  # pyright: ignore[reportDeprecated],
-            )
+        self.rebuild = async_to_raw_response_wrapper(
+            servers.rebuild,
         )
         self.replace = async_to_raw_response_wrapper(
             servers.replace,
@@ -1279,10 +1305,8 @@ class ServersResourceWithStreamingResponse:
         self.reboot = to_streamed_response_wrapper(
             servers.reboot,
         )
-        self.rebuild = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                servers.rebuild,  # pyright: ignore[reportDeprecated],
-            )
+        self.rebuild = to_streamed_response_wrapper(
+            servers.rebuild,
         )
         self.replace = to_streamed_response_wrapper(
             servers.replace,
@@ -1323,10 +1347,8 @@ class AsyncServersResourceWithStreamingResponse:
         self.reboot = async_to_streamed_response_wrapper(
             servers.reboot,
         )
-        self.rebuild = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                servers.rebuild,  # pyright: ignore[reportDeprecated],
-            )
+        self.rebuild = async_to_streamed_response_wrapper(
+            servers.rebuild,
         )
         self.replace = async_to_streamed_response_wrapper(
             servers.replace,

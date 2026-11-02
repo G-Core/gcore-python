@@ -627,7 +627,6 @@ _IDS = [c[0] for c in AND_POLL_CASES]
 # calling them emits DeprecationWarning (same as the base method itself).
 _DEPRECATED_CASE_IDS = {
     "cloud.gpu_baremetal.clusters.rebuild_and_poll",
-    "cloud.gpu_baremetal.clusters.servers.rebuild_and_poll",
 }
 
 

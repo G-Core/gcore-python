@@ -9,6 +9,7 @@ from .image_upload_params import ImageUploadParams as ImageUploadParams
 from .gpu_baremetal_flavor import GPUBaremetalFlavor as GPUBaremetalFlavor
 from .server_delete_params import ServerDeleteParams as ServerDeleteParams
 from .interface_list_params import InterfaceListParams as InterfaceListParams
+from .server_rebuild_params import ServerRebuildParams as ServerRebuildParams
 from .server_replace_params import ServerReplaceParams as ServerReplaceParams
 from .interface_attach_params import InterfaceAttachParams as InterfaceAttachParams
 from .interface_detach_params import InterfaceDetachParams as InterfaceDetachParams
