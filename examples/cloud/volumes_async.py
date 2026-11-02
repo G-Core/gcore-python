@@ -10,7 +10,7 @@ async def main() -> None:
     # TODO set cloud project ID before running
     # cloud_project_id = os.environ["GCORE_CLOUD_PROJECT_ID"]
     # TODO set cloud region ID before running
-    # cloud_region_id = os.environ["GCORE_CLOUD_REGION_ID"]
+    cloud_region_id = os.environ["GCORE_CLOUD_REGION_ID"]
 
     # TODO set instance ID before running
     instance_id = os.environ["GCORE_CLOUD_INSTANCE_ID"]
@@ -22,6 +22,7 @@ async def main() -> None:
         # cloud_region_id=cloud_region_id,
     )
 
+    await list_volume_types(client=gcore, region_id=int(cloud_region_id))
     volume_id = await create_volume(client=gcore)
     await list_volumes(client=gcore)
     await get_volume(client=gcore, volume_id=volume_id)
@@ -31,6 +32,23 @@ async def main() -> None:
     await change_type(client=gcore, volume_id=volume_id)
     await resize(client=gcore, volume_id=volume_id)
     await delete_volume(client=gcore, volume_id=volume_id)
+
+
+async def list_volume_types(*, client: AsyncGcore, region_id: int) -> None:
+    print("\n=== LIST VOLUME TYPES ===")
+    # With region_id, the list shows only the types that the region supports
+    volume_types = await client.cloud.volumes.types.list(region_id=region_id)
+    for count, volume_type in enumerate(volume_types.results, 1):
+        capabilities = volume_type.capabilities
+        print(
+            f"{count}. Volume type: name={volume_type.name}, resizable={capabilities.resizable}, "
+            f"retypable={capabilities.retypable}, snapshottable={capabilities.snapshottable}, "
+            f"attachable_to_boot={capabilities.attachable_to_boot}"
+        )
+        # qos is None if the type has no QoS limits
+        if volume_type.qos:
+            print(f"   QoS: iops_per_gib={volume_type.qos.iops_per_gib}, iops_max={volume_type.qos.iops_max}")
+    print("========================")
 
 
 async def create_volume(*, client: AsyncGcore) -> str:
