@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable
+from typing import Dict, Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 __all__ = [
@@ -14,6 +14,9 @@ __all__ = [
     "CreateDdnFileShareSerializerShareSettings",
     "CreateVastFileShareSerializer",
     "CreateVastFileShareSerializerShareSettings",
+    "CreateVastFileShareSerializerShareSettingsQuota",
+    "CreateVastFileShareSerializerShareSettingsQuotaDefaultGroupQuota",
+    "CreateVastFileShareSerializerShareSettingsQuotaDefaultUserQuota",
 ]
 
 
@@ -162,6 +165,67 @@ class CreateVastFileShareSerializer(TypedDict, total=False):
     """Deprecated. Use `type_name` instead."""
 
 
+class CreateVastFileShareSerializerShareSettingsQuotaDefaultGroupQuota(TypedDict, total=False):
+    """Quota for each group without an override."""
+
+    hard_limit: Required[int]
+    """Maximum capacity in bytes.
+
+    Write operations fail when the usage reaches this limit. It must not be more
+    than the file share size.
+    """
+
+    grace_period: Optional[str]
+    """Time after the usage goes above `soft_limit`, in the `D HH:MM:SS` format.
+
+    The maximum is 365 days. You must also specify `soft_limit`.
+    """
+
+    soft_limit: Optional[int]
+    """Capacity in bytes that starts the grace period.
+
+    Write operations fail when the grace period ends and the usage is still above
+    this limit. It must not be more than `hard_limit`.
+    """
+
+
+class CreateVastFileShareSerializerShareSettingsQuotaDefaultUserQuota(TypedDict, total=False):
+    """Quota for each user without an override."""
+
+    hard_limit: Required[int]
+    """Maximum capacity in bytes.
+
+    Write operations fail when the usage reaches this limit. It must not be more
+    than the file share size.
+    """
+
+    grace_period: Optional[str]
+    """Time after the usage goes above `soft_limit`, in the `D HH:MM:SS` format.
+
+    The maximum is 365 days. You must also specify `soft_limit`.
+    """
+
+    soft_limit: Optional[int]
+    """Capacity in bytes that starts the grace period.
+
+    Write operations fail when the grace period ends and the usage is still above
+    this limit. It must not be more than `hard_limit`.
+    """
+
+
+class CreateVastFileShareSerializerShareSettingsQuota(TypedDict, total=False):
+    """Default user and group quotas.
+
+    Use the update request to add quotas for specified users and groups after they write to the file share.
+    """
+
+    default_group_quota: CreateVastFileShareSerializerShareSettingsQuotaDefaultGroupQuota
+    """Quota for each group without an override."""
+
+    default_user_quota: CreateVastFileShareSerializerShareSettingsQuotaDefaultUserQuota
+    """Quota for each user without an override."""
+
+
 class CreateVastFileShareSerializerShareSettings(TypedDict, total=False):
     """Configuration settings for the share"""
 
@@ -182,6 +246,13 @@ class CreateVastFileShareSerializerShareSettings(TypedDict, total=False):
       limitation on the length of a single component of the path is 255 characters
     - Native Protocol Limit (NPL), imposes no limitation beyond that of the client
       protocol.
+    """
+
+    quota: CreateVastFileShareSerializerShareSettingsQuota
+    """Default user and group quotas.
+
+    Use the update request to add quotas for specified users and groups after they
+    write to the file share.
     """
 
     root_squash: bool

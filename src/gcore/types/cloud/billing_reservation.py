@@ -18,13 +18,19 @@ class ActiveOvercommit(BaseModel):
     """Billing plan item ID"""
 
     price_per_month: str
-    """Price per month"""
+    """
+    Price per month, per one resource: the price per unit multiplied by
+    `unit_size_month`
+    """
 
     price_per_unit: str
     """Price per unit (hourly)"""
 
     price_total: str
-    """Total price for the reservation period"""
+    """Total price for the reservation period for the full reserved amount.
+
+    A reservation with an hourly commit counts the real hours.
+    """
 
     subscription_id: Optional[int] = None
     """Billing subscription ID for overcommit"""
@@ -40,13 +46,19 @@ class Commit(BaseModel):
     """Billing subscription active to date"""
 
     price_per_month: str
-    """Price per month, per one resource"""
+    """
+    Price per month, per one resource: the price per unit multiplied by
+    `unit_size_month`
+    """
 
     price_per_unit: str
     """Price per unit, per one resource (hourly)"""
 
     price_total: str
-    """Total price for the reservation period for the full reserved amount"""
+    """Total price for the reservation period for the full reserved amount.
+
+    A reservation with an hourly commit counts the real hours.
+    """
 
     subscription_id: Optional[int] = None
     """Billing subscription ID for commit"""
@@ -88,10 +100,19 @@ class BillingReservation(BaseModel):
     """Resource name"""
 
     unit_name: str
-    """Unit name (e.g., 'H' for hours)"""
+    """Unit name. Always 'H' (hours)."""
 
     unit_size_month: str
-    """Unit size per month (e.g., 744 hours)"""
+    """Hours in one month for the monthly prices.
+
+    A reservation with an hourly commit uses the calendar hours of the month of
+    `time_from`, limited to the reservation period. Other reservations use 744
+    hours.
+    """
 
     unit_size_total: str
-    """Unit size month multiplied by count of resources in the reservation"""
+    """Total hours of the reservation for all resources.
+
+    A reservation with an hourly commit counts the real hours. Other reservations
+    count 744 hours for each month.
+    """

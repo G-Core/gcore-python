@@ -119,6 +119,8 @@ class CostReportGetDetailedParams(TypedDict, total=False):
 
 
 class TagsCondition(TypedDict, total=False):
+    """Represents a single tag filtering condition."""
+
     key: str
     """The name of the tag to filter (e.g., 'os_version')."""
 

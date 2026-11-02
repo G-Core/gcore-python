@@ -28,7 +28,8 @@ from .api_keys import (
     APIKeysResourceWithStreamingResponse,
     AsyncAPIKeysResourceWithStreamingResponse,
 )
-from ...._types import Body, Query, Headers, NotGiven, not_given
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -37,6 +38,7 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ....types.cloud import inference_get_capacity_by_region_params
 from ...._base_client import make_request_options
 from .registry_credentials import (
     RegistryCredentialsResource,
@@ -126,6 +128,8 @@ class InferenceResource(SyncAPIResource):
     def get_capacity_by_region(
         self,
         *,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -133,11 +137,38 @@ class InferenceResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InferenceRegionCapacityList:
-        """Get inference capacity by region"""
+        """Get inference capacity by region
+
+        Args:
+          limit: Optional.
+
+        Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return self._get(
             "/cloud/v3/inference/capacity",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    inference_get_capacity_by_region_params.InferenceGetCapacityByRegionParams,
+                ),
             ),
             cast_to=InferenceRegionCapacityList,
         )
@@ -202,6 +233,8 @@ class AsyncInferenceResource(AsyncAPIResource):
     async def get_capacity_by_region(
         self,
         *,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -209,11 +242,38 @@ class AsyncInferenceResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InferenceRegionCapacityList:
-        """Get inference capacity by region"""
+        """Get inference capacity by region
+
+        Args:
+          limit: Optional.
+
+        Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return await self._get(
             "/cloud/v3/inference/capacity",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    inference_get_capacity_by_region_params.InferenceGetCapacityByRegionParams,
+                ),
             ),
             cast_to=InferenceRegionCapacityList,
         )

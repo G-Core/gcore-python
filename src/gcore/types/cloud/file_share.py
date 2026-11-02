@@ -14,6 +14,10 @@ __all__ = [
     "ShareSettingsStandardShareSettingsOutputSerializer",
     "ShareSettingsDdnShareSettingsOutputSerializer",
     "ShareSettingsVastShareSettingsOutputSerializer",
+    "ShareSettingsVastShareSettingsOutputSerializerQuota",
+    "ShareSettingsVastShareSettingsOutputSerializerQuotaDefaultGroupQuota",
+    "ShareSettingsVastShareSettingsOutputSerializerQuotaDefaultUserQuota",
+    "ShareSettingsVastShareSettingsOutputSerializerQuotaOverride",
 ]
 
 
@@ -52,10 +56,120 @@ class ShareSettingsDdnShareSettingsOutputSerializer(BaseModel):
     """User ID being owner of the share"""
 
 
+class ShareSettingsVastShareSettingsOutputSerializerQuotaDefaultGroupQuota(BaseModel):
+    """Quota for each group without an override.
+
+    The value is `null` if there is no default.
+    """
+
+    grace_period: Optional[str] = None
+    """Time after the usage goes above `soft_limit`, in the `D HH:MM:SS` format."""
+
+    hard_limit: Optional[int] = None
+    """Maximum capacity in bytes.
+
+    Write operations fail when the usage reaches this limit.
+    """
+
+    soft_limit: Optional[int] = None
+    """Capacity in bytes that starts the grace period."""
+
+
+class ShareSettingsVastShareSettingsOutputSerializerQuotaDefaultUserQuota(BaseModel):
+    """Quota for each user without an override.
+
+    The value is `null` if there is no default.
+    """
+
+    grace_period: Optional[str] = None
+    """Time after the usage goes above `soft_limit`, in the `D HH:MM:SS` format."""
+
+    hard_limit: Optional[int] = None
+    """Maximum capacity in bytes.
+
+    Write operations fail when the usage reaches this limit.
+    """
+
+    soft_limit: Optional[int] = None
+    """Capacity in bytes that starts the grace period."""
+
+
+class ShareSettingsVastShareSettingsOutputSerializerQuotaOverride(BaseModel):
+    grace_period: Optional[str] = None
+    """Time after the usage goes above `soft_limit`, in the `D HH:MM:SS` format."""
+
+    hard_limit: Optional[int] = None
+    """Maximum capacity in bytes.
+
+    Write operations fail when the usage reaches this limit.
+    """
+
+    identifier: int
+    """Numeric user ID or group ID."""
+
+    identifier_type: Literal["gid", "uid"]
+    """Type of `identifier`. The value `uid` is for a user and `gid` is for a group."""
+
+    soft_limit: Optional[int] = None
+    """Capacity in bytes that starts the grace period."""
+
+    state: Literal[
+        "FAILED",
+        "GRACE_EXPIRED",
+        "HARD_BOTH_EXCEEDED",
+        "HARD_EXCEEDED",
+        "INODE_HARD_EXCEEDED",
+        "INODE_SOFT_EXCEEDED",
+        "OK",
+        "SOFT_BOTH_EXCEEDED",
+        "SOFT_EXCEEDED",
+        "UNKNOWN",
+    ]
+    """Usage state of the quota.
+
+    `OK` means that the usage is below the limits. `SOFT_EXCEEDED`,
+    `INODE_SOFT_EXCEEDED` and `SOFT_BOTH_EXCEEDED` mean that the capacity, the
+    number of files or both are above the soft limit. `GRACE_EXPIRED` means that the
+    grace period is over and write operations fail. `HARD_EXCEEDED`,
+    `INODE_HARD_EXCEEDED` and `HARD_BOTH_EXCEEDED` mean that the capacity, the
+    number of files or both are at the hard limit and write operations fail.
+    `FAILED` means that the system cannot get the state. `UNKNOWN` means that the
+    state is not available.
+    """
+
+
+class ShareSettingsVastShareSettingsOutputSerializerQuota(BaseModel):
+    """User and group quotas of the file share.
+
+    The value is `null` if quotas are disabled or if the quotas are not available.
+    """
+
+    default_group_quota: Optional[ShareSettingsVastShareSettingsOutputSerializerQuotaDefaultGroupQuota] = None
+    """Quota for each group without an override.
+
+    The value is `null` if there is no default.
+    """
+
+    default_user_quota: Optional[ShareSettingsVastShareSettingsOutputSerializerQuotaDefaultUserQuota] = None
+    """Quota for each user without an override.
+
+    The value is `null` if there is no default.
+    """
+
+    overrides: List[ShareSettingsVastShareSettingsOutputSerializerQuotaOverride]
+    """Quotas for specified users and groups."""
+
+
 class ShareSettingsVastShareSettingsOutputSerializer(BaseModel):
     allowed_characters: Optional[Literal["LCD", "NPL"]] = None
 
     path_length: Optional[Literal["LCD", "NPL"]] = None
+
+    quota: Optional[ShareSettingsVastShareSettingsOutputSerializerQuota] = None
+    """User and group quotas of the file share.
+
+    The value is `null` if quotas are disabled or if the quotas are not available.
+    """
 
     root_squash: bool
     """Enables or disables root squash for NFS clients.

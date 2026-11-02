@@ -17,6 +17,12 @@ class CreatedResources(BaseModel):
     api_keys: Optional[List[str]] = None
     """IDs of created API keys"""
 
+    baremetal_server: Optional[List[str]] = None
+    """IDs of created bare metal servers"""
+
+    basic_vm: Optional[List[str]] = None
+    """IDs of created basic VMs"""
+
     caas_containers: Optional[List[str]] = None
     """IDs of created CaaS containers"""
 

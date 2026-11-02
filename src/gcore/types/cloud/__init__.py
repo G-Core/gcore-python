@@ -182,6 +182,9 @@ from .instance_add_to_placement_group_params import (
 from .snapshot_schedule_add_schedules_params import (
     SnapshotScheduleAddSchedulesParams as SnapshotScheduleAddSchedulesParams,
 )
+from .inference_get_capacity_by_region_params import (
+    InferenceGetCapacityByRegionParams as InferenceGetCapacityByRegionParams,
+)
 from .instance_unassign_security_group_params import (
     InstanceUnassignSecurityGroupParams as InstanceUnassignSecurityGroupParams,
 )

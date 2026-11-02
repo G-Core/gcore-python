@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from .template_list_params import TemplateListParams as TemplateListParams
 from .deployment_create_params import DeploymentCreateParams as DeploymentCreateParams
 from .deployment_update_params import DeploymentUpdateParams as DeploymentUpdateParams
 from .inference_application_template import InferenceApplicationTemplate as InferenceApplicationTemplate

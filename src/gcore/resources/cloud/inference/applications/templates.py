@@ -4,8 +4,8 @@ from __future__ import annotations
 
 import httpx
 
-from ....._types import Body, Query, Headers, NotGiven, not_given
-from ....._utils import path_template
+from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ....._utils import path_template, maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -14,9 +14,10 @@ from ....._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....._base_client import make_request_options
+from .....pagination import SyncOffsetPage, AsyncOffsetPage
+from ....._base_client import AsyncPaginator, make_request_options
+from .....types.cloud.inference.applications import template_list_params
 from .....types.cloud.inference.applications.inference_application_template import InferenceApplicationTemplate
-from .....types.cloud.inference.applications.inference_application_template_list import InferenceApplicationTemplateList
 
 __all__ = ["TemplatesResource", "AsyncTemplatesResource"]
 
@@ -44,26 +45,53 @@ class TemplatesResource(SyncAPIResource):
     def list(
         self,
         *,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> InferenceApplicationTemplateList:
+    ) -> SyncOffsetPage[InferenceApplicationTemplate]:
         """
         Returns a list of available machine learning application templates from the
         catalog. Each template includes metadata such as name, description, cover image,
         documentation, tags, and a set of configurable components (e.g., `model`, `ui`).
         Components define parameters, supported deployment flavors, and other attributes
         required to create a fully functional application deployment.
+
+        Args:
+          limit: Optional. Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/cloud/v3/inference/applications/catalog",
+            page=SyncOffsetPage[InferenceApplicationTemplate],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    template_list_params.TemplateListParams,
+                ),
             ),
-            cast_to=InferenceApplicationTemplateList,
+            model=InferenceApplicationTemplate,
         )
 
     def get(
@@ -128,29 +156,56 @@ class AsyncTemplatesResource(AsyncAPIResource):
         """
         return AsyncTemplatesResourceWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         *,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> InferenceApplicationTemplateList:
+    ) -> AsyncPaginator[InferenceApplicationTemplate, AsyncOffsetPage[InferenceApplicationTemplate]]:
         """
         Returns a list of available machine learning application templates from the
         catalog. Each template includes metadata such as name, description, cover image,
         documentation, tags, and a set of configurable components (e.g., `model`, `ui`).
         Components define parameters, supported deployment flavors, and other attributes
         required to create a fully functional application deployment.
+
+        Args:
+          limit: Optional. Limit the number of returned items
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/cloud/v3/inference/applications/catalog",
+            page=AsyncOffsetPage[InferenceApplicationTemplate],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    template_list_params.TemplateListParams,
+                ),
             ),
-            cast_to=InferenceApplicationTemplateList,
+            model=InferenceApplicationTemplate,
         )
 
     async def get(

@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Union, Optional
-from typing_extensions import Literal, TypeAlias, TypedDict
+from typing import Union, Iterable, Optional
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .tag_update_map_param import TagUpdateMapParam
 
@@ -12,6 +12,10 @@ __all__ = [
     "ShareSettings",
     "ShareSettingsDdnFileShareSettingsInputSerializer",
     "ShareSettingsUpdateVastFileShareSettingsSerializer",
+    "ShareSettingsUpdateVastFileShareSettingsSerializerQuota",
+    "ShareSettingsUpdateVastFileShareSettingsSerializerQuotaDefaultGroupQuota",
+    "ShareSettingsUpdateVastFileShareSettingsSerializerQuotaDefaultUserQuota",
+    "ShareSettingsUpdateVastFileShareSettingsSerializerQuotaOverride",
 ]
 
 
@@ -62,6 +66,140 @@ class ShareSettingsDdnFileShareSettingsInputSerializer(TypedDict, total=False):
     """When set created file share will be owned by group with given UID"""
 
 
+class ShareSettingsUpdateVastFileShareSettingsSerializerQuotaDefaultGroupQuota(TypedDict, total=False):
+    """Quota for each group without an override.
+
+    The specified fields change and the other fields keep their current values. Set it to `null` to remove the default.
+    """
+
+    grace_period: Optional[str]
+    """Time after the usage goes above `soft_limit`, in the `D HH:MM:SS` format.
+
+    The maximum is 365 days. The quota must have a `soft_limit`. Set it to `null` to
+    remove the grace period.
+
+    Omit this field to keep the current setting.
+    """
+
+    hard_limit: int
+    """Maximum capacity in bytes.
+
+    Write operations fail when the usage reaches this limit. It must not be more
+    than the file share size. It is necessary if the file share does not have this
+    quota yet.
+
+    Omit this field to keep the current setting.
+    """
+
+    soft_limit: Optional[int]
+    """Capacity in bytes that starts the grace period.
+
+    Write operations fail when the grace period ends and the usage is still above
+    this limit. It must not be more than `hard_limit`. Set it to `null` to remove
+    the soft limit and the grace period.
+
+    Omit this field to keep the current setting.
+    """
+
+
+class ShareSettingsUpdateVastFileShareSettingsSerializerQuotaDefaultUserQuota(TypedDict, total=False):
+    """Quota for each user without an override.
+
+    The specified fields change and the other fields keep their current values. Set it to `null` to remove the default.
+    """
+
+    grace_period: Optional[str]
+    """Time after the usage goes above `soft_limit`, in the `D HH:MM:SS` format.
+
+    The maximum is 365 days. The quota must have a `soft_limit`. Set it to `null` to
+    remove the grace period.
+
+    Omit this field to keep the current setting.
+    """
+
+    hard_limit: int
+    """Maximum capacity in bytes.
+
+    Write operations fail when the usage reaches this limit. It must not be more
+    than the file share size. It is necessary if the file share does not have this
+    quota yet.
+
+    Omit this field to keep the current setting.
+    """
+
+    soft_limit: Optional[int]
+    """Capacity in bytes that starts the grace period.
+
+    Write operations fail when the grace period ends and the usage is still above
+    this limit. It must not be more than `hard_limit`. Set it to `null` to remove
+    the soft limit and the grace period.
+
+    Omit this field to keep the current setting.
+    """
+
+
+class ShareSettingsUpdateVastFileShareSettingsSerializerQuotaOverride(TypedDict, total=False):
+    hard_limit: Required[int]
+    """Maximum capacity in bytes.
+
+    Write operations fail when the usage reaches this limit. It must not be more
+    than the file share size.
+    """
+
+    identifier: Required[int]
+    """Numeric user ID or group ID.
+
+    Before you set a quota for a user or group, it must write a file to the file
+    share. If it did not write a file, the update task fails.
+    """
+
+    identifier_type: Required[Literal["gid", "uid"]]
+    """Type of `identifier`. Use `uid` for a user and `gid` for a group."""
+
+    grace_period: Optional[str]
+    """Time after the usage goes above `soft_limit`, in the `D HH:MM:SS` format.
+
+    The maximum is 365 days. You must also specify `soft_limit`.
+    """
+
+    soft_limit: Optional[int]
+    """Capacity in bytes that starts the grace period.
+
+    Write operations fail when the grace period ends and the usage is still above
+    this limit. It must not be more than `hard_limit`.
+    """
+
+
+class ShareSettingsUpdateVastFileShareSettingsSerializerQuota(TypedDict, total=False):
+    """User and group quotas.
+
+    Send an object to enable quotas and change the specified fields. Send `null` to disable quotas. When you disable quotas, the system removes the default quotas and all overrides. You cannot restore them.
+
+    Omit this field to keep the current setting.
+    """
+
+    default_group_quota: Optional[ShareSettingsUpdateVastFileShareSettingsSerializerQuotaDefaultGroupQuota]
+    """Quota for each group without an override.
+
+    The specified fields change and the other fields keep their current values. Set
+    it to `null` to remove the default.
+    """
+
+    default_user_quota: Optional[ShareSettingsUpdateVastFileShareSettingsSerializerQuotaDefaultUserQuota]
+    """Quota for each user without an override.
+
+    The specified fields change and the other fields keep their current values. Set
+    it to `null` to remove the default.
+    """
+
+    overrides: Iterable[ShareSettingsUpdateVastFileShareSettingsSerializerQuotaOverride]
+    """Quotas for specified users and groups.
+
+    This list replaces all current overrides. Send an empty list to remove all
+    overrides.
+    """
+
+
 class ShareSettingsUpdateVastFileShareSettingsSerializer(TypedDict, total=False):
     allowed_characters: Literal["LCD", "NPL"]
     """Determines which characters are allowed in file names. Choose between:
@@ -82,6 +220,16 @@ class ShareSettingsUpdateVastFileShareSettingsSerializer(TypedDict, total=False)
       limitation on the length of a single component of the path is 255 characters
     - Native Protocol Limit (NPL), imposes no limitation beyond that of the client
       protocol.
+
+    Omit this field to keep the current setting.
+    """
+
+    quota: Optional[ShareSettingsUpdateVastFileShareSettingsSerializerQuota]
+    """User and group quotas.
+
+    Send an object to enable quotas and change the specified fields. Send `null` to
+    disable quotas. When you disable quotas, the system removes the default quotas
+    and all overrides. You cannot restore them.
 
     Omit this field to keep the current setting.
     """

@@ -500,7 +500,7 @@ from gcore.types.cloud import InferenceRegionCapacity, InferenceRegionCapacityLi
 
 Methods:
 
-- <code title="get /cloud/v3/inference/capacity">client.cloud.inference.<a href="./src/gcore/resources/cloud/inference/inference.py">get_capacity_by_region</a>() -> <a href="./src/gcore/types/cloud/inference_region_capacity_list.py">InferenceRegionCapacityList</a></code>
+- <code title="get /cloud/v3/inference/capacity">client.cloud.inference.<a href="./src/gcore/resources/cloud/inference/inference.py">get_capacity_by_region</a>(\*\*<a href="src/gcore/types/cloud/inference_get_capacity_by_region_params.py">params</a>) -> <a href="./src/gcore/types/cloud/inference_region_capacity_list.py">InferenceRegionCapacityList</a></code>
 
 ### Flavors
 
@@ -634,7 +634,7 @@ from gcore.types.cloud.inference.applications import (
 
 Methods:
 
-- <code title="get /cloud/v3/inference/applications/catalog">client.cloud.inference.applications.templates.<a href="./src/gcore/resources/cloud/inference/applications/templates.py">list</a>() -> <a href="./src/gcore/types/cloud/inference/applications/inference_application_template_list.py">InferenceApplicationTemplateList</a></code>
+- <code title="get /cloud/v3/inference/applications/catalog">client.cloud.inference.applications.templates.<a href="./src/gcore/resources/cloud/inference/applications/templates.py">list</a>(\*\*<a href="src/gcore/types/cloud/inference/applications/template_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/inference/applications/inference_application_template.py">SyncOffsetPage[InferenceApplicationTemplate]</a></code>
 - <code title="get /cloud/v3/inference/applications/catalog/{application_name}">client.cloud.inference.applications.templates.<a href="./src/gcore/resources/cloud/inference/applications/templates.py">get</a>(application_name) -> <a href="./src/gcore/types/cloud/inference/applications/inference_application_template.py">InferenceApplicationTemplate</a></code>
 
 ## PlacementGroups

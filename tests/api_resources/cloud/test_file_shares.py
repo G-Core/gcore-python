@@ -174,6 +174,18 @@ class TestFileShares:
             share_settings={
                 "allowed_characters": "LCD",
                 "path_length": "LCD",
+                "quota": {
+                    "default_group_quota": {
+                        "hard_limit": 53687091200,
+                        "grace_period": "7 00:00:00",
+                        "soft_limit": 42949672960,
+                    },
+                    "default_user_quota": {
+                        "hard_limit": 53687091200,
+                        "grace_period": "7 00:00:00",
+                        "soft_limit": 42949672960,
+                    },
+                },
                 "root_squash": True,
                 "trash_access": False,
             },
@@ -626,6 +638,18 @@ class TestAsyncFileShares:
             share_settings={
                 "allowed_characters": "LCD",
                 "path_length": "LCD",
+                "quota": {
+                    "default_group_quota": {
+                        "hard_limit": 53687091200,
+                        "grace_period": "7 00:00:00",
+                        "soft_limit": 42949672960,
+                    },
+                    "default_user_quota": {
+                        "hard_limit": 53687091200,
+                        "grace_period": "7 00:00:00",
+                        "soft_limit": 42949672960,
+                    },
+                },
                 "root_squash": True,
                 "trash_access": False,
             },

@@ -23,6 +23,14 @@ class TestInference:
         assert_matches_type(InferenceRegionCapacityList, inference, path=["response"])
 
     @parametrize
+    def test_method_get_capacity_by_region_with_all_params(self, client: Gcore) -> None:
+        inference = client.cloud.inference.get_capacity_by_region(
+            limit=1000,
+            offset=0,
+        )
+        assert_matches_type(InferenceRegionCapacityList, inference, path=["response"])
+
+    @parametrize
     def test_raw_response_get_capacity_by_region(self, client: Gcore) -> None:
         response = client.cloud.inference.with_raw_response.get_capacity_by_region()
 
@@ -51,6 +59,14 @@ class TestAsyncInference:
     @parametrize
     async def test_method_get_capacity_by_region(self, async_client: AsyncGcore) -> None:
         inference = await async_client.cloud.inference.get_capacity_by_region()
+        assert_matches_type(InferenceRegionCapacityList, inference, path=["response"])
+
+    @parametrize
+    async def test_method_get_capacity_by_region_with_all_params(self, async_client: AsyncGcore) -> None:
+        inference = await async_client.cloud.inference.get_capacity_by_region(
+            limit=1000,
+            offset=0,
+        )
         assert_matches_type(InferenceRegionCapacityList, inference, path=["response"])
 
     @parametrize
