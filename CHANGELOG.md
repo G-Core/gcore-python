@@ -1,5 +1,37 @@
 # Changelog
 
+## [0.61.0](https://github.com/G-Core/gcore-python/compare/v0.60.0...v0.61.0) (2026-11-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* **cloud:** add file share quotas and paginate inference templates
+* **cdn:** return the created SSL certificate and type validity dates
+* **terraform:** remove inline rules from the security group resource
+* **cloud:** remove healthmonitor from gcore_cloud_load_balancer_pool
+
+### Features
+
+* **cdn:** return the created SSL certificate and type validity dates ([8de0523](https://github.com/G-Core/gcore-python/commit/8de05237b6e17340af1e6c4decdd88f8453b096f))
+* **cloud:** add file share quotas and paginate inference templates ([f76b005](https://github.com/G-Core/gcore-python/commit/f76b00597a4906cae8046ed71e41ff08201198f3))
+* **cloud:** add volume types list ([d4de29b](https://github.com/G-Core/gcore-python/commit/d4de29b4c32f98f5ea1ce59d120e50060b1b22c8))
+* **cloud:** add volume types list to the volume examples ([4d98db2](https://github.com/G-Core/gcore-python/commit/4d98db292561c26982e58410109fd957be907c77))
+* **cloud:** point GPU bare metal cluster server rebuild to v4 ([a3238b7](https://github.com/G-Core/gcore-python/commit/a3238b7781e1915d884b11f42496ddd8668dcdaa))
+* **cloud:** remove healthmonitor from gcore_cloud_load_balancer_pool ([439eede](https://github.com/G-Core/gcore-python/commit/439eedeac54049ae7f56fa2eabf6598bbc3cf217))
+* **streaming:** add hls_mpegts_cc_tag to streams ([f3fc646](https://github.com/G-Core/gcore-python/commit/f3fc6466bdf8be67e79ddcba11f2510ef9c1d074))
+* **waap:** add traffic_types filter to analytics endpoints ([fa8f1a8](https://github.com/G-Core/gcore-python/commit/fa8f1a89254cd40191da201c53a963576b784cfc))
+
+
+### Bug Fixes
+
+* **terraform:** remove inline rules from the security group resource ([1df99f9](https://github.com/G-Core/gcore-python/commit/1df99f92948b6ba359952dd47d51cc9fef0c555f))
+
+
+### Chores
+
+* **cdn:** update cdn OpenAPI spec ([32971d1](https://github.com/G-Core/gcore-python/commit/32971d1d19254163b4e78ef313c0c0dc3bdf53e8))
+* **iam:** update iam OpenAPI spec ([2c8d597](https://github.com/G-Core/gcore-python/commit/2c8d59771eeb14e133ae849ce31b36a296e39963))
+
 ## [0.60.0](https://github.com/G-Core/gcore-python/compare/v0.59.0...v0.60.0) (2026-10-27)
 
 
