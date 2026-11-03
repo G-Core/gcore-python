@@ -476,7 +476,7 @@ class AccountOverview(BaseModel):
     - `false` — a production account.
     """
 
-    name: Optional[str] = None
+    name: str
     """Client (company) name. Kept equal to `companyName`, which it replaces."""
 
     paid_features: PaidFeatures = FieldInfo(alias="paidFeatures")
