@@ -9,7 +9,7 @@ __all__ = ["StatisticGetDDOSInfoParams"]
 
 
 class StatisticGetDDOSInfoParams(TypedDict, total=False):
-    group_by: Required[Literal["URL", "User-Agent", "IP"]]
+    group_by: Required[Literal["URL", "User-Agent", "IP", "COUNTRY", "JA4"]]
     """The identity of the requests to group by"""
 
     start: Required[str]

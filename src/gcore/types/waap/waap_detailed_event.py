@@ -1,0 +1,287 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from typing import Dict, List, Optional
+from datetime import datetime
+from typing_extensions import Literal
+
+from ..._models import BaseModel
+
+__all__ = [
+    "WaapDetailedEvent",
+    "CommonTag",
+    "Network",
+    "NetworkOrganization",
+    "PatternMatchedTag",
+    "UserAgent",
+    "Detector",
+    "PolicyOverride",
+]
+
+
+class CommonTag(BaseModel):
+    """Common tag details"""
+
+    description: str
+    """Tag description information"""
+
+    display_name: str
+    """The tag's display name"""
+
+    tag: str
+    """Tag name"""
+
+
+class NetworkOrganization(BaseModel):
+    """Organization details"""
+
+    name: str
+    """Organization name"""
+
+    subnet: str
+    """Network range"""
+
+
+class Network(BaseModel):
+    """Network details"""
+
+    client_ip: str
+    """Client IP"""
+
+    country: str
+    """Country code"""
+
+    organization: NetworkOrganization
+    """Organization details"""
+
+    asn: Optional[str] = None
+    """Autonomous System Number, or an empty string when unknown"""
+
+
+class PatternMatchedTag(BaseModel):
+    """Pattern matched tag details"""
+
+    description: str
+    """Tag description information"""
+
+    display_name: str
+    """The tag's display name"""
+
+    execution_phase: str
+    """
+    The phase in which the tag was triggered: access -> Request, `header_filter` ->
+    `response_header`, `body_filter` -> `response_body`
+    """
+
+    field: str
+    """The entity to which the variable that triggered the tag belong to.
+
+    For example: `request_headers`, uri, cookies etc.
+    """
+
+    field_name: str
+    """The name of the variable which holds the value that triggered the tag"""
+
+    pattern_name: str
+    """The name of the detected regexp pattern"""
+
+    pattern_value: str
+    """The pattern which triggered the tag"""
+
+    tag: str
+    """Tag name"""
+
+
+class UserAgent(BaseModel):
+    """User agent"""
+
+    base_browser: str
+    """User agent browser"""
+
+    base_browser_version: str
+    """User agent browser version"""
+
+    client: str
+    """Client from User agent header"""
+
+    client_type: str
+    """User agent client type"""
+
+    client_version: str
+    """User agent client version"""
+
+    cpu: str
+    """User agent cpu"""
+
+    device: str
+    """User agent device"""
+
+    device_type: str
+    """User agent device type"""
+
+    full_string: str
+    """User agent"""
+
+    os: str
+    """User agent os"""
+
+    rendering_engine: str
+    """User agent engine"""
+
+
+class Detector(BaseModel):
+    """A rule that matched the request, with the matched subject and content."""
+
+    matched_content: str
+    """The content that matched the rule"""
+
+    rule_id: str
+    """ID of the rule that matched"""
+
+    rule_name: str
+    """Name of the rule that matched"""
+
+    subject_field: Optional[str] = None
+    """The name of the variable whose value triggered the rule"""
+
+    subject_type: str
+    """The entity to which the matched variable belongs (e.g.
+
+    `request_headers`, uri, cookies)
+    """
+
+
+class PolicyOverride(BaseModel):
+    """An override that applied to a request, with its match metadata."""
+
+    id: int
+    """ID of the policy override applied to this request."""
+
+    matched: Dict[str, object]
+    """
+    Match evidence keyed by target reference: a detector ID such as 'ID861', or a
+    rule ID such as '94'. A detector entry holds 'field' and 'pattern_found'. A rule
+    entry holds the rule's metadata, such as 'action' and 'rule_name', and for a
+    rule based on a detector result also that match's 'field' and 'pattern_found'.
+    'pattern_found' is empty when the matched content is hidden. For legacy records,
+    evidence is retained only for the first matched target; subsequent matched
+    targets have empty objects.
+    """
+
+    t: Literal["waf_rule", "static_rule_template"]
+    """
+    Type of target affected by the override: 'waf_rule' for a detector or
+    'static_rule_template' for a rule.
+    """
+
+
+class WaapDetailedEvent(BaseModel):
+    """A security event with its request details, without the request headers."""
+
+    id: str
+    """Request ID"""
+
+    action: str
+    """Request action"""
+
+    common_tags: List[CommonTag]
+    """List of common tags"""
+
+    content_type: str
+    """Content type of request"""
+
+    domain: str
+    """Domain name"""
+
+    domain_id: int
+    """Domain ID"""
+
+    http_status_code: int
+    """Status code for http request"""
+
+    http_version: str
+    """HTTP version of request"""
+
+    incident_id: str
+    """ID of challenge that was generated"""
+
+    method: str
+    """Request method"""
+
+    network: Network
+    """Network details"""
+
+    path: str
+    """Request path"""
+
+    pattern_matched_tags: List[PatternMatchedTag]
+    """List of shield tags"""
+
+    query_string: str
+    """The query string of the request"""
+
+    reference_id: str
+    """Reference ID to identify user sanction"""
+
+    request_time: datetime
+    """The time of the request"""
+
+    request_type: str
+    """The type of the request that generated an event"""
+
+    requested_domain: str
+    """The real domain name"""
+
+    response_time: str
+    """Time took to process all request"""
+
+    result: Literal["passed", "blocked", "suppressed", ""]
+    """The result of a request"""
+
+    rule_id: str
+    """ID of the triggered rule"""
+
+    rule_name: str
+    """Name of the triggered rule"""
+
+    scheme: str
+    """The URI scheme of the request that generated an event"""
+
+    session_id: str
+    """The session ID associated with the request."""
+
+    session_request_count: str
+    """The number requests in session"""
+
+    traffic_types: List[str]
+    """List of traffic types"""
+
+    user_agent: UserAgent
+    """User agent"""
+
+    decision: Optional[Literal["passed", "allowed", "monitored", "blocked", ""]] = None
+    """The decision made for processing the request through the WAAP."""
+
+    detector: Optional[List[Detector]] = None
+    """Rules that matched the request and triggered the event decision."""
+
+    ja3: Optional[str] = None
+    """
+    JA3 TLS client fingerprint as a 32-character lowercase hexadecimal MD5 hash, or
+    an empty string when the record has no JA3 value.
+    """
+
+    ja4: Optional[str] = None
+    """
+    JA4 TLS client fingerprint in the form `<ja4_a>_<ja4_b>_<ja4_c>` (a 10-character
+    prefix and two 12-character lowercase hexadecimal hashes), or an empty string
+    when the record has no JA4 value.
+    """
+
+    optional_action: Optional[Literal["captcha", "challenge", ""]] = None
+    """An optional action that may be applied in addition to the primary decision."""
+
+    policy_override: Optional[List[PolicyOverride]] = None
+    """Applied overrides with id, t, and matched metadata keyed by target ID.
+
+    Does not replace the final decision.
+    """

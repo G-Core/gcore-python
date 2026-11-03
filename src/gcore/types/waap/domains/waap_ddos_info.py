@@ -14,4 +14,4 @@ class WaapDDOSInfo(BaseModel):
     identity: str
     """The value for the grouped by type"""
 
-    type: Literal["URL", "IP", "User-Agent"]
+    type: Literal["URL", "User-Agent", "IP", "COUNTRY", "JA4"]

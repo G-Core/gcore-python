@@ -29,6 +29,7 @@ Types:
 ```python
 from gcore.types.waap import (
     WaapCompactTrafficMetrics,
+    WaapDetailedEvent,
     WaapEventSummary,
     WaapFilterValueSuggestion,
     WaapSimpleEventStatistics,
@@ -39,6 +40,7 @@ from gcore.types.waap import (
 
 Methods:
 
+- <code title="get /waap/v1/analytics/detailed_events">client.waap.analytics.<a href="./src/gcore/resources/waap/analytics.py">get_detailed_events</a>(\*\*<a href="src/gcore/types/waap/analytics_get_detailed_events_params.py">params</a>) -> <a href="./src/gcore/types/waap/waap_detailed_event.py">SyncCursorPageWaap[WaapDetailedEvent]</a></code>
 - <code title="get /waap/v1/analytics/stats/{dimension}">client.waap.analytics.<a href="./src/gcore/resources/waap/analytics.py">get_event_statistics</a>(dimension, \*\*<a href="src/gcore/types/waap/analytics_get_event_statistics_params.py">params</a>) -> <a href="./src/gcore/types/waap/waap_simple_event_statistics.py">WaapSimpleEventStatistics</a></code>
 - <code title="get /waap/v2/analytics/events">client.waap.analytics.<a href="./src/gcore/resources/waap/analytics.py">get_events</a>(\*\*<a href="src/gcore/types/waap/analytics_get_events_params.py">params</a>) -> <a href="./src/gcore/types/waap/waap_event_summary.py">SyncCursorPageWaap[WaapEventSummary]</a></code>
 - <code title="get /waap/v1/analytics/filters/{type}">client.waap.analytics.<a href="./src/gcore/resources/waap/analytics.py">get_filters</a>(type, \*\*<a href="src/gcore/types/waap/analytics_get_filters_params.py">params</a>) -> <a href="./src/gcore/types/waap/waap_filter_value_suggestion.py">SyncOffsetPage[WaapFilterValueSuggestion]</a></code>

@@ -13,6 +13,7 @@ from .waap_insight_type import WaapInsightType as WaapInsightType
 from .waap_organization import WaapOrganization as WaapOrganization
 from .domain_list_params import DomainListParams as DomainListParams
 from .waap_event_summary import WaapEventSummary as WaapEventSummary
+from .waap_detailed_event import WaapDetailedEvent as WaapDetailedEvent
 from .waap_statistic_item import WaapStatisticItem as WaapStatisticItem
 from .waap_summary_domain import WaapSummaryDomain as WaapSummaryDomain
 from .waap_top_user_agent import WaapTopUserAgent as WaapTopUserAgent
@@ -78,6 +79,7 @@ from .statistic_get_usage_series_params import StatisticGetUsageSeriesParams as 
 from .ip_info_get_top_user_agents_params import IPInfoGetTopUserAgentsParams as IPInfoGetTopUserAgentsParams
 from .waap_advanced_rule_descriptor_list import WaapAdvancedRuleDescriptorList as WaapAdvancedRuleDescriptorList
 from .ip_info_get_blocked_requests_params import IPInfoGetBlockedRequestsParams as IPInfoGetBlockedRequestsParams
+from .analytics_get_detailed_events_params import AnalyticsGetDetailedEventsParams as AnalyticsGetDetailedEventsParams
 from .ip_info_get_top_user_agents_response import IPInfoGetTopUserAgentsResponse as IPInfoGetTopUserAgentsResponse
 from .ip_info_get_top_user_sessions_params import IPInfoGetTopUserSessionsParams as IPInfoGetTopUserSessionsParams
 from .analytics_get_event_statistics_params import (

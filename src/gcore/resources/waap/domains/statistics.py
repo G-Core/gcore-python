@@ -119,7 +119,7 @@ class StatisticsResource(SyncAPIResource):
         self,
         domain_id: int,
         *,
-        group_by: Literal["URL", "User-Agent", "IP"],
+        group_by: Literal["URL", "User-Agent", "IP", "COUNTRY", "JA4"],
         start: str,
         end: Optional[str] | Omit = omit,
         limit: int | Omit = omit,
@@ -132,7 +132,9 @@ class StatisticsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[WaapDDOSInfo]:
         """
-        Returns the top DDoS counts grouped by URL, User-Agent or IP
+        Returns the top DDoS counts grouped by URL, User-Agent, IP, COUNTRY or JA4.
+        Requests without a country or a JA4 fingerprint are excluded from those
+        groupings. Countries are ISO 3166-1 alpha-2 codes
 
         Args:
           domain_id: The domain ID
@@ -372,7 +374,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
         self,
         domain_id: int,
         *,
-        group_by: Literal["URL", "User-Agent", "IP"],
+        group_by: Literal["URL", "User-Agent", "IP", "COUNTRY", "JA4"],
         start: str,
         end: Optional[str] | Omit = omit,
         limit: int | Omit = omit,
@@ -385,7 +387,9 @@ class AsyncStatisticsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[WaapDDOSInfo, AsyncOffsetPage[WaapDDOSInfo]]:
         """
-        Returns the top DDoS counts grouped by URL, User-Agent or IP
+        Returns the top DDoS counts grouped by URL, User-Agent, IP, COUNTRY or JA4.
+        Requests without a country or a JA4 fingerprint are excluded from those
+        groupings. Countries are ISO 3166-1 alpha-2 codes
 
         Args:
           domain_id: The domain ID
