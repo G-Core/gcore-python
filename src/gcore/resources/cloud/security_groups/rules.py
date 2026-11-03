@@ -104,6 +104,10 @@ class RulesResource(RulesResourceCustomMixin, SyncAPIResource):
         Returns a task ID for tracking the
         asynchronous operation.
 
+        In a security group of a Kubernetes cluster, the description `system` marks the
+        rules that the cluster manages. A request that adds a rule with this description
+        gets 400.
+
         Args:
           project_id: Project ID
 
@@ -185,6 +189,10 @@ class RulesResource(RulesResourceCustomMixin, SyncAPIResource):
 
         Returns a task ID for tracking the
         asynchronous operation.
+
+        A security group of a Kubernetes cluster can have system rules with the
+        description `system`. The cluster manages these rules. A request to delete one
+        gets 403.
 
         Args:
           project_id: Project ID
@@ -424,6 +432,10 @@ class AsyncRulesResource(AsyncRulesResourceCustomMixin, AsyncAPIResource):
         Returns a task ID for tracking the
         asynchronous operation.
 
+        In a security group of a Kubernetes cluster, the description `system` marks the
+        rules that the cluster manages. A request that adds a rule with this description
+        gets 400.
+
         Args:
           project_id: Project ID
 
@@ -505,6 +517,10 @@ class AsyncRulesResource(AsyncRulesResourceCustomMixin, AsyncAPIResource):
 
         Returns a task ID for tracking the
         asynchronous operation.
+
+        A security group of a Kubernetes cluster can have system rules with the
+        description `system`. The cluster manages these rules. A request to delete one
+        gets 403.
 
         Args:
           project_id: Project ID

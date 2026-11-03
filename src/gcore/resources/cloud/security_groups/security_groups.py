@@ -183,6 +183,10 @@ class SecurityGroupsResource(SecurityGroupsResourceCustomMixin, SyncAPIResource)
         - Rules that exist in the current state but not in the request will be removed
         - To keep existing rules, they must be included in the request alongside any new
           rules
+        - A security group of a Kubernetes cluster can have system rules with the
+          description `system`. The cluster manages these rules. Keep them in the
+          request without a change. A request that removes or changes one of them
+          gets 403. A request that adds a rule with this description gets 400.
 
         Args:
           project_id: Project ID
@@ -675,6 +679,10 @@ class AsyncSecurityGroupsResource(AsyncSecurityGroupsResourceCustomMixin, AsyncA
         - Rules that exist in the current state but not in the request will be removed
         - To keep existing rules, they must be included in the request alongside any new
           rules
+        - A security group of a Kubernetes cluster can have system rules with the
+          description `system`. The cluster manages these rules. Keep them in the
+          request without a change. A request that removes or changes one of them
+          gets 403. A request that adds a rule with this description gets 400.
 
         Args:
           project_id: Project ID
