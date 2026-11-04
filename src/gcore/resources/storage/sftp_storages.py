@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ..._utils import path_template, maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, strip_not_given, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -62,6 +62,7 @@ class SftpStoragesResource(SyncAPIResource):
         password: str | Omit = omit,
         server_alias: str | Omit = omit,
         ssh_key_ids: Iterable[int] | Omit = omit,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -105,6 +106,7 @@ class SftpStoragesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return self._post(
             "/storage/v4/sftp_storages",
             body=maybe_transform(
@@ -138,6 +140,7 @@ class SftpStoragesResource(SyncAPIResource):
         password_mode: Literal["auto", "set", "none"] | Omit = omit,
         server_alias: str | Omit = omit,
         ssh_key_ids: Iterable[int] | Omit = omit,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -181,6 +184,7 @@ class SftpStoragesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return self._patch(
             path_template("/storage/v4/sftp_storages/{storage_id}", storage_id=storage_id),
             body=maybe_transform(
@@ -212,6 +216,7 @@ class SftpStoragesResource(SyncAPIResource):
         order_by: str | Omit = omit,
         provisioning_status: Literal["active", "creating", "updating", "deleting", "deleted"] | Omit = omit,
         show_deleted: bool | Omit = omit,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -245,6 +250,7 @@ class SftpStoragesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return self._get_api_list(
             "/storage/v4/sftp_storages",
             page=SyncOffsetPage[SftpStorage],
@@ -274,6 +280,7 @@ class SftpStoragesResource(SyncAPIResource):
         self,
         storage_id: int,
         *,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -295,6 +302,7 @@ class SftpStoragesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return self._delete(
             path_template("/storage/v4/sftp_storages/{storage_id}", storage_id=storage_id),
             options=make_request_options(
@@ -307,6 +315,7 @@ class SftpStoragesResource(SyncAPIResource):
         self,
         storage_id: int,
         *,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -326,6 +335,7 @@ class SftpStoragesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return self._get(
             path_template("/storage/v4/sftp_storages/{storage_id}", storage_id=storage_id),
             options=make_request_options(
@@ -371,6 +381,7 @@ class AsyncSftpStoragesResource(AsyncAPIResource):
         password: str | Omit = omit,
         server_alias: str | Omit = omit,
         ssh_key_ids: Iterable[int] | Omit = omit,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -414,6 +425,7 @@ class AsyncSftpStoragesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return await self._post(
             "/storage/v4/sftp_storages",
             body=await async_maybe_transform(
@@ -447,6 +459,7 @@ class AsyncSftpStoragesResource(AsyncAPIResource):
         password_mode: Literal["auto", "set", "none"] | Omit = omit,
         server_alias: str | Omit = omit,
         ssh_key_ids: Iterable[int] | Omit = omit,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -490,6 +503,7 @@ class AsyncSftpStoragesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return await self._patch(
             path_template("/storage/v4/sftp_storages/{storage_id}", storage_id=storage_id),
             body=await async_maybe_transform(
@@ -521,6 +535,7 @@ class AsyncSftpStoragesResource(AsyncAPIResource):
         order_by: str | Omit = omit,
         provisioning_status: Literal["active", "creating", "updating", "deleting", "deleted"] | Omit = omit,
         show_deleted: bool | Omit = omit,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -554,6 +569,7 @@ class AsyncSftpStoragesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return self._get_api_list(
             "/storage/v4/sftp_storages",
             page=AsyncOffsetPage[SftpStorage],
@@ -583,6 +599,7 @@ class AsyncSftpStoragesResource(AsyncAPIResource):
         self,
         storage_id: int,
         *,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -604,6 +621,7 @@ class AsyncSftpStoragesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return await self._delete(
             path_template("/storage/v4/sftp_storages/{storage_id}", storage_id=storage_id),
             options=make_request_options(
@@ -616,6 +634,7 @@ class AsyncSftpStoragesResource(AsyncAPIResource):
         self,
         storage_id: int,
         *,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -635,6 +654,7 @@ class AsyncSftpStoragesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return await self._get(
             path_template("/storage/v4/sftp_storages/{storage_id}", storage_id=storage_id),
             options=make_request_options(

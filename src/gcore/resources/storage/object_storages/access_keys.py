@@ -2,10 +2,13 @@
 
 from __future__ import annotations
 
+from typing import Union
+from datetime import datetime
+
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ...._utils import path_template, maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, strip_not_given, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -51,7 +54,9 @@ class AccessKeysResource(SyncAPIResource):
         self,
         storage_id: int,
         *,
+        expires_at: Union[str, datetime] | Omit = omit,
         read_only: bool | Omit = omit,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -66,6 +71,12 @@ class AccessKeysResource(SyncAPIResource):
         storages are limited to 2 access keys.
 
         Args:
+          expires_at: ISO 8601 timestamp (RFC3339) after which the key is deleted from the backend and
+              the cache. Must be in the future and within the next 5 minutes. A key created
+              with an expiry is hidden from the access-key list and does not count toward the
+              per-storage limit, so it is suited to short-lived browser/file-manager use. Omit
+              for a key that never expires.
+
           read_only: Request a key scoped to read-only data access. Only supported for Standard
               storages; a Fast storage rejects true. Defaults to false (full read-write) when
               omitted.
@@ -78,9 +89,16 @@ class AccessKeysResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return self._post(
             path_template("/storage/v4/object_storages/{storage_id}/access_keys", storage_id=storage_id),
-            body=maybe_transform({"read_only": read_only}, access_key_create_params.AccessKeyCreateParams),
+            body=maybe_transform(
+                {
+                    "expires_at": expires_at,
+                    "read_only": read_only,
+                },
+                access_key_create_params.AccessKeyCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -94,6 +112,7 @@ class AccessKeysResource(SyncAPIResource):
         limit: int | Omit = omit,
         offset: int | Omit = omit,
         order_by: str | Omit = omit,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -117,6 +136,7 @@ class AccessKeysResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return self._get_api_list(
             path_template("/storage/v4/object_storages/{storage_id}/access_keys", storage_id=storage_id),
             page=SyncOffsetPage[AccessKey],
@@ -142,6 +162,7 @@ class AccessKeysResource(SyncAPIResource):
         access_key: str,
         *,
         storage_id: int,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -164,6 +185,7 @@ class AccessKeysResource(SyncAPIResource):
         if not access_key:
             raise ValueError(f"Expected a non-empty value for `access_key` but received {access_key!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return self._delete(
             path_template(
                 "/storage/v4/object_storages/{storage_id}/access_keys/{access_key}",
@@ -181,6 +203,7 @@ class AccessKeysResource(SyncAPIResource):
         access_key: str,
         *,
         storage_id: int,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -188,8 +211,11 @@ class AccessKeysResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AccessKey:
-        """
-        Returns details of a specific access key for an S3-compatible storage.
+        """Returns details of a specific access key for an S3-compatible storage.
+
+        The
+        `valid` flag is false once the key has expired and it is being cleaned up; an
+        unknown key returns 404.
 
         Args:
           extra_headers: Send extra headers
@@ -202,6 +228,7 @@ class AccessKeysResource(SyncAPIResource):
         """
         if not access_key:
             raise ValueError(f"Expected a non-empty value for `access_key` but received {access_key!r}")
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return self._get(
             path_template(
                 "/storage/v4/object_storages/{storage_id}/access_keys/{access_key}",
@@ -243,7 +270,9 @@ class AsyncAccessKeysResource(AsyncAPIResource):
         self,
         storage_id: int,
         *,
+        expires_at: Union[str, datetime] | Omit = omit,
         read_only: bool | Omit = omit,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -258,6 +287,12 @@ class AsyncAccessKeysResource(AsyncAPIResource):
         storages are limited to 2 access keys.
 
         Args:
+          expires_at: ISO 8601 timestamp (RFC3339) after which the key is deleted from the backend and
+              the cache. Must be in the future and within the next 5 minutes. A key created
+              with an expiry is hidden from the access-key list and does not count toward the
+              per-storage limit, so it is suited to short-lived browser/file-manager use. Omit
+              for a key that never expires.
+
           read_only: Request a key scoped to read-only data access. Only supported for Standard
               storages; a Fast storage rejects true. Defaults to false (full read-write) when
               omitted.
@@ -270,9 +305,16 @@ class AsyncAccessKeysResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return await self._post(
             path_template("/storage/v4/object_storages/{storage_id}/access_keys", storage_id=storage_id),
-            body=await async_maybe_transform({"read_only": read_only}, access_key_create_params.AccessKeyCreateParams),
+            body=await async_maybe_transform(
+                {
+                    "expires_at": expires_at,
+                    "read_only": read_only,
+                },
+                access_key_create_params.AccessKeyCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -286,6 +328,7 @@ class AsyncAccessKeysResource(AsyncAPIResource):
         limit: int | Omit = omit,
         offset: int | Omit = omit,
         order_by: str | Omit = omit,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -309,6 +352,7 @@ class AsyncAccessKeysResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return self._get_api_list(
             path_template("/storage/v4/object_storages/{storage_id}/access_keys", storage_id=storage_id),
             page=AsyncOffsetPage[AccessKey],
@@ -334,6 +378,7 @@ class AsyncAccessKeysResource(AsyncAPIResource):
         access_key: str,
         *,
         storage_id: int,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -356,6 +401,7 @@ class AsyncAccessKeysResource(AsyncAPIResource):
         if not access_key:
             raise ValueError(f"Expected a non-empty value for `access_key` but received {access_key!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return await self._delete(
             path_template(
                 "/storage/v4/object_storages/{storage_id}/access_keys/{access_key}",
@@ -373,6 +419,7 @@ class AsyncAccessKeysResource(AsyncAPIResource):
         access_key: str,
         *,
         storage_id: int,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -380,8 +427,11 @@ class AsyncAccessKeysResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AccessKey:
-        """
-        Returns details of a specific access key for an S3-compatible storage.
+        """Returns details of a specific access key for an S3-compatible storage.
+
+        The
+        `valid` flag is false once the key has expired and it is being cleaned up; an
+        unknown key returns 404.
 
         Args:
           extra_headers: Send extra headers
@@ -394,6 +444,7 @@ class AsyncAccessKeysResource(AsyncAPIResource):
         """
         if not access_key:
             raise ValueError(f"Expected a non-empty value for `access_key` but received {access_key!r}")
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return await self._get(
             path_template(
                 "/storage/v4/object_storages/{storage_id}/access_keys/{access_key}",

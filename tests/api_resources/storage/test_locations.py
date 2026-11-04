@@ -30,6 +30,7 @@ class TestLocations:
             offset=0,
             order_by="order_by",
             type="standard",
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert_matches_type(SyncOffsetPage[Location], location, path=["response"])
 
@@ -71,6 +72,7 @@ class TestAsyncLocations:
             offset=0,
             order_by="order_by",
             type="standard",
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert_matches_type(AsyncOffsetPage[Location], location, path=["response"])
 

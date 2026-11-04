@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, TypedDict
+from typing_extensions import Literal, Annotated, TypedDict
+
+from ..._utils import PropertyInfo
 
 __all__ = ["SftpStorageListParams"]
 
@@ -30,3 +32,5 @@ class SftpStorageListParams(TypedDict, total=False):
 
     show_deleted: bool
     """Include deleted storages"""
+
+    accept_language: Annotated[str, PropertyInfo(alias="Accept-Language")]

@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
+from typing import Iterable
+
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import maybe_transform, strip_not_given, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -47,8 +49,10 @@ class StatisticsResource(SyncAPIResource):
         *,
         from_: str | Omit = omit,
         locations: SequenceNotStr[str] | Omit = omit,
+        storage_ids: Iterable[int] | Omit = omit,
         storages: SequenceNotStr[str] | Omit = omit,
         to: str | Omit = omit,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -69,6 +73,10 @@ class StatisticsResource(SyncAPIResource):
 
           locations: a Locations list of filter
 
+          storage_ids: a StorageIDs list of filter, combined with storages. Each ID selects exactly
+              that storage, deleted ones included, narrowed by locations. An ID that is not
+              one of the client's storages fails the request with 404.
+
           storages: a Storages list of filter
 
           to: a To date filter
@@ -81,12 +89,14 @@ class StatisticsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return self._post(
             "/storage/stats/v1/storage/usage/total",
             body=maybe_transform(
                 {
                     "from_": from_,
                     "locations": locations,
+                    "storage_ids": storage_ids,
                     "storages": storages,
                     "to": to,
                 },
@@ -105,9 +115,11 @@ class StatisticsResource(SyncAPIResource):
         granularity: str | Omit = omit,
         locations: SequenceNotStr[str] | Omit = omit,
         source: int | Omit = omit,
+        storage_ids: Iterable[int] | Omit = omit,
         storages: SequenceNotStr[str] | Omit = omit,
         to: str | Omit = omit,
         ts_string: bool | Omit = omit,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -133,6 +145,10 @@ class StatisticsResource(SyncAPIResource):
 
           source: a Source is deprecated parameter
 
+          storage_ids: a StorageIDs list of filter, combined with storages. Each ID selects exactly
+              that storage, deleted ones included, narrowed by locations. An ID that is not
+              one of the client's storages fails the request with 404.
+
           storages: a Storages list of filter
 
           to: a To date filter
@@ -148,6 +164,7 @@ class StatisticsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return self._post(
             "/storage/stats/v1/storage/usage/series",
             body=maybe_transform(
@@ -156,6 +173,7 @@ class StatisticsResource(SyncAPIResource):
                     "granularity": granularity,
                     "locations": locations,
                     "source": source,
+                    "storage_ids": storage_ids,
                     "storages": storages,
                     "to": to,
                     "ts_string": ts_string,
@@ -194,8 +212,10 @@ class AsyncStatisticsResource(AsyncAPIResource):
         *,
         from_: str | Omit = omit,
         locations: SequenceNotStr[str] | Omit = omit,
+        storage_ids: Iterable[int] | Omit = omit,
         storages: SequenceNotStr[str] | Omit = omit,
         to: str | Omit = omit,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -216,6 +236,10 @@ class AsyncStatisticsResource(AsyncAPIResource):
 
           locations: a Locations list of filter
 
+          storage_ids: a StorageIDs list of filter, combined with storages. Each ID selects exactly
+              that storage, deleted ones included, narrowed by locations. An ID that is not
+              one of the client's storages fails the request with 404.
+
           storages: a Storages list of filter
 
           to: a To date filter
@@ -228,12 +252,14 @@ class AsyncStatisticsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return await self._post(
             "/storage/stats/v1/storage/usage/total",
             body=await async_maybe_transform(
                 {
                     "from_": from_,
                     "locations": locations,
+                    "storage_ids": storage_ids,
                     "storages": storages,
                     "to": to,
                 },
@@ -252,9 +278,11 @@ class AsyncStatisticsResource(AsyncAPIResource):
         granularity: str | Omit = omit,
         locations: SequenceNotStr[str] | Omit = omit,
         source: int | Omit = omit,
+        storage_ids: Iterable[int] | Omit = omit,
         storages: SequenceNotStr[str] | Omit = omit,
         to: str | Omit = omit,
         ts_string: bool | Omit = omit,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -280,6 +308,10 @@ class AsyncStatisticsResource(AsyncAPIResource):
 
           source: a Source is deprecated parameter
 
+          storage_ids: a StorageIDs list of filter, combined with storages. Each ID selects exactly
+              that storage, deleted ones included, narrowed by locations. An ID that is not
+              one of the client's storages fails the request with 404.
+
           storages: a Storages list of filter
 
           to: a To date filter
@@ -295,6 +327,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return await self._post(
             "/storage/stats/v1/storage/usage/series",
             body=await async_maybe_transform(
@@ -303,6 +336,7 @@ class AsyncStatisticsResource(AsyncAPIResource):
                     "granularity": granularity,
                     "locations": locations,
                     "source": source,
+                    "storage_ids": storage_ids,
                     "storages": storages,
                     "to": to,
                     "ts_string": ts_string,

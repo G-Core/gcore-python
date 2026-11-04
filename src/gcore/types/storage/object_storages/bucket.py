@@ -8,6 +8,10 @@ __all__ = ["Bucket", "Cors", "Lifecycle", "Policy"]
 
 
 class Cors(BaseModel):
+    """
+    On S3 Fast storages CORS is managed by the platform: the platform defaults are reported and cannot be changed.
+    """
+
     allowed_origins: List[str]
     """
     Web domains allowed to make direct browser requests to this bucket (e.g.,
@@ -33,6 +37,10 @@ class Policy(BaseModel):
 
 class Bucket(BaseModel):
     cors: Cors
+    """
+    On S3 Fast storages CORS is managed by the platform: the platform defaults are
+    reported and cannot be changed.
+    """
 
     lifecycle: Lifecycle
 

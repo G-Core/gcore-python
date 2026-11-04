@@ -9,6 +9,7 @@ import pytest
 
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
+from gcore._utils import parse_datetime
 from gcore.pagination import SyncOffsetPage, AsyncOffsetPage
 from gcore.types.storage.object_storages import (
     AccessKey,
@@ -32,7 +33,9 @@ class TestAccessKeys:
     def test_method_create_with_all_params(self, client: Gcore) -> None:
         access_key = client.storage.object_storages.access_keys.create(
             storage_id=0,
+            expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             read_only=False,
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert_matches_type(AccessKeyCreated, access_key, path=["response"])
 
@@ -74,6 +77,7 @@ class TestAccessKeys:
             limit=1,
             offset=0,
             order_by="order_by",
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert_matches_type(SyncOffsetPage[AccessKey], access_key, path=["response"])
 
@@ -106,6 +110,15 @@ class TestAccessKeys:
         access_key = client.storage.object_storages.access_keys.delete(
             access_key="access_key",
             storage_id=0,
+        )
+        assert access_key is None
+
+    @parametrize
+    def test_method_delete_with_all_params(self, client: Gcore) -> None:
+        access_key = client.storage.object_storages.access_keys.delete(
+            access_key="access_key",
+            storage_id=0,
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert access_key is None
 
@@ -148,6 +161,15 @@ class TestAccessKeys:
         access_key = client.storage.object_storages.access_keys.get(
             access_key="access_key",
             storage_id=0,
+        )
+        assert_matches_type(AccessKey, access_key, path=["response"])
+
+    @parametrize
+    def test_method_get_with_all_params(self, client: Gcore) -> None:
+        access_key = client.storage.object_storages.access_keys.get(
+            access_key="access_key",
+            storage_id=0,
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert_matches_type(AccessKey, access_key, path=["response"])
 
@@ -202,7 +224,9 @@ class TestAsyncAccessKeys:
     async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
         access_key = await async_client.storage.object_storages.access_keys.create(
             storage_id=0,
+            expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             read_only=False,
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert_matches_type(AccessKeyCreated, access_key, path=["response"])
 
@@ -244,6 +268,7 @@ class TestAsyncAccessKeys:
             limit=1,
             offset=0,
             order_by="order_by",
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert_matches_type(AsyncOffsetPage[AccessKey], access_key, path=["response"])
 
@@ -276,6 +301,15 @@ class TestAsyncAccessKeys:
         access_key = await async_client.storage.object_storages.access_keys.delete(
             access_key="access_key",
             storage_id=0,
+        )
+        assert access_key is None
+
+    @parametrize
+    async def test_method_delete_with_all_params(self, async_client: AsyncGcore) -> None:
+        access_key = await async_client.storage.object_storages.access_keys.delete(
+            access_key="access_key",
+            storage_id=0,
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert access_key is None
 
@@ -318,6 +352,15 @@ class TestAsyncAccessKeys:
         access_key = await async_client.storage.object_storages.access_keys.get(
             access_key="access_key",
             storage_id=0,
+        )
+        assert_matches_type(AccessKey, access_key, path=["response"])
+
+    @parametrize
+    async def test_method_get_with_all_params(self, async_client: AsyncGcore) -> None:
+        access_key = await async_client.storage.object_storages.access_keys.get(
+            access_key="access_key",
+            storage_id=0,
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert_matches_type(AccessKey, access_key, path=["response"])
 

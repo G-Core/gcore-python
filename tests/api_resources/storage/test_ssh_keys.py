@@ -27,6 +27,15 @@ class TestSSHKeys:
         assert_matches_type(SSHKey, ssh_key, path=["response"])
 
     @parametrize
+    def test_method_create_with_all_params(self, client: Gcore) -> None:
+        ssh_key = client.storage.ssh_keys.create(
+            name="my-production-key",
+            public_key="ssh-rsa AAAAB3NzaC1yc2EAAA... user@example.com",
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
+        )
+        assert_matches_type(SSHKey, ssh_key, path=["response"])
+
+    @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
         response = client.storage.ssh_keys.with_raw_response.create(
             name="my-production-key",
@@ -64,6 +73,7 @@ class TestSSHKeys:
             name="name",
             offset=0,
             order_by="order_by",
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert_matches_type(SyncOffsetPage[SSHKey], ssh_key, path=["response"])
 
@@ -90,14 +100,22 @@ class TestSSHKeys:
     @parametrize
     def test_method_delete(self, client: Gcore) -> None:
         ssh_key = client.storage.ssh_keys.delete(
-            0,
+            ssh_key_id=0,
+        )
+        assert ssh_key is None
+
+    @parametrize
+    def test_method_delete_with_all_params(self, client: Gcore) -> None:
+        ssh_key = client.storage.ssh_keys.delete(
+            ssh_key_id=0,
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert ssh_key is None
 
     @parametrize
     def test_raw_response_delete(self, client: Gcore) -> None:
         response = client.storage.ssh_keys.with_raw_response.delete(
-            0,
+            ssh_key_id=0,
         )
 
         assert response.is_closed is True
@@ -108,7 +126,7 @@ class TestSSHKeys:
     @parametrize
     def test_streaming_response_delete(self, client: Gcore) -> None:
         with client.storage.ssh_keys.with_streaming_response.delete(
-            0,
+            ssh_key_id=0,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -121,14 +139,22 @@ class TestSSHKeys:
     @parametrize
     def test_method_get(self, client: Gcore) -> None:
         ssh_key = client.storage.ssh_keys.get(
-            0,
+            ssh_key_id=0,
+        )
+        assert_matches_type(SSHKey, ssh_key, path=["response"])
+
+    @parametrize
+    def test_method_get_with_all_params(self, client: Gcore) -> None:
+        ssh_key = client.storage.ssh_keys.get(
+            ssh_key_id=0,
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert_matches_type(SSHKey, ssh_key, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Gcore) -> None:
         response = client.storage.ssh_keys.with_raw_response.get(
-            0,
+            ssh_key_id=0,
         )
 
         assert response.is_closed is True
@@ -139,7 +165,7 @@ class TestSSHKeys:
     @parametrize
     def test_streaming_response_get(self, client: Gcore) -> None:
         with client.storage.ssh_keys.with_streaming_response.get(
-            0,
+            ssh_key_id=0,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -160,6 +186,15 @@ class TestAsyncSSHKeys:
         ssh_key = await async_client.storage.ssh_keys.create(
             name="my-production-key",
             public_key="ssh-rsa AAAAB3NzaC1yc2EAAA... user@example.com",
+        )
+        assert_matches_type(SSHKey, ssh_key, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
+        ssh_key = await async_client.storage.ssh_keys.create(
+            name="my-production-key",
+            public_key="ssh-rsa AAAAB3NzaC1yc2EAAA... user@example.com",
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert_matches_type(SSHKey, ssh_key, path=["response"])
 
@@ -201,6 +236,7 @@ class TestAsyncSSHKeys:
             name="name",
             offset=0,
             order_by="order_by",
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert_matches_type(AsyncOffsetPage[SSHKey], ssh_key, path=["response"])
 
@@ -227,14 +263,22 @@ class TestAsyncSSHKeys:
     @parametrize
     async def test_method_delete(self, async_client: AsyncGcore) -> None:
         ssh_key = await async_client.storage.ssh_keys.delete(
-            0,
+            ssh_key_id=0,
+        )
+        assert ssh_key is None
+
+    @parametrize
+    async def test_method_delete_with_all_params(self, async_client: AsyncGcore) -> None:
+        ssh_key = await async_client.storage.ssh_keys.delete(
+            ssh_key_id=0,
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert ssh_key is None
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGcore) -> None:
         response = await async_client.storage.ssh_keys.with_raw_response.delete(
-            0,
+            ssh_key_id=0,
         )
 
         assert response.is_closed is True
@@ -245,7 +289,7 @@ class TestAsyncSSHKeys:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGcore) -> None:
         async with async_client.storage.ssh_keys.with_streaming_response.delete(
-            0,
+            ssh_key_id=0,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -258,14 +302,22 @@ class TestAsyncSSHKeys:
     @parametrize
     async def test_method_get(self, async_client: AsyncGcore) -> None:
         ssh_key = await async_client.storage.ssh_keys.get(
-            0,
+            ssh_key_id=0,
+        )
+        assert_matches_type(SSHKey, ssh_key, path=["response"])
+
+    @parametrize
+    async def test_method_get_with_all_params(self, async_client: AsyncGcore) -> None:
+        ssh_key = await async_client.storage.ssh_keys.get(
+            ssh_key_id=0,
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert_matches_type(SSHKey, ssh_key, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
         response = await async_client.storage.ssh_keys.with_raw_response.get(
-            0,
+            ssh_key_id=0,
         )
 
         assert response.is_closed is True
@@ -276,7 +328,7 @@ class TestAsyncSSHKeys:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
         async with async_client.storage.ssh_keys.with_streaming_response.get(
-            0,
+            ssh_key_id=0,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

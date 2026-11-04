@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 from typing import Iterable
-from typing_extensions import Literal, TypedDict
+from typing_extensions import Literal, Annotated, TypedDict
+
+from ..._utils import PropertyInfo
 
 __all__ = ["SftpStorageUpdateParams"]
 
@@ -45,3 +47,5 @@ class SftpStorageUpdateParams(TypedDict, total=False):
     Replaces all existing keys. If omitted, existing keys are unchanged. If empty
     array, all keys are removed.
     """
+
+    accept_language: Annotated[str, PropertyInfo(alias="Accept-Language")]

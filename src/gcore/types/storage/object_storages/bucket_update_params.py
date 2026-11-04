@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import Required, Annotated, TypedDict
 
 from ...._types import SequenceNotStr
+from ...._utils import PropertyInfo
 
 __all__ = ["BucketUpdateParams", "Cors", "Lifecycle", "Policy"]
 
@@ -13,17 +14,27 @@ class BucketUpdateParams(TypedDict, total=False):
     storage_id: Required[int]
 
     cors: Cors
+    """
+    Not supported on S3 Fast storages: any CORS object returns 400, omit it or send
+    null.
+    """
 
     lifecycle: Lifecycle
 
     policy: Policy
 
+    accept_language: Annotated[str, PropertyInfo(alias="Accept-Language")]
+
 
 class Cors(TypedDict, total=False):
+    """
+    Not supported on S3 Fast storages: any CORS object returns 400, omit it or send null.
+    """
+
     allowed_origins: SequenceNotStr[str]
     """Web domains allowed to make direct browser requests.
 
-    Send an empty array to remove CORS configuration.
+    Send an empty array to remove CORS. Not applicable to S3 Fast storages.
     """
 
 

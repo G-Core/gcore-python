@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Iterable
 from typing_extensions import Annotated, TypedDict
 
 from ..._types import SequenceNotStr
@@ -25,6 +26,13 @@ class StatisticGetUsageSeriesParams(TypedDict, total=False):
     source: int
     """a Source is deprecated parameter"""
 
+    storage_ids: Iterable[int]
+    """
+    a StorageIDs list of filter, combined with storages. Each ID selects exactly
+    that storage, deleted ones included, narrowed by locations. An ID that is not
+    one of the client's storages fails the request with 404.
+    """
+
     storages: SequenceNotStr[str]
     """a Storages list of filter"""
 
@@ -36,3 +44,5 @@ class StatisticGetUsageSeriesParams(TypedDict, total=False):
     a TsString is configurator of response time format switch response from unix
     time format to RFC3339 (2006-01-02T15:04:05Z07:00)
     """
+
+    accept_language: Annotated[str, PropertyInfo(alias="Accept-Language")]

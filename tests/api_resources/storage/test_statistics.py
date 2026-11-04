@@ -30,8 +30,10 @@ class TestStatistics:
         statistic = client.storage.statistics.get_usage_aggregated(
             from_="2006-01-02",
             locations=["s-region-1", "s-region-2"],
+            storage_ids=[12345],
             storages=["123-myStorage"],
             to="2006-01-02",
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert_matches_type(UsageTotal, statistic, path=["response"])
 
@@ -67,9 +69,11 @@ class TestStatistics:
             granularity="12h",
             locations=["s-region-1", "s-region-2"],
             source=0,
+            storage_ids=[12345],
             storages=["123-myStorage"],
             to="2006-01-02",
             ts_string=True,
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert_matches_type(StatisticGetUsageSeriesResponse, statistic, path=["response"])
 
@@ -109,8 +113,10 @@ class TestAsyncStatistics:
         statistic = await async_client.storage.statistics.get_usage_aggregated(
             from_="2006-01-02",
             locations=["s-region-1", "s-region-2"],
+            storage_ids=[12345],
             storages=["123-myStorage"],
             to="2006-01-02",
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert_matches_type(UsageTotal, statistic, path=["response"])
 
@@ -146,9 +152,11 @@ class TestAsyncStatistics:
             granularity="12h",
             locations=["s-region-1", "s-region-2"],
             source=0,
+            storage_ids=[12345],
             storages=["123-myStorage"],
             to="2006-01-02",
             ts_string=True,
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert_matches_type(StatisticGetUsageSeriesResponse, statistic, path=["response"])
 

@@ -34,6 +34,7 @@ class TestBuckets:
             cors={"allowed_origins": ["https://example.com"]},
             lifecycle={"expiration_days": 30},
             policy={"is_public": True},
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert_matches_type(Bucket, bucket, path=["response"])
 
@@ -79,6 +80,7 @@ class TestBuckets:
             cors={"allowed_origins": ["https://example.com"]},
             lifecycle={"expiration_days": 30},
             policy={"is_public": True},
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert_matches_type(Bucket, bucket, path=["response"])
 
@@ -129,6 +131,7 @@ class TestBuckets:
             storage_id=0,
             limit=1,
             offset=0,
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert_matches_type(SyncOffsetPage[Bucket], bucket, path=["response"])
 
@@ -161,6 +164,15 @@ class TestBuckets:
         bucket = client.storage.object_storages.buckets.delete(
             name="name",
             storage_id=0,
+        )
+        assert bucket is None
+
+    @parametrize
+    def test_method_delete_with_all_params(self, client: Gcore) -> None:
+        bucket = client.storage.object_storages.buckets.delete(
+            name="name",
+            storage_id=0,
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert bucket is None
 
@@ -203,6 +215,15 @@ class TestBuckets:
         bucket = client.storage.object_storages.buckets.get(
             name="name",
             storage_id=0,
+        )
+        assert_matches_type(Bucket, bucket, path=["response"])
+
+    @parametrize
+    def test_method_get_with_all_params(self, client: Gcore) -> None:
+        bucket = client.storage.object_storages.buckets.get(
+            name="name",
+            storage_id=0,
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert_matches_type(Bucket, bucket, path=["response"])
 
@@ -262,6 +283,7 @@ class TestAsyncBuckets:
             cors={"allowed_origins": ["https://example.com"]},
             lifecycle={"expiration_days": 30},
             policy={"is_public": True},
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert_matches_type(Bucket, bucket, path=["response"])
 
@@ -307,6 +329,7 @@ class TestAsyncBuckets:
             cors={"allowed_origins": ["https://example.com"]},
             lifecycle={"expiration_days": 30},
             policy={"is_public": True},
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert_matches_type(Bucket, bucket, path=["response"])
 
@@ -357,6 +380,7 @@ class TestAsyncBuckets:
             storage_id=0,
             limit=1,
             offset=0,
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert_matches_type(AsyncOffsetPage[Bucket], bucket, path=["response"])
 
@@ -389,6 +413,15 @@ class TestAsyncBuckets:
         bucket = await async_client.storage.object_storages.buckets.delete(
             name="name",
             storage_id=0,
+        )
+        assert bucket is None
+
+    @parametrize
+    async def test_method_delete_with_all_params(self, async_client: AsyncGcore) -> None:
+        bucket = await async_client.storage.object_storages.buckets.delete(
+            name="name",
+            storage_id=0,
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert bucket is None
 
@@ -431,6 +464,15 @@ class TestAsyncBuckets:
         bucket = await async_client.storage.object_storages.buckets.get(
             name="name",
             storage_id=0,
+        )
+        assert_matches_type(Bucket, bucket, path=["response"])
+
+    @parametrize
+    async def test_method_get_with_all_params(self, async_client: AsyncGcore) -> None:
+        bucket = await async_client.storage.object_storages.buckets.get(
+            name="name",
+            storage_id=0,
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert_matches_type(Bucket, bucket, path=["response"])
 

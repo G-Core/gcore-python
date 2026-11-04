@@ -27,6 +27,15 @@ class TestObjectStorages:
         assert_matches_type(S3StorageCreated, object_storage, path=["response"])
 
     @parametrize
+    def test_method_create_with_all_params(self, client: Gcore) -> None:
+        object_storage = client.storage.object_storages.create(
+            location_name="s-region-1",
+            name="my-storage-prod",
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
+        )
+        assert_matches_type(S3StorageCreated, object_storage, path=["response"])
+
+    @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
         response = client.storage.object_storages.with_raw_response.create(
             location_name="s-region-1",
@@ -69,6 +78,7 @@ class TestObjectStorages:
             provisioning_status="active",
             show_deleted=True,
             type="standard",
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert_matches_type(SyncOffsetPage[S3Storage], object_storage, path=["response"])
 
@@ -95,14 +105,22 @@ class TestObjectStorages:
     @parametrize
     def test_method_delete(self, client: Gcore) -> None:
         object_storage = client.storage.object_storages.delete(
-            0,
+            storage_id=0,
+        )
+        assert object_storage is None
+
+    @parametrize
+    def test_method_delete_with_all_params(self, client: Gcore) -> None:
+        object_storage = client.storage.object_storages.delete(
+            storage_id=0,
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert object_storage is None
 
     @parametrize
     def test_raw_response_delete(self, client: Gcore) -> None:
         response = client.storage.object_storages.with_raw_response.delete(
-            0,
+            storage_id=0,
         )
 
         assert response.is_closed is True
@@ -113,7 +131,7 @@ class TestObjectStorages:
     @parametrize
     def test_streaming_response_delete(self, client: Gcore) -> None:
         with client.storage.object_storages.with_streaming_response.delete(
-            0,
+            storage_id=0,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -126,14 +144,22 @@ class TestObjectStorages:
     @parametrize
     def test_method_get(self, client: Gcore) -> None:
         object_storage = client.storage.object_storages.get(
-            0,
+            storage_id=0,
+        )
+        assert_matches_type(S3Storage, object_storage, path=["response"])
+
+    @parametrize
+    def test_method_get_with_all_params(self, client: Gcore) -> None:
+        object_storage = client.storage.object_storages.get(
+            storage_id=0,
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert_matches_type(S3Storage, object_storage, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Gcore) -> None:
         response = client.storage.object_storages.with_raw_response.get(
-            0,
+            storage_id=0,
         )
 
         assert response.is_closed is True
@@ -144,7 +170,7 @@ class TestObjectStorages:
     @parametrize
     def test_streaming_response_get(self, client: Gcore) -> None:
         with client.storage.object_storages.with_streaming_response.get(
-            0,
+            storage_id=0,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -157,14 +183,22 @@ class TestObjectStorages:
     @parametrize
     def test_method_restore(self, client: Gcore) -> None:
         object_storage = client.storage.object_storages.restore(
-            0,
+            storage_id=0,
+        )
+        assert object_storage is None
+
+    @parametrize
+    def test_method_restore_with_all_params(self, client: Gcore) -> None:
+        object_storage = client.storage.object_storages.restore(
+            storage_id=0,
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert object_storage is None
 
     @parametrize
     def test_raw_response_restore(self, client: Gcore) -> None:
         response = client.storage.object_storages.with_raw_response.restore(
-            0,
+            storage_id=0,
         )
 
         assert response.is_closed is True
@@ -175,7 +209,7 @@ class TestObjectStorages:
     @parametrize
     def test_streaming_response_restore(self, client: Gcore) -> None:
         with client.storage.object_storages.with_streaming_response.restore(
-            0,
+            storage_id=0,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -196,6 +230,15 @@ class TestAsyncObjectStorages:
         object_storage = await async_client.storage.object_storages.create(
             location_name="s-region-1",
             name="my-storage-prod",
+        )
+        assert_matches_type(S3StorageCreated, object_storage, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
+        object_storage = await async_client.storage.object_storages.create(
+            location_name="s-region-1",
+            name="my-storage-prod",
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert_matches_type(S3StorageCreated, object_storage, path=["response"])
 
@@ -242,6 +285,7 @@ class TestAsyncObjectStorages:
             provisioning_status="active",
             show_deleted=True,
             type="standard",
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert_matches_type(AsyncOffsetPage[S3Storage], object_storage, path=["response"])
 
@@ -268,14 +312,22 @@ class TestAsyncObjectStorages:
     @parametrize
     async def test_method_delete(self, async_client: AsyncGcore) -> None:
         object_storage = await async_client.storage.object_storages.delete(
-            0,
+            storage_id=0,
+        )
+        assert object_storage is None
+
+    @parametrize
+    async def test_method_delete_with_all_params(self, async_client: AsyncGcore) -> None:
+        object_storage = await async_client.storage.object_storages.delete(
+            storage_id=0,
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert object_storage is None
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGcore) -> None:
         response = await async_client.storage.object_storages.with_raw_response.delete(
-            0,
+            storage_id=0,
         )
 
         assert response.is_closed is True
@@ -286,7 +338,7 @@ class TestAsyncObjectStorages:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGcore) -> None:
         async with async_client.storage.object_storages.with_streaming_response.delete(
-            0,
+            storage_id=0,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -299,14 +351,22 @@ class TestAsyncObjectStorages:
     @parametrize
     async def test_method_get(self, async_client: AsyncGcore) -> None:
         object_storage = await async_client.storage.object_storages.get(
-            0,
+            storage_id=0,
+        )
+        assert_matches_type(S3Storage, object_storage, path=["response"])
+
+    @parametrize
+    async def test_method_get_with_all_params(self, async_client: AsyncGcore) -> None:
+        object_storage = await async_client.storage.object_storages.get(
+            storage_id=0,
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert_matches_type(S3Storage, object_storage, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
         response = await async_client.storage.object_storages.with_raw_response.get(
-            0,
+            storage_id=0,
         )
 
         assert response.is_closed is True
@@ -317,7 +377,7 @@ class TestAsyncObjectStorages:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
         async with async_client.storage.object_storages.with_streaming_response.get(
-            0,
+            storage_id=0,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -330,14 +390,22 @@ class TestAsyncObjectStorages:
     @parametrize
     async def test_method_restore(self, async_client: AsyncGcore) -> None:
         object_storage = await async_client.storage.object_storages.restore(
-            0,
+            storage_id=0,
+        )
+        assert object_storage is None
+
+    @parametrize
+    async def test_method_restore_with_all_params(self, async_client: AsyncGcore) -> None:
+        object_storage = await async_client.storage.object_storages.restore(
+            storage_id=0,
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert object_storage is None
 
     @parametrize
     async def test_raw_response_restore(self, async_client: AsyncGcore) -> None:
         response = await async_client.storage.object_storages.with_raw_response.restore(
-            0,
+            storage_id=0,
         )
 
         assert response.is_closed is True
@@ -348,7 +416,7 @@ class TestAsyncObjectStorages:
     @parametrize
     async def test_streaming_response_restore(self, async_client: AsyncGcore) -> None:
         async with async_client.storage.object_storages.with_streaming_response.restore(
-            0,
+            storage_id=0,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

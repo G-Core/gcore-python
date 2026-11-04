@@ -42,6 +42,7 @@ class TestSftpStorages:
             password="password",
             server_alias="my-storage.example.com",
             ssh_key_ids=[1, 2, 3],
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert_matches_type(SftpStorageCreated, sftp_storage, path=["response"])
 
@@ -91,6 +92,7 @@ class TestSftpStorages:
             password_mode="auto",
             server_alias="my-storage.example.com",
             ssh_key_ids=[1, 2, 3],
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert_matches_type(SftpStorageCreated, sftp_storage, path=["response"])
 
@@ -134,6 +136,7 @@ class TestSftpStorages:
             order_by="order_by",
             provisioning_status="active",
             show_deleted=True,
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert_matches_type(SyncOffsetPage[SftpStorage], sftp_storage, path=["response"])
 
@@ -160,14 +163,22 @@ class TestSftpStorages:
     @parametrize
     def test_method_delete(self, client: Gcore) -> None:
         sftp_storage = client.storage.sftp_storages.delete(
-            0,
+            storage_id=0,
+        )
+        assert sftp_storage is None
+
+    @parametrize
+    def test_method_delete_with_all_params(self, client: Gcore) -> None:
+        sftp_storage = client.storage.sftp_storages.delete(
+            storage_id=0,
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert sftp_storage is None
 
     @parametrize
     def test_raw_response_delete(self, client: Gcore) -> None:
         response = client.storage.sftp_storages.with_raw_response.delete(
-            0,
+            storage_id=0,
         )
 
         assert response.is_closed is True
@@ -178,7 +189,7 @@ class TestSftpStorages:
     @parametrize
     def test_streaming_response_delete(self, client: Gcore) -> None:
         with client.storage.sftp_storages.with_streaming_response.delete(
-            0,
+            storage_id=0,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -191,14 +202,22 @@ class TestSftpStorages:
     @parametrize
     def test_method_get(self, client: Gcore) -> None:
         sftp_storage = client.storage.sftp_storages.get(
-            0,
+            storage_id=0,
+        )
+        assert_matches_type(SftpStorage, sftp_storage, path=["response"])
+
+    @parametrize
+    def test_method_get_with_all_params(self, client: Gcore) -> None:
+        sftp_storage = client.storage.sftp_storages.get(
+            storage_id=0,
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert_matches_type(SftpStorage, sftp_storage, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Gcore) -> None:
         response = client.storage.sftp_storages.with_raw_response.get(
-            0,
+            storage_id=0,
         )
 
         assert response.is_closed is True
@@ -209,7 +228,7 @@ class TestSftpStorages:
     @parametrize
     def test_streaming_response_get(self, client: Gcore) -> None:
         with client.storage.sftp_storages.with_streaming_response.get(
-            0,
+            storage_id=0,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -246,6 +265,7 @@ class TestAsyncSftpStorages:
             password="password",
             server_alias="my-storage.example.com",
             ssh_key_ids=[1, 2, 3],
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert_matches_type(SftpStorageCreated, sftp_storage, path=["response"])
 
@@ -295,6 +315,7 @@ class TestAsyncSftpStorages:
             password_mode="auto",
             server_alias="my-storage.example.com",
             ssh_key_ids=[1, 2, 3],
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert_matches_type(SftpStorageCreated, sftp_storage, path=["response"])
 
@@ -338,6 +359,7 @@ class TestAsyncSftpStorages:
             order_by="order_by",
             provisioning_status="active",
             show_deleted=True,
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert_matches_type(AsyncOffsetPage[SftpStorage], sftp_storage, path=["response"])
 
@@ -364,14 +386,22 @@ class TestAsyncSftpStorages:
     @parametrize
     async def test_method_delete(self, async_client: AsyncGcore) -> None:
         sftp_storage = await async_client.storage.sftp_storages.delete(
-            0,
+            storage_id=0,
+        )
+        assert sftp_storage is None
+
+    @parametrize
+    async def test_method_delete_with_all_params(self, async_client: AsyncGcore) -> None:
+        sftp_storage = await async_client.storage.sftp_storages.delete(
+            storage_id=0,
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert sftp_storage is None
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGcore) -> None:
         response = await async_client.storage.sftp_storages.with_raw_response.delete(
-            0,
+            storage_id=0,
         )
 
         assert response.is_closed is True
@@ -382,7 +412,7 @@ class TestAsyncSftpStorages:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGcore) -> None:
         async with async_client.storage.sftp_storages.with_streaming_response.delete(
-            0,
+            storage_id=0,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -395,14 +425,22 @@ class TestAsyncSftpStorages:
     @parametrize
     async def test_method_get(self, async_client: AsyncGcore) -> None:
         sftp_storage = await async_client.storage.sftp_storages.get(
-            0,
+            storage_id=0,
+        )
+        assert_matches_type(SftpStorage, sftp_storage, path=["response"])
+
+    @parametrize
+    async def test_method_get_with_all_params(self, async_client: AsyncGcore) -> None:
+        sftp_storage = await async_client.storage.sftp_storages.get(
+            storage_id=0,
+            accept_language="de-DE,de;q=0.9,en;q=0.8",
         )
         assert_matches_type(SftpStorage, sftp_storage, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
         response = await async_client.storage.sftp_storages.with_raw_response.get(
-            0,
+            storage_id=0,
         )
 
         assert response.is_closed is True
@@ -413,7 +451,7 @@ class TestAsyncSftpStorages:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
         async with async_client.storage.sftp_storages.with_streaming_response.get(
-            0,
+            storage_id=0,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

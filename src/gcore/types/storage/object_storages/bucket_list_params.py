@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing_extensions import Annotated, TypedDict
+
+from ...._utils import PropertyInfo
 
 __all__ = ["BucketListParams"]
 
@@ -13,3 +15,5 @@ class BucketListParams(TypedDict, total=False):
 
     offset: int
     """Number of records to skip before beginning to return results"""
+
+    accept_language: Annotated[str, PropertyInfo(alias="Accept-Language")]

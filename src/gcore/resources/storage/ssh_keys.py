@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ..._utils import path_template, maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, strip_not_given, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -51,6 +51,7 @@ class SSHKeysResource(SyncAPIResource):
         *,
         name: str,
         public_key: str,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -76,6 +77,7 @@ class SSHKeysResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return self._post(
             "/storage/v4/ssh_keys",
             body=maybe_transform(
@@ -98,6 +100,7 @@ class SSHKeysResource(SyncAPIResource):
         name: str | Omit = omit,
         offset: int | Omit = omit,
         order_by: str | Omit = omit,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -123,6 +126,7 @@ class SSHKeysResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return self._get_api_list(
             "/storage/v4/ssh_keys",
             page=SyncOffsetPage[SSHKey],
@@ -148,6 +152,7 @@ class SSHKeysResource(SyncAPIResource):
         self,
         ssh_key_id: int,
         *,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -170,6 +175,7 @@ class SSHKeysResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return self._delete(
             path_template("/storage/v4/ssh_keys/{ssh_key_id}", ssh_key_id=ssh_key_id),
             options=make_request_options(
@@ -182,6 +188,7 @@ class SSHKeysResource(SyncAPIResource):
         self,
         ssh_key_id: int,
         *,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -201,6 +208,7 @@ class SSHKeysResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return self._get(
             path_template("/storage/v4/ssh_keys/{ssh_key_id}", ssh_key_id=ssh_key_id),
             options=make_request_options(
@@ -239,6 +247,7 @@ class AsyncSSHKeysResource(AsyncAPIResource):
         *,
         name: str,
         public_key: str,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -264,6 +273,7 @@ class AsyncSSHKeysResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return await self._post(
             "/storage/v4/ssh_keys",
             body=await async_maybe_transform(
@@ -286,6 +296,7 @@ class AsyncSSHKeysResource(AsyncAPIResource):
         name: str | Omit = omit,
         offset: int | Omit = omit,
         order_by: str | Omit = omit,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -311,6 +322,7 @@ class AsyncSSHKeysResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return self._get_api_list(
             "/storage/v4/ssh_keys",
             page=AsyncOffsetPage[SSHKey],
@@ -336,6 +348,7 @@ class AsyncSSHKeysResource(AsyncAPIResource):
         self,
         ssh_key_id: int,
         *,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -358,6 +371,7 @@ class AsyncSSHKeysResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return await self._delete(
             path_template("/storage/v4/ssh_keys/{ssh_key_id}", ssh_key_id=ssh_key_id),
             options=make_request_options(
@@ -370,6 +384,7 @@ class AsyncSSHKeysResource(AsyncAPIResource):
         self,
         ssh_key_id: int,
         *,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -389,6 +404,7 @@ class AsyncSSHKeysResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return await self._get(
             path_template("/storage/v4/ssh_keys/{ssh_key_id}", ssh_key_id=ssh_key_id),
             options=make_request_options(

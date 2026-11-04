@@ -15,7 +15,7 @@ from .buckets import (
     AsyncBucketsResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ...._utils import path_template, maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, strip_not_given, async_maybe_transform
 from ...._compat import cached_property
 from .access_keys import (
     AccessKeysResource,
@@ -84,6 +84,7 @@ class ObjectStoragesResource(SyncAPIResource):
         *,
         location_name: str,
         name: str,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -108,6 +109,7 @@ class ObjectStoragesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return self._post(
             "/storage/v4/object_storages",
             body=maybe_transform(
@@ -135,6 +137,7 @@ class ObjectStoragesResource(SyncAPIResource):
         provisioning_status: Literal["active", "creating", "updating", "deleting", "deleted"] | Omit = omit,
         show_deleted: bool | Omit = omit,
         type: Literal["standard", "fast"] | Omit = omit,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -174,6 +177,7 @@ class ObjectStoragesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return self._get_api_list(
             "/storage/v4/object_storages",
             page=SyncOffsetPage[S3Storage],
@@ -204,6 +208,7 @@ class ObjectStoragesResource(SyncAPIResource):
         self,
         storage_id: int,
         *,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -229,6 +234,7 @@ class ObjectStoragesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return self._delete(
             path_template("/storage/v4/object_storages/{storage_id}", storage_id=storage_id),
             options=make_request_options(
@@ -241,6 +247,7 @@ class ObjectStoragesResource(SyncAPIResource):
         self,
         storage_id: int,
         *,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -260,6 +267,7 @@ class ObjectStoragesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return self._get(
             path_template("/storage/v4/object_storages/{storage_id}", storage_id=storage_id),
             options=make_request_options(
@@ -272,6 +280,7 @@ class ObjectStoragesResource(SyncAPIResource):
         self,
         storage_id: int,
         *,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -293,6 +302,7 @@ class ObjectStoragesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return self._post(
             path_template("/storage/v4/object_storages/{storage_id}/restore", storage_id=storage_id),
             options=make_request_options(
@@ -345,6 +355,7 @@ class AsyncObjectStoragesResource(AsyncAPIResource):
         *,
         location_name: str,
         name: str,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -369,6 +380,7 @@ class AsyncObjectStoragesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return await self._post(
             "/storage/v4/object_storages",
             body=await async_maybe_transform(
@@ -396,6 +408,7 @@ class AsyncObjectStoragesResource(AsyncAPIResource):
         provisioning_status: Literal["active", "creating", "updating", "deleting", "deleted"] | Omit = omit,
         show_deleted: bool | Omit = omit,
         type: Literal["standard", "fast"] | Omit = omit,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -435,6 +448,7 @@ class AsyncObjectStoragesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return self._get_api_list(
             "/storage/v4/object_storages",
             page=AsyncOffsetPage[S3Storage],
@@ -465,6 +479,7 @@ class AsyncObjectStoragesResource(AsyncAPIResource):
         self,
         storage_id: int,
         *,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -490,6 +505,7 @@ class AsyncObjectStoragesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return await self._delete(
             path_template("/storage/v4/object_storages/{storage_id}", storage_id=storage_id),
             options=make_request_options(
@@ -502,6 +518,7 @@ class AsyncObjectStoragesResource(AsyncAPIResource):
         self,
         storage_id: int,
         *,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -521,6 +538,7 @@ class AsyncObjectStoragesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return await self._get(
             path_template("/storage/v4/object_storages/{storage_id}", storage_id=storage_id),
             options=make_request_options(
@@ -533,6 +551,7 @@ class AsyncObjectStoragesResource(AsyncAPIResource):
         self,
         storage_id: int,
         *,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -554,6 +573,7 @@ class AsyncObjectStoragesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return await self._post(
             path_template("/storage/v4/object_storages/{storage_id}/restore", storage_id=storage_id),
             options=make_request_options(

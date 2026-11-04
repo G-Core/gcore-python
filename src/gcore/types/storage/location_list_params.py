@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, TypedDict
+from typing_extensions import Literal, Annotated, TypedDict
+
+from ..._utils import PropertyInfo
 
 __all__ = ["LocationListParams"]
 
@@ -21,3 +23,5 @@ class LocationListParams(TypedDict, total=False):
     Filter by location type: object storage performance tier (standard, fast) or
     sftp
     """
+
+    accept_language: Annotated[str, PropertyInfo(alias="Accept-Language")]

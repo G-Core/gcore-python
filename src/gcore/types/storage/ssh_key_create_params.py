@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import Required, Annotated, TypedDict
+
+from ..._utils import PropertyInfo
 
 __all__ = ["SSHKeyCreateParams"]
 
@@ -13,3 +15,5 @@ class SSHKeyCreateParams(TypedDict, total=False):
 
     public_key: Required[str]
     """The SSH public key content (ssh-rsa or ssh-ed25519 format)"""
+
+    accept_language: Annotated[str, PropertyInfo(alias="Accept-Language")]

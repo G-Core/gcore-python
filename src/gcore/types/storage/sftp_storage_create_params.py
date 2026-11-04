@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 from typing import Iterable
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
+
+from ..._utils import PropertyInfo
 
 __all__ = ["SftpStorageCreateParams"]
 
@@ -49,3 +51,5 @@ class SftpStorageCreateParams(TypedDict, total=False):
 
     If omitted, no keys are linked.
     """
+
+    accept_language: Annotated[str, PropertyInfo(alias="Accept-Language")]

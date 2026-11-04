@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import Required, Annotated, TypedDict
+
+from ..._utils import PropertyInfo
 
 __all__ = ["ObjectStorageCreateParams"]
 
@@ -13,3 +15,5 @@ class ObjectStorageCreateParams(TypedDict, total=False):
 
     name: Required[str]
     """User-defined name for the storage instance"""
+
+    accept_language: Annotated[str, PropertyInfo(alias="Accept-Language")]

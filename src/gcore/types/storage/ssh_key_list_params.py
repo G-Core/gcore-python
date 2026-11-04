@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing_extensions import Annotated, TypedDict
+
+from ..._utils import PropertyInfo
 
 __all__ = ["SSHKeyListParams"]
 
@@ -18,3 +20,5 @@ class SSHKeyListParams(TypedDict, total=False):
     """Number of items to skip"""
 
     order_by: str
+
+    accept_language: Annotated[str, PropertyInfo(alias="Accept-Language")]

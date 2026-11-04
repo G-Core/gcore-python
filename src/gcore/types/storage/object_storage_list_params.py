@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, TypedDict
+from typing_extensions import Literal, Annotated, TypedDict
+
+from ..._utils import PropertyInfo
 
 __all__ = ["ObjectStorageListParams"]
 
@@ -38,3 +40,5 @@ class ObjectStorageListParams(TypedDict, total=False):
     any other backend (Backblaze, Wasabi) report a "standard" type but are never
     returned by this filter — omit the parameter to include them.
     """
+
+    accept_language: Annotated[str, PropertyInfo(alias="Accept-Language")]

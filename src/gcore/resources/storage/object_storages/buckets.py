@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ...._utils import path_template, maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, strip_not_given, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -54,6 +54,7 @@ class BucketsResource(SyncAPIResource):
         cors: bucket_create_params.Cors | Omit = omit,
         lifecycle: bucket_create_params.Lifecycle | Omit = omit,
         policy: bucket_create_params.Policy | Omit = omit,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -67,6 +68,9 @@ class BucketsResource(SyncAPIResource):
         Args:
           name: Name of the bucket to create
 
+          cors: Not supported on S3 Fast storages: any CORS object returns 400, omit it or send
+              null.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -75,6 +79,7 @@ class BucketsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return self._post(
             path_template("/storage/v4/object_storages/{storage_id}/buckets", storage_id=storage_id),
             body=maybe_transform(
@@ -100,6 +105,7 @@ class BucketsResource(SyncAPIResource):
         cors: bucket_update_params.Cors | Omit = omit,
         lifecycle: bucket_update_params.Lifecycle | Omit = omit,
         policy: bucket_update_params.Policy | Omit = omit,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -114,10 +120,14 @@ class BucketsResource(SyncAPIResource):
 
         Lifecycle: set `expiration_days` to a positive integer to enable, null or 0 to
         remove. Negative values return 400. CORS: set `allowed_origins` to a non-empty
-        array to configure, empty array to remove. Policy: set `is_public` to true/false
-        to update.
+        array to configure, empty array to remove. S3 Fast storages do not support CORS:
+        any cors object returns 400, omit it or send null. Policy: set `is_public` to
+        true/false to update.
 
         Args:
+          cors: Not supported on S3 Fast storages: any CORS object returns 400, omit it or send
+              null.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -128,6 +138,7 @@ class BucketsResource(SyncAPIResource):
         """
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return self._patch(
             path_template("/storage/v4/object_storages/{storage_id}/buckets/{name}", storage_id=storage_id, name=name),
             body=maybe_transform(
@@ -150,6 +161,7 @@ class BucketsResource(SyncAPIResource):
         *,
         limit: int | Omit = omit,
         offset: int | Omit = omit,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -175,6 +187,7 @@ class BucketsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return self._get_api_list(
             path_template("/storage/v4/object_storages/{storage_id}/buckets", storage_id=storage_id),
             page=SyncOffsetPage[Bucket],
@@ -199,6 +212,7 @@ class BucketsResource(SyncAPIResource):
         name: str,
         *,
         storage_id: int,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -227,6 +241,7 @@ class BucketsResource(SyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return self._delete(
             path_template("/storage/v4/object_storages/{storage_id}/buckets/{name}", storage_id=storage_id, name=name),
             options=make_request_options(
@@ -240,6 +255,7 @@ class BucketsResource(SyncAPIResource):
         name: str,
         *,
         storage_id: int,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -262,6 +278,7 @@ class BucketsResource(SyncAPIResource):
         """
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return self._get(
             path_template("/storage/v4/object_storages/{storage_id}/buckets/{name}", storage_id=storage_id, name=name),
             options=make_request_options(
@@ -303,6 +320,7 @@ class AsyncBucketsResource(AsyncAPIResource):
         cors: bucket_create_params.Cors | Omit = omit,
         lifecycle: bucket_create_params.Lifecycle | Omit = omit,
         policy: bucket_create_params.Policy | Omit = omit,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -316,6 +334,9 @@ class AsyncBucketsResource(AsyncAPIResource):
         Args:
           name: Name of the bucket to create
 
+          cors: Not supported on S3 Fast storages: any CORS object returns 400, omit it or send
+              null.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -324,6 +345,7 @@ class AsyncBucketsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return await self._post(
             path_template("/storage/v4/object_storages/{storage_id}/buckets", storage_id=storage_id),
             body=await async_maybe_transform(
@@ -349,6 +371,7 @@ class AsyncBucketsResource(AsyncAPIResource):
         cors: bucket_update_params.Cors | Omit = omit,
         lifecycle: bucket_update_params.Lifecycle | Omit = omit,
         policy: bucket_update_params.Policy | Omit = omit,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -363,10 +386,14 @@ class AsyncBucketsResource(AsyncAPIResource):
 
         Lifecycle: set `expiration_days` to a positive integer to enable, null or 0 to
         remove. Negative values return 400. CORS: set `allowed_origins` to a non-empty
-        array to configure, empty array to remove. Policy: set `is_public` to true/false
-        to update.
+        array to configure, empty array to remove. S3 Fast storages do not support CORS:
+        any cors object returns 400, omit it or send null. Policy: set `is_public` to
+        true/false to update.
 
         Args:
+          cors: Not supported on S3 Fast storages: any CORS object returns 400, omit it or send
+              null.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -377,6 +404,7 @@ class AsyncBucketsResource(AsyncAPIResource):
         """
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return await self._patch(
             path_template("/storage/v4/object_storages/{storage_id}/buckets/{name}", storage_id=storage_id, name=name),
             body=await async_maybe_transform(
@@ -399,6 +427,7 @@ class AsyncBucketsResource(AsyncAPIResource):
         *,
         limit: int | Omit = omit,
         offset: int | Omit = omit,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -424,6 +453,7 @@ class AsyncBucketsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return self._get_api_list(
             path_template("/storage/v4/object_storages/{storage_id}/buckets", storage_id=storage_id),
             page=AsyncOffsetPage[Bucket],
@@ -448,6 +478,7 @@ class AsyncBucketsResource(AsyncAPIResource):
         name: str,
         *,
         storage_id: int,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -476,6 +507,7 @@ class AsyncBucketsResource(AsyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return await self._delete(
             path_template("/storage/v4/object_storages/{storage_id}/buckets/{name}", storage_id=storage_id, name=name),
             options=make_request_options(
@@ -489,6 +521,7 @@ class AsyncBucketsResource(AsyncAPIResource):
         name: str,
         *,
         storage_id: int,
+        accept_language: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -511,6 +544,7 @@ class AsyncBucketsResource(AsyncAPIResource):
         """
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        extra_headers = {**strip_not_given({"Accept-Language": accept_language}), **(extra_headers or {})}
         return await self._get(
             path_template("/storage/v4/object_storages/{storage_id}/buckets/{name}", storage_id=storage_id, name=name),
             options=make_request_options(
