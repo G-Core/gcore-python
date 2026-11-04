@@ -142,6 +142,9 @@ class DomainsResource(SyncAPIResource):
 
     @cached_property
     def settings(self) -> SettingsResource:
+        """
+        WAAP domain settings control the DDoS protection thresholds and API detection of a domain.
+        """
         return SettingsResource(self._client)
 
     @cached_property
@@ -465,6 +468,9 @@ class AsyncDomainsResource(AsyncAPIResource):
 
     @cached_property
     def settings(self) -> AsyncSettingsResource:
+        """
+        WAAP domain settings control the DDoS protection thresholds and API detection of a domain.
+        """
         return AsyncSettingsResource(self._client)
 
     @cached_property
@@ -803,6 +809,9 @@ class DomainsResourceWithRawResponse:
 
     @cached_property
     def settings(self) -> SettingsResourceWithRawResponse:
+        """
+        WAAP domain settings control the DDoS protection thresholds and API detection of a domain.
+        """
         return SettingsResourceWithRawResponse(self._domains.settings)
 
     @cached_property
@@ -885,6 +894,9 @@ class AsyncDomainsResourceWithRawResponse:
 
     @cached_property
     def settings(self) -> AsyncSettingsResourceWithRawResponse:
+        """
+        WAAP domain settings control the DDoS protection thresholds and API detection of a domain.
+        """
         return AsyncSettingsResourceWithRawResponse(self._domains.settings)
 
     @cached_property
@@ -967,6 +979,9 @@ class DomainsResourceWithStreamingResponse:
 
     @cached_property
     def settings(self) -> SettingsResourceWithStreamingResponse:
+        """
+        WAAP domain settings control the DDoS protection thresholds and API detection of a domain.
+        """
         return SettingsResourceWithStreamingResponse(self._domains.settings)
 
     @cached_property
@@ -1049,6 +1064,9 @@ class AsyncDomainsResourceWithStreamingResponse:
 
     @cached_property
     def settings(self) -> AsyncSettingsResourceWithStreamingResponse:
+        """
+        WAAP domain settings control the DDoS protection thresholds and API detection of a domain.
+        """
         return AsyncSettingsResourceWithStreamingResponse(self._domains.settings)
 
     @cached_property

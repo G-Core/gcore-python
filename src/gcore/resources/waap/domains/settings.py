@@ -22,6 +22,10 @@ __all__ = ["SettingsResource", "AsyncSettingsResource"]
 
 
 class SettingsResource(SyncAPIResource):
+    """
+    WAAP domain settings control the DDoS protection thresholds and API detection of a domain.
+    """
+
     @cached_property
     def with_raw_response(self) -> SettingsResourceWithRawResponse:
         """
@@ -124,6 +128,10 @@ class SettingsResource(SyncAPIResource):
 
 
 class AsyncSettingsResource(AsyncAPIResource):
+    """
+    WAAP domain settings control the DDoS protection thresholds and API detection of a domain.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncSettingsResourceWithRawResponse:
         """
