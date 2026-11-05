@@ -150,8 +150,9 @@ def resize_instance(*, client: Gcore, instance_id: str) -> None:
 
 def list_flavors(*, client: Gcore) -> None:
     print("\n=== LIST FLAVORS ===")
-    flavors = client.cloud.instances.flavors.list()
-    _print_flavor_details(flavors.results)
+    # Iterating the page fetches all following pages automatically.
+    flavors = list(client.cloud.instances.flavors.list())
+    _print_flavor_details(flavors)
     print("========================")
 
 

@@ -153,8 +153,9 @@ async def resize_instance(*, client: AsyncGcore, instance_id: str) -> None:
 
 async def list_flavors(*, client: AsyncGcore) -> None:
     print("\n=== LIST FLAVORS ===")
-    flavors = await client.cloud.instances.flavors.list()
-    await _print_flavor_details(flavors.results)
+    # Iterating the paginator fetches all following pages automatically.
+    flavors = [flavor async for flavor in client.cloud.instances.flavors.list()]
+    await _print_flavor_details(flavors)
     print("========================")
 
 
