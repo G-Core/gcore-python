@@ -43,6 +43,9 @@ class APIDiscoveryResource(SyncAPIResource):
 
     @cached_property
     def settings(self) -> SettingsResource:
+        """
+        API Discovery settings control how WAAP scans a domain's API description file and traffic to discover its API paths.
+        """
         return SettingsResource(self._client)
 
     @cached_property
@@ -76,6 +79,9 @@ class AsyncAPIDiscoveryResource(AsyncAPIResource):
 
     @cached_property
     def settings(self) -> AsyncSettingsResource:
+        """
+        API Discovery settings control how WAAP scans a domain's API description file and traffic to discover its API paths.
+        """
         return AsyncSettingsResource(self._client)
 
     @cached_property
@@ -112,6 +118,9 @@ class APIDiscoveryResourceWithRawResponse:
 
     @cached_property
     def settings(self) -> SettingsResourceWithRawResponse:
+        """
+        API Discovery settings control how WAAP scans a domain's API description file and traffic to discover its API paths.
+        """
         return SettingsResourceWithRawResponse(self._api_discovery.settings)
 
 
@@ -129,6 +138,9 @@ class AsyncAPIDiscoveryResourceWithRawResponse:
 
     @cached_property
     def settings(self) -> AsyncSettingsResourceWithRawResponse:
+        """
+        API Discovery settings control how WAAP scans a domain's API description file and traffic to discover its API paths.
+        """
         return AsyncSettingsResourceWithRawResponse(self._api_discovery.settings)
 
 
@@ -146,6 +158,9 @@ class APIDiscoveryResourceWithStreamingResponse:
 
     @cached_property
     def settings(self) -> SettingsResourceWithStreamingResponse:
+        """
+        API Discovery settings control how WAAP scans a domain's API description file and traffic to discover its API paths.
+        """
         return SettingsResourceWithStreamingResponse(self._api_discovery.settings)
 
 
@@ -163,4 +178,7 @@ class AsyncAPIDiscoveryResourceWithStreamingResponse:
 
     @cached_property
     def settings(self) -> AsyncSettingsResourceWithStreamingResponse:
+        """
+        API Discovery settings control how WAAP scans a domain's API description file and traffic to discover its API paths.
+        """
         return AsyncSettingsResourceWithStreamingResponse(self._api_discovery.settings)
