@@ -1,5 +1,32 @@
 # Changelog
 
+## [0.62.0](https://github.com/G-Core/gcore-python/compare/v0.61.0...v0.62.0) (2026-11-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* **storage:** add access key expiry and usage filters by storage ID
+
+### Features
+
+* **cloud:** read all pages in the instance flavors examples ([278d791](https://github.com/G-Core/gcore-python/commit/278d79183f0709ea3b488b107e2ba2514ef72f87))
+* **storage:** add access key expiry and usage filters by storage ID ([7f006f9](https://github.com/G-Core/gcore-python/commit/7f006f9a00eb708c398395168ad268173e28b56a))
+* **waap:** add detailed security events endpoint ([c91525e](https://github.com/G-Core/gcore-python/commit/c91525e81dd6b22d2a4799286aeb71e34a722abb))
+* **waap:** add the gcore_waap_domain_api_discovery_settings Terraform resource ([3240121](https://github.com/G-Core/gcore-python/commit/3240121fd25b3dac3768eacfa5ef7c3f99125098))
+* **waap:** add the gcore_waap_domain_settings Terraform resource ([4282227](https://github.com/G-Core/gcore-python/commit/42822271c6869e24afc477799b0232702abaf2ad))
+
+
+### Bug Fixes
+
+* **cloud:** mark file share quota as computed in Terraform ([e516d65](https://github.com/G-Core/gcore-python/commit/e516d659def620cad77cbb5e9b6528c8b74acd3e))
+* **iam:** make account overview name non-nullable ([4a58e02](https://github.com/G-Core/gcore-python/commit/4a58e027286539f804aa2ce27d6d5ce55b2d55be))
+
+
+### Chores
+
+* **waap:** update waap OpenAPI spec ([9c19e87](https://github.com/G-Core/gcore-python/commit/9c19e87b4fe91b88b51a503c4c7dbcab37ca1199))
+* **waap:** update waap OpenAPI spec ([61504f9](https://github.com/G-Core/gcore-python/commit/61504f97268128030b57945712ca853d98d98824))
+
 ## [0.61.0](https://github.com/G-Core/gcore-python/compare/v0.60.0...v0.61.0) (2026-11-03)
 
 
