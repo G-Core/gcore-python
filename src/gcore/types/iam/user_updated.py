@@ -8,10 +8,22 @@ from .user_type import UserType
 from .user_group import UserGroup
 from .user_language import UserLanguage
 
-__all__ = ["UserGetResponse"]
+__all__ = ["UserUpdated", "ClientAndRole"]
 
 
-class UserGetResponse(BaseModel):
+class ClientAndRole(BaseModel):
+    client_company_name: str
+
+    client_id: int
+
+    user_id: int
+    """User's ID."""
+
+    user_roles: List[str]
+    """User role in this client."""
+
+
+class UserUpdated(BaseModel):
     id: int
     """User's ID."""
 
@@ -27,6 +39,9 @@ class UserGetResponse(BaseModel):
 
     client: float
     """User's account ID."""
+
+    client_and_roles: List[ClientAndRole]
+    """List of user's clients. User can access to one or more clients."""
 
     company: str
     """User's company."""

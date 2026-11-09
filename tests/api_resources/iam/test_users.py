@@ -11,8 +11,9 @@ from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
 from gcore.types.iam import (
     User,
+    UserMe,
     UserInvited,
-    UserGetResponse,
+    UserUpdated,
 )
 from gcore.pagination import SyncOffsetPage, AsyncOffsetPage
 
@@ -27,7 +28,7 @@ class TestUsers:
         user = client.iam.users.update(
             user_id=0,
         )
-        assert_matches_type(User, user, path=["response"])
+        assert_matches_type(UserUpdated, user, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Gcore) -> None:
@@ -39,7 +40,7 @@ class TestUsers:
             name="name",
             phone="phone",
         )
-        assert_matches_type(User, user, path=["response"])
+        assert_matches_type(UserUpdated, user, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Gcore) -> None:
@@ -50,7 +51,7 @@ class TestUsers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user = response.parse()
-        assert_matches_type(User, user, path=["response"])
+        assert_matches_type(UserUpdated, user, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Gcore) -> None:
@@ -61,26 +62,30 @@ class TestUsers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user = response.parse()
-            assert_matches_type(User, user, path=["response"])
+            assert_matches_type(UserUpdated, user, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="IMP-2027: PaginatedUsersArray.count is type: number in spec, should be integer")
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
         user = client.iam.users.list()
         assert_matches_type(SyncOffsetPage[User], user, path=["response"])
 
-    @pytest.mark.skip(reason="IMP-2027: PaginatedUsersArray.count is type: number in spec, should be integer")
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
         user = client.iam.users.list(
+            auth_type="password",
+            created_at={"foo": "bar"},
+            email={"foo": "bar"},
+            ids=[0],
+            langs=["az"],
             limit=0,
+            name={"foo": "bar"},
             offset=0,
+            order_by="order_by",
         )
         assert_matches_type(SyncOffsetPage[User], user, path=["response"])
 
-    @pytest.mark.skip(reason="IMP-2027: PaginatedUsersArray.count is type: number in spec, should be integer")
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
         response = client.iam.users.with_raw_response.list()
@@ -90,7 +95,6 @@ class TestUsers:
         user = response.parse()
         assert_matches_type(SyncOffsetPage[User], user, path=["response"])
 
-    @pytest.mark.skip(reason="IMP-2027: PaginatedUsersArray.count is type: number in spec, should be integer")
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
         with client.iam.users.with_streaming_response.list() as response:
@@ -141,7 +145,7 @@ class TestUsers:
         user = client.iam.users.get(
             0,
         )
-        assert_matches_type(UserGetResponse, user, path=["response"])
+        assert_matches_type(User, user, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Gcore) -> None:
@@ -152,7 +156,7 @@ class TestUsers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user = response.parse()
-        assert_matches_type(UserGetResponse, user, path=["response"])
+        assert_matches_type(User, user, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Gcore) -> None:
@@ -163,7 +167,32 @@ class TestUsers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user = response.parse()
-            assert_matches_type(UserGetResponse, user, path=["response"])
+            assert_matches_type(User, user, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_get_me(self, client: Gcore) -> None:
+        user = client.iam.users.get_me()
+        assert_matches_type(UserMe, user, path=["response"])
+
+    @parametrize
+    def test_raw_response_get_me(self, client: Gcore) -> None:
+        response = client.iam.users.with_raw_response.get_me()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        user = response.parse()
+        assert_matches_type(UserMe, user, path=["response"])
+
+    @parametrize
+    def test_streaming_response_get_me(self, client: Gcore) -> None:
+        with client.iam.users.with_streaming_response.get_me() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            user = response.parse()
+            assert_matches_type(UserMe, user, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -229,7 +258,7 @@ class TestAsyncUsers:
         user = await async_client.iam.users.update(
             user_id=0,
         )
-        assert_matches_type(User, user, path=["response"])
+        assert_matches_type(UserUpdated, user, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -241,7 +270,7 @@ class TestAsyncUsers:
             name="name",
             phone="phone",
         )
-        assert_matches_type(User, user, path=["response"])
+        assert_matches_type(UserUpdated, user, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncGcore) -> None:
@@ -252,7 +281,7 @@ class TestAsyncUsers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user = await response.parse()
-        assert_matches_type(User, user, path=["response"])
+        assert_matches_type(UserUpdated, user, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncGcore) -> None:
@@ -263,26 +292,30 @@ class TestAsyncUsers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user = await response.parse()
-            assert_matches_type(User, user, path=["response"])
+            assert_matches_type(UserUpdated, user, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="IMP-2027: PaginatedUsersArray.count is type: number in spec, should be integer")
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
         user = await async_client.iam.users.list()
         assert_matches_type(AsyncOffsetPage[User], user, path=["response"])
 
-    @pytest.mark.skip(reason="IMP-2027: PaginatedUsersArray.count is type: number in spec, should be integer")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
         user = await async_client.iam.users.list(
+            auth_type="password",
+            created_at={"foo": "bar"},
+            email={"foo": "bar"},
+            ids=[0],
+            langs=["az"],
             limit=0,
+            name={"foo": "bar"},
             offset=0,
+            order_by="order_by",
         )
         assert_matches_type(AsyncOffsetPage[User], user, path=["response"])
 
-    @pytest.mark.skip(reason="IMP-2027: PaginatedUsersArray.count is type: number in spec, should be integer")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
         response = await async_client.iam.users.with_raw_response.list()
@@ -292,7 +325,6 @@ class TestAsyncUsers:
         user = await response.parse()
         assert_matches_type(AsyncOffsetPage[User], user, path=["response"])
 
-    @pytest.mark.skip(reason="IMP-2027: PaginatedUsersArray.count is type: number in spec, should be integer")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
         async with async_client.iam.users.with_streaming_response.list() as response:
@@ -343,7 +375,7 @@ class TestAsyncUsers:
         user = await async_client.iam.users.get(
             0,
         )
-        assert_matches_type(UserGetResponse, user, path=["response"])
+        assert_matches_type(User, user, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
@@ -354,7 +386,7 @@ class TestAsyncUsers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user = await response.parse()
-        assert_matches_type(UserGetResponse, user, path=["response"])
+        assert_matches_type(User, user, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
@@ -365,7 +397,32 @@ class TestAsyncUsers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user = await response.parse()
-            assert_matches_type(UserGetResponse, user, path=["response"])
+            assert_matches_type(User, user, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_get_me(self, async_client: AsyncGcore) -> None:
+        user = await async_client.iam.users.get_me()
+        assert_matches_type(UserMe, user, path=["response"])
+
+    @parametrize
+    async def test_raw_response_get_me(self, async_client: AsyncGcore) -> None:
+        response = await async_client.iam.users.with_raw_response.get_me()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        user = await response.parse()
+        assert_matches_type(UserMe, user, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_get_me(self, async_client: AsyncGcore) -> None:
+        async with async_client.iam.users.with_streaming_response.get_me() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            user = await response.parse()
+            assert_matches_type(UserMe, user, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

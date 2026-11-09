@@ -30,13 +30,14 @@ Methods:
 Types:
 
 ```python
-from gcore.types.iam import User, UserInvited, UserType, UserGetResponse
+from gcore.types.iam import User, UserGroupV2, UserInvited, UserLang, UserMe, UserType, UserUpdated
 ```
 
 Methods:
 
-- <code title="patch /iam/users/{userId}">client.iam.users.<a href="./src/gcore/resources/iam/users.py">update</a>(user_id, \*\*<a href="src/gcore/types/iam/user_update_params.py">params</a>) -> <a href="./src/gcore/types/iam/user.py">User</a></code>
-- <code title="get /iam/users">client.iam.users.<a href="./src/gcore/resources/iam/users.py">list</a>(\*\*<a href="src/gcore/types/iam/user_list_params.py">params</a>) -> <a href="./src/gcore/types/iam/user.py">SyncOffsetPage[User]</a></code>
+- <code title="patch /iam/users/{userId}">client.iam.users.<a href="./src/gcore/resources/iam/users.py">update</a>(user_id, \*\*<a href="src/gcore/types/iam/user_update_params.py">params</a>) -> <a href="./src/gcore/types/iam/user_updated.py">UserUpdated</a></code>
+- <code title="get /iam/v2/users">client.iam.users.<a href="./src/gcore/resources/iam/users.py">list</a>(\*\*<a href="src/gcore/types/iam/user_list_params.py">params</a>) -> <a href="./src/gcore/types/iam/user.py">SyncOffsetPage[User]</a></code>
 - <code title="delete /iam/clients/{clientId}/client-users/{userId}">client.iam.users.<a href="./src/gcore/resources/iam/users.py">delete</a>(user_id, \*, client_id) -> None</code>
-- <code title="get /iam/users/{userId}">client.iam.users.<a href="./src/gcore/resources/iam/users.py">get</a>(user_id) -> <a href="./src/gcore/types/iam/user_get_response.py">UserGetResponse</a></code>
+- <code title="get /iam/v2/users/{user_id}">client.iam.users.<a href="./src/gcore/resources/iam/users.py">get</a>(user_id) -> <a href="./src/gcore/types/iam/user.py">User</a></code>
+- <code title="get /iam/v2/users/me">client.iam.users.<a href="./src/gcore/resources/iam/users.py">get_me</a>() -> <a href="./src/gcore/types/iam/user_me.py">UserMe</a></code>
 - <code title="post /iam/clients/invite_user">client.iam.users.<a href="./src/gcore/resources/iam/users.py">invite</a>(\*\*<a href="src/gcore/types/iam/user_invite_params.py">params</a>) -> <a href="./src/gcore/types/iam/user_invited.py">UserInvited</a></code>

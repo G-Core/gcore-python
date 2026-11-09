@@ -1,96 +1,44 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
+from datetime import datetime
 
 from ..._models import BaseModel
-from .auth_type import AuthType
-from .user_type import UserType
-from .user_group import UserGroup
-from .user_language import UserLanguage
+from .user_lang import UserLang
+from .user_group_v2 import UserGroupV2
 
-__all__ = ["User", "ClientAndRole"]
-
-
-class ClientAndRole(BaseModel):
-    client_company_name: str
-
-    client_id: int
-
-    user_id: int
-    """User's ID."""
-
-    user_roles: List[str]
-    """User role in this client."""
+__all__ = ["User"]
 
 
 class User(BaseModel):
+    """Fixed field set for /v2/users."""
+
     id: int
-    """User's ID."""
 
     activated: bool
-    """Email confirmation:
+    """Whether the user's membership in this client is activated."""
 
-    - `true` – user confirmed the email;
-    - `false` – user did not confirm the email.
-    """
+    auth_types: List[str]
+    """List of authentication methods available to the user (e.g., 'password', 'sso')."""
 
-    auth_types: List[AuthType]
-    """System field. List of auth types available for the account."""
+    client: Optional[int] = None
 
-    client: float
-    """User's account ID."""
-
-    client_and_roles: List[ClientAndRole]
-    """List of user's clients. User can access to one or more clients."""
-
-    company: str
-    """User's company."""
-
-    deleted: bool
-    """Deletion flag. If `true` then user was deleted."""
+    created_at: Optional[datetime] = None
 
     email: str
-    """User's email address."""
+    """User's email address used for login and notifications."""
 
-    groups: List[UserGroup]
-    """User's group in the current account.
+    groups: List[UserGroupV2]
 
-    IAM supports 5 groups:
-
-    - Users
-    - Administrators
-    - Engineers
-    - Purge and Prefetch only (API)
-    - Purge and Prefetch only (API+Web)
-    """
-
-    is_active: bool
-    """User activity flag."""
-
-    lang: UserLanguage
-    """User's language.
-
-    Defines language of the control panel and email messages.
-    """
-
-    name: Optional[str] = None
-    """User's name."""
-
-    phone: Optional[str] = None
-    """User's phone."""
-
-    reseller: int
-    """Services provider ID."""
-
-    sso_auth: bool
-    """SSO authentication flag. If `true` then user can login via SAML SSO."""
+    name: str
+    """Full name of the user."""
 
     two_fa: bool
-    """Two-step verification:
+    """Indicates whether two-factor authentication (TOTP) is enabled for the user."""
 
-    - `true` – user enabled two-step verification;
-    - `false` – user disabled two-step verification.
-    """
+    user_type: str
 
-    user_type: UserType
-    """User's type."""
+    lang: Optional[UserLang] = None
+
+    phone: Optional[str] = None
+    """User phone"""

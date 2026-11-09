@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Dict, List, Iterable, Optional
+from typing_extensions import Literal
 
 import httpx
 
@@ -20,11 +21,12 @@ from ...types.iam import UserLanguage, user_list_params, user_invite_params, use
 from ...pagination import SyncOffsetPage, AsyncOffsetPage
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.iam.user import User
+from ...types.iam.user_me import UserMe
 from ...types.iam.auth_type import AuthType
 from ...types.iam.user_invited import UserInvited
+from ...types.iam.user_updated import UserUpdated
 from ...types.iam.user_language import UserLanguage
 from ...types.iam.user_group_param import UserGroupParam
-from ...types.iam.user_get_response import UserGetResponse
 
 __all__ = ["UsersResource", "AsyncUsersResource"]
 
@@ -64,7 +66,7 @@ class UsersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> User:
+    ) -> UserUpdated:
         """This method updates user's details.
 
         Args:
@@ -105,14 +107,21 @@ class UsersResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=User,
+            cast_to=UserUpdated,
         )
 
     def list(
         self,
         *,
-        limit: int | Omit = 50,
+        auth_type: Literal["password", "sso", "google-oauth2", "github"] | Omit = omit,
+        created_at: Dict[str, object] | Omit = omit,
+        email: Dict[str, object] | Omit = omit,
+        ids: Iterable[int] | Omit = omit,
+        langs: List[Literal["az", "de", "en", "ru", "zh"]] | Omit = omit,
+        limit: int | Omit = omit,
+        name: Dict[str, object] | Omit = omit,
         offset: int | Omit = omit,
+        order_by: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -120,17 +129,42 @@ class UsersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[User]:
-        """
-        Get a list of users.
+        """List the users of the caller's own client.
 
-        Pass a value for the `limit` parameter in your request if you want retrieve a
-        paginated result. Otherwise API returns a list with all users without
-        pagination.
+        Replaces the deprecated `GET /users`.
+
+        Filtering follows the standard query filtering rules: `ids` and `langs` are
+        repeated flat parameters (OR), e.g. `ids=1&ids=2`; `email`, `name` and
+        `created_at` require a bracket operator, e.g. `email[contains]=example.com`.
+        Sorting is `order_by=field.direction` (e.g. `order_by=created_at.desc`, the
+        default); results are paginated with `limit`/`offset`.
 
         Args:
+          auth_type: Filter by login method - a specific social provider, 'sso', or 'password'.
+
+          created_at: Filter by creation time. Bracket operator required: `created_at[gte]`,
+              `created_at[gt]`, `created_at[lt]` or `created_at[lte]` (ISO 8601), e.g.
+              `created_at[gte]=2026-01-01T00:00:00Z&created_at[lt]=2026-02-01T00:00:00Z`.
+
+          email: Filter by email, case-insensitive. Bracket operator required: `email[exact]`,
+              `email[prefix]`, `email[contains]` or `email[suffix]`, e.g.
+              `email[contains]=example.com`.
+
+          ids: Filter by user id. Repeat the parameter for several values (OR), e.g.
+              `ids=1&ids=2`.
+
+          langs: Filter by interface language. Repeat the parameter for several values (OR), e.g.
+              `langs=en&langs=ru`.
+
           limit: The maximum number of items.
 
+          name: Filter by name, case-insensitive. Bracket operator required: `name[exact]`,
+              `name[prefix]`, `name[contains]` or `name[suffix]`, e.g. `name[prefix]=Jo`.
+
           offset: Offset relative to the beginning of list.
+
+          order_by: Sort order as `field.direction`, e.g. `order_by=created_at.desc`. Allowed
+              fields: `created_at`, `email`, `name`. Defaults to `created_at.desc`.
 
           extra_headers: Send extra headers
 
@@ -141,7 +175,7 @@ class UsersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/iam/users",
+            "/iam/v2/users",
             page=SyncOffsetPage[User],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -150,8 +184,15 @@ class UsersResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "auth_type": auth_type,
+                        "created_at": created_at,
+                        "email": email,
+                        "ids": ids,
+                        "langs": langs,
                         "limit": limit,
+                        "name": name,
                         "offset": offset,
+                        "order_by": order_by,
                     },
                     user_list_params.UserListParams,
                 ),
@@ -204,9 +245,11 @@ class UsersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> UserGetResponse:
-        """
-        Get user's details
+    ) -> User:
+        """Get a single user of the caller's own client.
+
+        Replaces the deprecated
+        `GET /users/{userId}`.
 
         Args:
           extra_headers: Send extra headers
@@ -218,11 +261,30 @@ class UsersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            path_template("/iam/users/{user_id}", user_id=user_id),
+            path_template("/iam/v2/users/{user_id}", user_id=user_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=UserGetResponse,
+            cast_to=User,
+        )
+
+    def get_me(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> UserMe:
+        """The authenticated user's own profile, including the clients they belong to."""
+        return self._get(
+            "/iam/v2/users/me",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=UserMe,
         )
 
     def invite(
@@ -321,7 +383,7 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> User:
+    ) -> UserUpdated:
         """This method updates user's details.
 
         Args:
@@ -362,14 +424,21 @@ class AsyncUsersResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=User,
+            cast_to=UserUpdated,
         )
 
     def list(
         self,
         *,
-        limit: int | Omit = 50,
+        auth_type: Literal["password", "sso", "google-oauth2", "github"] | Omit = omit,
+        created_at: Dict[str, object] | Omit = omit,
+        email: Dict[str, object] | Omit = omit,
+        ids: Iterable[int] | Omit = omit,
+        langs: List[Literal["az", "de", "en", "ru", "zh"]] | Omit = omit,
+        limit: int | Omit = omit,
+        name: Dict[str, object] | Omit = omit,
         offset: int | Omit = omit,
+        order_by: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -377,17 +446,42 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[User, AsyncOffsetPage[User]]:
-        """
-        Get a list of users.
+        """List the users of the caller's own client.
 
-        Pass a value for the `limit` parameter in your request if you want retrieve a
-        paginated result. Otherwise API returns a list with all users without
-        pagination.
+        Replaces the deprecated `GET /users`.
+
+        Filtering follows the standard query filtering rules: `ids` and `langs` are
+        repeated flat parameters (OR), e.g. `ids=1&ids=2`; `email`, `name` and
+        `created_at` require a bracket operator, e.g. `email[contains]=example.com`.
+        Sorting is `order_by=field.direction` (e.g. `order_by=created_at.desc`, the
+        default); results are paginated with `limit`/`offset`.
 
         Args:
+          auth_type: Filter by login method - a specific social provider, 'sso', or 'password'.
+
+          created_at: Filter by creation time. Bracket operator required: `created_at[gte]`,
+              `created_at[gt]`, `created_at[lt]` or `created_at[lte]` (ISO 8601), e.g.
+              `created_at[gte]=2026-01-01T00:00:00Z&created_at[lt]=2026-02-01T00:00:00Z`.
+
+          email: Filter by email, case-insensitive. Bracket operator required: `email[exact]`,
+              `email[prefix]`, `email[contains]` or `email[suffix]`, e.g.
+              `email[contains]=example.com`.
+
+          ids: Filter by user id. Repeat the parameter for several values (OR), e.g.
+              `ids=1&ids=2`.
+
+          langs: Filter by interface language. Repeat the parameter for several values (OR), e.g.
+              `langs=en&langs=ru`.
+
           limit: The maximum number of items.
 
+          name: Filter by name, case-insensitive. Bracket operator required: `name[exact]`,
+              `name[prefix]`, `name[contains]` or `name[suffix]`, e.g. `name[prefix]=Jo`.
+
           offset: Offset relative to the beginning of list.
+
+          order_by: Sort order as `field.direction`, e.g. `order_by=created_at.desc`. Allowed
+              fields: `created_at`, `email`, `name`. Defaults to `created_at.desc`.
 
           extra_headers: Send extra headers
 
@@ -398,7 +492,7 @@ class AsyncUsersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/iam/users",
+            "/iam/v2/users",
             page=AsyncOffsetPage[User],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -407,8 +501,15 @@ class AsyncUsersResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "auth_type": auth_type,
+                        "created_at": created_at,
+                        "email": email,
+                        "ids": ids,
+                        "langs": langs,
                         "limit": limit,
+                        "name": name,
                         "offset": offset,
+                        "order_by": order_by,
                     },
                     user_list_params.UserListParams,
                 ),
@@ -461,9 +562,11 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> UserGetResponse:
-        """
-        Get user's details
+    ) -> User:
+        """Get a single user of the caller's own client.
+
+        Replaces the deprecated
+        `GET /users/{userId}`.
 
         Args:
           extra_headers: Send extra headers
@@ -475,11 +578,30 @@ class AsyncUsersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            path_template("/iam/users/{user_id}", user_id=user_id),
+            path_template("/iam/v2/users/{user_id}", user_id=user_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=UserGetResponse,
+            cast_to=User,
+        )
+
+    async def get_me(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> UserMe:
+        """The authenticated user's own profile, including the clients they belong to."""
+        return await self._get(
+            "/iam/v2/users/me",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=UserMe,
         )
 
     async def invite(
@@ -559,6 +681,9 @@ class UsersResourceWithRawResponse:
         self.get = to_raw_response_wrapper(
             users.get,
         )
+        self.get_me = to_raw_response_wrapper(
+            users.get_me,
+        )
         self.invite = to_raw_response_wrapper(
             users.invite,
         )
@@ -579,6 +704,9 @@ class AsyncUsersResourceWithRawResponse:
         )
         self.get = async_to_raw_response_wrapper(
             users.get,
+        )
+        self.get_me = async_to_raw_response_wrapper(
+            users.get_me,
         )
         self.invite = async_to_raw_response_wrapper(
             users.invite,
@@ -601,6 +729,9 @@ class UsersResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             users.get,
         )
+        self.get_me = to_streamed_response_wrapper(
+            users.get_me,
+        )
         self.invite = to_streamed_response_wrapper(
             users.invite,
         )
@@ -621,6 +752,9 @@ class AsyncUsersResourceWithStreamingResponse:
         )
         self.get = async_to_streamed_response_wrapper(
             users.get,
+        )
+        self.get_me = async_to_streamed_response_wrapper(
+            users.get_me,
         )
         self.invite = async_to_streamed_response_wrapper(
             users.invite,
