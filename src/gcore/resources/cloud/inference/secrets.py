@@ -15,6 +15,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ....pagination import SyncOffsetPage, AsyncOffsetPage
+from .secrets_custom import SecretsResourceCustomMixin, AsyncSecretsResourceCustomMixin
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.cloud.inference import secret_list_params, secret_create_params, secret_replace_params
 from ....types.cloud.inference.inference_secret import InferenceSecret
@@ -22,7 +23,7 @@ from ....types.cloud.inference.inference_secret import InferenceSecret
 __all__ = ["SecretsResource", "AsyncSecretsResource"]
 
 
-class SecretsResource(SyncAPIResource):
+class SecretsResource(SecretsResourceCustomMixin, SyncAPIResource):
     """
     Inference secrets store sensitive values such as AWS credentials used for SQS-based autoscaling triggers in deployments.
     """
@@ -293,7 +294,7 @@ class SecretsResource(SyncAPIResource):
         )
 
 
-class AsyncSecretsResource(AsyncAPIResource):
+class AsyncSecretsResource(AsyncSecretsResourceCustomMixin, AsyncAPIResource):
     """
     Inference secrets store sensitive values such as AWS credentials used for SQS-based autoscaling triggers in deployments.
     """
