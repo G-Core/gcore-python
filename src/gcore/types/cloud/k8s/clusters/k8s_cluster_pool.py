@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
+from typing import Dict, List
 
 from ....._models import BaseModel
 
@@ -53,17 +53,20 @@ class K8SClusterPool(BaseModel):
     security_group_ids: List[str]
     """Security group IDs applied to the cluster pool nodes"""
 
+    servergroup_id: str
+    """Placement group ID. An empty string when the pool has no placement group"""
+
+    servergroup_name: str
+    """Placement group name. An empty string when the pool has no placement group"""
+
+    servergroup_policy: str
+    """Anti-affinity, affinity or soft-anti-affinity placement group policy.
+
+    An empty string when the pool has no placement group
+    """
+
     status: str
     """Status of the cluster pool"""
 
     taints: Dict[str, str]
     """Taints applied to the cluster pool"""
-
-    servergroup_id: Optional[str] = None
-    """Placement group ID"""
-
-    servergroup_name: Optional[str] = None
-    """Placement group name"""
-
-    servergroup_policy: Optional[str] = None
-    """Anti-affinity, affinity or soft-anti-affinity placement group policy"""
