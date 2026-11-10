@@ -16,7 +16,10 @@ class DomainListParams(TypedDict, total=False):
     """Number of items to return"""
 
     name: str
-    """Filter domains based on the domain name. Supports '\\**' as a wildcard character"""
+    """Filter domains based on the domain name or any of its aliases.
+
+    Supports '\\**' as a wildcard character
+    """
 
     offset: int
     """Number of items to skip"""

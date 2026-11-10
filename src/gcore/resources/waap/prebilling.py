@@ -19,9 +19,10 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ...pagination import SyncOffsetPage, AsyncOffsetPage
-from ...types.waap import prebilling_get_total_params
+from ...types.waap import prebilling_get_total_params, prebilling_get_breakdown_params
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.waap.waap_billing_report_item import WaapBillingReportItem
+from ...types.waap.waap_client_billing_report import WaapClientBillingReport
 
 __all__ = ["PrebillingResource", "AsyncPrebillingResource"]
 
@@ -45,6 +46,69 @@ class PrebillingResource(SyncAPIResource):
         For more information, see https://www.github.com/G-Core/gcore-python#with_streaming_response
         """
         return PrebillingResourceWithStreamingResponse(self)
+
+    def get_breakdown(
+        self,
+        metric: Literal["domains", "volume", "requests", "requests_clean"],
+        *,
+        from_: Union[str, date],
+        to: Union[str, date],
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncOffsetPage[WaapClientBillingReport]:
+        """
+        Retrieve a report on the calling client's own billable consumption by given
+        metric with per-account breakdown. The report is paginated by accounts: `limit`,
+        `offset` and `count` are counted in accounts, and each account is returned with
+        all its items on exactly one page
+
+        Args:
+          metric: The metric to get billable consumption for
+
+          from_: The report start date (inclusive) in ISO 8601 format
+
+          to: The report end date (exclusive) in ISO 8601 format
+
+          limit: Number of clients to return
+
+          offset: Number of clients to skip
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not metric:
+            raise ValueError(f"Expected a non-empty value for `metric` but received {metric!r}")
+        return self._get_api_list(
+            path_template("/waap/v2/prebilling/breakdown/{metric}", metric=metric),
+            page=SyncOffsetPage[WaapClientBillingReport],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "from_": from_,
+                        "to": to,
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    prebilling_get_breakdown_params.PrebillingGetBreakdownParams,
+                ),
+            ),
+            model=WaapClientBillingReport,
+        )
 
     def get_total(
         self,
@@ -128,6 +192,69 @@ class AsyncPrebillingResource(AsyncAPIResource):
         """
         return AsyncPrebillingResourceWithStreamingResponse(self)
 
+    def get_breakdown(
+        self,
+        metric: Literal["domains", "volume", "requests", "requests_clean"],
+        *,
+        from_: Union[str, date],
+        to: Union[str, date],
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[WaapClientBillingReport, AsyncOffsetPage[WaapClientBillingReport]]:
+        """
+        Retrieve a report on the calling client's own billable consumption by given
+        metric with per-account breakdown. The report is paginated by accounts: `limit`,
+        `offset` and `count` are counted in accounts, and each account is returned with
+        all its items on exactly one page
+
+        Args:
+          metric: The metric to get billable consumption for
+
+          from_: The report start date (inclusive) in ISO 8601 format
+
+          to: The report end date (exclusive) in ISO 8601 format
+
+          limit: Number of clients to return
+
+          offset: Number of clients to skip
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not metric:
+            raise ValueError(f"Expected a non-empty value for `metric` but received {metric!r}")
+        return self._get_api_list(
+            path_template("/waap/v2/prebilling/breakdown/{metric}", metric=metric),
+            page=AsyncOffsetPage[WaapClientBillingReport],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "from_": from_,
+                        "to": to,
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    prebilling_get_breakdown_params.PrebillingGetBreakdownParams,
+                ),
+            ),
+            model=WaapClientBillingReport,
+        )
+
     def get_total(
         self,
         metric: Literal["domains", "volume", "requests", "requests_clean"],
@@ -194,6 +321,9 @@ class PrebillingResourceWithRawResponse:
     def __init__(self, prebilling: PrebillingResource) -> None:
         self._prebilling = prebilling
 
+        self.get_breakdown = to_raw_response_wrapper(
+            prebilling.get_breakdown,
+        )
         self.get_total = to_raw_response_wrapper(
             prebilling.get_total,
         )
@@ -203,6 +333,9 @@ class AsyncPrebillingResourceWithRawResponse:
     def __init__(self, prebilling: AsyncPrebillingResource) -> None:
         self._prebilling = prebilling
 
+        self.get_breakdown = async_to_raw_response_wrapper(
+            prebilling.get_breakdown,
+        )
         self.get_total = async_to_raw_response_wrapper(
             prebilling.get_total,
         )
@@ -212,6 +345,9 @@ class PrebillingResourceWithStreamingResponse:
     def __init__(self, prebilling: PrebillingResource) -> None:
         self._prebilling = prebilling
 
+        self.get_breakdown = to_streamed_response_wrapper(
+            prebilling.get_breakdown,
+        )
         self.get_total = to_streamed_response_wrapper(
             prebilling.get_total,
         )
@@ -221,6 +357,9 @@ class AsyncPrebillingResourceWithStreamingResponse:
     def __init__(self, prebilling: AsyncPrebillingResource) -> None:
         self._prebilling = prebilling
 
+        self.get_breakdown = async_to_streamed_response_wrapper(
+            prebilling.get_breakdown,
+        )
         self.get_total = async_to_streamed_response_wrapper(
             prebilling.get_total,
         )

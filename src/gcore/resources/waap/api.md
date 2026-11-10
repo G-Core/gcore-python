@@ -337,11 +337,12 @@ Methods:
 Types:
 
 ```python
-from gcore.types.waap import WaapBillingReportItem
+from gcore.types.waap import WaapBillingReportItem, WaapClientBillingReport
 ```
 
 Methods:
 
+- <code title="get /waap/v2/prebilling/breakdown/{metric}">client.waap.prebilling.<a href="./src/gcore/resources/waap/prebilling.py">get_breakdown</a>(metric, \*\*<a href="src/gcore/types/waap/prebilling_get_breakdown_params.py">params</a>) -> <a href="./src/gcore/types/waap/waap_client_billing_report.py">SyncOffsetPage[WaapClientBillingReport]</a></code>
 - <code title="get /waap/v1/prebilling/total/{metric}">client.waap.prebilling.<a href="./src/gcore/resources/waap/prebilling.py">get_total</a>(metric, \*\*<a href="src/gcore/types/waap/prebilling_get_total_params.py">params</a>) -> <a href="./src/gcore/types/waap/waap_billing_report_item.py">SyncOffsetPage[WaapBillingReportItem]</a></code>
 
 ## IPReputation

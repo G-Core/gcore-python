@@ -75,7 +75,8 @@ class StatisticsResource(SyncAPIResource):
         Args:
           domain_id: The domain ID
 
-          end_time: End time of the search interval. Excludes attacks that started after it
+          end_time: End time of the search interval. Excludes attacks that started after it. If not
+              provided or in the future, the current date and time is used
 
           limit: Number of items to return
 
@@ -83,7 +84,8 @@ class StatisticsResource(SyncAPIResource):
 
           ordering: Sort the response by given field.
 
-          start_time: Start time of the search interval. Excludes attacks that ended before it
+          start_time: Start time of the search interval. Excludes attacks that ended before it. Must
+              precede `end_time`. Attacks are kept for 180 days
 
           extra_headers: Send extra headers
 
@@ -330,7 +332,8 @@ class AsyncStatisticsResource(AsyncAPIResource):
         Args:
           domain_id: The domain ID
 
-          end_time: End time of the search interval. Excludes attacks that started after it
+          end_time: End time of the search interval. Excludes attacks that started after it. If not
+              provided or in the future, the current date and time is used
 
           limit: Number of items to return
 
@@ -338,7 +341,8 @@ class AsyncStatisticsResource(AsyncAPIResource):
 
           ordering: Sort the response by given field.
 
-          start_time: Start time of the search interval. Excludes attacks that ended before it
+          start_time: Start time of the search interval. Excludes attacks that ended before it. Must
+              precede `end_time`. Attacks are kept for 180 days
 
           extra_headers: Send extra headers
 

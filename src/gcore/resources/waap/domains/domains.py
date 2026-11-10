@@ -287,7 +287,8 @@ class DomainsResource(SyncAPIResource):
 
           limit: Number of items to return
 
-          name: Filter domains based on the domain name. Supports '\\**' as a wildcard character
+          name: Filter domains based on the domain name or any of its aliases. Supports '\\**' as
+              a wildcard character
 
           offset: Number of items to skip
 
@@ -613,7 +614,8 @@ class AsyncDomainsResource(AsyncAPIResource):
 
           limit: Number of items to return
 
-          name: Filter domains based on the domain name. Supports '\\**' as a wildcard character
+          name: Filter domains based on the domain name or any of its aliases. Supports '\\**' as
+              a wildcard character
 
           offset: Number of items to skip
 
