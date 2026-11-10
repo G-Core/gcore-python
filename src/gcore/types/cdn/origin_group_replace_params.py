@@ -132,7 +132,15 @@ class NoneAuthSourceChangeS3SourceConfig(TypedDict, total=False):
     s3_bucket_name: Required[str]
     """S3 bucket name.
 
-    If `s3_type` is `gcore`, the bucket must exist in the selected storage.
+    Restrictions:
+
+    - If `s3_type` is `amazon`: from 3 to 63 lowercase Latin letters (a-z), numbers
+      (0-9), dots and dashes; must start and end with a letter or number, must not
+      contain two dots in a row, and must not be formatted as an IP address.
+    - If `s3_type` is `other`: Latin letters (A-Z, a-z), numbers (0-9), dots,
+      dashes, underscores and colons.
+    - If `s3_type` is `gcore`: Latin letters (A-Z, a-z), numbers (0-9), dots, dashes
+      and underscores. The bucket must exist in the selected storage.
     """
 
     s3_type: Required[Literal["amazon", "other", "gcore"]]
@@ -186,6 +194,9 @@ class NoneAuthSourceChangeS3SourceConfig(TypedDict, total=False):
 
     The parameter is required if `s3_type` is `other`. Not allowed if `s3_type` is
     `gcore`: the CDN fills it and does not return it.
+
+    A hostname or an IPv4 address, optionally followed by a colon and a port from 1
+    to 65535. IPv6 addresses are not supported.
 
     Must be a public address: private and reserved IP addresses, `localhost`, and
     hostnames that resolve to them are rejected.
@@ -401,11 +412,20 @@ class AwsSignatureV4Auth(TypedDict, total=False):
     Restrictions:
 
     - Latin letters (A-Z, a-z), numbers (0-9), colon, dash, and underscore.
-    - From 3 to 512 characters.
+    - From 4 to 255 characters.
     """
 
     s3_bucket_name: Required[str]
-    """S3 bucket name."""
+    """S3 bucket name.
+
+    Restrictions:
+
+    - If "s3_type": amazon, from 3 to 63 lowercase Latin letters (a-z), numbers
+      (0-9), dots and dashes; must start and end with a letter or number, must not
+      contain two dots in a row, and must not be formatted as an IP address.
+    - If "s3_type": other, Latin letters (A-Z, a-z), numbers (0-9), dots, dashes,
+      underscores and colons.
+    """
 
     s3_secret_access_key: Required[str]
     """Secret access key for the S3 account.
@@ -414,8 +434,7 @@ class AwsSignatureV4Auth(TypedDict, total=False):
 
     - Latin letters (A-Z, a-z), numbers (0-9), pluses, slashes, dashes, colons and
       underscores.
-    - If "s3_type": amazon, length should be 40 characters.
-    - If "s3_type": other, length should be from 16 to 255 characters.
+    - From 16 to 255 characters.
     """
 
     s3_type: Required[str]
@@ -437,6 +456,9 @@ class AwsSignatureV4Auth(TypedDict, total=False):
     """S3 storage hostname.
 
     The parameter is required, if "s3_type": other.
+
+    A hostname or an IPv4 address, optionally followed by a colon and a port from 1
+    to 65535. IPv6 addresses are not supported.
 
     Must be a public address: private and reserved IP addresses, `localhost`, and
     hostnames that resolve to them are rejected.
