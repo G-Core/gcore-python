@@ -59,6 +59,7 @@ from ....types.cloud import (
     instance_delete_params,
     instance_resize_params,
     instance_update_params,
+    instance_rebuild_params,
     instance_get_console_params,
     instance_assign_security_group_params,
     instance_add_to_placement_group_params,
@@ -1094,6 +1095,79 @@ class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
                 ),
             ),
             cast_to=Console,
+        )
+
+    def rebuild(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        image_id: str | Omit = omit,
+        ssh_key_name: Optional[str] | Omit = omit,
+        user_data: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """
+        Rebuild instance with a new image while preserving its configuration.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
+          image_id: Image ID. If you omit it, the instance keeps the current image.
+
+          ssh_key_name: Specifies the name of the SSH keypair, created via the
+              [/v1/`ssh_keys` endpoint](/docs/api-reference/cloud/ssh-keys/add-or-generate-ssh-key).
+              Use null to remove the SSH key from the instance. If you omit it, the instance
+              keeps the current SSH key.
+
+          user_data:
+              String in base64 format. Examples of the `user_data`:
+              https://cloudinit.readthedocs.io/en/latest/topics/examples.html. If you omit it,
+              the instance keeps the current user data.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not instance_id:
+            raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
+        return self._post(
+            path_template(
+                "/cloud/v3/instances/{project_id}/{region_id}/{instance_id}/rebuild",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
+            body=maybe_transform(
+                {
+                    "image_id": image_id,
+                    "ssh_key_name": ssh_key_name,
+                    "user_data": user_data,
+                },
+                instance_rebuild_params.InstanceRebuildParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TaskIDList,
         )
 
     def remove_from_placement_group(
@@ -2292,6 +2366,79 @@ class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource
             cast_to=Console,
         )
 
+    async def rebuild(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        image_id: str | Omit = omit,
+        ssh_key_name: Optional[str] | Omit = omit,
+        user_data: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """
+        Rebuild instance with a new image while preserving its configuration.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
+          image_id: Image ID. If you omit it, the instance keeps the current image.
+
+          ssh_key_name: Specifies the name of the SSH keypair, created via the
+              [/v1/`ssh_keys` endpoint](/docs/api-reference/cloud/ssh-keys/add-or-generate-ssh-key).
+              Use null to remove the SSH key from the instance. If you omit it, the instance
+              keeps the current SSH key.
+
+          user_data:
+              String in base64 format. Examples of the `user_data`:
+              https://cloudinit.readthedocs.io/en/latest/topics/examples.html. If you omit it,
+              the instance keeps the current user data.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not instance_id:
+            raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
+        return await self._post(
+            path_template(
+                "/cloud/v3/instances/{project_id}/{region_id}/{instance_id}/rebuild",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
+            body=await async_maybe_transform(
+                {
+                    "image_id": image_id,
+                    "ssh_key_name": ssh_key_name,
+                    "user_data": user_data,
+                },
+                instance_rebuild_params.InstanceRebuildParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TaskIDList,
+        )
+
     async def remove_from_placement_group(
         self,
         instance_id: str,
@@ -2511,6 +2658,9 @@ class InstancesResourceWithRawResponse:
         self.get_console = to_raw_response_wrapper(
             instances.get_console,
         )
+        self.rebuild = to_raw_response_wrapper(
+            instances.rebuild,
+        )
         self.remove_from_placement_group = to_raw_response_wrapper(
             instances.remove_from_placement_group,
         )
@@ -2602,6 +2752,9 @@ class AsyncInstancesResourceWithRawResponse:
         )
         self.get_console = async_to_raw_response_wrapper(
             instances.get_console,
+        )
+        self.rebuild = async_to_raw_response_wrapper(
+            instances.rebuild,
         )
         self.remove_from_placement_group = async_to_raw_response_wrapper(
             instances.remove_from_placement_group,
@@ -2695,6 +2848,9 @@ class InstancesResourceWithStreamingResponse:
         self.get_console = to_streamed_response_wrapper(
             instances.get_console,
         )
+        self.rebuild = to_streamed_response_wrapper(
+            instances.rebuild,
+        )
         self.remove_from_placement_group = to_streamed_response_wrapper(
             instances.remove_from_placement_group,
         )
@@ -2786,6 +2942,9 @@ class AsyncInstancesResourceWithStreamingResponse:
         )
         self.get_console = async_to_streamed_response_wrapper(
             instances.get_console,
+        )
+        self.rebuild = async_to_streamed_response_wrapper(
+            instances.rebuild,
         )
         self.remove_from_placement_group = async_to_streamed_response_wrapper(
             instances.remove_from_placement_group,

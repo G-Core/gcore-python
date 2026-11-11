@@ -108,6 +108,7 @@ from .lb_health_monitor_type import LbHealthMonitorType as LbHealthMonitorType
 from .registry_create_params import RegistryCreateParams as RegistryCreateParams
 from .registry_resize_params import RegistryResizeParams as RegistryResizeParams
 from .floating_ip_list_params import FloatingIPListParams as FloatingIPListParams
+from .instance_rebuild_params import InstanceRebuildParams as InstanceRebuildParams
 from .load_balancer_l7_policy import LoadBalancerL7Policy as LoadBalancerL7Policy
 from .load_balancer_pool_list import LoadBalancerPoolList as LoadBalancerPoolList
 from .usage_report_get_params import UsageReportGetParams as UsageReportGetParams

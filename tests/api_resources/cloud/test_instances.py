@@ -744,6 +744,64 @@ class TestInstances:
             )
 
     @parametrize
+    def test_method_rebuild(self, client: Gcore) -> None:
+        instance = client.cloud.instances.rebuild(
+            instance_id="a314d566-2772-4124-a4c4-5688ab76b928",
+            project_id=1,
+            region_id=1,
+        )
+        assert_matches_type(TaskIDList, instance, path=["response"])
+
+    @parametrize
+    def test_method_rebuild_with_all_params(self, client: Gcore) -> None:
+        instance = client.cloud.instances.rebuild(
+            instance_id="a314d566-2772-4124-a4c4-5688ab76b928",
+            project_id=1,
+            region_id=1,
+            image_id="f01fd9a0-9548-48ba-82dc-a8c8b2d6f2f1",
+            ssh_key_name="my-ssh-key",
+            user_data="user_data",
+        )
+        assert_matches_type(TaskIDList, instance, path=["response"])
+
+    @parametrize
+    def test_raw_response_rebuild(self, client: Gcore) -> None:
+        response = client.cloud.instances.with_raw_response.rebuild(
+            instance_id="a314d566-2772-4124-a4c4-5688ab76b928",
+            project_id=1,
+            region_id=1,
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        instance = response.parse()
+        assert_matches_type(TaskIDList, instance, path=["response"])
+
+    @parametrize
+    def test_streaming_response_rebuild(self, client: Gcore) -> None:
+        with client.cloud.instances.with_streaming_response.rebuild(
+            instance_id="a314d566-2772-4124-a4c4-5688ab76b928",
+            project_id=1,
+            region_id=1,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            instance = response.parse()
+            assert_matches_type(TaskIDList, instance, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_rebuild(self, client: Gcore) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
+            client.cloud.instances.with_raw_response.rebuild(
+                instance_id="",
+                project_id=1,
+                region_id=1,
+            )
+
+    @parametrize
     def test_method_remove_from_placement_group(self, client: Gcore) -> None:
         instance = client.cloud.instances.remove_from_placement_group(
             instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
@@ -1623,6 +1681,64 @@ class TestAsyncInstances:
     async def test_path_params_get_console(self, async_client: AsyncGcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
             await async_client.cloud.instances.with_raw_response.get_console(
+                instance_id="",
+                project_id=1,
+                region_id=1,
+            )
+
+    @parametrize
+    async def test_method_rebuild(self, async_client: AsyncGcore) -> None:
+        instance = await async_client.cloud.instances.rebuild(
+            instance_id="a314d566-2772-4124-a4c4-5688ab76b928",
+            project_id=1,
+            region_id=1,
+        )
+        assert_matches_type(TaskIDList, instance, path=["response"])
+
+    @parametrize
+    async def test_method_rebuild_with_all_params(self, async_client: AsyncGcore) -> None:
+        instance = await async_client.cloud.instances.rebuild(
+            instance_id="a314d566-2772-4124-a4c4-5688ab76b928",
+            project_id=1,
+            region_id=1,
+            image_id="f01fd9a0-9548-48ba-82dc-a8c8b2d6f2f1",
+            ssh_key_name="my-ssh-key",
+            user_data="user_data",
+        )
+        assert_matches_type(TaskIDList, instance, path=["response"])
+
+    @parametrize
+    async def test_raw_response_rebuild(self, async_client: AsyncGcore) -> None:
+        response = await async_client.cloud.instances.with_raw_response.rebuild(
+            instance_id="a314d566-2772-4124-a4c4-5688ab76b928",
+            project_id=1,
+            region_id=1,
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        instance = await response.parse()
+        assert_matches_type(TaskIDList, instance, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_rebuild(self, async_client: AsyncGcore) -> None:
+        async with async_client.cloud.instances.with_streaming_response.rebuild(
+            instance_id="a314d566-2772-4124-a4c4-5688ab76b928",
+            project_id=1,
+            region_id=1,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            instance = await response.parse()
+            assert_matches_type(TaskIDList, instance, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_rebuild(self, async_client: AsyncGcore) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
+            await async_client.cloud.instances.with_raw_response.rebuild(
                 instance_id="",
                 project_id=1,
                 region_id=1,
