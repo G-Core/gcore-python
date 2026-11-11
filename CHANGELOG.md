@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.63.0](https://github.com/G-Core/gcore-python/compare/v0.62.0...v0.63.0) (2026-11-11)
+
+
+### Features
+
+* **cloud:** add basic VM task types and tighten k8s cluster and quota response types ([38303c4](https://github.com/G-Core/gcore-python/commit/38303c460e1408c309b3c610c2e20d1268e3b4f3))
+* **cloud:** add delete_and_poll for inference secrets ([af70a6d](https://github.com/G-Core/gcore-python/commit/af70a6d827e073d22a42f38e5f545ffe4edd0a05))
+* **cloud:** add instance rebuild functionality ([28927a5](https://github.com/G-Core/gcore-python/commit/28927a57625edd2ac7702ce01fcc1fd87dbdc834))
+* **cloud:** add rebuild_and_poll for instances ([#53](https://github.com/G-Core/gcore-python/issues/53)) ([edc5450](https://github.com/G-Core/gcore-python/commit/edc5450e6072385001ca0521e449eb68dfad68c2))
+* **waap:** add paginated prebilling breakdown v2 endpoint ([85fa3cb](https://github.com/G-Core/gcore-python/commit/85fa3cbe98c83a388184400b6037fcd5467ae488))
+
+
+### Chores
+
+* **cdn:** update cdn OpenAPI spec ([13b5396](https://github.com/G-Core/gcore-python/commit/13b5396f77b8416c51d2948e363533e718599c2e))
+* **cdn:** update cdn OpenAPI spec ([ec765e4](https://github.com/G-Core/gcore-python/commit/ec765e42bd7c18c4ae1ebfd40af46b7346d33efa))
+* **fastedge:** update fastedge OpenAPI spec ([6b6ff70](https://github.com/G-Core/gcore-python/commit/6b6ff7062030424316b6c70920cd2b2d34720fa4))
+* **iam:** update iam OpenAPI spec ([4ebbf92](https://github.com/G-Core/gcore-python/commit/4ebbf9242d03c8ad8ba3c3431d52b86dbb646716))
+
 ## [0.62.0](https://github.com/G-Core/gcore-python/compare/v0.61.0...v0.62.0) (2026-11-06)
 
 
