@@ -365,6 +365,57 @@ class InstancesResourceCustomMixin:
             ),
         )
 
+    def rebuild_and_poll(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        image_id: str | Omit = omit,
+        ssh_key_name: Optional[str] | Omit = omit,
+        user_data: str | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Instance:
+        """
+        Rebuild the instance and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
+        """
+        response = self.rebuild(
+            instance_id=instance_id,
+            project_id=project_id,
+            region_id=region_id,
+            image_id=image_id,
+            ssh_key_name=ssh_key_name,
+            user_data=user_data,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks:
+            raise ValueError("Expected at least one task to be created")
+        self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+            polling_timeout_seconds=polling_timeout_seconds,
+        )
+        return cast(
+            Instance,
+            self.get(
+                instance_id=instance_id,
+                project_id=project_id,
+                region_id=region_id,
+                extra_headers=extra_headers,
+            ),
+        )
+
     def resize_and_poll(
         self,
         instance_id: str,
@@ -732,6 +783,57 @@ class AsyncInstancesResourceCustomMixin:
             instance_id=instance_id,
             project_id=project_id,
             region_id=region_id,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        if not response.tasks:
+            raise ValueError("Expected at least one task to be created")
+        await self._client.cloud.tasks.poll(
+            task_id=response.tasks[0],
+            extra_headers=extra_headers,
+            polling_interval_seconds=polling_interval_seconds,
+            polling_timeout_seconds=polling_timeout_seconds,
+        )
+        return cast(
+            Instance,
+            await self.get(
+                instance_id=instance_id,
+                project_id=project_id,
+                region_id=region_id,
+                extra_headers=extra_headers,
+            ),
+        )
+
+    async def rebuild_and_poll(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        image_id: str | Omit = omit,
+        ssh_key_name: Optional[str] | Omit = omit,
+        user_data: str | Omit = omit,
+        polling_interval_seconds: int | Omit = omit,
+        polling_timeout_seconds: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Instance:
+        """
+        Rebuild the instance and poll for the result. Only the first task will be polled. If you need to poll more tasks, use the `tasks.poll` method.
+        """
+        response = await self.rebuild(
+            instance_id=instance_id,
+            project_id=project_id,
+            region_id=region_id,
+            image_id=image_id,
+            ssh_key_name=ssh_key_name,
+            user_data=user_data,
             extra_headers=extra_headers,
             extra_query=extra_query,
             extra_body=extra_body,

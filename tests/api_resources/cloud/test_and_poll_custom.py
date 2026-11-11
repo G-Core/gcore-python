@@ -349,6 +349,10 @@ AND_POLL_CASES: list[tuple[str, Callable[[Any], Any]]] = [
         lambda c: c.cloud.instances.remove_from_placement_group_and_poll("test", project_id=1, region_id=1),
     ),
     (
+        "cloud.instances.rebuild_and_poll",
+        lambda c: c.cloud.instances.rebuild_and_poll("test", project_id=1, region_id=1),
+    ),
+    (
         "cloud.instances.resize_and_poll",
         lambda c: c.cloud.instances.resize_and_poll("test", project_id=1, region_id=1, flavor_id="test"),
     ),
@@ -656,7 +660,7 @@ async def test_and_poll_async(case_id: str, invoke: Callable[[Any], Any]) -> Non
 
 def test_and_poll_case_count() -> None:
     # Canary: if codegen adds/removes an *_and_poll method, keep the table in sync.
-    assert len(AND_POLL_CASES) == 109
+    assert len(AND_POLL_CASES) == 110
 
 
 def test_create_and_poll_requires_task() -> None:
@@ -794,3 +798,22 @@ async def test_and_poll_forwards_supported_params_async(
         router.route(url__regex=r".+").mock(side_effect=_handler)
         await invoke(client)  # must not raise
         _assert_param_sent(case_id, router, param, where, expected)
+
+
+def test_instances_rebuild_and_poll_forwards_body() -> None:
+    case_id = "cloud.instances.rebuild_and_poll"
+    client = Gcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_handler)
+        client.cloud.instances.rebuild_and_poll(
+            "instance-1",
+            project_id=1,
+            region_id=1,
+            image_id="image-1",
+            ssh_key_name=None,
+            user_data="dXNlcg==",
+        )
+        _assert_param_sent(case_id, router, "image_id", "body", "image-1")
+        # None must reach the API as null, which removes the SSH key from the instance.
+        _assert_param_sent(case_id, router, "ssh_key_name", "body", None)
+        _assert_param_sent(case_id, router, "user_data", "body", "dXNlcg==")
