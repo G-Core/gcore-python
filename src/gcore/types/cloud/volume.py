@@ -44,10 +44,10 @@ class LimiterStats(BaseModel):
     iops_burst_limit: int
     """The burst IOPS limit."""
 
-    m_bps_base_limit: int = FieldInfo(alias="MBps_base_limit")
+    mbps_base_limit: int = FieldInfo(alias="MBps_base_limit")
     """The sustained bandwidth limit in megabytes per second (MBps)."""
 
-    m_bps_burst_limit: int = FieldInfo(alias="MBps_burst_limit")
+    mbps_burst_limit: int = FieldInfo(alias="MBps_burst_limit")
     """The burst bandwidth limit in megabytes per second (MBps)."""
 
 
