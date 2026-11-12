@@ -99,13 +99,11 @@ class TestTemplates:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="CDP-2415: OpenAPI spec missing required 'count' field in response schema")
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
         template = client.fastedge.templates.list()
         assert_matches_type(SyncOffsetPageFastedgeTemplates[TemplateShort], template, path=["response"])
 
-    @pytest.mark.skip(reason="CDP-2415: OpenAPI spec missing required 'count' field in response schema")
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
         template = client.fastedge.templates.list(
@@ -116,7 +114,6 @@ class TestTemplates:
         )
         assert_matches_type(SyncOffsetPageFastedgeTemplates[TemplateShort], template, path=["response"])
 
-    @pytest.mark.skip(reason="CDP-2415: OpenAPI spec missing required 'count' field in response schema")
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
         response = client.fastedge.templates.with_raw_response.list()
@@ -126,7 +123,6 @@ class TestTemplates:
         template = response.parse()
         assert_matches_type(SyncOffsetPageFastedgeTemplates[TemplateShort], template, path=["response"])
 
-    @pytest.mark.skip(reason="CDP-2415: OpenAPI spec missing required 'count' field in response schema")
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
         with client.fastedge.templates.with_streaming_response.list() as response:
@@ -374,13 +370,11 @@ class TestAsyncTemplates:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="CDP-2415: OpenAPI spec missing required 'count' field in response schema")
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
         template = await async_client.fastedge.templates.list()
         assert_matches_type(AsyncOffsetPageFastedgeTemplates[TemplateShort], template, path=["response"])
 
-    @pytest.mark.skip(reason="CDP-2415: OpenAPI spec missing required 'count' field in response schema")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
         template = await async_client.fastedge.templates.list(
@@ -391,7 +385,6 @@ class TestAsyncTemplates:
         )
         assert_matches_type(AsyncOffsetPageFastedgeTemplates[TemplateShort], template, path=["response"])
 
-    @pytest.mark.skip(reason="CDP-2415: OpenAPI spec missing required 'count' field in response schema")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
         response = await async_client.fastedge.templates.with_raw_response.list()
@@ -401,7 +394,6 @@ class TestAsyncTemplates:
         template = await response.parse()
         assert_matches_type(AsyncOffsetPageFastedgeTemplates[TemplateShort], template, path=["response"])
 
-    @pytest.mark.skip(reason="CDP-2415: OpenAPI spec missing required 'count' field in response schema")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
         async with async_client.fastedge.templates.with_streaming_response.list() as response:
