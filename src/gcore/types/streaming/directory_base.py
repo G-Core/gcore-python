@@ -11,6 +11,9 @@ class DirectoryBase(BaseModel):
     id: Optional[int] = None
     """ID of the directory"""
 
+    client_id: Optional[int] = None
+    """ID of the client (account) that owns the directory."""
+
     created_at: Optional[str] = None
     """Time of creation. Datetime in ISO 8601 format."""
 

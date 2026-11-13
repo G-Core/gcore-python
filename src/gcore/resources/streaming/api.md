@@ -56,19 +56,21 @@ Types:
 ```python
 from gcore.types.streaming import (
     DirectoriesTree,
+    Directory,
     DirectoryBase,
+    DirectoryDetail,
     DirectoryItem,
+    DirectoryResponse,
     DirectoryVideo,
-    DirectoryGetResponse,
 )
 ```
 
 Methods:
 
-- <code title="post /streaming/directories">client.streaming.directories.<a href="./src/gcore/resources/streaming/directories.py">create</a>(\*\*<a href="src/gcore/types/streaming/directory_create_params.py">params</a>) -> <a href="./src/gcore/types/streaming/directory_base.py">DirectoryBase</a></code>
+- <code title="post /streaming/directories">client.streaming.directories.<a href="./src/gcore/resources/streaming/directories.py">create</a>(\*\*<a href="src/gcore/types/streaming/directory_create_params.py">params</a>) -> <a href="./src/gcore/types/streaming/directory_response.py">DirectoryResponse</a></code>
 - <code title="patch /streaming/directories/{directory_id}">client.streaming.directories.<a href="./src/gcore/resources/streaming/directories.py">update</a>(directory_id, \*\*<a href="src/gcore/types/streaming/directory_update_params.py">params</a>) -> <a href="./src/gcore/types/streaming/directory_base.py">DirectoryBase</a></code>
 - <code title="delete /streaming/directories/{directory_id}">client.streaming.directories.<a href="./src/gcore/resources/streaming/directories.py">delete</a>(directory_id) -> None</code>
-- <code title="get /streaming/directories/{directory_id}">client.streaming.directories.<a href="./src/gcore/resources/streaming/directories.py">get</a>(directory_id) -> <a href="./src/gcore/types/streaming/directory_get_response.py">DirectoryGetResponse</a></code>
+- <code title="get /streaming/directories/{directory_id}">client.streaming.directories.<a href="./src/gcore/resources/streaming/directories.py">get</a>(directory_id) -> <a href="./src/gcore/types/streaming/directory.py">Directory</a></code>
 - <code title="get /streaming/directories/tree">client.streaming.directories.<a href="./src/gcore/resources/streaming/directories.py">get_tree</a>() -> <a href="./src/gcore/types/streaming/directories_tree.py">DirectoriesTree</a></code>
 
 ## Players

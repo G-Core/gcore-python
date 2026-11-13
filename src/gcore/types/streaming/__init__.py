@@ -12,6 +12,7 @@ from .playlist import Playlist as Playlist
 from .restream import Restream as Restream
 from .subtitle import Subtitle as Subtitle
 from .broadcast import Broadcast as Broadcast
+from .directory import Directory as Directory
 from .player_param import PlayerParam as PlayerParam
 from .quality_sets import QualitySets as QualitySets
 from .stream_series import StreamSeries as StreamSeries
@@ -26,6 +27,7 @@ from .unique_viewers import UniqueViewers as UniqueViewers
 from .directory_video import DirectoryVideo as DirectoryVideo
 from .views_by_region import ViewsByRegion as ViewsByRegion
 from .directories_tree import DirectoriesTree as DirectoriesTree
+from .directory_detail import DirectoryDetail as DirectoryDetail
 from .views_by_browser import ViewsByBrowser as ViewsByBrowser
 from .views_by_country import ViewsByCountry as ViewsByCountry
 from .views_by_referer import ViewsByReferer as ViewsByReferer
@@ -33,6 +35,7 @@ from .max_stream_series import MaxStreamSeries as MaxStreamSeries
 from .video_list_params import VideoListParams as VideoListParams
 from .views_by_hostname import ViewsByHostname as ViewsByHostname
 from .create_video_param import CreateVideoParam as CreateVideoParam
+from .directory_response import DirectoryResponse as DirectoryResponse
 from .player_list_params import PlayerListParams as PlayerListParams
 from .stream_list_params import StreamListParams as StreamListParams
 from .unique_viewers_cdn import UniqueViewersCDN as UniqueViewersCDN
@@ -52,7 +55,6 @@ from .stream_update_params import StreamUpdateParams as StreamUpdateParams
 from .ai_task_create_params import AITaskCreateParams as AITaskCreateParams
 from .broadcast_list_params import BroadcastListParams as BroadcastListParams
 from .vod_statistics_series import VodStatisticsSeries as VodStatisticsSeries
-from .directory_get_response import DirectoryGetResponse as DirectoryGetResponse
 from .playlist_create_params import PlaylistCreateParams as PlaylistCreateParams
 from .playlist_update_params import PlaylistUpdateParams as PlaylistUpdateParams
 from .restream_create_params import RestreamCreateParams as RestreamCreateParams

@@ -16,9 +16,10 @@ from ..._response import (
 )
 from ..._base_client import make_request_options
 from ...types.streaming import directory_create_params, directory_update_params
+from ...types.streaming.directory import Directory
 from ...types.streaming.directory_base import DirectoryBase
 from ...types.streaming.directories_tree import DirectoriesTree
-from ...types.streaming.directory_get_response import DirectoryGetResponse
+from ...types.streaming.directory_response import DirectoryResponse
 
 __all__ = ["DirectoriesResource", "AsyncDirectoriesResource"]
 
@@ -54,7 +55,7 @@ class DirectoriesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DirectoryBase:
+    ) -> DirectoryResponse:
         """
         Use this method to create a new directory entity.
 
@@ -83,7 +84,7 @@ class DirectoriesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DirectoryBase,
+            cast_to=DirectoryResponse,
         )
 
     def update(
@@ -183,7 +184,7 @@ class DirectoriesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DirectoryGetResponse:
+    ) -> Directory:
         """Complete directory structure with contents.
 
         The structure contains both
@@ -203,7 +204,7 @@ class DirectoriesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DirectoryGetResponse,
+            cast_to=Directory,
         )
 
     def get_tree(
@@ -261,7 +262,7 @@ class AsyncDirectoriesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DirectoryBase:
+    ) -> DirectoryResponse:
         """
         Use this method to create a new directory entity.
 
@@ -290,7 +291,7 @@ class AsyncDirectoriesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DirectoryBase,
+            cast_to=DirectoryResponse,
         )
 
     async def update(
@@ -390,7 +391,7 @@ class AsyncDirectoriesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DirectoryGetResponse:
+    ) -> Directory:
         """Complete directory structure with contents.
 
         The structure contains both
@@ -410,7 +411,7 @@ class AsyncDirectoriesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DirectoryGetResponse,
+            cast_to=Directory,
         )
 
     async def get_tree(

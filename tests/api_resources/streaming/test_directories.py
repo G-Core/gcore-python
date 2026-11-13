@@ -10,9 +10,10 @@ import pytest
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
 from gcore.types.streaming import (
+    Directory,
     DirectoryBase,
     DirectoriesTree,
-    DirectoryGetResponse,
+    DirectoryResponse,
 )
 
 try:
@@ -34,7 +35,7 @@ class TestDirectories:
         directory = client.streaming.directories.create(
             name="New series. Season 1",
         )
-        assert_matches_type(DirectoryBase, directory, path=["response"])
+        assert_matches_type(DirectoryResponse, directory, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Gcore) -> None:
@@ -42,7 +43,7 @@ class TestDirectories:
             name="New series. Season 1",
             parent_id=100,
         )
-        assert_matches_type(DirectoryBase, directory, path=["response"])
+        assert_matches_type(DirectoryResponse, directory, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
@@ -53,7 +54,7 @@ class TestDirectories:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         directory = response.parse()
-        assert_matches_type(DirectoryBase, directory, path=["response"])
+        assert_matches_type(DirectoryResponse, directory, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
@@ -64,7 +65,7 @@ class TestDirectories:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             directory = response.parse()
-            assert_matches_type(DirectoryBase, directory, path=["response"])
+            assert_matches_type(DirectoryResponse, directory, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -144,7 +145,7 @@ class TestDirectories:
         directory = client.streaming.directories.get(
             0,
         )
-        assert_matches_type(DirectoryGetResponse, directory, path=["response"])
+        assert_matches_type(Directory, directory, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Gcore) -> None:
@@ -155,7 +156,7 @@ class TestDirectories:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         directory = response.parse()
-        assert_matches_type(DirectoryGetResponse, directory, path=["response"])
+        assert_matches_type(Directory, directory, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Gcore) -> None:
@@ -166,7 +167,7 @@ class TestDirectories:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             directory = response.parse()
-            assert_matches_type(DirectoryGetResponse, directory, path=["response"])
+            assert_matches_type(Directory, directory, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -207,7 +208,7 @@ class TestAsyncDirectories:
         directory = await async_client.streaming.directories.create(
             name="New series. Season 1",
         )
-        assert_matches_type(DirectoryBase, directory, path=["response"])
+        assert_matches_type(DirectoryResponse, directory, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGcore) -> None:
@@ -215,7 +216,7 @@ class TestAsyncDirectories:
             name="New series. Season 1",
             parent_id=100,
         )
-        assert_matches_type(DirectoryBase, directory, path=["response"])
+        assert_matches_type(DirectoryResponse, directory, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
@@ -226,7 +227,7 @@ class TestAsyncDirectories:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         directory = await response.parse()
-        assert_matches_type(DirectoryBase, directory, path=["response"])
+        assert_matches_type(DirectoryResponse, directory, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
@@ -237,7 +238,7 @@ class TestAsyncDirectories:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             directory = await response.parse()
-            assert_matches_type(DirectoryBase, directory, path=["response"])
+            assert_matches_type(DirectoryResponse, directory, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -317,7 +318,7 @@ class TestAsyncDirectories:
         directory = await async_client.streaming.directories.get(
             0,
         )
-        assert_matches_type(DirectoryGetResponse, directory, path=["response"])
+        assert_matches_type(Directory, directory, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
@@ -328,7 +329,7 @@ class TestAsyncDirectories:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         directory = await response.parse()
-        assert_matches_type(DirectoryGetResponse, directory, path=["response"])
+        assert_matches_type(Directory, directory, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
@@ -339,7 +340,7 @@ class TestAsyncDirectories:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             directory = await response.parse()
-            assert_matches_type(DirectoryGetResponse, directory, path=["response"])
+            assert_matches_type(Directory, directory, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
