@@ -442,7 +442,10 @@ class AccountOverview(BaseModel):
     """System field. List of services available for the account."""
 
     company_name: str = FieldInfo(alias="companyName")
-    """The company name."""
+    """Deprecated read-only alias of `name` (the client's company name).
+
+    Ignored on input; write `name` instead.
+    """
 
     current_user: int = FieldInfo(alias="currentUser")
     """ID of the current user."""
