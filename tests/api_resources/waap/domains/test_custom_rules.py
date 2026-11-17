@@ -45,7 +45,7 @@ class TestCustomRules:
                 "captcha": {"foo": "bar"},
                 "handshake": {"foo": "bar"},
                 "monitor": {"foo": "bar"},
-                "tag": {"tags": ["string"]},
+                "tag": {"tags": ["SQfNklznVLBBpr"]},
             },
             conditions=[
                 {
@@ -196,7 +196,7 @@ class TestCustomRules:
                 "captcha": {"foo": "bar"},
                 "handshake": {"foo": "bar"},
                 "monitor": {"foo": "bar"},
-                "tag": {"tags": ["string"]},
+                "tag": {"tags": ["SQfNklznVLBBpr"]},
             },
             conditions=[
                 {
@@ -533,7 +533,7 @@ class TestAsyncCustomRules:
                 "captcha": {"foo": "bar"},
                 "handshake": {"foo": "bar"},
                 "monitor": {"foo": "bar"},
-                "tag": {"tags": ["string"]},
+                "tag": {"tags": ["SQfNklznVLBBpr"]},
             },
             conditions=[
                 {
@@ -684,7 +684,7 @@ class TestAsyncCustomRules:
                 "captcha": {"foo": "bar"},
                 "handshake": {"foo": "bar"},
                 "monitor": {"foo": "bar"},
-                "tag": {"tags": ["string"]},
+                "tag": {"tags": ["SQfNklznVLBBpr"]},
             },
             conditions=[
                 {

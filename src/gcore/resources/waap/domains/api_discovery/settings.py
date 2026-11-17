@@ -90,7 +90,7 @@ class SettingsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._patch(
-            path_template("/waap/v1/domains/{domain_id}/api-discovery/settings", domain_id=domain_id),
+            path_template("/waap/v2/domains/{domain_id}/api-discovery/settings", domain_id=domain_id),
             body=maybe_transform(
                 {
                     "description_file_location": description_file_location,
@@ -133,7 +133,7 @@ class SettingsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            path_template("/waap/v1/domains/{domain_id}/api-discovery/settings", domain_id=domain_id),
+            path_template("/waap/v2/domains/{domain_id}/api-discovery/settings", domain_id=domain_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -208,7 +208,7 @@ class AsyncSettingsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._patch(
-            path_template("/waap/v1/domains/{domain_id}/api-discovery/settings", domain_id=domain_id),
+            path_template("/waap/v2/domains/{domain_id}/api-discovery/settings", domain_id=domain_id),
             body=await async_maybe_transform(
                 {
                     "description_file_location": description_file_location,
@@ -251,7 +251,7 @@ class AsyncSettingsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            path_template("/waap/v1/domains/{domain_id}/api-discovery/settings", domain_id=domain_id),
+            path_template("/waap/v2/domains/{domain_id}/api-discovery/settings", domain_id=domain_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

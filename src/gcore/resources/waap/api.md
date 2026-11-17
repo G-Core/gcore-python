@@ -179,8 +179,8 @@ from gcore.types.waap.domains.api_discovery import WaapAPIDiscoverySettings
 
 Methods:
 
-- <code title="patch /waap/v1/domains/{domain_id}/api-discovery/settings">client.waap.domains.api_discovery.settings.<a href="./src/gcore/resources/waap/domains/api_discovery/settings.py">update</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/api_discovery/setting_update_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/api_discovery/waap_api_discovery_settings.py">WaapAPIDiscoverySettings</a></code>
-- <code title="get /waap/v1/domains/{domain_id}/api-discovery/settings">client.waap.domains.api_discovery.settings.<a href="./src/gcore/resources/waap/domains/api_discovery/settings.py">get</a>(domain_id) -> <a href="./src/gcore/types/waap/domains/api_discovery/waap_api_discovery_settings.py">WaapAPIDiscoverySettings</a></code>
+- <code title="patch /waap/v2/domains/{domain_id}/api-discovery/settings">client.waap.domains.api_discovery.settings.<a href="./src/gcore/resources/waap/domains/api_discovery/settings.py">update</a>(domain_id, \*\*<a href="src/gcore/types/waap/domains/api_discovery/setting_update_params.py">params</a>) -> <a href="./src/gcore/types/waap/domains/api_discovery/waap_api_discovery_settings.py">WaapAPIDiscoverySettings</a></code>
+- <code title="get /waap/v2/domains/{domain_id}/api-discovery/settings">client.waap.domains.api_discovery.settings.<a href="./src/gcore/resources/waap/domains/api_discovery/settings.py">get</a>(domain_id) -> <a href="./src/gcore/types/waap/domains/api_discovery/waap_api_discovery_settings.py">WaapAPIDiscoverySettings</a></code>
 
 ### Insights
 
