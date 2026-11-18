@@ -64,6 +64,11 @@ class InterfacesResource(InterfacesResourceCustomMixin, SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[NetworkInterface]:
         """
+        Use
+        [GET /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.get)
+        instead. Read `interfaces`. This route continues to work. Later, we will
+        deprecate it and then remove it. We will tell you in advance.
+
         List all network interfaces attached to the specified instance.
 
         Args:
@@ -140,6 +145,11 @@ class InterfacesResource(InterfacesResourceCustomMixin, SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
+        Use
+        [PATCH /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.patch)
+        instead. Send `interfaces`. This route continues to work. Later, we will
+        deprecate it and then remove it. We will tell you in advance.
+
         Attach interface to instance
 
         Args:
@@ -196,6 +206,11 @@ class InterfacesResource(InterfacesResourceCustomMixin, SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
+        Use
+        [PATCH /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.patch)
+        instead. Send `interfaces`. This route continues to work. Later, we will
+        deprecate it and then remove it. We will tell you in advance.
+
         Attach interface to instance
 
         Args:
@@ -251,6 +266,11 @@ class InterfacesResource(InterfacesResourceCustomMixin, SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
+        Use
+        [PATCH /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.patch)
+        instead. Send `interfaces`. This route continues to work. Later, we will
+        deprecate it and then remove it. We will tell you in advance.
+
         Attach interface to instance
 
         Args:
@@ -312,6 +332,11 @@ class InterfacesResource(InterfacesResourceCustomMixin, SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
+        Use
+        [PATCH /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.patch)
+        instead. Send `interfaces`. This route continues to work. Later, we will
+        deprecate it and then remove it. We will tell you in advance.
+
         Attach interface to instance
 
         Args:
@@ -423,6 +448,11 @@ class InterfacesResource(InterfacesResourceCustomMixin, SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
+        Use
+        [PATCH /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.patch)
+        instead. Send `interfaces`. This route continues to work. Later, we will
+        deprecate it and then remove it. We will tell you in advance.
+
         Detach interface from instance
 
         Args:
@@ -507,6 +537,11 @@ class AsyncInterfacesResource(AsyncInterfacesResourceCustomMixin, AsyncAPIResour
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[NetworkInterface, AsyncOffsetPage[NetworkInterface]]:
         """
+        Use
+        [GET /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.get)
+        instead. Read `interfaces`. This route continues to work. Later, we will
+        deprecate it and then remove it. We will tell you in advance.
+
         List all network interfaces attached to the specified instance.
 
         Args:
@@ -583,6 +618,11 @@ class AsyncInterfacesResource(AsyncInterfacesResourceCustomMixin, AsyncAPIResour
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
+        Use
+        [PATCH /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.patch)
+        instead. Send `interfaces`. This route continues to work. Later, we will
+        deprecate it and then remove it. We will tell you in advance.
+
         Attach interface to instance
 
         Args:
@@ -639,6 +679,11 @@ class AsyncInterfacesResource(AsyncInterfacesResourceCustomMixin, AsyncAPIResour
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
+        Use
+        [PATCH /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.patch)
+        instead. Send `interfaces`. This route continues to work. Later, we will
+        deprecate it and then remove it. We will tell you in advance.
+
         Attach interface to instance
 
         Args:
@@ -694,6 +739,11 @@ class AsyncInterfacesResource(AsyncInterfacesResourceCustomMixin, AsyncAPIResour
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
+        Use
+        [PATCH /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.patch)
+        instead. Send `interfaces`. This route continues to work. Later, we will
+        deprecate it and then remove it. We will tell you in advance.
+
         Attach interface to instance
 
         Args:
@@ -755,6 +805,11 @@ class AsyncInterfacesResource(AsyncInterfacesResourceCustomMixin, AsyncAPIResour
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
+        Use
+        [PATCH /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.patch)
+        instead. Send `interfaces`. This route continues to work. Later, we will
+        deprecate it and then remove it. We will tell you in advance.
+
         Attach interface to instance
 
         Args:
@@ -866,6 +921,11 @@ class AsyncInterfacesResource(AsyncInterfacesResourceCustomMixin, AsyncAPIResour
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
+        Use
+        [PATCH /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.patch)
+        instead. Send `interfaces`. This route continues to work. Later, we will
+        deprecate it and then remove it. We will tell you in advance.
+
         Detach interface from instance
 
         Args:

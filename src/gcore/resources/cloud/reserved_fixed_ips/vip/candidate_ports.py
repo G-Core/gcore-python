@@ -54,6 +54,13 @@ class CandidatePortsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CandidatePortList:
         """
+        Use [GET /v1/projects/{`project_id`}/ports](#operation/GlobalPortListView.get)
+        with `?network_ids={network_id}&attached=true` instead. A VIP is a port that
+        holds the shared address. Each port that can take the address lists it in
+        `allowed_address_pairs`, in the network of the VIP. Each port of a server in the
+        network of the VIP can take the address. This route continues to work. Later, we
+        will deprecate it and then remove it. We will tell you in advance.
+
         List all instance ports that are available for connecting to a VIP.
 
         Args:
@@ -125,6 +132,13 @@ class AsyncCandidatePortsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CandidatePortList:
         """
+        Use [GET /v1/projects/{`project_id`}/ports](#operation/GlobalPortListView.get)
+        with `?network_ids={network_id}&attached=true` instead. A VIP is a port that
+        holds the shared address. Each port that can take the address lists it in
+        `allowed_address_pairs`, in the network of the VIP. Each port of a server in the
+        network of the VIP can take the address. This route continues to work. Later, we
+        will deprecate it and then remove it. We will tell you in advance.
+
         List all instance ports that are available for connecting to a VIP.
 
         Args:

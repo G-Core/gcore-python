@@ -86,6 +86,11 @@ class ServersResource(ServersResourceCustomMixin, SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
+        Use
+        [POST /v1/projects/{`project_id`}/baremetal/servers](#operation/GlobalBaremetalListView.post)
+        instead. This route continues to work. Later, we will deprecate it and then
+        remove it. We will tell you in advance.
+
         Create a new bare metal server with the specified configuration.
 
         How to get access:
@@ -217,6 +222,11 @@ class ServersResource(ServersResourceCustomMixin, SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BaremetalServer:
         """
+        Use
+        [PATCH /v1/projects/{`project_id`}/baremetal/servers/{`server_id`}](#operation/GlobalBaremetalDetailView.patch)
+        instead. This route continues to work. Later, we will deprecate it and then
+        remove it. We will tell you in advance.
+
         Rename bare metal server or update tags
 
         Args:
@@ -228,7 +238,7 @@ class ServersResource(ServersResourceCustomMixin, SyncAPIResource):
 
           name: Name
 
-          tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
+          tags: Update key-value tags using JSON Merge Patch semantics (RFC 7396). Provide
               key-value pairs to add or update tags. Set tag values to `null` to remove tags.
               Unspecified tags remain unchanged. Read-only tags are always preserved and
               cannot be modified.
@@ -321,9 +331,13 @@ class ServersResource(ServersResourceCustomMixin, SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[BaremetalServer]:
-        """List all bare metal servers in the specified project and region.
+        """
+        Use
+        [GET /v1/projects/{`project_id`}/baremetal/servers](#operation/GlobalBaremetalListView.get)
+        instead. This route continues to work. Later, we will deprecate it and then
+        remove it. We will tell you in advance.
 
-        Results can be
+        List all bare metal servers in the specified project and region. Results can be
         filtered by various parameters like name, status, and IP address.
 
         Args:
@@ -452,7 +466,19 @@ class ServersResource(ServersResourceCustomMixin, SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
-        Delete a bare metal server and it's associated resources
+        Use
+        [DELETE /v1/projects/{`project_id`}/baremetal/servers/{`server_id`}](#operation/GlobalBaremetalDetailView.delete)
+        instead. This route continues to work. Later, we will deprecate it and then
+        remove it. We will tell you in advance.
+
+        Delete the bare metal server and its ports. A reserved fixed IP stays, unless
+        `reserved_fixed_ip_ids` names it or `all_reserved_fixed_ips` is `true`. A port
+        that you [create as a port](#operation/GlobalPortListView.post) is not a
+        reserved fixed IP, so this delete removes it.
+
+        To keep the ports, use
+        [`DELETE /v1/projects/{project_id}/baremetal/servers/{server_id}`](#operation/GlobalBaremetalDetailView.delete).
+        That delete keeps every port by default.
 
         Args:
           project_id: Project ID
@@ -528,6 +554,11 @@ class ServersResource(ServersResourceCustomMixin, SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
+        Use
+        [POST /v1/projects/{`project_id`}/baremetal/servers/{`server_id`}/action](#operation/GlobalBaremetalActionView.post)
+        instead. This route continues to work. Later, we will deprecate it and then
+        remove it. We will tell you in advance.
+
         The action can be one of: start, stop, reboot or `reboot_hard`.
 
         Args:
@@ -567,6 +598,11 @@ class ServersResource(ServersResourceCustomMixin, SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
+        Use
+        [POST /v1/projects/{`project_id`}/baremetal/servers/{`server_id`}/action](#operation/GlobalBaremetalActionView.post)
+        instead. This route continues to work. Later, we will deprecate it and then
+        remove it. We will tell you in advance.
+
         The action can be one of: start, stop, reboot or `reboot_hard`.
 
         Args:
@@ -643,9 +679,13 @@ class ServersResource(ServersResourceCustomMixin, SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BaremetalServer:
-        """Retrieve detailed information about a specific baremetal instance.
+        """
+        Use
+        [GET /v1/projects/{`project_id`}/baremetal/servers/{`server_id`}](#operation/GlobalBaremetalDetailView.get)
+        instead. This route continues to work. Later, we will deprecate it and then
+        remove it. We will tell you in advance.
 
-        This endpoint
+        Retrieve detailed information about a specific baremetal instance. This endpoint
         always returns `ddos_profile` (if present) and therefore always requires
         `DDOS_READ`.
 
@@ -799,6 +839,11 @@ class AsyncServersResource(AsyncServersResourceCustomMixin, AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
+        Use
+        [POST /v1/projects/{`project_id`}/baremetal/servers](#operation/GlobalBaremetalListView.post)
+        instead. This route continues to work. Later, we will deprecate it and then
+        remove it. We will tell you in advance.
+
         Create a new bare metal server with the specified configuration.
 
         How to get access:
@@ -930,6 +975,11 @@ class AsyncServersResource(AsyncServersResourceCustomMixin, AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BaremetalServer:
         """
+        Use
+        [PATCH /v1/projects/{`project_id`}/baremetal/servers/{`server_id`}](#operation/GlobalBaremetalDetailView.patch)
+        instead. This route continues to work. Later, we will deprecate it and then
+        remove it. We will tell you in advance.
+
         Rename bare metal server or update tags
 
         Args:
@@ -941,7 +991,7 @@ class AsyncServersResource(AsyncServersResourceCustomMixin, AsyncAPIResource):
 
           name: Name
 
-          tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
+          tags: Update key-value tags using JSON Merge Patch semantics (RFC 7396). Provide
               key-value pairs to add or update tags. Set tag values to `null` to remove tags.
               Unspecified tags remain unchanged. Read-only tags are always preserved and
               cannot be modified.
@@ -1034,9 +1084,13 @@ class AsyncServersResource(AsyncServersResourceCustomMixin, AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[BaremetalServer, AsyncOffsetPage[BaremetalServer]]:
-        """List all bare metal servers in the specified project and region.
+        """
+        Use
+        [GET /v1/projects/{`project_id`}/baremetal/servers](#operation/GlobalBaremetalListView.get)
+        instead. This route continues to work. Later, we will deprecate it and then
+        remove it. We will tell you in advance.
 
-        Results can be
+        List all bare metal servers in the specified project and region. Results can be
         filtered by various parameters like name, status, and IP address.
 
         Args:
@@ -1165,7 +1219,19 @@ class AsyncServersResource(AsyncServersResourceCustomMixin, AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
-        Delete a bare metal server and it's associated resources
+        Use
+        [DELETE /v1/projects/{`project_id`}/baremetal/servers/{`server_id`}](#operation/GlobalBaremetalDetailView.delete)
+        instead. This route continues to work. Later, we will deprecate it and then
+        remove it. We will tell you in advance.
+
+        Delete the bare metal server and its ports. A reserved fixed IP stays, unless
+        `reserved_fixed_ip_ids` names it or `all_reserved_fixed_ips` is `true`. A port
+        that you [create as a port](#operation/GlobalPortListView.post) is not a
+        reserved fixed IP, so this delete removes it.
+
+        To keep the ports, use
+        [`DELETE /v1/projects/{project_id}/baremetal/servers/{server_id}`](#operation/GlobalBaremetalDetailView.delete).
+        That delete keeps every port by default.
 
         Args:
           project_id: Project ID
@@ -1241,6 +1307,11 @@ class AsyncServersResource(AsyncServersResourceCustomMixin, AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
+        Use
+        [POST /v1/projects/{`project_id`}/baremetal/servers/{`server_id`}/action](#operation/GlobalBaremetalActionView.post)
+        instead. This route continues to work. Later, we will deprecate it and then
+        remove it. We will tell you in advance.
+
         The action can be one of: start, stop, reboot or `reboot_hard`.
 
         Args:
@@ -1280,6 +1351,11 @@ class AsyncServersResource(AsyncServersResourceCustomMixin, AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
+        Use
+        [POST /v1/projects/{`project_id`}/baremetal/servers/{`server_id`}/action](#operation/GlobalBaremetalActionView.post)
+        instead. This route continues to work. Later, we will deprecate it and then
+        remove it. We will tell you in advance.
+
         The action can be one of: start, stop, reboot or `reboot_hard`.
 
         Args:
@@ -1356,9 +1432,13 @@ class AsyncServersResource(AsyncServersResourceCustomMixin, AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BaremetalServer:
-        """Retrieve detailed information about a specific baremetal instance.
+        """
+        Use
+        [GET /v1/projects/{`project_id`}/baremetal/servers/{`server_id`}](#operation/GlobalBaremetalDetailView.get)
+        instead. This route continues to work. Later, we will deprecate it and then
+        remove it. We will tell you in advance.
 
-        This endpoint
+        Retrieve detailed information about a specific baremetal instance. This endpoint
         always returns `ddos_profile` (if present) and therefore always requires
         `DDOS_READ`.
 

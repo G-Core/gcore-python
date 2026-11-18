@@ -33,7 +33,7 @@ class FileShareUpdateParams(TypedDict, total=False):
     """Configuration settings for the share"""
 
     tags: Optional[TagUpdateMapParam]
-    """Update key-value tags using JSON Merge Patch semantics (RFC 7386).
+    """Update key-value tags using JSON Merge Patch semantics (RFC 7396).
 
     Provide key-value pairs to add or update tags. Set tag values to `null` to
     remove tags. Unspecified tags remain unchanged. Read-only tags are always

@@ -62,9 +62,16 @@ class FlavorsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[BaremetalFlavor]:
-        """List all available bare metal flavors in the specified project and region.
+        """
+        Use
+        [GET /v1/projects/{`project_id`}/baremetal/flavors](#operation/GlobalBaremetalFlavorListView.get)
+        instead. The new route always returns `capacity`. The new route does not return
+        prices. For prices, use
+        [List bare metal flavor prices](#operation/BaremetalFlavorPriceListView.get).
+        This route continues to work. Later, we will deprecate it and then remove it. We
+        will tell you in advance.
 
-        When
+        List all available bare metal flavors in the specified project and region. When
         `include_prices` is specified, the list includes pricing information. A client
         in trial mode gets all price values as 0. If you get Pricing Error contact the
         support.
@@ -170,9 +177,16 @@ class AsyncFlavorsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[BaremetalFlavor, AsyncOffsetPage[BaremetalFlavor]]:
-        """List all available bare metal flavors in the specified project and region.
+        """
+        Use
+        [GET /v1/projects/{`project_id`}/baremetal/flavors](#operation/GlobalBaremetalFlavorListView.get)
+        instead. The new route always returns `capacity`. The new route does not return
+        prices. For prices, use
+        [List bare metal flavor prices](#operation/BaremetalFlavorPriceListView.get).
+        This route continues to work. Later, we will deprecate it and then remove it. We
+        will tell you in advance.
 
-        When
+        List all available bare metal flavors in the specified project and region. When
         `include_prices` is specified, the list includes pricing information. A client
         in trial mode gets all price values as 0. If you get Pricing Error contact the
         support.

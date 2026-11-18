@@ -12,6 +12,8 @@ from tests.utils import assert_matches_type
 from gcore.pagination import SyncOffsetPage, AsyncOffsetPage
 from gcore.types.cloud import TaskIDList, PlacementGroup
 
+# pyright: reportDeprecated=false
+
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
@@ -20,22 +22,25 @@ class TestPlacementGroups:
 
     @parametrize
     def test_method_create(self, client: Gcore) -> None:
-        placement_group = client.cloud.placement_groups.create(
-            project_id=1,
-            region_id=1,
-            name="my-placement-group",
-            policy="anti-affinity",
-        )
+        with pytest.warns(DeprecationWarning):
+            placement_group = client.cloud.placement_groups.create(
+                project_id=1,
+                region_id=1,
+                name="my-placement-group",
+                policy="anti-affinity",
+            )
+
         assert_matches_type(PlacementGroup, placement_group, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Gcore) -> None:
-        response = client.cloud.placement_groups.with_raw_response.create(
-            project_id=1,
-            region_id=1,
-            name="my-placement-group",
-            policy="anti-affinity",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = client.cloud.placement_groups.with_raw_response.create(
+                project_id=1,
+                region_id=1,
+                name="my-placement-group",
+                policy="anti-affinity",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -44,44 +49,50 @@ class TestPlacementGroups:
 
     @parametrize
     def test_streaming_response_create(self, client: Gcore) -> None:
-        with client.cloud.placement_groups.with_streaming_response.create(
-            project_id=1,
-            region_id=1,
-            name="my-placement-group",
-            policy="anti-affinity",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.cloud.placement_groups.with_streaming_response.create(
+                project_id=1,
+                region_id=1,
+                name="my-placement-group",
+                policy="anti-affinity",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            placement_group = response.parse()
-            assert_matches_type(PlacementGroup, placement_group, path=["response"])
+                placement_group = response.parse()
+                assert_matches_type(PlacementGroup, placement_group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
-        placement_group = client.cloud.placement_groups.list(
-            project_id=1,
-            region_id=1,
-        )
+        with pytest.warns(DeprecationWarning):
+            placement_group = client.cloud.placement_groups.list(
+                project_id=1,
+                region_id=1,
+            )
+
         assert_matches_type(SyncOffsetPage[PlacementGroup], placement_group, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
-        placement_group = client.cloud.placement_groups.list(
-            project_id=1,
-            region_id=1,
-            limit=1000,
-            offset=0,
-        )
+        with pytest.warns(DeprecationWarning):
+            placement_group = client.cloud.placement_groups.list(
+                project_id=1,
+                region_id=1,
+                limit=1000,
+                offset=0,
+            )
+
         assert_matches_type(SyncOffsetPage[PlacementGroup], placement_group, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
-        response = client.cloud.placement_groups.with_raw_response.list(
-            project_id=1,
-            region_id=1,
-        )
+        with pytest.warns(DeprecationWarning):
+            response = client.cloud.placement_groups.with_raw_response.list(
+                project_id=1,
+                region_id=1,
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -90,34 +101,38 @@ class TestPlacementGroups:
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
-        with client.cloud.placement_groups.with_streaming_response.list(
-            project_id=1,
-            region_id=1,
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.cloud.placement_groups.with_streaming_response.list(
+                project_id=1,
+                region_id=1,
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            placement_group = response.parse()
-            assert_matches_type(SyncOffsetPage[PlacementGroup], placement_group, path=["response"])
+                placement_group = response.parse()
+                assert_matches_type(SyncOffsetPage[PlacementGroup], placement_group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_delete(self, client: Gcore) -> None:
-        placement_group = client.cloud.placement_groups.delete(
-            group_id="47003067-550a-6f17-93b6-81ee16ba061e",
-            project_id=1,
-            region_id=1,
-        )
+        with pytest.warns(DeprecationWarning):
+            placement_group = client.cloud.placement_groups.delete(
+                group_id="47003067-550a-6f17-93b6-81ee16ba061e",
+                project_id=1,
+                region_id=1,
+            )
+
         assert_matches_type(TaskIDList, placement_group, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Gcore) -> None:
-        response = client.cloud.placement_groups.with_raw_response.delete(
-            group_id="47003067-550a-6f17-93b6-81ee16ba061e",
-            project_id=1,
-            region_id=1,
-        )
+        with pytest.warns(DeprecationWarning):
+            response = client.cloud.placement_groups.with_raw_response.delete(
+                group_id="47003067-550a-6f17-93b6-81ee16ba061e",
+                project_id=1,
+                region_id=1,
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -126,44 +141,49 @@ class TestPlacementGroups:
 
     @parametrize
     def test_streaming_response_delete(self, client: Gcore) -> None:
-        with client.cloud.placement_groups.with_streaming_response.delete(
-            group_id="47003067-550a-6f17-93b6-81ee16ba061e",
-            project_id=1,
-            region_id=1,
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.cloud.placement_groups.with_streaming_response.delete(
+                group_id="47003067-550a-6f17-93b6-81ee16ba061e",
+                project_id=1,
+                region_id=1,
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            placement_group = response.parse()
-            assert_matches_type(TaskIDList, placement_group, path=["response"])
+                placement_group = response.parse()
+                assert_matches_type(TaskIDList, placement_group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_delete(self, client: Gcore) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `group_id` but received ''"):
-            client.cloud.placement_groups.with_raw_response.delete(
-                group_id="",
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `group_id` but received ''"):
+                client.cloud.placement_groups.with_raw_response.delete(
+                    group_id="",
+                    project_id=1,
+                    region_id=1,
+                )
+
+    @parametrize
+    def test_method_get(self, client: Gcore) -> None:
+        with pytest.warns(DeprecationWarning):
+            placement_group = client.cloud.placement_groups.get(
+                group_id="47003067-550a-6f17-93b6-81ee16ba061e",
                 project_id=1,
                 region_id=1,
             )
 
-    @parametrize
-    def test_method_get(self, client: Gcore) -> None:
-        placement_group = client.cloud.placement_groups.get(
-            group_id="47003067-550a-6f17-93b6-81ee16ba061e",
-            project_id=1,
-            region_id=1,
-        )
         assert_matches_type(PlacementGroup, placement_group, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Gcore) -> None:
-        response = client.cloud.placement_groups.with_raw_response.get(
-            group_id="47003067-550a-6f17-93b6-81ee16ba061e",
-            project_id=1,
-            region_id=1,
-        )
+        with pytest.warns(DeprecationWarning):
+            response = client.cloud.placement_groups.with_raw_response.get(
+                group_id="47003067-550a-6f17-93b6-81ee16ba061e",
+                project_id=1,
+                region_id=1,
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -172,27 +192,29 @@ class TestPlacementGroups:
 
     @parametrize
     def test_streaming_response_get(self, client: Gcore) -> None:
-        with client.cloud.placement_groups.with_streaming_response.get(
-            group_id="47003067-550a-6f17-93b6-81ee16ba061e",
-            project_id=1,
-            region_id=1,
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.cloud.placement_groups.with_streaming_response.get(
+                group_id="47003067-550a-6f17-93b6-81ee16ba061e",
+                project_id=1,
+                region_id=1,
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            placement_group = response.parse()
-            assert_matches_type(PlacementGroup, placement_group, path=["response"])
+                placement_group = response.parse()
+                assert_matches_type(PlacementGroup, placement_group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_get(self, client: Gcore) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `group_id` but received ''"):
-            client.cloud.placement_groups.with_raw_response.get(
-                group_id="",
-                project_id=1,
-                region_id=1,
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `group_id` but received ''"):
+                client.cloud.placement_groups.with_raw_response.get(
+                    group_id="",
+                    project_id=1,
+                    region_id=1,
+                )
 
 
 class TestAsyncPlacementGroups:
@@ -202,22 +224,25 @@ class TestAsyncPlacementGroups:
 
     @parametrize
     async def test_method_create(self, async_client: AsyncGcore) -> None:
-        placement_group = await async_client.cloud.placement_groups.create(
-            project_id=1,
-            region_id=1,
-            name="my-placement-group",
-            policy="anti-affinity",
-        )
+        with pytest.warns(DeprecationWarning):
+            placement_group = await async_client.cloud.placement_groups.create(
+                project_id=1,
+                region_id=1,
+                name="my-placement-group",
+                policy="anti-affinity",
+            )
+
         assert_matches_type(PlacementGroup, placement_group, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.placement_groups.with_raw_response.create(
-            project_id=1,
-            region_id=1,
-            name="my-placement-group",
-            policy="anti-affinity",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.cloud.placement_groups.with_raw_response.create(
+                project_id=1,
+                region_id=1,
+                name="my-placement-group",
+                policy="anti-affinity",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -226,44 +251,50 @@ class TestAsyncPlacementGroups:
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.placement_groups.with_streaming_response.create(
-            project_id=1,
-            region_id=1,
-            name="my-placement-group",
-            policy="anti-affinity",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.cloud.placement_groups.with_streaming_response.create(
+                project_id=1,
+                region_id=1,
+                name="my-placement-group",
+                policy="anti-affinity",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            placement_group = await response.parse()
-            assert_matches_type(PlacementGroup, placement_group, path=["response"])
+                placement_group = await response.parse()
+                assert_matches_type(PlacementGroup, placement_group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
-        placement_group = await async_client.cloud.placement_groups.list(
-            project_id=1,
-            region_id=1,
-        )
+        with pytest.warns(DeprecationWarning):
+            placement_group = await async_client.cloud.placement_groups.list(
+                project_id=1,
+                region_id=1,
+            )
+
         assert_matches_type(AsyncOffsetPage[PlacementGroup], placement_group, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
-        placement_group = await async_client.cloud.placement_groups.list(
-            project_id=1,
-            region_id=1,
-            limit=1000,
-            offset=0,
-        )
+        with pytest.warns(DeprecationWarning):
+            placement_group = await async_client.cloud.placement_groups.list(
+                project_id=1,
+                region_id=1,
+                limit=1000,
+                offset=0,
+            )
+
         assert_matches_type(AsyncOffsetPage[PlacementGroup], placement_group, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.placement_groups.with_raw_response.list(
-            project_id=1,
-            region_id=1,
-        )
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.cloud.placement_groups.with_raw_response.list(
+                project_id=1,
+                region_id=1,
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -272,34 +303,38 @@ class TestAsyncPlacementGroups:
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.placement_groups.with_streaming_response.list(
-            project_id=1,
-            region_id=1,
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.cloud.placement_groups.with_streaming_response.list(
+                project_id=1,
+                region_id=1,
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            placement_group = await response.parse()
-            assert_matches_type(AsyncOffsetPage[PlacementGroup], placement_group, path=["response"])
+                placement_group = await response.parse()
+                assert_matches_type(AsyncOffsetPage[PlacementGroup], placement_group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncGcore) -> None:
-        placement_group = await async_client.cloud.placement_groups.delete(
-            group_id="47003067-550a-6f17-93b6-81ee16ba061e",
-            project_id=1,
-            region_id=1,
-        )
+        with pytest.warns(DeprecationWarning):
+            placement_group = await async_client.cloud.placement_groups.delete(
+                group_id="47003067-550a-6f17-93b6-81ee16ba061e",
+                project_id=1,
+                region_id=1,
+            )
+
         assert_matches_type(TaskIDList, placement_group, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.placement_groups.with_raw_response.delete(
-            group_id="47003067-550a-6f17-93b6-81ee16ba061e",
-            project_id=1,
-            region_id=1,
-        )
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.cloud.placement_groups.with_raw_response.delete(
+                group_id="47003067-550a-6f17-93b6-81ee16ba061e",
+                project_id=1,
+                region_id=1,
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -308,44 +343,49 @@ class TestAsyncPlacementGroups:
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.placement_groups.with_streaming_response.delete(
-            group_id="47003067-550a-6f17-93b6-81ee16ba061e",
-            project_id=1,
-            region_id=1,
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.cloud.placement_groups.with_streaming_response.delete(
+                group_id="47003067-550a-6f17-93b6-81ee16ba061e",
+                project_id=1,
+                region_id=1,
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            placement_group = await response.parse()
-            assert_matches_type(TaskIDList, placement_group, path=["response"])
+                placement_group = await response.parse()
+                assert_matches_type(TaskIDList, placement_group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncGcore) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `group_id` but received ''"):
-            await async_client.cloud.placement_groups.with_raw_response.delete(
-                group_id="",
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `group_id` but received ''"):
+                await async_client.cloud.placement_groups.with_raw_response.delete(
+                    group_id="",
+                    project_id=1,
+                    region_id=1,
+                )
+
+    @parametrize
+    async def test_method_get(self, async_client: AsyncGcore) -> None:
+        with pytest.warns(DeprecationWarning):
+            placement_group = await async_client.cloud.placement_groups.get(
+                group_id="47003067-550a-6f17-93b6-81ee16ba061e",
                 project_id=1,
                 region_id=1,
             )
 
-    @parametrize
-    async def test_method_get(self, async_client: AsyncGcore) -> None:
-        placement_group = await async_client.cloud.placement_groups.get(
-            group_id="47003067-550a-6f17-93b6-81ee16ba061e",
-            project_id=1,
-            region_id=1,
-        )
         assert_matches_type(PlacementGroup, placement_group, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.placement_groups.with_raw_response.get(
-            group_id="47003067-550a-6f17-93b6-81ee16ba061e",
-            project_id=1,
-            region_id=1,
-        )
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.cloud.placement_groups.with_raw_response.get(
+                group_id="47003067-550a-6f17-93b6-81ee16ba061e",
+                project_id=1,
+                region_id=1,
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -354,24 +394,26 @@ class TestAsyncPlacementGroups:
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.placement_groups.with_streaming_response.get(
-            group_id="47003067-550a-6f17-93b6-81ee16ba061e",
-            project_id=1,
-            region_id=1,
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.cloud.placement_groups.with_streaming_response.get(
+                group_id="47003067-550a-6f17-93b6-81ee16ba061e",
+                project_id=1,
+                region_id=1,
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            placement_group = await response.parse()
-            assert_matches_type(PlacementGroup, placement_group, path=["response"])
+                placement_group = await response.parse()
+                assert_matches_type(PlacementGroup, placement_group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_get(self, async_client: AsyncGcore) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `group_id` but received ''"):
-            await async_client.cloud.placement_groups.with_raw_response.get(
-                group_id="",
-                project_id=1,
-                region_id=1,
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `group_id` but received ''"):
+                await async_client.cloud.placement_groups.with_raw_response.get(
+                    group_id="",
+                    project_id=1,
+                    region_id=1,
+                )

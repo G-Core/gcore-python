@@ -55,6 +55,14 @@ class ConnectedPortsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConnectedPortList:
         """
+        Use [GET /v1/projects/{`project_id`}/ports](#operation/GlobalPortListView.get)
+        with `?network_ids={network_id}` instead. A VIP is a port that holds the shared
+        address. Each port that can take the address lists it in
+        `allowed_address_pairs`, in the network of the VIP. The ports that list an
+        address of the VIP in `allowed_address_pairs` share it. This route continues to
+        work. Later, we will deprecate it and then remove it. We will tell you in
+        advance.
+
         List all instance ports that share a VIP.
 
         Args:
@@ -106,6 +114,15 @@ class ConnectedPortsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConnectedPortList:
         """
+        Use
+        [PATCH /v1/projects/{`project_id`}/ports/{`port_id`}](#operation/GlobalPortDetailView.patch)
+        instead. A VIP is a port that holds the shared address. Each port that can take
+        the address lists it in `allowed_address_pairs`, in the network of the VIP.
+        Update each new port. Add each address of the VIP to `allowed_address_pairs`.
+        The field replaces the full list, so also send the pairs that the port has. This
+        route continues to work. Later, we will deprecate it and then remove it. We will
+        tell you in advance.
+
         Add instance ports to share a VIP.
 
         Args:
@@ -160,6 +177,15 @@ class ConnectedPortsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConnectedPortList:
         """
+        Use
+        [PATCH /v1/projects/{`project_id`}/ports/{`port_id`}](#operation/GlobalPortDetailView.patch)
+        instead. A VIP is a port that holds the shared address. Each port that can take
+        the address lists it in `allowed_address_pairs`, in the network of the VIP.
+        Update each port that must share the address. Send `allowed_address_pairs` with
+        each address of the VIP. To stop the sharing on a port, send `[]`. This route
+        continues to work. Later, we will deprecate it and then remove it. We will tell
+        you in advance.
+
         Replace the list of instance ports that share a VIP.
 
         Args:
@@ -234,6 +260,14 @@ class AsyncConnectedPortsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConnectedPortList:
         """
+        Use [GET /v1/projects/{`project_id`}/ports](#operation/GlobalPortListView.get)
+        with `?network_ids={network_id}` instead. A VIP is a port that holds the shared
+        address. Each port that can take the address lists it in
+        `allowed_address_pairs`, in the network of the VIP. The ports that list an
+        address of the VIP in `allowed_address_pairs` share it. This route continues to
+        work. Later, we will deprecate it and then remove it. We will tell you in
+        advance.
+
         List all instance ports that share a VIP.
 
         Args:
@@ -285,6 +319,15 @@ class AsyncConnectedPortsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConnectedPortList:
         """
+        Use
+        [PATCH /v1/projects/{`project_id`}/ports/{`port_id`}](#operation/GlobalPortDetailView.patch)
+        instead. A VIP is a port that holds the shared address. Each port that can take
+        the address lists it in `allowed_address_pairs`, in the network of the VIP.
+        Update each new port. Add each address of the VIP to `allowed_address_pairs`.
+        The field replaces the full list, so also send the pairs that the port has. This
+        route continues to work. Later, we will deprecate it and then remove it. We will
+        tell you in advance.
+
         Add instance ports to share a VIP.
 
         Args:
@@ -339,6 +382,15 @@ class AsyncConnectedPortsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConnectedPortList:
         """
+        Use
+        [PATCH /v1/projects/{`project_id`}/ports/{`port_id`}](#operation/GlobalPortDetailView.patch)
+        instead. A VIP is a port that holds the shared address. Each port that can take
+        the address lists it in `allowed_address_pairs`, in the network of the VIP.
+        Update each port that must share the address. Send `allowed_address_pairs` with
+        each address of the VIP. To stop the sharing on a port, send `[]`. This route
+        continues to work. Later, we will deprecate it and then remove it. We will tell
+        you in advance.
+
         Replace the list of instance ports that share a VIP.
 
         Args:

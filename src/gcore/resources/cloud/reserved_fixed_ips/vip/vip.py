@@ -80,6 +80,14 @@ class VipResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ReservedFixedIP:
         """
+        Use
+        [PATCH /v1/projects/{`project_id`}/ports/{`port_id`}](#operation/GlobalPortDetailView.patch)
+        instead. A VIP is a port that holds the shared address. Each port that can take
+        the address lists it in `allowed_address_pairs`, in the network of the VIP. A
+        port needs no VIP flag. To share its address, update the ports that take it.
+        This route continues to work. Later, we will deprecate it and then remove it. We
+        will tell you in advance.
+
         Update the VIP status of a reserved fixed IP.
 
         Args:
@@ -163,6 +171,14 @@ class AsyncVipResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ReservedFixedIP:
         """
+        Use
+        [PATCH /v1/projects/{`project_id`}/ports/{`port_id`}](#operation/GlobalPortDetailView.patch)
+        instead. A VIP is a port that holds the shared address. Each port that can take
+        the address lists it in `allowed_address_pairs`, in the network of the VIP. A
+        port needs no VIP flag. To share its address, update the ports that take it.
+        This route continues to work. Later, we will deprecate it and then remove it. We
+        will tell you in advance.
+
         Update the VIP status of a reserved fixed IP.
 
         Args:

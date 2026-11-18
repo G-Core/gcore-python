@@ -142,7 +142,7 @@ class TasksResource(SyncAPIResource):
 
           task_type: Filter the tasks by their type one of ['activate_ddos_profile',
               'attach_bm_to_reserved_fixed_ip', 'attach_vm_interface',
-              'attach_vm_to_reserved_fixed_ip', 'attach_volume',
+              'attach_vm_to_reserved_fixed_ip', 'attach_volume', 'clean_project_resources',
               'convert_fip_to_reserved_fixed_ip', 'convert_port_to_fip',
               'convert_reserved_fixed_ip_to_fip', 'create_ai_cluster_gpu', 'create_basic_vm',
               'create_bm', 'create_caas_container', 'create_dbaas_postgres_cluster',
@@ -470,7 +470,7 @@ class AsyncTasksResource(AsyncAPIResource):
 
           task_type: Filter the tasks by their type one of ['activate_ddos_profile',
               'attach_bm_to_reserved_fixed_ip', 'attach_vm_interface',
-              'attach_vm_to_reserved_fixed_ip', 'attach_volume',
+              'attach_vm_to_reserved_fixed_ip', 'attach_volume', 'clean_project_resources',
               'convert_fip_to_reserved_fixed_ip', 'convert_port_to_fip',
               'convert_reserved_fixed_ip_to_fip', 'create_ai_cluster_gpu', 'create_basic_vm',
               'create_bm', 'create_caas_container', 'create_dbaas_postgres_cluster',

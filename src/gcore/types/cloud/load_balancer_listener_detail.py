@@ -13,10 +13,10 @@ __all__ = ["LoadBalancerListenerDetail", "UserList"]
 
 class UserList(BaseModel):
     encrypted_password: str
-    """Encrypted password to auth via Basic Authentication"""
+    """Password hash for HTTP basic authentication"""
 
     username: str
-    """Username to auth via Basic Authentication"""
+    """Username for HTTP basic authentication"""
 
 
 class LoadBalancerListenerDetail(BaseModel):

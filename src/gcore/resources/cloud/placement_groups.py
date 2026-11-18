@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing_extensions import Literal
 
 import httpx
@@ -49,6 +50,7 @@ class PlacementGroupsResource(SyncAPIResource):
         """
         return PlacementGroupsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def create(
         self,
         *,
@@ -64,6 +66,11 @@ class PlacementGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PlacementGroup:
         """
+        Use
+        [POST /v1/projects/{`project_id`}/`placement_groups`](#operation/GlobalPlacementGroupListView.post)
+        instead. This route is deprecated. Later, we will remove it. We will tell you in
+        advance.
+
         Create an affinity or anti-affinity or soft-anti-affinity placement group
 
         Args:
@@ -104,6 +111,7 @@ class PlacementGroupsResource(SyncAPIResource):
             cast_to=PlacementGroup,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         *,
@@ -119,6 +127,11 @@ class PlacementGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[PlacementGroup]:
         """
+        Use
+        [GET /v1/projects/{`project_id`}/`placement_groups`](#operation/GlobalPlacementGroupListView.get)
+        instead. This route is deprecated. Later, we will remove it. We will tell you in
+        advance.
+
         List all placement groups in the specified project and region.
 
         Args:
@@ -164,6 +177,7 @@ class PlacementGroupsResource(SyncAPIResource):
             model=PlacementGroup,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def delete(
         self,
         group_id: str,
@@ -178,6 +192,11 @@ class PlacementGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
+        Use
+        [DELETE /v1/projects/{`project_id`}/`placement_groups`/{`placement_group_id`}](#operation/GlobalPlacementGroupDetailView.delete)
+        instead. This route is deprecated. Later, we will remove it. We will tell you in
+        advance.
+
         Delete a placement group by its ID.
 
         Args:
@@ -214,6 +233,7 @@ class PlacementGroupsResource(SyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def get(
         self,
         group_id: str,
@@ -228,6 +248,11 @@ class PlacementGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PlacementGroup:
         """
+        Use
+        [GET /v1/projects/{`project_id`}/`placement_groups`/{`placement_group_id`}](#operation/GlobalPlacementGroupDetailView.get)
+        instead. This route is deprecated. Later, we will remove it. We will tell you in
+        advance.
+
         Retrieve a single placement group by its ID.
 
         Args:
@@ -289,6 +314,7 @@ class AsyncPlacementGroupsResource(AsyncAPIResource):
         """
         return AsyncPlacementGroupsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def create(
         self,
         *,
@@ -304,6 +330,11 @@ class AsyncPlacementGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PlacementGroup:
         """
+        Use
+        [POST /v1/projects/{`project_id`}/`placement_groups`](#operation/GlobalPlacementGroupListView.post)
+        instead. This route is deprecated. Later, we will remove it. We will tell you in
+        advance.
+
         Create an affinity or anti-affinity or soft-anti-affinity placement group
 
         Args:
@@ -344,6 +375,7 @@ class AsyncPlacementGroupsResource(AsyncAPIResource):
             cast_to=PlacementGroup,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         *,
@@ -359,6 +391,11 @@ class AsyncPlacementGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[PlacementGroup, AsyncOffsetPage[PlacementGroup]]:
         """
+        Use
+        [GET /v1/projects/{`project_id`}/`placement_groups`](#operation/GlobalPlacementGroupListView.get)
+        instead. This route is deprecated. Later, we will remove it. We will tell you in
+        advance.
+
         List all placement groups in the specified project and region.
 
         Args:
@@ -404,6 +441,7 @@ class AsyncPlacementGroupsResource(AsyncAPIResource):
             model=PlacementGroup,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def delete(
         self,
         group_id: str,
@@ -418,6 +456,11 @@ class AsyncPlacementGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
+        Use
+        [DELETE /v1/projects/{`project_id`}/`placement_groups`/{`placement_group_id`}](#operation/GlobalPlacementGroupDetailView.delete)
+        instead. This route is deprecated. Later, we will remove it. We will tell you in
+        advance.
+
         Delete a placement group by its ID.
 
         Args:
@@ -454,6 +497,7 @@ class AsyncPlacementGroupsResource(AsyncAPIResource):
             cast_to=TaskIDList,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def get(
         self,
         group_id: str,
@@ -468,6 +512,11 @@ class AsyncPlacementGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PlacementGroup:
         """
+        Use
+        [GET /v1/projects/{`project_id`}/`placement_groups`/{`placement_group_id`}](#operation/GlobalPlacementGroupDetailView.get)
+        instead. This route is deprecated. Later, we will remove it. We will tell you in
+        advance.
+
         Retrieve a single placement group by its ID.
 
         Args:
@@ -509,17 +558,25 @@ class PlacementGroupsResourceWithRawResponse:
     def __init__(self, placement_groups: PlacementGroupsResource) -> None:
         self._placement_groups = placement_groups
 
-        self.create = to_raw_response_wrapper(
-            placement_groups.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                placement_groups.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = to_raw_response_wrapper(
-            placement_groups.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                placement_groups.list,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = to_raw_response_wrapper(
-            placement_groups.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                placement_groups.delete,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_raw_response_wrapper(
-            placement_groups.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                placement_groups.get,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -527,17 +584,25 @@ class AsyncPlacementGroupsResourceWithRawResponse:
     def __init__(self, placement_groups: AsyncPlacementGroupsResource) -> None:
         self._placement_groups = placement_groups
 
-        self.create = async_to_raw_response_wrapper(
-            placement_groups.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                placement_groups.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = async_to_raw_response_wrapper(
-            placement_groups.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                placement_groups.list,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = async_to_raw_response_wrapper(
-            placement_groups.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                placement_groups.delete,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_raw_response_wrapper(
-            placement_groups.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                placement_groups.get,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -545,17 +610,25 @@ class PlacementGroupsResourceWithStreamingResponse:
     def __init__(self, placement_groups: PlacementGroupsResource) -> None:
         self._placement_groups = placement_groups
 
-        self.create = to_streamed_response_wrapper(
-            placement_groups.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                placement_groups.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = to_streamed_response_wrapper(
-            placement_groups.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                placement_groups.list,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = to_streamed_response_wrapper(
-            placement_groups.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                placement_groups.delete,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_streamed_response_wrapper(
-            placement_groups.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                placement_groups.get,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -563,15 +636,23 @@ class AsyncPlacementGroupsResourceWithStreamingResponse:
     def __init__(self, placement_groups: AsyncPlacementGroupsResource) -> None:
         self._placement_groups = placement_groups
 
-        self.create = async_to_streamed_response_wrapper(
-            placement_groups.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                placement_groups.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = async_to_streamed_response_wrapper(
-            placement_groups.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                placement_groups.list,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = async_to_streamed_response_wrapper(
-            placement_groups.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                placement_groups.delete,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_streamed_response_wrapper(
-            placement_groups.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                placement_groups.get,  # pyright: ignore[reportDeprecated],
+            )
         )

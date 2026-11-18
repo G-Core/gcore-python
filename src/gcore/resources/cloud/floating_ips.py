@@ -199,7 +199,7 @@ class FloatingIPsResource(FloatingIPsResourceCustomMixin, SyncAPIResource):
 
           port_id: Port ID
 
-          tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
+          tags: Update key-value tags using JSON Merge Patch semantics (RFC 7396). Provide
               key-value pairs to add or update tags. Set tag values to `null` to remove tags.
               Unspecified tags remain unchanged. Read-only tags are always preserved and
               cannot be modified.
@@ -715,7 +715,7 @@ class AsyncFloatingIPsResource(AsyncFloatingIPsResourceCustomMixin, AsyncAPIReso
 
           port_id: Port ID
 
-          tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
+          tags: Update key-value tags using JSON Merge Patch semantics (RFC 7396). Provide
               key-value pairs to add or update tags. Set tag values to `null` to remove tags.
               Unspecified tags remain unchanged. Read-only tags are always preserved and
               cannot be modified.

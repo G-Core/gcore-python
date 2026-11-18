@@ -149,6 +149,11 @@ class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
+        Use
+        [POST /v1/projects/{`project_id`}/instances](#operation/GlobalInstanceListView.post)
+        instead. This route continues to work. Later, we will deprecate it and then
+        remove it. We will tell you in advance.
+
         Create an instance with specified configuration.
 
         How to get access:
@@ -295,6 +300,11 @@ class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Instance:
         """
+        Use
+        [PATCH /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.patch)
+        instead. This route continues to work. Later, we will deprecate it and then
+        remove it. We will tell you in advance.
+
         Rename instance or update tags
 
         Args:
@@ -306,7 +316,7 @@ class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
 
           name: Name
 
-          tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
+          tags: Update key-value tags using JSON Merge Patch semantics (RFC 7396). Provide
               key-value pairs to add or update tags. Set tag values to `null` to remove tags.
               Unspecified tags remain unchanged. Read-only tags are always preserved and
               cannot be modified.
@@ -419,9 +429,13 @@ class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[Instance]:
-        """List all instances in the specified project and region.
+        """
+        Use
+        [GET /v1/projects/{`project_id`}/instances](#operation/GlobalInstanceListView.get)
+        instead. This route continues to work. Later, we will deprecate it and then
+        remove it. We will tell you in advance.
 
-        Results can be filtered
+        List all instances in the specified project and region. Results can be filtered
         by various parameters like name, status, and IP address.
 
         Args:
@@ -564,7 +578,19 @@ class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
-        Delete instance
+        Use
+        [DELETE /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.delete)
+        instead. This route continues to work. Later, we will deprecate it and then
+        remove it. We will tell you in advance.
+
+        Delete the instance and its ports. A reserved fixed IP stays, unless
+        `reserved_fixed_ips` names it. A port that you
+        [create as a port](#operation/GlobalPortListView.post) is not a reserved fixed
+        IP, so this delete removes it.
+
+        To keep the ports, use
+        [`DELETE /v1/projects/{project_id}/instances/{instance_id}`](#operation/GlobalInstanceDetailView.delete).
+        That delete keeps every port by default.
 
         Args:
           project_id: Project ID
@@ -639,6 +665,11 @@ class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
+        Use
+        [POST /v1/projects/{`project_id`}/instances/{`instance_id`}/action](#operation/GlobalInstanceActionView.post)
+        instead. This route continues to work. Later, we will deprecate it and then
+        remove it. We will tell you in advance.
+
         The action can be one of: start, stop, reboot, `reboot_hard`, suspend or resume.
         Suspend and resume are not available for bare metal instances.
 
@@ -679,6 +710,11 @@ class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
+        Use
+        [POST /v1/projects/{`project_id`}/instances/{`instance_id`}/action](#operation/GlobalInstanceActionView.post)
+        instead. This route continues to work. Later, we will deprecate it and then
+        remove it. We will tell you in advance.
+
         The action can be one of: start, stop, reboot, `reboot_hard`, suspend or resume.
         Suspend and resume are not available for bare metal instances.
 
@@ -757,9 +793,13 @@ class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
-        """Add an instance to a placement group.
+        """
+        Use
+        [PATCH /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.patch)
+        instead. Send `placement_group_id`. This route continues to work. Later, we will
+        deprecate it and then remove it. We will tell you in advance.
 
-        The instance must not already be in a
+        Add an instance to a placement group. The instance must not already be in a
         placement group. Bare metal servers do not support placement groups.
 
         Args:
@@ -818,9 +858,13 @@ class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """Assign the security group to the server.
+        """
+        Use
+        [PATCH /v1/projects/{`project_id`}/ports/{`port_id`}](#operation/GlobalPortDetailView.patch)
+        instead. Send `security_group_ids`. This route continues to work. Later, we will
+        deprecate it and then remove it. We will tell you in advance.
 
-        To assign multiple security groups to
+        Assign the security group to the server. To assign multiple security groups to
         all ports, use the NULL value for the `port_id` field
 
         Args:
@@ -988,9 +1032,13 @@ class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Instance:
-        """Retrieve detailed information about a specific instance.
+        """
+        Use
+        [GET /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.get)
+        instead. This route continues to work. Later, we will deprecate it and then
+        remove it. We will tell you in advance.
 
-        The response content
+        Retrieve detailed information about a specific instance. The response content
         language for `ddos_profile` can be controlled via the 'language' cookie
         parameter.
 
@@ -1049,9 +1097,17 @@ class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Console:
-        """Returns a URL to access the remote console for an instance.
+        """
+        Use
+        [GET /v1/projects/{`project_id`}/instances/{`instance_id`}/console](#operation/GlobalInstanceConsoleView.get)
+        instead. For a bare metal server, use
+        [Get bare metal server console URL](#operation/GlobalBaremetalConsoleView.get).
+        For a basic VM, use
+        [Get basic VM console URL](#operation/GlobalBasicVmConsoleView.get). This route
+        continues to work. Later, we will deprecate it and then remove it. We will tell
+        you in advance.
 
-        Supported console
+        Returns a URL to access the remote console for an instance. Supported console
         types depend on instance type: novnc and spice for virtual instances, vnc and
         serial for bare metal instances.
 
@@ -1183,9 +1239,13 @@ class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
-        """Remove an instance from its current placement group.
+        """
+        Use
+        [PATCH /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.patch)
+        instead. Send `placement_group_id`. This route continues to work. Later, we will
+        deprecate it and then remove it. We will tell you in advance.
 
-        The instance must be in a
+        Remove an instance from its current placement group. The instance must be in a
         placement group to be removed. Bare metal servers do not support placement
         groups.
 
@@ -1238,6 +1298,11 @@ class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
+        Use
+        [PATCH /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.patch)
+        instead. Send `flavor_name`. This route continues to work. Later, we will
+        deprecate it and then remove it. We will tell you in advance.
+
         Change flavor of the instance.
 
         Args:
@@ -1293,9 +1358,13 @@ class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """Un-assign the security group to the server.
+        """
+        Use
+        [PATCH /v1/projects/{`project_id`}/ports/{`port_id`}](#operation/GlobalPortDetailView.patch)
+        instead. Send `security_group_ids`. This route continues to work. Later, we will
+        deprecate it and then remove it. We will tell you in advance.
 
-        To un-assign multiple security
+        Un-assign the security group to the server. To un-assign multiple security
         groups to all ports, use the NULL value for the `port_id` field
 
         Args:
@@ -1418,6 +1487,11 @@ class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
+        Use
+        [POST /v1/projects/{`project_id`}/instances](#operation/GlobalInstanceListView.post)
+        instead. This route continues to work. Later, we will deprecate it and then
+        remove it. We will tell you in advance.
+
         Create an instance with specified configuration.
 
         How to get access:
@@ -1564,6 +1638,11 @@ class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Instance:
         """
+        Use
+        [PATCH /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.patch)
+        instead. This route continues to work. Later, we will deprecate it and then
+        remove it. We will tell you in advance.
+
         Rename instance or update tags
 
         Args:
@@ -1575,7 +1654,7 @@ class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource
 
           name: Name
 
-          tags: Update key-value tags using JSON Merge Patch semantics (RFC 7386). Provide
+          tags: Update key-value tags using JSON Merge Patch semantics (RFC 7396). Provide
               key-value pairs to add or update tags. Set tag values to `null` to remove tags.
               Unspecified tags remain unchanged. Read-only tags are always preserved and
               cannot be modified.
@@ -1688,9 +1767,13 @@ class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Instance, AsyncOffsetPage[Instance]]:
-        """List all instances in the specified project and region.
+        """
+        Use
+        [GET /v1/projects/{`project_id`}/instances](#operation/GlobalInstanceListView.get)
+        instead. This route continues to work. Later, we will deprecate it and then
+        remove it. We will tell you in advance.
 
-        Results can be filtered
+        List all instances in the specified project and region. Results can be filtered
         by various parameters like name, status, and IP address.
 
         Args:
@@ -1833,7 +1916,19 @@ class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
-        Delete instance
+        Use
+        [DELETE /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.delete)
+        instead. This route continues to work. Later, we will deprecate it and then
+        remove it. We will tell you in advance.
+
+        Delete the instance and its ports. A reserved fixed IP stays, unless
+        `reserved_fixed_ips` names it. A port that you
+        [create as a port](#operation/GlobalPortListView.post) is not a reserved fixed
+        IP, so this delete removes it.
+
+        To keep the ports, use
+        [`DELETE /v1/projects/{project_id}/instances/{instance_id}`](#operation/GlobalInstanceDetailView.delete).
+        That delete keeps every port by default.
 
         Args:
           project_id: Project ID
@@ -1908,6 +2003,11 @@ class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
+        Use
+        [POST /v1/projects/{`project_id`}/instances/{`instance_id`}/action](#operation/GlobalInstanceActionView.post)
+        instead. This route continues to work. Later, we will deprecate it and then
+        remove it. We will tell you in advance.
+
         The action can be one of: start, stop, reboot, `reboot_hard`, suspend or resume.
         Suspend and resume are not available for bare metal instances.
 
@@ -1948,6 +2048,11 @@ class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
+        Use
+        [POST /v1/projects/{`project_id`}/instances/{`instance_id`}/action](#operation/GlobalInstanceActionView.post)
+        instead. This route continues to work. Later, we will deprecate it and then
+        remove it. We will tell you in advance.
+
         The action can be one of: start, stop, reboot, `reboot_hard`, suspend or resume.
         Suspend and resume are not available for bare metal instances.
 
@@ -2026,9 +2131,13 @@ class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
-        """Add an instance to a placement group.
+        """
+        Use
+        [PATCH /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.patch)
+        instead. Send `placement_group_id`. This route continues to work. Later, we will
+        deprecate it and then remove it. We will tell you in advance.
 
-        The instance must not already be in a
+        Add an instance to a placement group. The instance must not already be in a
         placement group. Bare metal servers do not support placement groups.
 
         Args:
@@ -2087,9 +2196,13 @@ class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """Assign the security group to the server.
+        """
+        Use
+        [PATCH /v1/projects/{`project_id`}/ports/{`port_id`}](#operation/GlobalPortDetailView.patch)
+        instead. Send `security_group_ids`. This route continues to work. Later, we will
+        deprecate it and then remove it. We will tell you in advance.
 
-        To assign multiple security groups to
+        Assign the security group to the server. To assign multiple security groups to
         all ports, use the NULL value for the `port_id` field
 
         Args:
@@ -2257,9 +2370,13 @@ class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Instance:
-        """Retrieve detailed information about a specific instance.
+        """
+        Use
+        [GET /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.get)
+        instead. This route continues to work. Later, we will deprecate it and then
+        remove it. We will tell you in advance.
 
-        The response content
+        Retrieve detailed information about a specific instance. The response content
         language for `ddos_profile` can be controlled via the 'language' cookie
         parameter.
 
@@ -2318,9 +2435,17 @@ class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Console:
-        """Returns a URL to access the remote console for an instance.
+        """
+        Use
+        [GET /v1/projects/{`project_id`}/instances/{`instance_id`}/console](#operation/GlobalInstanceConsoleView.get)
+        instead. For a bare metal server, use
+        [Get bare metal server console URL](#operation/GlobalBaremetalConsoleView.get).
+        For a basic VM, use
+        [Get basic VM console URL](#operation/GlobalBasicVmConsoleView.get). This route
+        continues to work. Later, we will deprecate it and then remove it. We will tell
+        you in advance.
 
-        Supported console
+        Returns a URL to access the remote console for an instance. Supported console
         types depend on instance type: novnc and spice for virtual instances, vnc and
         serial for bare metal instances.
 
@@ -2452,9 +2577,13 @@ class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
-        """Remove an instance from its current placement group.
+        """
+        Use
+        [PATCH /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.patch)
+        instead. Send `placement_group_id`. This route continues to work. Later, we will
+        deprecate it and then remove it. We will tell you in advance.
 
-        The instance must be in a
+        Remove an instance from its current placement group. The instance must be in a
         placement group to be removed. Bare metal servers do not support placement
         groups.
 
@@ -2507,6 +2636,11 @@ class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
+        Use
+        [PATCH /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.patch)
+        instead. Send `flavor_name`. This route continues to work. Later, we will
+        deprecate it and then remove it. We will tell you in advance.
+
         Change flavor of the instance.
 
         Args:
@@ -2562,9 +2696,13 @@ class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """Un-assign the security group to the server.
+        """
+        Use
+        [PATCH /v1/projects/{`project_id`}/ports/{`port_id`}](#operation/GlobalPortDetailView.patch)
+        instead. Send `security_group_ids`. This route continues to work. Later, we will
+        deprecate it and then remove it. We will tell you in advance.
 
-        To un-assign multiple security
+        Un-assign the security group to the server. To un-assign multiple security
         groups to all ports, use the NULL value for the `port_id` field
 
         Args:

@@ -86,6 +86,12 @@ class ReservedFixedIPsResource(ReservedFixedIPsResourceCustomMixin, SyncAPIResou
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
+        Use [POST /v1/projects/{`project_id`}/ports](#operation/GlobalPortListView.post)
+        instead. A reserved fixed IP is a port. These routes are a legacy view of ports,
+        and the ports routes manage the same resource. A port keeps its IP addresses for
+        its whole life. This route continues to work. Later, we will deprecate it and
+        then remove it. We will tell you in advance.
+
         Create a new reserved fixed IP with the specified configuration.
 
         Args:
@@ -126,6 +132,12 @@ class ReservedFixedIPsResource(ReservedFixedIPsResourceCustomMixin, SyncAPIResou
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
+        Use [POST /v1/projects/{`project_id`}/ports](#operation/GlobalPortListView.post)
+        instead. A reserved fixed IP is a port. These routes are a legacy view of ports,
+        and the ports routes manage the same resource. A port keeps its IP addresses for
+        its whole life. This route continues to work. Later, we will deprecate it and
+        then remove it. We will tell you in advance.
+
         Create a new reserved fixed IP with the specified configuration.
 
         Args:
@@ -167,6 +179,12 @@ class ReservedFixedIPsResource(ReservedFixedIPsResourceCustomMixin, SyncAPIResou
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
+        Use [POST /v1/projects/{`project_id`}/ports](#operation/GlobalPortListView.post)
+        instead. A reserved fixed IP is a port. These routes are a legacy view of ports,
+        and the ports routes manage the same resource. A port keeps its IP addresses for
+        its whole life. This route continues to work. Later, we will deprecate it and
+        then remove it. We will tell you in advance.
+
         Create a new reserved fixed IP with the specified configuration.
 
         Args:
@@ -210,6 +228,12 @@ class ReservedFixedIPsResource(ReservedFixedIPsResourceCustomMixin, SyncAPIResou
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
+        Use [POST /v1/projects/{`project_id`}/ports](#operation/GlobalPortListView.post)
+        instead. A reserved fixed IP is a port. These routes are a legacy view of ports,
+        and the ports routes manage the same resource. A port keeps its IP addresses for
+        its whole life. This route continues to work. Later, we will deprecate it and
+        then remove it. We will tell you in advance.
+
         Create a new reserved fixed IP with the specified configuration.
 
         Args:
@@ -251,6 +275,12 @@ class ReservedFixedIPsResource(ReservedFixedIPsResourceCustomMixin, SyncAPIResou
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
+        Use [POST /v1/projects/{`project_id`}/ports](#operation/GlobalPortListView.post)
+        instead. A reserved fixed IP is a port. These routes are a legacy view of ports,
+        and the ports routes manage the same resource. A port keeps its IP addresses for
+        its whole life. This route continues to work. Later, we will deprecate it and
+        then remove it. We will tell you in advance.
+
         Create a new reserved fixed IP with the specified configuration.
 
         Args:
@@ -340,6 +370,14 @@ class ReservedFixedIPsResource(ReservedFixedIPsResourceCustomMixin, SyncAPIResou
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ReservedFixedIP:
         """
+        Use
+        [PATCH /v1/projects/{`project_id`}/ports/{`port_id`}](#operation/GlobalPortDetailView.patch)
+        instead. A VIP is a port that holds the shared address. Each port that can take
+        the address lists it in `allowed_address_pairs`, in the network of the VIP. A
+        port needs no VIP flag. To share its address, update the ports that take it.
+        This route continues to work. Later, we will deprecate it and then remove it. We
+        will tell you in advance.
+
         Update the VIP status of a reserved fixed IP.
 
         Args:
@@ -413,6 +451,12 @@ class ReservedFixedIPsResource(ReservedFixedIPsResourceCustomMixin, SyncAPIResou
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[ReservedFixedIP]:
         """
+        Use [GET /v1/projects/{`project_id`}/ports](#operation/GlobalPortListView.get)
+        instead. A reserved fixed IP is a port. These routes are a legacy view of ports,
+        and the ports routes manage the same resource. Send `attached=false` to get only
+        the ports that no server uses. This route continues to work. Later, we will
+        deprecate it and then remove it. We will tell you in advance.
+
         List all reserved fixed IPs in the specified project and region.
 
         Args:
@@ -496,6 +540,12 @@ class ReservedFixedIPsResource(ReservedFixedIPsResourceCustomMixin, SyncAPIResou
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
+        Use
+        [DELETE /v1/projects/{`project_id`}/ports/{`port_id`}](#operation/GlobalPortDetailView.delete)
+        instead. A reserved fixed IP is a port. These routes are a legacy view of ports,
+        and the ports routes manage the same resource. This route continues to work.
+        Later, we will deprecate it and then remove it. We will tell you in advance.
+
         Delete a specific reserved fixed IP and all its associated resources.
 
         Args:
@@ -546,6 +596,12 @@ class ReservedFixedIPsResource(ReservedFixedIPsResourceCustomMixin, SyncAPIResou
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ReservedFixedIP:
         """
+        Use
+        [GET /v1/projects/{`project_id`}/ports/{`port_id`}](#operation/GlobalPortDetailView.get)
+        instead. A reserved fixed IP is a port. These routes are a legacy view of ports,
+        and the ports routes manage the same resource. This route continues to work.
+        Later, we will deprecate it and then remove it. We will tell you in advance.
+
         Get detailed information about a specific reserved fixed IP.
 
         Args:
@@ -628,6 +684,12 @@ class AsyncReservedFixedIPsResource(AsyncReservedFixedIPsResourceCustomMixin, As
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
+        Use [POST /v1/projects/{`project_id`}/ports](#operation/GlobalPortListView.post)
+        instead. A reserved fixed IP is a port. These routes are a legacy view of ports,
+        and the ports routes manage the same resource. A port keeps its IP addresses for
+        its whole life. This route continues to work. Later, we will deprecate it and
+        then remove it. We will tell you in advance.
+
         Create a new reserved fixed IP with the specified configuration.
 
         Args:
@@ -668,6 +730,12 @@ class AsyncReservedFixedIPsResource(AsyncReservedFixedIPsResourceCustomMixin, As
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
+        Use [POST /v1/projects/{`project_id`}/ports](#operation/GlobalPortListView.post)
+        instead. A reserved fixed IP is a port. These routes are a legacy view of ports,
+        and the ports routes manage the same resource. A port keeps its IP addresses for
+        its whole life. This route continues to work. Later, we will deprecate it and
+        then remove it. We will tell you in advance.
+
         Create a new reserved fixed IP with the specified configuration.
 
         Args:
@@ -709,6 +777,12 @@ class AsyncReservedFixedIPsResource(AsyncReservedFixedIPsResourceCustomMixin, As
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
+        Use [POST /v1/projects/{`project_id`}/ports](#operation/GlobalPortListView.post)
+        instead. A reserved fixed IP is a port. These routes are a legacy view of ports,
+        and the ports routes manage the same resource. A port keeps its IP addresses for
+        its whole life. This route continues to work. Later, we will deprecate it and
+        then remove it. We will tell you in advance.
+
         Create a new reserved fixed IP with the specified configuration.
 
         Args:
@@ -752,6 +826,12 @@ class AsyncReservedFixedIPsResource(AsyncReservedFixedIPsResourceCustomMixin, As
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
+        Use [POST /v1/projects/{`project_id`}/ports](#operation/GlobalPortListView.post)
+        instead. A reserved fixed IP is a port. These routes are a legacy view of ports,
+        and the ports routes manage the same resource. A port keeps its IP addresses for
+        its whole life. This route continues to work. Later, we will deprecate it and
+        then remove it. We will tell you in advance.
+
         Create a new reserved fixed IP with the specified configuration.
 
         Args:
@@ -793,6 +873,12 @@ class AsyncReservedFixedIPsResource(AsyncReservedFixedIPsResourceCustomMixin, As
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
+        Use [POST /v1/projects/{`project_id`}/ports](#operation/GlobalPortListView.post)
+        instead. A reserved fixed IP is a port. These routes are a legacy view of ports,
+        and the ports routes manage the same resource. A port keeps its IP addresses for
+        its whole life. This route continues to work. Later, we will deprecate it and
+        then remove it. We will tell you in advance.
+
         Create a new reserved fixed IP with the specified configuration.
 
         Args:
@@ -882,6 +968,14 @@ class AsyncReservedFixedIPsResource(AsyncReservedFixedIPsResourceCustomMixin, As
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ReservedFixedIP:
         """
+        Use
+        [PATCH /v1/projects/{`project_id`}/ports/{`port_id`}](#operation/GlobalPortDetailView.patch)
+        instead. A VIP is a port that holds the shared address. Each port that can take
+        the address lists it in `allowed_address_pairs`, in the network of the VIP. A
+        port needs no VIP flag. To share its address, update the ports that take it.
+        This route continues to work. Later, we will deprecate it and then remove it. We
+        will tell you in advance.
+
         Update the VIP status of a reserved fixed IP.
 
         Args:
@@ -957,6 +1051,12 @@ class AsyncReservedFixedIPsResource(AsyncReservedFixedIPsResourceCustomMixin, As
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[ReservedFixedIP, AsyncOffsetPage[ReservedFixedIP]]:
         """
+        Use [GET /v1/projects/{`project_id`}/ports](#operation/GlobalPortListView.get)
+        instead. A reserved fixed IP is a port. These routes are a legacy view of ports,
+        and the ports routes manage the same resource. Send `attached=false` to get only
+        the ports that no server uses. This route continues to work. Later, we will
+        deprecate it and then remove it. We will tell you in advance.
+
         List all reserved fixed IPs in the specified project and region.
 
         Args:
@@ -1040,6 +1140,12 @@ class AsyncReservedFixedIPsResource(AsyncReservedFixedIPsResourceCustomMixin, As
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
         """
+        Use
+        [DELETE /v1/projects/{`project_id`}/ports/{`port_id`}](#operation/GlobalPortDetailView.delete)
+        instead. A reserved fixed IP is a port. These routes are a legacy view of ports,
+        and the ports routes manage the same resource. This route continues to work.
+        Later, we will deprecate it and then remove it. We will tell you in advance.
+
         Delete a specific reserved fixed IP and all its associated resources.
 
         Args:
@@ -1090,6 +1196,12 @@ class AsyncReservedFixedIPsResource(AsyncReservedFixedIPsResourceCustomMixin, As
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ReservedFixedIP:
         """
+        Use
+        [GET /v1/projects/{`project_id`}/ports/{`port_id`}](#operation/GlobalPortDetailView.get)
+        instead. A reserved fixed IP is a port. These routes are a legacy view of ports,
+        and the ports routes manage the same resource. This route continues to work.
+        Later, we will deprecate it and then remove it. We will tell you in advance.
+
         Get detailed information about a specific reserved fixed IP.
 
         Args:
