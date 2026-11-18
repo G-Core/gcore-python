@@ -28,13 +28,20 @@ class StatisticGetUsageSeriesParams(TypedDict, total=False):
 
     storage_ids: Iterable[int]
     """
-    a StorageIDs list of filter, combined with storages. Each ID selects exactly
-    that storage, deleted ones included, narrowed by locations. An ID that is not
-    one of the client's storages fails the request with 404.
+    a StorageIDs list of filter, by ID. Each ID selects exactly that storage,
+    deleted ones included, narrowed by locations. An ID that is not one of the
+    client's storages fails the request with 404. Omit it, or send null, when not
+    selecting by ID; an empty list fails the request with 400. Mutually exclusive
+    with storages.
     """
 
     storages: SequenceNotStr[str]
-    """a Storages list of filter"""
+    """
+    a Storages list of filter, by name. A name selects the client's live storages
+    with that name; a deleted storage is reachable by `storage_ids` only. Omit both
+    storages and `storage_ids`, or send storages as [], to select the whole account.
+    Mutually exclusive with `storage_ids`.
+    """
 
     to: str
     """a To date filter"""
