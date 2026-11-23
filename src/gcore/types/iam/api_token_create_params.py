@@ -23,6 +23,13 @@ class APITokenCreateParams(TypedDict, total=False):
     name: Required[str]
     """API token name."""
 
+    assign_default_policy: bool
+    """
+    Whether the new API token gets the default access policy of its role. Set to
+    `false` if you will bind policies or permission sets to the token yourself: the
+    token then has no permissions until you do.
+    """
+
     description: str
     """API token description."""
 

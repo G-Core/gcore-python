@@ -39,6 +39,7 @@ class TestAPITokens:
             },
             exp_date="2021-01-01T12:00:00.000000Z",
             name="My token",
+            assign_default_policy=True,
             description="It's my token",
         )
         assert_matches_type(APITokenCreated, api_token, path=["response"])
@@ -211,6 +212,7 @@ class TestAsyncAPITokens:
             },
             exp_date="2021-01-01T12:00:00.000000Z",
             name="My token",
+            assign_default_policy=True,
             description="It's my token",
         )
         assert_matches_type(APITokenCreated, api_token, path=["response"])

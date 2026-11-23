@@ -72,6 +72,7 @@ class APITokensResource(SyncAPIResource):
         client_user: api_token_create_params.ClientUser,
         exp_date: Optional[str],
         name: str,
+        assign_default_policy: bool | Omit = omit,
         description: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -98,6 +99,10 @@ class APITokensResource(SyncAPIResource):
 
           name: API token name.
 
+          assign_default_policy: Whether the new API token gets the default access policy of its role. Set to
+              `false` if you will bind policies or permission sets to the token yourself: the
+              token then has no permissions until you do.
+
           description: API token description.
 
           extra_headers: Send extra headers
@@ -115,6 +120,7 @@ class APITokensResource(SyncAPIResource):
                     "client_user": client_user,
                     "exp_date": exp_date,
                     "name": name,
+                    "assign_default_policy": assign_default_policy,
                     "description": description,
                 },
                 api_token_create_params.APITokenCreateParams,
@@ -318,6 +324,7 @@ class AsyncAPITokensResource(AsyncAPIResource):
         client_user: api_token_create_params.ClientUser,
         exp_date: Optional[str],
         name: str,
+        assign_default_policy: bool | Omit = omit,
         description: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -344,6 +351,10 @@ class AsyncAPITokensResource(AsyncAPIResource):
 
           name: API token name.
 
+          assign_default_policy: Whether the new API token gets the default access policy of its role. Set to
+              `false` if you will bind policies or permission sets to the token yourself: the
+              token then has no permissions until you do.
+
           description: API token description.
 
           extra_headers: Send extra headers
@@ -361,6 +372,7 @@ class AsyncAPITokensResource(AsyncAPIResource):
                     "client_user": client_user,
                     "exp_date": exp_date,
                     "name": name,
+                    "assign_default_policy": assign_default_policy,
                     "description": description,
                 },
                 api_token_create_params.APITokenCreateParams,
