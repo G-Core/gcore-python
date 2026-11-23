@@ -19,6 +19,10 @@ class PurgeByURL(TypedDict, total=False):
     Specify file URLs including query strings. URLs should start with / without a
     domain name.
 
+    Control characters, such as line breaks, and the | character are not allowed
+    inside a URL, and a space in the query string must be encoded as %20. Outside
+    the query string, every % must start a percent-encoded character such as %20.
+
     Purge by URL depends on the following CDN options:
 
     1. "vary response header" is used. If your origin serves variants of the same
@@ -49,6 +53,11 @@ class PurgeByPattern(TypedDict, total=False):
 
     Query string added to any patterns will be ignored, and purge request will be
     processed as if there weren't any parameters.
+
+    Control characters, such as line breaks, and the | character are not allowed
+    inside a pattern, and a space in the query string must be encoded as %20.
+    Outside the query string, every % must start a percent-encoded character such as
+    %20.
 
     Purge by pattern is recursive. Both /path and /path* will result in recursive
     purging, meaning all content under the specified path will be affected. As such,

@@ -115,6 +115,17 @@ class CDNResourcesResource(SyncAPIResource):
 
               Delivery domains should be added to your DNS settings.
 
+              A delivery domain can also be a hostname on a domain the service provides for
+              your account, such as `my-site.example.net`. You do not add such a hostname to
+              your DNS settings. It is a single label in front of the provided domain, and the
+              label:
+
+              - is 5 to 63 characters long;
+              - uses only letters, digits and hyphens, without a leading or trailing hyphen;
+              - does not start with `xn--`.
+
+              Some labels are reserved or not allowed and cannot be used.
+
           active: Enables or disables a CDN resource.
 
               Possible values:
@@ -184,9 +195,16 @@ class CDNResourcesResource(SyncAPIResource):
 
               Up to ten additional CNAMEs are possible.
 
+              A resource on a domain the service provides cannot have additional delivery
+              domains. Use aliases instead.
+
           ssl_data: ID of the SSL certificate linked to the CDN resource.
 
               Can be used only with `"sslEnabled": true`.
+
+              In responses, the value is `null` when HTTPS uses the certificate of a domain
+              the service provides. That certificate cannot be replaced or removed: for such a
+              resource, omit the field or send `null`.
 
           ssl_enabled: Defines whether the HTTPS protocol enabled for content delivery.
 
@@ -194,6 +212,8 @@ class CDNResourcesResource(SyncAPIResource):
 
               - **true** - HTTPS is enabled.
               - **false** - HTTPS is disabled.
+
+              HTTPS cannot be disabled for a resource on a domain the service provides.
 
           extra_headers: Send extra headers
 
@@ -312,9 +332,16 @@ class CDNResourcesResource(SyncAPIResource):
 
               Up to ten additional CNAMEs are possible.
 
+              A resource on a domain the service provides cannot have additional delivery
+              domains. Use aliases instead.
+
           ssl_data: ID of the SSL certificate linked to the CDN resource.
 
               Can be used only with `"sslEnabled": true`.
+
+              In responses, the value is `null` when HTTPS uses the certificate of a domain
+              the service provides. That certificate cannot be replaced or removed: for such a
+              resource, omit the field or send `null`.
 
           ssl_enabled: Defines whether the HTTPS protocol enabled for content delivery.
 
@@ -322,6 +349,8 @@ class CDNResourcesResource(SyncAPIResource):
 
               - **true** - HTTPS is enabled.
               - **false** - HTTPS is disabled.
+
+              HTTPS cannot be disabled for a resource on a domain the service provides.
 
           extra_headers: Send extra headers
 
@@ -676,6 +705,10 @@ class CDNResourcesResource(SyncAPIResource):
 
               Paths to the files should be specified without a domain name.
 
+              Control characters, such as line breaks, are not allowed inside a path, and a
+              space in the query string must be encoded as %20. Outside the query string,
+              every % must start a percent-encoded character such as %20.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -758,6 +791,10 @@ class CDNResourcesResource(SyncAPIResource):
               Specify file URLs including query strings. URLs should start with / without a
               domain name.
 
+              Control characters, such as line breaks, and the | character are not allowed
+              inside a URL, and a space in the query string must be encoded as %20. Outside
+              the query string, every % must start a percent-encoded character such as %20.
+
               Purge by URL depends on the following CDN options:
 
               1. "vary response header" is used. If your origin serves variants of the same
@@ -820,6 +857,11 @@ class CDNResourcesResource(SyncAPIResource):
 
               Query string added to any patterns will be ignored, and purge request will be
               processed as if there weren't any parameters.
+
+              Control characters, such as line breaks, and the | character are not allowed
+              inside a pattern, and a space in the query string must be encoded as %20.
+              Outside the query string, every % must start a percent-encoded character such as
+              %20.
 
               Purge by pattern is recursive. Both /path and /path* will result in recursive
               purging, meaning all content under the specified path will be affected. As such,
@@ -989,9 +1031,16 @@ class CDNResourcesResource(SyncAPIResource):
 
               Up to ten additional CNAMEs are possible.
 
+              A resource on a domain the service provides cannot have additional delivery
+              domains. Use aliases instead.
+
           ssl_data: ID of the SSL certificate linked to the CDN resource.
 
               Can be used only with `"sslEnabled": true`.
+
+              In responses, the value is `null` when HTTPS uses the certificate of a domain
+              the service provides. That certificate cannot be replaced or removed: for such a
+              resource, omit the field or send `null`.
 
           ssl_enabled: Defines whether the HTTPS protocol enabled for content delivery.
 
@@ -999,6 +1048,8 @@ class CDNResourcesResource(SyncAPIResource):
 
               - **true** - HTTPS is enabled.
               - **false** - HTTPS is disabled.
+
+              HTTPS cannot be disabled for a resource on a domain the service provides.
 
           extra_headers: Send extra headers
 
@@ -1101,6 +1152,17 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
 
               Delivery domains should be added to your DNS settings.
 
+              A delivery domain can also be a hostname on a domain the service provides for
+              your account, such as `my-site.example.net`. You do not add such a hostname to
+              your DNS settings. It is a single label in front of the provided domain, and the
+              label:
+
+              - is 5 to 63 characters long;
+              - uses only letters, digits and hyphens, without a leading or trailing hyphen;
+              - does not start with `xn--`.
+
+              Some labels are reserved or not allowed and cannot be used.
+
           active: Enables or disables a CDN resource.
 
               Possible values:
@@ -1170,9 +1232,16 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
 
               Up to ten additional CNAMEs are possible.
 
+              A resource on a domain the service provides cannot have additional delivery
+              domains. Use aliases instead.
+
           ssl_data: ID of the SSL certificate linked to the CDN resource.
 
               Can be used only with `"sslEnabled": true`.
+
+              In responses, the value is `null` when HTTPS uses the certificate of a domain
+              the service provides. That certificate cannot be replaced or removed: for such a
+              resource, omit the field or send `null`.
 
           ssl_enabled: Defines whether the HTTPS protocol enabled for content delivery.
 
@@ -1180,6 +1249,8 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
 
               - **true** - HTTPS is enabled.
               - **false** - HTTPS is disabled.
+
+              HTTPS cannot be disabled for a resource on a domain the service provides.
 
           extra_headers: Send extra headers
 
@@ -1298,9 +1369,16 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
 
               Up to ten additional CNAMEs are possible.
 
+              A resource on a domain the service provides cannot have additional delivery
+              domains. Use aliases instead.
+
           ssl_data: ID of the SSL certificate linked to the CDN resource.
 
               Can be used only with `"sslEnabled": true`.
+
+              In responses, the value is `null` when HTTPS uses the certificate of a domain
+              the service provides. That certificate cannot be replaced or removed: for such a
+              resource, omit the field or send `null`.
 
           ssl_enabled: Defines whether the HTTPS protocol enabled for content delivery.
 
@@ -1308,6 +1386,8 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
 
               - **true** - HTTPS is enabled.
               - **false** - HTTPS is disabled.
+
+              HTTPS cannot be disabled for a resource on a domain the service provides.
 
           extra_headers: Send extra headers
 
@@ -1662,6 +1742,10 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
 
               Paths to the files should be specified without a domain name.
 
+              Control characters, such as line breaks, are not allowed inside a path, and a
+              space in the query string must be encoded as %20. Outside the query string,
+              every % must start a percent-encoded character such as %20.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1744,6 +1828,10 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
               Specify file URLs including query strings. URLs should start with / without a
               domain name.
 
+              Control characters, such as line breaks, and the | character are not allowed
+              inside a URL, and a space in the query string must be encoded as %20. Outside
+              the query string, every % must start a percent-encoded character such as %20.
+
               Purge by URL depends on the following CDN options:
 
               1. "vary response header" is used. If your origin serves variants of the same
@@ -1806,6 +1894,11 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
 
               Query string added to any patterns will be ignored, and purge request will be
               processed as if there weren't any parameters.
+
+              Control characters, such as line breaks, and the | character are not allowed
+              inside a pattern, and a space in the query string must be encoded as %20.
+              Outside the query string, every % must start a percent-encoded character such as
+              %20.
 
               Purge by pattern is recursive. Both /path and /path* will result in recursive
               purging, meaning all content under the specified path will be affected. As such,
@@ -1975,9 +2068,16 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
 
               Up to ten additional CNAMEs are possible.
 
+              A resource on a domain the service provides cannot have additional delivery
+              domains. Use aliases instead.
+
           ssl_data: ID of the SSL certificate linked to the CDN resource.
 
               Can be used only with `"sslEnabled": true`.
+
+              In responses, the value is `null` when HTTPS uses the certificate of a domain
+              the service provides. That certificate cannot be replaced or removed: for such a
+              resource, omit the field or send `null`.
 
           ssl_enabled: Defines whether the HTTPS protocol enabled for content delivery.
 
@@ -1985,6 +2085,8 @@ class AsyncCDNResourcesResource(AsyncAPIResource):
 
               - **true** - HTTPS is enabled.
               - **false** - HTTPS is disabled.
+
+              HTTPS cannot be disabled for a resource on a domain the service provides.
 
           extra_headers: Send extra headers
 

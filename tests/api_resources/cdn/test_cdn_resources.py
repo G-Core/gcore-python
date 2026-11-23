@@ -332,7 +332,7 @@ class TestCDNResources:
             proxy_ssl_ca=None,
             proxy_ssl_data=None,
             proxy_ssl_enabled=False,
-            secondary_hostnames=["first.example.com", "second.example.com"],
+            secondary_hostnames=["images.example.com", "video.example.com"],
             ssl_data=192,
             ssl_enabled=False,
         )
@@ -674,7 +674,7 @@ class TestCDNResources:
             proxy_ssl_ca=None,
             proxy_ssl_data=None,
             proxy_ssl_enabled=False,
-            secondary_hostnames=["first.example.com", "second.example.com"],
+            secondary_hostnames=["images.example.com", "video.example.com"],
             ssl_data=192,
             ssl_enabled=False,
         )
@@ -1323,7 +1323,7 @@ class TestCDNResources:
             proxy_ssl_ca=None,
             proxy_ssl_data=None,
             proxy_ssl_enabled=False,
-            secondary_hostnames=["first.example.com", "second.example.com"],
+            secondary_hostnames=["images.example.com", "video.example.com"],
             ssl_data=192,
             ssl_enabled=False,
         )
@@ -1673,7 +1673,7 @@ class TestAsyncCDNResources:
             proxy_ssl_ca=None,
             proxy_ssl_data=None,
             proxy_ssl_enabled=False,
-            secondary_hostnames=["first.example.com", "second.example.com"],
+            secondary_hostnames=["images.example.com", "video.example.com"],
             ssl_data=192,
             ssl_enabled=False,
         )
@@ -2015,7 +2015,7 @@ class TestAsyncCDNResources:
             proxy_ssl_ca=None,
             proxy_ssl_data=None,
             proxy_ssl_enabled=False,
-            secondary_hostnames=["first.example.com", "second.example.com"],
+            secondary_hostnames=["images.example.com", "video.example.com"],
             ssl_data=192,
             ssl_enabled=False,
         )
@@ -2664,7 +2664,7 @@ class TestAsyncCDNResources:
             proxy_ssl_ca=None,
             proxy_ssl_data=None,
             proxy_ssl_enabled=False,
-            secondary_hostnames=["first.example.com", "second.example.com"],
+            secondary_hostnames=["images.example.com", "video.example.com"],
             ssl_data=192,
             ssl_enabled=False,
         )

@@ -14,4 +14,8 @@ class CDNResourcePrefetchParams(TypedDict, total=False):
     """Paths to files that should be pre-populated to the CDN.
 
     Paths to the files should be specified without a domain name.
+
+    Control characters, such as line breaks, are not allowed inside a path, and a
+    space in the query string must be encoded as %20. Outside the query string,
+    every % must start a percent-encoded character such as %20.
     """

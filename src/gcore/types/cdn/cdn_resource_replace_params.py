@@ -143,12 +143,19 @@ class CDNResourceReplaceParams(TypedDict, total=False):
     the CDN.
 
     Up to ten additional CNAMEs are possible.
+
+    A resource on a domain the service provides cannot have additional delivery
+    domains. Use aliases instead.
     """
 
     ssl_data: Annotated[Optional[int], PropertyInfo(alias="sslData")]
     """ID of the SSL certificate linked to the CDN resource.
 
     Can be used only with `"sslEnabled": true`.
+
+    In responses, the value is `null` when HTTPS uses the certificate of a domain
+    the service provides. That certificate cannot be replaced or removed: for such a
+    resource, omit the field or send `null`.
     """
 
     ssl_enabled: Annotated[bool, PropertyInfo(alias="sslEnabled")]
@@ -158,6 +165,8 @@ class CDNResourceReplaceParams(TypedDict, total=False):
 
     - **true** - HTTPS is enabled.
     - **false** - HTTPS is disabled.
+
+    HTTPS cannot be disabled for a resource on a domain the service provides.
     """
 
 
@@ -405,12 +414,15 @@ class OptionsEdgeCacheSettings(TypedDict, total=False):
 
     custom_values: Dict[str, str]
     """
-    A MAP object representing the caching time in seconds for a response with a
-    specific response code.
+    A MAP object representing the caching time for a response with a specific
+    response code.
 
-    These settings have a higher priority than the `value` field.
+    These settings have a higher priority than the `value` and `default` fields.
+    With `default`, they apply only if an origin server does not set a caching time
+    with `Cache-Control` or `X-Accel-Expires` headers.
 
-    - Use `any` key to specify caching time for all response codes.
+    - Use `any` key to specify caching time for response codes not covered by
+      `value`, `default`, or other `custom_values` keys.
     - Use `0s` value to disable caching for a specific response code.
     """
 
@@ -418,9 +430,15 @@ class OptionsEdgeCacheSettings(TypedDict, total=False):
     """Enables content caching according to the origin cache settings.
 
     The value is applied to the following response codes 200, 201, 204, 206, 301,
-    302, 303, 304, 307, 308, if an origin server does not have caching HTTP headers.
+    302, 303, 304, 307, 308, if an origin server does not set a caching time with
+    `Cache-Control` or `X-Accel-Expires` headers.
 
-    Responses with other codes will not be cached.
+    Responses with other codes are cached only if the origin sets a caching time for
+    them with these headers, or their codes (or `any`) are specified in
+    `custom_values`.
+
+    Use `0s` to cache only the codes specified in `custom_values` when the origin
+    does not set a caching time.
 
     The maximum duration is any equivalent to `1y`.
     """
@@ -429,7 +447,8 @@ class OptionsEdgeCacheSettings(TypedDict, total=False):
     """Caching time.
 
     The value is applied to the following response codes: 200, 206, 301, 302.
-    Responses with codes 4xx, 5xx will not be cached.
+    Responses with other codes will not be cached unless their codes (or `any`) are
+    specified in `custom_values`.
 
     Use `0s` to disable caching.
 
@@ -446,16 +465,16 @@ class OptionsFastedgeOnRequestBody(TypedDict, total=False):
     """The ID of the application in FastEdge."""
 
     enabled: bool
-    """
-    Determines if the FastEdge application should be called whenever HTTP request
-    headers are received.
-    """
+    """Enables the FastEdge application on this stage."""
 
     execute_on_edge: bool
     """Determines if the request should be executed at the edge nodes."""
 
     execute_on_shield: bool
-    """Determines if the request should be executed at the shield nodes."""
+    """Determines if the request should be executed at the shield nodes.
+
+    At least one of `execute_on_edge` and `execute_on_shield` must be true.
+    """
 
     interrupt_on_error: bool
     """Determines if the request execution should be interrupted when an error occurs."""
@@ -470,16 +489,16 @@ class OptionsFastedgeOnRequestHeaders(TypedDict, total=False):
     """The ID of the application in FastEdge."""
 
     enabled: bool
-    """
-    Determines if the FastEdge application should be called whenever HTTP request
-    headers are received.
-    """
+    """Enables the FastEdge application on this stage."""
 
     execute_on_edge: bool
     """Determines if the request should be executed at the edge nodes."""
 
     execute_on_shield: bool
-    """Determines if the request should be executed at the shield nodes."""
+    """Determines if the request should be executed at the shield nodes.
+
+    At least one of `execute_on_edge` and `execute_on_shield` must be true.
+    """
 
     interrupt_on_error: bool
     """Determines if the request execution should be interrupted when an error occurs."""
@@ -494,16 +513,16 @@ class OptionsFastedgeOnRequestHeadersAfterCache(TypedDict, total=False):
     """The ID of the application in FastEdge."""
 
     enabled: bool
-    """
-    Determines if the FastEdge application should be called whenever HTTP request
-    headers are received.
-    """
+    """Enables the FastEdge application on this stage."""
 
     execute_on_edge: bool
     """Determines if the request should be executed at the edge nodes."""
 
     execute_on_shield: bool
-    """Determines if the request should be executed at the shield nodes."""
+    """Determines if the request should be executed at the shield nodes.
+
+    At least one of `execute_on_edge` and `execute_on_shield` must be true.
+    """
 
     interrupt_on_error: bool
     """Determines if the request execution should be interrupted when an error occurs."""
@@ -518,16 +537,16 @@ class OptionsFastedgeOnResponseBody(TypedDict, total=False):
     """The ID of the application in FastEdge."""
 
     enabled: bool
-    """
-    Determines if the FastEdge application should be called whenever HTTP request
-    headers are received.
-    """
+    """Enables the FastEdge application on this stage."""
 
     execute_on_edge: bool
     """Determines if the request should be executed at the edge nodes."""
 
     execute_on_shield: bool
-    """Determines if the request should be executed at the shield nodes."""
+    """Determines if the request should be executed at the shield nodes.
+
+    At least one of `execute_on_edge` and `execute_on_shield` must be true.
+    """
 
     interrupt_on_error: bool
     """Determines if the request execution should be interrupted when an error occurs."""
@@ -542,16 +561,16 @@ class OptionsFastedgeOnResponseHeaders(TypedDict, total=False):
     """The ID of the application in FastEdge."""
 
     enabled: bool
-    """
-    Determines if the FastEdge application should be called whenever HTTP request
-    headers are received.
-    """
+    """Enables the FastEdge application on this stage."""
 
     execute_on_edge: bool
     """Determines if the request should be executed at the edge nodes."""
 
     execute_on_shield: bool
-    """Determines if the request should be executed at the shield nodes."""
+    """Determines if the request should be executed at the shield nodes.
+
+    At least one of `execute_on_edge` and `execute_on_shield` must be true.
+    """
 
     interrupt_on_error: bool
     """Determines if the request execution should be interrupted when an error occurs."""
@@ -559,9 +578,11 @@ class OptionsFastedgeOnResponseHeaders(TypedDict, total=False):
 
 class OptionsFastedge(TypedDict, total=False):
     """
-    Allows to configure FastEdge app to be called on different request/response phases.
+    Allows to configure FastEdge app to be called on different request/response stages.
 
-    Note: At least one of `on_request_headers`, `on_request_headers_after_cache`, `on_request_body`, `on_response_headers`, or `on_response_body` must be specified.
+    Note: When enabled is true, at least one of `on_request_headers`, `on_request_headers_after_cache`, `on_request_body`, `on_response_headers`, or `on_response_body` must be specified.
+
+    Only one FastEdge application can be attached to each stage. To run more logic on one stage, combine it into one application. The same application can be attached to more than one stage.
     """
 
     enabled: Required[bool]
@@ -1835,11 +1856,15 @@ class Options(TypedDict, total=False):
     fastedge: Optional[OptionsFastedge]
     """
     Allows to configure FastEdge app to be called on different request/response
-    phases.
+    stages.
 
-    Note: At least one of `on_request_headers`, `on_request_headers_after_cache`,
-    `on_request_body`, `on_response_headers`, or `on_response_body` must be
-    specified.
+    Note: When enabled is true, at least one of `on_request_headers`,
+    `on_request_headers_after_cache`, `on_request_body`, `on_response_headers`, or
+    `on_response_body` must be specified.
+
+    Only one FastEdge application can be attached to each stage. To run more logic
+    on one stage, combine it into one application. The same application can be
+    attached to more than one stage.
     """
 
     fetch_compressed: Optional[OptionsFetchCompressed]
