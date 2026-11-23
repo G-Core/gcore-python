@@ -40,4 +40,6 @@ class ClientProfileTemplate(BaseModel):
 
     base_template: Optional[int] = None
 
+    deprecated: Optional[bool] = None
+
     description: Optional[str] = None
