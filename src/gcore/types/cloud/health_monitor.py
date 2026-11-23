@@ -37,8 +37,8 @@ class HealthMonitor(BaseModel):
 
     Can be a single code, a comma-separated list of codes, or a single range of
     codes. Can only be used together with `HTTP` or `HTTPS` health monitor type. For
-    example, 200, 200,202,401,403,404, or 200-204. If not specified, the default
-    is 200. Null for non-HTTP(S) health monitor types.
+    example, 200, 200,202,401,403,404, or 200-204. A value has 1 to 64 characters.
+    If not specified, the default is 200. Null for non-HTTP(S) health monitor types.
     """
 
     http_method: Optional[HTTPMethod] = None

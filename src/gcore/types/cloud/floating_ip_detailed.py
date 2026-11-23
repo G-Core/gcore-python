@@ -72,7 +72,7 @@ class Instance(BaseModel):
     """Flavor"""
 
     instance_description: Optional[str] = None
-    """Instance description"""
+    """Instance description. The value is null if the instance has no description."""
 
     name: str
     """Instance name"""
@@ -90,7 +90,7 @@ class Instance(BaseModel):
     """Security groups"""
 
     ssh_key_name: Optional[str] = None
-    """SSH key name assigned to instance"""
+    """SSH key name assigned to instance. The value is null if no key pair is set."""
 
     status: Literal[
         "ACTIVE",
@@ -134,7 +134,7 @@ class Instance(BaseModel):
     """
 
     task_state: Optional[str] = None
-    """Task state"""
+    """Task state. The value is null if no operation is in progress."""
 
     vm_state: Literal[
         "active",

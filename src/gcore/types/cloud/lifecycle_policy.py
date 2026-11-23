@@ -18,27 +18,72 @@ __all__ = [
 
 
 class ScheduleGetCronScheduleSerializerRetentionTime(BaseModel):
-    """Time after which the resource will be deleted"""
+    """Time after which the resource will be deleted.
+
+    The value is null if no retention is set.
+    """
 
     days: Optional[int] = None
-    """Number of days to wait"""
+    """Number of days to wait.
+
+    The value is null if the retention time does not set days.
+    """
 
     hours: Optional[int] = None
-    """Number of hours to wait"""
+    """Number of hours to wait.
+
+    The value is null if the retention time does not set hours.
+    """
 
     minutes: Optional[int] = None
-    """Number of minutes to wait"""
+    """Number of minutes to wait.
+
+    The value is null if the retention time does not set minutes.
+    """
 
     weeks: Optional[int] = None
-    """Number of weeks to wait"""
+    """Number of weeks to wait.
+
+    The value is null if the retention time does not set weeks.
+    """
 
 
 class ScheduleGetCronScheduleSerializer(BaseModel):
     id: str
     """Schedule ID"""
 
+    day: Optional[str] = None
+    """Day of the month (1-31, '\\**') or a comma-separated list of days.
+
+    The value is null if the schedule does not set a day.
+    """
+
+    day_of_week: Optional[str] = None
+    """Weekday or a comma-separated list of weekdays (mon,tue,wed,thu,fri,sat,sun,\\**).
+
+    The value is null if the schedule does not set a weekday.
+    """
+
+    hour: Optional[str] = None
+    """Hour (0-23, '\\**') or a comma-separated list of hours.
+
+    The value is null if the schedule does not set an hour.
+    """
+
     max_quantity: int
     """Number of stored resources."""
+
+    minute: Optional[str] = None
+    """Minute (0-59, '\\**') or a comma-separated list of minutes.
+
+    The value is null if the schedule does not set a minute.
+    """
+
+    month: Optional[str] = None
+    """Month (1-12, '\\**') or a comma-separated list of months.
+
+    The value is null if the schedule does not set a month.
+    """
 
     owner: str
     """Schedule owner"""
@@ -46,8 +91,20 @@ class ScheduleGetCronScheduleSerializer(BaseModel):
     owner_id: int
     """Owner ID"""
 
+    resource_name_template: Optional[str] = None
+    """Template for resource names. The value is null if the schedule has no template."""
+
     retention_time: Optional[ScheduleGetCronScheduleSerializerRetentionTime] = None
-    """Time after which the resource will be deleted"""
+    """Time after which the resource will be deleted.
+
+    The value is null if no retention is set.
+    """
+
+    timezone: Optional[str] = None
+    """A timezone name, for example Europe/Berlin.
+
+    The value is null if the schedule does not set a timezone, and it then uses UTC.
+    """
 
     type: Literal["cron"]
     """Schedule type"""
@@ -55,53 +112,62 @@ class ScheduleGetCronScheduleSerializer(BaseModel):
     user_id: int
     """User ID"""
 
-    day: Optional[str] = None
-    """Day of the month (1-31, '\\**') or a comma-separated list of days"""
-
-    day_of_week: Optional[str] = None
-    """Weekday or a comma-separated list of weekdays (mon,tue,wed,thu,fri,sat,sun,\\**)"""
-
-    hour: Optional[str] = None
-    """Hour (0-23, '\\**') or a comma-separated list of hours"""
-
-    minute: Optional[str] = None
-    """Minute (0-59, '\\**') or a comma-separated list of minutes"""
-
-    month: Optional[str] = None
-    """Month (1-12, '\\**') or a comma-separated list of months"""
-
-    resource_name_template: Optional[str] = None
-    """Template for resource names"""
-
-    timezone: Optional[str] = None
-    """A pytz timezone. Defaults to UTC."""
-
     week: Optional[str] = None
-    """ISO week (1-53, '\\**') or a comma-separated list of weeks"""
+    """ISO week (1-53, '\\**') or a comma-separated list of weeks.
+
+    The value is null if the schedule does not set a week.
+    """
 
 
 class ScheduleGetIntervalScheduleSerializerRetentionTime(BaseModel):
-    """Time after which the resource will be deleted"""
+    """Time after which the resource will be deleted.
+
+    The value is null if no retention is set.
+    """
 
     days: Optional[int] = None
-    """Number of days to wait"""
+    """Number of days to wait.
+
+    The value is null if the retention time does not set days.
+    """
 
     hours: Optional[int] = None
-    """Number of hours to wait"""
+    """Number of hours to wait.
+
+    The value is null if the retention time does not set hours.
+    """
 
     minutes: Optional[int] = None
-    """Number of minutes to wait"""
+    """Number of minutes to wait.
+
+    The value is null if the retention time does not set minutes.
+    """
 
     weeks: Optional[int] = None
-    """Number of weeks to wait"""
+    """Number of weeks to wait.
+
+    The value is null if the retention time does not set weeks.
+    """
 
 
 class ScheduleGetIntervalScheduleSerializer(BaseModel):
     id: str
     """Schedule ID"""
 
+    days: Optional[int] = None
+    """Number of days to wait. The value is null if the schedule does not set days."""
+
+    hours: Optional[int] = None
+    """Number of hours to wait. The value is null if the schedule does not set hours."""
+
     max_quantity: int
     """Number of stored resources."""
+
+    minutes: Optional[int] = None
+    """Number of minutes to wait.
+
+    The value is null if the schedule does not set minutes.
+    """
 
     owner: str
     """Schedule owner"""
@@ -109,8 +175,14 @@ class ScheduleGetIntervalScheduleSerializer(BaseModel):
     owner_id: int
     """Owner ID"""
 
+    resource_name_template: Optional[str] = None
+    """Template for resource names. The value is null if the schedule has no template."""
+
     retention_time: Optional[ScheduleGetIntervalScheduleSerializerRetentionTime] = None
-    """Time after which the resource will be deleted"""
+    """Time after which the resource will be deleted.
+
+    The value is null if no retention is set.
+    """
 
     type: Literal["interval"]
     """Schedule type"""
@@ -118,20 +190,8 @@ class ScheduleGetIntervalScheduleSerializer(BaseModel):
     user_id: int
     """User ID"""
 
-    days: Optional[int] = None
-    """Number of days to wait"""
-
-    hours: Optional[int] = None
-    """Number of hours to wait"""
-
-    minutes: Optional[int] = None
-    """Number of minutes to wait"""
-
-    resource_name_template: Optional[str] = None
-    """Template for resource names"""
-
     weeks: Optional[int] = None
-    """Number of weeks to wait"""
+    """Number of weeks to wait. The value is null if the schedule does not set weeks."""
 
 
 Schedule: TypeAlias = Annotated[

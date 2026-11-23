@@ -44,16 +44,22 @@ class ShareSettingsStandardShareSettingsOutputSerializer(BaseModel):
 
 class ShareSettingsDdnShareSettingsOutputSerializer(BaseModel):
     gid: Optional[int] = None
-    """Group ID being owner of the share"""
+    """Group ID being owner of the share.
+
+    The value is null if the share has no group owner.
+    """
 
     projid: Optional[int] = None
-    """Exascaler project ID"""
+    """Exascaler project ID. The value is null if the share has no project ID."""
 
     type_name: Literal["ddn"]
     """DDN file share type"""
 
     uid: Optional[int] = None
-    """User ID being owner of the share"""
+    """User ID being owner of the share.
+
+    The value is null if the share has no user owner.
+    """
 
 
 class ShareSettingsVastShareSettingsOutputSerializerQuotaDefaultGroupQuota(BaseModel):
@@ -162,8 +168,16 @@ class ShareSettingsVastShareSettingsOutputSerializerQuota(BaseModel):
 
 class ShareSettingsVastShareSettingsOutputSerializer(BaseModel):
     allowed_characters: Optional[Literal["LCD", "NPL"]] = None
+    """Allowed characters of the file share.
+
+    The value is null if the share does not set them.
+    """
 
     path_length: Optional[Literal["LCD", "NPL"]] = None
+    """Path length rule of the file share.
+
+    The value is null if the share does not set a path length rule.
+    """
 
     quota: Optional[ShareSettingsVastShareSettingsOutputSerializerQuota] = None
     """User and group quotas of the file share.

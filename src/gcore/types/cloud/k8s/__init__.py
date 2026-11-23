@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from .k8s_flavor import K8SFlavor as K8SFlavor
 from .k8s_cluster import K8SCluster as K8SCluster
 from .k8s_cluster_list import K8SClusterList as K8SClusterList
 from .flavor_list_params import FlavorListParams as FlavorListParams

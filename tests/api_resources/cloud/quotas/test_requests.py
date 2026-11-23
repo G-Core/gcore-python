@@ -46,6 +46,7 @@ class TestRequests:
                     {
                         "baremetal_basic_count_limit": 0,
                         "baremetal_gpu_a100_count_limit": 0,
+                        "baremetal_gpu_b200_count_limit": 0,
                         "baremetal_gpu_count_limit": 0,
                         "baremetal_gpu_h100_count_limit": 0,
                         "baremetal_gpu_h200_count_limit": 0,
@@ -261,6 +262,7 @@ class TestAsyncRequests:
                     {
                         "baremetal_basic_count_limit": 0,
                         "baremetal_gpu_a100_count_limit": 0,
+                        "baremetal_gpu_b200_count_limit": 0,
                         "baremetal_gpu_count_limit": 0,
                         "baremetal_gpu_h100_count_limit": 0,
                         "baremetal_gpu_h200_count_limit": 0,

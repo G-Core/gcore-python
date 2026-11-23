@@ -14,16 +14,49 @@ class GPUImage(BaseModel):
     id: str
     """Image ID"""
 
+    architecture: Optional[str] = None
+    """Image architecture type.
+
+    The value is null if the image does not set this property.
+    """
+
     created_at: datetime
     """Datetime when the image was created"""
 
     cuda_toolkit_version: Optional[str] = None
-    """Version of the installed CUDA toolkit"""
+    """Version of the installed CUDA toolkit.
+
+    The value is null if the image does not set this property.
+    """
 
     disk_format: str
     """Disk format of the stored image (e.g.
 
     `raw`, `qcow2`). `cow_format=true` -> `raw`, `cow_format=false` -> `qcow2`.
+    """
+
+    gpu_driver: Optional[str] = None
+    """Name of the GPU driver vendor.
+
+    The value is null if the image does not set this property.
+    """
+
+    gpu_driver_type: Optional[str] = None
+    """Type of the GPU driver.
+
+    The value is null if the image does not set this property.
+    """
+
+    gpu_driver_version: Optional[str] = None
+    """Version of the installed GPU driver.
+
+    The value is null if the image does not set this property.
+    """
+
+    hw_firmware_type: Optional[Literal["bios", "uefi"]] = None
+    """Specifies the type of firmware with which to boot the guest.
+
+    The value is null if the image does not set this property.
     """
 
     min_disk: int
@@ -34,6 +67,31 @@ class GPUImage(BaseModel):
 
     name: str
     """Image name"""
+
+    os_distro: Optional[str] = None
+    """OS Distribution. The value is null if the image does not set this property."""
+
+    os_type: Optional[str] = None
+    """The operating system installed on the image.
+
+    The value is null if the image does not set this property.
+    """
+
+    os_version: Optional[str] = None
+    """OS version, i.e.
+
+    19.04 (for Ubuntu) or 9.4 for Debian. The value is null if the image does not
+    set this property.
+    """
+
+    size: int
+    """Image size in bytes."""
+
+    ssh_key: Optional[str] = None
+    """Whether the image supports SSH key or not.
+
+    The value is null if the image does not set this property.
+    """
 
     status: str
     """Image status"""
@@ -48,45 +106,15 @@ class GPUImage(BaseModel):
     values.
     """
 
-    updated_at: datetime
-    """Datetime when the image was updated"""
-
-    visibility: str
-    """Image visibility. Globally visible images are public"""
-
-    architecture: Optional[str] = None
-    """Image architecture type"""
-
-    gpu_driver: Optional[str] = None
-    """Name of the GPU driver vendor"""
-
-    gpu_driver_type: Optional[str] = None
-    """Type of the GPU driver"""
-
-    gpu_driver_version: Optional[str] = None
-    """Version of the installed GPU driver"""
-
-    hw_firmware_type: Optional[Literal["bios", "uefi"]] = None
-    """Specifies the type of firmware with which to boot the guest."""
-
-    os_distro: Optional[str] = None
-    """OS Distribution"""
-
-    os_type: Optional[str] = None
-    """The operating system installed on the image"""
-
-    os_version: Optional[str] = None
-    """OS version, i.e. 19.04 (for Ubuntu) or 9.4 for Debian"""
-
-    size: Optional[int] = None
-    """Image size in bytes."""
-
-    ssh_key: Optional[str] = None
-    """Whether the image supports SSH key or not"""
-
     task_id: Optional[str] = None
     """The UUID of the active task that currently holds a lock on the resource.
 
     This lock prevents concurrent modifications to ensure consistency. If `null`,
     the resource is not locked.
     """
+
+    updated_at: datetime
+    """Datetime when the image was updated"""
+
+    visibility: str
+    """Image visibility. Globally visible images are public"""

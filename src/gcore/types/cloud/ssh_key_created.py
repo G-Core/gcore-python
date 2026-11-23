@@ -34,6 +34,7 @@ class SSHKeyCreated(BaseModel):
 
     Best practice: Save the private key to a secure location on your machine (e.g.,
     `~/.ssh/id_ed25519`) and set the file permissions to be readable only by you.
+    The value is null if you supply your own public key.
     """
 
     project_id: int

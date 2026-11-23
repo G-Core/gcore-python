@@ -105,7 +105,7 @@ class GPUBaremetalClusterServerV1(BaseModel):
     """Datetime when GPU server was created"""
 
     creator_task_id: Optional[str] = None
-    """Task that created this entity"""
+    """Task that created this entity. The value is null if no task created the entity."""
 
     ddos_profile: Optional[DDOSProfile] = None
     """Advanced DDoS protection profile.
@@ -114,16 +114,22 @@ class GPUBaremetalClusterServerV1(BaseModel):
     """
 
     fixed_ip_assignments: Optional[List[FixedIPAssignment]] = None
-    """Fixed IP assigned to instance"""
+    """Fixed IP assigned to instance.
+
+    The value is null if the instance has no fixed IP assignments.
+    """
 
     flavor: Flavor
     """Flavor"""
 
     instance_description: Optional[str] = None
-    """Instance description"""
+    """Instance description. The value is null if the instance has no description."""
 
     instance_isolation: Optional[InstanceIsolation] = None
-    """Instance isolation information"""
+    """Instance isolation information.
+
+    The value is null if the instance has no isolation settings.
+    """
 
     name: str
     """GPU server name"""
@@ -141,7 +147,7 @@ class GPUBaremetalClusterServerV1(BaseModel):
     """Security groups"""
 
     ssh_key_name: Optional[str] = None
-    """SSH key name assigned to instance"""
+    """SSH key name assigned to instance. The value is null if no SSH key is assigned."""
 
     status: Literal[
         "ACTIVE",
@@ -185,7 +191,7 @@ class GPUBaremetalClusterServerV1(BaseModel):
     """
 
     task_state: Optional[str] = None
-    """Task state"""
+    """Task state. The value is null if no operation is in progress on the instance."""
 
     vm_state: Literal[
         "active",

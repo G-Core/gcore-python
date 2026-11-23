@@ -33,6 +33,8 @@ __all__ = [
     "LastMessageRegionalQuotaBaremetalBasicCountUsage",
     "LastMessageRegionalQuotaBaremetalGPUA100CountLimit",
     "LastMessageRegionalQuotaBaremetalGPUA100CountUsage",
+    "LastMessageRegionalQuotaBaremetalGPUB200CountLimit",
+    "LastMessageRegionalQuotaBaremetalGPUB200CountUsage",
     "LastMessageRegionalQuotaBaremetalGPUH100CountLimit",
     "LastMessageRegionalQuotaBaremetalGPUH100CountUsage",
     "LastMessageRegionalQuotaBaremetalGPUH200CountLimit",
@@ -389,6 +391,26 @@ class LastMessageRegionalQuotaBaremetalGPUA100CountLimit(TypedDict, total=False)
 
 class LastMessageRegionalQuotaBaremetalGPUA100CountUsage(TypedDict, total=False):
     """Bare metal A100 GPU server count usage"""
+
+    limit: Required[int]
+    """Current quota limit"""
+
+    usage: Required[int]
+    """Current amount of resource used"""
+
+
+class LastMessageRegionalQuotaBaremetalGPUB200CountLimit(TypedDict, total=False):
+    """Bare metal B200 GPU server count limit"""
+
+    limit: Required[int]
+    """Current quota limit"""
+
+    usage: Required[int]
+    """Current amount of resource used"""
+
+
+class LastMessageRegionalQuotaBaremetalGPUB200CountUsage(TypedDict, total=False):
+    """Bare metal B200 GPU server count usage"""
 
     limit: Required[int]
     """Current quota limit"""
@@ -1395,6 +1417,12 @@ class LastMessageRegionalQuota(TypedDict, total=False):
 
     baremetal_gpu_a100_count_usage: LastMessageRegionalQuotaBaremetalGPUA100CountUsage
     """Bare metal A100 GPU server count usage"""
+
+    baremetal_gpu_b200_count_limit: LastMessageRegionalQuotaBaremetalGPUB200CountLimit
+    """Bare metal B200 GPU server count limit"""
+
+    baremetal_gpu_b200_count_usage: LastMessageRegionalQuotaBaremetalGPUB200CountUsage
+    """Bare metal B200 GPU server count usage"""
 
     baremetal_gpu_h100_count_limit: LastMessageRegionalQuotaBaremetalGPUH100CountLimit
     """Bare metal H100 GPU server count limit"""

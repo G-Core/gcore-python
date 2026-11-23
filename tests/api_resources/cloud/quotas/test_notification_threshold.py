@@ -117,6 +117,14 @@ class TestNotificationThreshold:
                             "limit": 10,
                             "usage": 8,
                         },
+                        "baremetal_gpu_b200_count_limit": {
+                            "limit": 10,
+                            "usage": 8,
+                        },
+                        "baremetal_gpu_b200_count_usage": {
+                            "limit": 10,
+                            "usage": 8,
+                        },
                         "baremetal_gpu_h100_count_limit": {
                             "limit": 10,
                             "usage": 8,
@@ -707,6 +715,14 @@ class TestAsyncNotificationThreshold:
                             "usage": 8,
                         },
                         "baremetal_gpu_a100_count_usage": {
+                            "limit": 10,
+                            "usage": 8,
+                        },
+                        "baremetal_gpu_b200_count_limit": {
+                            "limit": 10,
+                            "usage": 8,
+                        },
+                        "baremetal_gpu_b200_count_usage": {
                             "limit": 10,
                             "usage": 8,
                         },

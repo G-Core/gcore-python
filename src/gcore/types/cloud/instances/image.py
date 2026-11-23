@@ -21,33 +21,46 @@ class Image(BaseModel):
     """Datetime when the image was created"""
 
     creator_task_id: Optional[str] = None
-    """Task that created this entity"""
+    """Task that created this entity. The value is null if no task created the image."""
 
     currency_code: Optional[str] = None
-    """Currency code. Shown if the `include_prices` query parameter if set to true"""
+    """Currency code. The value is null if the price is not available."""
 
     description: Optional[str] = None
-    """Image description"""
+    """Image description. The value is null if the image has no description."""
 
     disk_format: str
     """Disk format"""
 
     display_order: Optional[int] = None
+    """The display order of the image.
+
+    The value is null if the image has no display order.
+    """
 
     gpu_driver: Optional[str] = None
-    """Name of the GPU driver vendor"""
+    """Name of the GPU driver vendor.
+
+    The value is null if the image has no GPU driver.
+    """
 
     gpu_driver_type: Optional[str] = None
-    """Type of the GPU driver"""
+    """Type of the GPU driver. The value is null if the image has no GPU driver."""
 
     gpu_driver_version: Optional[str] = None
-    """Version of the installed GPU driver"""
+    """Version of the installed GPU driver.
+
+    The value is null if the image has no GPU driver.
+    """
 
     hw_firmware_type: Optional[Literal["bios", "uefi"]] = None
-    """Specifies the type of firmware with which to boot the guest."""
+    """Specifies the type of firmware with which to boot the guest.
+
+    The value is null if the image sets no firmware type.
+    """
 
     hw_machine_type: Optional[Literal["i440", "q35"]] = None
-    """A virtual chipset type."""
+    """A virtual chipset type. The value is null if the image sets no machine type."""
 
     is_baremetal: bool
     """Set to true if the image will be used by bare metal servers."""
@@ -71,13 +84,13 @@ class Image(BaseModel):
     """OS version, i.e. 19.04 (for Ubuntu) or 9.4 for Debian"""
 
     price_per_hour: Optional[float] = None
-    """Price per hour. Shown if the `include_prices` query parameter if set to true"""
+    """Price per hour. The value is null if the price is not available."""
 
     price_per_month: Optional[float] = None
-    """Price per month. Shown if the `include_prices` query parameter if set to true"""
+    """Price per month. The value is null if the price is not available."""
 
     price_status: Optional[Literal["error", "hide", "show"]] = None
-    """Price status for the UI"""
+    """Price status for the UI. The value is null if the price is not available."""
 
     project_id: int
     """Project ID"""
@@ -89,10 +102,13 @@ class Image(BaseModel):
     """Region ID"""
 
     size: Optional[int] = None
-    """Image size in bytes"""
+    """Image size in bytes. The value is null if the size is not known."""
 
     ssh_key: Optional[Literal["allow", "deny", "required"]] = None
-    """Whether the image supports SSH key or not"""
+    """Whether the image supports SSH key or not.
+
+    The value is null if the image has no SSH key setting.
+    """
 
     status: str
     """Image status, i.e. active"""

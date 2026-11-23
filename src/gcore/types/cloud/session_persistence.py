@@ -10,7 +10,7 @@ __all__ = ["SessionPersistence"]
 
 class SessionPersistence(BaseModel):
     cookie_name: Optional[str] = None
-    """Should be set if app cookie or http cookie is used. Null otherwise."""
+    """Cookie name. Set for the `APP_COOKIE` type. Null otherwise."""
 
     persistence_granularity: Optional[str] = None
     """Subnet mask if `source_ip` is used. For UDP ports only, null otherwise."""

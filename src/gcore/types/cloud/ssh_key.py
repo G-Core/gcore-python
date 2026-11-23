@@ -14,7 +14,7 @@ class SSHKey(BaseModel):
     """SSH key ID"""
 
     created_at: Optional[datetime] = None
-    """SSH key creation time"""
+    """SSH key creation time. The value is null if the creation time is not known."""
 
     fingerprint: str
     """Fingerprint"""
@@ -23,7 +23,7 @@ class SSHKey(BaseModel):
     """SSH key name"""
 
     project_id: Optional[int] = None
-    """Project ID"""
+    """Project ID. The value is null if the SSH key has no project."""
 
     public_key: str
     """The public part of an SSH key is the shareable portion of an SSH key pair.

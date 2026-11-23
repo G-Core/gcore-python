@@ -1065,9 +1065,15 @@ Methods:
 
 ### Flavors
 
+Types:
+
+```python
+from gcore.types.cloud.k8s import K8SFlavor
+```
+
 Methods:
 
-- <code title="get /cloud/v1/k8s/{project_id}/{region_id}/flavors">client.cloud.k8s.flavors.<a href="./src/gcore/resources/cloud/k8s/flavors.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/k8s/flavor_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/baremetal_flavor.py">SyncOffsetPage[BaremetalFlavor]</a></code>
+- <code title="get /cloud/v1/k8s/{project_id}/{region_id}/flavors">client.cloud.k8s.flavors.<a href="./src/gcore/resources/cloud/k8s/flavors.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/k8s/flavor_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/k8s/k8s_flavor.py">SyncOffsetPage[K8SFlavor]</a></code>
 
 ### Clusters
 

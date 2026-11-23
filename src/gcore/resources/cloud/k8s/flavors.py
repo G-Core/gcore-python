@@ -17,7 +17,7 @@ from ...._response import (
 from ....pagination import SyncOffsetPage, AsyncOffsetPage
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.cloud.k8s import flavor_list_params
-from ....types.cloud.baremetal_flavor import BaremetalFlavor
+from ....types.cloud.k8s.k8s_flavor import K8SFlavor
 
 __all__ = ["FlavorsResource", "AsyncFlavorsResource"]
 
@@ -58,7 +58,7 @@ class FlavorsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncOffsetPage[BaremetalFlavor]:
+    ) -> SyncOffsetPage[K8SFlavor]:
         """Retrieve a list of flavors for k8s pool.
 
         When the `include_prices` query
@@ -95,7 +95,7 @@ class FlavorsResource(SyncAPIResource):
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
             path_template("/cloud/v1/k8s/{project_id}/{region_id}/flavors", project_id=project_id, region_id=region_id),
-            page=SyncOffsetPage[BaremetalFlavor],
+            page=SyncOffsetPage[K8SFlavor],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -112,7 +112,7 @@ class FlavorsResource(SyncAPIResource):
                     flavor_list_params.FlavorListParams,
                 ),
             ),
-            model=BaremetalFlavor,
+            model=K8SFlavor,
         )
 
 
@@ -152,7 +152,7 @@ class AsyncFlavorsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[BaremetalFlavor, AsyncOffsetPage[BaremetalFlavor]]:
+    ) -> AsyncPaginator[K8SFlavor, AsyncOffsetPage[K8SFlavor]]:
         """Retrieve a list of flavors for k8s pool.
 
         When the `include_prices` query
@@ -189,7 +189,7 @@ class AsyncFlavorsResource(AsyncAPIResource):
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
             path_template("/cloud/v1/k8s/{project_id}/{region_id}/flavors", project_id=project_id, region_id=region_id),
-            page=AsyncOffsetPage[BaremetalFlavor],
+            page=AsyncOffsetPage[K8SFlavor],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -206,7 +206,7 @@ class AsyncFlavorsResource(AsyncAPIResource):
                     flavor_list_params.FlavorListParams,
                 ),
             ),
-            model=BaremetalFlavor,
+            model=K8SFlavor,
         )
 
 

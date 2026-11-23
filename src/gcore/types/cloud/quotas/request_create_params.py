@@ -51,12 +51,16 @@ class RequestedLimitsRegionalLimit(TypedDict, total=False):
     baremetal_gpu_a100_count_limit: int
     """Bare metal A100 GPU server count limit"""
 
+    baremetal_gpu_b200_count_limit: int
+    """Bare metal B200 GPU server count limit"""
+
     baremetal_gpu_count_limit: int
     """Total number of AI GPU bare metal servers.
 
     This field is deprecated and is now always calculated automatically as the sum
-    of `baremetal_gpu_a100_count_limit`, `baremetal_gpu_h100_count_limit`,
-    `baremetal_gpu_h200_count_limit`, and `baremetal_gpu_l40s_count_limit`.
+    of `baremetal_gpu_a100_count_limit`, `baremetal_gpu_b200_count_limit`,
+    `baremetal_gpu_h100_count_limit`, `baremetal_gpu_h200_count_limit`, and
+    `baremetal_gpu_l40s_count_limit`.
     """
 
     baremetal_gpu_h100_count_limit: int

@@ -89,7 +89,10 @@ class BaremetalServer(BaseModel):
     """Datetime when bare metal server was created"""
 
     creator_task_id: Optional[str] = None
-    """Task that created this entity"""
+    """Task that created this entity.
+
+    The value is null if the server has no creator task ID.
+    """
 
     ddos_profile: Optional[DDOSProfile] = None
     """Bare metal advanced DDoS protection profile.
@@ -104,7 +107,10 @@ class BaremetalServer(BaseModel):
     """Flavor details"""
 
     instance_isolation: Optional[InstanceIsolation] = None
-    """Instance isolation information"""
+    """Instance isolation information.
+
+    The value is null if the server is not isolated.
+    """
 
     name: str
     """Bare metal server name"""
@@ -119,7 +125,7 @@ class BaremetalServer(BaseModel):
     """Region ID"""
 
     ssh_key_name: Optional[str] = None
-    """SSH key assigned to bare metal server"""
+    """SSH key assigned to bare metal server. The value is null if no key pair is set."""
 
     status: Literal[
         "ACTIVE",
@@ -163,7 +169,7 @@ class BaremetalServer(BaseModel):
     """
 
     task_state: Optional[str] = None
-    """Task state"""
+    """Task state. The value is null if no operation is in progress."""
 
     vm_state: Literal[
         "active",

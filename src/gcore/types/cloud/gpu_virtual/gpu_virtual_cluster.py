@@ -208,10 +208,10 @@ class ServersSettings(BaseModel):
     """
 
     ssh_key_name: Optional[str] = None
-    """SSH key name"""
+    """SSH key name. The value is null if no key pair is set."""
 
     user_data: Optional[str] = None
-    """Optional custom user data"""
+    """Optional custom user data. The value is null if no user data was set."""
 
     username: Optional[str] = None
     """Shows the username that `credentials.username` set at creation.
@@ -269,4 +269,4 @@ class GPUVirtualCluster(BaseModel):
     """
 
     updated_at: Optional[datetime] = None
-    """Cluster update date time"""
+    """Cluster update date time. The value is null if the cluster was never updated."""

@@ -78,7 +78,8 @@ class ServersSettingsInterfaceExternalInterfaceInputSerializer(TypedDict, total=
     attached). When false, the port is created with port security off and no
     security group attached; `security_groups` must not be set in that case. Not
     allowed for interfaces on a public network, nor for bare metal servers without a
-    DPU (their ports cannot enforce port security).
+    DPU (their ports cannot enforce port security). `false` is also not allowed on a
+    network of another project that other clients share.
     """
 
     security_groups: Iterable[ServersSettingsInterfaceExternalInterfaceInputSerializerSecurityGroup]
@@ -122,7 +123,8 @@ class ServersSettingsInterfaceSubnetInterfaceInputSerializer(TypedDict, total=Fa
     attached). When false, the port is created with port security off and no
     security group attached; `security_groups` must not be set in that case. Not
     allowed for interfaces on a public network, nor for bare metal servers without a
-    DPU (their ports cannot enforce port security).
+    DPU (their ports cannot enforce port security). `false` is also not allowed on a
+    network of another project that other clients share.
     """
 
     security_groups: Iterable[ServersSettingsInterfaceSubnetInterfaceInputSerializerSecurityGroup]
@@ -166,7 +168,8 @@ class ServersSettingsInterfaceAnySubnetInterfaceInputSerializer(TypedDict, total
     attached). When false, the port is created with port security off and no
     security group attached; `security_groups` must not be set in that case. Not
     allowed for interfaces on a public network, nor for bare metal servers without a
-    DPU (their ports cannot enforce port security).
+    DPU (their ports cannot enforce port security). `false` is also not allowed on a
+    network of another project that other clients share.
     """
 
     security_groups: Iterable[ServersSettingsInterfaceAnySubnetInterfaceInputSerializerSecurityGroup]

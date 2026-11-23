@@ -23,15 +23,18 @@ class GPUVirtualFlavorSerializerWithoutPriceHardwareDescription(BaseModel):
     """Additional virtual hardware description"""
 
     gpu: Optional[str] = None
-    """Human-readable GPU description"""
+    """Human-readable GPU description. The value is null if the flavor has no GPU."""
 
     local_storage: Optional[int] = None
-    """Local storage capacity in GiB"""
+    """Local storage capacity in GiB.
 
-    ram: Optional[int] = None
+    The value is null if the flavor has no ephemeral storage.
+    """
+
+    ram: int
     """RAM size in MiB"""
 
-    vcpus: Optional[int] = None
+    vcpus: int
     """Virtual CPU count"""
 
 
@@ -87,15 +90,18 @@ class GPUVirtualFlavorSerializerWithPricesHardwareDescription(BaseModel):
     """Additional virtual hardware description"""
 
     gpu: Optional[str] = None
-    """Human-readable GPU description"""
+    """Human-readable GPU description. The value is null if the flavor has no GPU."""
 
     local_storage: Optional[int] = None
-    """Local storage capacity in GiB"""
+    """Local storage capacity in GiB.
 
-    ram: Optional[int] = None
+    The value is null if the flavor has no ephemeral storage.
+    """
+
+    ram: int
     """RAM size in MiB"""
 
-    vcpus: Optional[int] = None
+    vcpus: int
     """Virtual CPU count"""
 
 

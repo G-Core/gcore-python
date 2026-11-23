@@ -30,6 +30,8 @@ __all__ = [
     "LastMessageRegionalQuotaBaremetalBasicCountUsage",
     "LastMessageRegionalQuotaBaremetalGPUA100CountLimit",
     "LastMessageRegionalQuotaBaremetalGPUA100CountUsage",
+    "LastMessageRegionalQuotaBaremetalGPUB200CountLimit",
+    "LastMessageRegionalQuotaBaremetalGPUB200CountUsage",
     "LastMessageRegionalQuotaBaremetalGPUH100CountLimit",
     "LastMessageRegionalQuotaBaremetalGPUH100CountUsage",
     "LastMessageRegionalQuotaBaremetalGPUH200CountLimit",
@@ -379,6 +381,26 @@ class LastMessageRegionalQuotaBaremetalGPUA100CountLimit(BaseModel):
 
 class LastMessageRegionalQuotaBaremetalGPUA100CountUsage(BaseModel):
     """Bare metal A100 GPU server count usage"""
+
+    limit: int
+    """Current quota limit"""
+
+    usage: int
+    """Current amount of resource used"""
+
+
+class LastMessageRegionalQuotaBaremetalGPUB200CountLimit(BaseModel):
+    """Bare metal B200 GPU server count limit"""
+
+    limit: int
+    """Current quota limit"""
+
+    usage: int
+    """Current amount of resource used"""
+
+
+class LastMessageRegionalQuotaBaremetalGPUB200CountUsage(BaseModel):
+    """Bare metal B200 GPU server count usage"""
 
     limit: int
     """Current quota limit"""
@@ -1385,6 +1407,12 @@ class LastMessageRegionalQuota(BaseModel):
 
     baremetal_gpu_a100_count_usage: Optional[LastMessageRegionalQuotaBaremetalGPUA100CountUsage] = None
     """Bare metal A100 GPU server count usage"""
+
+    baremetal_gpu_b200_count_limit: Optional[LastMessageRegionalQuotaBaremetalGPUB200CountLimit] = None
+    """Bare metal B200 GPU server count limit"""
+
+    baremetal_gpu_b200_count_usage: Optional[LastMessageRegionalQuotaBaremetalGPUB200CountUsage] = None
+    """Bare metal B200 GPU server count usage"""
 
     baremetal_gpu_h100_count_limit: Optional[LastMessageRegionalQuotaBaremetalGPUH100CountLimit] = None
     """Bare metal H100 GPU server count limit"""

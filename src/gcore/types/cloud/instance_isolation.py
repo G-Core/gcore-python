@@ -9,4 +9,7 @@ __all__ = ["InstanceIsolation"]
 
 class InstanceIsolation(BaseModel):
     reason: Optional[str] = None
-    """The reason of instance isolation if it is isolated from external internet."""
+    """The reason of instance isolation if it is isolated from external internet.
+
+    The value is null if no reason is recorded.
+    """

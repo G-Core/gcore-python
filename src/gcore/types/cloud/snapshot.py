@@ -21,7 +21,7 @@ class Snapshot(BaseModel):
     """Task that created this entity"""
 
     description: Optional[str] = None
-    """Snapshot description"""
+    """Snapshot description. The value is null if the snapshot has no description."""
 
     name: str
     """Snapshot name"""
@@ -68,8 +68,11 @@ class Snapshot(BaseModel):
     the resource is not locked.
     """
 
-    updated_at: datetime
-    """Datetime when the snapshot was last updated"""
+    updated_at: Optional[datetime] = None
+    """Datetime when the snapshot was last updated.
+
+    The value is null if the snapshot was never updated.
+    """
 
     volume_id: str
     """ID of the volume this snapshot was made from"""

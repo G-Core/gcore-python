@@ -13,26 +13,38 @@ __all__ = ["Volume", "Attachment", "LimiterStats"]
 
 
 class Attachment(BaseModel):
+    attached_at: Optional[datetime] = None
+    """The date and time when the attachment was created.
+
+    The value is null if the volume service does not report it.
+    """
+
     attachment_id: str
     """The unique identifier of the attachment object."""
 
-    volume_id: str
-    """The unique identifier of the attached volume."""
-
-    attached_at: Optional[datetime] = None
-    """The date and time when the attachment was created."""
-
     device: Optional[str] = None
-    """The block device name inside the guest instance."""
+    """The block device name inside the guest instance.
+
+    The value is null if the volume service does not report it.
+    """
 
     flavor_id: Optional[str] = None
-    """The flavor ID of the instance."""
+    """The flavor ID of the instance.
+
+    The value is null if the attachment has no instance.
+    """
 
     instance_name: Optional[str] = None
-    """The name of the instance if attached and the server name is known."""
+    """The name of the instance. The value is null if the server name is not known."""
 
     server_id: Optional[str] = None
-    """The unique identifier of the instance."""
+    """The unique identifier of the instance.
+
+    The value is null if the attachment has no instance.
+    """
+
+    volume_id: str
+    """The unique identifier of the attached volume."""
 
 
 class LimiterStats(BaseModel):
@@ -55,14 +67,26 @@ class Volume(BaseModel):
     id: str
     """The unique identifier of the volume."""
 
+    attachments: List[Attachment]
+    """List of attachments associated with the volume."""
+
     bootable: bool
     """Indicates whether the volume is bootable."""
 
     created_at: datetime
     """The date and time when the volume was created."""
 
+    creator_task_id: Optional[str] = None
+    """The ID of the task that created this volume.
+
+    The value is null if the volume was not created by a task.
+    """
+
     is_root_volume: bool
     """Indicates whether this is a root volume."""
+
+    limiter_stats: Optional[LimiterStats] = None
+    """Schema representing the Quality of Service (QoS) parameters for a volume."""
 
     name: str
     """The name of the volume."""
@@ -78,6 +102,12 @@ class Volume(BaseModel):
 
     size: int
     """The size of the volume in gibibytes (GiB)."""
+
+    snapshot_ids: Optional[List[str]] = None
+    """List of snapshot IDs associated with this volume.
+
+    The value is null if the list did not load the snapshots.
+    """
 
     status: Literal[
         "attaching",
@@ -114,21 +144,6 @@ class Volume(BaseModel):
     values.
     """
 
-    volume_type: str
-    """The type of volume storage."""
-
-    attachments: Optional[List[Attachment]] = None
-    """List of attachments associated with the volume."""
-
-    creator_task_id: Optional[str] = None
-    """The ID of the task that created this volume."""
-
-    limiter_stats: Optional[LimiterStats] = None
-    """Schema representing the Quality of Service (QoS) parameters for a volume."""
-
-    snapshot_ids: Optional[List[str]] = None
-    """List of snapshot IDs associated with this volume."""
-
     task_id: Optional[str] = None
     """The UUID of the active task that currently holds a lock on the resource.
 
@@ -137,7 +152,16 @@ class Volume(BaseModel):
     """
 
     updated_at: Optional[datetime] = None
-    """The date and time when the volume was last updated."""
+    """The date and time when the volume was last updated.
+
+    The value is null if the volume never changed.
+    """
 
     volume_image_metadata: Optional[Dict[str, str]] = None
-    """Image metadata for volumes created from an image."""
+    """Image metadata for volumes created from an image.
+
+    The value is null if the volume did not come from an image.
+    """
+
+    volume_type: str
+    """The type of volume storage."""

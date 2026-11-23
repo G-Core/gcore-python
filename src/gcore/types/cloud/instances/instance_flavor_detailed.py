@@ -18,36 +18,8 @@ class InstanceFlavorExtendedSerializerWithoutPrice(BaseModel):
     architecture: str
     """Flavor architecture type"""
 
-    disabled: bool
-    """Disabled flavor flag"""
-
-    flavor_id: str
-    """Flavor ID is the same as name"""
-
-    flavor_name: str
-    """Flavor name"""
-
-    hardware_description: Dict[str, str]
-    """Additional hardware description"""
-
-    os_type: str
-    """Flavor operating system"""
-
-    ram: int
-    """RAM size in MiB"""
-
-    vcpus: int
-    """Virtual CPU count"""
-
-
-class InstanceFlavorExtendedSerializerWithPrice(BaseModel):
-    """Instances flavor schema with price information"""
-
-    architecture: str
-    """Flavor architecture type"""
-
     currency_code: Optional[str] = None
-    """Currency code"""
+    """Currency code. The value is null if the price is not available."""
 
     disabled: bool
     """Disabled flavor flag"""
@@ -65,13 +37,53 @@ class InstanceFlavorExtendedSerializerWithPrice(BaseModel):
     """Flavor operating system"""
 
     price_per_hour: Optional[float] = None
-    """Price per hour"""
+    """Price per hour. The value is null if the price is not available."""
 
     price_per_month: Optional[float] = None
-    """Price per month"""
+    """Price per month. The value is null if the price is not available."""
 
     price_status: Optional[Literal["error", "hide", "show"]] = None
-    """Price status for the UI"""
+    """Price status for the UI. The value is null if the price is not available."""
+
+    ram: int
+    """RAM size in MiB"""
+
+    vcpus: int
+    """Virtual CPU count"""
+
+
+class InstanceFlavorExtendedSerializerWithPrice(BaseModel):
+    """Instances flavor schema with price information"""
+
+    architecture: str
+    """Flavor architecture type"""
+
+    currency_code: Optional[str] = None
+    """Currency code. The value is null if the price is not available."""
+
+    disabled: bool
+    """Disabled flavor flag"""
+
+    flavor_id: str
+    """Flavor ID is the same as name"""
+
+    flavor_name: str
+    """Flavor name"""
+
+    hardware_description: Dict[str, str]
+    """Additional hardware description"""
+
+    os_type: str
+    """Flavor operating system"""
+
+    price_per_hour: Optional[float] = None
+    """Price per hour. The value is null if the price is not available."""
+
+    price_per_month: Optional[float] = None
+    """Price per month. The value is null if the price is not available."""
+
+    price_status: Optional[Literal["error", "hide", "show"]] = None
+    """Price status for the UI. The value is null if the price is not available."""
 
     ram: int
     """RAM size in MiB"""

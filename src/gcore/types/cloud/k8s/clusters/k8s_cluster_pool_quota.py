@@ -23,6 +23,15 @@ class K8SClusterPoolQuota(BaseModel):
     baremetal_gpu_a100_count_usage: Optional[int] = None
     """Bare metal A100 GPU server count usage"""
 
+    baremetal_gpu_b200_count_limit: Optional[int] = None
+    """Bare metal B200 GPU server count limit"""
+
+    baremetal_gpu_b200_count_requested: Optional[int] = None
+    """Bare metal B200 GPU server count requested"""
+
+    baremetal_gpu_b200_count_usage: Optional[int] = None
+    """Bare metal B200 GPU server count usage"""
+
     baremetal_gpu_h100_count_limit: Optional[int] = None
     """Bare metal H100 GPU server count limit"""
 
