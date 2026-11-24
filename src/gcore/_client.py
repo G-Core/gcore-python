@@ -211,7 +211,7 @@ class Gcore(SyncAPIClient):
     @property
     @override
     def qs(self) -> Querystring:
-        return Querystring(nested_format="dots", array_format="repeat")
+        return Querystring(array_format="repeat")
 
     @property
     @override
@@ -500,7 +500,7 @@ class AsyncGcore(AsyncAPIClient):
     @property
     @override
     def qs(self) -> Querystring:
-        return Querystring(nested_format="dots", array_format="repeat")
+        return Querystring(array_format="repeat")
 
     @property
     @override
