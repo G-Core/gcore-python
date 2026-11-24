@@ -5,10 +5,10 @@ from typing_extensions import Literal
 
 from ...._models import BaseModel
 
-__all__ = ["BaremetalFixedAddress"]
+__all__ = ["BaremetalRegionalFixedAddress"]
 
 
-class BaremetalFixedAddress(BaseModel):
+class BaremetalRegionalFixedAddress(BaseModel):
     """IP addresses of the trunk port and its subports."""
 
     addr: str

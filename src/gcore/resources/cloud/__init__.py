@@ -232,6 +232,14 @@ from .volume_snapshots import (
     VolumeSnapshotsResourceWithStreamingResponse,
     AsyncVolumeSnapshotsResourceWithStreamingResponse,
 )
+from .baremetal_regional import (
+    BaremetalRegionalResource,
+    AsyncBaremetalRegionalResource,
+    BaremetalRegionalResourceWithRawResponse,
+    AsyncBaremetalRegionalResourceWithRawResponse,
+    BaremetalRegionalResourceWithStreamingResponse,
+    AsyncBaremetalRegionalResourceWithStreamingResponse,
+)
 from .instances_regional import (
     InstancesRegionalResource,
     AsyncInstancesRegionalResource,
@@ -374,6 +382,12 @@ __all__ = [
     "AsyncBaremetalResourceWithRawResponse",
     "BaremetalResourceWithStreamingResponse",
     "AsyncBaremetalResourceWithStreamingResponse",
+    "BaremetalRegionalResource",
+    "AsyncBaremetalRegionalResource",
+    "BaremetalRegionalResourceWithRawResponse",
+    "AsyncBaremetalRegionalResourceWithRawResponse",
+    "BaremetalRegionalResourceWithStreamingResponse",
+    "AsyncBaremetalRegionalResourceWithStreamingResponse",
     "RegistriesResource",
     "AsyncRegistriesResource",
     "RegistriesResourceWithRawResponse",

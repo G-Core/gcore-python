@@ -45,7 +45,6 @@ from .listener_status import ListenerStatus as ListenerStatus
 from .network_details import NetworkDetails as NetworkDetails
 from .placement_group import PlacementGroup as PlacementGroup
 from .ssh_key_created import SSHKeyCreated as SSHKeyCreated
-from .baremetal_flavor import BaremetalFlavor as BaremetalFlavor
 from .floating_address import FloatingAddress as FloatingAddress
 from .lb_pool_protocol import LbPoolProtocol as LbPoolProtocol
 from .lifecycle_policy import LifecyclePolicy as LifecyclePolicy
@@ -125,6 +124,7 @@ from .k8s_cluster_version_list import K8SClusterVersionList as K8SClusterVersion
 from .k8s_list_versions_params import K8SListVersionsParams as K8SListVersionsParams
 from .load_balancer_get_params import LoadBalancerGetParams as LoadBalancerGetParams
 from .load_balancer_statistics import LoadBalancerStatistics as LoadBalancerStatistics
+from .baremetal_regional_flavor import BaremetalRegionalFlavor as BaremetalRegionalFlavor
 from .floating_ip_assign_params import FloatingIPAssignParams as FloatingIPAssignParams
 from .floating_ip_create_params import FloatingIPCreateParams as FloatingIPCreateParams
 from .floating_ip_update_params import FloatingIPUpdateParams as FloatingIPUpdateParams

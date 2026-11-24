@@ -4,10 +4,10 @@ from typing_extensions import Literal
 
 from ...._models import BaseModel
 
-__all__ = ["BaremetalFloatingAddress"]
+__all__ = ["BaremetalRegionalFloatingAddress"]
 
 
-class BaremetalFloatingAddress(BaseModel):
+class BaremetalRegionalFloatingAddress(BaseModel):
     addr: str
     """Address"""
 

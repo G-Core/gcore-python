@@ -2,90 +2,55 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable, Optional
-from typing_extensions import Literal, Required, TypeAlias, TypedDict
+from typing import Dict, Iterable
+from typing_extensions import Required, TypedDict
 
-from ..interface_ip_family import InterfaceIPFamily
-
-__all__ = [
-    "ServerCreateParams",
-    "Interface",
-    "InterfaceCreateBareMetalExternalInterfaceSerializer",
-    "InterfaceCreateBareMetalSubnetInterfaceSerializer",
-    "InterfaceCreateBareMetalSubnetInterfaceSerializerFloatingIP",
-    "InterfaceCreateBareMetalSubnetInterfaceSerializerFloatingIPNewInstanceFloatingIPInterfaceSerializer",
-    "InterfaceCreateBareMetalSubnetInterfaceSerializerFloatingIPExistingInstanceFloatingIPInterfaceSerializer",
-    "InterfaceCreateBareMetalAnySubnetInterfaceSerializer",
-    "InterfaceCreateBareMetalAnySubnetInterfaceSerializerFloatingIP",
-    "InterfaceCreateBareMetalAnySubnetInterfaceSerializerFloatingIPNewInstanceFloatingIPInterfaceSerializer",
-    "InterfaceCreateBareMetalAnySubnetInterfaceSerializerFloatingIPExistingInstanceFloatingIPInterfaceSerializer",
-    "InterfaceCreateBareMetalReservedFixedIPInterfaceSerializer",
-    "InterfaceCreateBareMetalReservedFixedIPInterfaceSerializerFloatingIP",
-    "InterfaceCreateBareMetalReservedFixedIPInterfaceSerializerFloatingIPNewInstanceFloatingIPInterfaceSerializer",
-    "InterfaceCreateBareMetalReservedFixedIPInterfaceSerializerFloatingIPExistingInstanceFloatingIPInterfaceSerializer",
-    "DDOSProfile",
-    "DDOSProfileField",
-]
+__all__ = ["ServerCreateParams", "Interface"]
 
 
 class ServerCreateParams(TypedDict, total=False):
     project_id: int
-    """Project ID"""
+    """Project ID."""
 
-    region_id: int
-    """Region ID"""
+    flavor_name: Required[str]
+    """Name of a bare metal flavor.
 
-    flavor: Required[str]
-    """The flavor of the instance."""
+    The flavor sets the CPU, the memory, the disks and the network cards of the
+    server. `GET /v1/projects/{project_id}/baremetal/flavors` lists the flavors.
+    """
+
+    image_id: Required[str]
+    """OS image to write to the server's local disk."""
 
     interfaces: Required[Iterable[Interface]]
-    """A list of network interfaces for the server.
+    """Pre-created ports to attach, in NIC/boot order."""
 
-    You can create one or more interfaces - private, public, or both.
+    region_id: Required[int]
+    """Region to provision the server in."""
+
+    dry_run: bool
+    """Run every check of the real request and change nothing.
+
+    The response has the status code and the schema of the real call, and an empty
+    list of tasks. With `false`, the default, the request does the operation.
     """
-
-    app_config: Optional[Dict[str, object]]
-    """
-    Parameters for the application template if creating the instance from an
-    `apptemplate`.
-    """
-
-    apptemplate_id: str
-    """Apptemplate ID. Either `image_id` or `apptemplate_id` is required."""
-
-    ddos_profile: DDOSProfile
-    """Enable advanced DDoS protection for the server"""
-
-    image_id: str
-    """Image ID. Either `image_id` or `apptemplate_id` is required."""
 
     name: str
-    """Server name."""
-
-    name_template: str
-    """
-    If you want server names to be automatically generated based on IP addresses,
-    you can provide a name template instead of specifying the name manually. The
-    template should include a placeholder that will be replaced during provisioning.
-    Supported placeholders are: `{ip_octets}` (last 3 octets of the IP),
-    `{two_ip_octets}`, and `{one_ip_octet}`.
-    """
+    """Server name. Auto-generated if omitted."""
 
     password: str
-    """For Linux instances, 'username' and 'password' are used to create a new user.
+    """Password of the default user.
 
-    When only 'password' is provided, it is set as the password for the default user
-    of the image. For Windows instances, 'username' cannot be specified. Use the
-    'password' field to set the password for the 'Admin' user on Windows. Use the
-    'user_data' field to provide a script to create new users on Windows. The
-    password of the Admin user cannot be updated via 'user_data'.
+    No response returns it. A Windows image needs a password. For a Windows image,
+    the create checks these rules: the password has a minimum of 6 characters, it
+    contains no word 'admin', and it contains 3 of these character types: digits,
+    lowercase letters, uppercase letters, other characters. For a Linux image, the
+    password enables SSH login with a password. Send `password` or `user_data`, not
+    both.
     """
 
-    ssh_key_name: Optional[str]
-    """
-    Specifies the name of the SSH keypair, created via the
-    [/v1/`ssh_keys` endpoint](/docs/api-reference/cloud/ssh-keys/add-or-generate-ssh-key).
-    """
+    ssh_key_id: str
+    """ID of the SSH key to add to the default user."""
 
     tags: Dict[str, str]
     """Key-value tags to associate with the resource.
@@ -99,275 +64,19 @@ class ServerCreateParams(TypedDict, total=False):
     """
 
     user_data: str
-    """String in base64 format.
+    """cloud-init user data (raw or base64).
 
-    For Linux instances, 'user_data' is ignored when 'password' field is provided.
-    For Windows instances, Admin user password is set by 'password' field and cannot
-    be updated via 'user_data'. Examples of the `user_data`:
-    https://cloudinit.readthedocs.io/en/latest/topics/examples.html
-    """
-
-    username: str
-    """For Linux instances, 'username' and 'password' are used to create a new user.
-
-    For Windows instances, 'username' cannot be specified. Use 'password' field to
-    set the password for the 'Admin' user on Windows.
+    Windows: may be combined with password (password sets the Administrator
+    account). Linux: mutually exclusive with password.
     """
 
 
-class InterfaceCreateBareMetalExternalInterfaceSerializer(TypedDict, total=False):
-    """Instance will be attached to default external network"""
-
-    type: Required[Literal["external"]]
-    """A public IP address will be assigned to the instance."""
-
-    interface_name: str
-    """Interface name.
-
-    Defaults to `null` and is returned as `null` in the API response if not set.
-    """
-
-    ip_family: Optional[InterfaceIPFamily]
-    """Specify `ipv4`, `ipv6`, or `dual` to enable both."""
-
-    port_group: int
-    """Specifies the trunk group to which this interface belongs.
-
-    Applicable only for bare metal servers. Each unique port group is mapped to a
-    separate trunk port. Use this to control how interfaces are grouped across
-    trunks.
-    """
-
-
-class InterfaceCreateBareMetalSubnetInterfaceSerializerFloatingIPNewInstanceFloatingIPInterfaceSerializer(
-    TypedDict, total=False
-):
-    source: Required[Literal["new"]]
-    """A new floating IP will be created and attached to the instance.
-
-    A floating IP is a public IP that makes the instance accessible from the
-    internet, even if it only has a private IP. It works like SNAT, allowing
-    outgoing and incoming traffic.
-    """
-
-
-class InterfaceCreateBareMetalSubnetInterfaceSerializerFloatingIPExistingInstanceFloatingIPInterfaceSerializer(
-    TypedDict, total=False
-):
-    existing_floating_id: Required[str]
-    """
-    An existing available floating IP id must be specified if the source is set to
-    `existing`
-    """
-
-    source: Required[Literal["existing"]]
-    """An existing available floating IP will be attached to the instance.
-
-    A floating IP is a public IP that makes the instance accessible from the
-    internet, even if it only has a private IP. It works like SNAT, allowing
-    outgoing and incoming traffic.
-    """
-
-
-InterfaceCreateBareMetalSubnetInterfaceSerializerFloatingIP: TypeAlias = Union[
-    InterfaceCreateBareMetalSubnetInterfaceSerializerFloatingIPNewInstanceFloatingIPInterfaceSerializer,
-    InterfaceCreateBareMetalSubnetInterfaceSerializerFloatingIPExistingInstanceFloatingIPInterfaceSerializer,
-]
-
-
-class InterfaceCreateBareMetalSubnetInterfaceSerializer(TypedDict, total=False):
-    """
-    The instance will get an IP address from the selected network.
-    If you choose to add a floating IP, the instance will be reachable from the internet.
-    Otherwise, it will only have a private IP within the network.
-    """
-
-    network_id: Required[str]
-    """The network where the instance will be connected."""
-
-    subnet_id: Required[str]
-    """The instance will get an IP address from this subnet."""
-
-    type: Required[Literal["subnet"]]
-    """The instance will get an IP address from the selected network.
-
-    If you choose to add a floating IP, the instance will be reachable from the
-    internet. Otherwise, it will only have a private IP within the network.
-    """
-
-    floating_ip: InterfaceCreateBareMetalSubnetInterfaceSerializerFloatingIP
-    """Allows the instance to have a public IP that can be reached from the internet."""
-
-    interface_name: str
-    """Interface name.
-
-    Defaults to `null` and is returned as `null` in the API response if not set.
-    """
-
-    port_group: int
-    """Specifies the trunk group to which this interface belongs.
-
-    Applicable only for bare metal servers. Each unique port group is mapped to a
-    separate trunk port. Use this to control how interfaces are grouped across
-    trunks.
-    """
-
-
-class InterfaceCreateBareMetalAnySubnetInterfaceSerializerFloatingIPNewInstanceFloatingIPInterfaceSerializer(
-    TypedDict, total=False
-):
-    source: Required[Literal["new"]]
-    """A new floating IP will be created and attached to the instance.
-
-    A floating IP is a public IP that makes the instance accessible from the
-    internet, even if it only has a private IP. It works like SNAT, allowing
-    outgoing and incoming traffic.
-    """
-
-
-class InterfaceCreateBareMetalAnySubnetInterfaceSerializerFloatingIPExistingInstanceFloatingIPInterfaceSerializer(
-    TypedDict, total=False
-):
-    existing_floating_id: Required[str]
-    """
-    An existing available floating IP id must be specified if the source is set to
-    `existing`
-    """
-
-    source: Required[Literal["existing"]]
-    """An existing available floating IP will be attached to the instance.
-
-    A floating IP is a public IP that makes the instance accessible from the
-    internet, even if it only has a private IP. It works like SNAT, allowing
-    outgoing and incoming traffic.
-    """
-
-
-InterfaceCreateBareMetalAnySubnetInterfaceSerializerFloatingIP: TypeAlias = Union[
-    InterfaceCreateBareMetalAnySubnetInterfaceSerializerFloatingIPNewInstanceFloatingIPInterfaceSerializer,
-    InterfaceCreateBareMetalAnySubnetInterfaceSerializerFloatingIPExistingInstanceFloatingIPInterfaceSerializer,
-]
-
-
-class InterfaceCreateBareMetalAnySubnetInterfaceSerializer(TypedDict, total=False):
-    network_id: Required[str]
-    """The network where the instance will be connected."""
-
-    type: Required[Literal["any_subnet"]]
-    """Instance will be attached to a subnet with the largest count of free IPs."""
-
-    floating_ip: InterfaceCreateBareMetalAnySubnetInterfaceSerializerFloatingIP
-    """Allows the instance to have a public IP that can be reached from the internet."""
-
-    interface_name: str
-    """Interface name.
-
-    Defaults to `null` and is returned as `null` in the API response if not set.
-    """
-
-    ip_address: str
-    """You can specify a specific IP address from your subnet."""
-
-    ip_family: Optional[InterfaceIPFamily]
-    """Specify `ipv4`, `ipv6`, or `dual` to enable both."""
-
-    port_group: int
-    """Specifies the trunk group to which this interface belongs.
-
-    Applicable only for bare metal servers. Each unique port group is mapped to a
-    separate trunk port. Use this to control how interfaces are grouped across
-    trunks.
-    """
-
-
-class InterfaceCreateBareMetalReservedFixedIPInterfaceSerializerFloatingIPNewInstanceFloatingIPInterfaceSerializer(
-    TypedDict, total=False
-):
-    source: Required[Literal["new"]]
-    """A new floating IP will be created and attached to the instance.
-
-    A floating IP is a public IP that makes the instance accessible from the
-    internet, even if it only has a private IP. It works like SNAT, allowing
-    outgoing and incoming traffic.
-    """
-
-
-class InterfaceCreateBareMetalReservedFixedIPInterfaceSerializerFloatingIPExistingInstanceFloatingIPInterfaceSerializer(
-    TypedDict, total=False
-):
-    existing_floating_id: Required[str]
-    """
-    An existing available floating IP id must be specified if the source is set to
-    `existing`
-    """
-
-    source: Required[Literal["existing"]]
-    """An existing available floating IP will be attached to the instance.
-
-    A floating IP is a public IP that makes the instance accessible from the
-    internet, even if it only has a private IP. It works like SNAT, allowing
-    outgoing and incoming traffic.
-    """
-
-
-InterfaceCreateBareMetalReservedFixedIPInterfaceSerializerFloatingIP: TypeAlias = Union[
-    InterfaceCreateBareMetalReservedFixedIPInterfaceSerializerFloatingIPNewInstanceFloatingIPInterfaceSerializer,
-    InterfaceCreateBareMetalReservedFixedIPInterfaceSerializerFloatingIPExistingInstanceFloatingIPInterfaceSerializer,
-]
-
-
-class InterfaceCreateBareMetalReservedFixedIPInterfaceSerializer(TypedDict, total=False):
+class Interface(TypedDict, total=False):
     port_id: Required[str]
-    """Network ID the subnet belongs to. Port will be plugged in this network."""
-
-    type: Required[Literal["reserved_fixed_ip"]]
-    """An existing available reserved fixed IP will be attached to the instance.
-
-    If the reserved IP is not public and you choose to add a floating IP, the
-    instance will be accessible from the internet.
-    """
-
-    floating_ip: InterfaceCreateBareMetalReservedFixedIPInterfaceSerializerFloatingIP
-    """Allows the instance to have a public IP that can be reached from the internet."""
-
-    interface_name: str
-    """Interface name.
-
-    Defaults to `null` and is returned as `null` in the API response if not set.
-    """
+    """Existing port to attach. Array order is the NIC/boot order."""
 
     port_group: int
-    """Specifies the trunk group to which this interface belongs.
+    """0-based bond/trunk group, dense across all interfaces.
 
-    Applicable only for bare metal servers. Each unique port group is mapped to a
-    separate trunk port. Use this to control how interfaces are grouped across
-    trunks.
-    """
-
-
-Interface: TypeAlias = Union[
-    InterfaceCreateBareMetalExternalInterfaceSerializer,
-    InterfaceCreateBareMetalSubnetInterfaceSerializer,
-    InterfaceCreateBareMetalAnySubnetInterfaceSerializer,
-    InterfaceCreateBareMetalReservedFixedIPInterfaceSerializer,
-]
-
-
-class DDOSProfileField(TypedDict, total=False):
-    base_field: Required[int]
-    """Unique identifier of the DDoS protection field being configured"""
-
-    field_value: object
-
-
-class DDOSProfile(TypedDict, total=False):
-    """Enable advanced DDoS protection for the server"""
-
-    profile_template: Required[int]
-    """Unique identifier of the DDoS protection template to use for this profile"""
-
-    fields: Iterable[DDOSProfileField]
-    """
-    List of field configurations that customize the protection parameters for this
-    profile
+    Omitted defaults to group 0. Must be omitted on DPU/SmartNIC flavors.
     """

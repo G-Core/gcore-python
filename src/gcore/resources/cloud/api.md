@@ -5,7 +5,7 @@ Types:
 ```python
 from gcore.types.cloud import (
     AllowedAddressPairs,
-    BaremetalFlavor,
+    BaremetalRegionalFlavor,
     BlackholePort,
     Console,
     DDOSProfile,
@@ -697,31 +697,68 @@ Methods:
 
 ### Flavors
 
+Types:
+
+```python
+from gcore.types.cloud.baremetal import BaremetalFlavor
+```
+
 Methods:
 
-- <code title="get /cloud/v1/bmflavors/{project_id}/{region_id}">client.cloud.baremetal.flavors.<a href="./src/gcore/resources/cloud/baremetal/flavors.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/baremetal/flavor_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/baremetal_flavor.py">SyncOffsetPage[BaremetalFlavor]</a></code>
+- <code title="get /cloud/v1/projects/{project_id}/baremetal/flavors">client.cloud.baremetal.flavors.<a href="./src/gcore/resources/cloud/baremetal/flavors.py">list</a>(\*, project_id, \*\*<a href="src/gcore/types/cloud/baremetal/flavor_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/baremetal/baremetal_flavor.py">SyncOffsetPage[BaremetalFlavor]</a></code>
 
 ### Servers
 
 Types:
 
 ```python
-from gcore.types.cloud.baremetal import (
-    BaremetalFixedAddress,
-    BaremetalFloatingAddress,
-    BaremetalServer,
+from gcore.types.cloud.baremetal import BaremetalServer, ServerDeleteResponse
+```
+
+Methods:
+
+- <code title="post /cloud/v1/projects/{project_id}/baremetal/servers">client.cloud.baremetal.servers.<a href="./src/gcore/resources/cloud/baremetal/servers/servers.py">create</a>(\*, project_id, \*\*<a href="src/gcore/types/cloud/baremetal/server_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="patch /cloud/v1/projects/{project_id}/baremetal/servers/{server_id}">client.cloud.baremetal.servers.<a href="./src/gcore/resources/cloud/baremetal/servers/servers.py">update</a>(server_id, \*, project_id, \*\*<a href="src/gcore/types/cloud/baremetal/server_update_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="get /cloud/v1/projects/{project_id}/baremetal/servers">client.cloud.baremetal.servers.<a href="./src/gcore/resources/cloud/baremetal/servers/servers.py">list</a>(\*, project_id, \*\*<a href="src/gcore/types/cloud/baremetal/server_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/baremetal/baremetal_server.py">SyncOffsetPage[BaremetalServer]</a></code>
+- <code title="delete /cloud/v1/projects/{project_id}/baremetal/servers/{server_id}">client.cloud.baremetal.servers.<a href="./src/gcore/resources/cloud/baremetal/servers/servers.py">delete</a>(server_id, \*, project_id, \*\*<a href="src/gcore/types/cloud/baremetal/server_delete_params.py">params</a>) -> <a href="./src/gcore/types/cloud/baremetal/server_delete_response.py">ServerDeleteResponse</a></code>
+- <code title="post /cloud/v1/projects/{project_id}/baremetal/servers/{server_id}/action">client.cloud.baremetal.servers.<a href="./src/gcore/resources/cloud/baremetal/servers/servers.py">action</a>(server_id, \*, project_id, \*\*<a href="src/gcore/types/cloud/baremetal/server_action_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="get /cloud/v1/projects/{project_id}/baremetal/servers/{server_id}">client.cloud.baremetal.servers.<a href="./src/gcore/resources/cloud/baremetal/servers/servers.py">get</a>(server_id, \*, project_id) -> <a href="./src/gcore/types/cloud/baremetal/baremetal_server.py">BaremetalServer</a></code>
+- <code title="post /cloud/v1/bminstances/{project_id}/{region_id}/{server_id}/rebuild">client.cloud.baremetal.servers.<a href="./src/gcore/resources/cloud/baremetal/servers/servers.py">rebuild</a>(server_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/baremetal/server_rebuild_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+
+#### Console
+
+Methods:
+
+- <code title="get /cloud/v1/projects/{project_id}/baremetal/servers/{server_id}/console">client.cloud.baremetal.servers.console.<a href="./src/gcore/resources/cloud/baremetal/servers/console.py">get</a>(server_id, \*, project_id, \*\*<a href="src/gcore/types/cloud/baremetal/servers/console_get_params.py">params</a>) -> <a href="./src/gcore/types/cloud/console.py">Console</a></code>
+
+## BaremetalRegional
+
+### Flavors
+
+Methods:
+
+- <code title="get /cloud/v1/bmflavors/{project_id}/{region_id}">client.cloud.baremetal_regional.flavors.<a href="./src/gcore/resources/cloud/baremetal_regional/flavors.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/baremetal_regional/flavor_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/baremetal_regional_flavor.py">SyncOffsetPage[BaremetalRegionalFlavor]</a></code>
+
+### Servers
+
+Types:
+
+```python
+from gcore.types.cloud.baremetal_regional import (
+    BaremetalRegionalFixedAddress,
+    BaremetalRegionalFloatingAddress,
+    BaremetalRegionalServer,
 )
 ```
 
 Methods:
 
-- <code title="post /cloud/v1/bminstances/{project_id}/{region_id}">client.cloud.baremetal.servers.<a href="./src/gcore/resources/cloud/baremetal/servers.py">create</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/baremetal/server_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
-- <code title="patch /cloud/v1/bminstances/{project_id}/{region_id}/{server_id}">client.cloud.baremetal.servers.<a href="./src/gcore/resources/cloud/baremetal/servers.py">update</a>(server_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/baremetal/server_update_params.py">params</a>) -> <a href="./src/gcore/types/cloud/baremetal/baremetal_server.py">BaremetalServer</a></code>
-- <code title="get /cloud/v1/bminstances/{project_id}/{region_id}">client.cloud.baremetal.servers.<a href="./src/gcore/resources/cloud/baremetal/servers.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/baremetal/server_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/baremetal/baremetal_server.py">SyncOffsetPage[BaremetalServer]</a></code>
-- <code title="delete /cloud/v1/bminstances/{project_id}/{region_id}/{server_id}">client.cloud.baremetal.servers.<a href="./src/gcore/resources/cloud/baremetal/servers.py">delete</a>(server_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/baremetal/server_delete_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
-- <code title="post /cloud/v2/baremetal/{project_id}/{region_id}/{server_id}/action">client.cloud.baremetal.servers.<a href="./src/gcore/resources/cloud/baremetal/servers.py">action</a>(server_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/baremetal/server_action_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
-- <code title="get /cloud/v1/bminstances/{project_id}/{region_id}/{server_id}">client.cloud.baremetal.servers.<a href="./src/gcore/resources/cloud/baremetal/servers.py">get</a>(server_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/baremetal/baremetal_server.py">BaremetalServer</a></code>
-- <code title="post /cloud/v1/bminstances/{project_id}/{region_id}/{server_id}/rebuild">client.cloud.baremetal.servers.<a href="./src/gcore/resources/cloud/baremetal/servers.py">rebuild</a>(server_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/baremetal/server_rebuild_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="post /cloud/v1/bminstances/{project_id}/{region_id}">client.cloud.baremetal_regional.servers.<a href="./src/gcore/resources/cloud/baremetal_regional/servers.py">create</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/baremetal_regional/server_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="patch /cloud/v1/bminstances/{project_id}/{region_id}/{server_id}">client.cloud.baremetal_regional.servers.<a href="./src/gcore/resources/cloud/baremetal_regional/servers.py">update</a>(server_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/baremetal_regional/server_update_params.py">params</a>) -> <a href="./src/gcore/types/cloud/baremetal_regional/baremetal_regional_server.py">BaremetalRegionalServer</a></code>
+- <code title="get /cloud/v1/bminstances/{project_id}/{region_id}">client.cloud.baremetal_regional.servers.<a href="./src/gcore/resources/cloud/baremetal_regional/servers.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/baremetal_regional/server_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/baremetal_regional/baremetal_regional_server.py">SyncOffsetPage[BaremetalRegionalServer]</a></code>
+- <code title="delete /cloud/v1/bminstances/{project_id}/{region_id}/{server_id}">client.cloud.baremetal_regional.servers.<a href="./src/gcore/resources/cloud/baremetal_regional/servers.py">delete</a>(server_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/baremetal_regional/server_delete_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="post /cloud/v2/baremetal/{project_id}/{region_id}/{server_id}/action">client.cloud.baremetal_regional.servers.<a href="./src/gcore/resources/cloud/baremetal_regional/servers.py">action</a>(server_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/baremetal_regional/server_action_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="get /cloud/v1/bminstances/{project_id}/{region_id}/{server_id}">client.cloud.baremetal_regional.servers.<a href="./src/gcore/resources/cloud/baremetal_regional/servers.py">get</a>(server_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/baremetal_regional/baremetal_regional_server.py">BaremetalRegionalServer</a></code>
 
 ## Registries
 

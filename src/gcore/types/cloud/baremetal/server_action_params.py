@@ -2,35 +2,21 @@
 
 from __future__ import annotations
 
-from typing import Union, Optional
-from typing_extensions import Literal, Required, TypeAlias, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["ServerActionParams", "StartActionInstanceSerializer", "BasicBareMetalActionInstanceSerializer"]
+__all__ = ["ServerActionParams"]
 
 
-class StartActionInstanceSerializer(TypedDict, total=False):
+class ServerActionParams(TypedDict, total=False):
     project_id: int
-    """Project ID"""
+    """Project ID."""
 
-    region_id: int
-    """Region ID"""
+    action: Required[Literal["reboot", "reboot_hard", "start", "stop"]]
+    """Power action to run on the bare metal server."""
 
-    action: Required[Literal["start"]]
-    """Instance action name"""
+    dry_run: bool
+    """Run every check of the real request and change nothing.
 
-    activate_profile: Optional[bool]
-    """Used on start instance to activate Advanced DDoS profile"""
-
-
-class BasicBareMetalActionInstanceSerializer(TypedDict, total=False):
-    project_id: int
-    """Project ID"""
-
-    region_id: int
-    """Region ID"""
-
-    action: Required[Literal["reboot", "reboot_hard", "stop"]]
-    """Instance action name"""
-
-
-ServerActionParams: TypeAlias = Union[StartActionInstanceSerializer, BasicBareMetalActionInstanceSerializer]
+    The response has the status code and the schema of the real call, and an empty
+    list of tasks. With `false`, the default, the request does the operation.
+    """

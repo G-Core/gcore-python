@@ -18,7 +18,9 @@ from .flavors import (
     FlavorsResourceWithStreamingResponse,
     AsyncFlavorsResourceWithStreamingResponse,
 )
-from .servers import (
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from .servers.servers import (
     ServersResource,
     AsyncServersResource,
     ServersResourceWithRawResponse,
@@ -26,8 +28,6 @@ from .servers import (
     ServersResourceWithStreamingResponse,
     AsyncServersResourceWithStreamingResponse,
 )
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
 
 __all__ = ["BaremetalResource", "AsyncBaremetalResource"]
 
@@ -42,12 +42,15 @@ class BaremetalResource(SyncAPIResource):
 
     @cached_property
     def flavors(self) -> FlavorsResource:
+        """
+        Bare metal flavors define the CPU, memory, disks, and network cards of a bare metal server, in all regions of the project.
+        """
         return FlavorsResource(self._client)
 
     @cached_property
     def servers(self) -> ServersResource:
         """
-        Bare metal servers are dedicated physical machines with direct hardware access, supporting provisioning, rebuilding, and network configuration within a cloud region.
+        Bare metal servers are dedicated physical machines that boot an OS image from a local disk and connect to networks through ports, in any region of the project.
         """
         return ServersResource(self._client)
 
@@ -81,12 +84,15 @@ class AsyncBaremetalResource(AsyncAPIResource):
 
     @cached_property
     def flavors(self) -> AsyncFlavorsResource:
+        """
+        Bare metal flavors define the CPU, memory, disks, and network cards of a bare metal server, in all regions of the project.
+        """
         return AsyncFlavorsResource(self._client)
 
     @cached_property
     def servers(self) -> AsyncServersResource:
         """
-        Bare metal servers are dedicated physical machines with direct hardware access, supporting provisioning, rebuilding, and network configuration within a cloud region.
+        Bare metal servers are dedicated physical machines that boot an OS image from a local disk and connect to networks through ports, in any region of the project.
         """
         return AsyncServersResource(self._client)
 
@@ -123,12 +129,15 @@ class BaremetalResourceWithRawResponse:
 
     @cached_property
     def flavors(self) -> FlavorsResourceWithRawResponse:
+        """
+        Bare metal flavors define the CPU, memory, disks, and network cards of a bare metal server, in all regions of the project.
+        """
         return FlavorsResourceWithRawResponse(self._baremetal.flavors)
 
     @cached_property
     def servers(self) -> ServersResourceWithRawResponse:
         """
-        Bare metal servers are dedicated physical machines with direct hardware access, supporting provisioning, rebuilding, and network configuration within a cloud region.
+        Bare metal servers are dedicated physical machines that boot an OS image from a local disk and connect to networks through ports, in any region of the project.
         """
         return ServersResourceWithRawResponse(self._baremetal.servers)
 
@@ -146,12 +155,15 @@ class AsyncBaremetalResourceWithRawResponse:
 
     @cached_property
     def flavors(self) -> AsyncFlavorsResourceWithRawResponse:
+        """
+        Bare metal flavors define the CPU, memory, disks, and network cards of a bare metal server, in all regions of the project.
+        """
         return AsyncFlavorsResourceWithRawResponse(self._baremetal.flavors)
 
     @cached_property
     def servers(self) -> AsyncServersResourceWithRawResponse:
         """
-        Bare metal servers are dedicated physical machines with direct hardware access, supporting provisioning, rebuilding, and network configuration within a cloud region.
+        Bare metal servers are dedicated physical machines that boot an OS image from a local disk and connect to networks through ports, in any region of the project.
         """
         return AsyncServersResourceWithRawResponse(self._baremetal.servers)
 
@@ -169,12 +181,15 @@ class BaremetalResourceWithStreamingResponse:
 
     @cached_property
     def flavors(self) -> FlavorsResourceWithStreamingResponse:
+        """
+        Bare metal flavors define the CPU, memory, disks, and network cards of a bare metal server, in all regions of the project.
+        """
         return FlavorsResourceWithStreamingResponse(self._baremetal.flavors)
 
     @cached_property
     def servers(self) -> ServersResourceWithStreamingResponse:
         """
-        Bare metal servers are dedicated physical machines with direct hardware access, supporting provisioning, rebuilding, and network configuration within a cloud region.
+        Bare metal servers are dedicated physical machines that boot an OS image from a local disk and connect to networks through ports, in any region of the project.
         """
         return ServersResourceWithStreamingResponse(self._baremetal.servers)
 
@@ -192,11 +207,14 @@ class AsyncBaremetalResourceWithStreamingResponse:
 
     @cached_property
     def flavors(self) -> AsyncFlavorsResourceWithStreamingResponse:
+        """
+        Bare metal flavors define the CPU, memory, disks, and network cards of a bare metal server, in all regions of the project.
+        """
         return AsyncFlavorsResourceWithStreamingResponse(self._baremetal.flavors)
 
     @cached_property
     def servers(self) -> AsyncServersResourceWithStreamingResponse:
         """
-        Bare metal servers are dedicated physical machines with direct hardware access, supporting provisioning, rebuilding, and network configuration within a cloud region.
+        Bare metal servers are dedicated physical machines that boot an OS image from a local disk and connect to networks through ports, in any region of the project.
         """
         return AsyncServersResourceWithStreamingResponse(self._baremetal.servers)

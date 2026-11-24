@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import re
 import json
+import types
 import contextlib
 from typing import Any, Callable
 
@@ -16,7 +17,10 @@ import httpx
 import respx
 import pytest
 
-from gcore import Gcore, AsyncGcore, NotFoundError
+from gcore import Gcore, AsyncGcore, NotFoundError, InternalServerError, PermissionDeniedError
+from gcore.resources.cloud import tasks as tasks_resource
+from gcore.resources.cloud.baremetal import servers_custom as baremetal_servers_custom
+from gcore.types.cloud.baremetal_regional import BaremetalRegionalServer
 
 # respx intercepts the transport, so the host is irrelevant.
 base_url = "http://127.0.0.1:4010"
@@ -30,6 +34,7 @@ _CREATED_RESOURCES: dict[str, Any] = {
     for k in [
         "ai_clusters",
         "api_keys",
+        "baremetal_server",
         "caas_containers",
         "clusters",
         "faas_functions",
@@ -121,12 +126,32 @@ def _handler(request: httpx.Request) -> httpx.Response:
 # returns a coroutine, so the same table serves both sync and async tests.
 AND_POLL_CASES: list[tuple[str, Callable[[Any], Any]]] = [
     (
+        "cloud.baremetal.servers.action_and_poll",
+        lambda c: c.cloud.baremetal.servers.action_and_poll("test", project_id=1, action="reboot"),
+    ),
+    (
         "cloud.baremetal.servers.create_and_poll",
-        lambda c: c.cloud.baremetal.servers.create_and_poll(project_id=1, region_id=1, flavor="test", interfaces=[]),
+        lambda c: c.cloud.baremetal.servers.create_and_poll(
+            project_id=1, region_id=1, flavor_name="test", image_id="test", interfaces=[]
+        ),
+    ),
+    (
+        "cloud.baremetal.servers.delete_and_poll",
+        lambda c: c.cloud.baremetal.servers.delete_and_poll("test", project_id=1),
     ),
     (
         "cloud.baremetal.servers.rebuild_and_poll",
         lambda c: c.cloud.baremetal.servers.rebuild_and_poll("test", project_id=1, region_id=1),
+    ),
+    (
+        "cloud.baremetal.servers.update_and_poll",
+        lambda c: c.cloud.baremetal.servers.update_and_poll("test", project_id=1, name="test"),
+    ),
+    (
+        "cloud.baremetal_regional.servers.create_and_poll",
+        lambda c: c.cloud.baremetal_regional.servers.create_and_poll(
+            project_id=1, region_id=1, flavor="test", interfaces=[]
+        ),
     ),
     (
         "cloud.file_shares.create_and_poll",
@@ -693,7 +718,7 @@ async def test_and_poll_async(case_id: str, invoke: Callable[[Any], Any]) -> Non
 
 def test_and_poll_case_count() -> None:
     # Canary: if codegen adds/removes an *_and_poll method, keep the table in sync.
-    assert len(AND_POLL_CASES) == 118
+    assert len(AND_POLL_CASES) == 122
 
 
 def test_create_and_poll_requires_task() -> None:
@@ -1019,6 +1044,21 @@ def _create_instance(client: Any, **polling: int) -> Any:
     )
 
 
+class _FakeClock:
+    """A clock that moves only when task polling advances it."""
+
+    def __init__(self) -> None:
+        self.now = 0.0
+
+    def monotonic(self) -> float:
+        return self.now
+
+    def sleep(self, seconds: float) -> None:
+        self.now += seconds
+
+    async def sleep_async(self, seconds: float) -> None:
+        self.now += seconds
+
 @pytest.mark.parametrize("invoke", _INSTANCE_INVOKES, ids=_INSTANCE_IDS)
 def test_instance_and_poll_raises_on_failed_task(invoke: Callable[[Any], Any]) -> None:
     client = Gcore(base_url=base_url, api_key="test", _strict_response_validation=False)
@@ -1191,6 +1231,852 @@ async def test_instances_rebuild_and_poll_gets_instance_from_global_route_async(
         router.route(url__regex=r".+").mock(side_effect=_resource_handler(["task-1"]))
         await client.cloud.instances.rebuild_and_poll("instance-1", project_id=1, region_id=1)
         assert _resource_paths(router, "GET") == ["/cloud/v1/projects/1/instances/instance-1"]
+
+
+_BAREMETAL_CASE_IDS = {
+    "cloud.baremetal.servers.action_and_poll",
+    "cloud.baremetal.servers.create_and_poll",
+    "cloud.baremetal.servers.delete_and_poll",
+    "cloud.baremetal.servers.update_and_poll",
+}
+_BAREMETAL_CASES = [case for case in AND_POLL_CASES if case[0] in _BAREMETAL_CASE_IDS]
+_BAREMETAL_INVOKES = [case[1] for case in _BAREMETAL_CASES]
+_BAREMETAL_IDS = [case[0] for case in _BAREMETAL_CASES]
+
+_BAREMETAL_ROUTE = r"/cloud/v1/projects/1/baremetal/servers(/|$)"
+_CREATED_SERVER_PATH = f"/cloud/v1/projects/1/baremetal/servers/{CREATED_ID}"
+_OTHER_ID = "00000000-0000-4000-8000-000000000002"
+
+
+def _baremetal_task(task_id: str, created: dict[str, Any] | None, **fields: Any) -> dict[str, Any]:
+    """Return a finished task with `created` as its created_resources."""
+    return {**_TASK, "id": task_id, "created_resources": created, **fields}
+
+
+def _baremetal_handler(
+    action_tasks: list[str], tasks: dict[str, dict[str, Any]] | None = None
+) -> Callable[[httpx.Request], httpx.Response]:
+    """Answer the mutation with `action_tasks`, a task poll from `tasks`, and a GET with the server it asks for.
+
+    A task that `tasks` does not name finishes and reports CREATED_ID in created_resources.instances.
+    """
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        path = request.url.path
+        if request.method == "GET" and "/tasks/" in path:
+            task_id = path.rsplit("/", 1)[-1]
+            task = (tasks or {}).get(task_id) or _baremetal_task(
+                task_id, {"instances": [CREATED_ID], "baremetal_server": []}, task_type="create_bm"
+            )
+            return httpx.Response(200, json=task)
+        if request.method == "GET":
+            return httpx.Response(200, json={"id": path.rsplit("/", 1)[-1]})
+        return httpx.Response(200, json={"tasks": action_tasks})
+
+    return handler
+
+
+def _requests(router: respx.MockRouter) -> list[httpx.Request]:
+    # respx leaves `calls` untyped.
+    calls: Any = router.calls
+    return [call.request for call in calls]
+
+
+def _mutations(router: respx.MockRouter) -> list[httpx.Request]:
+    return [request for request in _requests(router) if request.method != "GET"]
+
+
+def _gets(router: respx.MockRouter) -> list[httpx.Request]:
+    return [request for request in _requests(router) if request.method == "GET"]
+
+
+def _create_server(client: Any, **kwargs: Any) -> Any:
+    return client.cloud.baremetal.servers.create_and_poll(
+        project_id=1,
+        region_id=1,
+        flavor_name="flavor-1",
+        image_id="image-1",
+        interfaces=[{"port_id": "port-1"}],
+        **kwargs,
+    )
+
+
+@pytest.fixture
+def bm_clock(monkeypatch: pytest.MonkeyPatch) -> _FakeClock:
+    fake = _FakeClock()
+    # replace only the clock of the bare metal helpers; asyncio and httpx keep the real one
+    monkeypatch.setattr(baremetal_servers_custom, "time", fake)
+    return fake
+
+
+@pytest.mark.parametrize("invoke", _BAREMETAL_INVOKES, ids=_BAREMETAL_IDS)
+def test_baremetal_and_poll_waits_for_every_task(invoke: Callable[[Any], Any]) -> None:
+    client = Gcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_baremetal_handler(["task-1", "task-2"]))
+        invoke(client)
+        assert [r.url.path for r in _task_polls(router)] == ["/cloud/v1/tasks/task-1", "/cloud/v1/tasks/task-2"]
+
+
+@pytest.mark.parametrize("invoke", _BAREMETAL_INVOKES, ids=_BAREMETAL_IDS)
+async def test_baremetal_and_poll_waits_for_every_task_async(invoke: Callable[[Any], Any]) -> None:
+    client = AsyncGcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_baremetal_handler(["task-1", "task-2"]))
+        await invoke(client)
+        assert [r.url.path for r in _task_polls(router)] == ["/cloud/v1/tasks/task-1", "/cloud/v1/tasks/task-2"]
+
+
+_LATER_TASK_FAILS = {"task-2": _baremetal_task("task-2", None, state="ERROR", error="boom")}
+
+
+@pytest.mark.parametrize("invoke", _BAREMETAL_INVOKES, ids=_BAREMETAL_IDS)
+def test_baremetal_and_poll_raises_when_a_later_task_fails(invoke: Callable[[Any], Any]) -> None:
+    client = Gcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_baremetal_handler(["task-1", "task-2"], _LATER_TASK_FAILS))
+        with pytest.raises(ValueError, match="boom"):
+            invoke(client)
+
+
+@pytest.mark.parametrize("invoke", _BAREMETAL_INVOKES, ids=_BAREMETAL_IDS)
+async def test_baremetal_and_poll_raises_when_a_later_task_fails_async(invoke: Callable[[Any], Any]) -> None:
+    client = AsyncGcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_baremetal_handler(["task-1", "task-2"], _LATER_TASK_FAILS))
+        with pytest.raises(ValueError, match="boom"):
+            await invoke(client)
+
+
+@pytest.mark.parametrize("invoke", _BAREMETAL_INVOKES, ids=_BAREMETAL_IDS)
+def test_baremetal_and_poll_does_not_read_server_after_failed_task(invoke: Callable[[Any], Any]) -> None:
+    client = Gcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_baremetal_handler(["task-1", "task-2"], _LATER_TASK_FAILS))
+        with contextlib.suppress(ValueError):
+            invoke(client)
+        assert _resource_paths(router, "GET") == []
+
+
+@pytest.mark.parametrize("invoke", _BAREMETAL_INVOKES, ids=_BAREMETAL_IDS)
+async def test_baremetal_and_poll_does_not_read_server_after_failed_task_async(invoke: Callable[[Any], Any]) -> None:
+    client = AsyncGcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_baremetal_handler(["task-1", "task-2"], _LATER_TASK_FAILS))
+        with contextlib.suppress(ValueError):
+            await invoke(client)
+        assert _resource_paths(router, "GET") == []
+
+
+# unlike the instance and port helpers, the bare metal update helper also needs a task
+@pytest.mark.parametrize("invoke", _BAREMETAL_INVOKES, ids=_BAREMETAL_IDS)
+def test_baremetal_and_poll_raises_without_task(invoke: Callable[[Any], Any]) -> None:
+    client = Gcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_baremetal_handler([]))
+        with pytest.raises(ValueError, match="Expected at least one task"):
+            invoke(client)
+
+
+@pytest.mark.parametrize("invoke", _BAREMETAL_INVOKES, ids=_BAREMETAL_IDS)
+async def test_baremetal_and_poll_raises_without_task_async(invoke: Callable[[Any], Any]) -> None:
+    client = AsyncGcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_baremetal_handler([]))
+        with pytest.raises(ValueError, match="Expected at least one task"):
+            await invoke(client)
+
+
+@pytest.mark.parametrize("invoke", _BAREMETAL_INVOKES, ids=_BAREMETAL_IDS)
+def test_baremetal_and_poll_sends_only_the_mutation_without_task(invoke: Callable[[Any], Any]) -> None:
+    client = Gcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_baremetal_handler([]))
+        with contextlib.suppress(ValueError):
+            invoke(client)
+        assert _gets(router) == []
+
+
+@pytest.mark.parametrize("invoke", _BAREMETAL_INVOKES, ids=_BAREMETAL_IDS)
+async def test_baremetal_and_poll_sends_only_the_mutation_without_task_async(invoke: Callable[[Any], Any]) -> None:
+    client = AsyncGcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_baremetal_handler([]))
+        with contextlib.suppress(ValueError):
+            await invoke(client)
+        assert _gets(router) == []
+
+
+@pytest.mark.parametrize("invoke", _BAREMETAL_INVOKES, ids=_BAREMETAL_IDS)
+def test_baremetal_and_poll_uses_global_routes(invoke: Callable[[Any], Any]) -> None:
+    client = Gcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_baremetal_handler(["task-1"]))
+        invoke(client)
+        # the set is {True} only when the helper sent requests and all of them match
+        assert {bool(re.match(_BAREMETAL_ROUTE, path)) for path in _resource_paths(router)} == {True}
+
+
+@pytest.mark.parametrize("invoke", _BAREMETAL_INVOKES, ids=_BAREMETAL_IDS)
+async def test_baremetal_and_poll_uses_global_routes_async(invoke: Callable[[Any], Any]) -> None:
+    client = AsyncGcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_baremetal_handler(["task-1"]))
+        await invoke(client)
+        # the set is {True} only when the helper sent requests and all of them match
+        assert {bool(re.match(_BAREMETAL_ROUTE, path)) for path in _resource_paths(router)} == {True}
+
+
+def _result_id(case_id: str) -> str | None:
+    """Return the server ID that the helper returns: delete returns nothing, create the created server."""
+    if case_id.endswith(".delete_and_poll"):
+        return None
+    if case_id.endswith(".create_and_poll"):
+        return CREATED_ID
+    return "test"
+
+
+# create, update and action return the server of the global get
+_BAREMETAL_RESULT_CASES = [(case_id, invoke, _result_id(case_id)) for case_id, invoke in _BAREMETAL_CASES]
+
+
+@pytest.mark.parametrize(("case_id", "invoke", "server_id"), _BAREMETAL_RESULT_CASES, ids=_BAREMETAL_IDS)
+def test_baremetal_and_poll_returns_global_server(
+    case_id: str, invoke: Callable[[Any], Any], server_id: str | None
+) -> None:
+    client = Gcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_baremetal_handler(["task-1"]))
+        result = invoke(client)
+        assert len(_resource_paths(router, "GET")) == (0 if server_id is None else 1), case_id
+    assert (result.id if result is not None else None) == server_id, case_id
+
+
+@pytest.mark.parametrize(("case_id", "invoke", "server_id"), _BAREMETAL_RESULT_CASES, ids=_BAREMETAL_IDS)
+async def test_baremetal_and_poll_returns_global_server_async(
+    case_id: str, invoke: Callable[[Any], Any], server_id: str | None
+) -> None:
+    client = AsyncGcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_baremetal_handler(["task-1"]))
+        result = await invoke(client)
+        assert len(_resource_paths(router, "GET")) == (0 if server_id is None else 1), case_id
+    assert (result.id if result is not None else None) == server_id, case_id
+
+
+@pytest.mark.parametrize("created", [None, {"instances": [""]}], ids=["no-created-resources", "empty-id"])
+def test_baremetal_create_and_poll_reads_id_from_any_task(created: dict[str, Any] | None) -> None:
+    client = Gcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    tasks = {"task-1": _baremetal_task("task-1", created, task_type="create_bm")}
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_baremetal_handler(["task-1", "task-2"], tasks))
+        server = _create_server(client)
+        assert _resource_paths(router, "GET") == [_CREATED_SERVER_PATH]
+    assert server.id == CREATED_ID
+
+
+@pytest.mark.parametrize("created", [None, {"instances": [""]}], ids=["no-created-resources", "empty-id"])
+async def test_baremetal_create_and_poll_reads_id_from_any_task_async(created: dict[str, Any] | None) -> None:
+    client = AsyncGcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    tasks = {"task-1": _baremetal_task("task-1", created, task_type="create_bm")}
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_baremetal_handler(["task-1", "task-2"], tasks))
+        server = await _create_server(client)
+        assert _resource_paths(router, "GET") == [_CREATED_SERVER_PATH]
+    assert server.id == CREATED_ID
+
+
+# two tasks that report the same server still name one server
+def test_baremetal_create_and_poll_accepts_one_id_from_two_tasks() -> None:
+    client = Gcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_baremetal_handler(["task-1", "task-2"]))
+        server = _create_server(client)
+    assert server.id == CREATED_ID
+
+
+async def test_baremetal_create_and_poll_accepts_one_id_from_two_tasks_async() -> None:
+    client = AsyncGcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_baremetal_handler(["task-1", "task-2"]))
+        server = await _create_server(client)
+    assert server.id == CREATED_ID
+
+
+_MISSING_CREATED_IDS: list[dict[str, Any] | None] = [
+    None,
+    {"instances": []},
+    {"instances": [""]},
+    {"baremetal_server": [CREATED_ID]},
+]
+_MISSING_CREATED_ID_IDS = ["no created resources", "empty instances", "empty-id", "only baremetal_server"]
+
+
+@pytest.mark.parametrize("created", _MISSING_CREATED_IDS, ids=_MISSING_CREATED_ID_IDS)
+def test_baremetal_create_and_poll_raises_without_created_id(created: dict[str, Any] | None) -> None:
+    client = Gcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    tasks = {"task-1": _baremetal_task("task-1", created, task_type="create_bm")}
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_baremetal_handler(["task-1"], tasks))
+        with pytest.raises(ValueError, match=r"created_resources\.instances"):
+            _create_server(client)
+        assert _resource_paths(router, "GET") == []
+
+
+@pytest.mark.parametrize("created", _MISSING_CREATED_IDS, ids=_MISSING_CREATED_ID_IDS)
+async def test_baremetal_create_and_poll_raises_without_created_id_async(created: dict[str, Any] | None) -> None:
+    client = AsyncGcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    tasks = {"task-1": _baremetal_task("task-1", created, task_type="create_bm")}
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_baremetal_handler(["task-1"], tasks))
+        with pytest.raises(ValueError, match=r"created_resources\.instances"):
+            await _create_server(client)
+        assert _resource_paths(router, "GET") == []
+
+
+_AMBIGUOUS_CREATED_IDS: list[tuple[list[str], dict[str, dict[str, Any]]]] = [
+    (["task-1"], {"task-1": _baremetal_task("task-1", {"instances": [CREATED_ID, _OTHER_ID]})}),
+    (
+        ["task-1", "task-2"],
+        {
+            "task-1": _baremetal_task("task-1", {"instances": [CREATED_ID]}),
+            "task-2": _baremetal_task("task-2", {"instances": [_OTHER_ID]}),
+        },
+    ),
+]
+_AMBIGUOUS_CREATED_ID_IDS = ["two IDs in one task", "one ID in each of two tasks"]
+
+
+@pytest.mark.parametrize(("action_tasks", "tasks"), _AMBIGUOUS_CREATED_IDS, ids=_AMBIGUOUS_CREATED_ID_IDS)
+def test_baremetal_create_and_poll_raises_on_ambiguous_created_ids(
+    action_tasks: list[str], tasks: dict[str, dict[str, Any]]
+) -> None:
+    client = Gcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_baremetal_handler(action_tasks, tasks))
+        with pytest.raises(ValueError, match="Expected one created bare metal server"):
+            _create_server(client)
+
+
+@pytest.mark.parametrize(("action_tasks", "tasks"), _AMBIGUOUS_CREATED_IDS, ids=_AMBIGUOUS_CREATED_ID_IDS)
+async def test_baremetal_create_and_poll_raises_on_ambiguous_created_ids_async(
+    action_tasks: list[str], tasks: dict[str, dict[str, Any]]
+) -> None:
+    client = AsyncGcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_baremetal_handler(action_tasks, tasks))
+        with pytest.raises(ValueError, match="Expected one created bare metal server"):
+            await _create_server(client)
+
+
+@pytest.mark.parametrize("is_async", [False, True])
+@pytest.mark.parametrize(
+    ("status", "error"), [(404, NotFoundError), (403, PermissionDeniedError), (503, InternalServerError)]
+)
+async def test_baremetal_create_and_poll_propagates_get_error(
+    is_async: bool, status: int, error: type[Exception]
+) -> None:
+    client_cls = AsyncGcore if is_async else Gcore
+    client = client_cls(base_url=base_url, api_key="test", _strict_response_validation=False, max_retries=0)
+    with respx.mock(base_url=base_url) as router:
+        get = router.get(_CREATED_SERVER_PATH).mock(
+            side_effect=[httpx.Response(status, json={}), httpx.Response(200, json={"id": CREATED_ID})]
+        )
+        router.route(url__regex=r".+").mock(side_effect=_baremetal_handler(["task-1"]))
+        with pytest.raises(error):
+            if is_async:
+                await _create_server(client)
+            else:
+                _create_server(client)
+        assert (get.call_count, len(_mutations(router))) == (1, 1)
+
+
+@pytest.mark.parametrize("is_async", [False, True])
+async def test_baremetal_create_and_poll_uses_sdk_get_retries(is_async: bool) -> None:
+    client_cls = AsyncGcore if is_async else Gcore
+    client = client_cls(base_url=base_url, api_key="test", _strict_response_validation=False, max_retries=1)
+    with respx.mock(base_url=base_url) as router:
+        get = router.get(_CREATED_SERVER_PATH).mock(
+            side_effect=[
+                httpx.Response(503, json={}, headers={"retry-after-ms": "1"}),
+                httpx.Response(200, json={"id": CREATED_ID}),
+            ]
+        )
+        router.route(url__regex=r".+").mock(side_effect=_baremetal_handler(["task-1"]))
+        server = await _create_server(client) if is_async else _create_server(client)
+        assert (server.id, get.call_count, len(_mutations(router))) == (CREATED_ID, 2, 1)
+
+
+def _update_with_timeout(client: Any) -> Any:
+    return client.cloud.baremetal.servers.update_and_poll(CREATED_ID, project_id=1, name="bm-2", timeout=0.25)
+
+
+def _action_server(client: Any) -> Any:
+    return client.cloud.baremetal.servers.action_and_poll(CREATED_ID, project_id=1, action="stop")
+
+
+_FIRST_READ_CASES = [
+    pytest.param(_create_server, {"status": "provisioning"}, id="create"),
+    pytest.param(
+        _update_with_timeout,
+        {"name": "bm-1"},
+        id="update",
+    ),
+    pytest.param(
+        _action_server,
+        {"status": "active"},
+        id="action",
+    ),
+]
+
+
+@pytest.mark.parametrize(("invoke", "fields"), _FIRST_READ_CASES)
+@pytest.mark.parametrize("is_async", [False, True])
+async def test_baremetal_and_poll_returns_first_get_after_all_tasks(
+    invoke: Callable[[Any], Any], fields: dict[str, str], is_async: bool
+) -> None:
+    client_cls = AsyncGcore if is_async else Gcore
+    client = client_cls(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.get(_CREATED_SERVER_PATH).mock(return_value=httpx.Response(200, json={"id": CREATED_ID, **fields}))
+        router.route(url__regex=r".+").mock(side_effect=_baremetal_handler(["task-1", "task-2"]))
+        result = await invoke(client) if is_async else invoke(client)
+        assert {key: getattr(result, key) for key in fields} == fields
+        assert [r.url.path for r in _gets(router)] == [
+            "/cloud/v1/tasks/task-1",
+            "/cloud/v1/tasks/task-2",
+            _CREATED_SERVER_PATH,
+        ]
+
+
+# the timeout of the call reaches the mutation, every task poll and the final GET
+def test_baremetal_and_poll_sends_the_timeout_to_every_request() -> None:
+    client = Gcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_baremetal_handler(["task-1", "task-2"]))
+        _update_with_timeout(client)
+        requests = _requests(router)
+    assert len(requests) == 4
+    assert [request.extensions["timeout"]["read"] for request in requests] == [0.25] * 4
+
+
+async def test_baremetal_and_poll_sends_the_timeout_to_every_request_async() -> None:
+    client = AsyncGcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_baremetal_handler(["task-1", "task-2"]))
+        await _update_with_timeout(client)
+        requests = _requests(router)
+    assert len(requests) == 4
+    assert [request.extensions["timeout"]["read"] for request in requests] == [0.25] * 4
+
+
+class _RecordingPoll:
+    """Replaces tasks.poll: records the polling timeout of each task, and lets each task take `seconds`."""
+
+    def __init__(self, clock: _FakeClock, seconds: float) -> None:
+        self.clock = clock
+        self.seconds = seconds
+        self.timeouts: list[Any] = []
+
+    def __call__(self, task_id: str, **kwargs: Any) -> Any:
+        self.timeouts.append(kwargs["polling_timeout_seconds"])
+        self.clock.now += self.seconds
+        return types.SimpleNamespace(id=task_id, created_resources=None)
+
+    async def call_async(self, task_id: str, **kwargs: Any) -> Any:
+        return self(task_id, **kwargs)
+
+
+# the polling timeout covers all tasks together, as in the Go SDK
+def test_baremetal_and_poll_shares_the_polling_timeout(bm_clock: _FakeClock, monkeypatch: pytest.MonkeyPatch) -> None:
+    client = Gcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    poll = _RecordingPoll(bm_clock, seconds=124)
+    monkeypatch.setattr(client.cloud.tasks, "poll", poll)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_baremetal_handler(["task-1", "task-2", "task-3"]))
+        with pytest.raises(TimeoutError, match="task-3"):
+            client.cloud.baremetal.servers.delete_and_poll(
+                CREATED_ID, project_id=1, polling_interval_seconds=5, polling_timeout_seconds=250
+            )
+    assert poll.timeouts == [250, 126]
+
+
+async def test_baremetal_and_poll_shares_the_polling_timeout_async(
+    bm_clock: _FakeClock, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    client = AsyncGcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    poll = _RecordingPoll(bm_clock, seconds=124)
+    monkeypatch.setattr(client.cloud.tasks, "poll", poll.call_async)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_baremetal_handler(["task-1", "task-2", "task-3"]))
+        with pytest.raises(TimeoutError, match="task-3"):
+            await client.cloud.baremetal.servers.delete_and_poll(
+                CREATED_ID, project_id=1, polling_interval_seconds=5, polling_timeout_seconds=250
+            )
+    assert poll.timeouts == [250, 126]
+
+
+_RUNNING_TASK = {"task-1": _baremetal_task("task-1", None, state="RUNNING")}
+
+
+def _stop_task_clock(clock: _FakeClock, client: Gcore | AsyncGcore, monkeypatch: pytest.MonkeyPatch) -> None:
+    # the task poll reads time.time() and pauses with _sleep; move both to the fake clock
+    monkeypatch.setattr(tasks_resource, "time", types.SimpleNamespace(time=clock.monotonic))
+    sleep = clock.sleep_async if isinstance(client, AsyncGcore) else clock.sleep
+    monkeypatch.setattr(client.cloud.tasks, "_sleep", sleep)
+
+
+def test_baremetal_create_and_poll_raises_on_task_timeout_and_sends_create_once(
+    bm_clock: _FakeClock, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    client = Gcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    _stop_task_clock(bm_clock, client, monkeypatch)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_baremetal_handler(["task-1"], _RUNNING_TASK))
+        with pytest.raises(TimeoutError):
+            _create_server(client, polling_interval_seconds=1, polling_timeout_seconds=3)
+        assert len(_mutations(router)) == 1
+
+
+async def test_baremetal_create_and_poll_raises_on_task_timeout_and_sends_create_once_async(
+    bm_clock: _FakeClock, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    client = AsyncGcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    _stop_task_clock(bm_clock, client, monkeypatch)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_baremetal_handler(["task-1"], _RUNNING_TASK))
+        with pytest.raises(TimeoutError):
+            await _create_server(client, polling_interval_seconds=1, polling_timeout_seconds=3)
+        assert len(_mutations(router)) == 1
+
+
+# (helper, invoke with the given extra_query)
+_DRY_RUN_HELPERS: list[tuple[str, Callable[[Any, Any], Any]]] = [
+    ("create_and_poll", lambda c, q: _create_server(c, extra_query=q)),
+    (
+        "update_and_poll",
+        lambda c, q: c.cloud.baremetal.servers.update_and_poll("server-1", project_id=1, name="n", extra_query=q),
+    ),
+    (
+        "action_and_poll",
+        lambda c, q: c.cloud.baremetal.servers.action_and_poll("server-1", project_id=1, action="stop", extra_query=q),
+    ),
+    (
+        "delete_and_poll",
+        lambda c, q: c.cloud.baremetal.servers.delete_and_poll("server-1", project_id=1, extra_query=q),
+    ),
+]
+_DRY_RUN_HELPER_IDS = [case[0] for case in _DRY_RUN_HELPERS]
+_TRUE_DRY_RUNS: list[object] = [True, "true", "True", "1", ["true"]]
+
+
+@pytest.mark.parametrize("dry_run", _TRUE_DRY_RUNS)
+@pytest.mark.parametrize(("helper", "invoke"), _DRY_RUN_HELPERS, ids=_DRY_RUN_HELPER_IDS)
+def test_baremetal_and_poll_rejects_dry_run_before_any_request(
+    helper: str, invoke: Callable[[Any, Any], Any], dry_run: object
+) -> None:
+    client = Gcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url, assert_all_called=False) as router:
+        router.route(url__regex=r".+").mock(side_effect=_baremetal_handler(["task-1"]))
+        with pytest.raises(ValueError, match="dry run"):
+            invoke(client, {"dry_run": dry_run})
+        assert _requests(router) == [], helper
+
+
+@pytest.mark.parametrize("dry_run", _TRUE_DRY_RUNS)
+@pytest.mark.parametrize(("helper", "invoke"), _DRY_RUN_HELPERS, ids=_DRY_RUN_HELPER_IDS)
+async def test_baremetal_and_poll_rejects_dry_run_before_any_request_async(
+    helper: str, invoke: Callable[[Any, Any], Any], dry_run: object
+) -> None:
+    client = AsyncGcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url, assert_all_called=False) as router:
+        router.route(url__regex=r".+").mock(side_effect=_baremetal_handler(["task-1"]))
+        with pytest.raises(ValueError, match="dry run"):
+            await invoke(client, {"dry_run": dry_run})
+        assert _requests(router) == [], helper
+
+
+@pytest.mark.parametrize(("helper", "invoke"), _DRY_RUN_HELPERS, ids=_DRY_RUN_HELPER_IDS)
+def test_baremetal_and_poll_rejects_dry_run_from_client_query(helper: str, invoke: Callable[[Any, Any], Any]) -> None:
+    client = Gcore(
+        base_url=base_url, api_key="test", _strict_response_validation=False, default_query={"dry_run": "true"}
+    )
+    with respx.mock(base_url=base_url, assert_all_called=False) as router:
+        router.route(url__regex=r".+").mock(side_effect=_baremetal_handler(["task-1"]))
+        with pytest.raises(ValueError, match="dry run"):
+            invoke(client, None)
+        assert _requests(router) == [], helper
+
+
+@pytest.mark.parametrize(("helper", "invoke"), _DRY_RUN_HELPERS, ids=_DRY_RUN_HELPER_IDS)
+async def test_baremetal_and_poll_rejects_dry_run_from_client_query_async(
+    helper: str, invoke: Callable[[Any, Any], Any]
+) -> None:
+    client = AsyncGcore(
+        base_url=base_url, api_key="test", _strict_response_validation=False, default_query={"dry_run": "true"}
+    )
+    with respx.mock(base_url=base_url, assert_all_called=False) as router:
+        router.route(url__regex=r".+").mock(side_effect=_baremetal_handler(["task-1"]))
+        with pytest.raises(ValueError, match="dry run"):
+            await invoke(client, None)
+        assert _requests(router) == [], helper
+
+
+# a false dry run is a real request, so the helper runs
+@pytest.mark.parametrize(("helper", "invoke"), _DRY_RUN_HELPERS, ids=_DRY_RUN_HELPER_IDS)
+def test_baremetal_and_poll_allows_false_dry_run(helper: str, invoke: Callable[[Any, Any], Any]) -> None:
+    client = Gcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_baremetal_handler(["task-1"]))
+        invoke(client, {"dry_run": False})
+        assert [r.url.params["dry_run"] for r in _mutations(router)] == ["false"], helper
+
+
+@pytest.mark.parametrize(("helper", "invoke"), _DRY_RUN_HELPERS, ids=_DRY_RUN_HELPER_IDS)
+async def test_baremetal_and_poll_allows_false_dry_run_async(helper: str, invoke: Callable[[Any, Any], Any]) -> None:
+    client = AsyncGcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_baremetal_handler(["task-1"]))
+        await invoke(client, {"dry_run": False})
+        assert [r.url.params["dry_run"] for r in _mutations(router)] == ["false"], helper
+
+
+_EXTRA_OPTION_REQUESTS = [("PATCH", True, "1", "value"), ("GET", False, "1", None), ("GET", False, "1", "value")]
+
+
+def test_baremetal_and_poll_sends_extra_body_only_with_the_mutation() -> None:
+    client = Gcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_baremetal_handler(["task-1"]))
+        client.cloud.baremetal.servers.update_and_poll(
+            "server-1",
+            project_id=1,
+            name="n",
+            extra_body={"extra": True},
+            extra_headers={"X-Test": "1"},
+            extra_query={"test_query": "value"},
+        )
+        requests = _requests(router)
+        assert [
+            (r.method, r.content != b"", r.headers.get("X-Test"), r.url.params.get("test_query")) for r in requests
+        ] == _EXTRA_OPTION_REQUESTS
+
+
+async def test_baremetal_and_poll_sends_extra_body_only_with_the_mutation_async() -> None:
+    client = AsyncGcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_baremetal_handler(["task-1"]))
+        await client.cloud.baremetal.servers.update_and_poll(
+            "server-1",
+            project_id=1,
+            name="n",
+            extra_body={"extra": True},
+            extra_headers={"X-Test": "1"},
+            extra_query={"test_query": "value"},
+        )
+        requests = _requests(router)
+        assert [
+            (r.method, r.content != b"", r.headers.get("X-Test"), r.url.params.get("test_query")) for r in requests
+        ] == _EXTRA_OPTION_REQUESTS
+
+
+# the legacy create helper moved to the temporary regional client with its old arguments and task key
+def _regional_handler(
+    action_tasks: list[str], created: dict[str, Any] | None = None
+) -> Callable[[httpx.Request], httpx.Response]:
+    """Answer the mutation with `action_tasks`, a task poll with a finished task, and a list with the asked UUID."""
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        path = request.url.path
+        if request.method == "GET" and "/tasks/" in path:
+            task_created = created if created is not None else {"instances": [CREATED_ID]}
+            return httpx.Response(200, json=_baremetal_task(path.rsplit("/", 1)[-1], task_created))
+        if request.method == "GET":
+            server = {"id": request.url.params.get("uuid"), "status": "ACTIVE", "vm_state": "active"}
+            return httpx.Response(200, json={"count": 1, "results": [server]})
+        return httpx.Response(200, json={"tasks": action_tasks})
+
+    return handler
+
+
+def _create_regional_server(client: Any) -> Any:
+    return client.cloud.baremetal_regional.servers.create_and_poll(
+        project_id=1,
+        region_id=1,
+        flavor="bm2-hf-small",
+        interfaces=[{"type": "external"}],
+        image_id="image-1",
+        name_template="bm-{two_ip_octets}",
+        ssh_key_name="my-key",
+        username="admin",
+    )
+
+
+_LEGACY_AND_NEW_KEYS = {"instances": [CREATED_ID], "baremetal_server": [_OTHER_ID]}
+
+
+def test_baremetal_regional_create_and_poll_reads_legacy_task_key() -> None:
+    client = Gcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_regional_handler(["task-1"], _LEGACY_AND_NEW_KEYS))
+        _create_regional_server(client)
+        assert [(r.url.path, r.url.params.get("uuid")) for r in _gets(router) if "/tasks/" not in r.url.path] == [
+            ("/cloud/v1/bminstances/1/1", CREATED_ID)
+        ]
+
+
+async def test_baremetal_regional_create_and_poll_reads_legacy_task_key_async() -> None:
+    client = AsyncGcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_regional_handler(["task-1"], _LEGACY_AND_NEW_KEYS))
+        await _create_regional_server(client)
+        assert [(r.url.path, r.url.params.get("uuid")) for r in _gets(router) if "/tasks/" not in r.url.path] == [
+            ("/cloud/v1/bminstances/1/1", CREATED_ID)
+        ]
+
+
+def test_baremetal_regional_create_and_poll_returns_regional_server() -> None:
+    client = Gcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_regional_handler(["task-1"]))
+        server = _create_regional_server(client)
+    assert isinstance(server, BaremetalRegionalServer) and server.vm_state == "active"
+
+
+async def test_baremetal_regional_create_and_poll_returns_regional_server_async() -> None:
+    client = AsyncGcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_regional_handler(["task-1"]))
+        server = await _create_regional_server(client)
+    assert isinstance(server, BaremetalRegionalServer) and server.vm_state == "active"
+
+
+_LEGACY_CREATE_BODY = {
+    "flavor": "bm2-hf-small",
+    "interfaces": [{"type": "external"}],
+    "image_id": "image-1",
+    "name_template": "bm-{two_ip_octets}",
+    "ssh_key_name": "my-key",
+    "username": "admin",
+}
+
+
+def test_baremetal_regional_create_and_poll_sends_legacy_request() -> None:
+    client = Gcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_regional_handler(["task-1"]))
+        _create_regional_server(client)
+        assert [(r.url.path, json.loads(r.content)) for r in _mutations(router)] == [
+            ("/cloud/v1/bminstances/1/1", _LEGACY_CREATE_BODY)
+        ]
+
+
+async def test_baremetal_regional_create_and_poll_sends_legacy_request_async() -> None:
+    client = AsyncGcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_regional_handler(["task-1"]))
+        await _create_regional_server(client)
+        assert [(r.url.path, json.loads(r.content)) for r in _mutations(router)] == [
+            ("/cloud/v1/bminstances/1/1", _LEGACY_CREATE_BODY)
+        ]
+
+
+def test_baremetal_regional_create_and_poll_keeps_one_task_rule() -> None:
+    client = Gcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_regional_handler(["task-1", "task-2"]))
+        with pytest.raises(ValueError, match="Expected exactly one task"):
+            _create_regional_server(client)
+
+
+async def test_baremetal_regional_create_and_poll_keeps_one_task_rule_async() -> None:
+    client = AsyncGcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_regional_handler(["task-1", "task-2"]))
+        with pytest.raises(ValueError, match="Expected exactly one task"):
+            await _create_regional_server(client)
+
+
+# rebuild stays on the public client; only its final read goes through the regional list
+def _rebuild_server(client: Any) -> Any:
+    return client.cloud.baremetal.servers.rebuild_and_poll(
+        CREATED_ID, project_id=1, region_id=1, image_id="image-2", user_data="dXNlcg=="
+    )
+
+
+_REBUILD_REQUESTS = [
+    ("POST", f"/cloud/v1/bminstances/1/1/{CREATED_ID}/rebuild", None),
+    ("GET", "/cloud/v1/bminstances/1/1", CREATED_ID),
+]
+
+
+def test_baremetal_rebuild_and_poll_reads_result_from_regional_list() -> None:
+    client = Gcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_regional_handler(["task-1"]))
+        _rebuild_server(client)
+        assert [
+            (r.method, r.url.path, r.url.params.get("uuid")) for r in _requests(router) if "/tasks/" not in r.url.path
+        ] == _REBUILD_REQUESTS
+
+
+async def test_baremetal_rebuild_and_poll_reads_result_from_regional_list_async() -> None:
+    client = AsyncGcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_regional_handler(["task-1"]))
+        await _rebuild_server(client)
+        assert [
+            (r.method, r.url.path, r.url.params.get("uuid")) for r in _requests(router) if "/tasks/" not in r.url.path
+        ] == _REBUILD_REQUESTS
+
+
+def test_baremetal_rebuild_and_poll_returns_regional_server() -> None:
+    client = Gcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_regional_handler(["task-1"]))
+        server = _rebuild_server(client)
+    assert isinstance(server, BaremetalRegionalServer) and server.vm_state == "active"
+
+
+async def test_baremetal_rebuild_and_poll_returns_regional_server_async() -> None:
+    client = AsyncGcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_regional_handler(["task-1"]))
+        server = await _rebuild_server(client)
+    assert isinstance(server, BaremetalRegionalServer) and server.vm_state == "active"
+
+
+def test_baremetal_rebuild_and_poll_sends_old_arguments() -> None:
+    client = Gcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_regional_handler(["task-1"]))
+        _rebuild_server(client)
+        assert [json.loads(r.content) for r in _mutations(router)] == [{"image_id": "image-2", "user_data": "dXNlcg=="}]
+
+
+async def test_baremetal_rebuild_and_poll_sends_old_arguments_async() -> None:
+    client = AsyncGcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_regional_handler(["task-1"]))
+        await _rebuild_server(client)
+        assert [json.loads(r.content) for r in _mutations(router)] == [{"image_id": "image-2", "user_data": "dXNlcg=="}]
+
+
+# the rebuild helper keeps its old behaviour: it waits only for the first task
+def test_baremetal_rebuild_and_poll_waits_for_first_task_only() -> None:
+    client = Gcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_regional_handler(["task-1", "task-2"]))
+        _rebuild_server(client)
+        assert [r.url.path for r in _task_polls(router)] == ["/cloud/v1/tasks/task-1"]
+
+
+async def test_baremetal_rebuild_and_poll_waits_for_first_task_only_async() -> None:
+    client = AsyncGcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_regional_handler(["task-1", "task-2"]))
+        await _rebuild_server(client)
+        assert [r.url.path for r in _task_polls(router)] == ["/cloud/v1/tasks/task-1"]
 
 
 # the client region (1) differs from the task region (76), so the path shows which one the helper uses

@@ -5,10 +5,10 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["BaremetalFlavor"]
+__all__ = ["BaremetalRegionalFlavor"]
 
 
-class BaremetalFlavor(BaseModel):
+class BaremetalRegionalFlavor(BaseModel):
     """Bare metal flavor schema"""
 
     architecture: str

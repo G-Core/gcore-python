@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from .baremetal_image import BaremetalImage as BaremetalImage
+from .baremetal_flavor import BaremetalFlavor as BaremetalFlavor
 from .baremetal_server import BaremetalServer as BaremetalServer
 from .image_list_params import ImageListParams as ImageListParams
 from .flavor_list_params import FlavorListParams as FlavorListParams
@@ -12,5 +13,4 @@ from .server_create_params import ServerCreateParams as ServerCreateParams
 from .server_delete_params import ServerDeleteParams as ServerDeleteParams
 from .server_update_params import ServerUpdateParams as ServerUpdateParams
 from .server_rebuild_params import ServerRebuildParams as ServerRebuildParams
-from .baremetal_fixed_address import BaremetalFixedAddress as BaremetalFixedAddress
-from .baremetal_floating_address import BaremetalFloatingAddress as BaremetalFloatingAddress
+from .server_delete_response import ServerDeleteResponse as ServerDeleteResponse

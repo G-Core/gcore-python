@@ -2,23 +2,35 @@
 
 from __future__ import annotations
 
-from typing import Optional
-from typing_extensions import TypedDict
+from typing import Iterable, Optional
+from typing_extensions import Required, TypedDict
 
 from ..tag_update_map_param import TagUpdateMapParam
 
-__all__ = ["ServerUpdateParams"]
+__all__ = ["ServerUpdateParams", "Interface"]
 
 
 class ServerUpdateParams(TypedDict, total=False):
     project_id: int
-    """Project ID"""
+    """Project ID."""
 
-    region_id: int
-    """Region ID"""
+    dry_run: bool
+    """Run every check of the real request and change nothing.
+
+    The response has the status code and the schema of the real call, and an empty
+    list of tasks. With `false`, the default, the request does the operation.
+    """
+
+    interfaces: Iterable[Interface]
+    """Full list of the interfaces of the server.
+
+    Interfaces that are not in the list are detached. Keep the current interfaces in
+    their current order. Add new interfaces at the end of the list. Send at least
+    one interface.
+    """
 
     name: str
-    """Name"""
+    """Server name."""
 
     tags: Optional[TagUpdateMapParam]
     """Update key-value tags using JSON Merge Patch semantics (RFC 7396).
@@ -43,4 +55,15 @@ class ServerUpdateParams(TypedDict, total=False):
       preserving other existing tags.
     - **Replace all:** first delete existing tags with null values, then add new
       ones in the same request.
+    """
+
+
+class Interface(TypedDict, total=False):
+    port_id: Required[str]
+    """Existing port to attach. Array order is the NIC/boot order."""
+
+    port_group: int
+    """0-based bond/trunk group, dense across all interfaces.
+
+    Omitted defaults to group 0. Must be omitted on DPU/SmartNIC flavors.
     """

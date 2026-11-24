@@ -2,187 +2,141 @@
 
 from typing import Dict, List, Union, Optional
 from datetime import datetime
-from typing_extensions import Literal, TypeAlias
+from typing_extensions import Literal, Annotated, TypeAlias
 
-from ..tag import Tag
+from ...._utils import PropertyInfo
 from ...._models import BaseModel
-from ..ddos_profile import DDOSProfile
-from ..blackhole_port import BlackholePort
-from ..instance_isolation import InstanceIsolation
-from .baremetal_fixed_address import BaremetalFixedAddress
-from .baremetal_floating_address import BaremetalFloatingAddress
 
-__all__ = ["BaremetalServer", "Address", "FixedIPAssignment", "Flavor", "FlavorHardwareDescription"]
+__all__ = [
+    "BaremetalServer",
+    "Interface",
+    "InterfaceIPAssignment",
+    "InterfaceTrunk",
+    "InterfaceTrunkGlobalBaremetalTrunkParentSerializer",
+    "InterfaceTrunkGlobalBaremetalTrunkSubPortSerializer",
+    "ManagedBy",
+]
 
-Address: TypeAlias = Union[BaremetalFloatingAddress, BaremetalFixedAddress]
 
-
-class FixedIPAssignment(BaseModel):
-    external: bool
-    """Is network external"""
-
+class InterfaceIPAssignment(BaseModel):
     ip_address: str
-    """Ip address"""
+    """The IP address assigned to the port from the specified subnet"""
 
     subnet_id: str
-    """Interface subnet id"""
+    """ID of the subnet that allocated the IP"""
 
 
-class FlavorHardwareDescription(BaseModel):
-    """Additional hardware description"""
-
-    cpu: str
-    """Human-readable CPU description"""
-
-    disk: str
-    """Human-readable disk description"""
-
-    license: str
-    """If the flavor is licensed, this field contains the license type"""
-
-    network: str
-    """Human-readable NIC description"""
-
-    ram: str
-    """Human-readable RAM description"""
+class InterfaceTrunkGlobalBaremetalTrunkParentSerializer(BaseModel):
+    role: Literal["parent"]
+    """Role of this interface within its bond/trunk."""
 
 
-class Flavor(BaseModel):
-    """Flavor details"""
+class InterfaceTrunkGlobalBaremetalTrunkSubPortSerializer(BaseModel):
+    parent_port_id: str
+    """Parent (bond) port ID."""
 
-    architecture: str
-    """CPU architecture"""
+    role: Literal["sub_port"]
+    """Role of this interface within its bond/trunk."""
 
-    flavor_id: str
-    """Flavor ID is the same as name"""
 
-    flavor_name: str
-    """Flavor name"""
+InterfaceTrunk: TypeAlias = Annotated[
+    Union[
+        InterfaceTrunkGlobalBaremetalTrunkParentSerializer, InterfaceTrunkGlobalBaremetalTrunkSubPortSerializer, None
+    ],
+    PropertyInfo(discriminator="role"),
+]
 
-    hardware_description: FlavorHardwareDescription
-    """Additional hardware description"""
 
-    os_type: str
-    """Operating system"""
+class Interface(BaseModel):
+    """Bare-metal interface: the VM interface fields plus trunk/bond metadata.
 
-    ram: int
-    """RAM size in MiB"""
+    `port_group` is the 0-based bond index (`null` for DPU/SmartNIC, which has no trunk).
+    `trunk` conveys the role within the bond.
+    """
 
-    resource_class: str
-    """Flavor resource class for mapping to hardware capacity"""
+    floating_ip: Optional[str] = None
+    """Public floating IP NAT-ing this interface, if any."""
 
-    vcpus: int
-    """Virtual CPU count. For bare metal flavors, it's a physical CPU count"""
+    ip_assignments: List[InterfaceIPAssignment]
+    """Fixed IPs assigned to the port."""
+
+    mac_address: str
+    """Port MAC address."""
+
+    network_id: str
+    """Network the port is attached to."""
+
+    port_group: Optional[int] = None
+    """0-based bond index. `null` on DPU/SmartNIC bare metal (no trunk)."""
+
+    port_id: str
+    """ID of the port that connects the server to the network."""
+
+    trunk: Optional[InterfaceTrunk] = None
+    """Trunk role within the bond. `null` when the port is not part of a trunk."""
+
+
+class ManagedBy(BaseModel):
+    """Service managing this server, or null if customer-operated."""
+
+    resource_id: Optional[str] = None
+    """ID of the managing resource. Null when it is not known."""
+
+    resource_name: str
+    """Name of the managing resource."""
+
+    type: Literal["k8s_cluster"]
+    """Type of the managing service."""
 
 
 class BaremetalServer(BaseModel):
     id: str
-    """Bare metal server ID"""
-
-    addresses: Dict[str, List[Address]]
-    """Map of `network_name` to list of addresses in that network"""
-
-    blackhole_ports: List[BlackholePort]
-    """IP addresses of the instances that are blackholed by DDoS mitigation system"""
+    """Baremetal server ID."""
 
     created_at: datetime
-    """Datetime when bare metal server was created"""
+    """Datetime when the server was created."""
 
-    creator_task_id: Optional[str] = None
-    """Task that created this entity.
+    flavor_name: str
+    """Flavor name."""
 
-    The value is null if the server has no creator task ID.
-    """
+    image_id: str
+    """Image ID the server was provisioned from."""
 
-    ddos_profile: Optional[DDOSProfile] = None
-    """Bare metal advanced DDoS protection profile.
+    interfaces: List[Interface]
+    """Attached network interfaces with trunk/bond metadata."""
 
-    It is always `null` if query parameter `with_ddos=true` is not set.
-    """
-
-    fixed_ip_assignments: List[FixedIPAssignment]
-    """Fixed IP assigned to instance"""
-
-    flavor: Flavor
-    """Flavor details"""
-
-    instance_isolation: Optional[InstanceIsolation] = None
-    """Instance isolation information.
-
-    The value is null if the server is not isolated.
-    """
+    managed_by: Optional[ManagedBy] = None
+    """Service managing this server, or null if customer-operated."""
 
     name: str
-    """Bare metal server name"""
-
-    project_id: int
-    """Project ID"""
-
-    region: str
-    """Region name"""
+    """Baremetal server name."""
 
     region_id: int
-    """Region ID"""
+    """Region ID."""
 
-    ssh_key_name: Optional[str] = None
-    """SSH key assigned to bare metal server. The value is null if no key pair is set."""
+    ssh_key_id: Optional[str] = None
+    """ID of the SSH key of the default user, or null."""
 
     status: Literal[
-        "ACTIVE",
-        "BUILD",
-        "DELETED",
-        "ERROR",
-        "HARD_REBOOT",
-        "MIGRATING",
-        "PASSWORD",
-        "PAUSED",
-        "REBOOT",
-        "REBUILD",
-        "RESCUE",
-        "RESIZE",
-        "REVERT_RESIZE",
-        "SHELVED",
-        "SHELVED_OFFLOADED",
-        "SHUTOFF",
-        "SOFT_DELETED",
-        "SUSPENDED",
-        "UNKNOWN",
-        "VERIFY_RESIZE",
-    ]
-    """Bare metal server status"""
-
-    tags: List[Tag]
-    """List of key-value tags associated with the resource.
-
-    A tag is a key-value pair that can be associated with a resource, enabling
-    efficient filtering and grouping for better organization and management. Some
-    tags are read-only and cannot be modified by the user. Tags are also integrated
-    with cost reports, allowing cost data to be filtered based on tag keys or
-    values.
-    """
-
-    task_id: Optional[str] = None
-    """The UUID of the active task that currently holds a lock on the resource.
-
-    This lock prevents concurrent modifications to ensure consistency. If `null`,
-    the resource is not locked.
-    """
-
-    task_state: Optional[str] = None
-    """Task state. The value is null if no operation is in progress."""
-
-    vm_state: Literal[
         "active",
-        "building",
         "deleted",
+        "deleting",
         "error",
-        "paused",
-        "rescued",
-        "resized",
-        "shelved",
-        "shelved_offloaded",
-        "soft-deleted",
+        "provisioning",
+        "rebooting",
+        "rebuilding",
+        "resizing",
         "stopped",
-        "suspended",
+        "unknown",
+        "updating",
     ]
-    """Bare metal server state"""
+    """Canonical lifecycle status."""
+
+    system_tags: Dict[str, str]
+    """Read-only key-value tags set by the platform."""
+
+    tags: Dict[str, str]
+    """Customer-owned key-value tags."""
+
+    updated_at: datetime
+    """Datetime when the server was last updated."""

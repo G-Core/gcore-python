@@ -2,6 +2,9 @@
 
 from __future__ import annotations
 
+from typing import List, Iterable
+from typing_extensions import Literal
+
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
@@ -17,12 +20,16 @@ from ...._response import (
 from ....pagination import SyncOffsetPage, AsyncOffsetPage
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.cloud.baremetal import flavor_list_params
-from ....types.cloud.baremetal_flavor import BaremetalFlavor
+from ....types.cloud.baremetal.baremetal_flavor import BaremetalFlavor
 
 __all__ = ["FlavorsResource", "AsyncFlavorsResource"]
 
 
 class FlavorsResource(SyncAPIResource):
+    """
+    Bare metal flavors define the CPU, memory, disks, and network cards of a bare metal server, in all regions of the project.
+    """
+
     @cached_property
     def with_raw_response(self) -> FlavorsResourceWithRawResponse:
         """
@@ -46,15 +53,26 @@ class FlavorsResource(SyncAPIResource):
         self,
         *,
         project_id: int | None = None,
-        region_id: int | None = None,
-        disabled: bool | Omit = omit,
-        exclude_linux: bool | Omit = omit,
-        exclude_windows: bool | Omit = omit,
-        include_capacity: bool | Omit = omit,
-        include_prices: bool | Omit = omit,
-        include_reservation_stock: bool | Omit = omit,
+        architectures: List[Literal["aarch64", "unknown", "x86_64"]] | Omit = omit,
+        compatible_with_image_id: str | Omit = omit,
+        cpu_threads: flavor_list_params.CPUThreads | Omit = omit,
         limit: int | Omit = omit,
+        name: flavor_list_params.Name | Omit = omit,
         offset: int | Omit = omit,
+        order_by: Literal[
+            "cpu_threads.asc",
+            "cpu_threads.desc",
+            "name.asc",
+            "name.desc",
+            "ram_mib.asc",
+            "ram_mib.desc",
+            "region_id.asc",
+            "region_id.desc",
+        ]
+        | Omit = omit,
+        os_types: List[Literal["linux", "unknown", "windows"]] | Omit = omit,
+        ram_mib: flavor_list_params.RamMib | Omit = omit,
+        region_ids: Iterable[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -63,41 +81,33 @@ class FlavorsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[BaremetalFlavor]:
         """
-        Use
-        [GET /v1/projects/{`project_id`}/baremetal/flavors](#operation/GlobalBaremetalFlavorListView.get)
-        instead. The new route always returns `capacity`. The new route does not return
-        prices. For prices, use
-        [List bare metal flavor prices](#operation/BaremetalFlavorPriceListView.get).
-        This route continues to work. Later, we will deprecate it and then remove it. We
-        will tell you in advance.
-
-        List all available bare metal flavors in the specified project and region. When
-        `include_prices` is specified, the list includes pricing information. A client
-        in trial mode gets all price values as 0. If you get Pricing Error contact the
-        support.
+        Bare metal flavors available to the client in all regions, with buildable
+        capacity and port support.
 
         Args:
-          project_id: Project ID
+          project_id: Project ID.
 
-          region_id: Region ID
+          architectures: Filter by flavor architecture type(s).
 
-          disabled: Flag for filtering disabled flavors in the region
+          compatible_with_image_id: Return only the flavors that can boot this image: its region, OS type and CPU
+              architecture, minus the flavors registered as incompatible with its OS release.
+              An unknown image matches no flavor.
 
-          exclude_linux: Set to true to exclude flavors dedicated to linux images
+          cpu_threads: Range filter on CPU thread count.
 
-          exclude_windows: Set to true to exclude flavors dedicated to windows images
+          limit: Max items to return.
 
-          include_capacity: Set to true if the response should include flavor capacity
+          name: Operator flavor name filter, e.g. name[prefix]=bm2-.
 
-          include_prices: Set to true if the response should include flavor prices
+          offset: Items to skip.
 
-          include_reservation_stock: Optional. Set to true if flavor listing should include count of reserved
-              resources in stock.
+          order_by: Sort field and direction.
 
-          limit: Optional. Limit the number of returned items
+          os_types: Filter by flavor operating system(s).
 
-          offset: Optional. Offset value is used to exclude the first set of records from the
-              result
+          ram_mib: Range filter on RAM size in MiB.
+
+          region_ids: Filter by region ID(s). Omit = all regions.
 
           extra_headers: Send extra headers
 
@@ -109,10 +119,8 @@ class FlavorsResource(SyncAPIResource):
         """
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            path_template("/cloud/v1/bmflavors/{project_id}/{region_id}", project_id=project_id, region_id=region_id),
+            path_template("/cloud/v1/projects/{project_id}/baremetal/flavors", project_id=project_id),
             page=SyncOffsetPage[BaremetalFlavor],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -121,14 +129,16 @@ class FlavorsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "disabled": disabled,
-                        "exclude_linux": exclude_linux,
-                        "exclude_windows": exclude_windows,
-                        "include_capacity": include_capacity,
-                        "include_prices": include_prices,
-                        "include_reservation_stock": include_reservation_stock,
+                        "architectures": architectures,
+                        "compatible_with_image_id": compatible_with_image_id,
+                        "cpu_threads": cpu_threads,
                         "limit": limit,
+                        "name": name,
                         "offset": offset,
+                        "order_by": order_by,
+                        "os_types": os_types,
+                        "ram_mib": ram_mib,
+                        "region_ids": region_ids,
                     },
                     flavor_list_params.FlavorListParams,
                 ),
@@ -138,6 +148,10 @@ class FlavorsResource(SyncAPIResource):
 
 
 class AsyncFlavorsResource(AsyncAPIResource):
+    """
+    Bare metal flavors define the CPU, memory, disks, and network cards of a bare metal server, in all regions of the project.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncFlavorsResourceWithRawResponse:
         """
@@ -161,15 +175,26 @@ class AsyncFlavorsResource(AsyncAPIResource):
         self,
         *,
         project_id: int | None = None,
-        region_id: int | None = None,
-        disabled: bool | Omit = omit,
-        exclude_linux: bool | Omit = omit,
-        exclude_windows: bool | Omit = omit,
-        include_capacity: bool | Omit = omit,
-        include_prices: bool | Omit = omit,
-        include_reservation_stock: bool | Omit = omit,
+        architectures: List[Literal["aarch64", "unknown", "x86_64"]] | Omit = omit,
+        compatible_with_image_id: str | Omit = omit,
+        cpu_threads: flavor_list_params.CPUThreads | Omit = omit,
         limit: int | Omit = omit,
+        name: flavor_list_params.Name | Omit = omit,
         offset: int | Omit = omit,
+        order_by: Literal[
+            "cpu_threads.asc",
+            "cpu_threads.desc",
+            "name.asc",
+            "name.desc",
+            "ram_mib.asc",
+            "ram_mib.desc",
+            "region_id.asc",
+            "region_id.desc",
+        ]
+        | Omit = omit,
+        os_types: List[Literal["linux", "unknown", "windows"]] | Omit = omit,
+        ram_mib: flavor_list_params.RamMib | Omit = omit,
+        region_ids: Iterable[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -178,41 +203,33 @@ class AsyncFlavorsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[BaremetalFlavor, AsyncOffsetPage[BaremetalFlavor]]:
         """
-        Use
-        [GET /v1/projects/{`project_id`}/baremetal/flavors](#operation/GlobalBaremetalFlavorListView.get)
-        instead. The new route always returns `capacity`. The new route does not return
-        prices. For prices, use
-        [List bare metal flavor prices](#operation/BaremetalFlavorPriceListView.get).
-        This route continues to work. Later, we will deprecate it and then remove it. We
-        will tell you in advance.
-
-        List all available bare metal flavors in the specified project and region. When
-        `include_prices` is specified, the list includes pricing information. A client
-        in trial mode gets all price values as 0. If you get Pricing Error contact the
-        support.
+        Bare metal flavors available to the client in all regions, with buildable
+        capacity and port support.
 
         Args:
-          project_id: Project ID
+          project_id: Project ID.
 
-          region_id: Region ID
+          architectures: Filter by flavor architecture type(s).
 
-          disabled: Flag for filtering disabled flavors in the region
+          compatible_with_image_id: Return only the flavors that can boot this image: its region, OS type and CPU
+              architecture, minus the flavors registered as incompatible with its OS release.
+              An unknown image matches no flavor.
 
-          exclude_linux: Set to true to exclude flavors dedicated to linux images
+          cpu_threads: Range filter on CPU thread count.
 
-          exclude_windows: Set to true to exclude flavors dedicated to windows images
+          limit: Max items to return.
 
-          include_capacity: Set to true if the response should include flavor capacity
+          name: Operator flavor name filter, e.g. name[prefix]=bm2-.
 
-          include_prices: Set to true if the response should include flavor prices
+          offset: Items to skip.
 
-          include_reservation_stock: Optional. Set to true if flavor listing should include count of reserved
-              resources in stock.
+          order_by: Sort field and direction.
 
-          limit: Optional. Limit the number of returned items
+          os_types: Filter by flavor operating system(s).
 
-          offset: Optional. Offset value is used to exclude the first set of records from the
-              result
+          ram_mib: Range filter on RAM size in MiB.
+
+          region_ids: Filter by region ID(s). Omit = all regions.
 
           extra_headers: Send extra headers
 
@@ -224,10 +241,8 @@ class AsyncFlavorsResource(AsyncAPIResource):
         """
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            path_template("/cloud/v1/bmflavors/{project_id}/{region_id}", project_id=project_id, region_id=region_id),
+            path_template("/cloud/v1/projects/{project_id}/baremetal/flavors", project_id=project_id),
             page=AsyncOffsetPage[BaremetalFlavor],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -236,14 +251,16 @@ class AsyncFlavorsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "disabled": disabled,
-                        "exclude_linux": exclude_linux,
-                        "exclude_windows": exclude_windows,
-                        "include_capacity": include_capacity,
-                        "include_prices": include_prices,
-                        "include_reservation_stock": include_reservation_stock,
+                        "architectures": architectures,
+                        "compatible_with_image_id": compatible_with_image_id,
+                        "cpu_threads": cpu_threads,
                         "limit": limit,
+                        "name": name,
                         "offset": offset,
+                        "order_by": order_by,
+                        "os_types": os_types,
+                        "ram_mib": ram_mib,
+                        "region_ids": region_ids,
                     },
                     flavor_list_params.FlavorListParams,
                 ),

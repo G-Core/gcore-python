@@ -244,6 +244,14 @@ from .security_groups.security_groups import (
     SecurityGroupsResourceWithStreamingResponse,
     AsyncSecurityGroupsResourceWithStreamingResponse,
 )
+from .baremetal_regional.baremetal_regional import (
+    BaremetalRegionalResource,
+    AsyncBaremetalRegionalResource,
+    BaremetalRegionalResourceWithRawResponse,
+    AsyncBaremetalRegionalResourceWithRawResponse,
+    BaremetalRegionalResourceWithStreamingResponse,
+    AsyncBaremetalRegionalResourceWithStreamingResponse,
+)
 from .instances_regional.instances_regional import (
     InstancesRegionalResource,
     AsyncInstancesRegionalResource,
@@ -376,6 +384,14 @@ class CloudResource(SyncAPIResource):
     @cached_property
     def baremetal(self) -> BaremetalResource:
         return BaremetalResource(self._client)
+
+    @cached_property
+    def baremetal_regional(self) -> BaremetalRegionalResource:
+        """Region-pathed bare metal servers and flavors.
+
+        This client is temporary, and a future release will remove it. Use `cloud.baremetal` in new code.
+        """
+        return BaremetalRegionalResource(self._client)
 
     @cached_property
     def registries(self) -> RegistriesResource:
@@ -577,6 +593,14 @@ class AsyncCloudResource(AsyncAPIResource):
     @cached_property
     def baremetal(self) -> AsyncBaremetalResource:
         return AsyncBaremetalResource(self._client)
+
+    @cached_property
+    def baremetal_regional(self) -> AsyncBaremetalRegionalResource:
+        """Region-pathed bare metal servers and flavors.
+
+        This client is temporary, and a future release will remove it. Use `cloud.baremetal` in new code.
+        """
+        return AsyncBaremetalRegionalResource(self._client)
 
     @cached_property
     def registries(self) -> AsyncRegistriesResource:
@@ -783,6 +807,14 @@ class CloudResourceWithRawResponse:
         return BaremetalResourceWithRawResponse(self._cloud.baremetal)
 
     @cached_property
+    def baremetal_regional(self) -> BaremetalRegionalResourceWithRawResponse:
+        """Region-pathed bare metal servers and flavors.
+
+        This client is temporary, and a future release will remove it. Use `cloud.baremetal` in new code.
+        """
+        return BaremetalRegionalResourceWithRawResponse(self._cloud.baremetal_regional)
+
+    @cached_property
     def registries(self) -> RegistriesResourceWithRawResponse:
         return RegistriesResourceWithRawResponse(self._cloud.registries)
 
@@ -966,6 +998,14 @@ class AsyncCloudResourceWithRawResponse:
     @cached_property
     def baremetal(self) -> AsyncBaremetalResourceWithRawResponse:
         return AsyncBaremetalResourceWithRawResponse(self._cloud.baremetal)
+
+    @cached_property
+    def baremetal_regional(self) -> AsyncBaremetalRegionalResourceWithRawResponse:
+        """Region-pathed bare metal servers and flavors.
+
+        This client is temporary, and a future release will remove it. Use `cloud.baremetal` in new code.
+        """
+        return AsyncBaremetalRegionalResourceWithRawResponse(self._cloud.baremetal_regional)
 
     @cached_property
     def registries(self) -> AsyncRegistriesResourceWithRawResponse:
@@ -1153,6 +1193,14 @@ class CloudResourceWithStreamingResponse:
         return BaremetalResourceWithStreamingResponse(self._cloud.baremetal)
 
     @cached_property
+    def baremetal_regional(self) -> BaremetalRegionalResourceWithStreamingResponse:
+        """Region-pathed bare metal servers and flavors.
+
+        This client is temporary, and a future release will remove it. Use `cloud.baremetal` in new code.
+        """
+        return BaremetalRegionalResourceWithStreamingResponse(self._cloud.baremetal_regional)
+
+    @cached_property
     def registries(self) -> RegistriesResourceWithStreamingResponse:
         return RegistriesResourceWithStreamingResponse(self._cloud.registries)
 
@@ -1336,6 +1384,14 @@ class AsyncCloudResourceWithStreamingResponse:
     @cached_property
     def baremetal(self) -> AsyncBaremetalResourceWithStreamingResponse:
         return AsyncBaremetalResourceWithStreamingResponse(self._cloud.baremetal)
+
+    @cached_property
+    def baremetal_regional(self) -> AsyncBaremetalRegionalResourceWithStreamingResponse:
+        """Region-pathed bare metal servers and flavors.
+
+        This client is temporary, and a future release will remove it. Use `cloud.baremetal` in new code.
+        """
+        return AsyncBaremetalRegionalResourceWithStreamingResponse(self._cloud.baremetal_regional)
 
     @cached_property
     def registries(self) -> AsyncRegistriesResourceWithStreamingResponse:

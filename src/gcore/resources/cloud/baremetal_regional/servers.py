@@ -21,17 +21,16 @@ from ...._response import (
 from ....pagination import SyncOffsetPage, AsyncOffsetPage
 from .servers_custom import ServersResourceCustomMixin, AsyncServersResourceCustomMixin
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.cloud.baremetal import (
+from ....types.cloud.task_id_list import TaskIDList
+from ....types.cloud.baremetal_regional import (
     server_list_params,
     server_action_params,
     server_create_params,
     server_delete_params,
     server_update_params,
-    server_rebuild_params,
 )
-from ....types.cloud.task_id_list import TaskIDList
 from ....types.cloud.tag_update_map_param import TagUpdateMapParam
-from ....types.cloud.baremetal.baremetal_server import BaremetalServer
+from ....types.cloud.baremetal_regional.baremetal_regional_server import BaremetalRegionalServer
 
 __all__ = ["ServersResource", "AsyncServersResource"]
 
@@ -220,7 +219,7 @@ class ServersResource(ServersResourceCustomMixin, SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> BaremetalServer:
+    ) -> BaremetalRegionalServer:
         """
         Use
         [PATCH /v1/projects/{`project_id`}/baremetal/servers/{`server_id`}](#operation/GlobalBaremetalDetailView.patch)
@@ -291,7 +290,7 @@ class ServersResource(ServersResourceCustomMixin, SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BaremetalServer,
+            cast_to=BaremetalRegionalServer,
         )
 
     def list(
@@ -330,7 +329,7 @@ class ServersResource(ServersResourceCustomMixin, SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncOffsetPage[BaremetalServer]:
+    ) -> SyncOffsetPage[BaremetalRegionalServer]:
         """
         Use
         [GET /v1/projects/{`project_id`}/baremetal/servers](#operation/GlobalBaremetalListView.get)
@@ -412,7 +411,7 @@ class ServersResource(ServersResourceCustomMixin, SyncAPIResource):
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
             path_template("/cloud/v1/bminstances/{project_id}/{region_id}", project_id=project_id, region_id=region_id),
-            page=SyncOffsetPage[BaremetalServer],
+            page=SyncOffsetPage[BaremetalRegionalServer],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -445,7 +444,7 @@ class ServersResource(ServersResourceCustomMixin, SyncAPIResource):
                     server_list_params.ServerListParams,
                 ),
             ),
-            model=BaremetalServer,
+            model=BaremetalRegionalServer,
         )
 
     def delete(
@@ -678,7 +677,7 @@ class ServersResource(ServersResourceCustomMixin, SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> BaremetalServer:
+    ) -> BaremetalRegionalServer:
         """
         Use
         [GET /v1/projects/{`project_id`}/baremetal/servers/{`server_id`}](#operation/GlobalBaremetalDetailView.get)
@@ -720,72 +719,7 @@ class ServersResource(ServersResourceCustomMixin, SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BaremetalServer,
-        )
-
-    def rebuild(
-        self,
-        server_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        image_id: str | Omit = omit,
-        user_data: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TaskIDList:
-        """
-        Rebuild a bare metal server with a new image while preserving its configuration.
-
-        Args:
-          project_id: Project ID
-
-          region_id: Region ID
-
-          server_id: Server ID
-
-          image_id: Image ID
-
-          user_data: String in base64 format. Must not be passed together with 'username' or
-              'password'. Examples of the `user_data`:
-              https://cloudinit.readthedocs.io/en/latest/topics/examples.html
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if project_id is None:
-            project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
-        if not server_id:
-            raise ValueError(f"Expected a non-empty value for `server_id` but received {server_id!r}")
-        return self._post(
-            path_template(
-                "/cloud/v1/bminstances/{project_id}/{region_id}/{server_id}/rebuild",
-                project_id=project_id,
-                region_id=region_id,
-                server_id=server_id,
-            ),
-            body=maybe_transform(
-                {
-                    "image_id": image_id,
-                    "user_data": user_data,
-                },
-                server_rebuild_params.ServerRebuildParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=TaskIDList,
+            cast_to=BaremetalRegionalServer,
         )
 
 
@@ -973,7 +907,7 @@ class AsyncServersResource(AsyncServersResourceCustomMixin, AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> BaremetalServer:
+    ) -> BaremetalRegionalServer:
         """
         Use
         [PATCH /v1/projects/{`project_id`}/baremetal/servers/{`server_id`}](#operation/GlobalBaremetalDetailView.patch)
@@ -1044,7 +978,7 @@ class AsyncServersResource(AsyncServersResourceCustomMixin, AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BaremetalServer,
+            cast_to=BaremetalRegionalServer,
         )
 
     def list(
@@ -1083,7 +1017,7 @@ class AsyncServersResource(AsyncServersResourceCustomMixin, AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[BaremetalServer, AsyncOffsetPage[BaremetalServer]]:
+    ) -> AsyncPaginator[BaremetalRegionalServer, AsyncOffsetPage[BaremetalRegionalServer]]:
         """
         Use
         [GET /v1/projects/{`project_id`}/baremetal/servers](#operation/GlobalBaremetalListView.get)
@@ -1165,7 +1099,7 @@ class AsyncServersResource(AsyncServersResourceCustomMixin, AsyncAPIResource):
             region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
             path_template("/cloud/v1/bminstances/{project_id}/{region_id}", project_id=project_id, region_id=region_id),
-            page=AsyncOffsetPage[BaremetalServer],
+            page=AsyncOffsetPage[BaremetalRegionalServer],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1198,7 +1132,7 @@ class AsyncServersResource(AsyncServersResourceCustomMixin, AsyncAPIResource):
                     server_list_params.ServerListParams,
                 ),
             ),
-            model=BaremetalServer,
+            model=BaremetalRegionalServer,
         )
 
     async def delete(
@@ -1431,7 +1365,7 @@ class AsyncServersResource(AsyncServersResourceCustomMixin, AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> BaremetalServer:
+    ) -> BaremetalRegionalServer:
         """
         Use
         [GET /v1/projects/{`project_id`}/baremetal/servers/{`server_id`}](#operation/GlobalBaremetalDetailView.get)
@@ -1473,72 +1407,7 @@ class AsyncServersResource(AsyncServersResourceCustomMixin, AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BaremetalServer,
-        )
-
-    async def rebuild(
-        self,
-        server_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        image_id: str | Omit = omit,
-        user_data: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TaskIDList:
-        """
-        Rebuild a bare metal server with a new image while preserving its configuration.
-
-        Args:
-          project_id: Project ID
-
-          region_id: Region ID
-
-          server_id: Server ID
-
-          image_id: Image ID
-
-          user_data: String in base64 format. Must not be passed together with 'username' or
-              'password'. Examples of the `user_data`:
-              https://cloudinit.readthedocs.io/en/latest/topics/examples.html
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if project_id is None:
-            project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
-        if not server_id:
-            raise ValueError(f"Expected a non-empty value for `server_id` but received {server_id!r}")
-        return await self._post(
-            path_template(
-                "/cloud/v1/bminstances/{project_id}/{region_id}/{server_id}/rebuild",
-                project_id=project_id,
-                region_id=region_id,
-                server_id=server_id,
-            ),
-            body=await async_maybe_transform(
-                {
-                    "image_id": image_id,
-                    "user_data": user_data,
-                },
-                server_rebuild_params.ServerRebuildParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=TaskIDList,
+            cast_to=BaremetalRegionalServer,
         )
 
 
@@ -1564,15 +1433,6 @@ class ServersResourceWithRawResponse:
         self.get = to_raw_response_wrapper(
             servers.get,
         )
-        self.rebuild = to_raw_response_wrapper(
-            servers.rebuild,
-        )
-        self.create_and_poll = to_raw_response_wrapper(
-            servers.create_and_poll,
-        )
-        self.rebuild_and_poll = to_raw_response_wrapper(
-            servers.rebuild_and_poll,
-        )
 
 
 class AsyncServersResourceWithRawResponse:
@@ -1596,15 +1456,6 @@ class AsyncServersResourceWithRawResponse:
         )
         self.get = async_to_raw_response_wrapper(
             servers.get,
-        )
-        self.rebuild = async_to_raw_response_wrapper(
-            servers.rebuild,
-        )
-        self.create_and_poll = async_to_raw_response_wrapper(
-            servers.create_and_poll,
-        )
-        self.rebuild_and_poll = async_to_raw_response_wrapper(
-            servers.rebuild_and_poll,
         )
 
 
@@ -1630,15 +1481,6 @@ class ServersResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             servers.get,
         )
-        self.rebuild = to_streamed_response_wrapper(
-            servers.rebuild,
-        )
-        self.create_and_poll = to_streamed_response_wrapper(
-            servers.create_and_poll,
-        )
-        self.rebuild_and_poll = to_streamed_response_wrapper(
-            servers.rebuild_and_poll,
-        )
 
 
 class AsyncServersResourceWithStreamingResponse:
@@ -1662,13 +1504,4 @@ class AsyncServersResourceWithStreamingResponse:
         )
         self.get = async_to_streamed_response_wrapper(
             servers.get,
-        )
-        self.rebuild = async_to_streamed_response_wrapper(
-            servers.rebuild,
-        )
-        self.create_and_poll = async_to_streamed_response_wrapper(
-            servers.create_and_poll,
-        )
-        self.rebuild_and_poll = async_to_streamed_response_wrapper(
-            servers.rebuild_and_poll,
         )
