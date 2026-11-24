@@ -33,7 +33,6 @@ from .registry_tag import RegistryTag as RegistryTag
 from .task_id_list import TaskIDList as TaskIDList
 from .usage_report import UsageReport as UsageReport
 from .fixed_address import FixedAddress as FixedAddress
-from .instance_list import InstanceList as InstanceList
 from .ip_assignment import IPAssignment as IPAssignment
 from .load_balancer import LoadBalancer as LoadBalancer
 from .member_status import MemberStatus as MemberStatus
@@ -52,12 +51,12 @@ from .lb_pool_protocol import LbPoolProtocol as LbPoolProtocol
 from .lifecycle_policy import LifecyclePolicy as LifecyclePolicy
 from .port_list_params import PortListParams as PortListParams
 from .task_list_params import TaskListParams as TaskListParams
+from .instance_regional import InstanceRegional as InstanceRegional
 from .network_interface import NetworkInterface as NetworkInterface
 from .region_get_params import RegionGetParams as RegionGetParams
 from .reserved_fixed_ip import ReservedFixedIP as ReservedFixedIP
 from .ddos_profile_field import DDOSProfileField as DDOSProfileField
 from .floating_ip_status import FloatingIPStatus as FloatingIPStatus
-from .instance_interface import InstanceInterface as InstanceInterface
 from .instance_isolation import InstanceIsolation as InstanceIsolation
 from .load_balancer_pool import LoadBalancerPool as LoadBalancerPool
 from .port_create_params import PortCreateParams as PortCreateParams
@@ -107,7 +106,7 @@ from .file_share_list_params import FileShareListParams as FileShareListParams
 from .instance_action_params import InstanceActionParams as InstanceActionParams
 from .instance_create_params import InstanceCreateParams as InstanceCreateParams
 from .instance_delete_params import InstanceDeleteParams as InstanceDeleteParams
-from .instance_resize_params import InstanceResizeParams as InstanceResizeParams
+from .instance_regional_list import InstanceRegionalList as InstanceRegionalList
 from .instance_update_params import InstanceUpdateParams as InstanceUpdateParams
 from .lb_health_monitor_type import LbHealthMonitorType as LbHealthMonitorType
 from .registry_create_params import RegistryCreateParams as RegistryCreateParams
@@ -121,6 +120,7 @@ from .ddos_profile_option_list import DDOSProfileOptionList as DDOSProfileOption
 from .file_share_create_params import FileShareCreateParams as FileShareCreateParams
 from .file_share_resize_params import FileShareResizeParams as FileShareResizeParams
 from .file_share_update_params import FileShareUpdateParams as FileShareUpdateParams
+from .instance_delete_response import InstanceDeleteResponse as InstanceDeleteResponse
 from .k8s_cluster_version_list import K8SClusterVersionList as K8SClusterVersionList
 from .k8s_list_versions_params import K8SListVersionsParams as K8SListVersionsParams
 from .load_balancer_get_params import LoadBalancerGetParams as LoadBalancerGetParams
@@ -140,7 +140,7 @@ from .load_balancer_metrics_list import LoadBalancerMetricsList as LoadBalancerM
 from .security_group_copy_params import SecurityGroupCopyParams as SecurityGroupCopyParams
 from .security_group_list_params import SecurityGroupListParams as SecurityGroupListParams
 from .ddos_profile_template_field import DDOSProfileTemplateField as DDOSProfileTemplateField
-from .instance_get_console_params import InstanceGetConsoleParams as InstanceGetConsoleParams
+from .instance_regional_interface import InstanceRegionalInterface as InstanceRegionalInterface
 from .laas_index_retention_policy import LaasIndexRetentionPolicy as LaasIndexRetentionPolicy
 from .lb_session_persistence_type import LbSessionPersistenceType as LbSessionPersistenceType
 from .load_balancer_create_params import LoadBalancerCreateParams as LoadBalancerCreateParams
@@ -164,6 +164,7 @@ from .volume_snapshot_create_params import VolumeSnapshotCreateParams as VolumeS
 from .volume_snapshot_update_params import VolumeSnapshotUpdateParams as VolumeSnapshotUpdateParams
 from .cost_report_aggregated_monthly import CostReportAggregatedMonthly as CostReportAggregatedMonthly
 from .inference_region_capacity_list import InferenceRegionCapacityList as InferenceRegionCapacityList
+from .instances_regional_list_params import InstancesRegionalListParams as InstancesRegionalListParams
 from .load_balancer_operating_status import LoadBalancerOperatingStatus as LoadBalancerOperatingStatus
 from .billing_reservation_list_params import BillingReservationListParams as BillingReservationListParams
 from .cost_report_get_detailed_params import CostReportGetDetailedParams as CostReportGetDetailedParams
@@ -173,26 +174,25 @@ from .snapshot_schedule_create_params import SnapshotScheduleCreateParams as Sna
 from .snapshot_schedule_list_response import SnapshotScheduleListResponse as SnapshotScheduleListResponse
 from .snapshot_schedule_update_params import SnapshotScheduleUpdateParams as SnapshotScheduleUpdateParams
 from .cost_report_get_breakdown_params import CostReportGetBreakdownParams as CostReportGetBreakdownParams
+from .instances_regional_action_params import InstancesRegionalActionParams as InstancesRegionalActionParams
+from .instances_regional_create_params import InstancesRegionalCreateParams as InstancesRegionalCreateParams
+from .instances_regional_delete_params import InstancesRegionalDeleteParams as InstancesRegionalDeleteParams
+from .instances_regional_resize_params import InstancesRegionalResizeParams as InstancesRegionalResizeParams
+from .instances_regional_update_params import InstancesRegionalUpdateParams as InstancesRegionalUpdateParams
 from .volume_attach_to_instance_params import VolumeAttachToInstanceParams as VolumeAttachToInstanceParams
 from .laas_index_retention_policy_param import LaasIndexRetentionPolicyParam as LaasIndexRetentionPolicyParam
 from .load_balancer_member_connectivity import LoadBalancerMemberConnectivity as LoadBalancerMemberConnectivity
 from .volume_detach_from_instance_params import VolumeDetachFromInstanceParams as VolumeDetachFromInstanceParams
 from .secret_upload_tls_certificate_params import SecretUploadTlsCertificateParams as SecretUploadTlsCertificateParams
 from .snapshot_schedule_add_volumes_params import SnapshotScheduleAddVolumesParams as SnapshotScheduleAddVolumesParams
-from .instance_assign_security_group_params import (
-    InstanceAssignSecurityGroupParams as InstanceAssignSecurityGroupParams,
-)
-from .instance_add_to_placement_group_params import (
-    InstanceAddToPlacementGroupParams as InstanceAddToPlacementGroupParams,
+from .instances_regional_get_console_params import (
+    InstancesRegionalGetConsoleParams as InstancesRegionalGetConsoleParams,
 )
 from .snapshot_schedule_add_schedules_params import (
     SnapshotScheduleAddSchedulesParams as SnapshotScheduleAddSchedulesParams,
 )
 from .inference_get_capacity_by_region_params import (
     InferenceGetCapacityByRegionParams as InferenceGetCapacityByRegionParams,
-)
-from .instance_unassign_security_group_params import (
-    InstanceUnassignSecurityGroupParams as InstanceUnassignSecurityGroupParams,
 )
 from .snapshot_schedule_remove_volumes_params import (
     SnapshotScheduleRemoveVolumesParams as SnapshotScheduleRemoveVolumesParams,
@@ -208,4 +208,13 @@ from .snapshot_schedule_estimate_max_usage_params import (
 )
 from .snapshot_schedule_estimate_max_usage_response import (
     SnapshotScheduleEstimateMaxUsageResponse as SnapshotScheduleEstimateMaxUsageResponse,
+)
+from .instances_regional_assign_security_group_params import (
+    InstancesRegionalAssignSecurityGroupParams as InstancesRegionalAssignSecurityGroupParams,
+)
+from .instances_regional_add_to_placement_group_params import (
+    InstancesRegionalAddToPlacementGroupParams as InstancesRegionalAddToPlacementGroupParams,
+)
+from .instances_regional_unassign_security_group_params import (
+    InstancesRegionalUnassignSecurityGroupParams as InstancesRegionalUnassignSecurityGroupParams,
 )

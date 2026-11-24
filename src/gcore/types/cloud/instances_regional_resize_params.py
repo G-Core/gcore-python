@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["InstanceResizeParams"]
+__all__ = ["InstancesRegionalResizeParams"]
 
 
-class InstanceResizeParams(TypedDict, total=False):
+class InstancesRegionalResizeParams(TypedDict, total=False):
     project_id: int
     """Project ID"""
 

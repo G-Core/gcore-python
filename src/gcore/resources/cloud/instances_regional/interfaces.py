@@ -18,11 +18,12 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ....pagination import SyncOffsetPage, AsyncOffsetPage
+from ....types.cloud import InterfaceIPFamily
 from ...._base_client import AsyncPaginator, make_request_options
 from .interfaces_custom import InterfacesResourceCustomMixin, AsyncInterfacesResourceCustomMixin
-from ....types.cloud.instances import interface_list_params, interface_attach_params, interface_detach_params
 from ....types.cloud.task_id_list import TaskIDList
 from ....types.cloud.network_interface import NetworkInterface
+from ....types.cloud.instances_regional import interface_list_params, interface_attach_params, interface_detach_params
 from ....types.cloud.interface_ip_family import InterfaceIPFamily
 
 __all__ = ["InterfacesResource", "AsyncInterfacesResource"]

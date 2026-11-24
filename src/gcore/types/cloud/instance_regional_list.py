@@ -2,15 +2,15 @@
 
 from typing import List
 
-from .instance import Instance
 from ..._models import BaseModel
+from .instance_regional import InstanceRegional
 
-__all__ = ["InstanceList"]
+__all__ = ["InstanceRegionalList"]
 
 
-class InstanceList(BaseModel):
+class InstanceRegionalList(BaseModel):
     count: int
     """Number of objects"""
 
-    results: List[Instance]
+    results: List[InstanceRegional]
     """Objects"""

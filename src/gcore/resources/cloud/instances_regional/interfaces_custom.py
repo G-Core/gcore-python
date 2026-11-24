@@ -12,8 +12,8 @@ import httpx
 from ...._types import NOT_GIVEN, Body, Omit, Query, Headers, NotGiven, omit
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._base_client import make_request_options
-from ....types.cloud.instances import interface_attach_params
 from ....types.cloud.task_id_list import TaskIDList
+from ....types.cloud.instances_regional import interface_attach_params
 
 if TYPE_CHECKING:
     from ...._client import Gcore, AsyncGcore

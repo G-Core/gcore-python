@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["InstanceAddToPlacementGroupParams"]
+__all__ = ["InstancesRegionalAddToPlacementGroupParams"]
 
 
-class InstanceAddToPlacementGroupParams(TypedDict, total=False):
+class InstancesRegionalAddToPlacementGroupParams(TypedDict, total=False):
     project_id: int
     """Project ID"""
 

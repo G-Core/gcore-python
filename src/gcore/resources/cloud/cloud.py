@@ -244,6 +244,14 @@ from .security_groups.security_groups import (
     SecurityGroupsResourceWithStreamingResponse,
     AsyncSecurityGroupsResourceWithStreamingResponse,
 )
+from .instances_regional.instances_regional import (
+    InstancesRegionalResource,
+    AsyncInstancesRegionalResource,
+    InstancesRegionalResourceWithRawResponse,
+    AsyncInstancesRegionalResourceWithRawResponse,
+    InstancesRegionalResourceWithStreamingResponse,
+    AsyncInstancesRegionalResourceWithStreamingResponse,
+)
 from .reserved_fixed_ips.reserved_fixed_ips import (
     ReservedFixedIPsResource,
     AsyncReservedFixedIPsResource,
@@ -395,9 +403,16 @@ class CloudResource(SyncAPIResource):
     @cached_property
     def instances(self) -> InstancesResource:
         """
-        Instances are cloud virtual machines with configurable CPU, memory, storage, and networking, supporting various operating systems and workloads.
+        Instances are cloud virtual machines that boot from a volume and connect to networks through ports, in any region of the project.
         """
         return InstancesResource(self._client)
+
+    @cached_property
+    def instances_regional(self) -> InstancesRegionalResource:
+        """
+        Instances are cloud virtual machines with configurable CPU, memory, storage, and networking, supporting various operating systems and workloads.
+        """
+        return InstancesRegionalResource(self._client)
 
     @cached_property
     def k8s(self) -> K8SResource:
@@ -589,9 +604,16 @@ class AsyncCloudResource(AsyncAPIResource):
     @cached_property
     def instances(self) -> AsyncInstancesResource:
         """
-        Instances are cloud virtual machines with configurable CPU, memory, storage, and networking, supporting various operating systems and workloads.
+        Instances are cloud virtual machines that boot from a volume and connect to networks through ports, in any region of the project.
         """
         return AsyncInstancesResource(self._client)
+
+    @cached_property
+    def instances_regional(self) -> AsyncInstancesRegionalResource:
+        """
+        Instances are cloud virtual machines with configurable CPU, memory, storage, and networking, supporting various operating systems and workloads.
+        """
+        return AsyncInstancesRegionalResource(self._client)
 
     @cached_property
     def k8s(self) -> AsyncK8SResource:
@@ -786,9 +808,16 @@ class CloudResourceWithRawResponse:
     @cached_property
     def instances(self) -> InstancesResourceWithRawResponse:
         """
-        Instances are cloud virtual machines with configurable CPU, memory, storage, and networking, supporting various operating systems and workloads.
+        Instances are cloud virtual machines that boot from a volume and connect to networks through ports, in any region of the project.
         """
         return InstancesResourceWithRawResponse(self._cloud.instances)
+
+    @cached_property
+    def instances_regional(self) -> InstancesRegionalResourceWithRawResponse:
+        """
+        Instances are cloud virtual machines with configurable CPU, memory, storage, and networking, supporting various operating systems and workloads.
+        """
+        return InstancesRegionalResourceWithRawResponse(self._cloud.instances_regional)
 
     @cached_property
     def k8s(self) -> K8SResourceWithRawResponse:
@@ -964,9 +993,16 @@ class AsyncCloudResourceWithRawResponse:
     @cached_property
     def instances(self) -> AsyncInstancesResourceWithRawResponse:
         """
-        Instances are cloud virtual machines with configurable CPU, memory, storage, and networking, supporting various operating systems and workloads.
+        Instances are cloud virtual machines that boot from a volume and connect to networks through ports, in any region of the project.
         """
         return AsyncInstancesResourceWithRawResponse(self._cloud.instances)
+
+    @cached_property
+    def instances_regional(self) -> AsyncInstancesRegionalResourceWithRawResponse:
+        """
+        Instances are cloud virtual machines with configurable CPU, memory, storage, and networking, supporting various operating systems and workloads.
+        """
+        return AsyncInstancesRegionalResourceWithRawResponse(self._cloud.instances_regional)
 
     @cached_property
     def k8s(self) -> AsyncK8SResourceWithRawResponse:
@@ -1142,9 +1178,16 @@ class CloudResourceWithStreamingResponse:
     @cached_property
     def instances(self) -> InstancesResourceWithStreamingResponse:
         """
-        Instances are cloud virtual machines with configurable CPU, memory, storage, and networking, supporting various operating systems and workloads.
+        Instances are cloud virtual machines that boot from a volume and connect to networks through ports, in any region of the project.
         """
         return InstancesResourceWithStreamingResponse(self._cloud.instances)
+
+    @cached_property
+    def instances_regional(self) -> InstancesRegionalResourceWithStreamingResponse:
+        """
+        Instances are cloud virtual machines with configurable CPU, memory, storage, and networking, supporting various operating systems and workloads.
+        """
+        return InstancesRegionalResourceWithStreamingResponse(self._cloud.instances_regional)
 
     @cached_property
     def k8s(self) -> K8SResourceWithStreamingResponse:
@@ -1320,9 +1363,16 @@ class AsyncCloudResourceWithStreamingResponse:
     @cached_property
     def instances(self) -> AsyncInstancesResourceWithStreamingResponse:
         """
-        Instances are cloud virtual machines with configurable CPU, memory, storage, and networking, supporting various operating systems and workloads.
+        Instances are cloud virtual machines that boot from a volume and connect to networks through ports, in any region of the project.
         """
         return AsyncInstancesResourceWithStreamingResponse(self._cloud.instances)
+
+    @cached_property
+    def instances_regional(self) -> AsyncInstancesRegionalResourceWithStreamingResponse:
+        """
+        Instances are cloud virtual machines with configurable CPU, memory, storage, and networking, supporting various operating systems and workloads.
+        """
+        return AsyncInstancesRegionalResourceWithStreamingResponse(self._cloud.instances_regional)
 
     @cached_property
     def k8s(self) -> AsyncK8SResourceWithStreamingResponse:

@@ -8,10 +8,10 @@ from .ip_assignment import IPAssignment
 from .network_details import NetworkDetails
 from .allowed_address_pairs import AllowedAddressPairs
 
-__all__ = ["InstanceInterface"]
+__all__ = ["InstanceRegionalInterface"]
 
 
-class InstanceInterface(BaseModel):
+class InstanceRegionalInterface(BaseModel):
     allowed_address_pairs: List[AllowedAddressPairs]
     """Group of subnet masks and/or IP addresses that share the current IP as VIP"""
 

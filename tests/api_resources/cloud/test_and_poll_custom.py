@@ -7,6 +7,7 @@
 # `scripts/test`) without needing the Prism/Steady mock server.
 from __future__ import annotations
 
+import re
 import json
 import contextlib
 from typing import Any, Callable
@@ -15,7 +16,7 @@ import httpx
 import respx
 import pytest
 
-from gcore import Gcore, AsyncGcore
+from gcore import Gcore, AsyncGcore, NotFoundError
 
 # respx intercepts the transport, so the host is irrelevant.
 base_url = "http://127.0.0.1:4010"
@@ -282,29 +283,15 @@ AND_POLL_CASES: list[tuple[str, Callable[[Any], Any]]] = [
     ),
     (
         "cloud.instances.action_and_poll",
-        lambda c: c.cloud.instances.action_and_poll("test", project_id=1, region_id=1, action="reboot"),
-    ),
-    (
-        "cloud.instances.action_and_poll",
-        lambda c: c.cloud.instances.action_and_poll("test", project_id=1, region_id=1, action="start"),
-    ),
-    (
-        "cloud.instances.action_and_poll",
-        lambda c: c.cloud.instances.action_and_poll("test", project_id=1, region_id=1, action="start"),
-    ),
-    (
-        "cloud.instances.add_to_placement_group_and_poll",
-        lambda c: c.cloud.instances.add_to_placement_group_and_poll(
-            "test", project_id=1, region_id=1, servergroup_id="test"
-        ),
+        lambda c: c.cloud.instances.action_and_poll("test", project_id=1, action="reboot"),
     ),
     (
         "cloud.instances.create_and_poll",
         lambda c: c.cloud.instances.create_and_poll(
-            project_id=1, region_id=1, flavor="test", interfaces=[], volumes=[]
+            project_id=1, region_id=1, boot_volume_id="test", flavor_name="test", interfaces=[]
         ),
     ),
-    ("cloud.instances.delete_and_poll", lambda c: c.cloud.instances.delete_and_poll("test", project_id=1, region_id=1)),
+    ("cloud.instances.delete_and_poll", lambda c: c.cloud.instances.delete_and_poll("test", project_id=1)),
     (
         "cloud.instances.images.create_from_volume_and_poll",
         lambda c: c.cloud.instances.images.create_from_volume_and_poll(
@@ -320,42 +307,77 @@ AND_POLL_CASES: list[tuple[str, Callable[[Any], Any]]] = [
         lambda c: c.cloud.instances.images.upload_and_poll(project_id=1, region_id=1, name="test", url="test"),
     ),
     (
-        "cloud.instances.interfaces.attach_and_poll",
-        lambda c: c.cloud.instances.interfaces.attach_and_poll("test", project_id=1, region_id=1),
+        "cloud.instances.rebuild_and_poll",
+        lambda c: c.cloud.instances.rebuild_and_poll("test", project_id=1, region_id=1),
+    ),
+    ("cloud.instances.update_and_poll", lambda c: c.cloud.instances.update_and_poll("test", project_id=1)),
+    (
+        "cloud.instances_regional.action_and_poll",
+        lambda c: c.cloud.instances_regional.action_and_poll("test", project_id=1, region_id=1, action="reboot"),
     ),
     (
-        "cloud.instances.interfaces.attach_and_poll",
-        lambda c: c.cloud.instances.interfaces.attach_and_poll("test", project_id=1, region_id=1),
+        "cloud.instances_regional.action_and_poll",
+        lambda c: c.cloud.instances_regional.action_and_poll("test", project_id=1, region_id=1, action="start"),
     ),
     (
-        "cloud.instances.interfaces.attach_and_poll",
-        lambda c: c.cloud.instances.interfaces.attach_and_poll("test", project_id=1, region_id=1, network_id="test"),
+        "cloud.instances_regional.action_and_poll",
+        lambda c: c.cloud.instances_regional.action_and_poll("test", project_id=1, region_id=1, action="start"),
     ),
     (
-        "cloud.instances.interfaces.attach_and_poll",
-        lambda c: c.cloud.instances.interfaces.attach_and_poll("test", project_id=1, region_id=1, port_id="test"),
+        "cloud.instances_regional.add_to_placement_group_and_poll",
+        lambda c: c.cloud.instances_regional.add_to_placement_group_and_poll(
+            "test", project_id=1, region_id=1, servergroup_id="test"
+        ),
     ),
     (
-        "cloud.instances.interfaces.attach_and_poll",
-        lambda c: c.cloud.instances.interfaces.attach_and_poll("test", project_id=1, region_id=1, subnet_id="test"),
+        "cloud.instances_regional.create_and_poll",
+        lambda c: c.cloud.instances_regional.create_and_poll(
+            project_id=1, region_id=1, flavor="test", interfaces=[], volumes=[]
+        ),
     ),
     (
-        "cloud.instances.interfaces.detach_and_poll",
-        lambda c: c.cloud.instances.interfaces.detach_and_poll(
+        "cloud.instances_regional.delete_and_poll",
+        lambda c: c.cloud.instances_regional.delete_and_poll("test", project_id=1, region_id=1),
+    ),
+    (
+        "cloud.instances_regional.interfaces.attach_and_poll",
+        lambda c: c.cloud.instances_regional.interfaces.attach_and_poll("test", project_id=1, region_id=1),
+    ),
+    (
+        "cloud.instances_regional.interfaces.attach_and_poll",
+        lambda c: c.cloud.instances_regional.interfaces.attach_and_poll("test", project_id=1, region_id=1),
+    ),
+    (
+        "cloud.instances_regional.interfaces.attach_and_poll",
+        lambda c: c.cloud.instances_regional.interfaces.attach_and_poll(
+            "test", project_id=1, region_id=1, network_id="test"
+        ),
+    ),
+    (
+        "cloud.instances_regional.interfaces.attach_and_poll",
+        lambda c: c.cloud.instances_regional.interfaces.attach_and_poll(
+            "test", project_id=1, region_id=1, port_id="test"
+        ),
+    ),
+    (
+        "cloud.instances_regional.interfaces.attach_and_poll",
+        lambda c: c.cloud.instances_regional.interfaces.attach_and_poll(
+            "test", project_id=1, region_id=1, subnet_id="test"
+        ),
+    ),
+    (
+        "cloud.instances_regional.interfaces.detach_and_poll",
+        lambda c: c.cloud.instances_regional.interfaces.detach_and_poll(
             "test", project_id=1, region_id=1, ip_address="test", port_id="test"
         ),
     ),
     (
-        "cloud.instances.remove_from_placement_group_and_poll",
-        lambda c: c.cloud.instances.remove_from_placement_group_and_poll("test", project_id=1, region_id=1),
+        "cloud.instances_regional.remove_from_placement_group_and_poll",
+        lambda c: c.cloud.instances_regional.remove_from_placement_group_and_poll("test", project_id=1, region_id=1),
     ),
     (
-        "cloud.instances.rebuild_and_poll",
-        lambda c: c.cloud.instances.rebuild_and_poll("test", project_id=1, region_id=1),
-    ),
-    (
-        "cloud.instances.resize_and_poll",
-        lambda c: c.cloud.instances.resize_and_poll("test", project_id=1, region_id=1, flavor_id="test"),
+        "cloud.instances_regional.resize_and_poll",
+        lambda c: c.cloud.instances_regional.resize_and_poll("test", project_id=1, region_id=1, flavor_id="test"),
     ),
     (
         "cloud.k8s.clusters.create_and_poll",
@@ -671,7 +693,7 @@ async def test_and_poll_async(case_id: str, invoke: Callable[[Any], Any]) -> Non
 
 def test_and_poll_case_count() -> None:
     # Canary: if codegen adds/removes an *_and_poll method, keep the table in sync.
-    assert len(AND_POLL_CASES) == 114
+    assert len(AND_POLL_CASES) == 118
 
 
 def test_create_and_poll_requires_task() -> None:
@@ -842,14 +864,17 @@ _PORT_TASK_REQUIRED_IDS = [case[0] for case in _PORT_TASK_REQUIRED_CASES]
 _FAILED_TASK: dict[str, Any] = dict(_TASK, state="ERROR", error="boom")
 
 
-def _port_handler(action_tasks: list[str], task: dict[str, Any] = _TASK) -> Callable[[httpx.Request], httpx.Response]:
+def _resource_handler(
+    action_tasks: list[str], task: dict[str, Any] = _TASK
+) -> Callable[[httpx.Request], httpx.Response]:
     def handler(request: httpx.Request) -> httpx.Response:
         path = request.url.path
         if request.method == "GET" and "/tasks/" in path:
             return httpx.Response(200, json=task)
         if request.method == "GET":
-            # return the port that the request asks for, so a test can check which port the helper returns
-            return httpx.Response(200, json={"id": path.rsplit("/", 1)[-1]})
+            # return the resource that the request asks for, so a test can check which resource the helper returns.
+            # The status of a running instance ends the wait of the instance helpers; other resources ignore it
+            return httpx.Response(200, json={"id": path.rsplit("/", 1)[-1], "status": "active"})
         return httpx.Response(200, json={"tasks": action_tasks})
 
     return handler
@@ -865,7 +890,7 @@ def _task_polls(router: respx.MockRouter) -> list[httpx.Request]:
 def test_port_and_poll_raises_on_failed_task(invoke: Callable[[Any], Any]) -> None:
     client = Gcore(base_url=base_url, api_key="test", _strict_response_validation=False)
     with respx.mock(base_url=base_url) as router:
-        router.route(url__regex=r".+").mock(side_effect=_port_handler(["task-1"], _FAILED_TASK))
+        router.route(url__regex=r".+").mock(side_effect=_resource_handler(["task-1"], _FAILED_TASK))
         with pytest.raises(ValueError, match="boom"):
             invoke(client)
 
@@ -874,7 +899,7 @@ def test_port_and_poll_raises_on_failed_task(invoke: Callable[[Any], Any]) -> No
 async def test_port_and_poll_raises_on_failed_task_async(invoke: Callable[[Any], Any]) -> None:
     client = AsyncGcore(base_url=base_url, api_key="test", _strict_response_validation=False)
     with respx.mock(base_url=base_url) as router:
-        router.route(url__regex=r".+").mock(side_effect=_port_handler(["task-1"], _FAILED_TASK))
+        router.route(url__regex=r".+").mock(side_effect=_resource_handler(["task-1"], _FAILED_TASK))
         with pytest.raises(ValueError, match="boom"):
             await invoke(client)
 
@@ -883,7 +908,7 @@ async def test_port_and_poll_raises_on_failed_task_async(invoke: Callable[[Any],
 def test_port_and_poll_raises_without_task(invoke: Callable[[Any], Any]) -> None:
     client = Gcore(base_url=base_url, api_key="test", _strict_response_validation=False)
     with respx.mock(base_url=base_url) as router:
-        router.route(url__regex=r".+").mock(side_effect=_port_handler([]))
+        router.route(url__regex=r".+").mock(side_effect=_resource_handler([]))
         with pytest.raises(ValueError, match="Expected at least one task"):
             invoke(client)
 
@@ -892,7 +917,7 @@ def test_port_and_poll_raises_without_task(invoke: Callable[[Any], Any]) -> None
 async def test_port_and_poll_raises_without_task_async(invoke: Callable[[Any], Any]) -> None:
     client = AsyncGcore(base_url=base_url, api_key="test", _strict_response_validation=False)
     with respx.mock(base_url=base_url) as router:
-        router.route(url__regex=r".+").mock(side_effect=_port_handler([]))
+        router.route(url__regex=r".+").mock(side_effect=_resource_handler([]))
         with pytest.raises(ValueError, match="Expected at least one task"):
             await invoke(client)
 
@@ -901,7 +926,7 @@ async def test_port_and_poll_raises_without_task_async(invoke: Callable[[Any], A
 def test_port_and_poll_does_not_poll_without_task(invoke: Callable[[Any], Any]) -> None:
     client = Gcore(base_url=base_url, api_key="test", _strict_response_validation=False)
     with respx.mock(base_url=base_url) as router:
-        router.route(url__regex=r".+").mock(side_effect=_port_handler([]))
+        router.route(url__regex=r".+").mock(side_effect=_resource_handler([]))
         # convert, create and delete raise here; the test checks only that no helper waits
         with contextlib.suppress(ValueError):
             invoke(client)
@@ -912,7 +937,7 @@ def test_port_and_poll_does_not_poll_without_task(invoke: Callable[[Any], Any]) 
 async def test_port_and_poll_does_not_poll_without_task_async(invoke: Callable[[Any], Any]) -> None:
     client = AsyncGcore(base_url=base_url, api_key="test", _strict_response_validation=False)
     with respx.mock(base_url=base_url) as router:
-        router.route(url__regex=r".+").mock(side_effect=_port_handler([]))
+        router.route(url__regex=r".+").mock(side_effect=_resource_handler([]))
         # convert, create and delete raise here; the test checks only that no helper waits
         with contextlib.suppress(ValueError):
             await invoke(client)
@@ -922,7 +947,7 @@ async def test_port_and_poll_does_not_poll_without_task_async(invoke: Callable[[
 def test_port_update_and_poll_without_task_returns_port() -> None:
     client = Gcore(base_url=base_url, api_key="test", _strict_response_validation=False)
     with respx.mock(base_url=base_url) as router:
-        router.route(url__regex=r".+").mock(side_effect=_port_handler([]))
+        router.route(url__regex=r".+").mock(side_effect=_resource_handler([]))
         port = client.cloud.ports.update_and_poll("port-1", project_id=1)
     assert port.id == "port-1"
 
@@ -930,38 +955,261 @@ def test_port_update_and_poll_without_task_returns_port() -> None:
 async def test_port_update_and_poll_without_task_returns_port_async() -> None:
     client = AsyncGcore(base_url=base_url, api_key="test", _strict_response_validation=False)
     with respx.mock(base_url=base_url) as router:
-        router.route(url__regex=r".+").mock(side_effect=_port_handler([]))
+        router.route(url__regex=r".+").mock(side_effect=_resource_handler([]))
         port = await client.cloud.ports.update_and_poll("port-1", project_id=1)
     assert port.id == "port-1"
+
+
+# the task-based helpers of both instance clients; the regional client has no update helper
+_INSTANCE_CASE_IDS = {
+    "cloud.instances.action_and_poll",
+    "cloud.instances.create_and_poll",
+    "cloud.instances.delete_and_poll",
+    "cloud.instances.update_and_poll",
+    "cloud.instances_regional.action_and_poll",
+    "cloud.instances_regional.create_and_poll",
+    "cloud.instances_regional.delete_and_poll",
+}
+_INSTANCE_CASES = [case for case in AND_POLL_CASES if case[0] in _INSTANCE_CASE_IDS]
+_INSTANCE_INVOKES = [case[1] for case in _INSTANCE_CASES]
+_INSTANCE_IDS = [case[0] for case in _INSTANCE_CASES]
+
+# update reads an empty task list as "nothing changed", so only create, action and delete must raise
+_INSTANCE_TASK_REQUIRED_CASES = [case for case in _INSTANCE_CASES if case[0] != "cloud.instances.update_and_poll"]
+_INSTANCE_TASK_REQUIRED_INVOKES = [case[1] for case in _INSTANCE_TASK_REQUIRED_CASES]
+_INSTANCE_TASK_REQUIRED_IDS = [case[0] for case in _INSTANCE_TASK_REQUIRED_CASES]
+
+# the legacy create helper of the regional client expects exactly one task
+_NO_TASK_ERROR = "Expected (at least|exactly) one task"
+
+# every request of a helper, except the task poll, must use the routes of its own client;
+# the legacy routes of the regional client are a mix of v1 and v2
+_GLOBAL_INSTANCE_ROUTE = r"/cloud/v1/projects/1/instances(/|$)"
+_REGIONAL_INSTANCE_ROUTE = r"/cloud/v[12]/instances/1/1(/|$)"
+
+_CREATED_INSTANCE_PATH = f"/cloud/v1/projects/1/instances/{CREATED_ID}"
+
+_INSTANCE_DELETE_RESPONSE: dict[str, Any] = {
+    "tasks": ["task-delete"],
+    "resources_to_delete": [
+        {"id": "instance-1", "name": "instance-1", "type": "instances"},
+        {"id": "volume-1", "name": None, "type": "volumes"},
+    ],
+    "resources_to_preserve": [{"id": "port-1", "name": "port-1", "type": "ports"}],
+}
+
+
+def _instance_route(case_id: str) -> str:
+    return _GLOBAL_INSTANCE_ROUTE if case_id.startswith("cloud.instances.") else _REGIONAL_INSTANCE_ROUTE
+
+
+def _resource_paths(router: respx.MockRouter, method: str | None = None) -> list[str]:
+    # respx leaves `calls` untyped.
+    calls: Any = router.calls
+    return [
+        call.request.url.path
+        for call in calls
+        if "/tasks/" not in call.request.url.path and method in (None, call.request.method)
+    ]
+
+
+def _create_instance(client: Any, **polling: int) -> Any:
+    return client.cloud.instances.create_and_poll(
+        project_id=1, region_id=1, boot_volume_id="volume-1", flavor_name="flavor-1", interfaces=[], **polling
+    )
+
+
+@pytest.mark.parametrize("invoke", _INSTANCE_INVOKES, ids=_INSTANCE_IDS)
+def test_instance_and_poll_raises_on_failed_task(invoke: Callable[[Any], Any]) -> None:
+    client = Gcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_resource_handler(["task-1"], _FAILED_TASK))
+        with pytest.raises(ValueError, match="boom"):
+            invoke(client)
+
+
+@pytest.mark.parametrize("invoke", _INSTANCE_INVOKES, ids=_INSTANCE_IDS)
+async def test_instance_and_poll_raises_on_failed_task_async(invoke: Callable[[Any], Any]) -> None:
+    client = AsyncGcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_resource_handler(["task-1"], _FAILED_TASK))
+        with pytest.raises(ValueError, match="boom"):
+            await invoke(client)
+
+
+@pytest.mark.parametrize("invoke", _INSTANCE_TASK_REQUIRED_INVOKES, ids=_INSTANCE_TASK_REQUIRED_IDS)
+def test_instance_and_poll_raises_without_task(invoke: Callable[[Any], Any]) -> None:
+    client = Gcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_resource_handler([]))
+        with pytest.raises(ValueError, match=_NO_TASK_ERROR):
+            invoke(client)
+
+
+@pytest.mark.parametrize("invoke", _INSTANCE_TASK_REQUIRED_INVOKES, ids=_INSTANCE_TASK_REQUIRED_IDS)
+async def test_instance_and_poll_raises_without_task_async(invoke: Callable[[Any], Any]) -> None:
+    client = AsyncGcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_resource_handler([]))
+        with pytest.raises(ValueError, match=_NO_TASK_ERROR):
+            await invoke(client)
+
+
+@pytest.mark.parametrize("invoke", _INSTANCE_INVOKES, ids=_INSTANCE_IDS)
+def test_instance_and_poll_does_not_poll_without_task(invoke: Callable[[Any], Any]) -> None:
+    client = Gcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_resource_handler([]))
+        # create, action and delete raise here; the test checks only that no helper waits
+        with contextlib.suppress(ValueError):
+            invoke(client)
+        assert _task_polls(router) == []
+
+
+@pytest.mark.parametrize("invoke", _INSTANCE_INVOKES, ids=_INSTANCE_IDS)
+async def test_instance_and_poll_does_not_poll_without_task_async(invoke: Callable[[Any], Any]) -> None:
+    client = AsyncGcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_resource_handler([]))
+        # create, action and delete raise here; the test checks only that no helper waits
+        with contextlib.suppress(ValueError):
+            await invoke(client)
+        assert _task_polls(router) == []
+
+
+def test_instance_update_and_poll_without_task_returns_instance() -> None:
+    client = Gcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_resource_handler([]))
+        instance = client.cloud.instances.update_and_poll("instance-1", project_id=1)
+    assert instance.id == "instance-1"
+
+
+async def test_instance_update_and_poll_without_task_returns_instance_async() -> None:
+    client = AsyncGcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_resource_handler([]))
+        instance = await client.cloud.instances.update_and_poll("instance-1", project_id=1)
+    assert instance.id == "instance-1"
+
+
+@pytest.mark.parametrize(("case_id", "invoke"), _INSTANCE_CASES, ids=_INSTANCE_IDS)
+def test_instance_and_poll_uses_routes_of_its_client(case_id: str, invoke: Callable[[Any], Any]) -> None:
+    client = Gcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_resource_handler(["task-1"]))
+        invoke(client)
+        # the set is {True} only when the helper sent requests and all of them match
+        assert {bool(re.match(_instance_route(case_id), path)) for path in _resource_paths(router)} == {True}
+
+
+@pytest.mark.parametrize(("case_id", "invoke"), _INSTANCE_CASES, ids=_INSTANCE_IDS)
+async def test_instance_and_poll_uses_routes_of_its_client_async(case_id: str, invoke: Callable[[Any], Any]) -> None:
+    client = AsyncGcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_resource_handler(["task-1"]))
+        await invoke(client)
+        # the set is {True} only when the helper sent requests and all of them match
+        assert {bool(re.match(_instance_route(case_id), path)) for path in _resource_paths(router)} == {True}
+
+
+def test_instance_create_and_poll_returns_created_instance() -> None:
+    client = Gcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_resource_handler(["task-1"]))
+        instance = _create_instance(client)
+    assert instance.id == CREATED_ID
+
+
+async def test_instance_create_and_poll_returns_created_instance_async() -> None:
+    client = AsyncGcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_resource_handler(["task-1"]))
+        instance = await _create_instance(client)
+    assert instance.id == CREATED_ID
+
+
+def test_instance_create_and_poll_propagates_not_found() -> None:
+    client = Gcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        read = router.get(_CREATED_INSTANCE_PATH).mock(
+            side_effect=[httpx.Response(404, json={}), httpx.Response(200, json={"id": CREATED_ID})]
+        )
+        router.route(url__regex=r".+").mock(side_effect=_resource_handler(["task-1"]))
+        with pytest.raises(NotFoundError):
+            _create_instance(client)
+    assert read.call_count == 1
+
+
+async def test_instance_create_and_poll_propagates_not_found_async() -> None:
+    client = AsyncGcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        read = router.get(_CREATED_INSTANCE_PATH).mock(
+            side_effect=[httpx.Response(404, json={}), httpx.Response(200, json={"id": CREATED_ID})]
+        )
+        router.route(url__regex=r".+").mock(side_effect=_resource_handler(["task-1"]))
+        with pytest.raises(NotFoundError):
+            await _create_instance(client)
+    assert read.call_count == 1
+
+
+def test_instance_delete_and_poll_polls_task_from_delete_response() -> None:
+    # strict validation checks that the full delete response parses
+    client = Gcore(base_url=base_url, api_key="test", _strict_response_validation=True)
+    with respx.mock(base_url=base_url) as router:
+        router.delete("/cloud/v1/projects/1/instances/instance-1").mock(
+            return_value=httpx.Response(200, json=_INSTANCE_DELETE_RESPONSE)
+        )
+        router.route(url__regex=r".+").mock(side_effect=_resource_handler([]))
+        client.cloud.instances.delete_and_poll("instance-1", project_id=1)
+        assert [request.url.path for request in _task_polls(router)] == ["/cloud/v1/tasks/task-delete"]
+
+
+async def test_instance_delete_and_poll_polls_task_from_delete_response_async() -> None:
+    # strict validation checks that the full delete response parses
+    client = AsyncGcore(base_url=base_url, api_key="test", _strict_response_validation=True)
+    with respx.mock(base_url=base_url) as router:
+        router.delete("/cloud/v1/projects/1/instances/instance-1").mock(
+            return_value=httpx.Response(200, json=_INSTANCE_DELETE_RESPONSE)
+        )
+        router.route(url__regex=r".+").mock(side_effect=_resource_handler([]))
+        await client.cloud.instances.delete_and_poll("instance-1", project_id=1)
+        assert [request.url.path for request in _task_polls(router)] == ["/cloud/v1/tasks/task-delete"]
+
+
+def test_instances_rebuild_and_poll_gets_instance_from_global_route() -> None:
+    client = Gcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_resource_handler(["task-1"]))
+        client.cloud.instances.rebuild_and_poll("instance-1", project_id=1, region_id=1)
+        assert _resource_paths(router, "GET") == ["/cloud/v1/projects/1/instances/instance-1"]
+
+
+async def test_instances_rebuild_and_poll_gets_instance_from_global_route_async() -> None:
+    client = AsyncGcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_resource_handler(["task-1"]))
+        await client.cloud.instances.rebuild_and_poll("instance-1", project_id=1, region_id=1)
+        assert _resource_paths(router, "GET") == ["/cloud/v1/projects/1/instances/instance-1"]
 
 
 # the client region (1) differs from the task region (76), so the path shows which one the helper uses
 _CONVERT_GET_PATH = f"/cloud/v1/floatingips/1/76/{CREATED_ID}"
 
 
-def _resource_gets(router: respx.MockRouter) -> list[str]:
-    # respx leaves `calls` untyped.
-    calls: Any = router.calls
-    return [
-        call.request.url.path
-        for call in calls
-        if call.request.method == "GET" and "/tasks/" not in call.request.url.path
-    ]
-
-
 def test_port_convert_and_poll_gets_floating_ip_in_task_region() -> None:
     client = Gcore(base_url=base_url, api_key="test", cloud_region_id=1, _strict_response_validation=False)
     with respx.mock(base_url=base_url) as router:
-        router.route(url__regex=r".+").mock(side_effect=_port_handler(["task-1"]))
+        router.route(url__regex=r".+").mock(side_effect=_resource_handler(["task-1"]))
         floating_ip = client.cloud.ports.convert_and_poll("port-1", project_id=1, target_type="floating_ip")
-        assert _resource_gets(router) == [_CONVERT_GET_PATH]
+        assert _resource_paths(router, "GET") == [_CONVERT_GET_PATH]
     assert floating_ip.id == CREATED_ID
 
 
 async def test_port_convert_and_poll_gets_floating_ip_in_task_region_async() -> None:
     client = AsyncGcore(base_url=base_url, api_key="test", cloud_region_id=1, _strict_response_validation=False)
     with respx.mock(base_url=base_url) as router:
-        router.route(url__regex=r".+").mock(side_effect=_port_handler(["task-1"]))
+        router.route(url__regex=r".+").mock(side_effect=_resource_handler(["task-1"]))
         floating_ip = await client.cloud.ports.convert_and_poll("port-1", project_id=1, target_type="floating_ip")
-        assert _resource_gets(router) == [_CONVERT_GET_PATH]
+        assert _resource_paths(router, "GET") == [_CONVERT_GET_PATH]
     assert floating_ip.id == CREATED_ID

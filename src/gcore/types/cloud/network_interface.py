@@ -7,8 +7,8 @@ from ..._models import BaseModel
 from .floating_ip import FloatingIP
 from .ip_assignment import IPAssignment
 from .network_details import NetworkDetails
-from .instance_interface import InstanceInterface
 from .allowed_address_pairs import AllowedAddressPairs
+from .instance_regional_interface import InstanceRegionalInterface
 
 __all__ = ["NetworkInterface", "InstanceInterfaceTrunkSerializer", "InstanceInterfaceTrunkSerializerSubPort"]
 
@@ -80,4 +80,4 @@ class InstanceInterfaceTrunkSerializer(BaseModel):
     """body of ports that are included into trunk port"""
 
 
-NetworkInterface: TypeAlias = Union[InstanceInterfaceTrunkSerializer, InstanceInterface]
+NetworkInterface: TypeAlias = Union[InstanceInterfaceTrunkSerializer, InstanceRegionalInterface]

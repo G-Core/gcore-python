@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Literal, TypedDict
 
-__all__ = ["InstanceGetConsoleParams"]
+__all__ = ["InstancesRegionalGetConsoleParams"]
 
 
-class InstanceGetConsoleParams(TypedDict, total=False):
+class InstancesRegionalGetConsoleParams(TypedDict, total=False):
     project_id: int
     """Project ID"""
 

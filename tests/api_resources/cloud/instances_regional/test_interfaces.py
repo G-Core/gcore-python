@@ -20,7 +20,7 @@ class TestInterfaces:
 
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
-        interface = client.cloud.instances.interfaces.list(
+        interface = client.cloud.instances_regional.interfaces.list(
             instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
             project_id=1,
             region_id=1,
@@ -29,7 +29,7 @@ class TestInterfaces:
 
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
-        interface = client.cloud.instances.interfaces.list(
+        interface = client.cloud.instances_regional.interfaces.list(
             instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
             project_id=1,
             region_id=1,
@@ -40,7 +40,7 @@ class TestInterfaces:
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
-        response = client.cloud.instances.interfaces.with_raw_response.list(
+        response = client.cloud.instances_regional.interfaces.with_raw_response.list(
             instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
             project_id=1,
             region_id=1,
@@ -53,7 +53,7 @@ class TestInterfaces:
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
-        with client.cloud.instances.interfaces.with_streaming_response.list(
+        with client.cloud.instances_regional.interfaces.with_streaming_response.list(
             instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
             project_id=1,
             region_id=1,
@@ -69,7 +69,7 @@ class TestInterfaces:
     @parametrize
     def test_path_params_list(self, client: Gcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
-            client.cloud.instances.interfaces.with_raw_response.list(
+            client.cloud.instances_regional.interfaces.with_raw_response.list(
                 instance_id="",
                 project_id=1,
                 region_id=1,
@@ -77,7 +77,7 @@ class TestInterfaces:
 
     @parametrize
     def test_method_attach_overload_1(self, client: Gcore) -> None:
-        interface = client.cloud.instances.interfaces.attach(
+        interface = client.cloud.instances_regional.interfaces.attach(
             instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
             project_id=1,
             region_id=1,
@@ -86,7 +86,7 @@ class TestInterfaces:
 
     @parametrize
     def test_method_attach_with_all_params_overload_1(self, client: Gcore) -> None:
-        interface = client.cloud.instances.interfaces.attach(
+        interface = client.cloud.instances_regional.interfaces.attach(
             instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
             project_id=1,
             region_id=1,
@@ -111,7 +111,7 @@ class TestInterfaces:
 
     @parametrize
     def test_raw_response_attach_overload_1(self, client: Gcore) -> None:
-        response = client.cloud.instances.interfaces.with_raw_response.attach(
+        response = client.cloud.instances_regional.interfaces.with_raw_response.attach(
             instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
             project_id=1,
             region_id=1,
@@ -124,7 +124,7 @@ class TestInterfaces:
 
     @parametrize
     def test_streaming_response_attach_overload_1(self, client: Gcore) -> None:
-        with client.cloud.instances.interfaces.with_streaming_response.attach(
+        with client.cloud.instances_regional.interfaces.with_streaming_response.attach(
             instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
             project_id=1,
             region_id=1,
@@ -140,7 +140,7 @@ class TestInterfaces:
     @parametrize
     def test_path_params_attach_overload_1(self, client: Gcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
-            client.cloud.instances.interfaces.with_raw_response.attach(
+            client.cloud.instances_regional.interfaces.with_raw_response.attach(
                 instance_id="",
                 project_id=1,
                 region_id=1,
@@ -148,7 +148,7 @@ class TestInterfaces:
 
     @parametrize
     def test_method_attach_overload_2(self, client: Gcore) -> None:
-        interface = client.cloud.instances.interfaces.attach(
+        interface = client.cloud.instances_regional.interfaces.attach(
             instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
             project_id=1,
             region_id=1,
@@ -158,7 +158,7 @@ class TestInterfaces:
 
     @parametrize
     def test_method_attach_with_all_params_overload_2(self, client: Gcore) -> None:
-        interface = client.cloud.instances.interfaces.attach(
+        interface = client.cloud.instances_regional.interfaces.attach(
             instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
             project_id=1,
             region_id=1,
@@ -183,7 +183,7 @@ class TestInterfaces:
 
     @parametrize
     def test_raw_response_attach_overload_2(self, client: Gcore) -> None:
-        response = client.cloud.instances.interfaces.with_raw_response.attach(
+        response = client.cloud.instances_regional.interfaces.with_raw_response.attach(
             instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
             project_id=1,
             region_id=1,
@@ -197,7 +197,7 @@ class TestInterfaces:
 
     @parametrize
     def test_streaming_response_attach_overload_2(self, client: Gcore) -> None:
-        with client.cloud.instances.interfaces.with_streaming_response.attach(
+        with client.cloud.instances_regional.interfaces.with_streaming_response.attach(
             instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
             project_id=1,
             region_id=1,
@@ -214,7 +214,7 @@ class TestInterfaces:
     @parametrize
     def test_path_params_attach_overload_2(self, client: Gcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
-            client.cloud.instances.interfaces.with_raw_response.attach(
+            client.cloud.instances_regional.interfaces.with_raw_response.attach(
                 instance_id="",
                 project_id=1,
                 region_id=1,
@@ -223,7 +223,7 @@ class TestInterfaces:
 
     @parametrize
     def test_method_attach_overload_3(self, client: Gcore) -> None:
-        interface = client.cloud.instances.interfaces.attach(
+        interface = client.cloud.instances_regional.interfaces.attach(
             instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
             project_id=1,
             region_id=1,
@@ -233,7 +233,7 @@ class TestInterfaces:
 
     @parametrize
     def test_method_attach_with_all_params_overload_3(self, client: Gcore) -> None:
-        interface = client.cloud.instances.interfaces.attach(
+        interface = client.cloud.instances_regional.interfaces.attach(
             instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
             project_id=1,
             region_id=1,
@@ -259,7 +259,7 @@ class TestInterfaces:
 
     @parametrize
     def test_raw_response_attach_overload_3(self, client: Gcore) -> None:
-        response = client.cloud.instances.interfaces.with_raw_response.attach(
+        response = client.cloud.instances_regional.interfaces.with_raw_response.attach(
             instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
             project_id=1,
             region_id=1,
@@ -273,7 +273,7 @@ class TestInterfaces:
 
     @parametrize
     def test_streaming_response_attach_overload_3(self, client: Gcore) -> None:
-        with client.cloud.instances.interfaces.with_streaming_response.attach(
+        with client.cloud.instances_regional.interfaces.with_streaming_response.attach(
             instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
             project_id=1,
             region_id=1,
@@ -290,7 +290,7 @@ class TestInterfaces:
     @parametrize
     def test_path_params_attach_overload_3(self, client: Gcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
-            client.cloud.instances.interfaces.with_raw_response.attach(
+            client.cloud.instances_regional.interfaces.with_raw_response.attach(
                 instance_id="",
                 project_id=1,
                 region_id=1,
@@ -299,7 +299,7 @@ class TestInterfaces:
 
     @parametrize
     def test_method_attach_overload_4(self, client: Gcore) -> None:
-        interface = client.cloud.instances.interfaces.attach(
+        interface = client.cloud.instances_regional.interfaces.attach(
             instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
             project_id=1,
             region_id=1,
@@ -309,7 +309,7 @@ class TestInterfaces:
 
     @parametrize
     def test_method_attach_with_all_params_overload_4(self, client: Gcore) -> None:
-        interface = client.cloud.instances.interfaces.attach(
+        interface = client.cloud.instances_regional.interfaces.attach(
             instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
             project_id=1,
             region_id=1,
@@ -334,7 +334,7 @@ class TestInterfaces:
 
     @parametrize
     def test_raw_response_attach_overload_4(self, client: Gcore) -> None:
-        response = client.cloud.instances.interfaces.with_raw_response.attach(
+        response = client.cloud.instances_regional.interfaces.with_raw_response.attach(
             instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
             project_id=1,
             region_id=1,
@@ -348,7 +348,7 @@ class TestInterfaces:
 
     @parametrize
     def test_streaming_response_attach_overload_4(self, client: Gcore) -> None:
-        with client.cloud.instances.interfaces.with_streaming_response.attach(
+        with client.cloud.instances_regional.interfaces.with_streaming_response.attach(
             instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
             project_id=1,
             region_id=1,
@@ -365,7 +365,7 @@ class TestInterfaces:
     @parametrize
     def test_path_params_attach_overload_4(self, client: Gcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
-            client.cloud.instances.interfaces.with_raw_response.attach(
+            client.cloud.instances_regional.interfaces.with_raw_response.attach(
                 instance_id="",
                 project_id=1,
                 region_id=1,
@@ -374,7 +374,7 @@ class TestInterfaces:
 
     @parametrize
     def test_method_detach(self, client: Gcore) -> None:
-        interface = client.cloud.instances.interfaces.detach(
+        interface = client.cloud.instances_regional.interfaces.detach(
             instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
             project_id=1,
             region_id=1,
@@ -385,7 +385,7 @@ class TestInterfaces:
 
     @parametrize
     def test_raw_response_detach(self, client: Gcore) -> None:
-        response = client.cloud.instances.interfaces.with_raw_response.detach(
+        response = client.cloud.instances_regional.interfaces.with_raw_response.detach(
             instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
             project_id=1,
             region_id=1,
@@ -400,7 +400,7 @@ class TestInterfaces:
 
     @parametrize
     def test_streaming_response_detach(self, client: Gcore) -> None:
-        with client.cloud.instances.interfaces.with_streaming_response.detach(
+        with client.cloud.instances_regional.interfaces.with_streaming_response.detach(
             instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
             project_id=1,
             region_id=1,
@@ -418,7 +418,7 @@ class TestInterfaces:
     @parametrize
     def test_path_params_detach(self, client: Gcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
-            client.cloud.instances.interfaces.with_raw_response.detach(
+            client.cloud.instances_regional.interfaces.with_raw_response.detach(
                 instance_id="",
                 project_id=1,
                 region_id=1,
@@ -434,7 +434,7 @@ class TestAsyncInterfaces:
 
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
-        interface = await async_client.cloud.instances.interfaces.list(
+        interface = await async_client.cloud.instances_regional.interfaces.list(
             instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
             project_id=1,
             region_id=1,
@@ -443,7 +443,7 @@ class TestAsyncInterfaces:
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
-        interface = await async_client.cloud.instances.interfaces.list(
+        interface = await async_client.cloud.instances_regional.interfaces.list(
             instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
             project_id=1,
             region_id=1,
@@ -454,7 +454,7 @@ class TestAsyncInterfaces:
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.instances.interfaces.with_raw_response.list(
+        response = await async_client.cloud.instances_regional.interfaces.with_raw_response.list(
             instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
             project_id=1,
             region_id=1,
@@ -467,7 +467,7 @@ class TestAsyncInterfaces:
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.instances.interfaces.with_streaming_response.list(
+        async with async_client.cloud.instances_regional.interfaces.with_streaming_response.list(
             instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
             project_id=1,
             region_id=1,
@@ -483,7 +483,7 @@ class TestAsyncInterfaces:
     @parametrize
     async def test_path_params_list(self, async_client: AsyncGcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
-            await async_client.cloud.instances.interfaces.with_raw_response.list(
+            await async_client.cloud.instances_regional.interfaces.with_raw_response.list(
                 instance_id="",
                 project_id=1,
                 region_id=1,
@@ -491,7 +491,7 @@ class TestAsyncInterfaces:
 
     @parametrize
     async def test_method_attach_overload_1(self, async_client: AsyncGcore) -> None:
-        interface = await async_client.cloud.instances.interfaces.attach(
+        interface = await async_client.cloud.instances_regional.interfaces.attach(
             instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
             project_id=1,
             region_id=1,
@@ -500,7 +500,7 @@ class TestAsyncInterfaces:
 
     @parametrize
     async def test_method_attach_with_all_params_overload_1(self, async_client: AsyncGcore) -> None:
-        interface = await async_client.cloud.instances.interfaces.attach(
+        interface = await async_client.cloud.instances_regional.interfaces.attach(
             instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
             project_id=1,
             region_id=1,
@@ -525,7 +525,7 @@ class TestAsyncInterfaces:
 
     @parametrize
     async def test_raw_response_attach_overload_1(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.instances.interfaces.with_raw_response.attach(
+        response = await async_client.cloud.instances_regional.interfaces.with_raw_response.attach(
             instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
             project_id=1,
             region_id=1,
@@ -538,7 +538,7 @@ class TestAsyncInterfaces:
 
     @parametrize
     async def test_streaming_response_attach_overload_1(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.instances.interfaces.with_streaming_response.attach(
+        async with async_client.cloud.instances_regional.interfaces.with_streaming_response.attach(
             instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
             project_id=1,
             region_id=1,
@@ -554,7 +554,7 @@ class TestAsyncInterfaces:
     @parametrize
     async def test_path_params_attach_overload_1(self, async_client: AsyncGcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
-            await async_client.cloud.instances.interfaces.with_raw_response.attach(
+            await async_client.cloud.instances_regional.interfaces.with_raw_response.attach(
                 instance_id="",
                 project_id=1,
                 region_id=1,
@@ -562,7 +562,7 @@ class TestAsyncInterfaces:
 
     @parametrize
     async def test_method_attach_overload_2(self, async_client: AsyncGcore) -> None:
-        interface = await async_client.cloud.instances.interfaces.attach(
+        interface = await async_client.cloud.instances_regional.interfaces.attach(
             instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
             project_id=1,
             region_id=1,
@@ -572,7 +572,7 @@ class TestAsyncInterfaces:
 
     @parametrize
     async def test_method_attach_with_all_params_overload_2(self, async_client: AsyncGcore) -> None:
-        interface = await async_client.cloud.instances.interfaces.attach(
+        interface = await async_client.cloud.instances_regional.interfaces.attach(
             instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
             project_id=1,
             region_id=1,
@@ -597,7 +597,7 @@ class TestAsyncInterfaces:
 
     @parametrize
     async def test_raw_response_attach_overload_2(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.instances.interfaces.with_raw_response.attach(
+        response = await async_client.cloud.instances_regional.interfaces.with_raw_response.attach(
             instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
             project_id=1,
             region_id=1,
@@ -611,7 +611,7 @@ class TestAsyncInterfaces:
 
     @parametrize
     async def test_streaming_response_attach_overload_2(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.instances.interfaces.with_streaming_response.attach(
+        async with async_client.cloud.instances_regional.interfaces.with_streaming_response.attach(
             instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
             project_id=1,
             region_id=1,
@@ -628,7 +628,7 @@ class TestAsyncInterfaces:
     @parametrize
     async def test_path_params_attach_overload_2(self, async_client: AsyncGcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
-            await async_client.cloud.instances.interfaces.with_raw_response.attach(
+            await async_client.cloud.instances_regional.interfaces.with_raw_response.attach(
                 instance_id="",
                 project_id=1,
                 region_id=1,
@@ -637,7 +637,7 @@ class TestAsyncInterfaces:
 
     @parametrize
     async def test_method_attach_overload_3(self, async_client: AsyncGcore) -> None:
-        interface = await async_client.cloud.instances.interfaces.attach(
+        interface = await async_client.cloud.instances_regional.interfaces.attach(
             instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
             project_id=1,
             region_id=1,
@@ -647,7 +647,7 @@ class TestAsyncInterfaces:
 
     @parametrize
     async def test_method_attach_with_all_params_overload_3(self, async_client: AsyncGcore) -> None:
-        interface = await async_client.cloud.instances.interfaces.attach(
+        interface = await async_client.cloud.instances_regional.interfaces.attach(
             instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
             project_id=1,
             region_id=1,
@@ -673,7 +673,7 @@ class TestAsyncInterfaces:
 
     @parametrize
     async def test_raw_response_attach_overload_3(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.instances.interfaces.with_raw_response.attach(
+        response = await async_client.cloud.instances_regional.interfaces.with_raw_response.attach(
             instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
             project_id=1,
             region_id=1,
@@ -687,7 +687,7 @@ class TestAsyncInterfaces:
 
     @parametrize
     async def test_streaming_response_attach_overload_3(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.instances.interfaces.with_streaming_response.attach(
+        async with async_client.cloud.instances_regional.interfaces.with_streaming_response.attach(
             instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
             project_id=1,
             region_id=1,
@@ -704,7 +704,7 @@ class TestAsyncInterfaces:
     @parametrize
     async def test_path_params_attach_overload_3(self, async_client: AsyncGcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
-            await async_client.cloud.instances.interfaces.with_raw_response.attach(
+            await async_client.cloud.instances_regional.interfaces.with_raw_response.attach(
                 instance_id="",
                 project_id=1,
                 region_id=1,
@@ -713,7 +713,7 @@ class TestAsyncInterfaces:
 
     @parametrize
     async def test_method_attach_overload_4(self, async_client: AsyncGcore) -> None:
-        interface = await async_client.cloud.instances.interfaces.attach(
+        interface = await async_client.cloud.instances_regional.interfaces.attach(
             instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
             project_id=1,
             region_id=1,
@@ -723,7 +723,7 @@ class TestAsyncInterfaces:
 
     @parametrize
     async def test_method_attach_with_all_params_overload_4(self, async_client: AsyncGcore) -> None:
-        interface = await async_client.cloud.instances.interfaces.attach(
+        interface = await async_client.cloud.instances_regional.interfaces.attach(
             instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
             project_id=1,
             region_id=1,
@@ -748,7 +748,7 @@ class TestAsyncInterfaces:
 
     @parametrize
     async def test_raw_response_attach_overload_4(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.instances.interfaces.with_raw_response.attach(
+        response = await async_client.cloud.instances_regional.interfaces.with_raw_response.attach(
             instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
             project_id=1,
             region_id=1,
@@ -762,7 +762,7 @@ class TestAsyncInterfaces:
 
     @parametrize
     async def test_streaming_response_attach_overload_4(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.instances.interfaces.with_streaming_response.attach(
+        async with async_client.cloud.instances_regional.interfaces.with_streaming_response.attach(
             instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
             project_id=1,
             region_id=1,
@@ -779,7 +779,7 @@ class TestAsyncInterfaces:
     @parametrize
     async def test_path_params_attach_overload_4(self, async_client: AsyncGcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
-            await async_client.cloud.instances.interfaces.with_raw_response.attach(
+            await async_client.cloud.instances_regional.interfaces.with_raw_response.attach(
                 instance_id="",
                 project_id=1,
                 region_id=1,
@@ -788,7 +788,7 @@ class TestAsyncInterfaces:
 
     @parametrize
     async def test_method_detach(self, async_client: AsyncGcore) -> None:
-        interface = await async_client.cloud.instances.interfaces.detach(
+        interface = await async_client.cloud.instances_regional.interfaces.detach(
             instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
             project_id=1,
             region_id=1,
@@ -799,7 +799,7 @@ class TestAsyncInterfaces:
 
     @parametrize
     async def test_raw_response_detach(self, async_client: AsyncGcore) -> None:
-        response = await async_client.cloud.instances.interfaces.with_raw_response.detach(
+        response = await async_client.cloud.instances_regional.interfaces.with_raw_response.detach(
             instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
             project_id=1,
             region_id=1,
@@ -814,7 +814,7 @@ class TestAsyncInterfaces:
 
     @parametrize
     async def test_streaming_response_detach(self, async_client: AsyncGcore) -> None:
-        async with async_client.cloud.instances.interfaces.with_streaming_response.detach(
+        async with async_client.cloud.instances_regional.interfaces.with_streaming_response.detach(
             instance_id="bf325375-9af6-4c8b-a2fc-7f6f4ca02e2e",
             project_id=1,
             region_id=1,
@@ -832,7 +832,7 @@ class TestAsyncInterfaces:
     @parametrize
     async def test_path_params_detach(self, async_client: AsyncGcore) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
-            await async_client.cloud.instances.interfaces.with_raw_response.detach(
+            await async_client.cloud.instances_regional.interfaces.with_raw_response.detach(
                 instance_id="",
                 project_id=1,
                 region_id=1,

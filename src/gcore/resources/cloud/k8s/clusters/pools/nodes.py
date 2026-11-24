@@ -16,7 +16,7 @@ from ......_response import (
 )
 from ......pagination import SyncOffsetPage, AsyncOffsetPage
 from ......_base_client import AsyncPaginator, make_request_options
-from ......types.cloud.instance import Instance
+from ......types.cloud.instance_regional import InstanceRegional
 from ......types.cloud.k8s.clusters.pools import node_list_params
 
 __all__ = ["NodesResource", "AsyncNodesResource"]
@@ -58,7 +58,7 @@ class NodesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncOffsetPage[Instance]:
+    ) -> SyncOffsetPage[InstanceRegional]:
         """
         List k8s cluster pool nodes
 
@@ -102,7 +102,7 @@ class NodesResource(SyncAPIResource):
                 cluster_name=cluster_name,
                 pool_name=pool_name,
             ),
-            page=SyncOffsetPage[Instance],
+            page=SyncOffsetPage[InstanceRegional],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -117,7 +117,7 @@ class NodesResource(SyncAPIResource):
                     node_list_params.NodeListParams,
                 ),
             ),
-            model=Instance,
+            model=InstanceRegional,
         )
 
     def delete(
@@ -221,7 +221,7 @@ class AsyncNodesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[Instance, AsyncOffsetPage[Instance]]:
+    ) -> AsyncPaginator[InstanceRegional, AsyncOffsetPage[InstanceRegional]]:
         """
         List k8s cluster pool nodes
 
@@ -265,7 +265,7 @@ class AsyncNodesResource(AsyncAPIResource):
                 cluster_name=cluster_name,
                 pool_name=pool_name,
             ),
-            page=AsyncOffsetPage[Instance],
+            page=AsyncOffsetPage[InstanceRegional],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -280,7 +280,7 @@ class AsyncNodesResource(AsyncAPIResource):
                     node_list_params.NodeListParams,
                 ),
             ),
-            model=Instance,
+            model=InstanceRegional,
         )
 
     async def delete(

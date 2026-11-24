@@ -232,6 +232,14 @@ from .volume_snapshots import (
     VolumeSnapshotsResourceWithStreamingResponse,
     AsyncVolumeSnapshotsResourceWithStreamingResponse,
 )
+from .instances_regional import (
+    InstancesRegionalResource,
+    AsyncInstancesRegionalResource,
+    InstancesRegionalResourceWithRawResponse,
+    AsyncInstancesRegionalResourceWithRawResponse,
+    InstancesRegionalResourceWithStreamingResponse,
+    AsyncInstancesRegionalResourceWithStreamingResponse,
+)
 from .reserved_fixed_ips import (
     ReservedFixedIPsResource,
     AsyncReservedFixedIPsResource,
@@ -402,6 +410,12 @@ __all__ = [
     "AsyncInstancesResourceWithRawResponse",
     "InstancesResourceWithStreamingResponse",
     "AsyncInstancesResourceWithStreamingResponse",
+    "InstancesRegionalResource",
+    "AsyncInstancesRegionalResource",
+    "InstancesRegionalResourceWithRawResponse",
+    "AsyncInstancesRegionalResourceWithRawResponse",
+    "InstancesRegionalResourceWithStreamingResponse",
+    "AsyncInstancesRegionalResourceWithStreamingResponse",
     "K8SResource",
     "AsyncK8SResource",
     "K8SResourceWithRawResponse",

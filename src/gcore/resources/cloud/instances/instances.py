@@ -2,10 +2,8 @@
 
 from __future__ import annotations
 
-import typing_extensions
-from typing import Dict, Union, Iterable, Optional
-from datetime import datetime
-from typing_extensions import Literal, overload
+from typing import Dict, List, Iterable, Optional
+from typing_extensions import Literal
 
 import httpx
 
@@ -16,6 +14,14 @@ from .images import (
     AsyncImagesResourceWithRawResponse,
     ImagesResourceWithStreamingResponse,
     AsyncImagesResourceWithStreamingResponse,
+)
+from .console import (
+    ConsoleResource,
+    AsyncConsoleResource,
+    ConsoleResourceWithRawResponse,
+    AsyncConsoleResourceWithRawResponse,
+    ConsoleResourceWithStreamingResponse,
+    AsyncConsoleResourceWithStreamingResponse,
 )
 from .flavors import (
     FlavorsResource,
@@ -33,17 +39,9 @@ from .metrics import (
     MetricsResourceWithStreamingResponse,
     AsyncMetricsResourceWithStreamingResponse,
 )
-from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import path_template, required_args, maybe_transform, async_maybe_transform
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
-from .interfaces import (
-    InterfacesResource,
-    AsyncInterfacesResource,
-    InterfacesResourceWithRawResponse,
-    AsyncInterfacesResourceWithRawResponse,
-    InterfacesResourceWithStreamingResponse,
-    AsyncInterfacesResourceWithStreamingResponse,
-)
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
@@ -57,40 +55,46 @@ from ....types.cloud import (
     instance_action_params,
     instance_create_params,
     instance_delete_params,
-    instance_resize_params,
     instance_update_params,
     instance_rebuild_params,
-    instance_get_console_params,
-    instance_assign_security_group_params,
-    instance_add_to_placement_group_params,
-    instance_unassign_security_group_params,
+)
+from .resize_flavors import (
+    ResizeFlavorsResource,
+    AsyncResizeFlavorsResource,
+    ResizeFlavorsResourceWithRawResponse,
+    AsyncResizeFlavorsResourceWithRawResponse,
+    ResizeFlavorsResourceWithStreamingResponse,
+    AsyncResizeFlavorsResourceWithStreamingResponse,
 )
 from ...._base_client import AsyncPaginator, make_request_options
 from .instances_custom import InstancesResourceCustomMixin, AsyncInstancesResourceCustomMixin
-from ....types.cloud.console import Console
 from ....types.cloud.instance import Instance
 from ....types.cloud.task_id_list import TaskIDList
-from ....types.cloud.instance_interface import InstanceInterface
 from ....types.cloud.tag_update_map_param import TagUpdateMapParam
+from ....types.cloud.instance_delete_response import InstanceDeleteResponse
 
 __all__ = ["InstancesResource", "AsyncInstancesResource"]
 
 
 class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
     """
-    Instances are cloud virtual machines with configurable CPU, memory, storage, and networking, supporting various operating systems and workloads.
+    Instances are cloud virtual machines that boot from a volume and connect to networks through ports, in any region of the project.
     """
+
+    @cached_property
+    def console(self) -> ConsoleResource:
+        return ConsoleResource(self._client)
+
+    @cached_property
+    def resize_flavors(self) -> ResizeFlavorsResource:
+        return ResizeFlavorsResource(self._client)
 
     @cached_property
     def flavors(self) -> FlavorsResource:
         """
-        Instance flavors define available CPU, memory, and disk configurations for creating cloud instances.
+        Instance flavors define the CPU, memory, and OS type of an instance, in all regions of the project.
         """
         return FlavorsResource(self._client)
-
-    @cached_property
-    def interfaces(self) -> InterfacesResource:
-        return InterfacesResource(self._client)
 
     @cached_property
     def images(self) -> ImagesResource:
@@ -126,21 +130,18 @@ class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
         self,
         *,
         project_id: int | None = None,
-        region_id: int | None = None,
-        flavor: str,
+        boot_volume_id: str,
+        flavor_name: str,
         interfaces: Iterable[instance_create_params.Interface],
-        volumes: Iterable[instance_create_params.Volume],
-        allow_app_ports: bool | Omit = omit,
-        configuration: Optional[Dict[str, object]] | Omit = omit,
+        region_id: int,
+        dry_run: bool | Omit = omit,
+        data_volume_ids: SequenceNotStr[str] | Omit = omit,
         name: str | Omit = omit,
-        name_template: str | Omit = omit,
         password: str | Omit = omit,
-        security_groups: Iterable[instance_create_params.SecurityGroup] | Omit = omit,
-        servergroup_id: str | Omit = omit,
-        ssh_key_name: Optional[str] | Omit = omit,
+        placement_group_id: str | Omit = omit,
+        ssh_key_id: str | Omit = omit,
         tags: Dict[str, str] | Omit = omit,
         user_data: str | Omit = omit,
-        username: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -148,102 +149,69 @@ class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
-        """
-        Use
-        [POST /v1/projects/{`project_id`}/instances](#operation/GlobalInstanceListView.post)
-        instead. This route continues to work. Later, we will deprecate it and then
-        remove it. We will tell you in advance.
+        """Create a virtual instance that boots from a volume.
 
-        Create an instance with specified configuration.
+        The instance uses a volume
+        and ports that you create first, in the region of the instance.
 
-        How to get access:
+        To create one:
 
-        For Linux,
+        1. Pick an image with [List images](#operation/ImagesViewSet.get).
+        2. [Create a volume](#operation/VolumeViewSet.post) from the image. Wait until
+           its status is `available`.
+        3. Pick a flavor with
+           [List instance flavors](#operation/GlobalInstanceFlavorListView.get). Send
+           `compatible_with_boot_volume_id` to get only the flavors that can boot the
+           volume.
+        4. [Create a port](#operation/GlobalPortListView.post). A body with only
+           `region_id` gives one public IPv4 address.
 
-        - Use the `user_data` field to provide a
-          [cloud-init script](https://cloudinit.readthedocs.io/en/latest/reference/examples.html)
-          in base64 to apply configurations to the instance.
-        - Specify the `username` and `password` to create a new user.
-        - When only `password` is provided, it is set as the password for the default
-          user of the image.
-        - The `user_data` is ignored when the `password` is specified.
+        You can also attach more volumes, put the instance in a
+        [placement group](#operation/GlobalPlacementGroupListView.post), and add an
+        [SSH key](/docs/api-reference/cloud/ssh-keys/add-or-generate-ssh-key).
 
-        For Windows,
+        The response holds the IDs of the tasks that create the instance.
 
-        - Use the `user_data` field to provide a
-          [cloudbase-init script](https://cloudbase-init.readthedocs.io/en/latest/userdata.html#cloud-config)
-          in base64 to create new users on Windows.
-        - Use the `password` field to set the password for the 'Admin' user on Windows.
-        - The password of the Admin user cannot be updated via `user_data`.
-        - The `username` cannot be specified in the request.
+        With `?dry_run=true` the request runs every check and changes nothing. The
+        response holds an empty `tasks` array. A failed check returns the same error as
+        the real create.
 
         Args:
-          project_id: Project ID
+          project_id: Project ID.
 
-          region_id: Region ID
+          boot_volume_id: Pre-created boot volume UUID.
 
-          flavor: The flavor of the instance.
+          flavor_name: Name of an instance flavor with no GPU. Use
+              `GET /v1/projects/{project_id}/instances/flavors` to list them.
 
-          interfaces: A list of network interfaces for the instance. You can create one or more
-              interfaces - private, public, or both.
+          interfaces: Pre-created ports to attach, in NIC/boot order.
 
-          volumes: List of volumes that will be attached to the instance.
+          region_id: Region to provision the instance in.
 
-          allow_app_ports: Set to `true` if creating the instance from an `apptemplate`. This allows
-              application ports in the security group for instances created from a marketplace
-              application template.
+          dry_run: Run every check of the real request and change nothing. The response has the
+              status code and the schema of the real call, and an empty list of tasks. With
+              `false`, the default, the request does the operation.
 
-          configuration: Parameters for the application template if creating the instance from an
-              `apptemplate`.
+          data_volume_ids: Pre-created data volume UUIDs to attach.
 
-          name: Instance name.
+          name: Instance name. If you omit it, the name template of the account gives the name.
+              Without a template, the name is generated. The account can forbid custom names.
+              Then the name must be equal to the name that the template gives.
 
-          name_template: If you want the instance name to be automatically generated based on IP
-              addresses, you can provide a name template instead of specifying the name
-              manually. The template should include a placeholder that will be replaced during
-              provisioning. Supported placeholders are: `{ip_octets}` (last 3 octets of the
-              IP), `{two_ip_octets}`, and `{one_ip_octet}`.
+          password: Password of the default user. No response returns it. A Windows image needs a
+              password. For a Windows image, the create checks these rules: the password has a
+              minimum of 6 characters, it contains no word 'admin', and it contains 3 of these
+              character types: digits, lowercase letters, uppercase letters, other characters.
+              For a Linux image, the password enables SSH login with a password. Send
+              `password` or `user_data`, not both.
 
-          password: For Linux instances, 'username' and 'password' are used to create a new user.
-              When only 'password' is provided, it is set as the password for the default user
-              of the image. For Windows instances, 'username' cannot be specified. Use the
-              'password' field to set the password for the 'Admin' user on Windows. Use the
-              'user_data' field to provide a script to create new users on Windows. The
-              password of the Admin user cannot be updated via 'user_data'.
+          placement_group_id: Pre-created placement group UUID for affinity/anti-affinity.
 
-          security_groups: Deprecated. Use per-interface `security_groups` inside `interfaces[]` instead.
-              Cannot be combined with per-interface `security_groups`. If omitted everywhere,
-              the project's default security group is applied.
+          ssh_key_id: ID of the SSH key to add to the default user.
 
-          servergroup_id: Placement group ID for instance placement policy.
+          tags: Customer-owned key-value tags.
 
-              Supported group types:
-
-              - `anti-affinity`: Ensures instances are placed on different hosts for high
-                availability.
-              - `affinity`: Places instances on the same host for low-latency communication.
-              - `soft-anti-affinity`: Tries to place instances on different hosts but allows
-                sharing if needed.
-
-          ssh_key_name: Specifies the name of the SSH keypair, created via the
-              [/v1/`ssh_keys` endpoint](/docs/api-reference/cloud/ssh-keys/add-or-generate-ssh-key).
-
-          tags: Key-value tags to associate with the resource. A tag is a key-value pair that
-              can be associated with a resource, enabling efficient filtering and grouping for
-              better organization and management. Both tag keys and values have a maximum
-              length of 255 characters. Tag keys and values cannot contain characters from
-              U+0080 to U+00FF. Some tags are read-only and cannot be modified by the user.
-              Tags are also integrated with cost reports, allowing cost data to be filtered
-              based on tag keys or values.
-
-          user_data: String in base64 format. For Linux instances, 'user_data' is ignored when
-              'password' field is provided. For Windows instances, Admin user password is set
-              by 'password' field and cannot be updated via 'user_data'. Examples of the
-              `user_data`: https://cloudinit.readthedocs.io/en/latest/topics/examples.html
-
-          username: For Linux instances, 'username' and 'password' are used to create a new user.
-              For Windows instances, 'username' cannot be specified. Use 'password' field to
-              set the password for the 'Admin' user on Windows.
+          user_data: cloud-init user data, raw or base64. Up to 65535 bytes once decoded.
 
           extra_headers: Send extra headers
 
@@ -255,31 +223,30 @@ class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
         """
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
         return self._post(
-            path_template("/cloud/v2/instances/{project_id}/{region_id}", project_id=project_id, region_id=region_id),
+            path_template("/cloud/v1/projects/{project_id}/instances", project_id=project_id),
             body=maybe_transform(
                 {
-                    "flavor": flavor,
+                    "boot_volume_id": boot_volume_id,
+                    "flavor_name": flavor_name,
                     "interfaces": interfaces,
-                    "volumes": volumes,
-                    "allow_app_ports": allow_app_ports,
-                    "configuration": configuration,
+                    "region_id": region_id,
+                    "data_volume_ids": data_volume_ids,
                     "name": name,
-                    "name_template": name_template,
                     "password": password,
-                    "security_groups": security_groups,
-                    "servergroup_id": servergroup_id,
-                    "ssh_key_name": ssh_key_name,
+                    "placement_group_id": placement_group_id,
+                    "ssh_key_id": ssh_key_id,
                     "tags": tags,
                     "user_data": user_data,
-                    "username": username,
                 },
                 instance_create_params.InstanceCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"dry_run": dry_run}, instance_create_params.InstanceCreateParams),
             ),
             cast_to=TaskIDList,
         )
@@ -289,8 +256,12 @@ class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
         instance_id: str,
         *,
         project_id: int | None = None,
-        region_id: int | None = None,
+        dry_run: bool | Omit = omit,
+        data_volume_ids: SequenceNotStr[str] | Omit = omit,
+        flavor_name: str | Omit = omit,
+        interfaces: Iterable[instance_update_params.Interface] | Omit = omit,
         name: str | Omit = omit,
+        placement_group_id: Optional[str] | Omit = omit,
         tags: Optional[TagUpdateMapParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -298,45 +269,62 @@ class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Instance:
-        """
-        Use
-        [PATCH /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.patch)
-        instead. This route continues to work. Later, we will deprecate it and then
-        remove it. We will tell you in advance.
+    ) -> TaskIDList:
+        """Send only the fields to change.
 
-        Rename instance or update tags
+        One task makes all the changes. A field with the
+        current value changes nothing.
+
+        - Rename: send `name`.
+        - Resize: send `flavor_name`. Pick it with
+          [List instance resize flavors](#operation/GlobalInstanceResizeFlavorListView.get).
+          A resize restarts the instance.
+        - Add a port: [create a port](#operation/GlobalPortListView.post). Then send
+          `interfaces` with the current ports in their current order and the new port at
+          the end.
+        - Remove a port: send `interfaces` without that port. The port stays and you can
+          use it again. For a port change, the instance `status` must be `active` or
+          `stopped`. Resume a suspended instance first.
+        - Attach or detach a data volume: send the full list in `data_volume_ids`. A new
+          volume must be `available`.
+        - Move to a [placement group](#operation/GlobalPlacementGroupListView.post):
+          send `placement_group_id`. Send `null` to remove the instance from its group.
+          The instance `status` must be `active`. The instance can move to another host.
+        - Change tags: send `tags` as a JSON Merge Patch.
+
+        To change the security groups,
+        [update the ports](#operation/GlobalPortDetailView.patch). You cannot change
+        `boot_volume_id` or `ssh_key_id`. To change them, create a new instance.
+
+        With `?dry_run=true` the request runs every check and changes nothing. The
+        response holds an empty `tasks` array. A failed check returns the same error as
+        the real update. If a resize exceeds a quota, the error names every quota that
+        it exceeds.
 
         Args:
-          project_id: Project ID
+          project_id: Project ID.
 
-          region_id: Region ID
+          instance_id: Instance ID.
 
-          instance_id: Instance ID
+          dry_run: Run every check of the real request and change nothing. The response has the
+              status code and the schema of the real call, and an empty list of tasks. With
+              `false`, the default, the request does the operation.
 
-          name: Name
+          data_volume_ids: Full list of the data volumes of the instance. Volumes that are not in the list
+              are detached. New volumes are attached.
 
-          tags: Update key-value tags using JSON Merge Patch semantics (RFC 7396). Provide
-              key-value pairs to add or update tags. Set tag values to `null` to remove tags.
-              Unspecified tags remain unchanged. Read-only tags are always preserved and
-              cannot be modified.
+          flavor_name: Name of the new flavor. The instance is resized to this flavor.
 
-              **Examples:**
+          interfaces: Full list of the ports of the instance. Ports that are not in the list are
+              detached. New ports are attached. Keep the current ports in their current order.
 
-              - **Add/update tags:**
-                `{'tags': {'environment': 'production', 'team': 'backend'}}` adds new tags or
-                updates existing ones.
-              - **Delete tags:** `{'tags': {'old_tag': null}}` removes specific tags.
-              - **Remove all tags:** `{'tags': null}` removes all user-managed tags (read-only
-                tags are preserved).
-              - **Partial update:** `{'tags': {'environment': 'staging'}}` only updates
-                specified tags.
-              - **Mixed operations:**
-                `{'tags': {'environment': 'production', 'cost_center': 'engineering', 'deprecated_tag': null}}`
-                adds/updates 'environment' and 'cost_center' while removing 'deprecated_tag',
-                preserving other existing tags.
-              - **Replace all:** first delete existing tags with null values, then add new
-                ones in the same request.
+          name: Instance name.
+
+          placement_group_id: ID of the placement group. Send null to remove the instance from its placement
+              group.
+
+          tags: Tags as JSON Merge Patch. A key with the value null removes that tag. The value
+              null removes all tags.
 
           extra_headers: Send extra headers
 
@@ -348,80 +336,85 @@ class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
         """
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return self._patch(
             path_template(
-                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}",
+                "/cloud/v1/projects/{project_id}/instances/{instance_id}",
                 project_id=project_id,
-                region_id=region_id,
                 instance_id=instance_id,
             ),
             body=maybe_transform(
                 {
+                    "data_volume_ids": data_volume_ids,
+                    "flavor_name": flavor_name,
+                    "interfaces": interfaces,
                     "name": name,
+                    "placement_group_id": placement_group_id,
                     "tags": tags,
                 },
                 instance_update_params.InstanceUpdateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"dry_run": dry_run}, instance_update_params.InstanceUpdateParams),
             ),
-            cast_to=Instance,
+            cast_to=TaskIDList,
         )
 
     def list(
         self,
         *,
         project_id: int | None = None,
-        region_id: int | None = None,
-        available_floating: bool | Omit = omit,
-        changes_before: Union[str, datetime] | Omit = omit,
-        changes_since: Union[str, datetime] | Omit = omit,
-        exclude_flavor_prefix: str | Omit = omit,
-        exclude_secgroup: str | Omit = omit,
-        flavor_id: str | Omit = omit,
-        flavor_prefix: str | Omit = omit,
-        include_ai: bool | Omit = omit,
-        include_baremetal: bool | Omit = omit,
-        include_k8s: bool | Omit = omit,
-        ip: str | Omit = omit,
+        created_at: instance_list_params.CreatedAt | Omit = omit,
+        flavor_name: instance_list_params.FlavorName | Omit = omit,
+        ids: SequenceNotStr[str] | Omit = omit,
+        ip_address: instance_list_params.IPAddress | Omit = omit,
         limit: int | Omit = omit,
-        name: str | Omit = omit,
+        managed: bool | Omit = omit,
+        managed_by: Literal["k8s_cluster"] | Omit = omit,
+        managed_by_resource_ids: SequenceNotStr[str] | Omit = omit,
+        managed_by_resource_names: SequenceNotStr[str] | Omit = omit,
+        name: instance_list_params.Name | Omit = omit,
+        network_ids: SequenceNotStr[str] | Omit = omit,
         offset: int | Omit = omit,
-        only_isolated: bool | Omit = omit,
-        only_with_fixed_external_ip: bool | Omit = omit,
-        order_by: Literal["created.asc", "created.desc", "name.asc", "name.desc", "status.asc", "status.desc"]
-        | Omit = omit,
-        profile_name: str | Omit = omit,
-        protection_status: Literal["Active", "Queued", "Error"] | Omit = omit,
-        status: Literal[
-            "ACTIVE",
-            "BUILD",
-            "ERROR",
-            "HARD_REBOOT",
-            "MIGRATING",
-            "PAUSED",
-            "REBOOT",
-            "REBUILD",
-            "RESIZE",
-            "REVERT_RESIZE",
-            "SHELVED",
-            "SHELVED_OFFLOADED",
-            "SHUTOFF",
-            "SOFT_DELETED",
-            "SUSPENDED",
-            "VERIFY_RESIZE",
+        order_by: Literal[
+            "created_at.asc",
+            "created_at.desc",
+            "name.asc",
+            "name.desc",
+            "region_id.asc",
+            "region_id.desc",
+            "status.asc",
+            "status.desc",
         ]
         | Omit = omit,
-        tag_key_value: str | Omit = omit,
-        tag_value: SequenceNotStr[str] | Omit = omit,
-        type_ddos_profile: Literal["basic", "advanced"] | Omit = omit,
-        uuid: str | Omit = omit,
-        with_ddos: bool | Omit = omit,
-        with_interfaces_name: bool | Omit = omit,
+        region_ids: Iterable[int] | Omit = omit,
+        security_group_ids: SequenceNotStr[str] | Omit = omit,
+        statuses: List[
+            Literal[
+                "active",
+                "deleted",
+                "deleting",
+                "error",
+                "provisioning",
+                "rebooting",
+                "rebuilding",
+                "resizing",
+                "stopped",
+                "unknown",
+                "updating",
+            ]
+        ]
+        | Omit = omit,
+        subnet_ids: SequenceNotStr[str] | Omit = omit,
+        tag_key: instance_list_params.TagKey | Omit = omit,
+        tag_value: instance_list_params.TagValue | Omit = omit,
+        tags: Dict[str, SequenceNotStr[str]] | Omit = omit,
+        updated_at: instance_list_params.UpdatedAt | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -430,80 +423,56 @@ class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncOffsetPage[Instance]:
         """
-        Use
-        [GET /v1/projects/{`project_id`}/instances](#operation/GlobalInstanceListView.get)
-        instead. This route continues to work. Later, we will deprecate it and then
-        remove it. We will tell you in advance.
-
-        List all instances in the specified project and region. Results can be filtered
-        by various parameters like name, status, and IP address.
+        List a project's instances across all regions.
 
         Args:
-          project_id: Project ID
+          project_id: Project ID.
 
-          region_id: Region ID
+          created_at: Range filter on creation time.
 
-          available_floating: Only show instances which are able to handle floating address
+          flavor_name: Operator flavor name filter.
 
-          changes_before: Filters the instances by a date and time stamp when the instances last changed.
+          ids: Filter by instance UUID(s).
 
-          changes_since: Filters the instances by a date and time stamp when the instances last changed
-              status.
+          ip_address: Exact IP filter on a fixed IP.
 
-          exclude_flavor_prefix: Exclude instances with specified flavor prefix
+          limit: Max items to return.
 
-          exclude_secgroup: Exclude instances with specified security group name
+          managed: Filter by managed status. true = managed by a service, false =
+              customer-operated.
 
-          flavor_id: Filter out instances by `flavor_id`. Flavor id must match exactly.
+          managed_by: Filter by manager type, e.g. `k8s_cluster`.
 
-          flavor_prefix: Filter out instances by `flavor_prefix`.
+          managed_by_resource_ids: Filter by managing resource ID(s).
 
-          include_ai: Include GPU clusters' servers
+          managed_by_resource_names: Filter by managing resource name(s).
 
-          include_baremetal: Include bare metal servers. Please, use `GET /v1/bminstances/` instead
+          name: Operator name filter, e.g. name[contains]=web.
 
-          include_k8s: Include managed k8s worker nodes
+          network_ids: Filter by network ID(s) the instance has a port on.
 
-          ip: An IPv4 address to filter results by. Note: partial matches are allowed. For
-              example, searching for 192.168.0.1 will return 192.168.0.1, 192.168.0.10,
-              192.168.0.110, and so on.
+          offset: Items to skip.
 
-          limit: Optional. Limit the number of returned items
+          order_by: Sort field and direction.
 
-          name: Filter instances by name. You can provide a full or partial name, instances with
-              matching names will be returned. For example, entering 'test' will return all
-              instances that contain 'test' in their name.
+          region_ids: Filter by region ID(s). Omit = all regions.
 
-          offset: Optional. Offset value is used to exclude the first set of records from the
-              result
+          security_group_ids: Filter by security group ID(s).
 
-          only_isolated: Include only isolated instances
+          statuses: Filter by lifecycle status(es).
 
-          only_with_fixed_external_ip: Return bare metals only with external fixed IP addresses.
+          subnet_ids: Filter by subnet ID(s).
 
-          order_by: Order by field and direction.
+          tag_key: Filter by tag key regardless of value, e.g. `tag_key[contains]=team`.
 
-          profile_name: Filter result by ddos protection profile name. Effective only with `with_ddos`
-              set to true.
+          tag_value: Filter by tag value regardless of key, e.g. `tag_value[prefix]=prod`.
 
-          protection_status: Filter result by DDoS `protection_status`. if parameter is provided. Effective
-              only with `with_ddos` set to true. (Active, Queued or Error)
+          tags: Filter by exact tag key-value pairs, e.g. `tags[env]=prod&tags[team]=core`.
+              Repeat a key to match any of several values for it, e.g.
+              `tags[env]=prod&tags[env]=dev`. Values for one key are ORed, different keys are
+              ANDed; values match case-insensitively.
 
-          status: Filters instances by status.
-
-          tag_key_value: Optional. Filter by tag key-value pairs.
-
-          tag_value: Optional. Filter by tag values. ?`tag_value`=value1&`tag_value`=value2
-
-          type_ddos_profile: Return bare metals either only with advanced or only basic DDoS protection.
-              Effective only with `with_ddos` set to true. (advanced or basic)
-
-          uuid: Filter the server list result by the UUID of the server. Allowed UUID part
-
-          with_ddos: Include DDoS profile information in the response when set to `true`. Otherwise,
-              the `ddos_profile` field in the response is `null` by default.
-
-          with_interfaces_name: Include `interface_name` in the addresses
+          updated_at: Range filter on last-update time.
 
           extra_headers: Send extra headers
 
@@ -515,10 +484,8 @@ class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
         """
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            path_template("/cloud/v1/instances/{project_id}/{region_id}", project_id=project_id, region_id=region_id),
+            path_template("/cloud/v1/projects/{project_id}/instances", project_id=project_id),
             page=SyncOffsetPage[Instance],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -527,32 +494,27 @@ class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "available_floating": available_floating,
-                        "changes_before": changes_before,
-                        "changes_since": changes_since,
-                        "exclude_flavor_prefix": exclude_flavor_prefix,
-                        "exclude_secgroup": exclude_secgroup,
-                        "flavor_id": flavor_id,
-                        "flavor_prefix": flavor_prefix,
-                        "include_ai": include_ai,
-                        "include_baremetal": include_baremetal,
-                        "include_k8s": include_k8s,
-                        "ip": ip,
+                        "created_at": created_at,
+                        "flavor_name": flavor_name,
+                        "ids": ids,
+                        "ip_address": ip_address,
                         "limit": limit,
+                        "managed": managed,
+                        "managed_by": managed_by,
+                        "managed_by_resource_ids": managed_by_resource_ids,
+                        "managed_by_resource_names": managed_by_resource_names,
                         "name": name,
+                        "network_ids": network_ids,
                         "offset": offset,
-                        "only_isolated": only_isolated,
-                        "only_with_fixed_external_ip": only_with_fixed_external_ip,
                         "order_by": order_by,
-                        "profile_name": profile_name,
-                        "protection_status": protection_status,
-                        "status": status,
-                        "tag_key_value": tag_key_value,
+                        "region_ids": region_ids,
+                        "security_group_ids": security_group_ids,
+                        "statuses": statuses,
+                        "subnet_ids": subnet_ids,
+                        "tag_key": tag_key,
                         "tag_value": tag_value,
-                        "type_ddos_profile": type_ddos_profile,
-                        "uuid": uuid,
-                        "with_ddos": with_ddos,
-                        "with_interfaces_name": with_interfaces_name,
+                        "tags": tags,
+                        "updated_at": updated_at,
                     },
                     instance_list_params.InstanceListParams,
                 ),
@@ -565,49 +527,66 @@ class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
         instance_id: str,
         *,
         project_id: int | None = None,
-        region_id: int | None = None,
-        delete_floatings: bool | Omit = omit,
-        floatings: str | Omit = omit,
-        reserved_fixed_ips: str | Omit = omit,
-        volumes: str | Omit = omit,
+        all_floating_ips: bool | Omit = omit,
+        all_ports: bool | Omit = omit,
+        all_volumes: bool | Omit = omit,
+        dry_run: bool | Omit = omit,
+        floating_ip_ids: SequenceNotStr[str] | Omit = omit,
+        port_ids: SequenceNotStr[str] | Omit = omit,
+        volume_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TaskIDList:
-        """
-        Use
-        [DELETE /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.delete)
-        instead. This route continues to work. Later, we will deprecate it and then
-        remove it. We will tell you in advance.
+    ) -> InstanceDeleteResponse:
+        """Cascade-delete volumes, ports, floating IPs based on preservation params.
 
-        Delete the instance and its ports. A reserved fixed IP stays, unless
-        `reserved_fixed_ips` names it. A port that you
-        [create as a port](#operation/GlobalPortListView.post) is not a reserved fixed
-        IP, so this delete removes it.
+        By
+        default, all are preserved (detached/disassociated).
 
-        To keep the ports, use
-        [`DELETE /v1/projects/{project_id}/instances/{instance_id}`](#operation/GlobalInstanceDetailView.delete).
-        That delete keeps every port by default.
+        `resources_to_delete` holds:
+
+        - the instance itself;
+        - the volumes that `volume_ids` names, or every volume if `all_volumes` is
+          `true`, and the snapshots of these volumes;
+        - the ports that `port_ids` names, or every port if `all_ports` is `true`, and
+          the sub-ports of their trunks;
+        - the floating IPs that `floating_ip_ids` names, or every floating IP if
+          `all_floating_ips` is `true`.
+
+        `resources_to_preserve` holds every other volume, port, sub-port and floating IP
+        of the instance. A floating IP on a deleted port stays, with no port.
+
+        [`DELETE /v1/instances/{project_id}/{region_id}/{instance_id}`](#operation/InstanceInstanceViewSet.delete)
+        is different. It deletes every port, except the reserved fixed IPs that
+        `reserved_fixed_ips` does not name.
+
+        With `?dry_run=true` the request runs every check and changes nothing. The
+        response holds an empty `tasks` array and the same two lists. A failed check
+        returns the same error as the real delete.
 
         Args:
-          project_id: Project ID
+          project_id: Project ID.
 
-          region_id: Region ID
+          instance_id: Instance ID.
 
-          instance_id: Instance ID
+          all_floating_ips: Delete all associated floating IPs (default: preserve).
 
-          delete_floatings: True if it is required to delete floating IPs assigned to the instance. Can't be
-              used with `floatings`.
+          all_ports: Delete all attached ports (default: preserve).
 
-          floatings: Comma separated list of floating ids that should be deleted. Can't be used with
-              `delete_floatings`.
+          all_volumes: Delete all attached volumes (default: preserve).
 
-          reserved_fixed_ips: Comma separated list of port IDs to be deleted with the instance
+          dry_run: Run every check of the real request and change nothing. The response has the
+              status code and the schema of the real call, and an empty list of tasks. With
+              `false`, the default, the request does the operation.
 
-          volumes: Comma separated list of volume IDs to be deleted with the instance
+          floating_ip_ids: Delete only these floating IP IDs (mutually exclusive with `all_floating_ips`).
+
+          port_ids: Delete only these port IDs (mutually exclusive with `all_ports`).
+
+          volume_ids: Delete only these volume IDs (mutually exclusive with `all_volumes`).
 
           extra_headers: Send extra headers
 
@@ -619,15 +598,12 @@ class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
         """
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return self._delete(
             path_template(
-                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}",
+                "/cloud/v1/projects/{project_id}/instances/{instance_id}",
                 project_id=project_id,
-                region_id=region_id,
                 instance_id=instance_id,
             ),
             options=make_request_options(
@@ -637,26 +613,27 @@ class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "delete_floatings": delete_floatings,
-                        "floatings": floatings,
-                        "reserved_fixed_ips": reserved_fixed_ips,
-                        "volumes": volumes,
+                        "all_floating_ips": all_floating_ips,
+                        "all_ports": all_ports,
+                        "all_volumes": all_volumes,
+                        "dry_run": dry_run,
+                        "floating_ip_ids": floating_ip_ids,
+                        "port_ids": port_ids,
+                        "volume_ids": volume_ids,
                     },
                     instance_delete_params.InstanceDeleteParams,
                 ),
             ),
-            cast_to=TaskIDList,
+            cast_to=InstanceDeleteResponse,
         )
 
-    @overload
     def action(
         self,
         instance_id: str,
         *,
         project_id: int | None = None,
-        region_id: int | None = None,
-        action: Literal["start"],
-        activate_profile: Optional[bool] | Omit = omit,
+        action: Literal["reboot", "reboot_hard", "resume", "start", "stop", "suspend"],
+        dry_run: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -664,25 +641,28 @@ class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
-        """
-        Use
-        [POST /v1/projects/{`project_id`}/instances/{`instance_id`}/action](#operation/GlobalInstanceActionView.post)
-        instead. This route continues to work. Later, we will deprecate it and then
-        remove it. We will tell you in advance.
+        """Change the power state of an instance.
 
-        The action can be one of: start, stop, reboot, `reboot_hard`, suspend or resume.
-        Suspend and resume are not available for bare metal instances.
+        The action is one of: `start`, `stop`,
+        `reboot`, `reboot_hard`, `suspend` or `resume`. The action does not change the
+        Advanced DDoS profile of the instance. Use the DDoS profile resource to activate
+        or to deactivate protection. Returns the ID of the task that runs the action.
+
+        With `?dry_run=true` the request runs every check and changes nothing. The
+        response holds an empty `tasks` array. A failed check returns the same error as
+        the real action.
 
         Args:
-          project_id: Project ID
+          project_id: Project ID.
 
-          region_id: Region ID
+          instance_id: Instance ID.
 
-          instance_id: Instance ID
+          action: Power action to run on the instance. `reboot_hard` replaces the legacy
+              `powercycle` action.
 
-          action: Instance action name
-
-          activate_profile: Used on start instance to activate Advanced DDoS profile
+          dry_run: Run every check of the real request and change nothing. The response has the
+              status code and the schema of the real call, and an empty list of tasks. With
+              `false`, the default, the request does the operation.
 
           extra_headers: Send extra headers
 
@@ -692,331 +672,25 @@ class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        ...
-
-    @overload
-    def action(
-        self,
-        instance_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        action: Literal["reboot", "reboot_hard", "resume", "stop", "suspend"],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TaskIDList:
-        """
-        Use
-        [POST /v1/projects/{`project_id`}/instances/{`instance_id`}/action](#operation/GlobalInstanceActionView.post)
-        instead. This route continues to work. Later, we will deprecate it and then
-        remove it. We will tell you in advance.
-
-        The action can be one of: start, stop, reboot, `reboot_hard`, suspend or resume.
-        Suspend and resume are not available for bare metal instances.
-
-        Args:
-          project_id: Project ID
-
-          region_id: Region ID
-
-          instance_id: Instance ID
-
-          action: Instance action name
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @required_args(["action"])
-    def action(
-        self,
-        instance_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        action: Literal["start"] | Literal["reboot", "reboot_hard", "resume", "stop", "suspend"],
-        activate_profile: Optional[bool] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TaskIDList:
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return self._post(
             path_template(
-                "/cloud/v2/instances/{project_id}/{region_id}/{instance_id}/action",
+                "/cloud/v1/projects/{project_id}/instances/{instance_id}/action",
                 project_id=project_id,
-                region_id=region_id,
                 instance_id=instance_id,
             ),
-            body=maybe_transform(
-                {
-                    "action": action,
-                    "activate_profile": activate_profile,
-                },
-                instance_action_params.InstanceActionParams,
-            ),
+            body=maybe_transform({"action": action}, instance_action_params.InstanceActionParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"dry_run": dry_run}, instance_action_params.InstanceActionParams),
             ),
             cast_to=TaskIDList,
-        )
-
-    def add_to_placement_group(
-        self,
-        instance_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        servergroup_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TaskIDList:
-        """
-        Use
-        [PATCH /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.patch)
-        instead. Send `placement_group_id`. This route continues to work. Later, we will
-        deprecate it and then remove it. We will tell you in advance.
-
-        Add an instance to a placement group. The instance must not already be in a
-        placement group. Bare metal servers do not support placement groups.
-
-        Args:
-          project_id: Project ID
-
-          region_id: Region ID
-
-          instance_id: Instance ID
-
-          servergroup_id: Anti-affinity or affinity or soft-anti-affinity placement group ID.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if project_id is None:
-            project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
-        if not instance_id:
-            raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
-        return self._post(
-            path_template(
-                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/put_into_servergroup",
-                project_id=project_id,
-                region_id=region_id,
-                instance_id=instance_id,
-            ),
-            body=maybe_transform(
-                {"servergroup_id": servergroup_id},
-                instance_add_to_placement_group_params.InstanceAddToPlacementGroupParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=TaskIDList,
-        )
-
-    def assign_security_group(
-        self,
-        instance_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        name: str | Omit = omit,
-        ports_security_group_names: Iterable[instance_assign_security_group_params.PortsSecurityGroupName]
-        | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
-        """
-        Use
-        [PATCH /v1/projects/{`project_id`}/ports/{`port_id`}](#operation/GlobalPortDetailView.patch)
-        instead. Send `security_group_ids`. This route continues to work. Later, we will
-        deprecate it and then remove it. We will tell you in advance.
-
-        Assign the security group to the server. To assign multiple security groups to
-        all ports, use the NULL value for the `port_id` field
-
-        Args:
-          project_id: Project ID
-
-          region_id: Region ID
-
-          instance_id: Instance ID
-
-          name: Security group name, applies to all ports
-
-          ports_security_group_names: Port security groups mapping
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if project_id is None:
-            project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
-        if not instance_id:
-            raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        return self._post(
-            path_template(
-                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/addsecuritygroup",
-                project_id=project_id,
-                region_id=region_id,
-                instance_id=instance_id,
-            ),
-            body=maybe_transform(
-                {
-                    "name": name,
-                    "ports_security_group_names": ports_security_group_names,
-                },
-                instance_assign_security_group_params.InstanceAssignSecurityGroupParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=NoneType,
-        )
-
-    @typing_extensions.deprecated("deprecated")
-    def disable_port_security(
-        self,
-        port_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> InstanceInterface:
-        """Deprecated.
-
-        Use PATCH /v1/ports/{`project_id`}/{`region_id`}/{`port_id`}
-        instead.
-
-        Args:
-          project_id: Project ID
-
-          region_id: Region ID
-
-          port_id: Port ID
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if project_id is None:
-            project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
-        if not port_id:
-            raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
-        return self._post(
-            path_template(
-                "/cloud/v1/ports/{project_id}/{region_id}/{port_id}/disable_port_security",
-                project_id=project_id,
-                region_id=region_id,
-                port_id=port_id,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=InstanceInterface,
-        )
-
-    @typing_extensions.deprecated("deprecated")
-    def enable_port_security(
-        self,
-        port_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> InstanceInterface:
-        """Deprecated.
-
-        Use PATCH /v1/ports/{`project_id`}/{`region_id`}/{`port_id`}
-        instead.
-
-        Args:
-          project_id: Project ID
-
-          region_id: Region ID
-
-          port_id: Port ID
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if project_id is None:
-            project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
-        if not port_id:
-            raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
-        return self._post(
-            path_template(
-                "/cloud/v1/ports/{project_id}/{region_id}/{port_id}/enable_port_security",
-                project_id=project_id,
-                region_id=region_id,
-                port_id=port_id,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=InstanceInterface,
         )
 
     def get(
@@ -1024,7 +698,6 @@ class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
         instance_id: str,
         *,
         project_id: int | None = None,
-        region_id: int | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1033,28 +706,12 @@ class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Instance:
         """
-        Use
-        [GET /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.get)
-        instead. This route continues to work. Later, we will deprecate it and then
-        remove it. We will tell you in advance.
-
-        Retrieve detailed information about a specific instance. The response content
-        language for `ddos_profile` can be controlled via the 'language' cookie
-        parameter.
-
-        **Cookie Parameters**:
-
-        - `language` (str, optional): Language for the response content. Affects the
-          `ddos_profile` field. Supported values:
-          - `'en'` (default)
-          - `'de'`
+        Returns a single instance by ID, resolved across all regions.
 
         Args:
-          project_id: Project ID
+          project_id: Project ID.
 
-          region_id: Region ID
-
-          instance_id: Instance ID
+          instance_id: Instance ID.
 
           extra_headers: Send extra headers
 
@@ -1066,91 +723,18 @@ class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
         """
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return self._get(
             path_template(
-                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}",
+                "/cloud/v1/projects/{project_id}/instances/{instance_id}",
                 project_id=project_id,
-                region_id=region_id,
                 instance_id=instance_id,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=Instance,
-        )
-
-    def get_console(
-        self,
-        instance_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        console_type: Literal["novnc", "serial", "spice", "vnc"] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Console:
-        """
-        Use
-        [GET /v1/projects/{`project_id`}/instances/{`instance_id`}/console](#operation/GlobalInstanceConsoleView.get)
-        instead. For a bare metal server, use
-        [Get bare metal server console URL](#operation/GlobalBaremetalConsoleView.get).
-        For a basic VM, use
-        [Get basic VM console URL](#operation/GlobalBasicVmConsoleView.get). This route
-        continues to work. Later, we will deprecate it and then remove it. We will tell
-        you in advance.
-
-        Returns a URL to access the remote console for an instance. Supported console
-        types depend on instance type: novnc and spice for virtual instances, vnc and
-        serial for bare metal instances.
-
-        Args:
-          project_id: Project ID
-
-          region_id: Region ID
-
-          instance_id: Instance ID
-
-          console_type: Console type
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if project_id is None:
-            project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
-        if not instance_id:
-            raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
-        return self._get(
-            path_template(
-                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/get_console",
-                project_id=project_id,
-                region_id=region_id,
-                instance_id=instance_id,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {"console_type": console_type}, instance_get_console_params.InstanceGetConsoleParams
-                ),
-            ),
-            cast_to=Console,
         )
 
     def rebuild(
@@ -1226,209 +810,26 @@ class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
             cast_to=TaskIDList,
         )
 
-    def remove_from_placement_group(
-        self,
-        instance_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TaskIDList:
-        """
-        Use
-        [PATCH /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.patch)
-        instead. Send `placement_group_id`. This route continues to work. Later, we will
-        deprecate it and then remove it. We will tell you in advance.
-
-        Remove an instance from its current placement group. The instance must be in a
-        placement group to be removed. Bare metal servers do not support placement
-        groups.
-
-        Args:
-          project_id: Project ID
-
-          region_id: Region ID
-
-          instance_id: Instance ID
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if project_id is None:
-            project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
-        if not instance_id:
-            raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
-        return self._post(
-            path_template(
-                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/remove_from_servergroup",
-                project_id=project_id,
-                region_id=region_id,
-                instance_id=instance_id,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=TaskIDList,
-        )
-
-    def resize(
-        self,
-        instance_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        flavor_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TaskIDList:
-        """
-        Use
-        [PATCH /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.patch)
-        instead. Send `flavor_name`. This route continues to work. Later, we will
-        deprecate it and then remove it. We will tell you in advance.
-
-        Change flavor of the instance.
-
-        Args:
-          project_id: Project ID
-
-          region_id: Region ID
-
-          instance_id: Instance ID
-
-          flavor_id: Flavor ID
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if project_id is None:
-            project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
-        if not instance_id:
-            raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
-        return self._post(
-            path_template(
-                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/changeflavor",
-                project_id=project_id,
-                region_id=region_id,
-                instance_id=instance_id,
-            ),
-            body=maybe_transform({"flavor_id": flavor_id}, instance_resize_params.InstanceResizeParams),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=TaskIDList,
-        )
-
-    def unassign_security_group(
-        self,
-        instance_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        name: str | Omit = omit,
-        ports_security_group_names: Iterable[instance_unassign_security_group_params.PortsSecurityGroupName]
-        | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
-        """
-        Use
-        [PATCH /v1/projects/{`project_id`}/ports/{`port_id`}](#operation/GlobalPortDetailView.patch)
-        instead. Send `security_group_ids`. This route continues to work. Later, we will
-        deprecate it and then remove it. We will tell you in advance.
-
-        Un-assign the security group to the server. To un-assign multiple security
-        groups to all ports, use the NULL value for the `port_id` field
-
-        Args:
-          project_id: Project ID
-
-          region_id: Region ID
-
-          instance_id: Instance ID
-
-          name: Security group name, applies to all ports
-
-          ports_security_group_names: Port security groups mapping
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if project_id is None:
-            project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
-        if not instance_id:
-            raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        return self._post(
-            path_template(
-                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/delsecuritygroup",
-                project_id=project_id,
-                region_id=region_id,
-                instance_id=instance_id,
-            ),
-            body=maybe_transform(
-                {
-                    "name": name,
-                    "ports_security_group_names": ports_security_group_names,
-                },
-                instance_unassign_security_group_params.InstanceUnassignSecurityGroupParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=NoneType,
-        )
-
 
 class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource):
     """
-    Instances are cloud virtual machines with configurable CPU, memory, storage, and networking, supporting various operating systems and workloads.
+    Instances are cloud virtual machines that boot from a volume and connect to networks through ports, in any region of the project.
     """
+
+    @cached_property
+    def console(self) -> AsyncConsoleResource:
+        return AsyncConsoleResource(self._client)
+
+    @cached_property
+    def resize_flavors(self) -> AsyncResizeFlavorsResource:
+        return AsyncResizeFlavorsResource(self._client)
 
     @cached_property
     def flavors(self) -> AsyncFlavorsResource:
         """
-        Instance flavors define available CPU, memory, and disk configurations for creating cloud instances.
+        Instance flavors define the CPU, memory, and OS type of an instance, in all regions of the project.
         """
         return AsyncFlavorsResource(self._client)
-
-    @cached_property
-    def interfaces(self) -> AsyncInterfacesResource:
-        return AsyncInterfacesResource(self._client)
 
     @cached_property
     def images(self) -> AsyncImagesResource:
@@ -1464,21 +865,18 @@ class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource
         self,
         *,
         project_id: int | None = None,
-        region_id: int | None = None,
-        flavor: str,
+        boot_volume_id: str,
+        flavor_name: str,
         interfaces: Iterable[instance_create_params.Interface],
-        volumes: Iterable[instance_create_params.Volume],
-        allow_app_ports: bool | Omit = omit,
-        configuration: Optional[Dict[str, object]] | Omit = omit,
+        region_id: int,
+        dry_run: bool | Omit = omit,
+        data_volume_ids: SequenceNotStr[str] | Omit = omit,
         name: str | Omit = omit,
-        name_template: str | Omit = omit,
         password: str | Omit = omit,
-        security_groups: Iterable[instance_create_params.SecurityGroup] | Omit = omit,
-        servergroup_id: str | Omit = omit,
-        ssh_key_name: Optional[str] | Omit = omit,
+        placement_group_id: str | Omit = omit,
+        ssh_key_id: str | Omit = omit,
         tags: Dict[str, str] | Omit = omit,
         user_data: str | Omit = omit,
-        username: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1486,102 +884,69 @@ class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
-        """
-        Use
-        [POST /v1/projects/{`project_id`}/instances](#operation/GlobalInstanceListView.post)
-        instead. This route continues to work. Later, we will deprecate it and then
-        remove it. We will tell you in advance.
+        """Create a virtual instance that boots from a volume.
 
-        Create an instance with specified configuration.
+        The instance uses a volume
+        and ports that you create first, in the region of the instance.
 
-        How to get access:
+        To create one:
 
-        For Linux,
+        1. Pick an image with [List images](#operation/ImagesViewSet.get).
+        2. [Create a volume](#operation/VolumeViewSet.post) from the image. Wait until
+           its status is `available`.
+        3. Pick a flavor with
+           [List instance flavors](#operation/GlobalInstanceFlavorListView.get). Send
+           `compatible_with_boot_volume_id` to get only the flavors that can boot the
+           volume.
+        4. [Create a port](#operation/GlobalPortListView.post). A body with only
+           `region_id` gives one public IPv4 address.
 
-        - Use the `user_data` field to provide a
-          [cloud-init script](https://cloudinit.readthedocs.io/en/latest/reference/examples.html)
-          in base64 to apply configurations to the instance.
-        - Specify the `username` and `password` to create a new user.
-        - When only `password` is provided, it is set as the password for the default
-          user of the image.
-        - The `user_data` is ignored when the `password` is specified.
+        You can also attach more volumes, put the instance in a
+        [placement group](#operation/GlobalPlacementGroupListView.post), and add an
+        [SSH key](/docs/api-reference/cloud/ssh-keys/add-or-generate-ssh-key).
 
-        For Windows,
+        The response holds the IDs of the tasks that create the instance.
 
-        - Use the `user_data` field to provide a
-          [cloudbase-init script](https://cloudbase-init.readthedocs.io/en/latest/userdata.html#cloud-config)
-          in base64 to create new users on Windows.
-        - Use the `password` field to set the password for the 'Admin' user on Windows.
-        - The password of the Admin user cannot be updated via `user_data`.
-        - The `username` cannot be specified in the request.
+        With `?dry_run=true` the request runs every check and changes nothing. The
+        response holds an empty `tasks` array. A failed check returns the same error as
+        the real create.
 
         Args:
-          project_id: Project ID
+          project_id: Project ID.
 
-          region_id: Region ID
+          boot_volume_id: Pre-created boot volume UUID.
 
-          flavor: The flavor of the instance.
+          flavor_name: Name of an instance flavor with no GPU. Use
+              `GET /v1/projects/{project_id}/instances/flavors` to list them.
 
-          interfaces: A list of network interfaces for the instance. You can create one or more
-              interfaces - private, public, or both.
+          interfaces: Pre-created ports to attach, in NIC/boot order.
 
-          volumes: List of volumes that will be attached to the instance.
+          region_id: Region to provision the instance in.
 
-          allow_app_ports: Set to `true` if creating the instance from an `apptemplate`. This allows
-              application ports in the security group for instances created from a marketplace
-              application template.
+          dry_run: Run every check of the real request and change nothing. The response has the
+              status code and the schema of the real call, and an empty list of tasks. With
+              `false`, the default, the request does the operation.
 
-          configuration: Parameters for the application template if creating the instance from an
-              `apptemplate`.
+          data_volume_ids: Pre-created data volume UUIDs to attach.
 
-          name: Instance name.
+          name: Instance name. If you omit it, the name template of the account gives the name.
+              Without a template, the name is generated. The account can forbid custom names.
+              Then the name must be equal to the name that the template gives.
 
-          name_template: If you want the instance name to be automatically generated based on IP
-              addresses, you can provide a name template instead of specifying the name
-              manually. The template should include a placeholder that will be replaced during
-              provisioning. Supported placeholders are: `{ip_octets}` (last 3 octets of the
-              IP), `{two_ip_octets}`, and `{one_ip_octet}`.
+          password: Password of the default user. No response returns it. A Windows image needs a
+              password. For a Windows image, the create checks these rules: the password has a
+              minimum of 6 characters, it contains no word 'admin', and it contains 3 of these
+              character types: digits, lowercase letters, uppercase letters, other characters.
+              For a Linux image, the password enables SSH login with a password. Send
+              `password` or `user_data`, not both.
 
-          password: For Linux instances, 'username' and 'password' are used to create a new user.
-              When only 'password' is provided, it is set as the password for the default user
-              of the image. For Windows instances, 'username' cannot be specified. Use the
-              'password' field to set the password for the 'Admin' user on Windows. Use the
-              'user_data' field to provide a script to create new users on Windows. The
-              password of the Admin user cannot be updated via 'user_data'.
+          placement_group_id: Pre-created placement group UUID for affinity/anti-affinity.
 
-          security_groups: Deprecated. Use per-interface `security_groups` inside `interfaces[]` instead.
-              Cannot be combined with per-interface `security_groups`. If omitted everywhere,
-              the project's default security group is applied.
+          ssh_key_id: ID of the SSH key to add to the default user.
 
-          servergroup_id: Placement group ID for instance placement policy.
+          tags: Customer-owned key-value tags.
 
-              Supported group types:
-
-              - `anti-affinity`: Ensures instances are placed on different hosts for high
-                availability.
-              - `affinity`: Places instances on the same host for low-latency communication.
-              - `soft-anti-affinity`: Tries to place instances on different hosts but allows
-                sharing if needed.
-
-          ssh_key_name: Specifies the name of the SSH keypair, created via the
-              [/v1/`ssh_keys` endpoint](/docs/api-reference/cloud/ssh-keys/add-or-generate-ssh-key).
-
-          tags: Key-value tags to associate with the resource. A tag is a key-value pair that
-              can be associated with a resource, enabling efficient filtering and grouping for
-              better organization and management. Both tag keys and values have a maximum
-              length of 255 characters. Tag keys and values cannot contain characters from
-              U+0080 to U+00FF. Some tags are read-only and cannot be modified by the user.
-              Tags are also integrated with cost reports, allowing cost data to be filtered
-              based on tag keys or values.
-
-          user_data: String in base64 format. For Linux instances, 'user_data' is ignored when
-              'password' field is provided. For Windows instances, Admin user password is set
-              by 'password' field and cannot be updated via 'user_data'. Examples of the
-              `user_data`: https://cloudinit.readthedocs.io/en/latest/topics/examples.html
-
-          username: For Linux instances, 'username' and 'password' are used to create a new user.
-              For Windows instances, 'username' cannot be specified. Use 'password' field to
-              set the password for the 'Admin' user on Windows.
+          user_data: cloud-init user data, raw or base64. Up to 65535 bytes once decoded.
 
           extra_headers: Send extra headers
 
@@ -1593,31 +958,30 @@ class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource
         """
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
         return await self._post(
-            path_template("/cloud/v2/instances/{project_id}/{region_id}", project_id=project_id, region_id=region_id),
+            path_template("/cloud/v1/projects/{project_id}/instances", project_id=project_id),
             body=await async_maybe_transform(
                 {
-                    "flavor": flavor,
+                    "boot_volume_id": boot_volume_id,
+                    "flavor_name": flavor_name,
                     "interfaces": interfaces,
-                    "volumes": volumes,
-                    "allow_app_ports": allow_app_ports,
-                    "configuration": configuration,
+                    "region_id": region_id,
+                    "data_volume_ids": data_volume_ids,
                     "name": name,
-                    "name_template": name_template,
                     "password": password,
-                    "security_groups": security_groups,
-                    "servergroup_id": servergroup_id,
-                    "ssh_key_name": ssh_key_name,
+                    "placement_group_id": placement_group_id,
+                    "ssh_key_id": ssh_key_id,
                     "tags": tags,
                     "user_data": user_data,
-                    "username": username,
                 },
                 instance_create_params.InstanceCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform({"dry_run": dry_run}, instance_create_params.InstanceCreateParams),
             ),
             cast_to=TaskIDList,
         )
@@ -1627,8 +991,12 @@ class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource
         instance_id: str,
         *,
         project_id: int | None = None,
-        region_id: int | None = None,
+        dry_run: bool | Omit = omit,
+        data_volume_ids: SequenceNotStr[str] | Omit = omit,
+        flavor_name: str | Omit = omit,
+        interfaces: Iterable[instance_update_params.Interface] | Omit = omit,
         name: str | Omit = omit,
+        placement_group_id: Optional[str] | Omit = omit,
         tags: Optional[TagUpdateMapParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1636,45 +1004,62 @@ class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Instance:
-        """
-        Use
-        [PATCH /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.patch)
-        instead. This route continues to work. Later, we will deprecate it and then
-        remove it. We will tell you in advance.
+    ) -> TaskIDList:
+        """Send only the fields to change.
 
-        Rename instance or update tags
+        One task makes all the changes. A field with the
+        current value changes nothing.
+
+        - Rename: send `name`.
+        - Resize: send `flavor_name`. Pick it with
+          [List instance resize flavors](#operation/GlobalInstanceResizeFlavorListView.get).
+          A resize restarts the instance.
+        - Add a port: [create a port](#operation/GlobalPortListView.post). Then send
+          `interfaces` with the current ports in their current order and the new port at
+          the end.
+        - Remove a port: send `interfaces` without that port. The port stays and you can
+          use it again. For a port change, the instance `status` must be `active` or
+          `stopped`. Resume a suspended instance first.
+        - Attach or detach a data volume: send the full list in `data_volume_ids`. A new
+          volume must be `available`.
+        - Move to a [placement group](#operation/GlobalPlacementGroupListView.post):
+          send `placement_group_id`. Send `null` to remove the instance from its group.
+          The instance `status` must be `active`. The instance can move to another host.
+        - Change tags: send `tags` as a JSON Merge Patch.
+
+        To change the security groups,
+        [update the ports](#operation/GlobalPortDetailView.patch). You cannot change
+        `boot_volume_id` or `ssh_key_id`. To change them, create a new instance.
+
+        With `?dry_run=true` the request runs every check and changes nothing. The
+        response holds an empty `tasks` array. A failed check returns the same error as
+        the real update. If a resize exceeds a quota, the error names every quota that
+        it exceeds.
 
         Args:
-          project_id: Project ID
+          project_id: Project ID.
 
-          region_id: Region ID
+          instance_id: Instance ID.
 
-          instance_id: Instance ID
+          dry_run: Run every check of the real request and change nothing. The response has the
+              status code and the schema of the real call, and an empty list of tasks. With
+              `false`, the default, the request does the operation.
 
-          name: Name
+          data_volume_ids: Full list of the data volumes of the instance. Volumes that are not in the list
+              are detached. New volumes are attached.
 
-          tags: Update key-value tags using JSON Merge Patch semantics (RFC 7396). Provide
-              key-value pairs to add or update tags. Set tag values to `null` to remove tags.
-              Unspecified tags remain unchanged. Read-only tags are always preserved and
-              cannot be modified.
+          flavor_name: Name of the new flavor. The instance is resized to this flavor.
 
-              **Examples:**
+          interfaces: Full list of the ports of the instance. Ports that are not in the list are
+              detached. New ports are attached. Keep the current ports in their current order.
 
-              - **Add/update tags:**
-                `{'tags': {'environment': 'production', 'team': 'backend'}}` adds new tags or
-                updates existing ones.
-              - **Delete tags:** `{'tags': {'old_tag': null}}` removes specific tags.
-              - **Remove all tags:** `{'tags': null}` removes all user-managed tags (read-only
-                tags are preserved).
-              - **Partial update:** `{'tags': {'environment': 'staging'}}` only updates
-                specified tags.
-              - **Mixed operations:**
-                `{'tags': {'environment': 'production', 'cost_center': 'engineering', 'deprecated_tag': null}}`
-                adds/updates 'environment' and 'cost_center' while removing 'deprecated_tag',
-                preserving other existing tags.
-              - **Replace all:** first delete existing tags with null values, then add new
-                ones in the same request.
+          name: Instance name.
+
+          placement_group_id: ID of the placement group. Send null to remove the instance from its placement
+              group.
+
+          tags: Tags as JSON Merge Patch. A key with the value null removes that tag. The value
+              null removes all tags.
 
           extra_headers: Send extra headers
 
@@ -1686,80 +1071,85 @@ class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource
         """
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return await self._patch(
             path_template(
-                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}",
+                "/cloud/v1/projects/{project_id}/instances/{instance_id}",
                 project_id=project_id,
-                region_id=region_id,
                 instance_id=instance_id,
             ),
             body=await async_maybe_transform(
                 {
+                    "data_volume_ids": data_volume_ids,
+                    "flavor_name": flavor_name,
+                    "interfaces": interfaces,
                     "name": name,
+                    "placement_group_id": placement_group_id,
                     "tags": tags,
                 },
                 instance_update_params.InstanceUpdateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform({"dry_run": dry_run}, instance_update_params.InstanceUpdateParams),
             ),
-            cast_to=Instance,
+            cast_to=TaskIDList,
         )
 
     def list(
         self,
         *,
         project_id: int | None = None,
-        region_id: int | None = None,
-        available_floating: bool | Omit = omit,
-        changes_before: Union[str, datetime] | Omit = omit,
-        changes_since: Union[str, datetime] | Omit = omit,
-        exclude_flavor_prefix: str | Omit = omit,
-        exclude_secgroup: str | Omit = omit,
-        flavor_id: str | Omit = omit,
-        flavor_prefix: str | Omit = omit,
-        include_ai: bool | Omit = omit,
-        include_baremetal: bool | Omit = omit,
-        include_k8s: bool | Omit = omit,
-        ip: str | Omit = omit,
+        created_at: instance_list_params.CreatedAt | Omit = omit,
+        flavor_name: instance_list_params.FlavorName | Omit = omit,
+        ids: SequenceNotStr[str] | Omit = omit,
+        ip_address: instance_list_params.IPAddress | Omit = omit,
         limit: int | Omit = omit,
-        name: str | Omit = omit,
+        managed: bool | Omit = omit,
+        managed_by: Literal["k8s_cluster"] | Omit = omit,
+        managed_by_resource_ids: SequenceNotStr[str] | Omit = omit,
+        managed_by_resource_names: SequenceNotStr[str] | Omit = omit,
+        name: instance_list_params.Name | Omit = omit,
+        network_ids: SequenceNotStr[str] | Omit = omit,
         offset: int | Omit = omit,
-        only_isolated: bool | Omit = omit,
-        only_with_fixed_external_ip: bool | Omit = omit,
-        order_by: Literal["created.asc", "created.desc", "name.asc", "name.desc", "status.asc", "status.desc"]
-        | Omit = omit,
-        profile_name: str | Omit = omit,
-        protection_status: Literal["Active", "Queued", "Error"] | Omit = omit,
-        status: Literal[
-            "ACTIVE",
-            "BUILD",
-            "ERROR",
-            "HARD_REBOOT",
-            "MIGRATING",
-            "PAUSED",
-            "REBOOT",
-            "REBUILD",
-            "RESIZE",
-            "REVERT_RESIZE",
-            "SHELVED",
-            "SHELVED_OFFLOADED",
-            "SHUTOFF",
-            "SOFT_DELETED",
-            "SUSPENDED",
-            "VERIFY_RESIZE",
+        order_by: Literal[
+            "created_at.asc",
+            "created_at.desc",
+            "name.asc",
+            "name.desc",
+            "region_id.asc",
+            "region_id.desc",
+            "status.asc",
+            "status.desc",
         ]
         | Omit = omit,
-        tag_key_value: str | Omit = omit,
-        tag_value: SequenceNotStr[str] | Omit = omit,
-        type_ddos_profile: Literal["basic", "advanced"] | Omit = omit,
-        uuid: str | Omit = omit,
-        with_ddos: bool | Omit = omit,
-        with_interfaces_name: bool | Omit = omit,
+        region_ids: Iterable[int] | Omit = omit,
+        security_group_ids: SequenceNotStr[str] | Omit = omit,
+        statuses: List[
+            Literal[
+                "active",
+                "deleted",
+                "deleting",
+                "error",
+                "provisioning",
+                "rebooting",
+                "rebuilding",
+                "resizing",
+                "stopped",
+                "unknown",
+                "updating",
+            ]
+        ]
+        | Omit = omit,
+        subnet_ids: SequenceNotStr[str] | Omit = omit,
+        tag_key: instance_list_params.TagKey | Omit = omit,
+        tag_value: instance_list_params.TagValue | Omit = omit,
+        tags: Dict[str, SequenceNotStr[str]] | Omit = omit,
+        updated_at: instance_list_params.UpdatedAt | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1768,80 +1158,56 @@ class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Instance, AsyncOffsetPage[Instance]]:
         """
-        Use
-        [GET /v1/projects/{`project_id`}/instances](#operation/GlobalInstanceListView.get)
-        instead. This route continues to work. Later, we will deprecate it and then
-        remove it. We will tell you in advance.
-
-        List all instances in the specified project and region. Results can be filtered
-        by various parameters like name, status, and IP address.
+        List a project's instances across all regions.
 
         Args:
-          project_id: Project ID
+          project_id: Project ID.
 
-          region_id: Region ID
+          created_at: Range filter on creation time.
 
-          available_floating: Only show instances which are able to handle floating address
+          flavor_name: Operator flavor name filter.
 
-          changes_before: Filters the instances by a date and time stamp when the instances last changed.
+          ids: Filter by instance UUID(s).
 
-          changes_since: Filters the instances by a date and time stamp when the instances last changed
-              status.
+          ip_address: Exact IP filter on a fixed IP.
 
-          exclude_flavor_prefix: Exclude instances with specified flavor prefix
+          limit: Max items to return.
 
-          exclude_secgroup: Exclude instances with specified security group name
+          managed: Filter by managed status. true = managed by a service, false =
+              customer-operated.
 
-          flavor_id: Filter out instances by `flavor_id`. Flavor id must match exactly.
+          managed_by: Filter by manager type, e.g. `k8s_cluster`.
 
-          flavor_prefix: Filter out instances by `flavor_prefix`.
+          managed_by_resource_ids: Filter by managing resource ID(s).
 
-          include_ai: Include GPU clusters' servers
+          managed_by_resource_names: Filter by managing resource name(s).
 
-          include_baremetal: Include bare metal servers. Please, use `GET /v1/bminstances/` instead
+          name: Operator name filter, e.g. name[contains]=web.
 
-          include_k8s: Include managed k8s worker nodes
+          network_ids: Filter by network ID(s) the instance has a port on.
 
-          ip: An IPv4 address to filter results by. Note: partial matches are allowed. For
-              example, searching for 192.168.0.1 will return 192.168.0.1, 192.168.0.10,
-              192.168.0.110, and so on.
+          offset: Items to skip.
 
-          limit: Optional. Limit the number of returned items
+          order_by: Sort field and direction.
 
-          name: Filter instances by name. You can provide a full or partial name, instances with
-              matching names will be returned. For example, entering 'test' will return all
-              instances that contain 'test' in their name.
+          region_ids: Filter by region ID(s). Omit = all regions.
 
-          offset: Optional. Offset value is used to exclude the first set of records from the
-              result
+          security_group_ids: Filter by security group ID(s).
 
-          only_isolated: Include only isolated instances
+          statuses: Filter by lifecycle status(es).
 
-          only_with_fixed_external_ip: Return bare metals only with external fixed IP addresses.
+          subnet_ids: Filter by subnet ID(s).
 
-          order_by: Order by field and direction.
+          tag_key: Filter by tag key regardless of value, e.g. `tag_key[contains]=team`.
 
-          profile_name: Filter result by ddos protection profile name. Effective only with `with_ddos`
-              set to true.
+          tag_value: Filter by tag value regardless of key, e.g. `tag_value[prefix]=prod`.
 
-          protection_status: Filter result by DDoS `protection_status`. if parameter is provided. Effective
-              only with `with_ddos` set to true. (Active, Queued or Error)
+          tags: Filter by exact tag key-value pairs, e.g. `tags[env]=prod&tags[team]=core`.
+              Repeat a key to match any of several values for it, e.g.
+              `tags[env]=prod&tags[env]=dev`. Values for one key are ORed, different keys are
+              ANDed; values match case-insensitively.
 
-          status: Filters instances by status.
-
-          tag_key_value: Optional. Filter by tag key-value pairs.
-
-          tag_value: Optional. Filter by tag values. ?`tag_value`=value1&`tag_value`=value2
-
-          type_ddos_profile: Return bare metals either only with advanced or only basic DDoS protection.
-              Effective only with `with_ddos` set to true. (advanced or basic)
-
-          uuid: Filter the server list result by the UUID of the server. Allowed UUID part
-
-          with_ddos: Include DDoS profile information in the response when set to `true`. Otherwise,
-              the `ddos_profile` field in the response is `null` by default.
-
-          with_interfaces_name: Include `interface_name` in the addresses
+          updated_at: Range filter on last-update time.
 
           extra_headers: Send extra headers
 
@@ -1853,10 +1219,8 @@ class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource
         """
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            path_template("/cloud/v1/instances/{project_id}/{region_id}", project_id=project_id, region_id=region_id),
+            path_template("/cloud/v1/projects/{project_id}/instances", project_id=project_id),
             page=AsyncOffsetPage[Instance],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -1865,32 +1229,27 @@ class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "available_floating": available_floating,
-                        "changes_before": changes_before,
-                        "changes_since": changes_since,
-                        "exclude_flavor_prefix": exclude_flavor_prefix,
-                        "exclude_secgroup": exclude_secgroup,
-                        "flavor_id": flavor_id,
-                        "flavor_prefix": flavor_prefix,
-                        "include_ai": include_ai,
-                        "include_baremetal": include_baremetal,
-                        "include_k8s": include_k8s,
-                        "ip": ip,
+                        "created_at": created_at,
+                        "flavor_name": flavor_name,
+                        "ids": ids,
+                        "ip_address": ip_address,
                         "limit": limit,
+                        "managed": managed,
+                        "managed_by": managed_by,
+                        "managed_by_resource_ids": managed_by_resource_ids,
+                        "managed_by_resource_names": managed_by_resource_names,
                         "name": name,
+                        "network_ids": network_ids,
                         "offset": offset,
-                        "only_isolated": only_isolated,
-                        "only_with_fixed_external_ip": only_with_fixed_external_ip,
                         "order_by": order_by,
-                        "profile_name": profile_name,
-                        "protection_status": protection_status,
-                        "status": status,
-                        "tag_key_value": tag_key_value,
+                        "region_ids": region_ids,
+                        "security_group_ids": security_group_ids,
+                        "statuses": statuses,
+                        "subnet_ids": subnet_ids,
+                        "tag_key": tag_key,
                         "tag_value": tag_value,
-                        "type_ddos_profile": type_ddos_profile,
-                        "uuid": uuid,
-                        "with_ddos": with_ddos,
-                        "with_interfaces_name": with_interfaces_name,
+                        "tags": tags,
+                        "updated_at": updated_at,
                     },
                     instance_list_params.InstanceListParams,
                 ),
@@ -1903,49 +1262,66 @@ class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource
         instance_id: str,
         *,
         project_id: int | None = None,
-        region_id: int | None = None,
-        delete_floatings: bool | Omit = omit,
-        floatings: str | Omit = omit,
-        reserved_fixed_ips: str | Omit = omit,
-        volumes: str | Omit = omit,
+        all_floating_ips: bool | Omit = omit,
+        all_ports: bool | Omit = omit,
+        all_volumes: bool | Omit = omit,
+        dry_run: bool | Omit = omit,
+        floating_ip_ids: SequenceNotStr[str] | Omit = omit,
+        port_ids: SequenceNotStr[str] | Omit = omit,
+        volume_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TaskIDList:
-        """
-        Use
-        [DELETE /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.delete)
-        instead. This route continues to work. Later, we will deprecate it and then
-        remove it. We will tell you in advance.
+    ) -> InstanceDeleteResponse:
+        """Cascade-delete volumes, ports, floating IPs based on preservation params.
 
-        Delete the instance and its ports. A reserved fixed IP stays, unless
-        `reserved_fixed_ips` names it. A port that you
-        [create as a port](#operation/GlobalPortListView.post) is not a reserved fixed
-        IP, so this delete removes it.
+        By
+        default, all are preserved (detached/disassociated).
 
-        To keep the ports, use
-        [`DELETE /v1/projects/{project_id}/instances/{instance_id}`](#operation/GlobalInstanceDetailView.delete).
-        That delete keeps every port by default.
+        `resources_to_delete` holds:
+
+        - the instance itself;
+        - the volumes that `volume_ids` names, or every volume if `all_volumes` is
+          `true`, and the snapshots of these volumes;
+        - the ports that `port_ids` names, or every port if `all_ports` is `true`, and
+          the sub-ports of their trunks;
+        - the floating IPs that `floating_ip_ids` names, or every floating IP if
+          `all_floating_ips` is `true`.
+
+        `resources_to_preserve` holds every other volume, port, sub-port and floating IP
+        of the instance. A floating IP on a deleted port stays, with no port.
+
+        [`DELETE /v1/instances/{project_id}/{region_id}/{instance_id}`](#operation/InstanceInstanceViewSet.delete)
+        is different. It deletes every port, except the reserved fixed IPs that
+        `reserved_fixed_ips` does not name.
+
+        With `?dry_run=true` the request runs every check and changes nothing. The
+        response holds an empty `tasks` array and the same two lists. A failed check
+        returns the same error as the real delete.
 
         Args:
-          project_id: Project ID
+          project_id: Project ID.
 
-          region_id: Region ID
+          instance_id: Instance ID.
 
-          instance_id: Instance ID
+          all_floating_ips: Delete all associated floating IPs (default: preserve).
 
-          delete_floatings: True if it is required to delete floating IPs assigned to the instance. Can't be
-              used with `floatings`.
+          all_ports: Delete all attached ports (default: preserve).
 
-          floatings: Comma separated list of floating ids that should be deleted. Can't be used with
-              `delete_floatings`.
+          all_volumes: Delete all attached volumes (default: preserve).
 
-          reserved_fixed_ips: Comma separated list of port IDs to be deleted with the instance
+          dry_run: Run every check of the real request and change nothing. The response has the
+              status code and the schema of the real call, and an empty list of tasks. With
+              `false`, the default, the request does the operation.
 
-          volumes: Comma separated list of volume IDs to be deleted with the instance
+          floating_ip_ids: Delete only these floating IP IDs (mutually exclusive with `all_floating_ips`).
+
+          port_ids: Delete only these port IDs (mutually exclusive with `all_ports`).
+
+          volume_ids: Delete only these volume IDs (mutually exclusive with `all_volumes`).
 
           extra_headers: Send extra headers
 
@@ -1957,15 +1333,12 @@ class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource
         """
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return await self._delete(
             path_template(
-                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}",
+                "/cloud/v1/projects/{project_id}/instances/{instance_id}",
                 project_id=project_id,
-                region_id=region_id,
                 instance_id=instance_id,
             ),
             options=make_request_options(
@@ -1975,26 +1348,27 @@ class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "delete_floatings": delete_floatings,
-                        "floatings": floatings,
-                        "reserved_fixed_ips": reserved_fixed_ips,
-                        "volumes": volumes,
+                        "all_floating_ips": all_floating_ips,
+                        "all_ports": all_ports,
+                        "all_volumes": all_volumes,
+                        "dry_run": dry_run,
+                        "floating_ip_ids": floating_ip_ids,
+                        "port_ids": port_ids,
+                        "volume_ids": volume_ids,
                     },
                     instance_delete_params.InstanceDeleteParams,
                 ),
             ),
-            cast_to=TaskIDList,
+            cast_to=InstanceDeleteResponse,
         )
 
-    @overload
     async def action(
         self,
         instance_id: str,
         *,
         project_id: int | None = None,
-        region_id: int | None = None,
-        action: Literal["start"],
-        activate_profile: Optional[bool] | Omit = omit,
+        action: Literal["reboot", "reboot_hard", "resume", "start", "stop", "suspend"],
+        dry_run: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2002,25 +1376,28 @@ class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TaskIDList:
-        """
-        Use
-        [POST /v1/projects/{`project_id`}/instances/{`instance_id`}/action](#operation/GlobalInstanceActionView.post)
-        instead. This route continues to work. Later, we will deprecate it and then
-        remove it. We will tell you in advance.
+        """Change the power state of an instance.
 
-        The action can be one of: start, stop, reboot, `reboot_hard`, suspend or resume.
-        Suspend and resume are not available for bare metal instances.
+        The action is one of: `start`, `stop`,
+        `reboot`, `reboot_hard`, `suspend` or `resume`. The action does not change the
+        Advanced DDoS profile of the instance. Use the DDoS profile resource to activate
+        or to deactivate protection. Returns the ID of the task that runs the action.
+
+        With `?dry_run=true` the request runs every check and changes nothing. The
+        response holds an empty `tasks` array. A failed check returns the same error as
+        the real action.
 
         Args:
-          project_id: Project ID
+          project_id: Project ID.
 
-          region_id: Region ID
+          instance_id: Instance ID.
 
-          instance_id: Instance ID
+          action: Power action to run on the instance. `reboot_hard` replaces the legacy
+              `powercycle` action.
 
-          action: Instance action name
-
-          activate_profile: Used on start instance to activate Advanced DDoS profile
+          dry_run: Run every check of the real request and change nothing. The response has the
+              status code and the schema of the real call, and an empty list of tasks. With
+              `false`, the default, the request does the operation.
 
           extra_headers: Send extra headers
 
@@ -2030,331 +1407,25 @@ class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        ...
-
-    @overload
-    async def action(
-        self,
-        instance_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        action: Literal["reboot", "reboot_hard", "resume", "stop", "suspend"],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TaskIDList:
-        """
-        Use
-        [POST /v1/projects/{`project_id`}/instances/{`instance_id`}/action](#operation/GlobalInstanceActionView.post)
-        instead. This route continues to work. Later, we will deprecate it and then
-        remove it. We will tell you in advance.
-
-        The action can be one of: start, stop, reboot, `reboot_hard`, suspend or resume.
-        Suspend and resume are not available for bare metal instances.
-
-        Args:
-          project_id: Project ID
-
-          region_id: Region ID
-
-          instance_id: Instance ID
-
-          action: Instance action name
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @required_args(["action"])
-    async def action(
-        self,
-        instance_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        action: Literal["start"] | Literal["reboot", "reboot_hard", "resume", "stop", "suspend"],
-        activate_profile: Optional[bool] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TaskIDList:
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return await self._post(
             path_template(
-                "/cloud/v2/instances/{project_id}/{region_id}/{instance_id}/action",
+                "/cloud/v1/projects/{project_id}/instances/{instance_id}/action",
                 project_id=project_id,
-                region_id=region_id,
                 instance_id=instance_id,
             ),
-            body=await async_maybe_transform(
-                {
-                    "action": action,
-                    "activate_profile": activate_profile,
-                },
-                instance_action_params.InstanceActionParams,
-            ),
+            body=await async_maybe_transform({"action": action}, instance_action_params.InstanceActionParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform({"dry_run": dry_run}, instance_action_params.InstanceActionParams),
             ),
             cast_to=TaskIDList,
-        )
-
-    async def add_to_placement_group(
-        self,
-        instance_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        servergroup_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TaskIDList:
-        """
-        Use
-        [PATCH /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.patch)
-        instead. Send `placement_group_id`. This route continues to work. Later, we will
-        deprecate it and then remove it. We will tell you in advance.
-
-        Add an instance to a placement group. The instance must not already be in a
-        placement group. Bare metal servers do not support placement groups.
-
-        Args:
-          project_id: Project ID
-
-          region_id: Region ID
-
-          instance_id: Instance ID
-
-          servergroup_id: Anti-affinity or affinity or soft-anti-affinity placement group ID.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if project_id is None:
-            project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
-        if not instance_id:
-            raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
-        return await self._post(
-            path_template(
-                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/put_into_servergroup",
-                project_id=project_id,
-                region_id=region_id,
-                instance_id=instance_id,
-            ),
-            body=await async_maybe_transform(
-                {"servergroup_id": servergroup_id},
-                instance_add_to_placement_group_params.InstanceAddToPlacementGroupParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=TaskIDList,
-        )
-
-    async def assign_security_group(
-        self,
-        instance_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        name: str | Omit = omit,
-        ports_security_group_names: Iterable[instance_assign_security_group_params.PortsSecurityGroupName]
-        | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
-        """
-        Use
-        [PATCH /v1/projects/{`project_id`}/ports/{`port_id`}](#operation/GlobalPortDetailView.patch)
-        instead. Send `security_group_ids`. This route continues to work. Later, we will
-        deprecate it and then remove it. We will tell you in advance.
-
-        Assign the security group to the server. To assign multiple security groups to
-        all ports, use the NULL value for the `port_id` field
-
-        Args:
-          project_id: Project ID
-
-          region_id: Region ID
-
-          instance_id: Instance ID
-
-          name: Security group name, applies to all ports
-
-          ports_security_group_names: Port security groups mapping
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if project_id is None:
-            project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
-        if not instance_id:
-            raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        return await self._post(
-            path_template(
-                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/addsecuritygroup",
-                project_id=project_id,
-                region_id=region_id,
-                instance_id=instance_id,
-            ),
-            body=await async_maybe_transform(
-                {
-                    "name": name,
-                    "ports_security_group_names": ports_security_group_names,
-                },
-                instance_assign_security_group_params.InstanceAssignSecurityGroupParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=NoneType,
-        )
-
-    @typing_extensions.deprecated("deprecated")
-    async def disable_port_security(
-        self,
-        port_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> InstanceInterface:
-        """Deprecated.
-
-        Use PATCH /v1/ports/{`project_id`}/{`region_id`}/{`port_id`}
-        instead.
-
-        Args:
-          project_id: Project ID
-
-          region_id: Region ID
-
-          port_id: Port ID
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if project_id is None:
-            project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
-        if not port_id:
-            raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
-        return await self._post(
-            path_template(
-                "/cloud/v1/ports/{project_id}/{region_id}/{port_id}/disable_port_security",
-                project_id=project_id,
-                region_id=region_id,
-                port_id=port_id,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=InstanceInterface,
-        )
-
-    @typing_extensions.deprecated("deprecated")
-    async def enable_port_security(
-        self,
-        port_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> InstanceInterface:
-        """Deprecated.
-
-        Use PATCH /v1/ports/{`project_id`}/{`region_id`}/{`port_id`}
-        instead.
-
-        Args:
-          project_id: Project ID
-
-          region_id: Region ID
-
-          port_id: Port ID
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if project_id is None:
-            project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
-        if not port_id:
-            raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
-        return await self._post(
-            path_template(
-                "/cloud/v1/ports/{project_id}/{region_id}/{port_id}/enable_port_security",
-                project_id=project_id,
-                region_id=region_id,
-                port_id=port_id,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=InstanceInterface,
         )
 
     async def get(
@@ -2362,7 +1433,6 @@ class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource
         instance_id: str,
         *,
         project_id: int | None = None,
-        region_id: int | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2371,28 +1441,12 @@ class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Instance:
         """
-        Use
-        [GET /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.get)
-        instead. This route continues to work. Later, we will deprecate it and then
-        remove it. We will tell you in advance.
-
-        Retrieve detailed information about a specific instance. The response content
-        language for `ddos_profile` can be controlled via the 'language' cookie
-        parameter.
-
-        **Cookie Parameters**:
-
-        - `language` (str, optional): Language for the response content. Affects the
-          `ddos_profile` field. Supported values:
-          - `'en'` (default)
-          - `'de'`
+        Returns a single instance by ID, resolved across all regions.
 
         Args:
-          project_id: Project ID
+          project_id: Project ID.
 
-          region_id: Region ID
-
-          instance_id: Instance ID
+          instance_id: Instance ID.
 
           extra_headers: Send extra headers
 
@@ -2404,91 +1458,18 @@ class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource
         """
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return await self._get(
             path_template(
-                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}",
+                "/cloud/v1/projects/{project_id}/instances/{instance_id}",
                 project_id=project_id,
-                region_id=region_id,
                 instance_id=instance_id,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=Instance,
-        )
-
-    async def get_console(
-        self,
-        instance_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        console_type: Literal["novnc", "serial", "spice", "vnc"] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Console:
-        """
-        Use
-        [GET /v1/projects/{`project_id`}/instances/{`instance_id`}/console](#operation/GlobalInstanceConsoleView.get)
-        instead. For a bare metal server, use
-        [Get bare metal server console URL](#operation/GlobalBaremetalConsoleView.get).
-        For a basic VM, use
-        [Get basic VM console URL](#operation/GlobalBasicVmConsoleView.get). This route
-        continues to work. Later, we will deprecate it and then remove it. We will tell
-        you in advance.
-
-        Returns a URL to access the remote console for an instance. Supported console
-        types depend on instance type: novnc and spice for virtual instances, vnc and
-        serial for bare metal instances.
-
-        Args:
-          project_id: Project ID
-
-          region_id: Region ID
-
-          instance_id: Instance ID
-
-          console_type: Console type
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if project_id is None:
-            project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
-        if not instance_id:
-            raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
-        return await self._get(
-            path_template(
-                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/get_console",
-                project_id=project_id,
-                region_id=region_id,
-                instance_id=instance_id,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {"console_type": console_type}, instance_get_console_params.InstanceGetConsoleParams
-                ),
-            ),
-            cast_to=Console,
         )
 
     async def rebuild(
@@ -2564,193 +1545,6 @@ class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource
             cast_to=TaskIDList,
         )
 
-    async def remove_from_placement_group(
-        self,
-        instance_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TaskIDList:
-        """
-        Use
-        [PATCH /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.patch)
-        instead. Send `placement_group_id`. This route continues to work. Later, we will
-        deprecate it and then remove it. We will tell you in advance.
-
-        Remove an instance from its current placement group. The instance must be in a
-        placement group to be removed. Bare metal servers do not support placement
-        groups.
-
-        Args:
-          project_id: Project ID
-
-          region_id: Region ID
-
-          instance_id: Instance ID
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if project_id is None:
-            project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
-        if not instance_id:
-            raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
-        return await self._post(
-            path_template(
-                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/remove_from_servergroup",
-                project_id=project_id,
-                region_id=region_id,
-                instance_id=instance_id,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=TaskIDList,
-        )
-
-    async def resize(
-        self,
-        instance_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        flavor_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TaskIDList:
-        """
-        Use
-        [PATCH /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.patch)
-        instead. Send `flavor_name`. This route continues to work. Later, we will
-        deprecate it and then remove it. We will tell you in advance.
-
-        Change flavor of the instance.
-
-        Args:
-          project_id: Project ID
-
-          region_id: Region ID
-
-          instance_id: Instance ID
-
-          flavor_id: Flavor ID
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if project_id is None:
-            project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
-        if not instance_id:
-            raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
-        return await self._post(
-            path_template(
-                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/changeflavor",
-                project_id=project_id,
-                region_id=region_id,
-                instance_id=instance_id,
-            ),
-            body=await async_maybe_transform({"flavor_id": flavor_id}, instance_resize_params.InstanceResizeParams),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=TaskIDList,
-        )
-
-    async def unassign_security_group(
-        self,
-        instance_id: str,
-        *,
-        project_id: int | None = None,
-        region_id: int | None = None,
-        name: str | Omit = omit,
-        ports_security_group_names: Iterable[instance_unassign_security_group_params.PortsSecurityGroupName]
-        | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
-        """
-        Use
-        [PATCH /v1/projects/{`project_id`}/ports/{`port_id`}](#operation/GlobalPortDetailView.patch)
-        instead. Send `security_group_ids`. This route continues to work. Later, we will
-        deprecate it and then remove it. We will tell you in advance.
-
-        Un-assign the security group to the server. To un-assign multiple security
-        groups to all ports, use the NULL value for the `port_id` field
-
-        Args:
-          project_id: Project ID
-
-          region_id: Region ID
-
-          instance_id: Instance ID
-
-          name: Security group name, applies to all ports
-
-          ports_security_group_names: Port security groups mapping
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if project_id is None:
-            project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
-        if not instance_id:
-            raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        return await self._post(
-            path_template(
-                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/delsecuritygroup",
-                project_id=project_id,
-                region_id=region_id,
-                instance_id=instance_id,
-            ),
-            body=await async_maybe_transform(
-                {
-                    "name": name,
-                    "ports_security_group_names": ports_security_group_names,
-                },
-                instance_unassign_security_group_params.InstanceUnassignSecurityGroupParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=NoneType,
-        )
-
 
 class InstancesResourceWithRawResponse:
     def __init__(self, instances: InstancesResource) -> None:
@@ -2771,69 +1565,27 @@ class InstancesResourceWithRawResponse:
         self.action = to_raw_response_wrapper(
             instances.action,
         )
-        self.action_and_poll = to_raw_response_wrapper(
-            instances.action_and_poll,
-        )
-        self.add_to_placement_group = to_raw_response_wrapper(
-            instances.add_to_placement_group,
-        )
-        self.assign_security_group = to_raw_response_wrapper(
-            instances.assign_security_group,
-        )
-        self.disable_port_security = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                instances.disable_port_security,  # pyright: ignore[reportDeprecated],
-            )
-        )
-        self.enable_port_security = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                instances.enable_port_security,  # pyright: ignore[reportDeprecated],
-            )
-        )
         self.get = to_raw_response_wrapper(
             instances.get,
-        )
-        self.get_console = to_raw_response_wrapper(
-            instances.get_console,
         )
         self.rebuild = to_raw_response_wrapper(
             instances.rebuild,
         )
-        self.remove_from_placement_group = to_raw_response_wrapper(
-            instances.remove_from_placement_group,
-        )
-        self.resize = to_raw_response_wrapper(
-            instances.resize,
-        )
-        self.unassign_security_group = to_raw_response_wrapper(
-            instances.unassign_security_group,
-        )
-        self.create_and_poll = to_raw_response_wrapper(
-            instances.create_and_poll,
-        )
-        self.delete_and_poll = to_raw_response_wrapper(
-            instances.delete_and_poll,
-        )
-        self.add_to_placement_group_and_poll = to_raw_response_wrapper(
-            instances.add_to_placement_group_and_poll,
-        )
-        self.remove_from_placement_group_and_poll = to_raw_response_wrapper(
-            instances.remove_from_placement_group_and_poll,
-        )
-        self.resize_and_poll = to_raw_response_wrapper(
-            instances.resize_and_poll,
-        )
+
+    @cached_property
+    def console(self) -> ConsoleResourceWithRawResponse:
+        return ConsoleResourceWithRawResponse(self._instances.console)
+
+    @cached_property
+    def resize_flavors(self) -> ResizeFlavorsResourceWithRawResponse:
+        return ResizeFlavorsResourceWithRawResponse(self._instances.resize_flavors)
 
     @cached_property
     def flavors(self) -> FlavorsResourceWithRawResponse:
         """
-        Instance flavors define available CPU, memory, and disk configurations for creating cloud instances.
+        Instance flavors define the CPU, memory, and OS type of an instance, in all regions of the project.
         """
         return FlavorsResourceWithRawResponse(self._instances.flavors)
-
-    @cached_property
-    def interfaces(self) -> InterfacesResourceWithRawResponse:
-        return InterfacesResourceWithRawResponse(self._instances.interfaces)
 
     @cached_property
     def images(self) -> ImagesResourceWithRawResponse:
@@ -2866,69 +1618,27 @@ class AsyncInstancesResourceWithRawResponse:
         self.action = async_to_raw_response_wrapper(
             instances.action,
         )
-        self.action_and_poll = async_to_raw_response_wrapper(
-            instances.action_and_poll,
-        )
-        self.add_to_placement_group = async_to_raw_response_wrapper(
-            instances.add_to_placement_group,
-        )
-        self.assign_security_group = async_to_raw_response_wrapper(
-            instances.assign_security_group,
-        )
-        self.disable_port_security = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                instances.disable_port_security,  # pyright: ignore[reportDeprecated],
-            )
-        )
-        self.enable_port_security = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                instances.enable_port_security,  # pyright: ignore[reportDeprecated],
-            )
-        )
         self.get = async_to_raw_response_wrapper(
             instances.get,
-        )
-        self.get_console = async_to_raw_response_wrapper(
-            instances.get_console,
         )
         self.rebuild = async_to_raw_response_wrapper(
             instances.rebuild,
         )
-        self.remove_from_placement_group = async_to_raw_response_wrapper(
-            instances.remove_from_placement_group,
-        )
-        self.resize = async_to_raw_response_wrapper(
-            instances.resize,
-        )
-        self.unassign_security_group = async_to_raw_response_wrapper(
-            instances.unassign_security_group,
-        )
-        self.create_and_poll = async_to_raw_response_wrapper(
-            instances.create_and_poll,
-        )
-        self.delete_and_poll = async_to_raw_response_wrapper(
-            instances.delete_and_poll,
-        )
-        self.add_to_placement_group_and_poll = async_to_raw_response_wrapper(
-            instances.add_to_placement_group_and_poll,
-        )
-        self.remove_from_placement_group_and_poll = async_to_raw_response_wrapper(
-            instances.remove_from_placement_group_and_poll,
-        )
-        self.resize_and_poll = async_to_raw_response_wrapper(
-            instances.resize_and_poll,
-        )
+
+    @cached_property
+    def console(self) -> AsyncConsoleResourceWithRawResponse:
+        return AsyncConsoleResourceWithRawResponse(self._instances.console)
+
+    @cached_property
+    def resize_flavors(self) -> AsyncResizeFlavorsResourceWithRawResponse:
+        return AsyncResizeFlavorsResourceWithRawResponse(self._instances.resize_flavors)
 
     @cached_property
     def flavors(self) -> AsyncFlavorsResourceWithRawResponse:
         """
-        Instance flavors define available CPU, memory, and disk configurations for creating cloud instances.
+        Instance flavors define the CPU, memory, and OS type of an instance, in all regions of the project.
         """
         return AsyncFlavorsResourceWithRawResponse(self._instances.flavors)
-
-    @cached_property
-    def interfaces(self) -> AsyncInterfacesResourceWithRawResponse:
-        return AsyncInterfacesResourceWithRawResponse(self._instances.interfaces)
 
     @cached_property
     def images(self) -> AsyncImagesResourceWithRawResponse:
@@ -2961,69 +1671,27 @@ class InstancesResourceWithStreamingResponse:
         self.action = to_streamed_response_wrapper(
             instances.action,
         )
-        self.action_and_poll = to_streamed_response_wrapper(
-            instances.action_and_poll,
-        )
-        self.add_to_placement_group = to_streamed_response_wrapper(
-            instances.add_to_placement_group,
-        )
-        self.assign_security_group = to_streamed_response_wrapper(
-            instances.assign_security_group,
-        )
-        self.disable_port_security = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                instances.disable_port_security,  # pyright: ignore[reportDeprecated],
-            )
-        )
-        self.enable_port_security = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                instances.enable_port_security,  # pyright: ignore[reportDeprecated],
-            )
-        )
         self.get = to_streamed_response_wrapper(
             instances.get,
-        )
-        self.get_console = to_streamed_response_wrapper(
-            instances.get_console,
         )
         self.rebuild = to_streamed_response_wrapper(
             instances.rebuild,
         )
-        self.remove_from_placement_group = to_streamed_response_wrapper(
-            instances.remove_from_placement_group,
-        )
-        self.resize = to_streamed_response_wrapper(
-            instances.resize,
-        )
-        self.unassign_security_group = to_streamed_response_wrapper(
-            instances.unassign_security_group,
-        )
-        self.create_and_poll = to_streamed_response_wrapper(
-            instances.create_and_poll,
-        )
-        self.delete_and_poll = to_streamed_response_wrapper(
-            instances.delete_and_poll,
-        )
-        self.add_to_placement_group_and_poll = to_streamed_response_wrapper(
-            instances.add_to_placement_group_and_poll,
-        )
-        self.remove_from_placement_group_and_poll = to_streamed_response_wrapper(
-            instances.remove_from_placement_group_and_poll,
-        )
-        self.resize_and_poll = to_streamed_response_wrapper(
-            instances.resize_and_poll,
-        )
+
+    @cached_property
+    def console(self) -> ConsoleResourceWithStreamingResponse:
+        return ConsoleResourceWithStreamingResponse(self._instances.console)
+
+    @cached_property
+    def resize_flavors(self) -> ResizeFlavorsResourceWithStreamingResponse:
+        return ResizeFlavorsResourceWithStreamingResponse(self._instances.resize_flavors)
 
     @cached_property
     def flavors(self) -> FlavorsResourceWithStreamingResponse:
         """
-        Instance flavors define available CPU, memory, and disk configurations for creating cloud instances.
+        Instance flavors define the CPU, memory, and OS type of an instance, in all regions of the project.
         """
         return FlavorsResourceWithStreamingResponse(self._instances.flavors)
-
-    @cached_property
-    def interfaces(self) -> InterfacesResourceWithStreamingResponse:
-        return InterfacesResourceWithStreamingResponse(self._instances.interfaces)
 
     @cached_property
     def images(self) -> ImagesResourceWithStreamingResponse:
@@ -3056,69 +1724,27 @@ class AsyncInstancesResourceWithStreamingResponse:
         self.action = async_to_streamed_response_wrapper(
             instances.action,
         )
-        self.action_and_poll = async_to_streamed_response_wrapper(
-            instances.action_and_poll,
-        )
-        self.add_to_placement_group = async_to_streamed_response_wrapper(
-            instances.add_to_placement_group,
-        )
-        self.assign_security_group = async_to_streamed_response_wrapper(
-            instances.assign_security_group,
-        )
-        self.disable_port_security = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                instances.disable_port_security,  # pyright: ignore[reportDeprecated],
-            )
-        )
-        self.enable_port_security = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                instances.enable_port_security,  # pyright: ignore[reportDeprecated],
-            )
-        )
         self.get = async_to_streamed_response_wrapper(
             instances.get,
-        )
-        self.get_console = async_to_streamed_response_wrapper(
-            instances.get_console,
         )
         self.rebuild = async_to_streamed_response_wrapper(
             instances.rebuild,
         )
-        self.remove_from_placement_group = async_to_streamed_response_wrapper(
-            instances.remove_from_placement_group,
-        )
-        self.resize = async_to_streamed_response_wrapper(
-            instances.resize,
-        )
-        self.unassign_security_group = async_to_streamed_response_wrapper(
-            instances.unassign_security_group,
-        )
-        self.create_and_poll = async_to_streamed_response_wrapper(
-            instances.create_and_poll,
-        )
-        self.delete_and_poll = async_to_streamed_response_wrapper(
-            instances.delete_and_poll,
-        )
-        self.add_to_placement_group_and_poll = async_to_streamed_response_wrapper(
-            instances.add_to_placement_group_and_poll,
-        )
-        self.remove_from_placement_group_and_poll = async_to_streamed_response_wrapper(
-            instances.remove_from_placement_group_and_poll,
-        )
-        self.resize_and_poll = async_to_streamed_response_wrapper(
-            instances.resize_and_poll,
-        )
+
+    @cached_property
+    def console(self) -> AsyncConsoleResourceWithStreamingResponse:
+        return AsyncConsoleResourceWithStreamingResponse(self._instances.console)
+
+    @cached_property
+    def resize_flavors(self) -> AsyncResizeFlavorsResourceWithStreamingResponse:
+        return AsyncResizeFlavorsResourceWithStreamingResponse(self._instances.resize_flavors)
 
     @cached_property
     def flavors(self) -> AsyncFlavorsResourceWithStreamingResponse:
         """
-        Instance flavors define available CPU, memory, and disk configurations for creating cloud instances.
+        Instance flavors define the CPU, memory, and OS type of an instance, in all regions of the project.
         """
         return AsyncFlavorsResourceWithStreamingResponse(self._instances.flavors)
-
-    @cached_property
-    def interfaces(self) -> AsyncInterfacesResourceWithStreamingResponse:
-        return AsyncInterfacesResourceWithStreamingResponse(self._instances.interfaces)
 
     @cached_property
     def images(self) -> AsyncImagesResourceWithStreamingResponse:

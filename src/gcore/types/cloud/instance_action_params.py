@@ -2,35 +2,24 @@
 
 from __future__ import annotations
 
-from typing import Union, Optional
-from typing_extensions import Literal, Required, TypeAlias, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["InstanceActionParams", "StartActionInstanceSerializer", "BasicActionInstanceSerializer"]
+__all__ = ["InstanceActionParams"]
 
 
-class StartActionInstanceSerializer(TypedDict, total=False):
+class InstanceActionParams(TypedDict, total=False):
     project_id: int
-    """Project ID"""
+    """Project ID."""
 
-    region_id: int
-    """Region ID"""
+    action: Required[Literal["reboot", "reboot_hard", "resume", "start", "stop", "suspend"]]
+    """Power action to run on the instance.
 
-    action: Required[Literal["start"]]
-    """Instance action name"""
+    `reboot_hard` replaces the legacy `powercycle` action.
+    """
 
-    activate_profile: Optional[bool]
-    """Used on start instance to activate Advanced DDoS profile"""
+    dry_run: bool
+    """Run every check of the real request and change nothing.
 
-
-class BasicActionInstanceSerializer(TypedDict, total=False):
-    project_id: int
-    """Project ID"""
-
-    region_id: int
-    """Region ID"""
-
-    action: Required[Literal["reboot", "reboot_hard", "resume", "stop", "suspend"]]
-    """Instance action name"""
-
-
-InstanceActionParams: TypeAlias = Union[StartActionInstanceSerializer, BasicActionInstanceSerializer]
+    The response has the status code and the schema of the real call, and an empty
+    list of tasks. With `false`, the default, the request does the operation.
+    """

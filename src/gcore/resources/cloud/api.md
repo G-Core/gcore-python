@@ -23,10 +23,10 @@ from gcore.types.cloud import (
     GPUImage,
     GPUImageList,
     HTTPMethod,
-    Instance,
     InstanceIsolation,
-    InstanceList,
     InstanceMetricsTimeUnit,
+    InstanceRegional,
+    InstanceRegionalList,
     InterfaceIPFamily,
     IPAssignment,
     IPVersion,
@@ -998,46 +998,42 @@ Methods:
 Types:
 
 ```python
-from gcore.types.cloud import InstanceInterface
+from gcore.types.cloud import Instance, InstanceDeleteResponse
 ```
 
 Methods:
 
-- <code title="post /cloud/v2/instances/{project_id}/{region_id}">client.cloud.instances.<a href="./src/gcore/resources/cloud/instances/instances.py">create</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instance_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
-- <code title="patch /cloud/v1/instances/{project_id}/{region_id}/{instance_id}">client.cloud.instances.<a href="./src/gcore/resources/cloud/instances/instances.py">update</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instance_update_params.py">params</a>) -> <a href="./src/gcore/types/cloud/instance.py">Instance</a></code>
-- <code title="get /cloud/v1/instances/{project_id}/{region_id}">client.cloud.instances.<a href="./src/gcore/resources/cloud/instances/instances.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instance_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/instance.py">SyncOffsetPage[Instance]</a></code>
-- <code title="delete /cloud/v1/instances/{project_id}/{region_id}/{instance_id}">client.cloud.instances.<a href="./src/gcore/resources/cloud/instances/instances.py">delete</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instance_delete_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
-- <code title="post /cloud/v2/instances/{project_id}/{region_id}/{instance_id}/action">client.cloud.instances.<a href="./src/gcore/resources/cloud/instances/instances.py">action</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instance_action_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
-- <code title="post /cloud/v1/instances/{project_id}/{region_id}/{instance_id}/put_into_servergroup">client.cloud.instances.<a href="./src/gcore/resources/cloud/instances/instances.py">add_to_placement_group</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instance_add_to_placement_group_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
-- <code title="post /cloud/v1/instances/{project_id}/{region_id}/{instance_id}/addsecuritygroup">client.cloud.instances.<a href="./src/gcore/resources/cloud/instances/instances.py">assign_security_group</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instance_assign_security_group_params.py">params</a>) -> None</code>
-- <code title="post /cloud/v1/ports/{project_id}/{region_id}/{port_id}/disable_port_security">client.cloud.instances.<a href="./src/gcore/resources/cloud/instances/instances.py">disable_port_security</a>(port_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/instance_interface.py">InstanceInterface</a></code>
-- <code title="post /cloud/v1/ports/{project_id}/{region_id}/{port_id}/enable_port_security">client.cloud.instances.<a href="./src/gcore/resources/cloud/instances/instances.py">enable_port_security</a>(port_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/instance_interface.py">InstanceInterface</a></code>
-- <code title="get /cloud/v1/instances/{project_id}/{region_id}/{instance_id}">client.cloud.instances.<a href="./src/gcore/resources/cloud/instances/instances.py">get</a>(instance_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/instance.py">Instance</a></code>
-- <code title="get /cloud/v1/instances/{project_id}/{region_id}/{instance_id}/get_console">client.cloud.instances.<a href="./src/gcore/resources/cloud/instances/instances.py">get_console</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instance_get_console_params.py">params</a>) -> <a href="./src/gcore/types/cloud/console.py">Console</a></code>
+- <code title="post /cloud/v1/projects/{project_id}/instances">client.cloud.instances.<a href="./src/gcore/resources/cloud/instances/instances.py">create</a>(\*, project_id, \*\*<a href="src/gcore/types/cloud/instance_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="patch /cloud/v1/projects/{project_id}/instances/{instance_id}">client.cloud.instances.<a href="./src/gcore/resources/cloud/instances/instances.py">update</a>(instance_id, \*, project_id, \*\*<a href="src/gcore/types/cloud/instance_update_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="get /cloud/v1/projects/{project_id}/instances">client.cloud.instances.<a href="./src/gcore/resources/cloud/instances/instances.py">list</a>(\*, project_id, \*\*<a href="src/gcore/types/cloud/instance_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/instance.py">SyncOffsetPage[Instance]</a></code>
+- <code title="delete /cloud/v1/projects/{project_id}/instances/{instance_id}">client.cloud.instances.<a href="./src/gcore/resources/cloud/instances/instances.py">delete</a>(instance_id, \*, project_id, \*\*<a href="src/gcore/types/cloud/instance_delete_params.py">params</a>) -> <a href="./src/gcore/types/cloud/instance_delete_response.py">InstanceDeleteResponse</a></code>
+- <code title="post /cloud/v1/projects/{project_id}/instances/{instance_id}/action">client.cloud.instances.<a href="./src/gcore/resources/cloud/instances/instances.py">action</a>(instance_id, \*, project_id, \*\*<a href="src/gcore/types/cloud/instance_action_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="get /cloud/v1/projects/{project_id}/instances/{instance_id}">client.cloud.instances.<a href="./src/gcore/resources/cloud/instances/instances.py">get</a>(instance_id, \*, project_id) -> <a href="./src/gcore/types/cloud/instance.py">Instance</a></code>
 - <code title="post /cloud/v3/instances/{project_id}/{region_id}/{instance_id}/rebuild">client.cloud.instances.<a href="./src/gcore/resources/cloud/instances/instances.py">rebuild</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instance_rebuild_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
-- <code title="post /cloud/v1/instances/{project_id}/{region_id}/{instance_id}/remove_from_servergroup">client.cloud.instances.<a href="./src/gcore/resources/cloud/instances/instances.py">remove_from_placement_group</a>(instance_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
-- <code title="post /cloud/v1/instances/{project_id}/{region_id}/{instance_id}/changeflavor">client.cloud.instances.<a href="./src/gcore/resources/cloud/instances/instances.py">resize</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instance_resize_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
-- <code title="post /cloud/v1/instances/{project_id}/{region_id}/{instance_id}/delsecuritygroup">client.cloud.instances.<a href="./src/gcore/resources/cloud/instances/instances.py">unassign_security_group</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instance_unassign_security_group_params.py">params</a>) -> None</code>
+
+### Console
+
+Methods:
+
+- <code title="get /cloud/v1/projects/{project_id}/instances/{instance_id}/console">client.cloud.instances.console.<a href="./src/gcore/resources/cloud/instances/console.py">get</a>(instance_id, \*, project_id, \*\*<a href="src/gcore/types/cloud/instances/console_get_params.py">params</a>) -> <a href="./src/gcore/types/cloud/console.py">Console</a></code>
+
+### ResizeFlavors
+
+Methods:
+
+- <code title="get /cloud/v1/projects/{project_id}/instances/{instance_id}/flavors">client.cloud.instances.resize_flavors.<a href="./src/gcore/resources/cloud/instances/resize_flavors.py">list</a>(instance_id, \*, project_id, \*\*<a href="src/gcore/types/cloud/instances/resize_flavor_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/instances/instance_flavor.py">SyncOffsetPage[InstanceFlavor]</a></code>
 
 ### Flavors
 
 Types:
 
 ```python
-from gcore.types.cloud.instances import InstanceFlavorDetailed, InstanceFlavorList
+from gcore.types.cloud.instances import InstanceFlavor
 ```
 
 Methods:
 
-- <code title="get /cloud/v1/flavors/{project_id}/{region_id}">client.cloud.instances.flavors.<a href="./src/gcore/resources/cloud/instances/flavors.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances/flavor_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/instances/instance_flavor_detailed.py">SyncOffsetPage[InstanceFlavorDetailed]</a></code>
-
-### Interfaces
-
-Methods:
-
-- <code title="get /cloud/v1/instances/{project_id}/{region_id}/{instance_id}/interfaces">client.cloud.instances.interfaces.<a href="./src/gcore/resources/cloud/instances/interfaces.py">list</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances/interface_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/network_interface.py">SyncOffsetPage[NetworkInterface]</a></code>
-- <code title="post /cloud/v1/instances/{project_id}/{region_id}/{instance_id}/attach_interface">client.cloud.instances.interfaces.<a href="./src/gcore/resources/cloud/instances/interfaces.py">attach</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances/interface_attach_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
-- <code title="post /cloud/v1/instances/{project_id}/{region_id}/{instance_id}/detach_interface">client.cloud.instances.interfaces.<a href="./src/gcore/resources/cloud/instances/interfaces.py">detach</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances/interface_detach_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="get /cloud/v1/projects/{project_id}/instances/flavors">client.cloud.instances.flavors.<a href="./src/gcore/resources/cloud/instances/flavors.py">list</a>(\*, project_id, \*\*<a href="src/gcore/types/cloud/instances/flavor_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/instances/instance_flavor.py">SyncOffsetPage[InstanceFlavor]</a></code>
 
 ### Images
 
@@ -1067,6 +1063,54 @@ from gcore.types.cloud.instances import Metrics, MetricsList
 Methods:
 
 - <code title="post /cloud/v1/instances/{project_id}/{region_id}/{instance_id}/metrics">client.cloud.instances.metrics.<a href="./src/gcore/resources/cloud/instances/metrics.py">list</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances/metric_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/instances/metrics_list.py">MetricsList</a></code>
+
+## InstancesRegional
+
+Types:
+
+```python
+from gcore.types.cloud import InstanceRegionalInterface
+```
+
+Methods:
+
+- <code title="post /cloud/v2/instances/{project_id}/{region_id}">client.cloud.instances_regional.<a href="./src/gcore/resources/cloud/instances_regional/instances_regional.py">create</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances_regional_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="patch /cloud/v1/instances/{project_id}/{region_id}/{instance_id}">client.cloud.instances_regional.<a href="./src/gcore/resources/cloud/instances_regional/instances_regional.py">update</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances_regional_update_params.py">params</a>) -> <a href="./src/gcore/types/cloud/instance_regional.py">InstanceRegional</a></code>
+- <code title="get /cloud/v1/instances/{project_id}/{region_id}">client.cloud.instances_regional.<a href="./src/gcore/resources/cloud/instances_regional/instances_regional.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances_regional_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/instance_regional.py">SyncOffsetPage[InstanceRegional]</a></code>
+- <code title="delete /cloud/v1/instances/{project_id}/{region_id}/{instance_id}">client.cloud.instances_regional.<a href="./src/gcore/resources/cloud/instances_regional/instances_regional.py">delete</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances_regional_delete_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="post /cloud/v2/instances/{project_id}/{region_id}/{instance_id}/action">client.cloud.instances_regional.<a href="./src/gcore/resources/cloud/instances_regional/instances_regional.py">action</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances_regional_action_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="post /cloud/v1/instances/{project_id}/{region_id}/{instance_id}/put_into_servergroup">client.cloud.instances_regional.<a href="./src/gcore/resources/cloud/instances_regional/instances_regional.py">add_to_placement_group</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances_regional_add_to_placement_group_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="post /cloud/v1/instances/{project_id}/{region_id}/{instance_id}/addsecuritygroup">client.cloud.instances_regional.<a href="./src/gcore/resources/cloud/instances_regional/instances_regional.py">assign_security_group</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances_regional_assign_security_group_params.py">params</a>) -> None</code>
+- <code title="post /cloud/v1/ports/{project_id}/{region_id}/{port_id}/disable_port_security">client.cloud.instances_regional.<a href="./src/gcore/resources/cloud/instances_regional/instances_regional.py">disable_port_security</a>(port_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/instance_regional_interface.py">InstanceRegionalInterface</a></code>
+- <code title="post /cloud/v1/ports/{project_id}/{region_id}/{port_id}/enable_port_security">client.cloud.instances_regional.<a href="./src/gcore/resources/cloud/instances_regional/instances_regional.py">enable_port_security</a>(port_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/instance_regional_interface.py">InstanceRegionalInterface</a></code>
+- <code title="get /cloud/v1/instances/{project_id}/{region_id}/{instance_id}">client.cloud.instances_regional.<a href="./src/gcore/resources/cloud/instances_regional/instances_regional.py">get</a>(instance_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/instance_regional.py">InstanceRegional</a></code>
+- <code title="get /cloud/v1/instances/{project_id}/{region_id}/{instance_id}/get_console">client.cloud.instances_regional.<a href="./src/gcore/resources/cloud/instances_regional/instances_regional.py">get_console</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances_regional_get_console_params.py">params</a>) -> <a href="./src/gcore/types/cloud/console.py">Console</a></code>
+- <code title="post /cloud/v1/instances/{project_id}/{region_id}/{instance_id}/remove_from_servergroup">client.cloud.instances_regional.<a href="./src/gcore/resources/cloud/instances_regional/instances_regional.py">remove_from_placement_group</a>(instance_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="post /cloud/v1/instances/{project_id}/{region_id}/{instance_id}/changeflavor">client.cloud.instances_regional.<a href="./src/gcore/resources/cloud/instances_regional/instances_regional.py">resize</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances_regional_resize_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="post /cloud/v1/instances/{project_id}/{region_id}/{instance_id}/delsecuritygroup">client.cloud.instances_regional.<a href="./src/gcore/resources/cloud/instances_regional/instances_regional.py">unassign_security_group</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances_regional_unassign_security_group_params.py">params</a>) -> None</code>
+
+### Flavors
+
+Types:
+
+```python
+from gcore.types.cloud.instances_regional import (
+    InstanceRegionalFlavorDetailed,
+    InstanceRegionalFlavorList,
+)
+```
+
+Methods:
+
+- <code title="get /cloud/v1/flavors/{project_id}/{region_id}">client.cloud.instances_regional.flavors.<a href="./src/gcore/resources/cloud/instances_regional/flavors.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances_regional/flavor_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/instances_regional/instance_regional_flavor_detailed.py">SyncOffsetPage[InstanceRegionalFlavorDetailed]</a></code>
+
+### Interfaces
+
+Methods:
+
+- <code title="get /cloud/v1/instances/{project_id}/{region_id}/{instance_id}/interfaces">client.cloud.instances_regional.interfaces.<a href="./src/gcore/resources/cloud/instances_regional/interfaces.py">list</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances_regional/interface_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/network_interface.py">SyncOffsetPage[NetworkInterface]</a></code>
+- <code title="post /cloud/v1/instances/{project_id}/{region_id}/{instance_id}/attach_interface">client.cloud.instances_regional.interfaces.<a href="./src/gcore/resources/cloud/instances_regional/interfaces.py">attach</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances_regional/interface_attach_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="post /cloud/v1/instances/{project_id}/{region_id}/{instance_id}/detach_interface">client.cloud.instances_regional.interfaces.<a href="./src/gcore/resources/cloud/instances_regional/interfaces.py">detach</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances_regional/interface_detach_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
 
 ## K8S
 
@@ -1126,7 +1170,7 @@ Methods:
 
 Methods:
 
-- <code title="get /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/instances">client.cloud.k8s.clusters.nodes.<a href="./src/gcore/resources/cloud/k8s/clusters/nodes.py">list</a>(cluster_name, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/k8s/clusters/node_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/instance.py">SyncOffsetPage[Instance]</a></code>
+- <code title="get /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/instances">client.cloud.k8s.clusters.nodes.<a href="./src/gcore/resources/cloud/k8s/clusters/nodes.py">list</a>(cluster_name, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/k8s/clusters/node_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/instance_regional.py">SyncOffsetPage[InstanceRegional]</a></code>
 - <code title="delete /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/instances/{instance_id}">client.cloud.k8s.clusters.nodes.<a href="./src/gcore/resources/cloud/k8s/clusters/nodes.py">delete</a>(instance_id, \*, project_id, region_id, cluster_name) -> None</code>
 
 #### Pools
@@ -1151,7 +1195,7 @@ Methods:
 
 Methods:
 
-- <code title="get /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}/instances">client.cloud.k8s.clusters.pools.nodes.<a href="./src/gcore/resources/cloud/k8s/clusters/pools/nodes.py">list</a>(pool_name, \*, project_id, region_id, cluster_name, \*\*<a href="src/gcore/types/cloud/k8s/clusters/pools/node_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/instance.py">SyncOffsetPage[Instance]</a></code>
+- <code title="get /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}/instances">client.cloud.k8s.clusters.pools.nodes.<a href="./src/gcore/resources/cloud/k8s/clusters/pools/nodes.py">list</a>(pool_name, \*, project_id, region_id, cluster_name, \*\*<a href="src/gcore/types/cloud/k8s/clusters/pools/node_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/instance_regional.py">SyncOffsetPage[InstanceRegional]</a></code>
 - <code title="delete /cloud/v2/k8s/clusters/{project_id}/{region_id}/{cluster_name}/pools/{pool_name}/instances/{instance_id}">client.cloud.k8s.clusters.pools.nodes.<a href="./src/gcore/resources/cloud/k8s/clusters/pools/nodes.py">delete</a>(instance_id, \*, project_id, region_id, cluster_name, pool_name) -> None</code>
 
 ## AuditLogs

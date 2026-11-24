@@ -2,142 +2,270 @@
 
 from __future__ import annotations
 
-from typing import Union
+from typing import Dict, List, Union, Iterable
 from datetime import datetime
 from typing_extensions import Literal, Annotated, TypedDict
 
 from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 
-__all__ = ["InstanceListParams"]
+__all__ = ["InstanceListParams", "CreatedAt", "FlavorName", "IPAddress", "Name", "TagKey", "TagValue", "UpdatedAt"]
 
 
 class InstanceListParams(TypedDict, total=False):
     project_id: int
-    """Project ID"""
+    """Project ID."""
 
-    region_id: int
-    """Region ID"""
+    created_at: CreatedAt
+    """Range filter on creation time."""
 
-    available_floating: bool
-    """Only show instances which are able to handle floating address"""
+    flavor_name: FlavorName
+    """Operator flavor name filter."""
 
-    changes_before: Annotated[Union[str, datetime], PropertyInfo(alias="changes-before", format="iso8601")]
-    """Filters the instances by a date and time stamp when the instances last changed."""
+    ids: SequenceNotStr[str]
+    """Filter by instance UUID(s)."""
 
-    changes_since: Annotated[Union[str, datetime], PropertyInfo(alias="changes-since", format="iso8601")]
-    """
-    Filters the instances by a date and time stamp when the instances last changed
-    status.
-    """
-
-    exclude_flavor_prefix: str
-    """Exclude instances with specified flavor prefix"""
-
-    exclude_secgroup: str
-    """Exclude instances with specified security group name"""
-
-    flavor_id: str
-    """Filter out instances by `flavor_id`. Flavor id must match exactly."""
-
-    flavor_prefix: str
-    """Filter out instances by `flavor_prefix`."""
-
-    include_ai: bool
-    """Include GPU clusters' servers"""
-
-    include_baremetal: bool
-    """Include bare metal servers. Please, use `GET /v1/bminstances/` instead"""
-
-    include_k8s: bool
-    """Include managed k8s worker nodes"""
-
-    ip: str
-    """An IPv4 address to filter results by.
-
-    Note: partial matches are allowed. For example, searching for 192.168.0.1 will
-    return 192.168.0.1, 192.168.0.10, 192.168.0.110, and so on.
-    """
+    ip_address: IPAddress
+    """Exact IP filter on a fixed IP."""
 
     limit: int
-    """Optional. Limit the number of returned items"""
+    """Max items to return."""
 
-    name: str
-    """Filter instances by name.
+    managed: bool
+    """Filter by managed status.
 
-    You can provide a full or partial name, instances with matching names will be
-    returned. For example, entering 'test' will return all instances that contain
-    'test' in their name.
+    true = managed by a service, false = customer-operated.
     """
+
+    managed_by: Literal["k8s_cluster"]
+    """Filter by manager type, e.g. `k8s_cluster`."""
+
+    managed_by_resource_ids: SequenceNotStr[str]
+    """Filter by managing resource ID(s)."""
+
+    managed_by_resource_names: SequenceNotStr[str]
+    """Filter by managing resource name(s)."""
+
+    name: Name
+    """Operator name filter, e.g. name[contains]=web."""
+
+    network_ids: SequenceNotStr[str]
+    """Filter by network ID(s) the instance has a port on."""
 
     offset: int
-    """Optional.
+    """Items to skip."""
 
-    Offset value is used to exclude the first set of records from the result
-    """
-
-    only_isolated: bool
-    """Include only isolated instances"""
-
-    only_with_fixed_external_ip: bool
-    """Return bare metals only with external fixed IP addresses."""
-
-    order_by: Literal["created.asc", "created.desc", "name.asc", "name.desc", "status.asc", "status.desc"]
-    """Order by field and direction."""
-
-    profile_name: str
-    """Filter result by ddos protection profile name.
-
-    Effective only with `with_ddos` set to true.
-    """
-
-    protection_status: Literal["Active", "Queued", "Error"]
-    """Filter result by DDoS `protection_status`.
-
-    if parameter is provided. Effective only with `with_ddos` set to true. (Active,
-    Queued or Error)
-    """
-
-    status: Literal[
-        "ACTIVE",
-        "BUILD",
-        "ERROR",
-        "HARD_REBOOT",
-        "MIGRATING",
-        "PAUSED",
-        "REBOOT",
-        "REBUILD",
-        "RESIZE",
-        "REVERT_RESIZE",
-        "SHELVED",
-        "SHELVED_OFFLOADED",
-        "SHUTOFF",
-        "SOFT_DELETED",
-        "SUSPENDED",
-        "VERIFY_RESIZE",
+    order_by: Literal[
+        "created_at.asc",
+        "created_at.desc",
+        "name.asc",
+        "name.desc",
+        "region_id.asc",
+        "region_id.desc",
+        "status.asc",
+        "status.desc",
     ]
-    """Filters instances by status."""
+    """Sort field and direction."""
 
-    tag_key_value: str
-    """Optional. Filter by tag key-value pairs."""
+    region_ids: Iterable[int]
+    """Filter by region ID(s). Omit = all regions."""
 
-    tag_value: SequenceNotStr[str]
-    """Optional. Filter by tag values. ?`tag_value`=value1&`tag_value`=value2"""
+    security_group_ids: SequenceNotStr[str]
+    """Filter by security group ID(s)."""
 
-    type_ddos_profile: Literal["basic", "advanced"]
-    """Return bare metals either only with advanced or only basic DDoS protection.
+    statuses: List[
+        Literal[
+            "active",
+            "deleted",
+            "deleting",
+            "error",
+            "provisioning",
+            "rebooting",
+            "rebuilding",
+            "resizing",
+            "stopped",
+            "unknown",
+            "updating",
+        ]
+    ]
+    """Filter by lifecycle status(es)."""
 
-    Effective only with `with_ddos` set to true. (advanced or basic)
+    subnet_ids: SequenceNotStr[str]
+    """Filter by subnet ID(s)."""
+
+    tag_key: TagKey
+    """Filter by tag key regardless of value, e.g. `tag_key[contains]=team`."""
+
+    tag_value: TagValue
+    """Filter by tag value regardless of key, e.g. `tag_value[prefix]=prod`."""
+
+    tags: Dict[str, SequenceNotStr[str]]
+    """Filter by exact tag key-value pairs, e.g.
+
+    `tags[env]=prod&tags[team]=core`. Repeat a key to match any of several values
+    for it, e.g. `tags[env]=prod&tags[env]=dev`. Values for one key are ORed,
+    different keys are ANDed; values match case-insensitively.
     """
 
-    uuid: str
-    """Filter the server list result by the UUID of the server. Allowed UUID part"""
+    updated_at: UpdatedAt
+    """Range filter on last-update time."""
 
-    with_ddos: bool
-    """Include DDoS profile information in the response when set to `true`.
 
-    Otherwise, the `ddos_profile` field in the response is `null` by default.
+class CreatedAt(TypedDict, total=False):
+    """Range filter on creation time."""
+
+    gt: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """Strictly after this timestamp, e.g. `[gt]=2026-01-01T00:00:00Z`."""
+
+    gte: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """At or after this timestamp (inclusive), e.g. `[gte]=2026-01-01T00:00:00Z`."""
+
+    lt: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """Strictly before this timestamp, e.g. `[lt]=2026-02-01T00:00:00Z`."""
+
+    lte: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """At or before this timestamp (inclusive), e.g. `[lte]=2026-02-01T00:00:00Z`."""
+
+
+class FlavorName(TypedDict, total=False):
+    """Operator flavor name filter."""
+
+    contains: SequenceNotStr[str]
+    """Case-insensitive substring, e.g.
+
+    `[contains]=web`. Repeat the key to match any substring.
     """
 
-    with_interfaces_name: bool
-    """Include `interface_name` in the addresses"""
+    exact: SequenceNotStr[str]
+    """Case-insensitive exact match, e.g.
+
+    `[exact]=web-1`. Repeat the key to match any of several.
+    """
+
+    prefix: SequenceNotStr[str]
+    """Case-insensitive starts-with, e.g.
+
+    `[prefix]=prod-`. Repeat the key to match any prefix.
+    """
+
+    suffix: SequenceNotStr[str]
+    """Case-insensitive ends-with, e.g.
+
+    `[suffix]=-db`. Repeat the key to match any suffix.
+    """
+
+
+class IPAddress(TypedDict, total=False):
+    """Exact IP filter on a fixed IP."""
+
+    contains: SequenceNotStr[str]
+    """Substring match on IP address, e.g.
+
+    `[contains]=192.168`. Repeat the key to match any substring.
+    """
+
+    exact: SequenceNotStr[str]
+    """Exact IP match, e.g.
+
+    `[exact]=192.168.1.10`. Repeat the key to match any of several.
+    """
+
+
+class Name(TypedDict, total=False):
+    """Operator name filter, e.g. name[contains]=web."""
+
+    contains: SequenceNotStr[str]
+    """Case-insensitive substring, e.g.
+
+    `[contains]=web`. Repeat the key to match any substring.
+    """
+
+    exact: SequenceNotStr[str]
+    """Case-insensitive exact match, e.g.
+
+    `[exact]=web-1`. Repeat the key to match any of several.
+    """
+
+    prefix: SequenceNotStr[str]
+    """Case-insensitive starts-with, e.g.
+
+    `[prefix]=prod-`. Repeat the key to match any prefix.
+    """
+
+    suffix: SequenceNotStr[str]
+    """Case-insensitive ends-with, e.g.
+
+    `[suffix]=-db`. Repeat the key to match any suffix.
+    """
+
+
+class TagKey(TypedDict, total=False):
+    """Filter by tag key regardless of value, e.g. `tag_key[contains]=team`."""
+
+    contains: SequenceNotStr[str]
+    """Case-insensitive substring, e.g.
+
+    `[contains]=web`. Repeat the key to match any substring.
+    """
+
+    exact: SequenceNotStr[str]
+    """Case-insensitive exact match, e.g.
+
+    `[exact]=web-1`. Repeat the key to match any of several.
+    """
+
+    prefix: SequenceNotStr[str]
+    """Case-insensitive starts-with, e.g.
+
+    `[prefix]=prod-`. Repeat the key to match any prefix.
+    """
+
+    suffix: SequenceNotStr[str]
+    """Case-insensitive ends-with, e.g.
+
+    `[suffix]=-db`. Repeat the key to match any suffix.
+    """
+
+
+class TagValue(TypedDict, total=False):
+    """Filter by tag value regardless of key, e.g. `tag_value[prefix]=prod`."""
+
+    contains: SequenceNotStr[str]
+    """Case-insensitive substring, e.g.
+
+    `[contains]=web`. Repeat the key to match any substring.
+    """
+
+    exact: SequenceNotStr[str]
+    """Case-insensitive exact match, e.g.
+
+    `[exact]=web-1`. Repeat the key to match any of several.
+    """
+
+    prefix: SequenceNotStr[str]
+    """Case-insensitive starts-with, e.g.
+
+    `[prefix]=prod-`. Repeat the key to match any prefix.
+    """
+
+    suffix: SequenceNotStr[str]
+    """Case-insensitive ends-with, e.g.
+
+    `[suffix]=-db`. Repeat the key to match any suffix.
+    """
+
+
+class UpdatedAt(TypedDict, total=False):
+    """Range filter on last-update time."""
+
+    gt: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """Strictly after this timestamp, e.g. `[gt]=2026-01-01T00:00:00Z`."""
+
+    gte: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """At or after this timestamp (inclusive), e.g. `[gte]=2026-01-01T00:00:00Z`."""
+
+    lt: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """Strictly before this timestamp, e.g. `[lt]=2026-02-01T00:00:00Z`."""
+
+    lte: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """At or before this timestamp (inclusive), e.g. `[lte]=2026-02-01T00:00:00Z`."""

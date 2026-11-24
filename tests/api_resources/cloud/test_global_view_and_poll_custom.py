@@ -16,7 +16,7 @@ _TASK: Dict[str, Any] = {
     "state": "FINISHED",
     "task_type": "update",
     "created_on": "2026-07-01T13:37:14",
-    "created_resources": {"ports": [RESOURCE_ID]},
+    "created_resources": {"ports": [RESOURCE_ID], "instances": [RESOURCE_ID]},
 }
 
 
@@ -27,6 +27,20 @@ def _port(**fields: Any) -> Dict[str, Any]:
         "ip_assignments": [],
         "port_security_enabled": True,
         "security_group_ids": [],
+        "tags": {},
+    }
+    value.update(fields)
+    return value
+
+
+def _instance(**fields: Any) -> Dict[str, Any]:
+    value: Dict[str, Any] = {
+        "id": RESOURCE_ID,
+        "data_volume_ids": [],
+        "flavor_name": "g1-standard-1-2",
+        "interfaces": [],
+        "name": "old-name",
+        "status": "provisioning",
         "tags": {},
     }
     value.update(fields)
@@ -65,43 +79,68 @@ async def _run_async(api: _API, invoke: Callable[[AsyncGcore], Any]) -> Any:
         return await invoke(client)
 
 
-def test_port_update_returns_first_get_even_when_fields_differ() -> None:
-    api = _API(_port(tags={"old": "value"}))
-    port = _run(
+@pytest.mark.parametrize("resource", [_port(tags={"old": "value"}), _instance(name="old-name")])
+def test_update_returns_first_get_even_when_fields_differ(resource: Dict[str, Any]) -> None:
+    api = _API(resource)
+    if "port_security_enabled" in resource:
+        result = _run(
+            api,
+            lambda client: client.cloud.ports.update_and_poll(
+                RESOURCE_ID, project_id=1, tags={"new": "value"}, extra_body={"extension": True}
+            ),
+        )
+    else:
+        result = _run(
+            api,
+            lambda client: client.cloud.instances.update_and_poll(
+                RESOURCE_ID, project_id=1, name="new-name", extra_body={"extension": True}
+            ),
+        )
+    assert (result.id, api.resource_gets, api.get_body) == (RESOURCE_ID, 1, b"")
+
+
+async def test_instance_action_returns_first_get_even_when_status_differs_async() -> None:
+    api = _API(_instance(status="stopped"))
+    instance = await _run_async(
         api,
-        lambda client: client.cloud.ports.update_and_poll(
-            RESOURCE_ID,
-            project_id=1,
-            tags={"new": "value"},
-            extra_body={"extension": True},
+        lambda client: client.cloud.instances.action_and_poll(
+            RESOURCE_ID, project_id=1, action="start", extra_body={"extension": True}
         ),
     )
-    assert (port.tags, api.resource_gets, api.get_body) == ({"old": "value"}, 1, b"")
+    assert (instance.status, api.resource_gets, api.get_body) == ("stopped", 1, b"")
 
 
-async def test_port_update_returns_first_get_even_when_fields_differ_async() -> None:
-    api = _API(_port(tags={"old": "value"}))
-    port = await _run_async(
-        api,
-        lambda client: client.cloud.ports.update_and_poll(
-            RESOURCE_ID,
-            project_id=1,
-            tags={"new": "value"},
-            extra_body={"extension": True},
-        ),
-    )
-    assert (port.tags, api.resource_gets, api.get_body) == ({"old": "value"}, 1, b"")
-
-
-def test_port_create_propagates_first_get_404() -> None:
+@pytest.mark.parametrize("resource", ["ports", "instances"])
+def test_create_propagates_first_get_404(resource: str) -> None:
     api = _API(None)
     with pytest.raises(NotFoundError):
-        _run(api, lambda client: client.cloud.ports.create_and_poll(project_id=1, region_id=1))
+        if resource == "ports":
+            _run(api, lambda client: client.cloud.ports.create_and_poll(project_id=1, region_id=1))
+        else:
+            _run(
+                api,
+                lambda client: client.cloud.instances.create_and_poll(
+                    project_id=1,
+                    region_id=1,
+                    boot_volume_id="volume-1",
+                    flavor_name="g1-standard-1-2",
+                    interfaces=[],
+                ),
+            )
     assert api.resource_gets == 1
 
 
-async def test_port_create_propagates_first_get_404_async() -> None:
+async def test_instance_create_propagates_first_get_404_async() -> None:
     api = _API(None)
     with pytest.raises(NotFoundError):
-        await _run_async(api, lambda client: client.cloud.ports.create_and_poll(project_id=1, region_id=1))
+        await _run_async(
+            api,
+            lambda client: client.cloud.instances.create_and_poll(
+                project_id=1,
+                region_id=1,
+                boot_volume_id="volume-1",
+                flavor_name="g1-standard-1-2",
+                interfaces=[],
+            ),
+        )
     assert api.resource_gets == 1

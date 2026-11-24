@@ -7,10 +7,10 @@ from typing_extensions import Required, TypedDict
 
 from ..._types import SequenceNotStr
 
-__all__ = ["InstanceUnassignSecurityGroupParams", "PortsSecurityGroupName"]
+__all__ = ["InstancesRegionalUnassignSecurityGroupParams", "PortsSecurityGroupName"]
 
 
-class InstanceUnassignSecurityGroupParams(TypedDict, total=False):
+class InstancesRegionalUnassignSecurityGroupParams(TypedDict, total=False):
     project_id: int
     """Project ID"""
 

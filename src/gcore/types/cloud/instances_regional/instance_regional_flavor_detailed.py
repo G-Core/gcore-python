@@ -6,7 +6,7 @@ from typing_extensions import Literal, TypeAlias
 from ...._models import BaseModel
 
 __all__ = [
-    "InstanceFlavorDetailed",
+    "InstanceRegionalFlavorDetailed",
     "InstanceFlavorExtendedSerializerWithoutPrice",
     "InstanceFlavorExtendedSerializerWithPrice",
 ]
@@ -92,6 +92,6 @@ class InstanceFlavorExtendedSerializerWithPrice(BaseModel):
     """Virtual CPU count"""
 
 
-InstanceFlavorDetailed: TypeAlias = Union[
+InstanceRegionalFlavorDetailed: TypeAlias = Union[
     InstanceFlavorExtendedSerializerWithoutPrice, InstanceFlavorExtendedSerializerWithPrice
 ]

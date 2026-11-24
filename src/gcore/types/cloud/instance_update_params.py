@@ -2,45 +2,58 @@
 
 from __future__ import annotations
 
-from typing import Optional
-from typing_extensions import TypedDict
+from typing import Iterable, Optional
+from typing_extensions import Required, TypedDict
 
+from ..._types import SequenceNotStr
 from .tag_update_map_param import TagUpdateMapParam
 
-__all__ = ["InstanceUpdateParams"]
+__all__ = ["InstanceUpdateParams", "Interface"]
 
 
 class InstanceUpdateParams(TypedDict, total=False):
     project_id: int
-    """Project ID"""
+    """Project ID."""
 
-    region_id: int
-    """Region ID"""
+    dry_run: bool
+    """Run every check of the real request and change nothing.
+
+    The response has the status code and the schema of the real call, and an empty
+    list of tasks. With `false`, the default, the request does the operation.
+    """
+
+    data_volume_ids: SequenceNotStr[str]
+    """Full list of the data volumes of the instance.
+
+    Volumes that are not in the list are detached. New volumes are attached.
+    """
+
+    flavor_name: str
+    """Name of the new flavor. The instance is resized to this flavor."""
+
+    interfaces: Iterable[Interface]
+    """Full list of the ports of the instance.
+
+    Ports that are not in the list are detached. New ports are attached. Keep the
+    current ports in their current order.
+    """
 
     name: str
-    """Name"""
+    """Instance name."""
+
+    placement_group_id: Optional[str]
+    """ID of the placement group.
+
+    Send null to remove the instance from its placement group.
+    """
 
     tags: Optional[TagUpdateMapParam]
-    """Update key-value tags using JSON Merge Patch semantics (RFC 7396).
+    """Tags as JSON Merge Patch.
 
-    Provide key-value pairs to add or update tags. Set tag values to `null` to
-    remove tags. Unspecified tags remain unchanged. Read-only tags are always
-    preserved and cannot be modified.
-
-    **Examples:**
-
-    - **Add/update tags:**
-      `{'tags': {'environment': 'production', 'team': 'backend'}}` adds new tags or
-      updates existing ones.
-    - **Delete tags:** `{'tags': {'old_tag': null}}` removes specific tags.
-    - **Remove all tags:** `{'tags': null}` removes all user-managed tags (read-only
-      tags are preserved).
-    - **Partial update:** `{'tags': {'environment': 'staging'}}` only updates
-      specified tags.
-    - **Mixed operations:**
-      `{'tags': {'environment': 'production', 'cost_center': 'engineering', 'deprecated_tag': null}}`
-      adds/updates 'environment' and 'cost_center' while removing 'deprecated_tag',
-      preserving other existing tags.
-    - **Replace all:** first delete existing tags with null values, then add new
-      ones in the same request.
+    A key with the value null removes that tag. The value null removes all tags.
     """
+
+
+class Interface(TypedDict, total=False):
+    port_id: Required[str]
+    """Existing port to attach. Array order is the NIC/boot order."""

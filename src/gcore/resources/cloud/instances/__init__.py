@@ -8,6 +8,14 @@ from .images import (
     ImagesResourceWithStreamingResponse,
     AsyncImagesResourceWithStreamingResponse,
 )
+from .console import (
+    ConsoleResource,
+    AsyncConsoleResource,
+    ConsoleResourceWithRawResponse,
+    AsyncConsoleResourceWithRawResponse,
+    ConsoleResourceWithStreamingResponse,
+    AsyncConsoleResourceWithStreamingResponse,
+)
 from .flavors import (
     FlavorsResource,
     AsyncFlavorsResource,
@@ -32,28 +40,34 @@ from .instances import (
     InstancesResourceWithStreamingResponse,
     AsyncInstancesResourceWithStreamingResponse,
 )
-from .interfaces import (
-    InterfacesResource,
-    AsyncInterfacesResource,
-    InterfacesResourceWithRawResponse,
-    AsyncInterfacesResourceWithRawResponse,
-    InterfacesResourceWithStreamingResponse,
-    AsyncInterfacesResourceWithStreamingResponse,
+from .resize_flavors import (
+    ResizeFlavorsResource,
+    AsyncResizeFlavorsResource,
+    ResizeFlavorsResourceWithRawResponse,
+    AsyncResizeFlavorsResourceWithRawResponse,
+    ResizeFlavorsResourceWithStreamingResponse,
+    AsyncResizeFlavorsResourceWithStreamingResponse,
 )
 
 __all__ = [
+    "ConsoleResource",
+    "AsyncConsoleResource",
+    "ConsoleResourceWithRawResponse",
+    "AsyncConsoleResourceWithRawResponse",
+    "ConsoleResourceWithStreamingResponse",
+    "AsyncConsoleResourceWithStreamingResponse",
+    "ResizeFlavorsResource",
+    "AsyncResizeFlavorsResource",
+    "ResizeFlavorsResourceWithRawResponse",
+    "AsyncResizeFlavorsResourceWithRawResponse",
+    "ResizeFlavorsResourceWithStreamingResponse",
+    "AsyncResizeFlavorsResourceWithStreamingResponse",
     "FlavorsResource",
     "AsyncFlavorsResource",
     "FlavorsResourceWithRawResponse",
     "AsyncFlavorsResourceWithRawResponse",
     "FlavorsResourceWithStreamingResponse",
     "AsyncFlavorsResourceWithStreamingResponse",
-    "InterfacesResource",
-    "AsyncInterfacesResource",
-    "InterfacesResourceWithRawResponse",
-    "AsyncInterfacesResourceWithRawResponse",
-    "InterfacesResourceWithStreamingResponse",
-    "AsyncInterfacesResourceWithStreamingResponse",
     "ImagesResource",
     "AsyncImagesResource",
     "ImagesResourceWithRawResponse",

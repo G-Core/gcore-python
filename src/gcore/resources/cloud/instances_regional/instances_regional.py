@@ -1,0 +1,2897 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from __future__ import annotations
+
+import typing_extensions
+from typing import Dict, Union, Iterable, Optional
+from datetime import datetime
+from typing_extensions import Literal, overload
+
+import httpx
+
+from .flavors import (
+    FlavorsResource,
+    AsyncFlavorsResource,
+    FlavorsResourceWithRawResponse,
+    AsyncFlavorsResourceWithRawResponse,
+    FlavorsResourceWithStreamingResponse,
+    AsyncFlavorsResourceWithStreamingResponse,
+)
+from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
+from ...._utils import path_template, required_args, maybe_transform, async_maybe_transform
+from ...._compat import cached_property
+from .interfaces import (
+    InterfacesResource,
+    AsyncInterfacesResource,
+    InterfacesResourceWithRawResponse,
+    AsyncInterfacesResourceWithRawResponse,
+    InterfacesResourceWithStreamingResponse,
+    AsyncInterfacesResourceWithStreamingResponse,
+)
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ....pagination import SyncOffsetPage, AsyncOffsetPage
+from ....types.cloud import (
+    instances_regional_list_params,
+    instances_regional_action_params,
+    instances_regional_create_params,
+    instances_regional_delete_params,
+    instances_regional_resize_params,
+    instances_regional_update_params,
+    instances_regional_get_console_params,
+    instances_regional_assign_security_group_params,
+    instances_regional_add_to_placement_group_params,
+    instances_regional_unassign_security_group_params,
+)
+from ...._base_client import AsyncPaginator, make_request_options
+from ....types.cloud.console import Console
+from .instances_regional_custom import InstancesRegionalResourceCustomMixin, AsyncInstancesRegionalResourceCustomMixin
+from ....types.cloud.task_id_list import TaskIDList
+from ....types.cloud.instance_regional import InstanceRegional
+from ....types.cloud.tag_update_map_param import TagUpdateMapParam
+from ....types.cloud.instance_regional_interface import InstanceRegionalInterface
+
+__all__ = ["InstancesRegionalResource", "AsyncInstancesRegionalResource"]
+
+
+class InstancesRegionalResource(InstancesRegionalResourceCustomMixin, SyncAPIResource):
+    """
+    Instances are cloud virtual machines with configurable CPU, memory, storage, and networking, supporting various operating systems and workloads.
+    """
+
+    @cached_property
+    def flavors(self) -> FlavorsResource:
+        """
+        Instance flavors define available CPU, memory, and disk configurations for creating cloud instances.
+        """
+        return FlavorsResource(self._client)
+
+    @cached_property
+    def interfaces(self) -> InterfacesResource:
+        return InterfacesResource(self._client)
+
+    @cached_property
+    def with_raw_response(self) -> InstancesRegionalResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/G-Core/gcore-python#accessing-raw-response-data-eg-headers
+        """
+        return InstancesRegionalResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> InstancesRegionalResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/G-Core/gcore-python#with_streaming_response
+        """
+        return InstancesRegionalResourceWithStreamingResponse(self)
+
+    def create(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        flavor: str,
+        interfaces: Iterable[instances_regional_create_params.Interface],
+        volumes: Iterable[instances_regional_create_params.Volume],
+        allow_app_ports: bool | Omit = omit,
+        configuration: Optional[Dict[str, object]] | Omit = omit,
+        name: str | Omit = omit,
+        name_template: str | Omit = omit,
+        password: str | Omit = omit,
+        security_groups: Iterable[instances_regional_create_params.SecurityGroup] | Omit = omit,
+        servergroup_id: str | Omit = omit,
+        ssh_key_name: Optional[str] | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
+        user_data: str | Omit = omit,
+        username: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """
+        Use
+        [POST /v1/projects/{`project_id`}/instances](#operation/GlobalInstanceListView.post)
+        instead. This route continues to work. Later, we will deprecate it and then
+        remove it. We will tell you in advance.
+
+        Create an instance with specified configuration.
+
+        How to get access:
+
+        For Linux,
+
+        - Use the `user_data` field to provide a
+          [cloud-init script](https://cloudinit.readthedocs.io/en/latest/reference/examples.html)
+          in base64 to apply configurations to the instance.
+        - Specify the `username` and `password` to create a new user.
+        - When only `password` is provided, it is set as the password for the default
+          user of the image.
+        - The `user_data` is ignored when the `password` is specified.
+
+        For Windows,
+
+        - Use the `user_data` field to provide a
+          [cloudbase-init script](https://cloudbase-init.readthedocs.io/en/latest/userdata.html#cloud-config)
+          in base64 to create new users on Windows.
+        - Use the `password` field to set the password for the 'Admin' user on Windows.
+        - The password of the Admin user cannot be updated via `user_data`.
+        - The `username` cannot be specified in the request.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          flavor: The flavor of the instance.
+
+          interfaces: A list of network interfaces for the instance. You can create one or more
+              interfaces - private, public, or both.
+
+          volumes: List of volumes that will be attached to the instance.
+
+          allow_app_ports: Set to `true` if creating the instance from an `apptemplate`. This allows
+              application ports in the security group for instances created from a marketplace
+              application template.
+
+          configuration: Parameters for the application template if creating the instance from an
+              `apptemplate`.
+
+          name: Instance name.
+
+          name_template: If you want the instance name to be automatically generated based on IP
+              addresses, you can provide a name template instead of specifying the name
+              manually. The template should include a placeholder that will be replaced during
+              provisioning. Supported placeholders are: `{ip_octets}` (last 3 octets of the
+              IP), `{two_ip_octets}`, and `{one_ip_octet}`.
+
+          password: For Linux instances, 'username' and 'password' are used to create a new user.
+              When only 'password' is provided, it is set as the password for the default user
+              of the image. For Windows instances, 'username' cannot be specified. Use the
+              'password' field to set the password for the 'Admin' user on Windows. Use the
+              'user_data' field to provide a script to create new users on Windows. The
+              password of the Admin user cannot be updated via 'user_data'.
+
+          security_groups: Deprecated. Use per-interface `security_groups` inside `interfaces[]` instead.
+              Cannot be combined with per-interface `security_groups`. If omitted everywhere,
+              the project's default security group is applied.
+
+          servergroup_id: Placement group ID for instance placement policy.
+
+              Supported group types:
+
+              - `anti-affinity`: Ensures instances are placed on different hosts for high
+                availability.
+              - `affinity`: Places instances on the same host for low-latency communication.
+              - `soft-anti-affinity`: Tries to place instances on different hosts but allows
+                sharing if needed.
+
+          ssh_key_name: Specifies the name of the SSH keypair, created via the
+              [/v1/`ssh_keys` endpoint](/docs/api-reference/cloud/ssh-keys/add-or-generate-ssh-key).
+
+          tags: Key-value tags to associate with the resource. A tag is a key-value pair that
+              can be associated with a resource, enabling efficient filtering and grouping for
+              better organization and management. Both tag keys and values have a maximum
+              length of 255 characters. Tag keys and values cannot contain characters from
+              U+0080 to U+00FF. Some tags are read-only and cannot be modified by the user.
+              Tags are also integrated with cost reports, allowing cost data to be filtered
+              based on tag keys or values.
+
+          user_data: String in base64 format. For Linux instances, 'user_data' is ignored when
+              'password' field is provided. For Windows instances, Admin user password is set
+              by 'password' field and cannot be updated via 'user_data'. Examples of the
+              `user_data`: https://cloudinit.readthedocs.io/en/latest/topics/examples.html
+
+          username: For Linux instances, 'username' and 'password' are used to create a new user.
+              For Windows instances, 'username' cannot be specified. Use 'password' field to
+              set the password for the 'Admin' user on Windows.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        return self._post(
+            path_template("/cloud/v2/instances/{project_id}/{region_id}", project_id=project_id, region_id=region_id),
+            body=maybe_transform(
+                {
+                    "flavor": flavor,
+                    "interfaces": interfaces,
+                    "volumes": volumes,
+                    "allow_app_ports": allow_app_ports,
+                    "configuration": configuration,
+                    "name": name,
+                    "name_template": name_template,
+                    "password": password,
+                    "security_groups": security_groups,
+                    "servergroup_id": servergroup_id,
+                    "ssh_key_name": ssh_key_name,
+                    "tags": tags,
+                    "user_data": user_data,
+                    "username": username,
+                },
+                instances_regional_create_params.InstancesRegionalCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TaskIDList,
+        )
+
+    def update(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        name: str | Omit = omit,
+        tags: Optional[TagUpdateMapParam] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> InstanceRegional:
+        """
+        Use
+        [PATCH /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.patch)
+        instead. This route continues to work. Later, we will deprecate it and then
+        remove it. We will tell you in advance.
+
+        Rename instance or update tags
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
+          name: Name
+
+          tags: Update key-value tags using JSON Merge Patch semantics (RFC 7396). Provide
+              key-value pairs to add or update tags. Set tag values to `null` to remove tags.
+              Unspecified tags remain unchanged. Read-only tags are always preserved and
+              cannot be modified.
+
+              **Examples:**
+
+              - **Add/update tags:**
+                `{'tags': {'environment': 'production', 'team': 'backend'}}` adds new tags or
+                updates existing ones.
+              - **Delete tags:** `{'tags': {'old_tag': null}}` removes specific tags.
+              - **Remove all tags:** `{'tags': null}` removes all user-managed tags (read-only
+                tags are preserved).
+              - **Partial update:** `{'tags': {'environment': 'staging'}}` only updates
+                specified tags.
+              - **Mixed operations:**
+                `{'tags': {'environment': 'production', 'cost_center': 'engineering', 'deprecated_tag': null}}`
+                adds/updates 'environment' and 'cost_center' while removing 'deprecated_tag',
+                preserving other existing tags.
+              - **Replace all:** first delete existing tags with null values, then add new
+                ones in the same request.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not instance_id:
+            raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
+        return self._patch(
+            path_template(
+                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "tags": tags,
+                },
+                instances_regional_update_params.InstancesRegionalUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=InstanceRegional,
+        )
+
+    def list(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        available_floating: bool | Omit = omit,
+        changes_before: Union[str, datetime] | Omit = omit,
+        changes_since: Union[str, datetime] | Omit = omit,
+        exclude_flavor_prefix: str | Omit = omit,
+        exclude_secgroup: str | Omit = omit,
+        flavor_id: str | Omit = omit,
+        flavor_prefix: str | Omit = omit,
+        include_ai: bool | Omit = omit,
+        include_baremetal: bool | Omit = omit,
+        include_k8s: bool | Omit = omit,
+        ip: str | Omit = omit,
+        limit: int | Omit = omit,
+        name: str | Omit = omit,
+        offset: int | Omit = omit,
+        only_isolated: bool | Omit = omit,
+        only_with_fixed_external_ip: bool | Omit = omit,
+        order_by: Literal["created.asc", "created.desc", "name.asc", "name.desc", "status.asc", "status.desc"]
+        | Omit = omit,
+        profile_name: str | Omit = omit,
+        protection_status: Literal["Active", "Queued", "Error"] | Omit = omit,
+        status: Literal[
+            "ACTIVE",
+            "BUILD",
+            "ERROR",
+            "HARD_REBOOT",
+            "MIGRATING",
+            "PAUSED",
+            "REBOOT",
+            "REBUILD",
+            "RESIZE",
+            "REVERT_RESIZE",
+            "SHELVED",
+            "SHELVED_OFFLOADED",
+            "SHUTOFF",
+            "SOFT_DELETED",
+            "SUSPENDED",
+            "VERIFY_RESIZE",
+        ]
+        | Omit = omit,
+        tag_key_value: str | Omit = omit,
+        tag_value: SequenceNotStr[str] | Omit = omit,
+        type_ddos_profile: Literal["basic", "advanced"] | Omit = omit,
+        uuid: str | Omit = omit,
+        with_ddos: bool | Omit = omit,
+        with_interfaces_name: bool | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncOffsetPage[InstanceRegional]:
+        """
+        Use
+        [GET /v1/projects/{`project_id`}/instances](#operation/GlobalInstanceListView.get)
+        instead. This route continues to work. Later, we will deprecate it and then
+        remove it. We will tell you in advance.
+
+        List all instances in the specified project and region. Results can be filtered
+        by various parameters like name, status, and IP address.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          available_floating: Only show instances which are able to handle floating address
+
+          changes_before: Filters the instances by a date and time stamp when the instances last changed.
+
+          changes_since: Filters the instances by a date and time stamp when the instances last changed
+              status.
+
+          exclude_flavor_prefix: Exclude instances with specified flavor prefix
+
+          exclude_secgroup: Exclude instances with specified security group name
+
+          flavor_id: Filter out instances by `flavor_id`. Flavor id must match exactly.
+
+          flavor_prefix: Filter out instances by `flavor_prefix`.
+
+          include_ai: Include GPU clusters' servers
+
+          include_baremetal: Include bare metal servers. Please, use `GET /v1/bminstances/` instead
+
+          include_k8s: Include managed k8s worker nodes
+
+          ip: An IPv4 address to filter results by. Note: partial matches are allowed. For
+              example, searching for 192.168.0.1 will return 192.168.0.1, 192.168.0.10,
+              192.168.0.110, and so on.
+
+          limit: Optional. Limit the number of returned items
+
+          name: Filter instances by name. You can provide a full or partial name, instances with
+              matching names will be returned. For example, entering 'test' will return all
+              instances that contain 'test' in their name.
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
+
+          only_isolated: Include only isolated instances
+
+          only_with_fixed_external_ip: Return bare metals only with external fixed IP addresses.
+
+          order_by: Order by field and direction.
+
+          profile_name: Filter result by ddos protection profile name. Effective only with `with_ddos`
+              set to true.
+
+          protection_status: Filter result by DDoS `protection_status`. if parameter is provided. Effective
+              only with `with_ddos` set to true. (Active, Queued or Error)
+
+          status: Filters instances by status.
+
+          tag_key_value: Optional. Filter by tag key-value pairs.
+
+          tag_value: Optional. Filter by tag values. ?`tag_value`=value1&`tag_value`=value2
+
+          type_ddos_profile: Return bare metals either only with advanced or only basic DDoS protection.
+              Effective only with `with_ddos` set to true. (advanced or basic)
+
+          uuid: Filter the server list result by the UUID of the server. Allowed UUID part
+
+          with_ddos: Include DDoS profile information in the response when set to `true`. Otherwise,
+              the `ddos_profile` field in the response is `null` by default.
+
+          with_interfaces_name: Include `interface_name` in the addresses
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        return self._get_api_list(
+            path_template("/cloud/v1/instances/{project_id}/{region_id}", project_id=project_id, region_id=region_id),
+            page=SyncOffsetPage[InstanceRegional],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "available_floating": available_floating,
+                        "changes_before": changes_before,
+                        "changes_since": changes_since,
+                        "exclude_flavor_prefix": exclude_flavor_prefix,
+                        "exclude_secgroup": exclude_secgroup,
+                        "flavor_id": flavor_id,
+                        "flavor_prefix": flavor_prefix,
+                        "include_ai": include_ai,
+                        "include_baremetal": include_baremetal,
+                        "include_k8s": include_k8s,
+                        "ip": ip,
+                        "limit": limit,
+                        "name": name,
+                        "offset": offset,
+                        "only_isolated": only_isolated,
+                        "only_with_fixed_external_ip": only_with_fixed_external_ip,
+                        "order_by": order_by,
+                        "profile_name": profile_name,
+                        "protection_status": protection_status,
+                        "status": status,
+                        "tag_key_value": tag_key_value,
+                        "tag_value": tag_value,
+                        "type_ddos_profile": type_ddos_profile,
+                        "uuid": uuid,
+                        "with_ddos": with_ddos,
+                        "with_interfaces_name": with_interfaces_name,
+                    },
+                    instances_regional_list_params.InstancesRegionalListParams,
+                ),
+            ),
+            model=InstanceRegional,
+        )
+
+    def delete(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        delete_floatings: bool | Omit = omit,
+        floatings: str | Omit = omit,
+        reserved_fixed_ips: str | Omit = omit,
+        volumes: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """
+        Use
+        [DELETE /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.delete)
+        instead. This route continues to work. Later, we will deprecate it and then
+        remove it. We will tell you in advance.
+
+        Delete the instance and its ports. A reserved fixed IP stays, unless
+        `reserved_fixed_ips` names it. A port that you
+        [create as a port](#operation/GlobalPortListView.post) is not a reserved fixed
+        IP, so this delete removes it.
+
+        To keep the ports, use
+        [`DELETE /v1/projects/{project_id}/instances/{instance_id}`](#operation/GlobalInstanceDetailView.delete).
+        That delete keeps every port by default.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
+          delete_floatings: True if it is required to delete floating IPs assigned to the instance. Can't be
+              used with `floatings`.
+
+          floatings: Comma separated list of floating ids that should be deleted. Can't be used with
+              `delete_floatings`.
+
+          reserved_fixed_ips: Comma separated list of port IDs to be deleted with the instance
+
+          volumes: Comma separated list of volume IDs to be deleted with the instance
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not instance_id:
+            raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
+        return self._delete(
+            path_template(
+                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "delete_floatings": delete_floatings,
+                        "floatings": floatings,
+                        "reserved_fixed_ips": reserved_fixed_ips,
+                        "volumes": volumes,
+                    },
+                    instances_regional_delete_params.InstancesRegionalDeleteParams,
+                ),
+            ),
+            cast_to=TaskIDList,
+        )
+
+    @overload
+    def action(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["start"],
+        activate_profile: Optional[bool] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """
+        Use
+        [POST /v1/projects/{`project_id`}/instances/{`instance_id`}/action](#operation/GlobalInstanceActionView.post)
+        instead. This route continues to work. Later, we will deprecate it and then
+        remove it. We will tell you in advance.
+
+        The action can be one of: start, stop, reboot, `reboot_hard`, suspend or resume.
+        Suspend and resume are not available for bare metal instances.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
+          action: Instance action name
+
+          activate_profile: Used on start instance to activate Advanced DDoS profile
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def action(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["reboot", "reboot_hard", "resume", "stop", "suspend"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """
+        Use
+        [POST /v1/projects/{`project_id`}/instances/{`instance_id`}/action](#operation/GlobalInstanceActionView.post)
+        instead. This route continues to work. Later, we will deprecate it and then
+        remove it. We will tell you in advance.
+
+        The action can be one of: start, stop, reboot, `reboot_hard`, suspend or resume.
+        Suspend and resume are not available for bare metal instances.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
+          action: Instance action name
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["action"])
+    def action(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["start"] | Literal["reboot", "reboot_hard", "resume", "stop", "suspend"],
+        activate_profile: Optional[bool] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not instance_id:
+            raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
+        return self._post(
+            path_template(
+                "/cloud/v2/instances/{project_id}/{region_id}/{instance_id}/action",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
+            body=maybe_transform(
+                {
+                    "action": action,
+                    "activate_profile": activate_profile,
+                },
+                instances_regional_action_params.InstancesRegionalActionParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TaskIDList,
+        )
+
+    def add_to_placement_group(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        servergroup_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """
+        Use
+        [PATCH /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.patch)
+        instead. Send `placement_group_id`. This route continues to work. Later, we will
+        deprecate it and then remove it. We will tell you in advance.
+
+        Add an instance to a placement group. The instance must not already be in a
+        placement group. Bare metal servers do not support placement groups.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
+          servergroup_id: Anti-affinity or affinity or soft-anti-affinity placement group ID.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not instance_id:
+            raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
+        return self._post(
+            path_template(
+                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/put_into_servergroup",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
+            body=maybe_transform(
+                {"servergroup_id": servergroup_id},
+                instances_regional_add_to_placement_group_params.InstancesRegionalAddToPlacementGroupParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TaskIDList,
+        )
+
+    def assign_security_group(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        name: str | Omit = omit,
+        ports_security_group_names: Iterable[instances_regional_assign_security_group_params.PortsSecurityGroupName]
+        | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> None:
+        """
+        Use
+        [PATCH /v1/projects/{`project_id`}/ports/{`port_id`}](#operation/GlobalPortDetailView.patch)
+        instead. Send `security_group_ids`. This route continues to work. Later, we will
+        deprecate it and then remove it. We will tell you in advance.
+
+        Assign the security group to the server. To assign multiple security groups to
+        all ports, use the NULL value for the `port_id` field
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
+          name: Security group name, applies to all ports
+
+          ports_security_group_names: Port security groups mapping
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not instance_id:
+            raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return self._post(
+            path_template(
+                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/addsecuritygroup",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "ports_security_group_names": ports_security_group_names,
+                },
+                instances_regional_assign_security_group_params.InstancesRegionalAssignSecurityGroupParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=NoneType,
+        )
+
+    @typing_extensions.deprecated("deprecated")
+    def disable_port_security(
+        self,
+        port_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> InstanceRegionalInterface:
+        """Deprecated.
+
+        Use PATCH /v1/ports/{`project_id`}/{`region_id`}/{`port_id`}
+        instead.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          port_id: Port ID
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not port_id:
+            raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
+        return self._post(
+            path_template(
+                "/cloud/v1/ports/{project_id}/{region_id}/{port_id}/disable_port_security",
+                project_id=project_id,
+                region_id=region_id,
+                port_id=port_id,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=InstanceRegionalInterface,
+        )
+
+    @typing_extensions.deprecated("deprecated")
+    def enable_port_security(
+        self,
+        port_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> InstanceRegionalInterface:
+        """Deprecated.
+
+        Use PATCH /v1/ports/{`project_id`}/{`region_id`}/{`port_id`}
+        instead.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          port_id: Port ID
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not port_id:
+            raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
+        return self._post(
+            path_template(
+                "/cloud/v1/ports/{project_id}/{region_id}/{port_id}/enable_port_security",
+                project_id=project_id,
+                region_id=region_id,
+                port_id=port_id,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=InstanceRegionalInterface,
+        )
+
+    def get(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> InstanceRegional:
+        """
+        Use
+        [GET /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.get)
+        instead. This route continues to work. Later, we will deprecate it and then
+        remove it. We will tell you in advance.
+
+        Retrieve detailed information about a specific instance. The response content
+        language for `ddos_profile` can be controlled via the 'language' cookie
+        parameter.
+
+        **Cookie Parameters**:
+
+        - `language` (str, optional): Language for the response content. Affects the
+          `ddos_profile` field. Supported values:
+          - `'en'` (default)
+          - `'de'`
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not instance_id:
+            raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
+        return self._get(
+            path_template(
+                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=InstanceRegional,
+        )
+
+    def get_console(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        console_type: Literal["novnc", "serial", "spice", "vnc"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Console:
+        """
+        Use
+        [GET /v1/projects/{`project_id`}/instances/{`instance_id`}/console](#operation/GlobalInstanceConsoleView.get)
+        instead. For a bare metal server, use
+        [Get bare metal server console URL](#operation/GlobalBaremetalConsoleView.get).
+        For a basic VM, use
+        [Get basic VM console URL](#operation/GlobalBasicVmConsoleView.get). This route
+        continues to work. Later, we will deprecate it and then remove it. We will tell
+        you in advance.
+
+        Returns a URL to access the remote console for an instance. Supported console
+        types depend on instance type: novnc and spice for virtual instances, vnc and
+        serial for bare metal instances.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
+          console_type: Console type
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not instance_id:
+            raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
+        return self._get(
+            path_template(
+                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/get_console",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {"console_type": console_type},
+                    instances_regional_get_console_params.InstancesRegionalGetConsoleParams,
+                ),
+            ),
+            cast_to=Console,
+        )
+
+    def remove_from_placement_group(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """
+        Use
+        [PATCH /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.patch)
+        instead. Send `placement_group_id`. This route continues to work. Later, we will
+        deprecate it and then remove it. We will tell you in advance.
+
+        Remove an instance from its current placement group. The instance must be in a
+        placement group to be removed. Bare metal servers do not support placement
+        groups.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not instance_id:
+            raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
+        return self._post(
+            path_template(
+                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/remove_from_servergroup",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TaskIDList,
+        )
+
+    def resize(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        flavor_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """
+        Use
+        [PATCH /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.patch)
+        instead. Send `flavor_name`. This route continues to work. Later, we will
+        deprecate it and then remove it. We will tell you in advance.
+
+        Change flavor of the instance.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
+          flavor_id: Flavor ID
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not instance_id:
+            raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
+        return self._post(
+            path_template(
+                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/changeflavor",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
+            body=maybe_transform(
+                {"flavor_id": flavor_id}, instances_regional_resize_params.InstancesRegionalResizeParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TaskIDList,
+        )
+
+    def unassign_security_group(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        name: str | Omit = omit,
+        ports_security_group_names: Iterable[instances_regional_unassign_security_group_params.PortsSecurityGroupName]
+        | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> None:
+        """
+        Use
+        [PATCH /v1/projects/{`project_id`}/ports/{`port_id`}](#operation/GlobalPortDetailView.patch)
+        instead. Send `security_group_ids`. This route continues to work. Later, we will
+        deprecate it and then remove it. We will tell you in advance.
+
+        Un-assign the security group to the server. To un-assign multiple security
+        groups to all ports, use the NULL value for the `port_id` field
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
+          name: Security group name, applies to all ports
+
+          ports_security_group_names: Port security groups mapping
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not instance_id:
+            raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return self._post(
+            path_template(
+                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/delsecuritygroup",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "ports_security_group_names": ports_security_group_names,
+                },
+                instances_regional_unassign_security_group_params.InstancesRegionalUnassignSecurityGroupParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=NoneType,
+        )
+
+
+class AsyncInstancesRegionalResource(AsyncInstancesRegionalResourceCustomMixin, AsyncAPIResource):
+    """
+    Instances are cloud virtual machines with configurable CPU, memory, storage, and networking, supporting various operating systems and workloads.
+    """
+
+    @cached_property
+    def flavors(self) -> AsyncFlavorsResource:
+        """
+        Instance flavors define available CPU, memory, and disk configurations for creating cloud instances.
+        """
+        return AsyncFlavorsResource(self._client)
+
+    @cached_property
+    def interfaces(self) -> AsyncInterfacesResource:
+        return AsyncInterfacesResource(self._client)
+
+    @cached_property
+    def with_raw_response(self) -> AsyncInstancesRegionalResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/G-Core/gcore-python#accessing-raw-response-data-eg-headers
+        """
+        return AsyncInstancesRegionalResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncInstancesRegionalResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/G-Core/gcore-python#with_streaming_response
+        """
+        return AsyncInstancesRegionalResourceWithStreamingResponse(self)
+
+    async def create(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        flavor: str,
+        interfaces: Iterable[instances_regional_create_params.Interface],
+        volumes: Iterable[instances_regional_create_params.Volume],
+        allow_app_ports: bool | Omit = omit,
+        configuration: Optional[Dict[str, object]] | Omit = omit,
+        name: str | Omit = omit,
+        name_template: str | Omit = omit,
+        password: str | Omit = omit,
+        security_groups: Iterable[instances_regional_create_params.SecurityGroup] | Omit = omit,
+        servergroup_id: str | Omit = omit,
+        ssh_key_name: Optional[str] | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
+        user_data: str | Omit = omit,
+        username: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """
+        Use
+        [POST /v1/projects/{`project_id`}/instances](#operation/GlobalInstanceListView.post)
+        instead. This route continues to work. Later, we will deprecate it and then
+        remove it. We will tell you in advance.
+
+        Create an instance with specified configuration.
+
+        How to get access:
+
+        For Linux,
+
+        - Use the `user_data` field to provide a
+          [cloud-init script](https://cloudinit.readthedocs.io/en/latest/reference/examples.html)
+          in base64 to apply configurations to the instance.
+        - Specify the `username` and `password` to create a new user.
+        - When only `password` is provided, it is set as the password for the default
+          user of the image.
+        - The `user_data` is ignored when the `password` is specified.
+
+        For Windows,
+
+        - Use the `user_data` field to provide a
+          [cloudbase-init script](https://cloudbase-init.readthedocs.io/en/latest/userdata.html#cloud-config)
+          in base64 to create new users on Windows.
+        - Use the `password` field to set the password for the 'Admin' user on Windows.
+        - The password of the Admin user cannot be updated via `user_data`.
+        - The `username` cannot be specified in the request.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          flavor: The flavor of the instance.
+
+          interfaces: A list of network interfaces for the instance. You can create one or more
+              interfaces - private, public, or both.
+
+          volumes: List of volumes that will be attached to the instance.
+
+          allow_app_ports: Set to `true` if creating the instance from an `apptemplate`. This allows
+              application ports in the security group for instances created from a marketplace
+              application template.
+
+          configuration: Parameters for the application template if creating the instance from an
+              `apptemplate`.
+
+          name: Instance name.
+
+          name_template: If you want the instance name to be automatically generated based on IP
+              addresses, you can provide a name template instead of specifying the name
+              manually. The template should include a placeholder that will be replaced during
+              provisioning. Supported placeholders are: `{ip_octets}` (last 3 octets of the
+              IP), `{two_ip_octets}`, and `{one_ip_octet}`.
+
+          password: For Linux instances, 'username' and 'password' are used to create a new user.
+              When only 'password' is provided, it is set as the password for the default user
+              of the image. For Windows instances, 'username' cannot be specified. Use the
+              'password' field to set the password for the 'Admin' user on Windows. Use the
+              'user_data' field to provide a script to create new users on Windows. The
+              password of the Admin user cannot be updated via 'user_data'.
+
+          security_groups: Deprecated. Use per-interface `security_groups` inside `interfaces[]` instead.
+              Cannot be combined with per-interface `security_groups`. If omitted everywhere,
+              the project's default security group is applied.
+
+          servergroup_id: Placement group ID for instance placement policy.
+
+              Supported group types:
+
+              - `anti-affinity`: Ensures instances are placed on different hosts for high
+                availability.
+              - `affinity`: Places instances on the same host for low-latency communication.
+              - `soft-anti-affinity`: Tries to place instances on different hosts but allows
+                sharing if needed.
+
+          ssh_key_name: Specifies the name of the SSH keypair, created via the
+              [/v1/`ssh_keys` endpoint](/docs/api-reference/cloud/ssh-keys/add-or-generate-ssh-key).
+
+          tags: Key-value tags to associate with the resource. A tag is a key-value pair that
+              can be associated with a resource, enabling efficient filtering and grouping for
+              better organization and management. Both tag keys and values have a maximum
+              length of 255 characters. Tag keys and values cannot contain characters from
+              U+0080 to U+00FF. Some tags are read-only and cannot be modified by the user.
+              Tags are also integrated with cost reports, allowing cost data to be filtered
+              based on tag keys or values.
+
+          user_data: String in base64 format. For Linux instances, 'user_data' is ignored when
+              'password' field is provided. For Windows instances, Admin user password is set
+              by 'password' field and cannot be updated via 'user_data'. Examples of the
+              `user_data`: https://cloudinit.readthedocs.io/en/latest/topics/examples.html
+
+          username: For Linux instances, 'username' and 'password' are used to create a new user.
+              For Windows instances, 'username' cannot be specified. Use 'password' field to
+              set the password for the 'Admin' user on Windows.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        return await self._post(
+            path_template("/cloud/v2/instances/{project_id}/{region_id}", project_id=project_id, region_id=region_id),
+            body=await async_maybe_transform(
+                {
+                    "flavor": flavor,
+                    "interfaces": interfaces,
+                    "volumes": volumes,
+                    "allow_app_ports": allow_app_ports,
+                    "configuration": configuration,
+                    "name": name,
+                    "name_template": name_template,
+                    "password": password,
+                    "security_groups": security_groups,
+                    "servergroup_id": servergroup_id,
+                    "ssh_key_name": ssh_key_name,
+                    "tags": tags,
+                    "user_data": user_data,
+                    "username": username,
+                },
+                instances_regional_create_params.InstancesRegionalCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TaskIDList,
+        )
+
+    async def update(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        name: str | Omit = omit,
+        tags: Optional[TagUpdateMapParam] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> InstanceRegional:
+        """
+        Use
+        [PATCH /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.patch)
+        instead. This route continues to work. Later, we will deprecate it and then
+        remove it. We will tell you in advance.
+
+        Rename instance or update tags
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
+          name: Name
+
+          tags: Update key-value tags using JSON Merge Patch semantics (RFC 7396). Provide
+              key-value pairs to add or update tags. Set tag values to `null` to remove tags.
+              Unspecified tags remain unchanged. Read-only tags are always preserved and
+              cannot be modified.
+
+              **Examples:**
+
+              - **Add/update tags:**
+                `{'tags': {'environment': 'production', 'team': 'backend'}}` adds new tags or
+                updates existing ones.
+              - **Delete tags:** `{'tags': {'old_tag': null}}` removes specific tags.
+              - **Remove all tags:** `{'tags': null}` removes all user-managed tags (read-only
+                tags are preserved).
+              - **Partial update:** `{'tags': {'environment': 'staging'}}` only updates
+                specified tags.
+              - **Mixed operations:**
+                `{'tags': {'environment': 'production', 'cost_center': 'engineering', 'deprecated_tag': null}}`
+                adds/updates 'environment' and 'cost_center' while removing 'deprecated_tag',
+                preserving other existing tags.
+              - **Replace all:** first delete existing tags with null values, then add new
+                ones in the same request.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not instance_id:
+            raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
+        return await self._patch(
+            path_template(
+                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
+            body=await async_maybe_transform(
+                {
+                    "name": name,
+                    "tags": tags,
+                },
+                instances_regional_update_params.InstancesRegionalUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=InstanceRegional,
+        )
+
+    def list(
+        self,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        available_floating: bool | Omit = omit,
+        changes_before: Union[str, datetime] | Omit = omit,
+        changes_since: Union[str, datetime] | Omit = omit,
+        exclude_flavor_prefix: str | Omit = omit,
+        exclude_secgroup: str | Omit = omit,
+        flavor_id: str | Omit = omit,
+        flavor_prefix: str | Omit = omit,
+        include_ai: bool | Omit = omit,
+        include_baremetal: bool | Omit = omit,
+        include_k8s: bool | Omit = omit,
+        ip: str | Omit = omit,
+        limit: int | Omit = omit,
+        name: str | Omit = omit,
+        offset: int | Omit = omit,
+        only_isolated: bool | Omit = omit,
+        only_with_fixed_external_ip: bool | Omit = omit,
+        order_by: Literal["created.asc", "created.desc", "name.asc", "name.desc", "status.asc", "status.desc"]
+        | Omit = omit,
+        profile_name: str | Omit = omit,
+        protection_status: Literal["Active", "Queued", "Error"] | Omit = omit,
+        status: Literal[
+            "ACTIVE",
+            "BUILD",
+            "ERROR",
+            "HARD_REBOOT",
+            "MIGRATING",
+            "PAUSED",
+            "REBOOT",
+            "REBUILD",
+            "RESIZE",
+            "REVERT_RESIZE",
+            "SHELVED",
+            "SHELVED_OFFLOADED",
+            "SHUTOFF",
+            "SOFT_DELETED",
+            "SUSPENDED",
+            "VERIFY_RESIZE",
+        ]
+        | Omit = omit,
+        tag_key_value: str | Omit = omit,
+        tag_value: SequenceNotStr[str] | Omit = omit,
+        type_ddos_profile: Literal["basic", "advanced"] | Omit = omit,
+        uuid: str | Omit = omit,
+        with_ddos: bool | Omit = omit,
+        with_interfaces_name: bool | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[InstanceRegional, AsyncOffsetPage[InstanceRegional]]:
+        """
+        Use
+        [GET /v1/projects/{`project_id`}/instances](#operation/GlobalInstanceListView.get)
+        instead. This route continues to work. Later, we will deprecate it and then
+        remove it. We will tell you in advance.
+
+        List all instances in the specified project and region. Results can be filtered
+        by various parameters like name, status, and IP address.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          available_floating: Only show instances which are able to handle floating address
+
+          changes_before: Filters the instances by a date and time stamp when the instances last changed.
+
+          changes_since: Filters the instances by a date and time stamp when the instances last changed
+              status.
+
+          exclude_flavor_prefix: Exclude instances with specified flavor prefix
+
+          exclude_secgroup: Exclude instances with specified security group name
+
+          flavor_id: Filter out instances by `flavor_id`. Flavor id must match exactly.
+
+          flavor_prefix: Filter out instances by `flavor_prefix`.
+
+          include_ai: Include GPU clusters' servers
+
+          include_baremetal: Include bare metal servers. Please, use `GET /v1/bminstances/` instead
+
+          include_k8s: Include managed k8s worker nodes
+
+          ip: An IPv4 address to filter results by. Note: partial matches are allowed. For
+              example, searching for 192.168.0.1 will return 192.168.0.1, 192.168.0.10,
+              192.168.0.110, and so on.
+
+          limit: Optional. Limit the number of returned items
+
+          name: Filter instances by name. You can provide a full or partial name, instances with
+              matching names will be returned. For example, entering 'test' will return all
+              instances that contain 'test' in their name.
+
+          offset: Optional. Offset value is used to exclude the first set of records from the
+              result
+
+          only_isolated: Include only isolated instances
+
+          only_with_fixed_external_ip: Return bare metals only with external fixed IP addresses.
+
+          order_by: Order by field and direction.
+
+          profile_name: Filter result by ddos protection profile name. Effective only with `with_ddos`
+              set to true.
+
+          protection_status: Filter result by DDoS `protection_status`. if parameter is provided. Effective
+              only with `with_ddos` set to true. (Active, Queued or Error)
+
+          status: Filters instances by status.
+
+          tag_key_value: Optional. Filter by tag key-value pairs.
+
+          tag_value: Optional. Filter by tag values. ?`tag_value`=value1&`tag_value`=value2
+
+          type_ddos_profile: Return bare metals either only with advanced or only basic DDoS protection.
+              Effective only with `with_ddos` set to true. (advanced or basic)
+
+          uuid: Filter the server list result by the UUID of the server. Allowed UUID part
+
+          with_ddos: Include DDoS profile information in the response when set to `true`. Otherwise,
+              the `ddos_profile` field in the response is `null` by default.
+
+          with_interfaces_name: Include `interface_name` in the addresses
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        return self._get_api_list(
+            path_template("/cloud/v1/instances/{project_id}/{region_id}", project_id=project_id, region_id=region_id),
+            page=AsyncOffsetPage[InstanceRegional],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "available_floating": available_floating,
+                        "changes_before": changes_before,
+                        "changes_since": changes_since,
+                        "exclude_flavor_prefix": exclude_flavor_prefix,
+                        "exclude_secgroup": exclude_secgroup,
+                        "flavor_id": flavor_id,
+                        "flavor_prefix": flavor_prefix,
+                        "include_ai": include_ai,
+                        "include_baremetal": include_baremetal,
+                        "include_k8s": include_k8s,
+                        "ip": ip,
+                        "limit": limit,
+                        "name": name,
+                        "offset": offset,
+                        "only_isolated": only_isolated,
+                        "only_with_fixed_external_ip": only_with_fixed_external_ip,
+                        "order_by": order_by,
+                        "profile_name": profile_name,
+                        "protection_status": protection_status,
+                        "status": status,
+                        "tag_key_value": tag_key_value,
+                        "tag_value": tag_value,
+                        "type_ddos_profile": type_ddos_profile,
+                        "uuid": uuid,
+                        "with_ddos": with_ddos,
+                        "with_interfaces_name": with_interfaces_name,
+                    },
+                    instances_regional_list_params.InstancesRegionalListParams,
+                ),
+            ),
+            model=InstanceRegional,
+        )
+
+    async def delete(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        delete_floatings: bool | Omit = omit,
+        floatings: str | Omit = omit,
+        reserved_fixed_ips: str | Omit = omit,
+        volumes: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """
+        Use
+        [DELETE /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.delete)
+        instead. This route continues to work. Later, we will deprecate it and then
+        remove it. We will tell you in advance.
+
+        Delete the instance and its ports. A reserved fixed IP stays, unless
+        `reserved_fixed_ips` names it. A port that you
+        [create as a port](#operation/GlobalPortListView.post) is not a reserved fixed
+        IP, so this delete removes it.
+
+        To keep the ports, use
+        [`DELETE /v1/projects/{project_id}/instances/{instance_id}`](#operation/GlobalInstanceDetailView.delete).
+        That delete keeps every port by default.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
+          delete_floatings: True if it is required to delete floating IPs assigned to the instance. Can't be
+              used with `floatings`.
+
+          floatings: Comma separated list of floating ids that should be deleted. Can't be used with
+              `delete_floatings`.
+
+          reserved_fixed_ips: Comma separated list of port IDs to be deleted with the instance
+
+          volumes: Comma separated list of volume IDs to be deleted with the instance
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not instance_id:
+            raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
+        return await self._delete(
+            path_template(
+                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "delete_floatings": delete_floatings,
+                        "floatings": floatings,
+                        "reserved_fixed_ips": reserved_fixed_ips,
+                        "volumes": volumes,
+                    },
+                    instances_regional_delete_params.InstancesRegionalDeleteParams,
+                ),
+            ),
+            cast_to=TaskIDList,
+        )
+
+    @overload
+    async def action(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["start"],
+        activate_profile: Optional[bool] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """
+        Use
+        [POST /v1/projects/{`project_id`}/instances/{`instance_id`}/action](#operation/GlobalInstanceActionView.post)
+        instead. This route continues to work. Later, we will deprecate it and then
+        remove it. We will tell you in advance.
+
+        The action can be one of: start, stop, reboot, `reboot_hard`, suspend or resume.
+        Suspend and resume are not available for bare metal instances.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
+          action: Instance action name
+
+          activate_profile: Used on start instance to activate Advanced DDoS profile
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def action(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["reboot", "reboot_hard", "resume", "stop", "suspend"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """
+        Use
+        [POST /v1/projects/{`project_id`}/instances/{`instance_id`}/action](#operation/GlobalInstanceActionView.post)
+        instead. This route continues to work. Later, we will deprecate it and then
+        remove it. We will tell you in advance.
+
+        The action can be one of: start, stop, reboot, `reboot_hard`, suspend or resume.
+        Suspend and resume are not available for bare metal instances.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
+          action: Instance action name
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["action"])
+    async def action(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        action: Literal["start"] | Literal["reboot", "reboot_hard", "resume", "stop", "suspend"],
+        activate_profile: Optional[bool] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not instance_id:
+            raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
+        return await self._post(
+            path_template(
+                "/cloud/v2/instances/{project_id}/{region_id}/{instance_id}/action",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
+            body=await async_maybe_transform(
+                {
+                    "action": action,
+                    "activate_profile": activate_profile,
+                },
+                instances_regional_action_params.InstancesRegionalActionParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TaskIDList,
+        )
+
+    async def add_to_placement_group(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        servergroup_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """
+        Use
+        [PATCH /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.patch)
+        instead. Send `placement_group_id`. This route continues to work. Later, we will
+        deprecate it and then remove it. We will tell you in advance.
+
+        Add an instance to a placement group. The instance must not already be in a
+        placement group. Bare metal servers do not support placement groups.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
+          servergroup_id: Anti-affinity or affinity or soft-anti-affinity placement group ID.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not instance_id:
+            raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
+        return await self._post(
+            path_template(
+                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/put_into_servergroup",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
+            body=await async_maybe_transform(
+                {"servergroup_id": servergroup_id},
+                instances_regional_add_to_placement_group_params.InstancesRegionalAddToPlacementGroupParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TaskIDList,
+        )
+
+    async def assign_security_group(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        name: str | Omit = omit,
+        ports_security_group_names: Iterable[instances_regional_assign_security_group_params.PortsSecurityGroupName]
+        | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> None:
+        """
+        Use
+        [PATCH /v1/projects/{`project_id`}/ports/{`port_id`}](#operation/GlobalPortDetailView.patch)
+        instead. Send `security_group_ids`. This route continues to work. Later, we will
+        deprecate it and then remove it. We will tell you in advance.
+
+        Assign the security group to the server. To assign multiple security groups to
+        all ports, use the NULL value for the `port_id` field
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
+          name: Security group name, applies to all ports
+
+          ports_security_group_names: Port security groups mapping
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not instance_id:
+            raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return await self._post(
+            path_template(
+                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/addsecuritygroup",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
+            body=await async_maybe_transform(
+                {
+                    "name": name,
+                    "ports_security_group_names": ports_security_group_names,
+                },
+                instances_regional_assign_security_group_params.InstancesRegionalAssignSecurityGroupParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=NoneType,
+        )
+
+    @typing_extensions.deprecated("deprecated")
+    async def disable_port_security(
+        self,
+        port_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> InstanceRegionalInterface:
+        """Deprecated.
+
+        Use PATCH /v1/ports/{`project_id`}/{`region_id`}/{`port_id`}
+        instead.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          port_id: Port ID
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not port_id:
+            raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
+        return await self._post(
+            path_template(
+                "/cloud/v1/ports/{project_id}/{region_id}/{port_id}/disable_port_security",
+                project_id=project_id,
+                region_id=region_id,
+                port_id=port_id,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=InstanceRegionalInterface,
+        )
+
+    @typing_extensions.deprecated("deprecated")
+    async def enable_port_security(
+        self,
+        port_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> InstanceRegionalInterface:
+        """Deprecated.
+
+        Use PATCH /v1/ports/{`project_id`}/{`region_id`}/{`port_id`}
+        instead.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          port_id: Port ID
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not port_id:
+            raise ValueError(f"Expected a non-empty value for `port_id` but received {port_id!r}")
+        return await self._post(
+            path_template(
+                "/cloud/v1/ports/{project_id}/{region_id}/{port_id}/enable_port_security",
+                project_id=project_id,
+                region_id=region_id,
+                port_id=port_id,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=InstanceRegionalInterface,
+        )
+
+    async def get(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> InstanceRegional:
+        """
+        Use
+        [GET /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.get)
+        instead. This route continues to work. Later, we will deprecate it and then
+        remove it. We will tell you in advance.
+
+        Retrieve detailed information about a specific instance. The response content
+        language for `ddos_profile` can be controlled via the 'language' cookie
+        parameter.
+
+        **Cookie Parameters**:
+
+        - `language` (str, optional): Language for the response content. Affects the
+          `ddos_profile` field. Supported values:
+          - `'en'` (default)
+          - `'de'`
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not instance_id:
+            raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
+        return await self._get(
+            path_template(
+                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=InstanceRegional,
+        )
+
+    async def get_console(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        console_type: Literal["novnc", "serial", "spice", "vnc"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Console:
+        """
+        Use
+        [GET /v1/projects/{`project_id`}/instances/{`instance_id`}/console](#operation/GlobalInstanceConsoleView.get)
+        instead. For a bare metal server, use
+        [Get bare metal server console URL](#operation/GlobalBaremetalConsoleView.get).
+        For a basic VM, use
+        [Get basic VM console URL](#operation/GlobalBasicVmConsoleView.get). This route
+        continues to work. Later, we will deprecate it and then remove it. We will tell
+        you in advance.
+
+        Returns a URL to access the remote console for an instance. Supported console
+        types depend on instance type: novnc and spice for virtual instances, vnc and
+        serial for bare metal instances.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
+          console_type: Console type
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not instance_id:
+            raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
+        return await self._get(
+            path_template(
+                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/get_console",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"console_type": console_type},
+                    instances_regional_get_console_params.InstancesRegionalGetConsoleParams,
+                ),
+            ),
+            cast_to=Console,
+        )
+
+    async def remove_from_placement_group(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """
+        Use
+        [PATCH /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.patch)
+        instead. Send `placement_group_id`. This route continues to work. Later, we will
+        deprecate it and then remove it. We will tell you in advance.
+
+        Remove an instance from its current placement group. The instance must be in a
+        placement group to be removed. Bare metal servers do not support placement
+        groups.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not instance_id:
+            raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
+        return await self._post(
+            path_template(
+                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/remove_from_servergroup",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TaskIDList,
+        )
+
+    async def resize(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        flavor_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TaskIDList:
+        """
+        Use
+        [PATCH /v1/projects/{`project_id`}/instances/{`instance_id`}](#operation/GlobalInstanceDetailView.patch)
+        instead. Send `flavor_name`. This route continues to work. Later, we will
+        deprecate it and then remove it. We will tell you in advance.
+
+        Change flavor of the instance.
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
+          flavor_id: Flavor ID
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not instance_id:
+            raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
+        return await self._post(
+            path_template(
+                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/changeflavor",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
+            body=await async_maybe_transform(
+                {"flavor_id": flavor_id}, instances_regional_resize_params.InstancesRegionalResizeParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TaskIDList,
+        )
+
+    async def unassign_security_group(
+        self,
+        instance_id: str,
+        *,
+        project_id: int | None = None,
+        region_id: int | None = None,
+        name: str | Omit = omit,
+        ports_security_group_names: Iterable[instances_regional_unassign_security_group_params.PortsSecurityGroupName]
+        | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> None:
+        """
+        Use
+        [PATCH /v1/projects/{`project_id`}/ports/{`port_id`}](#operation/GlobalPortDetailView.patch)
+        instead. Send `security_group_ids`. This route continues to work. Later, we will
+        deprecate it and then remove it. We will tell you in advance.
+
+        Un-assign the security group to the server. To un-assign multiple security
+        groups to all ports, use the NULL value for the `port_id` field
+
+        Args:
+          project_id: Project ID
+
+          region_id: Region ID
+
+          instance_id: Instance ID
+
+          name: Security group name, applies to all ports
+
+          ports_security_group_names: Port security groups mapping
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if project_id is None:
+            project_id = self._client._get_cloud_project_id_path_param()
+        if region_id is None:
+            region_id = self._client._get_cloud_region_id_path_param()
+        if not instance_id:
+            raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return await self._post(
+            path_template(
+                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/delsecuritygroup",
+                project_id=project_id,
+                region_id=region_id,
+                instance_id=instance_id,
+            ),
+            body=await async_maybe_transform(
+                {
+                    "name": name,
+                    "ports_security_group_names": ports_security_group_names,
+                },
+                instances_regional_unassign_security_group_params.InstancesRegionalUnassignSecurityGroupParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=NoneType,
+        )
+
+
+class InstancesRegionalResourceWithRawResponse:
+    def __init__(self, instances_regional: InstancesRegionalResource) -> None:
+        self._instances_regional = instances_regional
+
+        self.create = to_raw_response_wrapper(
+            instances_regional.create,
+        )
+        self.update = to_raw_response_wrapper(
+            instances_regional.update,
+        )
+        self.list = to_raw_response_wrapper(
+            instances_regional.list,
+        )
+        self.delete = to_raw_response_wrapper(
+            instances_regional.delete,
+        )
+        self.action = to_raw_response_wrapper(
+            instances_regional.action,
+        )
+        self.action_and_poll = to_raw_response_wrapper(
+            instances_regional.action_and_poll,
+        )
+        self.add_to_placement_group = to_raw_response_wrapper(
+            instances_regional.add_to_placement_group,
+        )
+        self.assign_security_group = to_raw_response_wrapper(
+            instances_regional.assign_security_group,
+        )
+        self.disable_port_security = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                instances_regional.disable_port_security,  # pyright: ignore[reportDeprecated],
+            )
+        )
+        self.enable_port_security = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                instances_regional.enable_port_security,  # pyright: ignore[reportDeprecated],
+            )
+        )
+        self.get = to_raw_response_wrapper(
+            instances_regional.get,
+        )
+        self.get_console = to_raw_response_wrapper(
+            instances_regional.get_console,
+        )
+        self.remove_from_placement_group = to_raw_response_wrapper(
+            instances_regional.remove_from_placement_group,
+        )
+        self.resize = to_raw_response_wrapper(
+            instances_regional.resize,
+        )
+        self.unassign_security_group = to_raw_response_wrapper(
+            instances_regional.unassign_security_group,
+        )
+        self.create_and_poll = to_raw_response_wrapper(
+            instances_regional.create_and_poll,
+        )
+        self.delete_and_poll = to_raw_response_wrapper(
+            instances_regional.delete_and_poll,
+        )
+        self.add_to_placement_group_and_poll = to_raw_response_wrapper(
+            instances_regional.add_to_placement_group_and_poll,
+        )
+        self.remove_from_placement_group_and_poll = to_raw_response_wrapper(
+            instances_regional.remove_from_placement_group_and_poll,
+        )
+        self.resize_and_poll = to_raw_response_wrapper(
+            instances_regional.resize_and_poll,
+        )
+
+    @cached_property
+    def flavors(self) -> FlavorsResourceWithRawResponse:
+        """
+        Instance flavors define available CPU, memory, and disk configurations for creating cloud instances.
+        """
+        return FlavorsResourceWithRawResponse(self._instances_regional.flavors)
+
+    @cached_property
+    def interfaces(self) -> InterfacesResourceWithRawResponse:
+        return InterfacesResourceWithRawResponse(self._instances_regional.interfaces)
+
+
+class AsyncInstancesRegionalResourceWithRawResponse:
+    def __init__(self, instances_regional: AsyncInstancesRegionalResource) -> None:
+        self._instances_regional = instances_regional
+
+        self.create = async_to_raw_response_wrapper(
+            instances_regional.create,
+        )
+        self.update = async_to_raw_response_wrapper(
+            instances_regional.update,
+        )
+        self.list = async_to_raw_response_wrapper(
+            instances_regional.list,
+        )
+        self.delete = async_to_raw_response_wrapper(
+            instances_regional.delete,
+        )
+        self.action = async_to_raw_response_wrapper(
+            instances_regional.action,
+        )
+        self.action_and_poll = async_to_raw_response_wrapper(
+            instances_regional.action_and_poll,
+        )
+        self.add_to_placement_group = async_to_raw_response_wrapper(
+            instances_regional.add_to_placement_group,
+        )
+        self.assign_security_group = async_to_raw_response_wrapper(
+            instances_regional.assign_security_group,
+        )
+        self.disable_port_security = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                instances_regional.disable_port_security,  # pyright: ignore[reportDeprecated],
+            )
+        )
+        self.enable_port_security = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                instances_regional.enable_port_security,  # pyright: ignore[reportDeprecated],
+            )
+        )
+        self.get = async_to_raw_response_wrapper(
+            instances_regional.get,
+        )
+        self.get_console = async_to_raw_response_wrapper(
+            instances_regional.get_console,
+        )
+        self.remove_from_placement_group = async_to_raw_response_wrapper(
+            instances_regional.remove_from_placement_group,
+        )
+        self.resize = async_to_raw_response_wrapper(
+            instances_regional.resize,
+        )
+        self.unassign_security_group = async_to_raw_response_wrapper(
+            instances_regional.unassign_security_group,
+        )
+        self.create_and_poll = async_to_raw_response_wrapper(
+            instances_regional.create_and_poll,
+        )
+        self.delete_and_poll = async_to_raw_response_wrapper(
+            instances_regional.delete_and_poll,
+        )
+        self.add_to_placement_group_and_poll = async_to_raw_response_wrapper(
+            instances_regional.add_to_placement_group_and_poll,
+        )
+        self.remove_from_placement_group_and_poll = async_to_raw_response_wrapper(
+            instances_regional.remove_from_placement_group_and_poll,
+        )
+        self.resize_and_poll = async_to_raw_response_wrapper(
+            instances_regional.resize_and_poll,
+        )
+
+    @cached_property
+    def flavors(self) -> AsyncFlavorsResourceWithRawResponse:
+        """
+        Instance flavors define available CPU, memory, and disk configurations for creating cloud instances.
+        """
+        return AsyncFlavorsResourceWithRawResponse(self._instances_regional.flavors)
+
+    @cached_property
+    def interfaces(self) -> AsyncInterfacesResourceWithRawResponse:
+        return AsyncInterfacesResourceWithRawResponse(self._instances_regional.interfaces)
+
+
+class InstancesRegionalResourceWithStreamingResponse:
+    def __init__(self, instances_regional: InstancesRegionalResource) -> None:
+        self._instances_regional = instances_regional
+
+        self.create = to_streamed_response_wrapper(
+            instances_regional.create,
+        )
+        self.update = to_streamed_response_wrapper(
+            instances_regional.update,
+        )
+        self.list = to_streamed_response_wrapper(
+            instances_regional.list,
+        )
+        self.delete = to_streamed_response_wrapper(
+            instances_regional.delete,
+        )
+        self.action = to_streamed_response_wrapper(
+            instances_regional.action,
+        )
+        self.action_and_poll = to_streamed_response_wrapper(
+            instances_regional.action_and_poll,
+        )
+        self.add_to_placement_group = to_streamed_response_wrapper(
+            instances_regional.add_to_placement_group,
+        )
+        self.assign_security_group = to_streamed_response_wrapper(
+            instances_regional.assign_security_group,
+        )
+        self.disable_port_security = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                instances_regional.disable_port_security,  # pyright: ignore[reportDeprecated],
+            )
+        )
+        self.enable_port_security = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                instances_regional.enable_port_security,  # pyright: ignore[reportDeprecated],
+            )
+        )
+        self.get = to_streamed_response_wrapper(
+            instances_regional.get,
+        )
+        self.get_console = to_streamed_response_wrapper(
+            instances_regional.get_console,
+        )
+        self.remove_from_placement_group = to_streamed_response_wrapper(
+            instances_regional.remove_from_placement_group,
+        )
+        self.resize = to_streamed_response_wrapper(
+            instances_regional.resize,
+        )
+        self.unassign_security_group = to_streamed_response_wrapper(
+            instances_regional.unassign_security_group,
+        )
+        self.create_and_poll = to_streamed_response_wrapper(
+            instances_regional.create_and_poll,
+        )
+        self.delete_and_poll = to_streamed_response_wrapper(
+            instances_regional.delete_and_poll,
+        )
+        self.add_to_placement_group_and_poll = to_streamed_response_wrapper(
+            instances_regional.add_to_placement_group_and_poll,
+        )
+        self.remove_from_placement_group_and_poll = to_streamed_response_wrapper(
+            instances_regional.remove_from_placement_group_and_poll,
+        )
+        self.resize_and_poll = to_streamed_response_wrapper(
+            instances_regional.resize_and_poll,
+        )
+
+    @cached_property
+    def flavors(self) -> FlavorsResourceWithStreamingResponse:
+        """
+        Instance flavors define available CPU, memory, and disk configurations for creating cloud instances.
+        """
+        return FlavorsResourceWithStreamingResponse(self._instances_regional.flavors)
+
+    @cached_property
+    def interfaces(self) -> InterfacesResourceWithStreamingResponse:
+        return InterfacesResourceWithStreamingResponse(self._instances_regional.interfaces)
+
+
+class AsyncInstancesRegionalResourceWithStreamingResponse:
+    def __init__(self, instances_regional: AsyncInstancesRegionalResource) -> None:
+        self._instances_regional = instances_regional
+
+        self.create = async_to_streamed_response_wrapper(
+            instances_regional.create,
+        )
+        self.update = async_to_streamed_response_wrapper(
+            instances_regional.update,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            instances_regional.list,
+        )
+        self.delete = async_to_streamed_response_wrapper(
+            instances_regional.delete,
+        )
+        self.action = async_to_streamed_response_wrapper(
+            instances_regional.action,
+        )
+        self.action_and_poll = async_to_streamed_response_wrapper(
+            instances_regional.action_and_poll,
+        )
+        self.add_to_placement_group = async_to_streamed_response_wrapper(
+            instances_regional.add_to_placement_group,
+        )
+        self.assign_security_group = async_to_streamed_response_wrapper(
+            instances_regional.assign_security_group,
+        )
+        self.disable_port_security = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                instances_regional.disable_port_security,  # pyright: ignore[reportDeprecated],
+            )
+        )
+        self.enable_port_security = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                instances_regional.enable_port_security,  # pyright: ignore[reportDeprecated],
+            )
+        )
+        self.get = async_to_streamed_response_wrapper(
+            instances_regional.get,
+        )
+        self.get_console = async_to_streamed_response_wrapper(
+            instances_regional.get_console,
+        )
+        self.remove_from_placement_group = async_to_streamed_response_wrapper(
+            instances_regional.remove_from_placement_group,
+        )
+        self.resize = async_to_streamed_response_wrapper(
+            instances_regional.resize,
+        )
+        self.unassign_security_group = async_to_streamed_response_wrapper(
+            instances_regional.unassign_security_group,
+        )
+        self.create_and_poll = async_to_streamed_response_wrapper(
+            instances_regional.create_and_poll,
+        )
+        self.delete_and_poll = async_to_streamed_response_wrapper(
+            instances_regional.delete_and_poll,
+        )
+        self.add_to_placement_group_and_poll = async_to_streamed_response_wrapper(
+            instances_regional.add_to_placement_group_and_poll,
+        )
+        self.remove_from_placement_group_and_poll = async_to_streamed_response_wrapper(
+            instances_regional.remove_from_placement_group_and_poll,
+        )
+        self.resize_and_poll = async_to_streamed_response_wrapper(
+            instances_regional.resize_and_poll,
+        )
+
+    @cached_property
+    def flavors(self) -> AsyncFlavorsResourceWithStreamingResponse:
+        """
+        Instance flavors define available CPU, memory, and disk configurations for creating cloud instances.
+        """
+        return AsyncFlavorsResourceWithStreamingResponse(self._instances_regional.flavors)
+
+    @cached_property
+    def interfaces(self) -> AsyncInterfacesResourceWithStreamingResponse:
+        return AsyncInterfacesResourceWithStreamingResponse(self._instances_regional.interfaces)

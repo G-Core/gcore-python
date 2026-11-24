@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
+from typing import List, Iterable
+from typing_extensions import Literal
 
 import httpx
 
@@ -19,14 +20,14 @@ from ...._response import (
 from ....pagination import SyncOffsetPage, AsyncOffsetPage
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.cloud.instances import flavor_list_params
-from ....types.cloud.instances.instance_flavor_detailed import InstanceFlavorDetailed
+from ....types.cloud.instances.instance_flavor import InstanceFlavor
 
 __all__ = ["FlavorsResource", "AsyncFlavorsResource"]
 
 
 class FlavorsResource(SyncAPIResource):
     """
-    Instance flavors define available CPU, memory, and disk configurations for creating cloud instances.
+    Instance flavors define the CPU, memory, and OS type of an instance, in all regions of the project.
     """
 
     @cached_property
@@ -52,54 +53,76 @@ class FlavorsResource(SyncAPIResource):
         self,
         *,
         project_id: int | None = None,
-        region_id: int | None = None,
-        disabled: bool | Omit = omit,
-        exclude_linux: bool | Omit = omit,
-        exclude_windows: bool | Omit = omit,
-        include_prices: bool | Omit = omit,
+        architectures: List[Literal["aarch64", "unknown", "x86_64"]] | Omit = omit,
+        available: bool | Omit = omit,
+        compatible_with_boot_volume_id: str | Omit = omit,
+        compatible_with_image_id: str | Omit = omit,
+        compatible_with_snapshot_id: str | Omit = omit,
         limit: int | Omit = omit,
+        name: flavor_list_params.Name | Omit = omit,
         offset: int | Omit = omit,
+        order_by: Literal[
+            "name.asc",
+            "name.desc",
+            "ram_mib.asc",
+            "ram_mib.desc",
+            "region_id.asc",
+            "region_id.desc",
+            "vcpus.asc",
+            "vcpus.desc",
+        ]
+        | Omit = omit,
+        os_types: List[Literal["linux", "unknown", "windows"]] | Omit = omit,
+        ram_mib: flavor_list_params.RamMib | Omit = omit,
+        region_ids: Iterable[int] | Omit = omit,
+        vcpus: flavor_list_params.Vcpus | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncOffsetPage[InstanceFlavorDetailed]:
+    ) -> SyncOffsetPage[InstanceFlavor]:
         """
-        Use
-        [GET /v1/projects/{`project_id`}/instances/flavors](#operation/GlobalInstanceFlavorListView.get)
-        instead. This route also returns the basic VM and the bare metal flavors. For
-        them, use [List basic VM flavors](#operation/GlobalBasicVmFlavorListView.get)
-        and [List bare metal flavors](#operation/GlobalBaremetalFlavorListView.get). The
-        new routes do not return prices. For prices, use
-        [List instance flavor prices](#operation/InstanceFlavorPriceListView.get),
-        [List basic VM flavor prices](#operation/BasicVmFlavorPriceListView.get) and
-        [List bare metal flavor prices](#operation/BaremetalFlavorPriceListView.get).
-        This route continues to work. Later, we will deprecate it and then remove it. We
-        will tell you in advance.
-
-        Retrieve a list of available instance flavors in the project and region. When
-        `include_prices` is specified, the list includes pricing information. Trial mode
-        clients see all prices as 0. Contact support for pricing errors.
+        List the virtual instance flavors available to the client, across all regions.
 
         Args:
-          project_id: Project ID
+          project_id: Project ID.
 
-          region_id: Region ID
+          architectures: Filter by flavor architecture type(s).
 
-          disabled: Flag for filtering disabled flavors in the region. Defaults to true
+          available: Set to true to return only the available flavors. Set to false to return only
+              the flavors that are disabled in their region or out of stock there. Omit it to
+              return all flavors.
 
-          exclude_linux: Set to true to exclude flavors dedicated to linux images
+          compatible_with_boot_volume_id: Return only the flavors that can boot from this volume, from its image metadata.
+              An unknown volume matches no flavor. A non-bootable volume or one without image
+              metadata is a 400. At most one `compatible_with_`\\** parameter per request.
 
-          exclude_windows: Set to true to exclude flavors dedicated to windows images
+          compatible_with_image_id: Return only the flavors that can boot this image: its region, OS type and CPU
+              architecture. An unknown image matches no flavor. At most one
+              `compatible_with_`\\** parameter per request.
 
-          include_prices: Set to true if the response should include flavor prices
+          compatible_with_snapshot_id: Return only the flavors that can boot from this snapshot, resolved through its
+              parent volume's image metadata. An unknown snapshot matches no flavor. A parent
+              volume with no image metadata is a 400. At most one `compatible_with_`\\**
+              parameter per request.
 
-          limit: Optional. Limit the number of returned items
+          limit: Max items to return.
 
-          offset: Optional. Offset value is used to exclude the first set of records from the
-              result
+          name: Operator flavor name filter, e.g. name[prefix]=g2-.
+
+          offset: Items to skip.
+
+          order_by: Sort field and direction.
+
+          os_types: Filter by flavor operating system(s).
+
+          ram_mib: Range filter on RAM size in MiB.
+
+          region_ids: Filter by region ID(s). Omit = all regions.
+
+          vcpus: Range filter on virtual CPU count.
 
           extra_headers: Send extra headers
 
@@ -111,11 +134,9 @@ class FlavorsResource(SyncAPIResource):
         """
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            path_template("/cloud/v1/flavors/{project_id}/{region_id}", project_id=project_id, region_id=region_id),
-            page=SyncOffsetPage[InstanceFlavorDetailed],
+            path_template("/cloud/v1/projects/{project_id}/instances/flavors", project_id=project_id),
+            page=SyncOffsetPage[InstanceFlavor],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -123,23 +144,30 @@ class FlavorsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "disabled": disabled,
-                        "exclude_linux": exclude_linux,
-                        "exclude_windows": exclude_windows,
-                        "include_prices": include_prices,
+                        "architectures": architectures,
+                        "available": available,
+                        "compatible_with_boot_volume_id": compatible_with_boot_volume_id,
+                        "compatible_with_image_id": compatible_with_image_id,
+                        "compatible_with_snapshot_id": compatible_with_snapshot_id,
                         "limit": limit,
+                        "name": name,
                         "offset": offset,
+                        "order_by": order_by,
+                        "os_types": os_types,
+                        "ram_mib": ram_mib,
+                        "region_ids": region_ids,
+                        "vcpus": vcpus,
                     },
                     flavor_list_params.FlavorListParams,
                 ),
             ),
-            model=cast(Any, InstanceFlavorDetailed),  # Union types cannot be passed in as arguments in the type system
+            model=InstanceFlavor,
         )
 
 
 class AsyncFlavorsResource(AsyncAPIResource):
     """
-    Instance flavors define available CPU, memory, and disk configurations for creating cloud instances.
+    Instance flavors define the CPU, memory, and OS type of an instance, in all regions of the project.
     """
 
     @cached_property
@@ -165,54 +193,76 @@ class AsyncFlavorsResource(AsyncAPIResource):
         self,
         *,
         project_id: int | None = None,
-        region_id: int | None = None,
-        disabled: bool | Omit = omit,
-        exclude_linux: bool | Omit = omit,
-        exclude_windows: bool | Omit = omit,
-        include_prices: bool | Omit = omit,
+        architectures: List[Literal["aarch64", "unknown", "x86_64"]] | Omit = omit,
+        available: bool | Omit = omit,
+        compatible_with_boot_volume_id: str | Omit = omit,
+        compatible_with_image_id: str | Omit = omit,
+        compatible_with_snapshot_id: str | Omit = omit,
         limit: int | Omit = omit,
+        name: flavor_list_params.Name | Omit = omit,
         offset: int | Omit = omit,
+        order_by: Literal[
+            "name.asc",
+            "name.desc",
+            "ram_mib.asc",
+            "ram_mib.desc",
+            "region_id.asc",
+            "region_id.desc",
+            "vcpus.asc",
+            "vcpus.desc",
+        ]
+        | Omit = omit,
+        os_types: List[Literal["linux", "unknown", "windows"]] | Omit = omit,
+        ram_mib: flavor_list_params.RamMib | Omit = omit,
+        region_ids: Iterable[int] | Omit = omit,
+        vcpus: flavor_list_params.Vcpus | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[InstanceFlavorDetailed, AsyncOffsetPage[InstanceFlavorDetailed]]:
+    ) -> AsyncPaginator[InstanceFlavor, AsyncOffsetPage[InstanceFlavor]]:
         """
-        Use
-        [GET /v1/projects/{`project_id`}/instances/flavors](#operation/GlobalInstanceFlavorListView.get)
-        instead. This route also returns the basic VM and the bare metal flavors. For
-        them, use [List basic VM flavors](#operation/GlobalBasicVmFlavorListView.get)
-        and [List bare metal flavors](#operation/GlobalBaremetalFlavorListView.get). The
-        new routes do not return prices. For prices, use
-        [List instance flavor prices](#operation/InstanceFlavorPriceListView.get),
-        [List basic VM flavor prices](#operation/BasicVmFlavorPriceListView.get) and
-        [List bare metal flavor prices](#operation/BaremetalFlavorPriceListView.get).
-        This route continues to work. Later, we will deprecate it and then remove it. We
-        will tell you in advance.
-
-        Retrieve a list of available instance flavors in the project and region. When
-        `include_prices` is specified, the list includes pricing information. Trial mode
-        clients see all prices as 0. Contact support for pricing errors.
+        List the virtual instance flavors available to the client, across all regions.
 
         Args:
-          project_id: Project ID
+          project_id: Project ID.
 
-          region_id: Region ID
+          architectures: Filter by flavor architecture type(s).
 
-          disabled: Flag for filtering disabled flavors in the region. Defaults to true
+          available: Set to true to return only the available flavors. Set to false to return only
+              the flavors that are disabled in their region or out of stock there. Omit it to
+              return all flavors.
 
-          exclude_linux: Set to true to exclude flavors dedicated to linux images
+          compatible_with_boot_volume_id: Return only the flavors that can boot from this volume, from its image metadata.
+              An unknown volume matches no flavor. A non-bootable volume or one without image
+              metadata is a 400. At most one `compatible_with_`\\** parameter per request.
 
-          exclude_windows: Set to true to exclude flavors dedicated to windows images
+          compatible_with_image_id: Return only the flavors that can boot this image: its region, OS type and CPU
+              architecture. An unknown image matches no flavor. At most one
+              `compatible_with_`\\** parameter per request.
 
-          include_prices: Set to true if the response should include flavor prices
+          compatible_with_snapshot_id: Return only the flavors that can boot from this snapshot, resolved through its
+              parent volume's image metadata. An unknown snapshot matches no flavor. A parent
+              volume with no image metadata is a 400. At most one `compatible_with_`\\**
+              parameter per request.
 
-          limit: Optional. Limit the number of returned items
+          limit: Max items to return.
 
-          offset: Optional. Offset value is used to exclude the first set of records from the
-              result
+          name: Operator flavor name filter, e.g. name[prefix]=g2-.
+
+          offset: Items to skip.
+
+          order_by: Sort field and direction.
+
+          os_types: Filter by flavor operating system(s).
+
+          ram_mib: Range filter on RAM size in MiB.
+
+          region_ids: Filter by region ID(s). Omit = all regions.
+
+          vcpus: Range filter on virtual CPU count.
 
           extra_headers: Send extra headers
 
@@ -224,11 +274,9 @@ class AsyncFlavorsResource(AsyncAPIResource):
         """
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
         return self._get_api_list(
-            path_template("/cloud/v1/flavors/{project_id}/{region_id}", project_id=project_id, region_id=region_id),
-            page=AsyncOffsetPage[InstanceFlavorDetailed],
+            path_template("/cloud/v1/projects/{project_id}/instances/flavors", project_id=project_id),
+            page=AsyncOffsetPage[InstanceFlavor],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -236,17 +284,24 @@ class AsyncFlavorsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "disabled": disabled,
-                        "exclude_linux": exclude_linux,
-                        "exclude_windows": exclude_windows,
-                        "include_prices": include_prices,
+                        "architectures": architectures,
+                        "available": available,
+                        "compatible_with_boot_volume_id": compatible_with_boot_volume_id,
+                        "compatible_with_image_id": compatible_with_image_id,
+                        "compatible_with_snapshot_id": compatible_with_snapshot_id,
                         "limit": limit,
+                        "name": name,
                         "offset": offset,
+                        "order_by": order_by,
+                        "os_types": os_types,
+                        "ram_mib": ram_mib,
+                        "region_ids": region_ids,
+                        "vcpus": vcpus,
                     },
                     flavor_list_params.FlavorListParams,
                 ),
             ),
-            model=cast(Any, InstanceFlavorDetailed),  # Union types cannot be passed in as arguments in the type system
+            model=InstanceFlavor,
         )
 
 
