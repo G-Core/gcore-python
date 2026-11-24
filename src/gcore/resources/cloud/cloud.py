@@ -377,7 +377,7 @@ class CloudResource(SyncAPIResource):
     @cached_property
     def placement_groups(self) -> PlacementGroupsResource:
         """
-        Placement groups enforce affinity or anti-affinity policies that control whether virtual machines are hosted on the same or different physical servers.
+        Placement groups set an affinity or anti-affinity policy for virtual machines, in any region of the project.
         """
         return PlacementGroupsResource(self._client)
 
@@ -586,7 +586,7 @@ class AsyncCloudResource(AsyncAPIResource):
     @cached_property
     def placement_groups(self) -> AsyncPlacementGroupsResource:
         """
-        Placement groups enforce affinity or anti-affinity policies that control whether virtual machines are hosted on the same or different physical servers.
+        Placement groups set an affinity or anti-affinity policy for virtual machines, in any region of the project.
         """
         return AsyncPlacementGroupsResource(self._client)
 
@@ -798,7 +798,7 @@ class CloudResourceWithRawResponse:
     @cached_property
     def placement_groups(self) -> PlacementGroupsResourceWithRawResponse:
         """
-        Placement groups enforce affinity or anti-affinity policies that control whether virtual machines are hosted on the same or different physical servers.
+        Placement groups set an affinity or anti-affinity policy for virtual machines, in any region of the project.
         """
         return PlacementGroupsResourceWithRawResponse(self._cloud.placement_groups)
 
@@ -991,7 +991,7 @@ class AsyncCloudResourceWithRawResponse:
     @cached_property
     def placement_groups(self) -> AsyncPlacementGroupsResourceWithRawResponse:
         """
-        Placement groups enforce affinity or anti-affinity policies that control whether virtual machines are hosted on the same or different physical servers.
+        Placement groups set an affinity or anti-affinity policy for virtual machines, in any region of the project.
         """
         return AsyncPlacementGroupsResourceWithRawResponse(self._cloud.placement_groups)
 
@@ -1184,7 +1184,7 @@ class CloudResourceWithStreamingResponse:
     @cached_property
     def placement_groups(self) -> PlacementGroupsResourceWithStreamingResponse:
         """
-        Placement groups enforce affinity or anti-affinity policies that control whether virtual machines are hosted on the same or different physical servers.
+        Placement groups set an affinity or anti-affinity policy for virtual machines, in any region of the project.
         """
         return PlacementGroupsResourceWithStreamingResponse(self._cloud.placement_groups)
 
@@ -1377,7 +1377,7 @@ class AsyncCloudResourceWithStreamingResponse:
     @cached_property
     def placement_groups(self) -> AsyncPlacementGroupsResourceWithStreamingResponse:
         """
-        Placement groups enforce affinity or anti-affinity policies that control whether virtual machines are hosted on the same or different physical servers.
+        Placement groups set an affinity or anti-affinity policy for virtual machines, in any region of the project.
         """
         return AsyncPlacementGroupsResourceWithStreamingResponse(self._cloud.placement_groups)
 

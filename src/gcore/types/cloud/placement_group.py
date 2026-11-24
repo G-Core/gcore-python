@@ -1,41 +1,54 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
+from typing import List, Optional
+from datetime import datetime
+from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["PlacementGroup", "Instance"]
+__all__ = ["PlacementGroup", "ManagedBy"]
 
 
-class Instance(BaseModel):
-    instance_id: str
-    """The ID of the instance, corresponding to the attribute 'id'."""
+class ManagedBy(BaseModel):
+    """Service that operates this placement group.
 
-    instance_name: str
-    """The name of the instance, corresponding to the attribute 'name'."""
+    A managed group is read-only and you cannot delete it. Null when you operate the group.
+    """
+
+    type: Literal["system"]
+    """Type of the managing service."""
 
 
 class PlacementGroup(BaseModel):
-    instances: List[Instance]
-    """The list of instances in this placement group."""
+    id: str
+    """Placement group ID."""
 
-    name: str
-    """The name of the placement group."""
+    created_at: datetime
+    """Datetime when the placement group was first seen."""
 
-    policy: str
-    """The placement group policy.
+    managed_by: Optional[ManagedBy] = None
+    """Service that operates this placement group.
 
-    Options are: anti-affinity, affinity, or soft-anti-affinity.
+    A managed group is read-only and you cannot delete it. Null when you operate the
+    group.
     """
 
-    project_id: int
-    """Project ID"""
+    member_ids: List[str]
+    """
+    UUIDs of the instances that are members of this placement group, sorted
+    ascending.
+    """
 
-    region: str
-    """Region name"""
+    name: str
+    """Placement group name."""
+
+    policy: Literal["affinity", "anti-affinity", "soft-affinity", "soft-anti-affinity"]
+    """
+    Placement policy: affinity, anti-affinity, soft-affinity, or soft-anti-affinity.
+    """
 
     region_id: int
-    """Region ID"""
+    """Region ID."""
 
-    servergroup_id: str
-    """The ID of the placement group."""
+    updated_at: datetime
+    """Datetime when the placement group last changed."""

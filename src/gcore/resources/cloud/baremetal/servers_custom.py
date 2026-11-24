@@ -220,7 +220,8 @@ class ServersResourceCustomMixin:
         """
         Update a bare metal server, wait for every task to finish, and return the server.
 
-        After the tasks finish, the helper calls `get` once and returns its result.
+        The helper waits for the tasks, not for the global read to show every change. So the returned server can
+        show old data for a few seconds after the tasks finish.
 
         The helper does not support a dry run. Call `update` with `dry_run=True` instead.
         `extra_body` goes only to the update request.
@@ -273,7 +274,8 @@ class ServersResourceCustomMixin:
         """
         Run a power action on a bare metal server, wait for every task to finish, and return the server.
 
-        After the tasks finish, the helper calls `get` once and returns its result.
+        The helper waits for the tasks, not for the global read to show every change. So the returned server can
+        show old data, such as the old status, for a few seconds after the tasks finish.
 
         The helper does not support a dry run. Call `action` with `dry_run=True` instead.
         `extra_body` goes only to the action request.
@@ -526,7 +528,8 @@ class AsyncServersResourceCustomMixin:
         """
         Update a bare metal server, wait for every task to finish, and return the server.
 
-        After the tasks finish, the helper calls `get` once and returns its result.
+        The helper waits for the tasks, not for the global read to show every change. So the returned server can
+        show old data for a few seconds after the tasks finish.
 
         The helper does not support a dry run. Call `update` with `dry_run=True` instead.
         `extra_body` goes only to the update request.
@@ -579,7 +582,8 @@ class AsyncServersResourceCustomMixin:
         """
         Run a power action on a bare metal server, wait for every task to finish, and return the server.
 
-        After the tasks finish, the helper calls `get` once and returns its result.
+        The helper waits for the tasks, not for the global read to show every change. So the returned server can
+        show old data, such as the old status, for a few seconds after the tasks finish.
 
         The helper does not support a dry run. Call `action` with `dry_run=True` instead.
         `extra_body` goes only to the action request.

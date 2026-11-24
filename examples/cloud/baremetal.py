@@ -142,7 +142,6 @@ def create_server(
     ssh_key_id: Optional[str],
 ) -> BaremetalServer:
     print("\n=== CREATE BAREMETAL SERVER ===")
-    # the helper uses the finished tasks to find the server ID, so no extra lookup is needed
     server = client.cloud.baremetal.servers.create_and_poll(
         region_id=region_id,
         flavor_name=flavor_name,

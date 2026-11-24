@@ -671,15 +671,15 @@ Methods:
 Types:
 
 ```python
-from gcore.types.cloud import PlacementGroup, PlacementGroupList
+from gcore.types.cloud import PlacementGroup, PlacementGroupDeleteResponse
 ```
 
 Methods:
 
-- <code title="post /cloud/v1/servergroups/{project_id}/{region_id}">client.cloud.placement_groups.<a href="./src/gcore/resources/cloud/placement_groups.py">create</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/placement_group_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/placement_group.py">PlacementGroup</a></code>
-- <code title="get /cloud/v1/servergroups/{project_id}/{region_id}">client.cloud.placement_groups.<a href="./src/gcore/resources/cloud/placement_groups.py">list</a>(\*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/placement_group_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/placement_group.py">SyncOffsetPage[PlacementGroup]</a></code>
-- <code title="delete /cloud/v1/servergroups/{project_id}/{region_id}/{group_id}">client.cloud.placement_groups.<a href="./src/gcore/resources/cloud/placement_groups.py">delete</a>(group_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
-- <code title="get /cloud/v1/servergroups/{project_id}/{region_id}/{group_id}">client.cloud.placement_groups.<a href="./src/gcore/resources/cloud/placement_groups.py">get</a>(group_id, \*, project_id, region_id) -> <a href="./src/gcore/types/cloud/placement_group.py">PlacementGroup</a></code>
+- <code title="post /cloud/v1/projects/{project_id}/placement_groups">client.cloud.placement_groups.<a href="./src/gcore/resources/cloud/placement_groups.py">create</a>(\*, project_id, \*\*<a href="src/gcore/types/cloud/placement_group_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="get /cloud/v1/projects/{project_id}/placement_groups">client.cloud.placement_groups.<a href="./src/gcore/resources/cloud/placement_groups.py">list</a>(\*, project_id, \*\*<a href="src/gcore/types/cloud/placement_group_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/placement_group.py">SyncOffsetPage[PlacementGroup]</a></code>
+- <code title="delete /cloud/v1/projects/{project_id}/placement_groups/{placement_group_id}">client.cloud.placement_groups.<a href="./src/gcore/resources/cloud/placement_groups.py">delete</a>(placement_group_id, \*, project_id, \*\*<a href="src/gcore/types/cloud/placement_group_delete_params.py">params</a>) -> <a href="./src/gcore/types/cloud/placement_group_delete_response.py">PlacementGroupDeleteResponse</a></code>
+- <code title="get /cloud/v1/projects/{project_id}/placement_groups/{placement_group_id}">client.cloud.placement_groups.<a href="./src/gcore/resources/cloud/placement_groups.py">get</a>(placement_group_id, \*, project_id) -> <a href="./src/gcore/types/cloud/placement_group.py">PlacementGroup</a></code>
 
 ## Baremetal
 

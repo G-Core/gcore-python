@@ -16,7 +16,7 @@ _TASK: Dict[str, Any] = {
     "state": "FINISHED",
     "task_type": "update",
     "created_on": "2026-07-01T13:37:14",
-    "created_resources": {"ports": [RESOURCE_ID], "instances": [RESOURCE_ID]},
+    "created_resources": {"ports": [RESOURCE_ID], "instances": [RESOURCE_ID], "servergroups": [RESOURCE_ID]},
 }
 
 
@@ -141,6 +141,68 @@ async def test_instance_create_propagates_first_get_404_async() -> None:
                 boot_volume_id="volume-1",
                 flavor_name="g1-standard-1-2",
                 interfaces=[],
+            ),
+        )
+    assert api.resource_gets == 1
+
+
+def test_baremetal_create_returns_one_get_without_mutation_body() -> None:
+    api = _API({"id": RESOURCE_ID, "status": "provisioning"})
+    server = _run(
+        api,
+        lambda client: client.cloud.baremetal.servers.create_and_poll(
+            project_id=1,
+            region_id=1,
+            flavor_name="bm1-hf-medium",
+            image_id="image-1",
+            interfaces=[{"port_id": "port-1"}],
+            extra_body={"extension": True},
+        ),
+    )
+    assert (server.id, api.resource_gets, api.get_body) == (RESOURCE_ID, 1, b"")
+
+
+async def test_baremetal_create_propagates_first_get_404_async() -> None:
+    api = _API(None)
+    with pytest.raises(NotFoundError):
+        await _run_async(
+            api,
+            lambda client: client.cloud.baremetal.servers.create_and_poll(
+                project_id=1,
+                region_id=1,
+                flavor_name="bm1-hf-medium",
+                image_id="image-1",
+                interfaces=[{"port_id": "port-1"}],
+            ),
+        )
+    assert api.resource_gets == 1
+
+
+def test_placement_group_create_returns_one_get_without_mutation_body() -> None:
+    api = _API({"id": RESOURCE_ID, "name": "old-name"})
+    group = _run(
+        api,
+        lambda client: client.cloud.placement_groups.create_and_poll(
+            project_id=1,
+            region_id=1,
+            name="new-name",
+            policy="affinity",
+            extra_body={"extension": True},
+        ),
+    )
+    assert (group.name, api.resource_gets, api.get_body) == ("old-name", 1, b"")
+
+
+async def test_placement_group_create_propagates_first_get_404_async() -> None:
+    api = _API(None)
+    with pytest.raises(NotFoundError):
+        await _run_async(
+            api,
+            lambda client: client.cloud.placement_groups.create_and_poll(
+                project_id=1,
+                region_id=1,
+                name="new-name",
+                policy="affinity",
             ),
         )
     assert api.resource_gets == 1
