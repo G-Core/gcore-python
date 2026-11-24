@@ -8,6 +8,7 @@
 from __future__ import annotations
 
 import json
+import contextlib
 from typing import Any, Callable
 
 import httpx
@@ -532,6 +533,16 @@ AND_POLL_CASES: list[tuple[str, Callable[[Any], Any]]] = [
         ),
     ),
     (
+        "cloud.ports.convert_and_poll",
+        lambda c: c.cloud.ports.convert_and_poll("test", project_id=1, target_type="floating_ip"),
+    ),
+    (
+        "cloud.ports.create_and_poll",
+        lambda c: c.cloud.ports.create_and_poll(project_id=1, region_id=1, network_id="test"),
+    ),
+    ("cloud.ports.delete_and_poll", lambda c: c.cloud.ports.delete_and_poll("test", project_id=1)),
+    ("cloud.ports.update_and_poll", lambda c: c.cloud.ports.update_and_poll("test", project_id=1)),
+    (
         "cloud.reserved_fixed_ips.create_and_poll",
         lambda c: c.cloud.reserved_fixed_ips.create_and_poll(
             project_id=1, region_id=1, ip_address="test", network_id="test", type="ip_address"
@@ -660,7 +671,7 @@ async def test_and_poll_async(case_id: str, invoke: Callable[[Any], Any]) -> Non
 
 def test_and_poll_case_count() -> None:
     # Canary: if codegen adds/removes an *_and_poll method, keep the table in sync.
-    assert len(AND_POLL_CASES) == 110
+    assert len(AND_POLL_CASES) == 114
 
 
 def test_create_and_poll_requires_task() -> None:
@@ -817,3 +828,140 @@ def test_instances_rebuild_and_poll_forwards_body() -> None:
         # None must reach the API as null, which removes the SSH key from the instance.
         _assert_param_sent(case_id, router, "ssh_key_name", "body", None)
         _assert_param_sent(case_id, router, "user_data", "body", "dXNlcg==")
+
+
+_PORT_CASES = [case for case in AND_POLL_CASES if case[0].startswith("cloud.ports.")]
+_PORT_INVOKES = [case[1] for case in _PORT_CASES]
+_PORT_IDS = [case[0] for case in _PORT_CASES]
+
+# update reads an empty task list as "nothing changed", so only convert, create and delete must raise
+_PORT_TASK_REQUIRED_CASES = [case for case in _PORT_CASES if case[0] != "cloud.ports.update_and_poll"]
+_PORT_TASK_REQUIRED_INVOKES = [case[1] for case in _PORT_TASK_REQUIRED_CASES]
+_PORT_TASK_REQUIRED_IDS = [case[0] for case in _PORT_TASK_REQUIRED_CASES]
+
+_FAILED_TASK: dict[str, Any] = dict(_TASK, state="ERROR", error="boom")
+
+
+def _port_handler(action_tasks: list[str], task: dict[str, Any] = _TASK) -> Callable[[httpx.Request], httpx.Response]:
+    def handler(request: httpx.Request) -> httpx.Response:
+        path = request.url.path
+        if request.method == "GET" and "/tasks/" in path:
+            return httpx.Response(200, json=task)
+        if request.method == "GET":
+            # return the port that the request asks for, so a test can check which port the helper returns
+            return httpx.Response(200, json={"id": path.rsplit("/", 1)[-1]})
+        return httpx.Response(200, json={"tasks": action_tasks})
+
+    return handler
+
+
+def _task_polls(router: respx.MockRouter) -> list[httpx.Request]:
+    # respx leaves `calls` untyped.
+    calls: Any = router.calls
+    return [call.request for call in calls if "/tasks/" in call.request.url.path]
+
+
+@pytest.mark.parametrize("invoke", _PORT_INVOKES, ids=_PORT_IDS)
+def test_port_and_poll_raises_on_failed_task(invoke: Callable[[Any], Any]) -> None:
+    client = Gcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_port_handler(["task-1"], _FAILED_TASK))
+        with pytest.raises(ValueError, match="boom"):
+            invoke(client)
+
+
+@pytest.mark.parametrize("invoke", _PORT_INVOKES, ids=_PORT_IDS)
+async def test_port_and_poll_raises_on_failed_task_async(invoke: Callable[[Any], Any]) -> None:
+    client = AsyncGcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_port_handler(["task-1"], _FAILED_TASK))
+        with pytest.raises(ValueError, match="boom"):
+            await invoke(client)
+
+
+@pytest.mark.parametrize("invoke", _PORT_TASK_REQUIRED_INVOKES, ids=_PORT_TASK_REQUIRED_IDS)
+def test_port_and_poll_raises_without_task(invoke: Callable[[Any], Any]) -> None:
+    client = Gcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_port_handler([]))
+        with pytest.raises(ValueError, match="Expected at least one task"):
+            invoke(client)
+
+
+@pytest.mark.parametrize("invoke", _PORT_TASK_REQUIRED_INVOKES, ids=_PORT_TASK_REQUIRED_IDS)
+async def test_port_and_poll_raises_without_task_async(invoke: Callable[[Any], Any]) -> None:
+    client = AsyncGcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_port_handler([]))
+        with pytest.raises(ValueError, match="Expected at least one task"):
+            await invoke(client)
+
+
+@pytest.mark.parametrize("invoke", _PORT_INVOKES, ids=_PORT_IDS)
+def test_port_and_poll_does_not_poll_without_task(invoke: Callable[[Any], Any]) -> None:
+    client = Gcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_port_handler([]))
+        # convert, create and delete raise here; the test checks only that no helper waits
+        with contextlib.suppress(ValueError):
+            invoke(client)
+        assert _task_polls(router) == []
+
+
+@pytest.mark.parametrize("invoke", _PORT_INVOKES, ids=_PORT_IDS)
+async def test_port_and_poll_does_not_poll_without_task_async(invoke: Callable[[Any], Any]) -> None:
+    client = AsyncGcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_port_handler([]))
+        # convert, create and delete raise here; the test checks only that no helper waits
+        with contextlib.suppress(ValueError):
+            await invoke(client)
+        assert _task_polls(router) == []
+
+
+def test_port_update_and_poll_without_task_returns_port() -> None:
+    client = Gcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_port_handler([]))
+        port = client.cloud.ports.update_and_poll("port-1", project_id=1)
+    assert port.id == "port-1"
+
+
+async def test_port_update_and_poll_without_task_returns_port_async() -> None:
+    client = AsyncGcore(base_url=base_url, api_key="test", _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_port_handler([]))
+        port = await client.cloud.ports.update_and_poll("port-1", project_id=1)
+    assert port.id == "port-1"
+
+
+# the client region (1) differs from the task region (76), so the path shows which one the helper uses
+_CONVERT_GET_PATH = f"/cloud/v1/floatingips/1/76/{CREATED_ID}"
+
+
+def _resource_gets(router: respx.MockRouter) -> list[str]:
+    # respx leaves `calls` untyped.
+    calls: Any = router.calls
+    return [
+        call.request.url.path
+        for call in calls
+        if call.request.method == "GET" and "/tasks/" not in call.request.url.path
+    ]
+
+
+def test_port_convert_and_poll_gets_floating_ip_in_task_region() -> None:
+    client = Gcore(base_url=base_url, api_key="test", cloud_region_id=1, _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_port_handler(["task-1"]))
+        floating_ip = client.cloud.ports.convert_and_poll("port-1", project_id=1, target_type="floating_ip")
+        assert _resource_gets(router) == [_CONVERT_GET_PATH]
+    assert floating_ip.id == CREATED_ID
+
+
+async def test_port_convert_and_poll_gets_floating_ip_in_task_region_async() -> None:
+    client = AsyncGcore(base_url=base_url, api_key="test", cloud_region_id=1, _strict_response_validation=False)
+    with respx.mock(base_url=base_url) as router:
+        router.route(url__regex=r".+").mock(side_effect=_port_handler(["task-1"]))
+        floating_ip = await client.cloud.ports.convert_and_poll("port-1", project_id=1, target_type="floating_ip")
+        assert _resource_gets(router) == [_CONVERT_GET_PATH]
+    assert floating_ip.id == CREATED_ID

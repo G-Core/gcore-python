@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from .tag import Tag as Tag
+from .port import Port as Port
 from .task import Task as Task
 from .quota import Quota as Quota
 from .route import Route as Route
@@ -49,6 +50,7 @@ from .baremetal_flavor import BaremetalFlavor as BaremetalFlavor
 from .floating_address import FloatingAddress as FloatingAddress
 from .lb_pool_protocol import LbPoolProtocol as LbPoolProtocol
 from .lifecycle_policy import LifecyclePolicy as LifecyclePolicy
+from .port_list_params import PortListParams as PortListParams
 from .task_list_params import TaskListParams as TaskListParams
 from .network_interface import NetworkInterface as NetworkInterface
 from .region_get_params import RegionGetParams as RegionGetParams
@@ -58,6 +60,8 @@ from .floating_ip_status import FloatingIPStatus as FloatingIPStatus
 from .instance_interface import InstanceInterface as InstanceInterface
 from .instance_isolation import InstanceIsolation as InstanceIsolation
 from .load_balancer_pool import LoadBalancerPool as LoadBalancerPool
+from .port_create_params import PortCreateParams as PortCreateParams
+from .port_update_params import PortUpdateParams as PortUpdateParams
 from .region_list_params import RegionListParams as RegionListParams
 from .secret_list_params import SecretListParams as SecretListParams
 from .volume_list_params import VolumeListParams as VolumeListParams
@@ -67,6 +71,7 @@ from .fixed_address_short import FixedAddressShort as FixedAddressShort
 from .interface_ip_family import InterfaceIPFamily as InterfaceIPFamily
 from .k8s_cluster_version import K8SClusterVersion as K8SClusterVersion
 from .network_list_params import NetworkListParams as NetworkListParams
+from .port_convert_params import PortConvertParams as PortConvertParams
 from .project_list_params import ProjectListParams as ProjectListParams
 from .provisioning_status import ProvisioningStatus as ProvisioningStatus
 from .security_group_rule import SecurityGroupRule as SecurityGroupRule

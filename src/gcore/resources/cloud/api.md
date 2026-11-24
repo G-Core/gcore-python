@@ -358,6 +358,23 @@ Methods:
 - <code title="patch /cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices">client.cloud.reserved_fixed_ips.vip.connected_ports.<a href="./src/gcore/resources/cloud/reserved_fixed_ips/vip/connected_ports.py">add</a>(port_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/reserved_fixed_ips/vip/connected_port_add_params.py">params</a>) -> <a href="./src/gcore/types/cloud/reserved_fixed_ips/vip/connected_port_list.py">ConnectedPortList</a></code>
 - <code title="put /cloud/v1/reserved_fixed_ips/{project_id}/{region_id}/{port_id}/connected_devices">client.cloud.reserved_fixed_ips.vip.connected_ports.<a href="./src/gcore/resources/cloud/reserved_fixed_ips/vip/connected_ports.py">replace</a>(port_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/reserved_fixed_ips/vip/connected_port_replace_params.py">params</a>) -> <a href="./src/gcore/types/cloud/reserved_fixed_ips/vip/connected_port_list.py">ConnectedPortList</a></code>
 
+## Ports
+
+Types:
+
+```python
+from gcore.types.cloud import Port
+```
+
+Methods:
+
+- <code title="post /cloud/v1/projects/{project_id}/ports">client.cloud.ports.<a href="./src/gcore/resources/cloud/ports.py">create</a>(\*, project_id, \*\*<a href="src/gcore/types/cloud/port_create_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="patch /cloud/v1/projects/{project_id}/ports/{port_id}">client.cloud.ports.<a href="./src/gcore/resources/cloud/ports.py">update</a>(port_id, \*, project_id, \*\*<a href="src/gcore/types/cloud/port_update_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="get /cloud/v1/projects/{project_id}/ports">client.cloud.ports.<a href="./src/gcore/resources/cloud/ports.py">list</a>(\*, project_id, \*\*<a href="src/gcore/types/cloud/port_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/port.py">SyncOffsetPage[Port]</a></code>
+- <code title="delete /cloud/v1/projects/{project_id}/ports/{port_id}">client.cloud.ports.<a href="./src/gcore/resources/cloud/ports.py">delete</a>(port_id, \*, project_id) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="post /cloud/v1/projects/{project_id}/ports/{port_id}/convert">client.cloud.ports.<a href="./src/gcore/resources/cloud/ports.py">convert</a>(port_id, \*, project_id, \*\*<a href="src/gcore/types/cloud/port_convert_params.py">params</a>) -> <a href="./src/gcore/types/cloud/task_id_list.py">TaskIDList</a></code>
+- <code title="get /cloud/v1/projects/{project_id}/ports/{port_id}">client.cloud.ports.<a href="./src/gcore/resources/cloud/ports.py">get</a>(port_id, \*, project_id) -> <a href="./src/gcore/types/cloud/port.py">Port</a></code>
+
 ## Networks
 
 Methods:

@@ -2,6 +2,14 @@
 
 from __future__ import annotations
 
+from .ports import (
+    PortsResource,
+    AsyncPortsResource,
+    PortsResourceWithRawResponse,
+    AsyncPortsResourceWithRawResponse,
+    PortsResourceWithStreamingResponse,
+    AsyncPortsResourceWithStreamingResponse,
+)
 from .tasks import (
     TasksResource,
     AsyncTasksResource,
@@ -307,6 +315,13 @@ class CloudResource(SyncAPIResource):
         return ReservedFixedIPsResource(self._client)
 
     @cached_property
+    def ports(self) -> PortsResource:
+        """
+        Ports reserve IP addresses on a network and act as network interfaces of compute resources, with their own security groups and allowed address pairs.
+        """
+        return PortsResource(self._client)
+
+    @cached_property
     def networks(self) -> NetworksResource:
         """
         Networks provide software-defined networking infrastructure for connecting instances and other cloud resources within a region.
@@ -492,6 +507,13 @@ class AsyncCloudResource(AsyncAPIResource):
         Reserved fixed IPs are static IP addresses that persist independently of instances and can be used as virtual IPs (VIPs) for high availability.
         """
         return AsyncReservedFixedIPsResource(self._client)
+
+    @cached_property
+    def ports(self) -> AsyncPortsResource:
+        """
+        Ports reserve IP addresses on a network and act as network interfaces of compute resources, with their own security groups and allowed address pairs.
+        """
+        return AsyncPortsResource(self._client)
 
     @cached_property
     def networks(self) -> AsyncNetworksResource:
@@ -684,6 +706,13 @@ class CloudResourceWithRawResponse:
         return ReservedFixedIPsResourceWithRawResponse(self._cloud.reserved_fixed_ips)
 
     @cached_property
+    def ports(self) -> PortsResourceWithRawResponse:
+        """
+        Ports reserve IP addresses on a network and act as network interfaces of compute resources, with their own security groups and allowed address pairs.
+        """
+        return PortsResourceWithRawResponse(self._cloud.ports)
+
+    @cached_property
     def networks(self) -> NetworksResourceWithRawResponse:
         """
         Networks provide software-defined networking infrastructure for connecting instances and other cloud resources within a region.
@@ -853,6 +882,13 @@ class AsyncCloudResourceWithRawResponse:
         Reserved fixed IPs are static IP addresses that persist independently of instances and can be used as virtual IPs (VIPs) for high availability.
         """
         return AsyncReservedFixedIPsResourceWithRawResponse(self._cloud.reserved_fixed_ips)
+
+    @cached_property
+    def ports(self) -> AsyncPortsResourceWithRawResponse:
+        """
+        Ports reserve IP addresses on a network and act as network interfaces of compute resources, with their own security groups and allowed address pairs.
+        """
+        return AsyncPortsResourceWithRawResponse(self._cloud.ports)
 
     @cached_property
     def networks(self) -> AsyncNetworksResourceWithRawResponse:
@@ -1026,6 +1062,13 @@ class CloudResourceWithStreamingResponse:
         return ReservedFixedIPsResourceWithStreamingResponse(self._cloud.reserved_fixed_ips)
 
     @cached_property
+    def ports(self) -> PortsResourceWithStreamingResponse:
+        """
+        Ports reserve IP addresses on a network and act as network interfaces of compute resources, with their own security groups and allowed address pairs.
+        """
+        return PortsResourceWithStreamingResponse(self._cloud.ports)
+
+    @cached_property
     def networks(self) -> NetworksResourceWithStreamingResponse:
         """
         Networks provide software-defined networking infrastructure for connecting instances and other cloud resources within a region.
@@ -1195,6 +1238,13 @@ class AsyncCloudResourceWithStreamingResponse:
         Reserved fixed IPs are static IP addresses that persist independently of instances and can be used as virtual IPs (VIPs) for high availability.
         """
         return AsyncReservedFixedIPsResourceWithStreamingResponse(self._cloud.reserved_fixed_ips)
+
+    @cached_property
+    def ports(self) -> AsyncPortsResourceWithStreamingResponse:
+        """
+        Ports reserve IP addresses on a network and act as network interfaces of compute resources, with their own security groups and allowed address pairs.
+        """
+        return AsyncPortsResourceWithStreamingResponse(self._cloud.ports)
 
     @cached_property
     def networks(self) -> AsyncNetworksResourceWithStreamingResponse:

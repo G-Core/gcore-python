@@ -16,6 +16,14 @@ from .cloud import (
     CloudResourceWithStreamingResponse,
     AsyncCloudResourceWithStreamingResponse,
 )
+from .ports import (
+    PortsResource,
+    AsyncPortsResource,
+    PortsResourceWithRawResponse,
+    AsyncPortsResourceWithRawResponse,
+    PortsResourceWithStreamingResponse,
+    AsyncPortsResourceWithStreamingResponse,
+)
 from .tasks import (
     TasksResource,
     AsyncTasksResource,
@@ -304,6 +312,12 @@ __all__ = [
     "AsyncReservedFixedIPsResourceWithRawResponse",
     "ReservedFixedIPsResourceWithStreamingResponse",
     "AsyncReservedFixedIPsResourceWithStreamingResponse",
+    "PortsResource",
+    "AsyncPortsResource",
+    "PortsResourceWithRawResponse",
+    "AsyncPortsResourceWithRawResponse",
+    "PortsResourceWithStreamingResponse",
+    "AsyncPortsResourceWithStreamingResponse",
     "NetworksResource",
     "AsyncNetworksResource",
     "NetworksResourceWithRawResponse",

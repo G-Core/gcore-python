@@ -16,8 +16,13 @@ import pytest
 
 import gcore.resources
 
-# Add a name here only when a helper sets that argument itself instead of taking it from the caller.
-_IGNORED = {"self"}
+# Add a name here only when a helper sets that argument itself instead of taking it from the caller,
+# or when no helper may take it.
+_IGNORED = {
+    "self",
+    # helpers do not accept dry_run, because a dry run creates no task to wait for
+    "dry_run",
+}
 
 
 def _helpers() -> Iterator[Any]:
@@ -45,3 +50,8 @@ def test_and_poll_accepts_wrapped_params(cls: type, helper: str) -> None:
         f"{cls.__name__}.{helper} does not accept {', '.join(missing)}, which {cls.__name__}.{wrapped} accepts. "
         f"Add them to the helper in {getattr(cls, helper).__module__} and forward them to {wrapped}."
     )
+
+
+@pytest.mark.parametrize("cls, helper", list(_helpers()))
+def test_and_poll_does_not_accept_dry_run(cls: type, helper: str) -> None:
+    assert "dry_run" not in inspect.signature(getattr(cls, helper)).parameters
