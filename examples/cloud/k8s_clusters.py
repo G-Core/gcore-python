@@ -3,7 +3,7 @@ import time
 from typing import List
 
 from gcore import Gcore
-from gcore.types.cloud.baremetal_flavor import BaremetalFlavor
+from gcore.types.cloud.k8s.k8s_flavor import K8SFlavor
 from gcore.types.cloud.k8s_cluster_version import K8SClusterVersion
 from gcore.types.cloud.k8s.cluster_create_params import Pool
 
@@ -311,7 +311,7 @@ def delete_cluster(*, client: Gcore, cluster_name: str) -> None:
     print("==========================")
 
 
-def list_flavors(*, client: Gcore) -> List[BaremetalFlavor]:
+def list_flavors(*, client: Gcore) -> List[K8SFlavor]:
     print("\n=== LIST K8S FLAVORS ===")
     flavors = client.cloud.k8s.flavors.list(exclude_gpu=True, include_capacity=True)
 
@@ -341,7 +341,7 @@ def list_versions(*, client: Gcore) -> List[K8SClusterVersion]:
     return versions.results
 
 
-def _pick_pool_flavor(flavors: List[BaremetalFlavor]) -> str:
+def _pick_pool_flavor(flavors: List[K8SFlavor]) -> str:
     # Prefer the smallest g1-standard VM flavor with capacity; skip disabled,
     # zero-capacity, and test/fake flavors.
     candidates = [

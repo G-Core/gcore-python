@@ -3,7 +3,7 @@ import asyncio
 from typing import List
 
 from gcore import AsyncGcore
-from gcore.types.cloud.baremetal_flavor import BaremetalFlavor
+from gcore.types.cloud.k8s.k8s_flavor import K8SFlavor
 from gcore.types.cloud.k8s_cluster_version import K8SClusterVersion
 from gcore.types.cloud.k8s.cluster_create_params import Pool
 
@@ -309,7 +309,7 @@ async def delete_cluster(*, client: AsyncGcore, cluster_name: str) -> None:
     print("==========================")
 
 
-async def list_flavors(*, client: AsyncGcore) -> List[BaremetalFlavor]:
+async def list_flavors(*, client: AsyncGcore) -> List[K8SFlavor]:
     print("\n=== LIST K8S FLAVORS ===")
     flavors = await client.cloud.k8s.flavors.list(exclude_gpu=True, include_capacity=True)
 
@@ -339,7 +339,7 @@ async def list_versions(*, client: AsyncGcore) -> List[K8SClusterVersion]:
     return versions.results
 
 
-def _pick_pool_flavor(flavors: List[BaremetalFlavor]) -> str:
+def _pick_pool_flavor(flavors: List[K8SFlavor]) -> str:
     # Prefer the smallest g1-standard VM flavor with capacity; skip disabled,
     # zero-capacity, and test/fake flavors.
     candidates = [
