@@ -2,7 +2,7 @@
 name: release
 description: >
   Release workflow for the G-Core/gcore-python SDK repository. Invoke with /release
-  to discover the open Stainless release PR, analyze its diff and changelog,
+  to discover the open release-please PR, analyze its changes and changelog,
   check CI status, merge with user confirmation, and generate human-readable
   release notes on the GitHub Release.
 disable-model-invocation: true
@@ -10,7 +10,7 @@ allowed-tools: >
   Read,
   Bash(gh pr list --repo G-Core/gcore-python *),
   Bash(gh pr view * --repo G-Core/gcore-python *),
-  Bash(gh pr diff * --repo G-Core/gcore-python *),
+  Bash(gh api repos/G-Core/gcore-python/compare/*),
   Bash(gh pr checks * --repo G-Core/gcore-python *),
   Bash(gh pr merge * --repo G-Core/gcore-python *),
   Bash(gh release view --repo G-Core/gcore-python *),
@@ -43,7 +43,7 @@ Execute steps 1-6 in order. Present findings at each step before proceeding.
 
 ```bash
 gh pr list --repo G-Core/gcore-python --state open \
-  --json number,title,author,url,createdAt,headRefName
+  --json number,title,author,url,createdAt,headRefName,headRefOid
 ```
 
 Find the open PR whose title starts with `release: ` and whose head branch starts
@@ -52,14 +52,19 @@ author being `stainless-app`).
 
 - If **no open release PR** exists, inform the user and stop.
 - If found, display: PR number, title (contains version), URL, creation date.
+- Save `headRefOid` as `{HEAD_SHA}`. All later steps analyze and merge this
+  commit.
 
 ### Step 2 — Analyze the Release
 
-Fetch all three in parallel:
+Fetch item 1 first. Items 2 and 3 need `{PREV}` from it and `{HEAD_SHA}`
+from Step 1, then run in parallel.
 
 1. PR body containing the auto-generated changelog (Part 2). Parse it to extract:
    - Version number and date
    - Breaking changes, Features, Bug Fixes, Refactors, Chores, Documentation
+   - Previous version `{PREV}` from the compare link in the heading
+     (e.g. `compare/v0.63.0...v0.64.0` gives `PREV=0.63.0`)
 
    ```bash
    gh pr view {N} --repo G-Core/gcore-python --json body,title,number,url
@@ -75,15 +80,26 @@ Fetch all three in parallel:
      user-facing changes in release notes unless the deprecation is new in this
      release AND accompanied by a replacement in the same release.
 
+   **Do not use `gh pr diff`.** The release PR only contains the version bump
+   and the CHANGELOG. The API changes are already on `main`. Compare the
+   previous release tag with the PR head commit (`{HEAD_SHA}` from Step 1).
+   The diff is large, so save it to a temp file and read it in parts:
+
    ```bash
-   gh pr diff {N} --repo G-Core/gcore-python
+   gh api repos/G-Core/gcore-python/compare/v{PREV}...{HEAD_SHA} \
+     -H "Accept: application/vnd.github.diff" > /tmp/release-{VERSION}.diff
    ```
 
 3. List of changed files. Use commit scopes and file paths to infer product areas:
 
    ```bash
-   gh pr diff {N} --repo G-Core/gcore-python --name-only
+   gh api repos/G-Core/gcore-python/compare/v{PREV}...{HEAD_SHA} \
+     --jq '.files[].filename'
    ```
+
+   Do not add `--paginate`: only the first page has `files`. The compare API
+   returns at most 300 files. If the list has 300 entries,
+   warn the user that the diff may be incomplete.
 
    | File path prefix | Product Area |
    |---|---|
@@ -255,6 +271,7 @@ After merge, `release-please` (the stock action) auto-creates the tag and GitHub
 | Situation | Action |
 |---|---|
 | No open release PR | Inform user, stop |
+| Compare API returns 300 files | Warn that the diff may be incomplete |
 | `detect-breaking-changes` fails | Informational only. Report to user, proceed with merge |
 | CI failing (other checks) | Show failures, do not merge |
 | CI pending | Warn, ask user preference |
