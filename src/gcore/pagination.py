@@ -355,12 +355,10 @@ class SyncPageStreaming(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
         return items
 
     @override
-    def next_page_info(self) -> None:
-        """
-        This page represents a response that isn't actually paginated at the API level
-        so there will never be a next page.
-        """
-        return None
+    def next_page_info(self) -> Optional[PageInfo]:
+        last_page = cast("int | None", self._options.params.get("page")) or 1
+
+        return PageInfo(params={"page": last_page + 1})
 
     @classmethod
     def build(cls: Type[_BaseModelT], *, response: Response, data: object) -> _BaseModelT:  # noqa: ARG003
@@ -383,12 +381,10 @@ class AsyncPageStreaming(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
         return items
 
     @override
-    def next_page_info(self) -> None:
-        """
-        This page represents a response that isn't actually paginated at the API level
-        so there will never be a next page.
-        """
-        return None
+    def next_page_info(self) -> Optional[PageInfo]:
+        last_page = cast("int | None", self._options.params.get("page")) or 1
+
+        return PageInfo(params={"page": last_page + 1})
 
     @classmethod
     def build(cls: Type[_BaseModelT], *, response: Response, data: object) -> _BaseModelT:  # noqa: ARG003
