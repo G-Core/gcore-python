@@ -33,7 +33,7 @@ SDK paths: `resources/cloud/`, `types/cloud/`
 
 | Sub-Product | File patterns |
 |---|---|
-| Bare Metal | `cloud/baremetal/` |
+| Bare Metal | `cloud/baremetal/`, `cloud/baremetal_regional*` |
 | Billing Reservations | `cloud/billing_reservations*` |
 | Container as a Service | `cloud/containers/` |
 | Cost Reports | `cloud/cost_reports*`, `cloud/usage_reports*` |
@@ -44,12 +44,14 @@ SDK paths: `resources/cloud/`, `types/cloud/`
 | Floating IPs | `cloud/floating_ips*` |
 | GPU Bare Metal | `cloud/gpu_baremetal/`, `cloud/gpu_baremetal_clusters/` |
 | GPU Virtual | `cloud/gpu_virtual/`, `cloud/gpu_virtual_clusters/` |
-| Instances | `cloud/instances/` |
+| Instances | `cloud/instances/`, `cloud/instances_regional*`, `cloud/instance_regional*` |
 | IP Ranges | `cloud/ip_ranges*` |
 | Load Balancers | `cloud/load_balancers/` |
 | Managed Kubernetes | `cloud/k8s/` |
 | Networks | `cloud/networks/` |
 | Placement Groups | `cloud/placement_groups*` |
+| Ports | `cloud/ports*`, `cloud/port.py`, `cloud/port_*` (not `port_price*`) |
+| Pricing | `cloud/pricing*`, `cloud/price_*`, `cloud/server_price*`, `cloud/flavor_price*`, `cloud/port_price*` |
 | Projects | `cloud/projects*` |
 | Quotas | `cloud/quotas/` |
 | Regions | `cloud/regions*` |
