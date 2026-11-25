@@ -197,8 +197,10 @@ We're excited to announce version {VERSION}!
 ### **{Product Area}**
 
 * **{Sub-area}**
+  * ⚠ BREAKING CHANGE: {one-line summary of the breaking change}
+    * `{Type.field}` changed from `{old}` to `{new}`
+    * {second detail}
   * Added `{field/method}` to `{Type}` — {description}
-  * ⚠ BREAKING CHANGE: `{Type.field}` changed from `{old}` to `{new}`
   * Deprecated `{service.method()}` — use `{alternative}` instead
   * Fixed {description} — {detail}
 ```
@@ -212,8 +214,16 @@ We're excited to announce version {VERSION}!
   GPU Bare Metal, Managed Kubernetes, Load Balancers). Use the canonical names
   from `references/products.md`. If changes do not fit a sub-area, list
   directly under the product area.
-- **Breaking changes** get `⚠ BREAKING CHANGE:` prefix inline. Always specify
-  old value/type and new value/type.
+- **Breaking changes**: write **one** `⚠ BREAKING CHANGE:` bullet per
+  sub-area (or per product area when there is no sub-area) with a short
+  summary. Put the details in nested bullets without the prefix. Never repeat
+  `⚠ BREAKING CHANGE:` on each bullet. Specify old and new value/type in the
+  details. Put this bullet before the other bullets of the group.
+- **Keep identifiers sparse.** Name a type, method, or field only when the
+  reader needs it to act. Do not list every renamed or removed type; group
+  them (for example, "Renamed all `Cdn*` types to `CDN*`"). Use the bare
+  method name (for example `get()`) when the sub-area header makes the
+  owner clear. Skip return types and params that are not part of the change.
 - **Deprecations**: ``Deprecated `method()` — use `alternative()` instead``
 - **Additions**: ``Added `name` field/method to `Type` — description``
 - **Fixes**: `Fixed {what} — {detail}`
