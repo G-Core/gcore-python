@@ -13,6 +13,7 @@ allowed-tools: >
   Bash(gh api repos/G-Core/gcore-python/compare/*),
   Bash(gh pr checks * --repo G-Core/gcore-python *),
   Bash(gh pr merge * --repo G-Core/gcore-python *),
+  Bash(gh pr review * --repo G-Core/gcore-python *),
   Bash(gh release view --repo G-Core/gcore-python *),
   Bash(gh release edit * --repo G-Core/gcore-python *),
   Bash(gh release view * --repo G-Core/gcore-go *),
@@ -159,6 +160,29 @@ After excluding `detect-breaking-changes`:
 - **Some checks pending** — warn user, ask: wait or proceed?
 - **Any check fails** — show failing checks, do not offer to merge.
 
+Then check the review state. The `main` ruleset needs **1 approving review**
+and only allows **rebase** merges:
+
+```bash
+gh pr view {N} --repo G-Core/gcore-python --json reviewDecision,mergeStateStatus,headRefOid
+```
+
+If `headRefOid` is not `{HEAD_SHA}` from Step 1, release-please updated the
+PR after the analysis. Save the new value as `{HEAD_SHA}` and go back to
+Step 2.
+
+- `reviewDecision` is `APPROVED` and `mergeStateStatus` is `CLEAN` — proceed.
+- `reviewDecision` is `REVIEW_REQUIRED` — the PR shows as `BLOCKED` even with
+  green CI. The PR author is the `gcore-sdk-bot` app, so the user can approve
+  it. Ask the user to approve it on GitHub. Or, with explicit confirmation,
+  approve it as the user:
+
+  ```bash
+  gh pr review {N} --repo G-Core/gcore-python --approve
+  ```
+
+  Never use `gh pr merge --admin` to skip the review.
+
 ### Step 4 — Generate Human-Readable Release Notes
 
 Read `references/release-notes-examples.md` for style reference and examples.
@@ -229,8 +253,11 @@ If user declines or wants changes, return to Step 4.
 
 Once confirmed, merge via Bash:
 ```bash
-gh pr merge {PR_NUMBER} --repo G-Core/gcore-python --rebase
+gh pr merge {PR_NUMBER} --repo G-Core/gcore-python --rebase --match-head-commit {HEAD_SHA}
 ```
+
+`--match-head-commit` makes the merge fail if the PR changed after the
+analysis. In that case, go back to Step 2.
 
 If merge fails, report the error and stop.
 
@@ -275,6 +302,8 @@ After merge, `release-please` (the stock action) auto-creates the tag and GitHub
 | `detect-breaking-changes` fails | Informational only. Report to user, proceed with merge |
 | CI failing (other checks) | Show failures, do not merge |
 | CI pending | Warn, ask user preference |
+| Review required (`BLOCKED`, `REVIEW_REQUIRED`) | Ask user to approve; never use `--admin` |
+| Head commit changed before merge | Merge fails on `--match-head-commit`; redo Step 2 |
 | Merge conflict | Report, suggest manual resolution |
 | Merge fails | Report error, stop |
 | Release not found after merge | Retry once after 10s, then report |
