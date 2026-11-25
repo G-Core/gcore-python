@@ -6,13 +6,12 @@
 ### ⚠ BREAKING CHANGES
 
 * **cloud:** move bare metal to the global view API
+* **cloud:** move placement groups to the global API
 * **cloud:** move instances to the global view API
 * **cloud:** add global view ports
 * **sdk:** send nested query filters with brackets
 * **cloud:** add k8s flavor model
 * **cdn:** make proxy_next_upstream a set and mark CDN rule options computed_optional
-* **terraform:** manage placement group membership on instances
-* **cloud:** remove read-only noise fields from the terraform schemas
 * **streaming:** wrap directory create and get responses
 * **fastedge:** page app logs on count instead of deprecated total_count
 * **cloud:** name volume bandwidth limits mbps in all SDKs
@@ -23,6 +22,7 @@
 * **cloud:** add global view pricing ([574ae33](https://github.com/G-Core/gcore-python/commit/574ae333cd807c0ecac050f49a7669cb9d16f5f4))
 * **cloud:** add k8s flavor model ([53bf430](https://github.com/G-Core/gcore-python/commit/53bf430dc7960bb7dfa08df6f7b37974fd28adf2))
 * **cloud:** move bare metal to the global view API ([f86c77f](https://github.com/G-Core/gcore-python/commit/f86c77f5e02e4fa70537b548423e3283cf4851eb))
+* **cloud:** move placement groups to the global API ([0f1886d](https://github.com/G-Core/gcore-python/commit/0f1886d3e5c98e30a47b5c785f5fcf6e11bd6d93))
 * **cloud:** move instances to the global view API ([ce9de7c](https://github.com/G-Core/gcore-python/commit/ce9de7c09ff17fa6b0fab7146e4f805ebdb2b4c0))
 * **iam:** add assign_default_policy to API token creation ([abd467b](https://github.com/G-Core/gcore-python/commit/abd467b6c73c2a1eaf92a8801b1de1f07c01ab1b))
 * **security:** add deprecated field to client profile template ([a141154](https://github.com/G-Core/gcore-python/commit/a141154a7461b3c1595e1360a3eb3c5f36226e16))
@@ -32,12 +32,10 @@
 
 * **cdn:** make proxy_next_upstream a set and mark CDN rule options computed_optional ([55b20b6](https://github.com/G-Core/gcore-python/commit/55b20b6454d3d074fd1c7b775b7ef9d6c3786fe2))
 * **cloud:** name volume bandwidth limits mbps in all SDKs ([232c6e8](https://github.com/G-Core/gcore-python/commit/232c6e8220c6b5ba85cb19ab204d077c3b65fbdd))
-* **cloud:** remove read-only noise fields from the terraform schemas ([d310a47](https://github.com/G-Core/gcore-python/commit/d310a479a4d94bc300ef9326803b3f1bca0bc7bb))
 * **cloud:** update cloud examples for regenerated types ([43ba2ef](https://github.com/G-Core/gcore-python/commit/43ba2ef483d4efefa2fac7b2fd6b09fb47a19b09))
 * **fastedge:** page app logs on count instead of deprecated total_count ([5914412](https://github.com/G-Core/gcore-python/commit/5914412f5cb78cbd4e0af4f28218f8eb019afbd6))
 * **sdk:** send nested query filters with brackets ([5f468b4](https://github.com/G-Core/gcore-python/commit/5f468b456181b0c98f72eb2b61c01ee2ca3046ef))
 * **streaming:** wrap directory create and get responses ([946cfac](https://github.com/G-Core/gcore-python/commit/946cfac989133a2d5c2c9efbc22d82da8ac26dc9))
-* **terraform:** manage placement group membership on instances ([41b00ca](https://github.com/G-Core/gcore-python/commit/41b00ca44924c74f38fbb2630466d439b3eda9ba))
 * **waap:** use the v2 API Discovery settings endpoints ([a8570b2](https://github.com/G-Core/gcore-python/commit/a8570b21f538529548054a98db6553791ac706b3))
 
 
