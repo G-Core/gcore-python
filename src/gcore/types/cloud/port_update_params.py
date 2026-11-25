@@ -7,8 +7,9 @@ from typing_extensions import Required, TypedDict
 
 from ..._types import SequenceNotStr
 from .tag_update_map_param import TagUpdateMapParam
+from .ip_assignment_request_param import IPAssignmentRequestParam
 
-__all__ = ["PortUpdateParams", "AllowedAddressPair", "IPAssignment"]
+__all__ = ["PortUpdateParams", "AllowedAddressPair"]
 
 
 class PortUpdateParams(TypedDict, total=False):
@@ -22,7 +23,7 @@ class PortUpdateParams(TypedDict, total=False):
     field to leave existing pairs unchanged.
     """
 
-    ip_assignments: Iterable[IPAssignment]
+    ip_assignments: Iterable[IPAssignmentRequestParam]
     """IP assignments on the port.
 
     Replaces the full set. Subnets must belong to the port's network, and a port an
@@ -75,15 +76,3 @@ class PortUpdateParams(TypedDict, total=False):
 class AllowedAddressPair(TypedDict, total=False):
     ip_address: Required[str]
     """IP address or subnet of the allowed address pair"""
-
-
-class IPAssignment(TypedDict, total=False):
-    subnet_id: Required[str]
-    """ID of the subnet"""
-
-    ip_address: str
-    """IP address to assign.
-
-    Omit it to get any free address of the subnet, which is the only option when the
-    subnet's free addresses are not known to the caller.
-    """

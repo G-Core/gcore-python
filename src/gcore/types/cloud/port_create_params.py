@@ -6,8 +6,9 @@ from typing import Dict, Iterable
 from typing_extensions import Required, TypedDict
 
 from ..._types import SequenceNotStr
+from .ip_assignment_request_param import IPAssignmentRequestParam
 
-__all__ = ["PortCreateParams", "AllowedAddressPair", "IPAssignment"]
+__all__ = ["PortCreateParams", "AllowedAddressPair"]
 
 
 class PortCreateParams(TypedDict, total=False):
@@ -27,7 +28,7 @@ class PortCreateParams(TypedDict, total=False):
     allowed_address_pairs: Iterable[AllowedAddressPair]
     """A set of zero or more allowed port address pair and/or subnet masks."""
 
-    ip_assignments: Iterable[IPAssignment]
+    ip_assignments: Iterable[IPAssignmentRequestParam]
     """IP addresses to assign.
 
     All subnets must belong to the same network. Repeat a subnet to get several
@@ -66,15 +67,3 @@ class PortCreateParams(TypedDict, total=False):
 class AllowedAddressPair(TypedDict, total=False):
     ip_address: Required[str]
     """IP address or subnet of the allowed address pair"""
-
-
-class IPAssignment(TypedDict, total=False):
-    subnet_id: Required[str]
-    """ID of the subnet"""
-
-    ip_address: str
-    """IP address to assign.
-
-    Omit it to get any free address of the subnet, which is the only option when the
-    subnet's free addresses are not known to the caller.
-    """

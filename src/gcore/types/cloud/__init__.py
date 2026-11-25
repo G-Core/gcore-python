@@ -24,12 +24,15 @@ from .gpu_image import GPUImage as GPUImage
 from .ip_ranges import IPRanges as IPRanges
 from .file_share import FileShare as FileShare
 from .ip_version import IPVersion as IPVersion
+from .port_price import PortPrice as PortPrice
 from .floating_ip import FloatingIP as FloatingIP
 from .http_method import HTTPMethod as HTTPMethod
 from .pool_status import PoolStatus as PoolStatus
 from .ddos_profile import DDOSProfile as DDOSProfile
+from .flavor_price import FlavorPrice as FlavorPrice
 from .lb_algorithm import LbAlgorithm as LbAlgorithm
 from .registry_tag import RegistryTag as RegistryTag
+from .server_price import ServerPrice as ServerPrice
 from .task_id_list import TaskIDList as TaskIDList
 from .usage_report import UsageReport as UsageReport
 from .fixed_address import FixedAddress as FixedAddress
@@ -96,6 +99,7 @@ from .load_balancer_l7_rule import LoadBalancerL7Rule as LoadBalancerL7Rule
 from .load_balancer_metrics import LoadBalancerMetrics as LoadBalancerMetrics
 from .network_create_params import NetworkCreateParams as NetworkCreateParams
 from .network_update_params import NetworkUpdateParams as NetworkUpdateParams
+from .price_port_spec_param import PricePortSpecParam as PricePortSpecParam
 from .project_create_params import ProjectCreateParams as ProjectCreateParams
 from .project_update_params import ProjectUpdateParams as ProjectUpdateParams
 from .ssh_key_create_params import SSHKeyCreateParams as SSHKeyCreateParams
@@ -113,6 +117,8 @@ from .floating_ip_list_params import FloatingIPListParams as FloatingIPListParam
 from .instance_rebuild_params import InstanceRebuildParams as InstanceRebuildParams
 from .load_balancer_l7_policy import LoadBalancerL7Policy as LoadBalancerL7Policy
 from .load_balancer_pool_list import LoadBalancerPoolList as LoadBalancerPoolList
+from .price_floating_ip_param import PriceFloatingIPParam as PriceFloatingIPParam
+from .price_volume_spec_param import PriceVolumeSpecParam as PriceVolumeSpecParam
 from .usage_report_get_params import UsageReportGetParams as UsageReportGetParams
 from .ddos_profile_option_list import DDOSProfileOptionList as DDOSProfileOptionList
 from .file_share_create_params import FileShareCreateParams as FileShareCreateParams
@@ -136,10 +142,12 @@ from .volume_change_type_params import VolumeChangeTypeParams as VolumeChangeTyp
 from .instance_metrics_time_unit import InstanceMetricsTimeUnit as InstanceMetricsTimeUnit
 from .load_balancer_l7_rule_list import LoadBalancerL7RuleList as LoadBalancerL7RuleList
 from .load_balancer_metrics_list import LoadBalancerMetricsList as LoadBalancerMetricsList
+from .price_port_reference_param import PricePortReferenceParam as PricePortReferenceParam
 from .security_group_copy_params import SecurityGroupCopyParams as SecurityGroupCopyParams
 from .security_group_list_params import SecurityGroupListParams as SecurityGroupListParams
 from .ddos_profile_template_field import DDOSProfileTemplateField as DDOSProfileTemplateField
 from .instance_regional_interface import InstanceRegionalInterface as InstanceRegionalInterface
+from .ip_assignment_request_param import IPAssignmentRequestParam as IPAssignmentRequestParam
 from .laas_index_retention_policy import LaasIndexRetentionPolicy as LaasIndexRetentionPolicy
 from .lb_session_persistence_type import LbSessionPersistenceType as LbSessionPersistenceType
 from .load_balancer_create_params import LoadBalancerCreateParams as LoadBalancerCreateParams
@@ -152,6 +160,7 @@ from .placement_group_list_params import PlacementGroupListParams as PlacementGr
 from .task_acknowledge_all_params import TaskAcknowledgeAllParams as TaskAcknowledgeAllParams
 from .volume_snapshot_list_params import VolumeSnapshotListParams as VolumeSnapshotListParams
 from .load_balancer_l7_policy_list import LoadBalancerL7PolicyList as LoadBalancerL7PolicyList
+from .price_volume_reference_param import PriceVolumeReferenceParam as PriceVolumeReferenceParam
 from .quota_get_by_region_response import QuotaGetByRegionResponse as QuotaGetByRegionResponse
 from .security_group_create_params import SecurityGroupCreateParams as SecurityGroupCreateParams
 from .security_group_update_params import SecurityGroupUpdateParams as SecurityGroupUpdateParams

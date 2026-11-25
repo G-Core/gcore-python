@@ -116,6 +116,14 @@ from .usage_reports import (
     UsageReportsResourceWithStreamingResponse,
     AsyncUsageReportsResourceWithStreamingResponse,
 )
+from .pricing.pricing import (
+    PricingResource,
+    AsyncPricingResource,
+    PricingResourceWithRawResponse,
+    AsyncPricingResourceWithRawResponse,
+    PricingResourceWithStreamingResponse,
+    AsyncPricingResourceWithStreamingResponse,
+)
 from .volumes.volumes import (
     VolumesResource,
     AsyncVolumesResource,
@@ -447,6 +455,13 @@ class CloudResource(SyncAPIResource):
         return UsageReportsResource(self._client)
 
     @cached_property
+    def pricing(self) -> PricingResource:
+        """
+        Pricing gives the prices of instances, bare metal servers and ports in all regions of the project: flavor prices, the price of a configuration before you create it, and the price of an existing server.
+        """
+        return PricingResource(self._client)
+
+    @cached_property
     def databases(self) -> DatabasesResource:
         return DatabasesResource(self._client)
 
@@ -654,6 +669,13 @@ class AsyncCloudResource(AsyncAPIResource):
     @cached_property
     def usage_reports(self) -> AsyncUsageReportsResource:
         return AsyncUsageReportsResource(self._client)
+
+    @cached_property
+    def pricing(self) -> AsyncPricingResource:
+        """
+        Pricing gives the prices of instances, bare metal servers and ports in all regions of the project: flavor prices, the price of a configuration before you create it, and the price of an existing server.
+        """
+        return AsyncPricingResource(self._client)
 
     @cached_property
     def databases(self) -> AsyncDatabasesResource:
@@ -868,6 +890,13 @@ class CloudResourceWithRawResponse:
         return UsageReportsResourceWithRawResponse(self._cloud.usage_reports)
 
     @cached_property
+    def pricing(self) -> PricingResourceWithRawResponse:
+        """
+        Pricing gives the prices of instances, bare metal servers and ports in all regions of the project: flavor prices, the price of a configuration before you create it, and the price of an existing server.
+        """
+        return PricingResourceWithRawResponse(self._cloud.pricing)
+
+    @cached_property
     def databases(self) -> DatabasesResourceWithRawResponse:
         return DatabasesResourceWithRawResponse(self._cloud.databases)
 
@@ -1059,6 +1088,13 @@ class AsyncCloudResourceWithRawResponse:
     @cached_property
     def usage_reports(self) -> AsyncUsageReportsResourceWithRawResponse:
         return AsyncUsageReportsResourceWithRawResponse(self._cloud.usage_reports)
+
+    @cached_property
+    def pricing(self) -> AsyncPricingResourceWithRawResponse:
+        """
+        Pricing gives the prices of instances, bare metal servers and ports in all regions of the project: flavor prices, the price of a configuration before you create it, and the price of an existing server.
+        """
+        return AsyncPricingResourceWithRawResponse(self._cloud.pricing)
 
     @cached_property
     def databases(self) -> AsyncDatabasesResourceWithRawResponse:
@@ -1254,6 +1290,13 @@ class CloudResourceWithStreamingResponse:
         return UsageReportsResourceWithStreamingResponse(self._cloud.usage_reports)
 
     @cached_property
+    def pricing(self) -> PricingResourceWithStreamingResponse:
+        """
+        Pricing gives the prices of instances, bare metal servers and ports in all regions of the project: flavor prices, the price of a configuration before you create it, and the price of an existing server.
+        """
+        return PricingResourceWithStreamingResponse(self._cloud.pricing)
+
+    @cached_property
     def databases(self) -> DatabasesResourceWithStreamingResponse:
         return DatabasesResourceWithStreamingResponse(self._cloud.databases)
 
@@ -1445,6 +1488,13 @@ class AsyncCloudResourceWithStreamingResponse:
     @cached_property
     def usage_reports(self) -> AsyncUsageReportsResourceWithStreamingResponse:
         return AsyncUsageReportsResourceWithStreamingResponse(self._cloud.usage_reports)
+
+    @cached_property
+    def pricing(self) -> AsyncPricingResourceWithStreamingResponse:
+        """
+        Pricing gives the prices of instances, bare metal servers and ports in all regions of the project: flavor prices, the price of a configuration before you create it, and the price of an existing server.
+        """
+        return AsyncPricingResourceWithStreamingResponse(self._cloud.pricing)
 
     @cached_property
     def databases(self) -> AsyncDatabasesResourceWithStreamingResponse:

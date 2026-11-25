@@ -1273,6 +1273,58 @@ Methods:
 
 - <code title="post /cloud/v1/usage_report">client.cloud.usage_reports.<a href="./src/gcore/resources/cloud/usage_reports.py">get</a>(\*\*<a href="src/gcore/types/cloud/usage_report_get_params.py">params</a>) -> <a href="./src/gcore/types/cloud/usage_report.py">UsageReport</a></code>
 
+## Pricing
+
+Types:
+
+```python
+from gcore.types.cloud import (
+    FlavorPrice,
+    IPAssignmentRequest,
+    PortPrice,
+    PriceFloatingIP,
+    PricePortReference,
+    PricePortSpec,
+    PriceVolumeReference,
+    PriceVolumeSpec,
+    ServerPrice,
+)
+```
+
+### Instances
+
+Methods:
+
+- <code title="get /cloud/v1/projects/{project_id}/pricing/instances/{instance_id}">client.cloud.pricing.instances.<a href="./src/gcore/resources/cloud/pricing/instances/instances.py">get</a>(instance_id, \*, project_id) -> <a href="./src/gcore/types/cloud/server_price.py">ServerPrice</a></code>
+- <code title="post /cloud/v1/projects/{project_id}/pricing/instances">client.cloud.pricing.instances.<a href="./src/gcore/resources/cloud/pricing/instances/instances.py">preview</a>(\*, project_id, \*\*<a href="src/gcore/types/cloud/pricing/instance_preview_params.py">params</a>) -> <a href="./src/gcore/types/cloud/server_price.py">ServerPrice</a></code>
+
+#### Flavors
+
+Methods:
+
+- <code title="get /cloud/v1/projects/{project_id}/pricing/instances/flavors">client.cloud.pricing.instances.flavors.<a href="./src/gcore/resources/cloud/pricing/instances/flavors.py">list</a>(\*, project_id, \*\*<a href="src/gcore/types/cloud/pricing/instances/flavor_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/flavor_price.py">SyncOffsetPage[FlavorPrice]</a></code>
+
+### Baremetal
+
+#### Servers
+
+Methods:
+
+- <code title="get /cloud/v1/projects/{project_id}/pricing/baremetal/servers/{server_id}">client.cloud.pricing.baremetal.servers.<a href="./src/gcore/resources/cloud/pricing/baremetal/servers.py">get</a>(server_id, \*, project_id) -> <a href="./src/gcore/types/cloud/server_price.py">ServerPrice</a></code>
+- <code title="post /cloud/v1/projects/{project_id}/pricing/baremetal/servers">client.cloud.pricing.baremetal.servers.<a href="./src/gcore/resources/cloud/pricing/baremetal/servers.py">preview</a>(\*, project_id, \*\*<a href="src/gcore/types/cloud/pricing/baremetal/server_preview_params.py">params</a>) -> <a href="./src/gcore/types/cloud/server_price.py">ServerPrice</a></code>
+
+#### Flavors
+
+Methods:
+
+- <code title="get /cloud/v1/projects/{project_id}/pricing/baremetal/flavors">client.cloud.pricing.baremetal.flavors.<a href="./src/gcore/resources/cloud/pricing/baremetal/flavors.py">list</a>(\*, project_id, \*\*<a href="src/gcore/types/cloud/pricing/baremetal/flavor_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/flavor_price.py">SyncOffsetPage[FlavorPrice]</a></code>
+
+### Ports
+
+Methods:
+
+- <code title="post /cloud/v1/projects/{project_id}/pricing/ports">client.cloud.pricing.ports.<a href="./src/gcore/resources/cloud/pricing/ports.py">preview</a>(\*, project_id, \*\*<a href="src/gcore/types/cloud/pricing/port_preview_params.py">params</a>) -> <a href="./src/gcore/types/cloud/port_price.py">PortPrice</a></code>
+
 ## Databases
 
 ### Postgres

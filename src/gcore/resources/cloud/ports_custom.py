@@ -14,6 +14,7 @@ from ...types.cloud import port_create_params, port_update_params
 from ...types.cloud.port import Port
 from ...types.cloud.floating_ip import FloatingIP
 from ...types.cloud.tag_update_map_param import TagUpdateMapParam
+from ...types.cloud.ip_assignment_request_param import IPAssignmentRequestParam
 
 if TYPE_CHECKING:
     from ..._client import Gcore, AsyncGcore
@@ -34,7 +35,7 @@ class PortsResourceCustomMixin:
         project_id: int | None = None,
         region_id: int,
         allowed_address_pairs: Iterable[port_create_params.AllowedAddressPair] | Omit = omit,
-        ip_assignments: Iterable[port_create_params.IPAssignment] | Omit = omit,
+        ip_assignments: Iterable[IPAssignmentRequestParam] | Omit = omit,
         network_id: str | Omit = omit,
         port_security_enabled: bool | Omit = omit,
         security_group_ids: SequenceNotStr[str] | Omit = omit,
@@ -93,7 +94,7 @@ class PortsResourceCustomMixin:
         *,
         project_id: int | None = None,
         allowed_address_pairs: Iterable[port_update_params.AllowedAddressPair] | Omit = omit,
-        ip_assignments: Iterable[port_update_params.IPAssignment] | Omit = omit,
+        ip_assignments: Iterable[IPAssignmentRequestParam] | Omit = omit,
         port_security_enabled: bool | Omit = omit,
         security_group_ids: SequenceNotStr[str] | Omit = omit,
         tags: Optional[TagUpdateMapParam] | Omit = omit,
@@ -251,7 +252,7 @@ class AsyncPortsResourceCustomMixin:
         project_id: int | None = None,
         region_id: int,
         allowed_address_pairs: Iterable[port_create_params.AllowedAddressPair] | Omit = omit,
-        ip_assignments: Iterable[port_create_params.IPAssignment] | Omit = omit,
+        ip_assignments: Iterable[IPAssignmentRequestParam] | Omit = omit,
         network_id: str | Omit = omit,
         port_security_enabled: bool | Omit = omit,
         security_group_ids: SequenceNotStr[str] | Omit = omit,
@@ -311,7 +312,7 @@ class AsyncPortsResourceCustomMixin:
         *,
         project_id: int | None = None,
         allowed_address_pairs: Iterable[port_update_params.AllowedAddressPair] | Omit = omit,
-        ip_assignments: Iterable[port_update_params.IPAssignment] | Omit = omit,
+        ip_assignments: Iterable[IPAssignmentRequestParam] | Omit = omit,
         port_security_enabled: bool | Omit = omit,
         security_group_ids: SequenceNotStr[str] | Omit = omit,
         tags: Optional[TagUpdateMapParam] | Omit = omit,

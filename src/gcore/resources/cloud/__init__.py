@@ -48,6 +48,14 @@ from .quotas import (
     QuotasResourceWithStreamingResponse,
     AsyncQuotasResourceWithStreamingResponse,
 )
+from .pricing import (
+    PricingResource,
+    AsyncPricingResource,
+    PricingResourceWithRawResponse,
+    AsyncPricingResourceWithRawResponse,
+    PricingResourceWithStreamingResponse,
+    AsyncPricingResourceWithStreamingResponse,
+)
 from .regions import (
     RegionsResource,
     AsyncRegionsResource,
@@ -454,6 +462,12 @@ __all__ = [
     "AsyncUsageReportsResourceWithRawResponse",
     "UsageReportsResourceWithStreamingResponse",
     "AsyncUsageReportsResourceWithStreamingResponse",
+    "PricingResource",
+    "AsyncPricingResource",
+    "PricingResourceWithRawResponse",
+    "AsyncPricingResourceWithRawResponse",
+    "PricingResourceWithStreamingResponse",
+    "AsyncPricingResourceWithStreamingResponse",
     "DatabasesResource",
     "AsyncDatabasesResource",
     "DatabasesResourceWithRawResponse",

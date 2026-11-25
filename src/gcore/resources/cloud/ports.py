@@ -24,6 +24,7 @@ from ..._base_client import AsyncPaginator, make_request_options
 from ...types.cloud.port import Port
 from ...types.cloud.task_id_list import TaskIDList
 from ...types.cloud.tag_update_map_param import TagUpdateMapParam
+from ...types.cloud.ip_assignment_request_param import IPAssignmentRequestParam
 
 __all__ = ["PortsResource", "AsyncPortsResource"]
 
@@ -59,7 +60,7 @@ class PortsResource(PortsResourceCustomMixin, SyncAPIResource):
         region_id: int,
         dry_run: bool | Omit = omit,
         allowed_address_pairs: Iterable[port_create_params.AllowedAddressPair] | Omit = omit,
-        ip_assignments: Iterable[port_create_params.IPAssignment] | Omit = omit,
+        ip_assignments: Iterable[IPAssignmentRequestParam] | Omit = omit,
         network_id: str | Omit = omit,
         port_security_enabled: bool | Omit = omit,
         security_group_ids: SequenceNotStr[str] | Omit = omit,
@@ -228,7 +229,7 @@ class PortsResource(PortsResourceCustomMixin, SyncAPIResource):
         *,
         project_id: int | None = None,
         allowed_address_pairs: Iterable[port_update_params.AllowedAddressPair] | Omit = omit,
-        ip_assignments: Iterable[port_update_params.IPAssignment] | Omit = omit,
+        ip_assignments: Iterable[IPAssignmentRequestParam] | Omit = omit,
         port_security_enabled: bool | Omit = omit,
         security_group_ids: SequenceNotStr[str] | Omit = omit,
         tags: Optional[TagUpdateMapParam] | Omit = omit,
@@ -733,7 +734,7 @@ class AsyncPortsResource(AsyncPortsResourceCustomMixin, AsyncAPIResource):
         region_id: int,
         dry_run: bool | Omit = omit,
         allowed_address_pairs: Iterable[port_create_params.AllowedAddressPair] | Omit = omit,
-        ip_assignments: Iterable[port_create_params.IPAssignment] | Omit = omit,
+        ip_assignments: Iterable[IPAssignmentRequestParam] | Omit = omit,
         network_id: str | Omit = omit,
         port_security_enabled: bool | Omit = omit,
         security_group_ids: SequenceNotStr[str] | Omit = omit,
@@ -902,7 +903,7 @@ class AsyncPortsResource(AsyncPortsResourceCustomMixin, AsyncAPIResource):
         *,
         project_id: int | None = None,
         allowed_address_pairs: Iterable[port_update_params.AllowedAddressPair] | Omit = omit,
-        ip_assignments: Iterable[port_update_params.IPAssignment] | Omit = omit,
+        ip_assignments: Iterable[IPAssignmentRequestParam] | Omit = omit,
         port_security_enabled: bool | Omit = omit,
         security_group_ids: SequenceNotStr[str] | Omit = omit,
         tags: Optional[TagUpdateMapParam] | Omit = omit,
