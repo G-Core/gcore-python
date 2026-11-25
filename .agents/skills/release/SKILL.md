@@ -266,13 +266,17 @@ If merge fails, report the error and stop.
 After merge, `release-please` (the stock action) auto-creates the tag and GitHub Release.
 
 1. Fetch the latest release. Verify `tagName` matches expected version
-   `v{VERSION}`. If not found, `sleep 10` and retry once.
+   `v{VERSION}`. If not found, `sleep 15` and retry, up to 8 times.
+   release-please usually creates the release within a minute.
 
    ```bash
-   gh release view --repo G-Core/gcore-python --json tagName,body,url
+   gh release view --repo G-Core/gcore-python v{VERSION} --json tagName,body,url
    ```
 
-2. Build the final release body by combining Part 1 and the existing Part 2:
+2. If the body already starts with `We're excited to announce`, Part 1 is
+   already there. Stop and ask the user before you replace it.
+
+3. Build the final release body by combining Part 1 and the existing Part 2:
 
    ```
    {Part 1 — human-readable summary}
@@ -281,7 +285,7 @@ After merge, `release-please` (the stock action) auto-creates the tag and GitHub
    {Part 2 — auto-generated changelog already in release body}
    ```
 
-3. Update the release via Bash:
+4. Update the release via Bash:
    ```bash
    gh release edit v{VERSION} \
      --repo G-Core/gcore-python \
@@ -291,7 +295,7 @@ After merge, `release-please` (the stock action) auto-creates the tag and GitHub
    )"
    ```
 
-4. Display the release URL and confirm completion.
+5. Display the release URL and confirm completion.
 
 ## Failure Modes
 
@@ -306,6 +310,6 @@ After merge, `release-please` (the stock action) auto-creates the tag and GitHub
 | Head commit changed before merge | Merge fails on `--match-head-commit`; redo Step 2 |
 | Merge conflict | Report, suggest manual resolution |
 | Merge fails | Report error, stop |
-| Release not found after merge | Retry once after 10s, then report |
+| Release not found after merge | Retry every 15s, up to 8 times, then report |
 | Go SDK release not found | Proceed without cross-SDK reference |
 | `gh` CLI not authenticated | Report, suggest `gh auth login` |
