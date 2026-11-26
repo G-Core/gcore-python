@@ -11,22 +11,19 @@ __all__ = ["MetricListParams"]
 
 class MetricListParams(TypedDict, total=False):
     project_id: int
-    """Project ID"""
-
-    region_id: int
-    """Region ID"""
+    """Project ID."""
 
     time_interval: Required[int]
-    """Time interval."""
+    """Length of the time range, in the `time_unit`.
+
+    The range is 1, 6 or 24 hours, or 1, 7 or 14 days.
+    """
 
     time_unit: Required[InstanceMetricsTimeUnit]
-    """Time interval unit."""
+    """Unit of the `time_interval`."""
 
     limit: int
-    """Optional. Limit the number of returned items"""
+    """Max items to return."""
 
     offset: int
-    """Optional.
-
-    Offset value is used to exclude the first set of records from the result
-    """
+    """Items to skip."""

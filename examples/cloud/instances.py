@@ -12,7 +12,7 @@ def main() -> None:
     # TODO set cloud project ID before running
     # cloud_project_id = os.environ["GCORE_CLOUD_PROJECT_ID"]
     # TODO set cloud region ID before running
-    # instances and ports take the region from their parameters. Volumes, images and metrics are regional
+    # instances, ports and instance metrics do not take a region. Volumes and images are regional
     # and take it from the client when you omit it
     cloud_region_id = int(os.environ["GCORE_CLOUD_REGION_ID"])
 
@@ -213,21 +213,21 @@ def run_action(*, client: Gcore, instance_id: str, action: Literal["start", "sto
 def list_metrics(*, client: Gcore, instance_id: str) -> None:
     print("\n=== LIST METRICS ===")
     metrics = client.cloud.instances.metrics.list(instance_id=instance_id, time_interval=1, time_unit="hour")
-    print(f"Metrics for instance: {len(metrics.results)} entries")
+    print(f"Metrics for instance: {metrics.count} entries")
 
     # Display first few metrics
     display_count = min(3, len(metrics.results))
 
     for i in range(display_count):
         metric = metrics.results[i]
-        cpu = getattr(metric, "cpu_util", "N/A")
-        memory = getattr(metric, "memory_util", "N/A")
-        timestamp = getattr(metric, "timestamp", "N/A")
+        cpu = "N/A" if metric.cpu_util is None else metric.cpu_util
+        memory = "N/A" if metric.memory_util is None else metric.memory_util
+        timestamp = metric.time
 
         print(f"  {i + 1}. Metric: CPU={cpu}%, Memory={memory}%, Time={timestamp}")
 
-    if len(metrics.results) > display_count:
-        print(f"  ... and {len(metrics.results) - display_count} more metrics")
+    if metrics.count > display_count:
+        print(f"  ... and {metrics.count - display_count} more metrics")
     print("========================")
 
 

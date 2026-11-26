@@ -1099,7 +1099,7 @@ from gcore.types.cloud.instances import Metrics, MetricsList
 
 Methods:
 
-- <code title="post /cloud/v1/instances/{project_id}/{region_id}/{instance_id}/metrics">client.cloud.instances.metrics.<a href="./src/gcore/resources/cloud/instances/metrics.py">list</a>(instance_id, \*, project_id, region_id, \*\*<a href="src/gcore/types/cloud/instances/metric_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/instances/metrics_list.py">MetricsList</a></code>
+- <code title="get /cloud/v1/projects/{project_id}/instances/{instance_id}/metrics">client.cloud.instances.metrics.<a href="./src/gcore/resources/cloud/instances/metrics.py">list</a>(instance_id, \*, project_id, \*\*<a href="src/gcore/types/cloud/instances/metric_list_params.py">params</a>) -> <a href="./src/gcore/types/cloud/instances/metrics.py">SyncOffsetPage[Metrics]</a></code>
 
 ## InstancesRegional
 

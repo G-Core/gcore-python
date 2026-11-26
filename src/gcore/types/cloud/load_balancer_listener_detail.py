@@ -39,10 +39,23 @@ class LoadBalancerListenerDetail(BaseModel):
     creator_task_id: Optional[str] = None
     """Task that created this entity"""
 
+    default_pool_id: Optional[str] = None
+    """ID of the default pool of the listener.
+
+    The value is null if the listener has no default pool.
+    """
+
     insert_headers: Dict[str, object]
     """Dictionary of additional header insertion into HTTP headers.
 
     Only used with HTTP and `TERMINATED_HTTPS` protocols.
+    """
+
+    insert_x_forwarded: bool
+    """
+    The value is true if the listener adds all three headers: X-Forwarded-For,
+    X-Forwarded-Port and X-Forwarded-Proto. Only HTTP and `TERMINATED_HTTPS`
+    listeners can add these headers.
     """
 
     load_balancer_id: Optional[str] = None

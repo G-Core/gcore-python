@@ -9,7 +9,8 @@ import pytest
 
 from gcore import Gcore, AsyncGcore
 from tests.utils import assert_matches_type
-from gcore.types.cloud.instances import MetricsList
+from gcore.pagination import SyncOffsetPage, AsyncOffsetPage
+from gcore.types.cloud.instances import Metrics
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -20,56 +21,52 @@ class TestMetrics:
     @parametrize
     def test_method_list(self, client: Gcore) -> None:
         metric = client.cloud.instances.metrics.list(
-            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            instance_id="6c6aa80f-4234-4678-9abc-def012345678",
             project_id=1,
-            region_id=1,
             time_interval=6,
-            time_unit="hour",
+            time_unit="day",
         )
-        assert_matches_type(MetricsList, metric, path=["response"])
+        assert_matches_type(SyncOffsetPage[Metrics], metric, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Gcore) -> None:
         metric = client.cloud.instances.metrics.list(
-            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            instance_id="6c6aa80f-4234-4678-9abc-def012345678",
             project_id=1,
-            region_id=1,
             time_interval=6,
-            time_unit="hour",
-            limit=1000,
+            time_unit="day",
+            limit=1,
             offset=0,
         )
-        assert_matches_type(MetricsList, metric, path=["response"])
+        assert_matches_type(SyncOffsetPage[Metrics], metric, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Gcore) -> None:
         response = client.cloud.instances.metrics.with_raw_response.list(
-            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            instance_id="6c6aa80f-4234-4678-9abc-def012345678",
             project_id=1,
-            region_id=1,
             time_interval=6,
-            time_unit="hour",
+            time_unit="day",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         metric = response.parse()
-        assert_matches_type(MetricsList, metric, path=["response"])
+        assert_matches_type(SyncOffsetPage[Metrics], metric, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Gcore) -> None:
         with client.cloud.instances.metrics.with_streaming_response.list(
-            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            instance_id="6c6aa80f-4234-4678-9abc-def012345678",
             project_id=1,
-            region_id=1,
             time_interval=6,
-            time_unit="hour",
+            time_unit="day",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             metric = response.parse()
-            assert_matches_type(MetricsList, metric, path=["response"])
+            assert_matches_type(SyncOffsetPage[Metrics], metric, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -79,9 +76,8 @@ class TestMetrics:
             client.cloud.instances.metrics.with_raw_response.list(
                 instance_id="",
                 project_id=1,
-                region_id=1,
                 time_interval=6,
-                time_unit="hour",
+                time_unit="day",
             )
 
 
@@ -93,56 +89,52 @@ class TestAsyncMetrics:
     @parametrize
     async def test_method_list(self, async_client: AsyncGcore) -> None:
         metric = await async_client.cloud.instances.metrics.list(
-            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            instance_id="6c6aa80f-4234-4678-9abc-def012345678",
             project_id=1,
-            region_id=1,
             time_interval=6,
-            time_unit="hour",
+            time_unit="day",
         )
-        assert_matches_type(MetricsList, metric, path=["response"])
+        assert_matches_type(AsyncOffsetPage[Metrics], metric, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGcore) -> None:
         metric = await async_client.cloud.instances.metrics.list(
-            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            instance_id="6c6aa80f-4234-4678-9abc-def012345678",
             project_id=1,
-            region_id=1,
             time_interval=6,
-            time_unit="hour",
-            limit=1000,
+            time_unit="day",
+            limit=1,
             offset=0,
         )
-        assert_matches_type(MetricsList, metric, path=["response"])
+        assert_matches_type(AsyncOffsetPage[Metrics], metric, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGcore) -> None:
         response = await async_client.cloud.instances.metrics.with_raw_response.list(
-            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            instance_id="6c6aa80f-4234-4678-9abc-def012345678",
             project_id=1,
-            region_id=1,
             time_interval=6,
-            time_unit="hour",
+            time_unit="day",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         metric = await response.parse()
-        assert_matches_type(MetricsList, metric, path=["response"])
+        assert_matches_type(AsyncOffsetPage[Metrics], metric, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGcore) -> None:
         async with async_client.cloud.instances.metrics.with_streaming_response.list(
-            instance_id="b5b4d65d-945f-4b98-ab6f-332319c724ef",
+            instance_id="6c6aa80f-4234-4678-9abc-def012345678",
             project_id=1,
-            region_id=1,
             time_interval=6,
-            time_unit="hour",
+            time_unit="day",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             metric = await response.parse()
-            assert_matches_type(MetricsList, metric, path=["response"])
+            assert_matches_type(AsyncOffsetPage[Metrics], metric, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -152,7 +144,6 @@ class TestAsyncMetrics:
             await async_client.cloud.instances.metrics.with_raw_response.list(
                 instance_id="",
                 project_id=1,
-                region_id=1,
                 time_interval=6,
-                time_unit="hour",
+                time_unit="day",
             )

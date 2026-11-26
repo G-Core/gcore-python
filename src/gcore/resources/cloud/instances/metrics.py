@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import path_template, maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -14,10 +14,11 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ....pagination import SyncOffsetPage, AsyncOffsetPage
 from ....types.cloud import InstanceMetricsTimeUnit
-from ...._base_client import make_request_options
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.cloud.instances import metric_list_params
-from ....types.cloud.instances.metrics_list import MetricsList
+from ....types.cloud.instances.metrics import Metrics
 from ....types.cloud.instance_metrics_time_unit import InstanceMetricsTimeUnit
 
 __all__ = ["MetricsResource", "AsyncMetricsResource"]
@@ -48,7 +49,6 @@ class MetricsResource(SyncAPIResource):
         instance_id: str,
         *,
         project_id: int | None = None,
-        region_id: int | None = None,
         time_interval: int,
         time_unit: InstanceMetricsTimeUnit,
         limit: int | Omit = omit,
@@ -59,25 +59,24 @@ class MetricsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MetricsList:
+    ) -> SyncOffsetPage[Metrics]:
         """
-        Get instance metrics, including cpu, memory, network and disk metrics
+        Returns the CPU, memory, network and disk metrics of an instance for a time
+        range. The results are in ascending order of `time`.
 
         Args:
-          project_id: Project ID
+          project_id: Project ID.
 
-          region_id: Region ID
+          instance_id: Instance ID.
 
-          instance_id: Instance ID
+          time_interval: Length of the time range, in the `time_unit`. The range is 1, 6 or 24 hours, or
+              1, 7 or 14 days.
 
-          time_interval: Time interval.
+          time_unit: Unit of the `time_interval`.
 
-          time_unit: Time interval unit.
+          limit: Max items to return.
 
-          limit: Optional. Limit the number of returned items
-
-          offset: Optional. Offset value is used to exclude the first set of records from the
-              result
+          offset: Items to skip.
 
           extra_headers: Send extra headers
 
@@ -89,24 +88,15 @@ class MetricsResource(SyncAPIResource):
         """
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
-        return self._post(
+        return self._get_api_list(
             path_template(
-                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/metrics",
+                "/cloud/v1/projects/{project_id}/instances/{instance_id}/metrics",
                 project_id=project_id,
-                region_id=region_id,
                 instance_id=instance_id,
             ),
-            body=maybe_transform(
-                {
-                    "time_interval": time_interval,
-                    "time_unit": time_unit,
-                },
-                metric_list_params.MetricListParams,
-            ),
+            page=SyncOffsetPage[Metrics],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -114,13 +104,15 @@ class MetricsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "time_interval": time_interval,
+                        "time_unit": time_unit,
                         "limit": limit,
                         "offset": offset,
                     },
                     metric_list_params.MetricListParams,
                 ),
             ),
-            cast_to=MetricsList,
+            model=Metrics,
         )
 
 
@@ -144,12 +136,11 @@ class AsyncMetricsResource(AsyncAPIResource):
         """
         return AsyncMetricsResourceWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         instance_id: str,
         *,
         project_id: int | None = None,
-        region_id: int | None = None,
         time_interval: int,
         time_unit: InstanceMetricsTimeUnit,
         limit: int | Omit = omit,
@@ -160,25 +151,24 @@ class AsyncMetricsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MetricsList:
+    ) -> AsyncPaginator[Metrics, AsyncOffsetPage[Metrics]]:
         """
-        Get instance metrics, including cpu, memory, network and disk metrics
+        Returns the CPU, memory, network and disk metrics of an instance for a time
+        range. The results are in ascending order of `time`.
 
         Args:
-          project_id: Project ID
+          project_id: Project ID.
 
-          region_id: Region ID
+          instance_id: Instance ID.
 
-          instance_id: Instance ID
+          time_interval: Length of the time range, in the `time_unit`. The range is 1, 6 or 24 hours, or
+              1, 7 or 14 days.
 
-          time_interval: Time interval.
+          time_unit: Unit of the `time_interval`.
 
-          time_unit: Time interval unit.
+          limit: Max items to return.
 
-          limit: Optional. Limit the number of returned items
-
-          offset: Optional. Offset value is used to exclude the first set of records from the
-              result
+          offset: Items to skip.
 
           extra_headers: Send extra headers
 
@@ -190,38 +180,31 @@ class AsyncMetricsResource(AsyncAPIResource):
         """
         if project_id is None:
             project_id = self._client._get_cloud_project_id_path_param()
-        if region_id is None:
-            region_id = self._client._get_cloud_region_id_path_param()
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
-        return await self._post(
+        return self._get_api_list(
             path_template(
-                "/cloud/v1/instances/{project_id}/{region_id}/{instance_id}/metrics",
+                "/cloud/v1/projects/{project_id}/instances/{instance_id}/metrics",
                 project_id=project_id,
-                region_id=region_id,
                 instance_id=instance_id,
             ),
-            body=await async_maybe_transform(
-                {
-                    "time_interval": time_interval,
-                    "time_unit": time_unit,
-                },
-                metric_list_params.MetricListParams,
-            ),
+            page=AsyncOffsetPage[Metrics],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
+                        "time_interval": time_interval,
+                        "time_unit": time_unit,
                         "limit": limit,
                         "offset": offset,
                     },
                     metric_list_params.MetricListParams,
                 ),
             ),
-            cast_to=MetricsList,
+            model=Metrics,
         )
 
 
