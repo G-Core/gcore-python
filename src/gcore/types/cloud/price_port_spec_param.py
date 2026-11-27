@@ -3,19 +3,33 @@
 from __future__ import annotations
 
 from typing import Iterable
-from typing_extensions import TypedDict
+from typing_extensions import Required, TypedDict
 
 from .price_floating_ip_param import PriceFloatingIPParam
-from .ip_assignment_request_param import IPAssignmentRequestParam
 
-__all__ = ["PricePortSpecParam"]
+__all__ = ["PricePortSpecParam", "IPAssignment"]
+
+
+class IPAssignment(TypedDict, total=False):
+    subnet_id: Required[str]
+    """ID of the subnet"""
+
+    floating_ip: PriceFloatingIPParam
+    """Floating IP of this address of the new port."""
+
+    ip_address: str
+    """IP address to assign.
+
+    Omit it to get any free address of the subnet, which is the only option when the
+    subnet's free addresses are not known to the caller.
+    """
 
 
 class PricePortSpecParam(TypedDict, total=False):
     floating_ip: PriceFloatingIPParam
     """Floating IP of the new port."""
 
-    ip_assignments: Iterable[IPAssignmentRequestParam]
+    ip_assignments: Iterable[IPAssignment]
     """IP addresses of the new port.
 
     Omit the field to get one address from an IPv4 subnet.

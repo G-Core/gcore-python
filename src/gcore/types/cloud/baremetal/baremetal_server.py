@@ -11,6 +11,7 @@ __all__ = [
     "BaremetalServer",
     "Interface",
     "InterfaceIPAssignment",
+    "InterfaceIPAssignmentFloatingIP",
     "InterfaceTrunk",
     "InterfaceTrunkGlobalBaremetalTrunkParentSerializer",
     "InterfaceTrunkGlobalBaremetalTrunkSubPortSerializer",
@@ -18,7 +19,26 @@ __all__ = [
 ]
 
 
+class InterfaceIPAssignmentFloatingIP(BaseModel):
+    """Floating IP that translates this address.
+
+    `null` when the address has no floating IP. An IPv6 address always has `null`.
+    """
+
+    id: str
+    """Floating IP ID."""
+
+    ip_address: str
+    """Public IP address of the floating IP."""
+
+
 class InterfaceIPAssignment(BaseModel):
+    floating_ip: Optional[InterfaceIPAssignmentFloatingIP] = None
+    """Floating IP that translates this address.
+
+    `null` when the address has no floating IP. An IPv6 address always has `null`.
+    """
+
     ip_address: str
     """The IP address assigned to the port from the specified subnet"""
 
@@ -54,11 +74,8 @@ class Interface(BaseModel):
     `trunk` conveys the role within the bond.
     """
 
-    floating_ip: Optional[str] = None
-    """Public floating IP NAT-ing this interface, if any."""
-
     ip_assignments: List[InterfaceIPAssignment]
-    """Fixed IPs assigned to the port."""
+    """Fixed IPs assigned to the port, each with its floating IP."""
 
     mac_address: str
     """Port MAC address."""

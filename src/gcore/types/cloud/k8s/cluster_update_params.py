@@ -256,7 +256,7 @@ class DDOSProfile(TypedDict, total=False):
     """DDoS profile parameters"""
 
     profile_template: Optional[int]
-    """DDoS profile template ID"""
+    """DDoS profile template ID. Required when 'enabled' is true."""
 
     profile_template_name: Optional[str]
     """DDoS profile template name"""

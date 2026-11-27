@@ -116,6 +116,12 @@ class CreatedResources(BaseModel):
     servergroups: Optional[List[str]] = None
     """IDs of created placement groups"""
 
+    slurm_clusters: Optional[List[str]] = None
+    """IDs of created Slurm clusters"""
+
+    slurm_node_sets: Optional[List[str]] = None
+    """IDs of created Slurm node sets"""
+
     snapshots: Optional[List[str]] = None
     """IDs of created volume snapshots"""
 

@@ -77,7 +77,7 @@ class TestServers:
             interfaces=[
                 {
                     "port_id": "port_id",
-                    "floating_ip": {"floating_ip_id": "floating_ip_id"},
+                    "floating_ip": {"id": "id"},
                 }
             ],
         )
@@ -177,7 +177,7 @@ class TestAsyncServers:
             interfaces=[
                 {
                     "port_id": "port_id",
-                    "floating_ip": {"floating_ip_id": "floating_ip_id"},
+                    "floating_ip": {"id": "id"},
                 }
             ],
         )

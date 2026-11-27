@@ -374,7 +374,8 @@ class ServersResource(ServersResourceCustomMixin, SyncAPIResource):
 
           ids: Filter by baremetal server UUID(s).
 
-          ip_address: Exact IP filter on a fixed IP.
+          ip_address: Filter by an IP address of a port of the server. The filter compares the fixed
+              IPs and the floating IPs of the port.
 
           limit: Max items to return.
 
@@ -1065,7 +1066,8 @@ class AsyncServersResource(AsyncServersResourceCustomMixin, AsyncAPIResource):
 
           ids: Filter by baremetal server UUID(s).
 
-          ip_address: Exact IP filter on a fixed IP.
+          ip_address: Filter by an IP address of a port of the server. The filter compares the fixed
+              IPs and the floating IPs of the port.
 
           limit: Max items to return.
 

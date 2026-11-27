@@ -434,7 +434,8 @@ class InstancesResource(InstancesResourceCustomMixin, SyncAPIResource):
 
           ids: Filter by instance UUID(s).
 
-          ip_address: Exact IP filter on a fixed IP.
+          ip_address: Filter by an IP address of a port of the instance. The filter compares the fixed
+              IPs and the floating IPs of the port.
 
           limit: Max items to return.
 
@@ -1169,7 +1170,8 @@ class AsyncInstancesResource(AsyncInstancesResourceCustomMixin, AsyncAPIResource
 
           ids: Filter by instance UUID(s).
 
-          ip_address: Exact IP filter on a fixed IP.
+          ip_address: Filter by an IP address of a port of the instance. The filter compares the fixed
+              IPs and the floating IPs of the port.
 
           limit: Max items to return.
 

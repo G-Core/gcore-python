@@ -31,6 +31,14 @@ class Member(BaseModel):
     configuration. Default is false
     """
 
+    instance_id: Optional[str] = None
+    """
+    ID of the instance that was last given for this member when it was created or
+    when the pool members were replaced. It does not change if the instance changes
+    later. Null for a member that was added by address without `instance_id`, or
+    that was created before this field was added.
+    """
+
     monitor_address: Optional[str] = None
     """An alternate IP address used for health monitoring of a backend member.
 

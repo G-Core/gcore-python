@@ -17,6 +17,9 @@ class ClusterListParams(TypedDict, total=False):
     limit: int
     """Optional. Limit the number of returned items"""
 
+    name: str
+    """Cluster name to filter the results by. Exact, case-sensitive match."""
+
     offset: int
     """Optional.
 

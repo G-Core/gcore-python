@@ -79,7 +79,7 @@ class TestInstances:
             interfaces=[
                 {
                     "port_id": "port_id",
-                    "floating_ip": {"floating_ip_id": "floating_ip_id"},
+                    "floating_ip": {"id": "id"},
                 }
             ],
         )
@@ -133,7 +133,7 @@ class TestInstances:
             interfaces=[
                 {
                     "port_id": "port_id",
-                    "floating_ip": {"floating_ip_id": "floating_ip_id"},
+                    "floating_ip": {"id": "id"},
                 }
             ],
         )
@@ -235,7 +235,7 @@ class TestAsyncInstances:
             interfaces=[
                 {
                     "port_id": "port_id",
-                    "floating_ip": {"floating_ip_id": "floating_ip_id"},
+                    "floating_ip": {"id": "id"},
                 }
             ],
         )
@@ -289,7 +289,7 @@ class TestAsyncInstances:
             interfaces=[
                 {
                     "port_id": "port_id",
-                    "floating_ip": {"floating_ip_id": "floating_ip_id"},
+                    "floating_ip": {"id": "id"},
                 }
             ],
         )

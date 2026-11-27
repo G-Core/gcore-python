@@ -8,5 +8,5 @@ __all__ = ["PriceFloatingIPParam"]
 
 
 class PriceFloatingIPParam(TypedDict, total=False):
-    floating_ip_id: str
-    """Existing floating IP. Omit it for a new floating IP."""
+    id: str
+    """ID of an existing floating IP. Omit it for a new floating IP."""

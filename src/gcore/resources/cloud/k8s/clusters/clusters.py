@@ -414,6 +414,7 @@ class ClustersResource(ClustersResourceCustomMixin, SyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         limit: int | Omit = omit,
+        name: str | Omit = omit,
         offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -431,6 +432,8 @@ class ClustersResource(ClustersResourceCustomMixin, SyncAPIResource):
           region_id: Region ID
 
           limit: Optional. Limit the number of returned items
+
+          name: Cluster name to filter the results by. Exact, case-sensitive match.
 
           offset: Optional. Offset value is used to exclude the first set of records from the
               result
@@ -460,6 +463,7 @@ class ClustersResource(ClustersResourceCustomMixin, SyncAPIResource):
                 query=maybe_transform(
                     {
                         "limit": limit,
+                        "name": name,
                         "offset": offset,
                     },
                     cluster_list_params.ClusterListParams,
@@ -1103,6 +1107,7 @@ class AsyncClustersResource(AsyncClustersResourceCustomMixin, AsyncAPIResource):
         project_id: int | None = None,
         region_id: int | None = None,
         limit: int | Omit = omit,
+        name: str | Omit = omit,
         offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1120,6 +1125,8 @@ class AsyncClustersResource(AsyncClustersResourceCustomMixin, AsyncAPIResource):
           region_id: Region ID
 
           limit: Optional. Limit the number of returned items
+
+          name: Cluster name to filter the results by. Exact, case-sensitive match.
 
           offset: Optional. Offset value is used to exclude the first set of records from the
               result
@@ -1149,6 +1156,7 @@ class AsyncClustersResource(AsyncClustersResourceCustomMixin, AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "limit": limit,
+                        "name": name,
                         "offset": offset,
                     },
                     cluster_list_params.ClusterListParams,

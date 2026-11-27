@@ -303,6 +303,7 @@ class TestClusters:
             project_id=1,
             region_id=7,
             limit=1000,
+            name="my-cluster",
             offset=0,
         )
         assert_matches_type(SyncOffsetPage[K8SCluster], cluster, path=["response"])
@@ -875,6 +876,7 @@ class TestAsyncClusters:
             project_id=1,
             region_id=7,
             limit=1000,
+            name="my-cluster",
             offset=0,
         )
         assert_matches_type(AsyncOffsetPage[K8SCluster], cluster, path=["response"])

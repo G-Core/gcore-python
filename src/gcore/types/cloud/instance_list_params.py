@@ -26,7 +26,10 @@ class InstanceListParams(TypedDict, total=False):
     """Filter by instance UUID(s)."""
 
     ip_address: IPAddress
-    """Exact IP filter on a fixed IP."""
+    """Filter by an IP address of a port of the instance.
+
+    The filter compares the fixed IPs and the floating IPs of the port.
+    """
 
     limit: int
     """Max items to return."""
@@ -156,7 +159,10 @@ class FlavorName(TypedDict, total=False):
 
 
 class IPAddress(TypedDict, total=False):
-    """Exact IP filter on a fixed IP."""
+    """Filter by an IP address of a port of the instance.
+
+    The filter compares the fixed IPs and the floating IPs of the port.
+    """
 
     contains: SequenceNotStr[str]
     """Substring match on IP address, e.g.
