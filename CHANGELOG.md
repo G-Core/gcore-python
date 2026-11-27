@@ -1,5 +1,34 @@
 # Changelog
 
+## [0.65.0](https://github.com/G-Core/gcore-python/compare/v0.64.0...v0.65.0) (2026-11-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* **cloud:** update cloud OpenAPI spec
+* **cloud:** refresh listener fields and map global instance metrics
+
+### Features
+
+* **cloud:** add GPU pricing examples ([c4cad47](https://github.com/G-Core/gcore-python/commit/c4cad470b2e97926311f36efe273e3e62106376b))
+* **cloud:** add GPU pricing list endpoint ([fd69927](https://github.com/G-Core/gcore-python/commit/fd69927994bd00dbde2d84a0b0c84583ee88fb5c))
+* **cloud:** refresh listener fields and map global instance metrics ([7e8b8b7](https://github.com/G-Core/gcore-python/commit/7e8b8b7f7b2ed467bc14fb29ddfe9371f5aa045f))
+* **cloud:** update cloud OpenAPI spec ([2d7a154](https://github.com/G-Core/gcore-python/commit/2d7a15492f91cdd35fa8e388bea1768b787e23d2))
+
+
+### Bug Fixes
+
+* **streaming:** auto-page streaming lists ([cc8a111](https://github.com/G-Core/gcore-python/commit/cc8a1117b9ab2720aa02fe48f34b1de02f9b9e95))
+
+
+### Chores
+
+* **skills:** add Ports and Pricing to Cloud sub-products ([#61](https://github.com/G-Core/gcore-python/issues/61)) ([41f2fe3](https://github.com/G-Core/gcore-python/commit/41f2fe33014f89b7fae218623e327fc309987969))
+* **skills:** analyze compare diff, not the release PR diff ([#58](https://github.com/G-Core/gcore-python/issues/58)) ([82a6c9a](https://github.com/G-Core/gcore-python/commit/82a6c9ae7606a1fb351848d7f447b110f3c16298))
+* **skills:** check approval and merge only the reviewed commit ([#59](https://github.com/G-Core/gcore-python/issues/59)) ([a9ed72a](https://github.com/G-Core/gcore-python/commit/a9ed72a28bb5cefa6617f227c93112f2f7af5e21))
+* **skills:** group breaking changes in release notes ([#62](https://github.com/G-Core/gcore-python/issues/62)) ([7df54af](https://github.com/G-Core/gcore-python/commit/7df54afbd10d96bbd29f8d3848763f0abcd96f5c))
+* **skills:** wait longer for the release and avoid double notes ([#60](https://github.com/G-Core/gcore-python/issues/60)) ([0a12194](https://github.com/G-Core/gcore-python/commit/0a1219455f1386e21c9745c0f593da7c4edebe26))
+
 ## [0.64.0](https://github.com/G-Core/gcore-python/compare/v0.63.0...v0.64.0) (2026-11-25)
 
 
