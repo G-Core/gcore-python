@@ -1,5 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from .gpu import (
+    GPUResource,
+    AsyncGPUResource,
+    GPUResourceWithRawResponse,
+    AsyncGPUResourceWithRawResponse,
+    GPUResourceWithStreamingResponse,
+    AsyncGPUResourceWithStreamingResponse,
+)
 from .ports import (
     PortsResource,
     AsyncPortsResource,
@@ -52,6 +60,12 @@ __all__ = [
     "AsyncPortsResourceWithRawResponse",
     "PortsResourceWithStreamingResponse",
     "AsyncPortsResourceWithStreamingResponse",
+    "GPUResource",
+    "AsyncGPUResource",
+    "GPUResourceWithRawResponse",
+    "AsyncGPUResourceWithRawResponse",
+    "GPUResourceWithStreamingResponse",
+    "AsyncGPUResourceWithStreamingResponse",
     "PricingResource",
     "AsyncPricingResource",
     "PricingResourceWithRawResponse",

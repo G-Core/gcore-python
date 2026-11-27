@@ -1325,6 +1325,24 @@ Methods:
 
 - <code title="post /cloud/v1/projects/{project_id}/pricing/ports">client.cloud.pricing.ports.<a href="./src/gcore/resources/cloud/pricing/ports.py">preview</a>(\*, project_id, \*\*<a href="src/gcore/types/cloud/pricing/port_preview_params.py">params</a>) -> <a href="./src/gcore/types/cloud/port_price.py">PortPrice</a></code>
 
+### GPU
+
+Types:
+
+```python
+from gcore.types.cloud.pricing import (
+    GPUCurrency,
+    GPUDeploymentType,
+    GPUPrice,
+    GPUPriceCatalog,
+    GPUPriceDetail,
+)
+```
+
+Methods:
+
+- <code title="get /cloud/public/v1/pricing/gpu">client.cloud.pricing.gpu.<a href="./src/gcore/resources/cloud/pricing/gpu.py">list</a>() -> <a href="./src/gcore/types/cloud/pricing/gpu_price_catalog.py">GPUPriceCatalog</a></code>
+
 ## Databases
 
 ### Postgres

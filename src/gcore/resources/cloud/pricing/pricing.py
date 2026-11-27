@@ -2,6 +2,14 @@
 
 from __future__ import annotations
 
+from .gpu import (
+    GPUResource,
+    AsyncGPUResource,
+    GPUResourceWithRawResponse,
+    AsyncGPUResourceWithRawResponse,
+    GPUResourceWithStreamingResponse,
+    AsyncGPUResourceWithStreamingResponse,
+)
 from .ports import (
     PortsResource,
     AsyncPortsResource,
@@ -50,6 +58,13 @@ class PricingResource(SyncAPIResource):
         return PortsResource(self._client)
 
     @cached_property
+    def gpu(self) -> GPUResource:
+        """
+        GPU pricing lists the public list prices of bare metal and virtual GPUs in EUR and USD.
+        """
+        return GPUResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> PricingResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -87,6 +102,13 @@ class AsyncPricingResource(AsyncAPIResource):
         return AsyncPortsResource(self._client)
 
     @cached_property
+    def gpu(self) -> AsyncGPUResource:
+        """
+        GPU pricing lists the public list prices of bare metal and virtual GPUs in EUR and USD.
+        """
+        return AsyncGPUResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AsyncPricingResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -122,6 +144,13 @@ class PricingResourceWithRawResponse:
     def ports(self) -> PortsResourceWithRawResponse:
         return PortsResourceWithRawResponse(self._pricing.ports)
 
+    @cached_property
+    def gpu(self) -> GPUResourceWithRawResponse:
+        """
+        GPU pricing lists the public list prices of bare metal and virtual GPUs in EUR and USD.
+        """
+        return GPUResourceWithRawResponse(self._pricing.gpu)
+
 
 class AsyncPricingResourceWithRawResponse:
     def __init__(self, pricing: AsyncPricingResource) -> None:
@@ -138,6 +167,13 @@ class AsyncPricingResourceWithRawResponse:
     @cached_property
     def ports(self) -> AsyncPortsResourceWithRawResponse:
         return AsyncPortsResourceWithRawResponse(self._pricing.ports)
+
+    @cached_property
+    def gpu(self) -> AsyncGPUResourceWithRawResponse:
+        """
+        GPU pricing lists the public list prices of bare metal and virtual GPUs in EUR and USD.
+        """
+        return AsyncGPUResourceWithRawResponse(self._pricing.gpu)
 
 
 class PricingResourceWithStreamingResponse:
@@ -156,6 +192,13 @@ class PricingResourceWithStreamingResponse:
     def ports(self) -> PortsResourceWithStreamingResponse:
         return PortsResourceWithStreamingResponse(self._pricing.ports)
 
+    @cached_property
+    def gpu(self) -> GPUResourceWithStreamingResponse:
+        """
+        GPU pricing lists the public list prices of bare metal and virtual GPUs in EUR and USD.
+        """
+        return GPUResourceWithStreamingResponse(self._pricing.gpu)
+
 
 class AsyncPricingResourceWithStreamingResponse:
     def __init__(self, pricing: AsyncPricingResource) -> None:
@@ -172,3 +215,10 @@ class AsyncPricingResourceWithStreamingResponse:
     @cached_property
     def ports(self) -> AsyncPortsResourceWithStreamingResponse:
         return AsyncPortsResourceWithStreamingResponse(self._pricing.ports)
+
+    @cached_property
+    def gpu(self) -> AsyncGPUResourceWithStreamingResponse:
+        """
+        GPU pricing lists the public list prices of bare metal and virtual GPUs in EUR and USD.
+        """
+        return AsyncGPUResourceWithStreamingResponse(self._pricing.gpu)
